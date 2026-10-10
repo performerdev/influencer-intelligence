@@ -12,13 +12,13 @@ export type PostRow = {
 
 export const day = (d: Date | string) => new Date(d).toISOString().slice(0, 10);
 
-const clean = (s: string) => s.replace(/\s+/g, " ").replace(/https:\/\/t\.co\/\w+/g, "").trim();
+const clean = (s: string) => s.replace(/[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/g, "").replace(/\s+/g, " ").replace(/https:\/\/t\.co\/\w+/g, "").trim();
 
 /** One post as one compact line for the model. */
 export function formatPost(p: PostRow): string {
   const text = clean(p.text);
   if (p.kind === "quote") {
-    const q = clean(p.quoted_text ?? "").slice(0, 280);
+    const q = Array.from(clean(p.quoted_text ?? "")).slice(0, 280).join(""); // by code point: never cut an emoji in half
     return `[${p.id}] ${day(p.created_at)} · quote of @${p.quoted_author ?? "?"}: «${q}» → ${text}`;
   }
   return `[${p.id}] ${day(p.created_at)} · ${p.kind === "thread" ? "thread" : "post"} · ${text}`;

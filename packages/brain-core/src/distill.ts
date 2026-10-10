@@ -96,6 +96,7 @@ export async function distillInfluencer(sql: Sql, llm: LLM, inf: InfluencerRow, 
       select batch_key, notes from distill_notes where influencer_id = ${inf.id}`) cached.set(r.batch_key, r.notes);
   }
   const notes: BatchNotes[] = new Array(batches.length);
+  const failed: string[] = [];
   let done = 0;
   const report = (step: DistillProgress["step"], total: number) => opts.onProgress?.({ step, done, total, costUsd: cost });
 
@@ -107,7 +108,9 @@ export async function distillInfluencer(sql: Sql, llm: LLM, inf: InfluencerRow, 
     } else {
       let parsed: BatchNotes | null = null;
       for (let attempt = 0; attempt < 2 && !parsed; attempt++) {
-        const res = await llm.complete(
+        let res: Awaited<ReturnType<LLM["complete"]>>;
+        try {
+          res = await llm.complete(
           [
             { role: "system", content: mapSystem({ handle: inf.handle }) },
             {
@@ -123,7 +126,12 @@ export async function distillInfluencer(sql: Sql, llm: LLM, inf: InfluencerRow, 
             },
           ],
           { model: mapModel, json: true, temperature: 0.2, maxTokens: 8000, thinking: (process.env.DISTILL_MAP_THINKING ?? "disabled") as CompleteOptions["thinking"] },
-        );
+          );
+        } catch (err) {
+          // One bad batch must not sink a 100-batch run; it stays uncached and is retried next run.
+          failed.push(`${i}: ${String((err as Error).message ?? err).slice(0, 160)}`);
+          break;
+        }
         await spend(res.usage, "map", mapModel);
         try {
           parsed = parseJsonReply<BatchNotes>(res.text);
@@ -148,6 +156,11 @@ export async function distillInfluencer(sql: Sql, llm: LLM, inf: InfluencerRow, 
     report("map", batches.length);
   };
   await pool(batches.map((_, i) => i), opts.concurrency ?? Number(process.env.DISTILL_CONCURRENCY ?? 4), runBatch);
+  if (failed.length) {
+    console.warn(`@${inf.handle}: ${failed.length} map batch(es) failed and will be retried next run:\n  ${failed.slice(0, 5).join("\n  ")}`);
+    // A few holes are fine; many means something systematic — stop before paying for the reduce.
+    if (failed.length > Math.max(2, batches.length * 0.05)) throw new Error(`${failed.length}/${batches.length} map batches failed — re-run to retry them (finished batches are cached)`);
+  }
 
   // ── calls: straight from the map step, validated by code, kept complete ──
   const calls = validateCalls(notes.flatMap((n) => n.calls ?? []), byId);

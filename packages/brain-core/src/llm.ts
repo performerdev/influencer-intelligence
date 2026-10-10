@@ -22,6 +22,12 @@ export interface LLM {
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 /**
+ * Replace lone UTF-16 surrogates (half an emoji, e.g. from a cut string) with U+FFFD.
+ * JSON.stringify writes them as "\\udXXX" escapes, which strict JSON parsers reject.
+ */
+export const wellFormed = (s: string) => s.replace(/[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/g, "\uFFFD");
+
+/**
  * OpenAI-compatible chat client (DeepSeek by default). Any provider with a
  * /chat/completions endpoint works: set LLM_BASE_URL + LLM_API_KEY.
  * Model names come from env (LLM_MODEL_DISTILL / LLM_MODEL_CHAT), never code.
@@ -44,7 +50,7 @@ export class OpenAICompatibleLLM implements LLM {
   private body(messages: ChatMessage[], opts: CompleteOptions, stream: boolean) {
     return {
       model: opts.model ?? this.defaultModel,
-      messages,
+      messages: messages.map((m) => ({ ...m, content: wellFormed(m.content) })),
       temperature: opts.temperature ?? 0.4,
       max_tokens: opts.maxTokens,
       stream,
