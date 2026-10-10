@@ -104,10 +104,19 @@ export class OpenAICompatibleLLM implements LLM {
 
   async complete(messages: ChatMessage[], opts: CompleteOptions = {}) {
     const body = this.body(messages, opts, false);
-    const res = await this.post(body);
-    const j = (await res.json()) as any;
-    const model = j.model ?? body.model;
-    return { text: j.choices?.[0]?.message?.content ?? "", usage: this.usage(body.model, j.usage), model };
+    // Long answers can lose the connection mid-body ("terminated"); ask again rather than fail the run.
+    for (let attempt = 0; ; attempt++) {
+      const res = await this.post(body);
+      try {
+        const j = (await res.json()) as any;
+        const model = j.model ?? body.model;
+        return { text: j.choices?.[0]?.message?.content ?? "", usage: this.usage(body.model, j.usage), model };
+      } catch (err) {
+        if (attempt >= 3) throw err;
+        console.warn(`LLM response cut off (${(err as Error).message}); retrying`);
+        await sleep(3000 * 2 ** attempt);
+      }
+    }
   }
 
   async *stream(messages: ChatMessage[], opts: CompleteOptions = {}) {

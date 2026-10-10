@@ -42,11 +42,16 @@ export async function migrate(sql: Sql = db()): Promise<string[]> {
   for (const file of readdirSync(MIGRATIONS).filter((f) => f.endsWith(".sql")).sort()) {
     if (done.has(file)) continue;
     const body = readFileSync(join(MIGRATIONS, file), "utf8");
-    await sql.begin(async (tx) => {
+    // Several CI jobs start at once: one applies each migration, the others wait and skip it.
+    const ran = await sql.begin(async (tx) => {
+      await tx`select pg_advisory_xact_lock(4242001)`;
+      const [hit] = await tx`select 1 from schema_migrations where version = ${file}`;
+      if (hit) return false;
       await tx.unsafe(body);
       await tx`insert into schema_migrations (version) values (${file})`;
+      return true;
     });
-    applied.push(file);
+    if (ran) applied.push(file);
   }
   return applied;
 }
