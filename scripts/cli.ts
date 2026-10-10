@@ -271,6 +271,19 @@ async function main() {
           console.log(`  stopped at the budget cap; raise --max-usd (or pass --partial to distill what's stored).`);
           continue;
         }
+        const prev = await latestBrain(db(), inf.id);
+        if (flags.has("refresh") && prev && ing.kept === 0) {
+          // Nothing new posted: only re-price calls, and only keep a new version if numbers moved.
+          const stats = await stepStats(inf);
+          const same = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b);
+          if (prev.files.stats && same(prev.files.stats.per_call, stats.per_call) && same(prev.files.stats.horizons, stats.horizons)) {
+            done(`  ${inf.code} @${inf.handle} · no new posts, numbers unchanged · brain stays v${prev.version}`);
+          } else {
+            await stepAssemble(inf, { ...prev.files, stats });
+            await stepExport(inf);
+          }
+          continue;
+        }
         const files = await stepDistill(inf);
         const stats = await stepStats(inf);
         await stepAssemble(inf, { one_line_mind: files.oneLineMind, mind: files.mind, rules: files.rules, voice: files.voice, intro: files.intro, example_ids: files.exampleIds, calls: files.calls, stats });
