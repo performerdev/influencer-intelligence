@@ -1,0 +1,77 @@
+/**
+ * Ticker → price-source id for well-known assets. Anything not listed here is
+ * priced only when the post itself contains a contract address; otherwise the
+ * call is marked "no price source" rather than guessed. Extend freely — each
+ * per-call row in stats.json records which id was used, so mistakes are auditable.
+ */
+const COINGECKO: Record<string, string> = {
+  BTC: "bitcoin",
+  ETH: "ethereum",
+  SOL: "solana",
+  BNB: "binancecoin",
+  XRP: "ripple",
+  DOGE: "dogecoin",
+  ADA: "cardano",
+  AVAX: "avalanche-2",
+  LINK: "chainlink",
+  DOT: "polkadot",
+  TRX: "tron",
+  TON: "the-open-network",
+  LTC: "litecoin",
+  BCH: "bitcoin-cash",
+  NEAR: "near",
+  APT: "aptos",
+  SUI: "sui",
+  SEI: "sei-network",
+  TIA: "celestia",
+  INJ: "injective-protocol",
+  ARB: "arbitrum",
+  OP: "optimism",
+  ATOM: "cosmos",
+  UNI: "uniswap",
+  AAVE: "aave",
+  MKR: "maker",
+  LDO: "lido-dao",
+  PENDLE: "pendle",
+  ENA: "ethena",
+  ONDO: "ondo-finance",
+  HYPE: "hyperliquid",
+  TAO: "bittensor",
+  FET: "fetch-ai",
+  RNDR: "render-token",
+  RENDER: "render-token",
+  JUP: "jupiter-exchange-solana",
+  PYTH: "pyth-network",
+  JTO: "jito-governance-token",
+  RAY: "raydium",
+  PEPE: "pepe",
+  SHIB: "shiba-inu",
+  WIF: "dogwifcoin",
+  BONK: "bonk",
+  POPCAT: "popcat",
+  BOME: "book-of-meme",
+  MEW: "cat-in-a-dogs-world",
+  FLOKI: "floki",
+  TRUMP: "official-trump",
+  FARTCOIN: "fartcoin",
+  SPX: "spx6900",
+  MOODENG: "moo-deng",
+  PNUT: "peanut-the-squirrel",
+  GOAT: "goatseus-maximus",
+  AI16Z: "ai16z",
+  VIRTUAL: "virtual-protocol",
+  PUMP: "pump-fun",
+};
+
+/** Chains to try for a bare EVM address, in order. */
+const EVM_CHAINS = ["ethereum", "base", "bsc", "arbitrum"];
+
+/** Candidate price ids for a call, best first. Empty → no price source. */
+export function priceIds(call: { ticker: string; chain: string | null; address: string | null }): string[] {
+  // A known major wins over any address that happens to be in the same post.
+  const cg = COINGECKO[call.ticker.toUpperCase()];
+  if (cg) return [`coingecko:${cg}`];
+  if (call.address && call.chain === "solana") return [`solana:${call.address}`];
+  if (call.address && call.chain === "evm") return EVM_CHAINS.map((c) => `${c}:${call.address}`);
+  return [];
+}

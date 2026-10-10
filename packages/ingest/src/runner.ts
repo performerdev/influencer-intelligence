@@ -1,0 +1,233 @@
+import { type InfluencerRow, type Sql, recordSpend, refreshInfluencerCounts, spentUsd } from "@ii/db";
+
+import { type PostKind, type XPage, type XSource, type XTweet, classify } from "./types";
+
+export type IngestProgress = {
+  phase: string;
+  pages: number;
+  billed: number;
+  kept: number;
+  oldest: Date | null;
+  spentUsd: number;
+};
+
+export type IngestOptions = {
+  /** hard cap on twitterapi spend for this influencer (all runs combined) */
+  maxUsd: number;
+  /** collect the author's own thread continuations (from:X to:X) */
+  threads?: boolean;
+  /** only fetch what's new since the last run */
+  refresh?: boolean;
+  onProgress?: (p: IngestProgress) => void;
+};
+
+export type IngestResult = { status: "done" | "budget"; kept: number; billed: number; spentUsd: number };
+
+type StateRow = {
+  phase: string;
+  cursor: string | null;
+  window_until: string | null;
+  done: boolean;
+  pages: number;
+  tweets_billed: number;
+  kept: number;
+};
+
+/**
+ * Pull every public post of one account into `posts`. Resumable: each phase
+ * stores its cursor after every page, so a crash or a budget stop picks up
+ * exactly where it left off.
+ *
+ *   timeline  — the account's own posts and quotes, newest → oldest
+ *   search    — back-fills anything older the timeline endpoint doesn't reach,
+ *               in until_time windows
+ *   threads   — the author's own replies to themselves (thread continuations)
+ */
+export async function ingestInfluencer(
+  sql: Sql,
+  source: XSource,
+  inf: InfluencerRow,
+  opts: IngestOptions,
+): Promise<IngestResult> {
+  await sql`update influencers set status = 'ingesting' where id = ${inf.id}`;
+
+  // 1. Profile (cheap, refreshed daily) — gives the user id, display name and real counts.
+  if (!inf.x_user_id || opts.refresh) {
+    const p = await source.profile(inf.handle);
+    await sql`
+      update influencers set
+        x_user_id = ${p.id}, display_name = ${p.name}, bio = ${p.bio}, followers = ${p.followers},
+        statuses_count = ${p.statusesCount}, account_created_at = ${p.createdAt}, profile_fetched_at = now()
+      where id = ${inf.id}`;
+    inf = { ...inf, x_user_id: p.id, display_name: p.name, statuses_count: p.statusesCount, account_created_at: p.createdAt };
+  }
+  const selfId = inf.x_user_id!;
+  const handle = inf.handle;
+
+  let spent = await spentUsd(sql, inf.id, "twitterapi");
+  let totalKept = 0;
+  let totalBilled = 0;
+
+  const loadState = async (phase: string): Promise<StateRow> => {
+    const [row] = await sql<StateRow[]>`select * from ingest_state where influencer_id = ${inf.id} and phase = ${phase}`;
+    return row ?? { phase, cursor: null, window_until: null, done: false, pages: 0, tweets_billed: 0, kept: 0 };
+  };
+  const saveState = async (s: StateRow) => {
+    await sql`
+      insert into ingest_state (influencer_id, phase, cursor, window_until, done, pages, tweets_billed, kept, updated_at)
+      values (${inf.id}, ${s.phase}, ${s.cursor}, ${s.window_until}, ${s.done}, ${s.pages}, ${s.tweets_billed}, ${s.kept}, now())
+      on conflict (influencer_id, phase) do update set
+        cursor = excluded.cursor, window_until = excluded.window_until, done = excluded.done, pages = excluded.pages,
+        tweets_billed = excluded.tweets_billed, kept = excluded.kept, updated_at = now()`;
+  };
+
+  /** One request: bill it, keep what belongs, store. Returns the page and how many new rows landed. */
+  const fetchPage = async (state: StateRow, call: () => Promise<XPage>, keepOnly?: PostKind) => {
+    const page = await call();
+    spent += page.costUsd;
+    totalBilled += page.billed;
+    await recordSpend(sql, {
+      influencerId: inf.id,
+      kind: "twitterapi",
+      units: page.billed,
+      usd: page.costUsd,
+      meta: { phase: state.phase },
+    });
+    const kept = page.tweets
+      .map((t) => ({ t, kind: classify(t, selfId) }))
+      .filter((x): x is { t: XTweet; kind: PostKind } => !!x.kind && (!keepOnly || x.kind === keepOnly));
+    const inserted = await insertPosts(sql, inf.id, kept);
+    totalKept += inserted;
+    state.pages += 1;
+    state.tweets_billed += page.billed;
+    state.kept += inserted;
+    const oldest = page.tweets.reduce<Date | null>((m, t) => (!m || t.createdAt < m ? t.createdAt : m), null);
+    opts.onProgress?.({ phase: state.phase, pages: state.pages, billed: state.tweets_billed, kept: state.kept, oldest, spentUsd: spent });
+    return { page, inserted, oldest };
+  };
+
+  const overBudget = () => spent + 0.004 > opts.maxUsd;
+  const stop = async (): Promise<IngestResult> => {
+    await refreshInfluencerCounts(sql, inf.id);
+    return { status: "budget", kept: totalKept, billed: totalBilled, spentUsd: spent };
+  };
+
+  // ── refresh: newest pages until we hit posts we already have ──
+  if (opts.refresh) {
+    const s: StateRow = { ...(await loadState("refresh")), cursor: null, done: false };
+    for (;;) {
+      if (overBudget()) return stop();
+      const { page, inserted } = await fetchPage(s, () => source.timeline({ userId: selfId, handle, cursor: s.cursor }));
+      s.cursor = page.nextCursor;
+      if (!page.nextCursor || page.tweets.length === 0 || inserted === 0) break;
+    }
+    s.done = true;
+    await saveState(s);
+    await refreshInfluencerCounts(sql, inf.id);
+    return { status: "done", kept: totalKept, billed: totalBilled, spentUsd: spent };
+  }
+
+  // ── timeline ──
+  const tl = await loadState("timeline");
+  while (!tl.done) {
+    if (overBudget()) return stop();
+    const { page } = await fetchPage(tl, () => source.timeline({ userId: selfId, handle, cursor: tl.cursor }));
+    tl.cursor = page.nextCursor;
+    if (!page.nextCursor || page.tweets.length === 0) tl.done = true;
+    await saveState(tl);
+  }
+
+  // ── search back-fill, in until_time windows ──
+  const se = await loadState("search");
+  const accountStart = inf.account_created_at ? Math.floor(new Date(inf.account_created_at).getTime() / 1000) : 0;
+  let excludeReplies = process.env.SEARCH_EXCLUDE_REPLIES !== "false";
+  while (!se.done) {
+    if (se.window_until == null) {
+      const [r] = await sql<{ t: Date | null }[]>`select min(created_at) as t from posts where influencer_id = ${inf.id} and kind <> 'thread'`;
+      if (!r?.t) {
+        se.done = true;
+        break;
+      }
+      se.window_until = String(Math.floor(new Date(r.t).getTime() / 1000));
+    }
+    const until = Number(se.window_until);
+    if (until <= accountStart) {
+      se.done = true;
+      break;
+    }
+    let windowMin = until;
+    let windowRows = 0;
+    for (;;) {
+      if (overBudget()) {
+        await saveState(se);
+        return stop();
+      }
+      const query = `from:${handle} until_time:${until}${excludeReplies ? " -filter:replies" : ""}`;
+      const { page, oldest } = await fetchPage(se, () => source.search({ query, cursor: se.cursor }));
+      // Some providers reject -filter:replies silently; retry the window once without it.
+      if (excludeReplies && !se.cursor && page.tweets.length === 0 && !page.nextCursor) {
+        const probe = await fetchPage(se, () => source.search({ query: `from:${handle} until_time:${until}` }));
+        if (probe.page.tweets.length > 0) {
+          excludeReplies = false;
+          se.cursor = probe.page.nextCursor;
+          windowRows += probe.page.tweets.length;
+          if (probe.oldest) windowMin = Math.min(windowMin, Math.floor(probe.oldest.getTime() / 1000));
+          await saveState(se);
+          if (!probe.page.nextCursor) break;
+          continue;
+        }
+      }
+      windowRows += page.tweets.length;
+      if (oldest) windowMin = Math.min(windowMin, Math.floor(oldest.getTime() / 1000));
+      se.cursor = page.nextCursor;
+      await saveState(se);
+      if (!page.nextCursor || page.tweets.length === 0) break;
+    }
+    // Next window starts where this one ended; stop when a window adds nothing older.
+    se.cursor = null;
+    if (windowRows === 0 || windowMin >= until) se.done = true;
+    else se.window_until = String(windowMin);
+    await saveState(se);
+  }
+
+  // ── own thread continuations ──
+  if (opts.threads !== false) {
+    const th = await loadState("threads");
+    while (!th.done) {
+      if (overBudget()) return stop();
+      const { page } = await fetchPage(th, () => source.search({ query: `from:${handle} to:${handle}`, cursor: th.cursor }), "thread");
+      th.cursor = page.nextCursor;
+      if (!page.nextCursor || page.tweets.length === 0) th.done = true;
+      await saveState(th);
+    }
+  }
+
+  await refreshInfluencerCounts(sql, inf.id);
+  return { status: "done", kept: totalKept, billed: totalBilled, spentUsd: spent };
+}
+
+async function insertPosts(sql: Sql, influencerId: number, rows: { t: XTweet; kind: PostKind }[]): Promise<number> {
+  if (rows.length === 0) return 0;
+  const values = rows.map(({ t, kind }) => ({
+    id: t.id,
+    influencer_id: influencerId,
+    kind,
+    text: t.text,
+    created_at: t.createdAt,
+    conversation_id: t.conversationId,
+    in_reply_to_id: t.inReplyToId,
+    quoted_id: t.quoted?.id ?? null,
+    quoted_author: t.quoted?.author ?? null,
+    quoted_text: t.quoted?.text ?? null,
+    likes: t.metrics.likes,
+    reposts: t.metrics.reposts,
+    replies: t.metrics.replies,
+    quotes: t.metrics.quotes,
+    views: t.metrics.views,
+    lang: t.lang,
+    // Raw API payloads are ~5× the text; skip them by default to stay inside the free database tier.
+    raw: process.env.INGEST_KEEP_RAW === "true" ? sql.json(t.raw as never) : null,
+  }));
+  const res = await sql`insert into posts ${sql(values)} on conflict (id) do nothing returning id`;
+  return res.length;
+}

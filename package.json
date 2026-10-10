@@ -1,0 +1,41 @@
+{
+  "name": "influencer-intelligence",
+  "private": true,
+  "license": "MIT",
+  "packageManager": "pnpm@10.28.0",
+  "scripts": {
+    "dev": "pnpm --filter @ii/web dev",
+    "build": "pnpm --filter @ii/web build",
+    "start": "pnpm --filter @ii/web start",
+    "typecheck": "pnpm -r typecheck",
+    "preview:hero": "pnpm --filter @ii/web preview:hero",
+    "db:migrate": "tsx scripts/cli.ts migrate",
+    "brain:probe": "tsx scripts/cli.ts probe",
+    "brain:quote": "tsx scripts/cli.ts quote",
+    "brain:ingest": "tsx scripts/cli.ts ingest",
+    "brain:distill": "tsx scripts/cli.ts distill",
+    "brain:stats": "tsx scripts/cli.ts stats",
+    "brain:export": "tsx scripts/cli.ts export",
+    "brain:build": "tsx scripts/cli.ts build",
+    "brain:status": "tsx scripts/cli.ts status",
+    "test:pipeline": "tsx scripts/test-pipeline.ts"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20.12"
+  },
+  "dependencies": {
+    "postgres": "^3.4.9",
+    "tsx": "^4.23.15",
+    "@ii/db": "workspace:*",
+    "@ii/ingest": "workspace:*",
+    "@ii/brain-core": "workspace:*",
+    "@ii/stats": "workspace:*"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
+    "@electric-sql/pglite-socket": "^0.2.11",
+    "@types/node": "^22.20.5",
+    "typescript": "^5.9.3"
+  }
+}

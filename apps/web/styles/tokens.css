@@ -1,0 +1,89 @@
+/*
+ * Influencer Intelligence — design tokens
+ * ----------------------------------------
+ * Everything visual derives from the logo: a solid ceramic "i" (the human)
+ * and the same shape made of points (the AI). Seven colors, two fonts,
+ * hairlines instead of shadows. Mirror of these values for JS lives in
+ * lib/tokens.ts — keep both in sync.
+ */
+
+:root {
+  /* ── Color ─────────────────────────────────────────────── */
+  --ii-void: #050506;      /* page background */
+  --ii-panel: #0c0c0e;     /* chat panels, inputs, cards */
+  --ii-line: #18181b;      /* 1px hairlines */
+  --ii-line-hover: #3a3a3f;/* hairline on hover (cards, inputs) */
+  --ii-ceramic: #f2f1ec;   /* primary text, solid "i", primary buttons */
+  --ii-particle: #b9b8b2;  /* particle points, secondary text */
+  --ii-muted: #6b6b70;     /* labels, timestamps, placeholders */
+
+  /* Verdict chips only. Never used anywhere else. */
+  --ii-verdict-buy: #7cff6b;
+  --ii-verdict-sell: #ff4d4d;
+
+  /* Same colors as space-separated RGB for Tailwind alpha modifiers */
+  --ii-void-rgb: 5 5 6;
+  --ii-panel-rgb: 12 12 14;
+  --ii-line-rgb: 24 24 27;
+  --ii-line-hover-rgb: 58 58 63;
+  --ii-ceramic-rgb: 242 241 236;
+  --ii-particle-rgb: 185 184 178;
+  --ii-muted-rgb: 107 107 112;
+
+  /* ── Type ──────────────────────────────────────────────── */
+  --ii-font-sans: var(--font-geist-sans, "Geist"), ui-sans-serif, system-ui, sans-serif;
+  --ii-font-mono: var(--font-geist-mono, "Geist Mono"), ui-monospace, "SFMono-Regular", monospace;
+
+  /* fluid display sizes; UI sizes fixed */
+  --ii-text-display: clamp(2.125rem, 1.45rem + 2.6vw, 4rem); /* 34 → 64 */
+  --ii-text-h1: clamp(2.25rem, 1.7rem + 2.2vw, 3.75rem);    /* 36 → 60 */
+  --ii-text-h2: clamp(1.75rem, 1.45rem + 1.2vw, 2.5rem);    /* 28 → 40 */
+  --ii-text-h3: 1.375rem;   /* 22 */
+  --ii-text-lead: 1.125rem; /* 18 */
+  --ii-text-body: 1rem;     /* 16 */
+  --ii-text-sm: 0.875rem;   /* 14 */
+  --ii-text-xs: 0.8125rem;  /* 13 — mono data */
+  --ii-text-label: 0.6875rem; /* 11 — mono labels */
+
+  --ii-tracking-display: -0.03em;
+  --ii-tracking-ui: -0.011em;
+  --ii-tracking-label: 0.08em;
+
+  /* ── Radius ────────────────────────────────────────────── */
+  --ii-radius-pill: 999px; /* buttons, chips — the stem of the "i" */
+  --ii-radius-card: 20px;
+  --ii-radius-panel: 16px;
+  --ii-radius-input: 14px;
+  --ii-radius-chip: 8px;
+
+  /* ── Space / layout ────────────────────────────────────── */
+  --ii-gutter: clamp(16px, 4vw, 40px);
+  --ii-max: 1360px;
+  --ii-topbar-h: 64px;
+
+  /* ── Motion ────────────────────────────────────────────── */
+  /* GSAP names in parentheses; CSS approximations for transitions */
+  --ii-ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);        /* power2.inOut */
+  --ii-ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);      /* power3.out   */
+  --ii-ease-out-strong: cubic-bezier(0.165, 0.84, 0.44, 1);/* power4.out   */
+  --ii-ease-expo: cubic-bezier(0.19, 1, 0.22, 1);          /* expo.out     */
+  --ii-ease-back: cubic-bezier(0.34, 1.8, 0.64, 1);        /* back.out(2)  */
+
+  --ii-dur-instant: 120ms;  /* token dither-in */
+  --ii-dur-fast: 200ms;     /* hover states */
+  --ii-dur-base: 250ms;     /* chips, popovers */
+  --ii-dur-slow: 350ms;     /* page dissolve (each half) */
+
+  /* ── Focus ─────────────────────────────────────────────── */
+  --ii-focus: 2px solid var(--ii-ceramic);
+  --ii-focus-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ii-dur-instant: 0ms;
+    --ii-dur-fast: 0ms;
+    --ii-dur-base: 0ms;
+    --ii-dur-slow: 0ms;
+  }
+}

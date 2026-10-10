@@ -1,0 +1,148 @@
+import { priceIds } from "./coins";
+import type { PriceSource } from "./prices";
+
+export type CallInput = {
+  post_id: string;
+  ticker: string;
+  chain: string | null;
+  address: string | null;
+  direction: "buy" | "sell" | "hold";
+  called_at: Date;
+};
+
+const HORIZONS = { "1d": 1, "7d": 7, "30d": 30 } as const;
+type Horizon = keyof typeof HORIZONS;
+
+export type CallStat = {
+  post_id: string;
+  ticker: string;
+  direction: string;
+  called_at: string;
+  price_id: string | null;
+  price_at_call: number | null;
+  /** price change after N days, signed in the call's favor (a sell that's followed by a drop is positive) */
+  r_1d: number | null;
+  r_7d: number | null;
+  r_30d: number | null;
+};
+
+export type HorizonStat = { n: number; median_return: number | null; mean_return: number | null; hit_rate: number | null };
+
+export type Stats = {
+  computed_at: string;
+  price_source: string;
+  calls_total: number;
+  calls_priced: number;
+  by_direction: Record<"buy" | "sell" | "hold", number>;
+  horizons: Record<Horizon, HorizonStat>;
+  median_hold_days: number | null;
+  hold_pairs: number;
+  per_call: CallStat[];
+  notes: string[];
+};
+
+const DAY = 86_400;
+const round = (x: number | null, d = 4) => (x == null ? null : Math.round(x * 10 ** d) / 10 ** d);
+const median = (xs: number[]) => {
+  if (!xs.length) return null;
+  const s = [...xs].sort((a, b) => a - b);
+  const m = s.length >> 1;
+  return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2;
+};
+
+/**
+ * Deterministic stats from calls + historical prices. No model involved:
+ * every number here is computed, and the whole object is stamped with
+ * computed_at.
+ */
+export async function computeStats(calls: CallInput[], prices: PriceSource, now = new Date()): Promise<Stats> {
+  const nowSec = Math.floor(now.getTime() / 1000);
+  // Request every candidate id at call time + each horizon (future points skipped).
+  const req: Record<string, number[]> = {};
+  const plan = calls.map((c) => {
+    const t0 = Math.floor(new Date(c.called_at).getTime() / 1000);
+    const ts = [t0, ...Object.values(HORIZONS).map((d) => t0 + d * DAY)].filter((t) => t <= nowSec);
+    const ids = priceIds(c);
+    for (const id of ids) req[id] = [...new Set([...(req[id] ?? []), ...ts])].sort((a, b) => a - b);
+    return { c, t0, ids };
+  });
+  const got = Object.keys(req).length ? await prices.batch(req) : {};
+  const lookup = (id: string, ts: number) => {
+    const i = req[id]?.indexOf(ts) ?? -1;
+    return i >= 0 ? got[id]?.[i]?.price ?? null : null;
+  };
+
+  const per_call: CallStat[] = plan.map(({ c, t0, ids }) => {
+    const id = ids.find((x) => lookup(x, t0) != null) ?? null;
+    const p0 = id ? lookup(id, t0) : null;
+    const sign = c.direction === "sell" ? -1 : 1;
+    const r = (d: number) => {
+      if (!id || !p0) return null;
+      const p = lookup(id, t0 + d * DAY);
+      return p == null ? null : round(sign * (p / p0 - 1));
+    };
+    return {
+      post_id: c.post_id,
+      ticker: c.ticker,
+      direction: c.direction,
+      called_at: new Date(c.called_at).toISOString(),
+      price_id: id,
+      price_at_call: p0,
+      r_1d: r(1),
+      r_7d: r(7),
+      r_30d: r(30),
+    };
+  });
+
+  const horizons = Object.fromEntries(
+    (Object.keys(HORIZONS) as Horizon[]).map((h) => {
+      const xs = per_call.map((p) => p[`r_${h}` as const]).filter((x): x is number => x != null);
+      return [
+        h,
+        {
+          n: xs.length,
+          median_return: round(median(xs)),
+          mean_return: xs.length ? round(xs.reduce((a, b) => a + b, 0) / xs.length) : null,
+          hit_rate: xs.length ? round(xs.filter((x) => x > 0).length / xs.length) : null,
+        },
+      ];
+    }),
+  ) as Record<Horizon, HorizonStat>;
+
+  // Hold time: a buy followed by the first later sell of the same ticker.
+  const holds: number[] = [];
+  const byTicker = new Map<string, CallInput[]>();
+  for (const c of calls) byTicker.set(c.ticker, [...(byTicker.get(c.ticker) ?? []), c]);
+  for (const list of byTicker.values()) {
+    const sorted = [...list].sort((a, b) => new Date(a.called_at).getTime() - new Date(b.called_at).getTime());
+    let open: CallInput | null = null;
+    for (const c of sorted) {
+      if (c.direction === "buy" && !open) open = c;
+      else if (c.direction === "sell" && open) {
+        holds.push((new Date(c.called_at).getTime() - new Date(open.called_at).getTime()) / (DAY * 1000));
+        open = null;
+      }
+    }
+  }
+
+  const by_direction = { buy: 0, sell: 0, hold: 0 };
+  for (const c of calls) by_direction[c.direction]++;
+
+  return {
+    computed_at: now.toISOString(),
+    price_source: prices.name,
+    calls_total: calls.length,
+    calls_priced: per_call.filter((p) => p.price_at_call != null).length,
+    by_direction,
+    horizons,
+    median_hold_days: round(median(holds), 1),
+    hold_pairs: holds.length,
+    per_call,
+    notes: [
+      "Returns are signed in the call's favor: a sell call followed by a price drop counts as positive.",
+      "hold calls are measured like buys.",
+      "Calls without a known asset id or contract address in the post are left unpriced, never guessed.",
+      "Hold time pairs a buy with the next sell of the same ticker; only calls with an exit post count.",
+    ],
+  };
+}

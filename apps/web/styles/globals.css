@@ -1,0 +1,164 @@
+@import "./tokens.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    background: var(--ii-void);
+    color: var(--ii-ceramic);
+    font-family: var(--ii-font-sans);
+    font-size: 16px;
+    letter-spacing: var(--ii-tracking-ui);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    color-scheme: dark;
+  }
+  :root {
+    color-scheme: dark;
+  }
+  body {
+    min-height: 100svh;
+    margin: 0;
+    background: var(--ii-void);
+    color: var(--ii-ceramic);
+    font-family: var(--ii-font-sans);
+    font-size: 16px;
+  }
+  ::selection {
+    background: var(--ii-ceramic);
+    color: var(--ii-void);
+  }
+  /* One focus style for everything interactive */
+  :focus-visible {
+    outline: var(--ii-focus);
+    outline-offset: var(--ii-focus-offset);
+  }
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+  hr {
+    border-color: var(--ii-line);
+  }
+  /* Lenis */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+}
+
+@layer components {
+  /* ── Solid material: things the user does ─────────────── */
+  .btn-ceramic {
+    @apply inline-flex h-11 items-center justify-center gap-2 rounded-pill px-6 text-sm font-medium;
+    background: var(--ii-ceramic);
+    color: var(--ii-void);
+    /* inner bevel: 1px highlight on top, faint shade at the bottom */
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.95),
+      inset 0 -1px 0 rgb(0 0 0 / 0.14);
+    transition:
+      background-color var(--ii-dur-fast) var(--ii-ease-out),
+      box-shadow var(--ii-dur-instant) var(--ii-ease-out),
+      transform var(--ii-dur-instant) var(--ii-ease-out);
+  }
+  .btn-ceramic:hover {
+    /* ceramic darkened 4% */
+    background: color-mix(in srgb, var(--ii-ceramic) 96%, #000);
+  }
+  .btn-ceramic:active {
+    /* bevel inverts: pressed into the ceramic */
+    box-shadow:
+      inset 0 1px 0 rgb(0 0 0 / 0.16),
+      inset 0 -1px 0 rgb(255 255 255 / 0.8);
+    transform: translateY(0.5px);
+  }
+
+  /* Quiet hairline pill for secondary actions */
+  .btn-line {
+    @apply inline-flex h-11 items-center justify-center gap-2 rounded-pill px-5 text-sm font-medium text-ceramic;
+    border: 1px solid var(--ii-line);
+    transition: border-color var(--ii-dur-fast) var(--ii-ease-out);
+  }
+  .btn-line:hover {
+    border-color: var(--ii-line-hover);
+  }
+
+  /* Text link with an arrow that nudges on hover */
+  .link-quiet {
+    @apply inline-flex items-center gap-1.5 text-sm text-particle;
+    transition: color var(--ii-dur-fast) var(--ii-ease-out);
+  }
+  .link-quiet:hover {
+    color: var(--ii-ceramic);
+  }
+  .link-quiet .arrow {
+    transition: transform var(--ii-dur-fast) var(--ii-ease-out);
+  }
+  .link-quiet:hover .arrow {
+    transform: translate(2px, -2px);
+  }
+
+  /* Small mono label — use sparingly, not above every section */
+  .label-mono {
+    @apply font-mono text-label uppercase text-muted;
+  }
+
+  /* Mask reveal: each word sits in an overflow-hidden line */
+  .mask-line {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    /* room for descenders */
+    padding-bottom: 0.08em;
+    margin-bottom: -0.08em;
+  }
+  .mask-word {
+    display: inline-block;
+    will-change: transform;
+  }
+
+  .hairline {
+    border-color: var(--ii-line);
+  }
+}
+
+/* ── Hero intro states (only with JS; reduced motion skips straight to the end) ── */
+.preloader {
+  display: none;
+}
+.js .preloader {
+  display: block;
+}
+.js .hero-word {
+  transform: translateY(105%);
+}
+.js .hero-follow {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .preloader {
+    display: none;
+  }
+}
+
+@keyframes ii-scroll-cue {
+  0% { transform: scaleY(0); transform-origin: top; }
+  45% { transform: scaleY(1); transform-origin: top; }
+  55% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+.scroll-cue {
+  animation: ii-scroll-cue 2.4s var(--ii-ease-in-out) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue { animation: none; }
+}
