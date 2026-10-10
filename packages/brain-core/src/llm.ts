@@ -9,6 +9,8 @@ export type CompleteOptions = {
   temperature?: number;
   maxTokens?: number;
   json?: boolean;
+  /** DeepSeek thinking mode: "disabled" or an effort level. Ignored by other providers. */
+  thinking?: "disabled" | "low" | "high" | "max";
 };
 
 export interface LLM {
@@ -48,6 +50,11 @@ export class OpenAICompatibleLLM implements LLM {
       stream,
       ...(stream ? { stream_options: { include_usage: true } } : {}),
       ...(opts.json && this.jsonModeSupported ? { response_format: { type: "json_object" } } : {}),
+      ...(this.provider === "deepseek" && opts.thinking
+        ? opts.thinking === "disabled"
+          ? { thinking: { type: "disabled" } }
+          : { thinking: { type: "enabled" }, reasoning_effort: opts.thinking }
+        : {}),
     };
   }
 

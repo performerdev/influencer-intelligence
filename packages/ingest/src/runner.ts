@@ -38,9 +38,10 @@ type StateRow = {
  * stores its cursor after every page, so a crash or a budget stop picks up
  * exactly where it left off.
  *
- *   timeline  — the account's own posts and quotes, newest → oldest
- *   search    — back-fills anything older the timeline endpoint doesn't reach,
- *               in until_time windows
+ *   search    — the account's own posts and quotes, newest → oldest, in
+ *               until_time windows with -filter:replies (reposts and replies
+ *               to others are never fetched, so never billed)
+ *   timeline  — optional (INGEST_USE_TIMELINE=true); returns reposts too
  *   threads   — the author's own replies to themselves (thread continuations)
  */
 export async function ingestInfluencer(
@@ -112,23 +113,32 @@ export async function ingestInfluencer(
     return { status: "budget", kept: totalKept, billed: totalBilled, spentUsd: spent };
   };
 
-  // ── refresh: newest pages until we hit posts we already have ──
+  // ── refresh: only what's new since the last stored post (search, so reposts and replies aren't billed) ──
   if (opts.refresh) {
-    const s: StateRow = { ...(await loadState("refresh")), cursor: null, done: false };
-    for (;;) {
-      if (overBudget()) return stop();
-      const { page, inserted } = await fetchPage(s, () => source.timeline({ userId: selfId, handle, cursor: s.cursor }));
-      s.cursor = page.nextCursor;
-      if (!page.nextCursor || page.tweets.length === 0 || inserted === 0) break;
+    const [r] = await sql<{ t: Date | null }[]>`select max(created_at) as t from posts where influencer_id = ${inf.id}`;
+    const since = r?.t ? Math.floor(new Date(r.t).getTime() / 1000) - 86_400 : 0;
+    for (const [phase, query] of [
+      ["refresh", `from:${handle} -filter:replies since_time:${since}`],
+      ["refresh_threads", `from:${handle} to:${handle} since_time:${since}`],
+    ] as const) {
+      if (phase === "refresh_threads" && opts.threads === false) continue;
+      const s: StateRow = { ...(await loadState(phase)), cursor: null, done: false };
+      for (;;) {
+        if (overBudget()) return stop();
+        const { page } = await fetchPage(s, () => source.search({ query, cursor: s.cursor }), phase === "refresh_threads" ? "thread" : undefined);
+        s.cursor = page.nextCursor;
+        if (!page.nextCursor || page.tweets.length === 0) break;
+      }
+      s.done = true;
+      await saveState(s);
     }
-    s.done = true;
-    await saveState(s);
     await refreshInfluencerCounts(sql, inf.id);
     return { status: "done", kept: totalKept, billed: totalBilled, spentUsd: spent };
   }
 
-  // ── timeline ──
+  // ── timeline (off by default: the timeline endpoint returns reposts too, and they're billed) ──
   const tl = await loadState("timeline");
+  if (process.env.INGEST_USE_TIMELINE !== "true") tl.done = true;
   while (!tl.done) {
     if (overBudget()) return stop();
     const { page } = await fetchPage(tl, () => source.timeline({ userId: selfId, handle, cursor: tl.cursor }));
@@ -144,11 +154,8 @@ export async function ingestInfluencer(
   while (!se.done) {
     if (se.window_until == null) {
       const [r] = await sql<{ t: Date | null }[]>`select min(created_at) as t from posts where influencer_id = ${inf.id} and kind <> 'thread'`;
-      if (!r?.t) {
-        se.done = true;
-        break;
-      }
-      se.window_until = String(Math.floor(new Date(r.t).getTime() / 1000));
+      // Start from now (search-first), or below whatever the timeline already stored.
+      se.window_until = String(r?.t ? Math.floor(new Date(r.t).getTime() / 1000) : Math.floor(Date.now() / 1000) + 60);
     }
     const until = Number(se.window_until);
     if (until <= accountStart) {

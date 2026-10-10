@@ -157,7 +157,8 @@ const api = createServer(async (req, res) => {
   if (url.pathname === "/twitter/tweet/advanced_search") {
     const query = q.get("query") ?? "";
     const until = Number(query.match(/until_time:(\d+)/)?.[1] ?? Infinity);
-    let list = newestFirst.filter((t) => ts(t) < until);
+    const since = Number(query.match(/since_time:(\d+)/)?.[1] ?? 0);
+    let list = newestFirst.filter((t) => ts(t) < until && ts(t) >= since);
     if (/-filter:replies/.test(query)) list = list.filter((t) => !t.isReply);
     if (/to:/.test(query)) list = list.filter((t) => t.isReply && t.inReplyToUserId === SELF.id);
     return send(page(list, q.get("cursor")));
@@ -249,10 +250,24 @@ async function main() {
 
     // Re-run: map batches are cached, ingest resumes from state (no re-billing of finished phases).
     const before = calls["/chat/completions"] ?? 0;
-    const tlBefore = calls["/twitter/user/last_tweets"] ?? 0;
+    const searchBefore = calls["/twitter/tweet/advanced_search"] ?? 0;
     await run(["build", "blknoiz06", "--max-usd", "5"], env);
     check("re-run reuses cached map batches", (calls["/chat/completions"] ?? 0) - before <= 2, `${(calls["/chat/completions"] ?? 0) - before} LLM calls on re-run`);
-    check("re-run does not re-fetch the finished timeline", (calls["/twitter/user/last_tweets"] ?? 0) === tlBefore);
+    check("re-run does not re-fetch finished phases", (calls["/twitter/tweet/advanced_search"] ?? 0) === searchBefore);
+    check("timeline endpoint not used (reposts would be billed)", (calls["/twitter/user/last_tweets"] ?? 0) <= 2, `${calls["/twitter/user/last_tweets"] ?? 0} calls (probe only)`);
+
+    // Weekly refresh: a new post appears, refresh fetches only it and bumps the brain.
+    const fresh = { ...tweets[4], id: "2000000", createdAt: new Date().toUTCString().replace("GMT", "+0000"), text: "bought more $SOL again, same rule (new)" };
+    newestFirst.unshift(fresh);
+    const r1 = calls["/twitter/tweet/advanced_search"] ?? 0;
+    const refreshOut = await run(["build", "blknoiz06", "--refresh", "--max-usd", "5"], env);
+    const [{ n: hasNew }] = await sql`select count(*)::int as n from posts where id = '2000000'`;
+    check("refresh picks up only new posts", hasNew === 1 && (calls["/twitter/tweet/advanced_search"] ?? 0) - r1 <= 4, `${(calls["/twitter/tweet/advanced_search"] ?? 0) - r1} search calls`);
+    const [{ v }] = await sql`select max(version)::int as v from brains`;
+    check("refresh with new posts makes a new brain version", v >= 3, `v${v}`);
+    const r2 = await run(["build", "blknoiz06", "--refresh", "--max-usd", "5"], env);
+    check("refresh with nothing new keeps the brain", /brain stays v/.test(r2), r2.match(/brain stays v\d+/)?.[0] ?? r2.slice(-300));
+    void refreshOut;
 
     // Budget cap stops cleanly and resumes.
     await sql`truncate posts, ingest_state, spend, calls, distill_notes, brains, stats restart identity cascade`;
@@ -262,7 +277,7 @@ async function main() {
     const [{ n: partial }] = await sql`select count(*)::int as n from posts`;
     await run(["ingest", "blknoiz06", "--max-usd", "5"], env);
     const [{ n: full }] = await sql`select count(*)::int as n from posts`;
-    check("ingest resumes after the cap", full === expect.post + expect.quote + expect.thread && partial < full, `${partial} → ${full}`);
+    check("ingest resumes after the cap", full === expect.post + expect.quote + expect.thread + 1 /* the refresh post */ && partial < full, `${partial} → ${full}`);
 
     const status = await run(["status"], env);
     check("status reports spend", /Total spent so far/.test(status));

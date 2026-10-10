@@ -150,31 +150,38 @@ async function probe(list: InfluencerRow[]) {
         if (k) kinds[k]++;
         else kinds.dropped++;
       }
-      const span = spanDays(tl.tweets);
-      const ratePerDay = span > 0 ? (kinds.post + kinds.quote) / span : null;
-      const ageDays = p.createdAt ? (Date.now() - p.createdAt.getTime()) / 86_400_000 : null;
-
       const s1 = await source.search({ query: `from:${inf.handle} -filter:replies` });
       const s1Replies = s1.tweets.filter((t) => t.isReply && t.inReplyToUserId !== p.id).length;
+      const s1Own = s1.tweets.filter((t) => classify(t, p.id)).length;
       const s2 = await source.search({ query: `from:${inf.handle} to:${inf.handle}` });
       const selfReplies = s2.tweets.filter((t) => classify(t, p.id) === "thread").length;
+      const ageDays = p.createdAt ? (Date.now() - p.createdAt.getTime()) / 86_400_000 : null;
 
-      // Rough size: recent own-post rate over the account's life, capped by X's own count.
-      const estPosts = Math.round(Math.min(p.statusesCount ?? Infinity, ratePerDay && ageDays ? ratePerDay * ageDays * 0.6 : (p.statusesCount ?? 0) * 0.35));
-      const parse = ((estPosts * 1.25) / 1000) * PARSE_PRICE_PER_1K_POSTS;
-      const tokensIn = estPosts * 60;
+      // Rough size: recent rate over the account's life (×0.6, people post less early on), capped by X's own count.
+      const rate = (ts: XTweet[], kept: number) => {
+        const d = spanDays(ts);
+        return d > 0 ? kept / d : null;
+      };
+      const span = spanDays(tl.tweets);
+      const postRate = rate(s1.tweets, s1Own);
+      const threadRate = rate(s2.tweets, selfReplies);
+      const cap = p.statusesCount ?? Infinity;
+      const estPosts = Math.round(Math.min(cap, postRate && ageDays ? postRate * ageDays * 0.6 : 0));
+      const estThreads = Math.round(Math.min(cap - estPosts, threadRate && ageDays ? threadRate * ageDays * 0.6 : 0));
+      const parse = ((estPosts + estThreads) / 1000) * PARSE_PRICE_PER_1K_POSTS * 1.05;
+      const tokensIn = (estPosts + estThreads) * 60;
       const batches = Math.ceil(tokensIn / 40_000);
       const pr = llmPrice(DISTILL_MODEL);
-      const distill = (tokensIn * pr.inputMiss + batches * 5_000 * pr.output + batches * 5_000 * pr.inputMiss + 20_000 * pr.output) / 1e6;
+      const distill = (tokensIn * pr.inputMiss + batches * 5_000 * pr.output + batches * 5_000 * pr.inputMiss + 40_000 * pr.output) / 1e6;
       totalParse += parse;
       totalDistill += distill;
 
       console.log(`${inf.code} @${p.handle}${p.name ? ` (${p.name})` : ""}`);
       console.log(`  profile        ${fmt(p.followers ?? 0)} followers · ${fmt(p.statusesCount ?? 0)} total posts incl. replies/reposts · joined ${p.createdAt?.toISOString().slice(0, 10) ?? "?"}`);
       console.log(`  timeline page  ${tl.tweets.length} returned → ${kinds.post} posts, ${kinds.quote} quotes, ${kinds.thread} own-thread, ${kinds.dropped} dropped (reposts/replies) · spans ${span.toFixed(1)} days`);
-      console.log(`  search         "-filter:replies" → ${s1.tweets.length} returned, ${s1Replies} replies slipped through ${s1.tweets.length && s1Replies === 0 ? "(operator works)" : s1.tweets.length ? "(operator ignored — replies get filtered by code)" : "(no results)"}`);
+      console.log(`  search         "-filter:replies" → ${s1.tweets.length} returned, ${s1Own} kept, ${s1Replies} replies slipped through ${s1.tweets.length && s1Replies === 0 ? "(operator works)" : s1.tweets.length ? "(operator ignored — replies get filtered by code)" : "(no results)"}`);
       console.log(`  threads        "to:${inf.handle}" → ${s2.tweets.length} returned, ${selfReplies} own-thread continuations ${selfReplies ? "(works)" : "(none found on first page)"}`);
-      console.log(`  estimate       ~${fmt(estPosts)} own posts · parse ~${usd(parse)} · distill ~${usd(distill)} (${DISTILL_MODEL}, peak rates)\n`);
+      console.log(`  estimate       ~${fmt(estPosts)} own posts + ~${fmt(estThreads)} thread parts · parse ~${usd(parse)} · distill ~${usd(distill)} (${DISTILL_MODEL}, peak rates)\n`);
     } catch (err) {
       console.log(`${inf.code} @${inf.handle}\n  FAILED: ${(err as Error).message}\n`);
     }
@@ -184,7 +191,7 @@ async function probe(list: InfluencerRow[]) {
   // One-time checks of the other services.
   try {
     const llm = new OpenAICompatibleLLM();
-    const r = await llm.complete([{ role: "user", content: "Reply with the single word: ok" }], { model: DISTILL_MODEL, maxTokens: 5 });
+    const r = await llm.complete([{ role: "user", content: "Reply with the single word: ok" }], { model: DISTILL_MODEL, maxTokens: 10, thinking: "disabled" });
     console.log(`LLM      ${DISTILL_MODEL}: replied "${r.text.trim().slice(0, 20)}" ✓`);
   } catch (err) {
     console.log(`LLM      FAILED: ${(err as Error).message}`);
@@ -275,7 +282,10 @@ async function main() {
         if (flags.has("refresh") && prev && ing.kept === 0) {
           // Nothing new posted: only re-price calls, and only keep a new version if numbers moved.
           const stats = await stepStats(inf);
-          const same = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b);
+          // jsonb reorders object keys, so compare with sorted keys
+          const stable = (v: unknown): string =>
+            Array.isArray(v) ? `[${v.map(stable).join(",")}]` : v && typeof v === "object" ? `{${Object.keys(v).sort().map((k) => `${k}:${stable((v as Record<string, unknown>)[k])}`).join(",")}}` : JSON.stringify(v);
+          const same = (a: unknown, b: unknown) => stable(a) === stable(b);
           if (prev.files.stats && same(prev.files.stats.per_call, stats.per_call) && same(prev.files.stats.horizons, stats.horizons)) {
             done(`  ${inf.code} @${inf.handle} · no new posts, numbers unchanged · brain stays v${prev.version}`);
           } else {

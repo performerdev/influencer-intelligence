@@ -2,7 +2,7 @@ import { type InfluencerRow, type Sql, recordSpend } from "@ii/db";
 
 import { type Call, type RawCall, validateCalls } from "./calls";
 import { type PostRow, day, formatPost } from "./format";
-import { type LLM, estimateTokens, parseJsonReply, parseTagged } from "./llm";
+import { type CompleteOptions, type LLM, estimateTokens, parseJsonReply, parseTagged } from "./llm";
 import { compressSystem, mapSystem, mapUser, mergeSystem, reduceSystem } from "./prompts";
 
 export type BatchNotes = {
@@ -119,7 +119,7 @@ export async function distillInfluencer(sql: Sql, llm: LLM, inf: InfluencerRow, 
               }),
             },
           ],
-          { model, json: true, temperature: 0.2, maxTokens: 8000 },
+          { model, json: true, temperature: 0.2, maxTokens: 8000, thinking: (process.env.DISTILL_MAP_THINKING ?? "disabled") as CompleteOptions["thinking"] },
         );
         await spend(res.usage, "map");
         try {
@@ -164,7 +164,7 @@ export async function distillInfluencer(sql: Sql, llm: LLM, inf: InfluencerRow, 
           { role: "system", content: mergeSystem({ handle: inf.handle }) },
           { role: "user", content: JSON.stringify(g) },
         ],
-        { model, json: true, temperature: 0.2, maxTokens: 16000 },
+        { model, json: true, temperature: 0.2, maxTokens: 16000, thinking: "disabled" },
       );
       await spend(res.usage, "merge");
       try {
@@ -200,7 +200,7 @@ export async function distillInfluencer(sql: Sql, llm: LLM, inf: InfluencerRow, 
           .join("\n")}`,
       },
     ],
-    { model, temperature: 0.4, maxTokens: 32000 },
+    { model, temperature: 0.4, maxTokens: 64000, thinking: (process.env.DISTILL_REDUCE_THINKING ?? "high") as CompleteOptions["thinking"] },
   );
   await spend(res.usage, "reduce");
   const t = parseTagged(res.text, ["one_line_mind", "mind", "rules", "voice", "intro", "examples"]);
@@ -257,7 +257,7 @@ export async function compressMarkdown(llm: LLM, md: string, targetWords: number
       { role: "system", content: compressSystem },
       { role: "user", content: `Target length: about ${targetWords} words.\n\n${md}` },
     ],
-    { model, temperature: 0.2, maxTokens: 16000 },
+    { model, temperature: 0.2, maxTokens: 16000, thinking: "disabled" },
   );
   return { text: res.text.trim(), usage: res.usage };
 }
