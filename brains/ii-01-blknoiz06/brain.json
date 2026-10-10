@@ -1,10 +1,10 @@
 {
   "code": "ii-01",
   "handle": "blknoiz06",
-  "version": 2,
-  "distilled_at": "2026-10-10T13:55:04.513Z",
+  "version": 3,
+  "distilled_at": "2026-10-10T14:03:33.878Z",
   "model": "deepseek-v4-pro",
-  "prompt_tokens_estimate": 36973,
+  "prompt_tokens_estimate": 36985,
   "posts_parsed": 99945,
   "posts_from": "2017-06-06",
   "posts_to": "2026-10-10",
