@@ -1,0 +1,195 @@
+{
+  "notes": [
+    "Returns are signed in the call's favor: a sell call followed by a price drop counts as positive.",
+    "hold calls are measured like buys.",
+    "Calls without a known asset id or contract address in the post are left unpriced, never guessed.",
+    "Hold time pairs a buy with the next sell of the same ticker; only calls with an exit post count."
+  ],
+  "horizons": {
+    "1d": {
+      "n": 0,
+      "hit_rate": null,
+      "mean_return": null,
+      "median_return": null
+    },
+    "7d": {
+      "n": 0,
+      "hit_rate": null,
+      "mean_return": null,
+      "median_return": null
+    },
+    "30d": {
+      "n": 0,
+      "hit_rate": null,
+      "mean_return": null,
+      "median_return": null
+    }
+  },
+  "per_call": [
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "TIME",
+      "post_id": "1452737696309329933",
+      "price_id": null,
+      "called_at": "2021-10-25T20:43:52.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "SANTA",
+      "post_id": "1471862214126710785",
+      "price_id": null,
+      "called_at": "2021-12-17T15:17:52.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "SANTA",
+      "post_id": "1474387550928355328",
+      "price_id": null,
+      "called_at": "2021-12-24T14:32:39.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MASTER",
+      "post_id": "1481045248440688646",
+      "price_id": null,
+      "called_at": "2022-01-11T23:27:58.000Z",
+      "direction": "sell",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MOON",
+      "post_id": "1486401532807499778",
+      "price_id": null,
+      "called_at": "2022-01-26T18:11:56.000Z",
+      "direction": "sell",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "BLUEZILLA",
+      "post_id": "1493206578543136773",
+      "price_id": null,
+      "called_at": "2022-02-14T12:52:45.000Z",
+      "direction": "sell",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ORK",
+      "post_id": "1501578176077697025",
+      "price_id": null,
+      "called_at": "2022-03-09T15:18:29.000Z",
+      "direction": "sell",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MAGNATE",
+      "post_id": "1694914871165345997",
+      "price_id": null,
+      "called_at": "2023-08-25T03:29:29.000Z",
+      "direction": "sell",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "LENDORA",
+      "post_id": "1724518553976488238",
+      "price_id": null,
+      "called_at": "2023-11-14T20:03:57.000Z",
+      "direction": "sell",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "LEAPER",
+      "post_id": "1779333168383791411",
+      "price_id": null,
+      "called_at": "2024-04-14T02:17:40.000Z",
+      "direction": "sell",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEBRA",
+      "post_id": "1779365998430208410",
+      "price_id": null,
+      "called_at": "2024-04-14T04:28:07.000Z",
+      "direction": "sell",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "GLORI",
+      "post_id": "1779519372568019347",
+      "price_id": null,
+      "called_at": "2024-04-14T14:37:34.000Z",
+      "direction": "sell",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "SORTA",
+      "post_id": "1816443881447440789",
+      "price_id": null,
+      "called_at": "2024-07-25T12:02:23.000Z",
+      "direction": "sell",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "USDC",
+      "post_id": "2040056067640709563",
+      "price_id": null,
+      "called_at": "2026-04-03T13:17:23.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    }
+  ],
+  "hold_pairs": 0,
+  "calls_total": 14,
+  "computed_at": "2026-10-10T13:08:02.876Z",
+  "by_direction": {
+    "buy": 1,
+    "hold": 3,
+    "sell": 10
+  },
+  "calls_priced": 0,
+  "price_source": "DefiLlama coins API",
+  "median_hold_days": null
+}

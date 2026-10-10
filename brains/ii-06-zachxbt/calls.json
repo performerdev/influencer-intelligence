@@ -1,0 +1,142 @@
+[
+  {
+    "date": "2021-10-25",
+    "ticker": "TIME",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "No you should not go about dumping your $TIME. I trust Dani to keep building exciting things.",
+    "post_id": "1452737696309329933",
+    "url": "https://x.com/zachxbt/status/1452737696309329933"
+  },
+  {
+    "date": "2021-12-17",
+    "ticker": "SANTA",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Announcement of an announcement today for @santa_swap If you aren’t familiar this is a charity project I’ve put together with @anishagnihotri @bisamazen @athcry",
+    "post_id": "1471862214126710785",
+    "url": "https://x.com/zachxbt/status/1471862214126710785"
+  },
+  {
+    "date": "2021-12-24",
+    "ticker": "SANTA",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "Happy holidays to everyone! Am very pleased to say we’ve raised $320k (78 eth) for charity with my project @santa_swap",
+    "post_id": "1474387550928355328",
+    "url": "https://x.com/zachxbt/status/1474387550928355328"
+  },
+  {
+    "date": "2022-01-11",
+    "ticker": "MASTER",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "My 2nd easy due diligence hack: if you see Kyle Chasse (Master Ventures founder) shilling you can avoid like the plague",
+    "post_id": "1481045248440688646",
+    "url": "https://x.com/zachxbt/status/1481045248440688646"
+  },
+  {
+    "date": "2022-01-26",
+    "ticker": "MOON",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "Pro tip: if a project has a “Moon Sheet” for their IDO you can 99% of the time fade the token.",
+    "post_id": "1486401532807499778",
+    "url": "https://x.com/zachxbt/status/1486401532807499778"
+  },
+  {
+    "date": "2022-02-14",
+    "ticker": "BLUEZILLA",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "I would advise you avoid anything with Bluezilla’s name on it.",
+    "post_id": "1493206578543136773",
+    "url": "https://x.com/zachxbt/status/1493206578543136773"
+  },
+  {
+    "date": "2022-03-09",
+    "ticker": "ORK",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "Stop supporting this garbage.",
+    "post_id": "1501578176077697025",
+    "url": "https://x.com/zachxbt/status/1501578176077697025"
+  },
+  {
+    "date": "2023-08-25",
+    "ticker": "MAGNATE",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "Community Alert: Magnate Finance on Base will likely exit scam in the near future currently with over $6.4M TVL.",
+    "post_id": "1694914871165345997",
+    "url": "https://x.com/zachxbt/status/1694914871165345997"
+  },
+  {
+    "date": "2023-11-14",
+    "ticker": "LENDORA",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "Community Alert: It is likely that @LendoraProtocol on Scroll will exit scam in the future. Withdraw your assets from the protocol immediately.",
+    "post_id": "1724518553976488238",
+    "url": "https://x.com/zachxbt/status/1724518553976488238"
+  },
+  {
+    "date": "2024-04-14",
+    "ticker": "LEAPER",
+    "chain": "evm",
+    "address": "0x46a10e7444bf78736E6a24b1De8dc8A20E4B3ED7",
+    "direction": "sell",
+    "quote": "Community Alert: The group of scammers who stole 8 figs with Magnate, Kokomo, Lendora, Solfire, etc is back with a new project on Blast @Leaperfinance",
+    "post_id": "1779333168383791411",
+    "url": "https://x.com/zachxbt/status/1779333168383791411"
+  },
+  {
+    "date": "2024-04-14",
+    "ticker": "ZEBRA",
+    "chain": "evm",
+    "address": "0xd818ea2af0778652f825a40f3fa91d5eaac1802f",
+    "direction": "sell",
+    "quote": "Withdraw your assets immediately if you have funds deposited in this protocol.",
+    "post_id": "1779365998430208410",
+    "url": "https://x.com/zachxbt/status/1779365998430208410"
+  },
+  {
+    "date": "2024-04-14",
+    "ticker": "GLORI",
+    "chain": "evm",
+    "address": "0x9F0FC5B950210762de3Fa3F8914e214d6dD39979",
+    "direction": "sell",
+    "quote": "Update: Same group of scammers is also behind @Glori_Finance on Arbitrum which currently has $1.4M TVL",
+    "post_id": "1779519372568019347",
+    "url": "https://x.com/zachxbt/status/1779519372568019347"
+  },
+  {
+    "date": "2024-07-25",
+    "ticker": "SORTA",
+    "chain": "evm",
+    "address": "0x4a7ea410a099127ccddb13c6b7695c771cce735b",
+    "direction": "sell",
+    "quote": "Community Alert: @Sorta_Finance is likely to exit scam on Arbitrum in the future so do not use the protocol.",
+    "post_id": "1816443881447440789",
+    "url": "https://x.com/zachxbt/status/1816443881447440789"
+  },
+  {
+    "date": "2026-04-03",
+    "ticker": "USDC",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "Circle builds good products and I hold USDC myself.",
+    "post_id": "2040056067640709563",
+    "url": "https://x.com/zachxbt/status/2040056067640709563"
+  }
+]
