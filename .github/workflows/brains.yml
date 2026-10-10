@@ -74,19 +74,27 @@ jobs:
 
       - name: Probe
         if: github.event.inputs.command == 'probe'
-        run: pnpm brain:probe ${{ matrix.target }}
+        run: |
+          set -o pipefail
+          { echo '```'; pnpm brain:probe ${{ matrix.target }}; echo '```'; } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Status
         if: github.event.inputs.command == 'status'
-        run: pnpm brain:status
+        run: |
+          set -o pipefail
+          { echo '```'; pnpm brain:status; echo '```'; } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Build
         if: github.event.inputs.command == 'build'
-        run: pnpm brain:build ${{ matrix.target }} --max-usd ${{ github.event.inputs.max_usd }}
+        run: |
+          set -o pipefail
+          { echo '```'; pnpm brain:build ${{ matrix.target }} --max-usd ${{ github.event.inputs.max_usd }}; echo '```'; } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Weekly refresh
         if: github.event_name == 'schedule'
-        run: pnpm brain:build ${{ matrix.target }} --refresh --max-usd 5
+        run: |
+          set -o pipefail
+          { echo '```'; pnpm brain:build ${{ matrix.target }} --refresh --max-usd 5; echo '```'; } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Commit open brain files
         if: github.event.inputs.command == 'build' || github.event_name == 'schedule'
