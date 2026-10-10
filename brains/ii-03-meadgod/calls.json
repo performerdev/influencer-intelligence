@@ -1,53 +1,173 @@
 [
   {
-    "date": "2026-04-14",
-    "ticker": "CC",
+    "date": "2025-09-27",
+    "ticker": "BERA",
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "Ty for the pump my korean brothers",
-    "post_id": "2043951110722072790",
-    "url": "https://x.com/MEADGod/status/2043951110722072790"
+    "quote": "You are telling me I can participate in chain revenue by providing liquidity, and they are paying me up to 561.19% on the dollar? Moon that.",
+    "post_id": "1971954045557637572",
+    "url": "https://x.com/MEADGod/status/1971954045557637572"
   },
   {
-    "date": "2026-05-13",
+    "date": "2025-09-27",
+    "ticker": "BERA",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Mind you, you don't need to provide liquidity in IL farms. You can just use your stables you know? Free.",
+    "post_id": "1971954202248466732",
+    "url": "https://x.com/MEADGod/status/1971954202248466732"
+  },
+  {
+    "date": "2025-10-29",
+    "ticker": "MON",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "I'm going to stake my MON for more airdrops DYM and TIA style. But what do I know?",
+    "post_id": "1983523814828028211",
+    "url": "https://x.com/MEADGod/status/1983523814828028211"
+  },
+  {
+    "date": "2025-10-29",
+    "ticker": "BERA",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "SWBERA is at 60% APR, you'll be fine",
+    "post_id": "1983645941141053506",
+    "url": "https://x.com/MEADGod/status/1983645941141053506"
+  },
+  {
+    "date": "2025-11-04",
+    "ticker": "BERA",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "I'm extremely bullish here, probably last dance shortly.",
+    "post_id": "1985694448810930632",
+    "url": "https://x.com/MEADGod/status/1985694448810930632"
+  },
+  {
+    "date": "2025-12-11",
+    "ticker": "CA",
+    "chain": "solana",
+    "address": "6eLG3nzqEzPhK1AJB3nmNkAJ4JGAetUDhBFHXr3vpump",
+    "direction": "buy",
+    "quote": "Shitcoining a lil 6eLG3nzqEzPhK1AJB3nmNkAJ4JGAetUDhBFHXr3vpump",
+    "post_id": "1999185806334771500",
+    "url": "https://x.com/MEADGod/status/1999185806334771500"
+  },
+  {
+    "date": "2025-12-15",
+    "ticker": "HYPE",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Will buy a heck ton of HYPE at $8 and ETH at $1,200-1,500 BTC around $47K And then also some SOL at $64 or even $45 if we go that low. Yuh.",
+    "post_id": "2000656074400317930",
+    "url": "https://x.com/MEADGod/status/2000656074400317930"
+  },
+  {
+    "date": "2025-12-15",
+    "ticker": "ETH",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Will buy a heck ton of HYPE at $8 and ETH at $1,200-1,500 BTC around $47K And then also some SOL at $64 or even $45 if we go that low. Yuh.",
+    "post_id": "2000656074400317930",
+    "url": "https://x.com/MEADGod/status/2000656074400317930"
+  },
+  {
+    "date": "2025-12-15",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Will buy a heck ton of HYPE at $8 and ETH at $1,200-1,500 BTC around $47K And then also some SOL at $64 or even $45 if we go that low. Yuh.",
+    "post_id": "2000656074400317930",
+    "url": "https://x.com/MEADGod/status/2000656074400317930"
+  },
+  {
+    "date": "2025-12-15",
+    "ticker": "SOL",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Will buy a heck ton of HYPE at $8 and ETH at $1,200-1,500 BTC around $47K And then also some SOL at $64 or even $45 if we go that low. Yuh.",
+    "post_id": "2000656074400317930",
+    "url": "https://x.com/MEADGod/status/2000656074400317930"
+  },
+  {
+    "date": "2026-02-09",
+    "ticker": "MOG",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Mog is down big time, i’m sorry but it’s the only meme that’s still relevant in the real world. At $30M I will be aping. For la familia.",
+    "post_id": "2020937341377053164",
+    "url": "https://x.com/MEADGod/status/2020937341377053164"
+  },
+  {
+    "date": "2026-02-11",
+    "ticker": "MON",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "See? I told you guys all you had to do was stake your token for future airdrops",
+    "post_id": "2021732053033865387",
+    "url": "https://x.com/MEADGod/status/2021732053033865387"
+  },
+  {
+    "date": "2026-02-13",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "LONG.",
+    "post_id": "2022334581157122236",
+    "url": "https://x.com/MEADGod/status/2022334581157122236"
+  },
+  {
+    "date": "2026-03-23",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "if we dip below 65k again best belief good dip to ape before 85",
+    "post_id": "2035884265175502918",
+    "url": "https://x.com/MEADGod/status/2035884265175502918"
+  },
+  {
+    "date": "2026-04-06",
+    "ticker": "MONAD",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "shorting monad 1000x no stop loss here",
+    "post_id": "2041223482193945016",
+    "url": "https://x.com/MEADGod/status/2041223482193945016"
+  },
+  {
+    "date": "2026-06-09",
+    "ticker": "ANTHROPICAI",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "short @AnthropicAI to zero 🤣 I’m not gonna touch this shit, idc how good it is, I don’t even use Opus 4.8 most of the time. GPT 5.5 remains king price/quality.",
+    "post_id": "2064401460419236293",
+    "url": "https://x.com/MEADGod/status/2064401460419236293"
+  },
+  {
+    "date": "2026-06-15",
     "ticker": "BTC",
     "chain": null,
     "address": null,
     "direction": "sell",
-    "quote": "Drew this chart a while ago, played out just fine! Just get out while u can. It's going to get duuuurty.",
-    "post_id": "2054591864993464760",
-    "url": "https://x.com/MEADGod/status/2054591864993464760"
-  },
-  {
-    "date": "2026-05-13",
-    "ticker": "BTC",
-    "chain": null,
-    "address": null,
-    "direction": "sell",
-    "quote": "EXIT THE FUCKING MARKET MATEY.",
-    "post_id": "2054592566805360829",
-    "url": "https://x.com/MEADGod/status/2054592566805360829"
-  },
-  {
-    "date": "2026-06-04",
-    "ticker": "BTC",
-    "chain": null,
-    "address": null,
-    "direction": "sell",
-    "quote": "Don’t trade today, it will get ugly imo. No bounce until 60k into the weekend, and next week we continue.",
-    "post_id": "2062418191242932399",
-    "url": "https://x.com/MEADGod/status/2062418191242932399"
-  },
-  {
-    "date": "2026-06-05",
-    "ticker": "BTC",
-    "chain": null,
-    "address": null,
-    "direction": "sell",
-    "quote": "You think 59K is bad? Wait till you see 49K.",
-    "post_id": "2062922857089298895",
-    "url": "https://x.com/MEADGod/status/2062922857089298895"
+    "quote": "SHOOOOOOOOORT.",
+    "post_id": "2066521499771564519",
+    "url": "https://x.com/MEADGod/status/2066521499771564519"
   },
   {
     "date": "2026-06-16",
@@ -80,6 +200,16 @@
     "url": "https://x.com/MEADGod/status/2067633875375861816"
   },
   {
+    "date": "2026-06-23",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "57K by Friday king?",
+    "post_id": "2069334649134862522",
+    "url": "https://x.com/MEADGod/status/2069334649134862522"
+  },
+  {
     "date": "2026-06-25",
     "ticker": "HYPE",
     "chain": null,
@@ -88,6 +218,46 @@
     "quote": "the only coin im comfortable being in a juicy long is hyperliquid, short everything else",
     "post_id": "2069999384960360658",
     "url": "https://x.com/MEADGod/status/2069999384960360658"
+  },
+  {
+    "date": "2026-06-25",
+    "ticker": "BASE",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "Can’t wait for my base airdrop",
+    "post_id": "2070195584418410567",
+    "url": "https://x.com/MEADGod/status/2070195584418410567"
+  },
+  {
+    "date": "2026-06-29",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "Man, 53K this week looks beautiful",
+    "post_id": "2071600546356564409",
+    "url": "https://x.com/MEADGod/status/2071600546356564409"
+  },
+  {
+    "date": "2026-06-30",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "fuck it I might even call for 51K, not sure yet. Today will decide",
+    "post_id": "2071949261810348471",
+    "url": "https://x.com/MEADGod/status/2071949261810348471"
+  },
+  {
+    "date": "2026-07-06",
+    "ticker": "MEXICO",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "Shorting mexico rn",
+    "post_id": "2073939691582239189",
+    "url": "https://x.com/MEADGod/status/2073939691582239189"
   },
   {
     "date": "2026-07-06",
@@ -105,13 +275,93 @@
     "chain": null,
     "address": null,
     "direction": "sell",
-    "quote": "Short and strong until at least October and then twap into everything in existence for echo bubble and then up only.",
+    "quote": "What we thinking brother? 53K? @ballerxbt",
+    "post_id": "2075035268202008935",
+    "url": "https://x.com/MEADGod/status/2075035268202008935"
+  },
+  {
+    "date": "2026-07-09",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "Short and strong until at least October and then twap into everything in existence for echo bubble and then up only. Same shit different cycle.",
     "post_id": "2075048818677092382",
     "url": "https://x.com/MEADGod/status/2075048818677092382"
   },
   {
+    "date": "2026-07-09",
+    "ticker": "MOROCS",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "all in morocs",
+    "post_id": "2075221503847629229",
+    "url": "https://x.com/MEADGod/status/2075221503847629229"
+  },
+  {
+    "date": "2026-07-11",
+    "ticker": "BASE",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "$1M or the chain is dead to me",
+    "post_id": "2076035593084018757",
+    "url": "https://x.com/MEADGod/status/2076035593084018757"
+  },
+  {
+    "date": "2026-07-13",
+    "ticker": "PONS",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "Burned the PONS that was sent to me (Total was like 69 with the previous TX)",
+    "post_id": "2076777283067531277",
+    "url": "https://x.com/MEADGod/status/2076777283067531277"
+  },
+  {
+    "date": "2026-07-13",
+    "ticker": "PONS",
+    "chain": "evm",
+    "address": "0x39dBED3a2bd333467115dE45665cC57F813C4571",
+    "direction": "buy",
+    "quote": "The deployer of $PONS transferred ownership and fees to my wallet, going forward i'm going to be using WETH fees to buyback $PONS and will burn all $PONS fees I",
+    "post_id": "2076785825262551342",
+    "url": "https://x.com/MEADGod/status/2076785825262551342"
+  },
+  {
+    "date": "2026-07-15",
+    "ticker": "PONS",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "Fuck it burned $20K",
+    "post_id": "2077268777457025385",
+    "url": "https://x.com/MEADGod/status/2077268777457025385"
+  },
+  {
+    "date": "2026-07-26",
+    "ticker": "CA",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "non-Robinhood coins that I held in the past (before pons) I just sold for a few bucks and will now go and donate it to a local animal shelter",
+    "post_id": "2081434062422458563",
+    "url": "https://x.com/MEADGod/status/2081434062422458563"
+  },
+  {
+    "date": "2026-08-06",
+    "ticker": "CA",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "i don’t touch my fomo anymore",
+    "post_id": "2085157037160157201",
+    "url": "https://x.com/MEADGod/status/2085157037160157201"
+  },
+  {
     "date": "2026-08-26",
-    "ticker": "BTC",
+    "ticker": "CA",
     "chain": null,
     "address": null,
     "direction": "buy",
@@ -121,13 +371,33 @@
   },
   {
     "date": "2026-08-28",
-    "ticker": "ROBOT",
+    "ticker": "CA",
     "chain": null,
     "address": null,
     "direction": "buy",
     "quote": "fuck it, I bought one. How should I call this lil duck hahahaha",
     "post_id": "2093364226353922315",
     "url": "https://x.com/MEADGod/status/2093364226353922315"
+  },
+  {
+    "date": "2026-08-28",
+    "ticker": "CA",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "pre ordered the microduck lol",
+    "post_id": "2093365526500135414",
+    "url": "https://x.com/MEADGod/status/2093365526500135414"
+  },
+  {
+    "date": "2026-09-21",
+    "ticker": "CA",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "I don't sell coins - I also don't trade on the wallet.",
+    "post_id": "2102057097949049194",
+    "url": "https://x.com/MEADGod/status/2102057097949049194"
   },
   {
     "date": "2026-10-09",
@@ -138,5 +408,15 @@
     "quote": "Bought some spot BTC today first time since january 2023 👍🏼",
     "post_id": "2108403501105590570",
     "url": "https://x.com/MEADGod/status/2108403501105590570"
+  },
+  {
+    "date": "2026-10-09",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Will DCA to 1 - not many will be able to say they own one Bitcoin. It will be a sign of wealth in the future imo.",
+    "post_id": "2108404333561930170",
+    "url": "https://x.com/MEADGod/status/2108404333561930170"
   }
 ]

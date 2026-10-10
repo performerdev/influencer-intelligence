@@ -1,24 +1,38 @@
 # @MEADGod's rules
 
 ## Entry
-- Long Hyperliquid only, short everything else. “the only coin im comfortable being in a juicy long is hyperliquid, short everything else” (post:2069999384960360658)
-- Buy dips when conviction is high and the body signal is strong. “Gonna add on all dips I can get. I have a DCA on my fintech apps since low 60s lol” (post:2092644449759150182)
-- Buy spot BTC on capitulation spikes that feel like past bottoms. “Bought some spot BTC today first time since january 2023 👍🏼” (post:2108403501105590570, post:2108404919375946163) (stated once)
+- Buy the bottom in tranches at pre-set levels, not all at once. "Will buy a heck ton of HYPE at $8 and ETH at $1,200-1,500 BTC around $47K And then also some SOL at $64 or even $45 if we go that low. Yuh." (2000656074400317930) (stated once)
+- Ape MOG at $30M market cap. "Mog is down big time, i’m sorry but it’s the only meme that’s still relevant in the real world. At $30M I will be aping. For la familia." (2020937341377053164) (stated once)
+- Buy dips below 65k before 85k. "if we dip below 65k again best belief good dip to ape before 85" (2035884265175502918) (stated once)
+- Buy spot BTC and DCA to 1 BTC. "Bought some spot BTC today first time since january 2023 👍🏼" (2108403501105590570) (stated once)
 
 ## Exit and taking profit
-- Exit the market when you see signs of a top. “EXIT THE FUCKING MARKET MATEY.” (post:2054592566805360829)
+- Every pump is a chance to exit before a -90% drawdown in a bear market. "Every pump is a chance for bears to exit the market before a -90% drawdown. Inshallah. God willing." (2001651785937883481) (stated once)
+- Exit the market when bearish signals align. "EXIT THE FUCKING MARKET MATEY." (2054592566805360829) (stated once)
 
 ## Sizing
-No stated rule.
+- Only comfortable being in a juicy long on Hyperliquid, short everything else. "the only coin im comfortable being in a juicy long is hyperliquid, short everything else" (2069999384960360658) (stated once)
 
 ## Averaging down
-No stated rule.
+- Add on all dips, DCA. "Gonna add on all dips I can get. I have a DCA on my fintech apps since low 60s lol" (2092644449759150182) (stated once)
+- Buy the bottom in tranches at pre-set levels, not all at once. "Will buy a heck ton of HYPE at $8 and ETH at $1,200-1,500 BTC around $47K And then also some SOL at $64 or even $45 if we go that low. Yuh." (2000656074400317930) (stated once)
+- DCA to 1 BTC as a long-term accumulation target. "Will DCA to 1 - not many will be able to say they own one Bitcoin." (2108404333561930170) (stated once)
 
 ## Hold time
-- Short and strong until at least October, then twap into everything. “Short and strong until at least October and then twap into everything in existence for echo bubble and then up only.” (post:2075048818677092382)
+- Expect the bear market to run about 9 more months from Dec 2025. "9 months left in this bear market" (1996980501064646853) (stated once)
+- Short and strong until at least October, then twap into everything for echo bubble. "Short and strong until at least October and then twap into everything in existence for echo bubble and then up only. Same shit different cycle." (2075048818677092382) (stated once)
+- Hold through the distribution to receive holder fees; selling excludes you. "and time based - meaning that if you hold during the distribution, you will receive it - if u sell then you won’t be included" (2090560889212539312) (stated once)
+- Long-term hold Bitcoin as a sign of wealth. "Will DCA to 1 - not many will be able to say they own one Bitcoin. It will be a sign of wealth in the future imo." (2108404333561930170) (stated once)
 
 ## Risk management
-- Don’t trade when it’s going to get ugly. “Don’t trade today, it will get ugly imo.” (post:2062418191242932399)
+- Don't hedge free airdrops with illiquid premarket perps. "reminder to not hedge airdrops with illiquid premarket perps unless you want to get blown the fuck out" (1985828294206296391) (stated once)
+- Pay off your mortgage before taking crypto risk. "Pay off your mortgage, there is always money to be made. If things don't work out, you will hate yourself for it." (1970070095662850173) (stated once)
+- Don't trade on ugly days; wait for bounce. "Don’t trade today, it will get ugly imo. No bounce until 60k into the weekend, and next week we continue." (2062418191242932399) (stated once)
+- Greed will kill you. "greed will kill you" (2082153065465934067) (stated once)
+- Don't fall for spoofing; official GitHub never posts mascots or example configs. "Beware of Spoofing - we are never gonna post about a mascot or some example config file whatever." (2099837458506453128) (stated once)
+- Warns followers not to tail his wallet; any action is testing only, all NFA DYOR. "I don't sell coins - I also don't trade on the wallet. Any action on the wallet is for testing purposes and you shouldn't follow me on anything." (2102057097949049194, 2102056017492095227)
 
 ## Other
-No stated rule.
+- Stake tokens for future airdrops. "See? I told you guys all you had to do was stake your token for future airdrops" (2021732053033865387) (stated once)
+- Never sell coins, only burn. "I never sold, I burned - big difference." (2085152772517695589) (stated once)
+- Don't deploy a coin for everything. "We don't have to deploy a coin for everything." (2086324981315543313) (stated once)
