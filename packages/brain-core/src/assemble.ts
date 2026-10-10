@@ -21,6 +21,12 @@ export type BrainFiles = {
 
 export const BRAIN_MAX_TOKENS = Number(process.env.BRAIN_MAX_TOKENS ?? 50_000);
 const MIN_EXAMPLES = 120;
+// Long-form X posts run to 25k characters; the opening carries the voice, so examples are clipped in the prompt.
+const EXAMPLE_MAX_CHARS = Number(process.env.BRAIN_EXAMPLE_MAX_CHARS ?? 700);
+const exampleLine = (p: PostRow) => {
+  const cps = Array.from(formatPost(p));
+  return cps.length > EXAMPLE_MAX_CHARS ? `${cps.slice(0, EXAMPLE_MAX_CHARS).join("").trimEnd()}… (long post, clipped)` : cps.join("");
+};
 
 export function identityMd(s: BrainSubject, intro: string): string {
   return `# Identity
@@ -139,7 +145,7 @@ export function buildBrainPrompt(s: BrainSubject, f: BrainFiles, examples: PostR
     `\n=== MIND ===\n${f.mind}`,
     `\n=== RULES ===\n${f.rules}`,
     `\n=== VOICE ===\n${f.voice}`,
-    `\n=== EXAMPLES (their own posts) ===\n${examples.map(formatPost).join("\n")}`,
+    `\n=== EXAMPLES (their own posts) ===\n${examples.map(exampleLine).join("\n")}`,
     calls === "full" ? `\n=== CALLS (every explicit call, complete) ===\n${callsSection(f.calls, calls)}` : `\n=== CALLS (ledger of every ticker called) ===\n${callsSection(f.calls, calls)}`,
     `\n=== STATS ===\n${statsSection(f.stats, calls === "full")}`,
   ].join("\n");
