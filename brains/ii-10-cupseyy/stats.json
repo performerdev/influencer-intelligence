@@ -7,68 +7,68 @@
   ],
   "horizons": {
     "1d": {
-      "n": 7,
-      "hit_rate": 0.2857,
-      "mean_return": -0.0215,
-      "median_return": -0.0296
+      "n": 13,
+      "hit_rate": 0.5385,
+      "mean_return": -0.019,
+      "median_return": 0.0003
     },
     "7d": {
-      "n": 7,
-      "hit_rate": 0.7143,
-      "mean_return": 0.2275,
-      "median_return": 0.1972
+      "n": 13,
+      "hit_rate": 0.7692,
+      "mean_return": 0.2159,
+      "median_return": 0.1379
     },
     "30d": {
-      "n": 7,
-      "hit_rate": 0.8571,
-      "mean_return": 0.3723,
-      "median_return": 0.2237
+      "n": 13,
+      "hit_rate": 0.6154,
+      "mean_return": 0.2261,
+      "median_return": 0.1132
     }
   },
   "per_call": [
     {
+      "r_1d": -0.3276,
+      "r_7d": 0.0332,
+      "r_30d": 0.1132,
+      "ticker": "DOGE",
+      "post_id": "1355333418792275971",
+      "price_id": "coingecko:dogecoin",
+      "called_at": "2021-01-30T01:54:02.000Z",
+      "direction": "buy",
+      "price_at_call": 0.043863306186895386
+    },
+    {
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
-      "ticker": "DOGECOIN",
-      "post_id": "1355333418792275971",
+      "ticker": "LOGAN",
+      "post_id": "1401571115726774279",
       "price_id": null,
-      "called_at": "2021-01-30T01:54:02.000Z",
+      "called_at": "2021-06-06T16:06:08.000Z",
       "direction": "buy",
       "price_at_call": null
     },
     {
-      "r_1d": -0.0166,
-      "r_7d": -0.1493,
-      "r_30d": -0.3498,
-      "ticker": "SOL",
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "SRT",
+      "post_id": "1415475592875622400",
+      "price_id": null,
+      "called_at": "2021-07-15T00:57:34.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "GALAXITY",
       "post_id": "1481896055322988547",
-      "price_id": "coingecko:solana",
+      "price_id": null,
       "called_at": "2022-01-14T07:48:46.000Z",
       "direction": "buy",
-      "price_at_call": 148.1046533259302
-    },
-    {
-      "r_1d": -0.0504,
-      "r_7d": 0.0196,
-      "r_30d": 0.0451,
-      "ticker": "BTC",
-      "post_id": "1484669479753695233",
-      "price_id": "coingecko:bitcoin",
-      "called_at": "2022-01-21T23:29:22.000Z",
-      "direction": "buy",
-      "price_at_call": 37068.4015068282
-    },
-    {
-      "r_1d": -0.0746,
-      "r_7d": -0.0245,
-      "r_30d": 0.0174,
-      "ticker": "ETH",
-      "post_id": "1484669479753695233",
-      "price_id": "coingecko:ethereum",
-      "called_at": "2022-01-21T23:29:22.000Z",
-      "direction": "buy",
-      "price_at_call": 2602.2011011700606
+      "price_at_call": null
     },
     {
       "r_1d": null,
@@ -85,7 +85,7 @@
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
-      "ticker": "NFT",
+      "ticker": "TAIYO",
       "post_id": "1493784405327769610",
       "price_id": null,
       "called_at": "2022-02-16T03:08:50.000Z",
@@ -93,15 +93,26 @@
       "price_at_call": null
     },
     {
-      "r_1d": 0.0021,
-      "r_7d": 0.1972,
-      "r_30d": 0.2237,
-      "ticker": "SOL",
-      "post_id": "1505709615178297345",
-      "price_id": "coingecko:solana",
-      "called_at": "2022-03-21T00:55:21.000Z",
-      "direction": "hold",
-      "price_at_call": 88.4078912658747
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "TAIYO",
+      "post_id": "1494141360529575941",
+      "price_id": null,
+      "called_at": "2022-02-17T02:47:14.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "TAIYO",
+      "post_id": "1494187488650297347",
+      "price_id": null,
+      "called_at": "2022-02-17T05:50:32.000Z",
+      "direction": "sell",
+      "price_at_call": null
     },
     {
       "r_1d": null,
@@ -112,6 +123,17 @@
       "price_id": null,
       "called_at": "2022-03-22T03:33:24.000Z",
       "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "SOLANACATCARTEL",
+      "post_id": "1508904352156565506",
+      "price_id": null,
+      "called_at": "2022-03-29T20:30:06.000Z",
+      "direction": "buy",
       "price_at_call": null
     },
     {
@@ -129,7 +151,7 @@
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
-      "ticker": "MUTANT",
+      "ticker": "LABSMUTANT",
       "post_id": "1526783209794547713",
       "price_id": null,
       "called_at": "2022-05-18T04:34:18.000Z",
@@ -140,11 +162,33 @@
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
-      "ticker": "MUTANT",
+      "ticker": "LABSMUTANT",
       "post_id": "1526799527788761088",
       "price_id": null,
       "called_at": "2022-05-18T05:39:08.000Z",
       "direction": "sell",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "REPTILIANRENEG",
+      "post_id": "1527218810155151362",
+      "price_id": null,
+      "called_at": "2022-05-19T09:25:13.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "TRIPPINAPES",
+      "post_id": "1529194634450243587",
+      "price_id": null,
+      "called_at": "2022-05-24T20:16:26.000Z",
+      "direction": "buy",
       "price_at_call": null
     },
     {
@@ -162,7 +206,7 @@
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
-      "ticker": "FROOT",
+      "ticker": "FROOTSNFT",
       "post_id": "1552091610267148289",
       "price_id": null,
       "called_at": "2022-07-27T00:40:51.000Z",
@@ -173,7 +217,7 @@
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
-      "ticker": "FROOT",
+      "ticker": "FROOTSNFT",
       "post_id": "1552583673664311296",
       "price_id": null,
       "called_at": "2022-07-28T09:16:08.000Z",
@@ -184,7 +228,7 @@
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
-      "ticker": "FROOT",
+      "ticker": "FROOTSNFT",
       "post_id": "1553524620623478784",
       "price_id": null,
       "called_at": "2022-07-30T23:35:07.000Z",
@@ -199,6 +243,17 @@
       "post_id": "1554967049734062081",
       "price_id": null,
       "called_at": "2022-08-03T23:06:49.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "DEGODS",
+      "post_id": "1564100255624245248",
+      "price_id": null,
+      "called_at": "2022-08-29T03:58:55.000Z",
       "direction": "buy",
       "price_at_call": null
     },
@@ -250,17 +305,6 @@
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
-      "ticker": "DUMBASS_DONKEYS",
-      "post_id": "1568316272416530432",
-      "price_id": null,
-      "called_at": "2022-09-09T19:11:51.000Z",
-      "direction": "buy",
-      "price_at_call": null
-    },
-    {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
       "ticker": "NFTREES",
       "post_id": "1568761621446631425",
       "price_id": null,
@@ -283,21 +327,10 @@
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
-      "ticker": "CATASTROPHIC",
-      "post_id": "1569430114680840193",
+      "ticker": "UTILITYAPE",
+      "post_id": "1569594404939403268",
       "price_id": null,
-      "called_at": "2022-09-12T20:57:52.000Z",
-      "direction": "buy",
-      "price_at_call": null
-    },
-    {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
-      "ticker": "DEGODS",
-      "post_id": "1570355671425773568",
-      "price_id": null,
-      "called_at": "2022-09-15T10:15:42.000Z",
+      "called_at": "2022-09-13T07:50:42.000Z",
       "direction": "buy",
       "price_at_call": null
     },
@@ -316,7 +349,51 @@
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
-      "ticker": "DEADGOD",
+      "ticker": "THEUNVEILED",
+      "post_id": "1571615856580247555",
+      "price_id": null,
+      "called_at": "2022-09-18T21:43:14.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "SODEAD",
+      "post_id": "1576761428127555584",
+      "price_id": null,
+      "called_at": "2022-10-03T02:29:53.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ARSENS",
+      "post_id": "1576777354008879104",
+      "price_id": null,
+      "called_at": "2022-10-03T03:33:10.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "UKIYO",
+      "post_id": "1576777354008879104",
+      "price_id": null,
+      "called_at": "2022-10-03T03:33:10.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "DEADGODS",
       "post_id": "1580404857596350464",
       "price_id": null,
       "called_at": "2022-10-13T03:47:35.000Z",
@@ -357,6 +434,149 @@
       "price_at_call": 0.81912
     },
     {
+      "r_1d": 0.1953,
+      "r_7d": 0.1856,
+      "r_30d": -0.0735,
+      "ticker": "JUP",
+      "post_id": "1768455011040678195",
+      "price_id": "coingecko:jupiter-exchange-solana",
+      "called_at": "2024-03-15T01:51:45.000Z",
+      "direction": "buy",
+      "price_at_call": 1.029
+    },
+    {
+      "r_1d": 0.0496,
+      "r_7d": 0.0083,
+      "r_30d": -0.0864,
+      "ticker": "JUP",
+      "post_id": "1768779891351114239",
+      "price_id": "coingecko:jupiter-exchange-solana",
+      "called_at": "2024-03-15T23:22:43.000Z",
+      "direction": "buy",
+      "price_at_call": 1.21
+    },
+    {
+      "r_1d": -0.1325,
+      "r_7d": -0.1854,
+      "r_30d": -0.2559,
+      "ticker": "JUP",
+      "post_id": "1768900077290922463",
+      "price_id": "coingecko:jupiter-exchange-solana",
+      "called_at": "2024-03-16T07:20:17.000Z",
+      "direction": "buy",
+      "price_at_call": 1.51
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MUMU",
+      "post_id": "1769095380891758860",
+      "price_id": null,
+      "called_at": "2024-03-16T20:16:21.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MUMU",
+      "post_id": "1769130644028755976",
+      "price_id": null,
+      "called_at": "2024-03-16T22:36:29.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MUMU",
+      "post_id": "1769405353416966486",
+      "price_id": null,
+      "called_at": "2024-03-17T16:48:04.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MUMU",
+      "post_id": "1769423807700140135",
+      "price_id": null,
+      "called_at": "2024-03-17T18:01:24.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MUMU",
+      "post_id": "1770554335677587901",
+      "price_id": null,
+      "called_at": "2024-03-20T20:53:43.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MUMU",
+      "post_id": "1771264185751547920",
+      "price_id": null,
+      "called_at": "2024-03-22T19:54:25.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MUMU",
+      "post_id": "1771285970802913580",
+      "price_id": null,
+      "called_at": "2024-03-22T21:20:58.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MUMU",
+      "post_id": "1771298601576124465",
+      "price_id": null,
+      "called_at": "2024-03-22T22:11:10.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": 0.0169,
+      "r_7d": 0.8198,
+      "r_30d": 0.2153,
+      "ticker": "WIF",
+      "post_id": "1771604132878508036",
+      "price_id": "coingecko:dogwifcoin",
+      "called_at": "2024-03-23T18:25:14.000Z",
+      "direction": "buy",
+      "price_at_call": 2.37
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MUMU",
+      "post_id": "1771604132878508036",
+      "price_id": null,
+      "called_at": "2024-03-23T18:25:14.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
@@ -371,23 +591,100 @@
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
-      "ticker": "PUMP",
-      "post_id": "1808348461739241721",
+      "ticker": "NUB",
+      "post_id": "1772100102166896908",
       "price_id": null,
-      "called_at": "2024-07-03T03:54:05.000Z",
+      "called_at": "2024-03-25T03:16:03.000Z",
       "direction": "buy",
       "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "NUB",
+      "post_id": "1774979896332460506",
+      "price_id": null,
+      "called_at": "2024-04-02T01:59:19.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "TIMMI",
+      "post_id": "1777794634581750074",
+      "price_id": null,
+      "called_at": "2024-04-09T20:24:05.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": -0.0703,
+      "r_7d": 0.1379,
+      "r_30d": 0.24,
+      "ticker": "SOL",
+      "post_id": "1785072103248572852",
+      "price_id": "coingecko:solana",
+      "called_at": "2024-04-29T22:22:09.000Z",
+      "direction": "buy",
+      "price_at_call": 136.21
+    },
+    {
+      "r_1d": 0.0427,
+      "r_7d": 0.1224,
+      "r_30d": -0.0704,
+      "ticker": "SOL",
+      "post_id": "1813086360120795409",
+      "price_id": "coingecko:solana",
+      "called_at": "2024-07-16T05:40:48.000Z",
+      "direction": "buy",
+      "price_at_call": 155.48391964897854
+    },
+    {
+      "r_1d": 0.0003,
+      "r_7d": -0.0352,
+      "r_30d": 0.0313,
+      "ticker": "SOL",
+      "post_id": "1833255502261678590",
+      "price_id": "coingecko:solana",
+      "called_at": "2024-09-09T21:25:46.000Z",
+      "direction": "buy",
+      "price_at_call": 135.58
+    },
+    {
+      "r_1d": -0.0323,
+      "r_7d": 0.1934,
+      "r_30d": 0.3015,
+      "ticker": "SOL",
+      "post_id": "1908946694332416236",
+      "price_id": "coingecko:solana",
+      "called_at": "2025-04-06T18:15:33.000Z",
+      "direction": "buy",
+      "price_at_call": 110.51
+    },
+    {
+      "r_1d": 0.0224,
+      "r_7d": -0.0226,
+      "r_30d": -0.1462,
+      "ticker": "PUMP",
+      "post_id": "2013083402963194003",
+      "price_id": "coingecko:pump-fun",
+      "called_at": "2026-01-19T02:57:39.000Z",
+      "direction": "buy",
+      "price_at_call": 0.002549449905885188
     }
   ],
-  "hold_pairs": 1,
-  "calls_total": 32,
-  "computed_at": "2026-10-10T13:14:07.937Z",
+  "hold_pairs": 2,
+  "calls_total": 59,
+  "computed_at": "2026-10-10T15:31:41.113Z",
   "by_direction": {
-    "buy": 28,
+    "buy": 54,
     "hold": 3,
-    "sell": 1
+    "sell": 2
   },
-  "calls_priced": 7,
+  "calls_priced": 13,
   "price_source": "DefiLlama coins API",
-  "median_hold_days": 0
+  "median_hold_days": 0.6
 }
