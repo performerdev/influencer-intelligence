@@ -74,6 +74,9 @@ export function makeBatches(posts: PostRow[], batchTokens: number) {
  */
 export async function distillInfluencer(sql: Sql, llm: LLM, inf: InfluencerRow, opts: DistillOptions = {}): Promise<DistilledFiles> {
   const model = opts.model ?? process.env.LLM_MODEL_DISTILL ?? "deepseek-v4-pro";
+  // Reading thousands of posts is bulk extraction: a cheaper model does it well.
+  // The final reduce (the personality itself) stays on the stronger model.
+  const mapModel = process.env.LLM_MODEL_MAP || model;
   const posts = await loadPosts(sql, inf.id);
   if (posts.length === 0) throw new Error(`@${inf.handle}: no posts in the database yet — run ingest first.`);
   await sql`update influencers set status = 'distilling' where id = ${inf.id}`;
@@ -81,9 +84,9 @@ export async function distillInfluencer(sql: Sql, llm: LLM, inf: InfluencerRow, 
   const byId = new Map(posts.map((p) => [p.id, p]));
   const batches = makeBatches(posts, opts.batchTokens ?? Number(process.env.DISTILL_BATCH_TOKENS ?? 40_000));
   let cost = 0;
-  const spend = async (usage: { input: number; output: number; costUsd: number }, step: string) => {
+  const spend = async (usage: { input: number; output: number; costUsd: number }, step: string, usedModel = model) => {
     cost += usage.costUsd;
-    await recordSpend(sql, { influencerId: inf.id, kind: "llm", units: usage.input + usage.output, usd: usage.costUsd, meta: { step, model, ...usage } });
+    await recordSpend(sql, { influencerId: inf.id, kind: "llm", units: usage.input + usage.output, usd: usage.costUsd, meta: { step, model: usedModel, ...usage } });
   };
 
   // ── map ──
@@ -119,9 +122,9 @@ export async function distillInfluencer(sql: Sql, llm: LLM, inf: InfluencerRow, 
               }),
             },
           ],
-          { model, json: true, temperature: 0.2, maxTokens: 8000, thinking: (process.env.DISTILL_MAP_THINKING ?? "disabled") as CompleteOptions["thinking"] },
+          { model: mapModel, json: true, temperature: 0.2, maxTokens: 8000, thinking: (process.env.DISTILL_MAP_THINKING ?? "disabled") as CompleteOptions["thinking"] },
         );
-        await spend(res.usage, "map");
+        await spend(res.usage, "map", mapModel);
         try {
           parsed = parseJsonReply<BatchNotes>(res.text);
         } catch {
@@ -138,7 +141,7 @@ export async function distillInfluencer(sql: Sql, llm: LLM, inf: InfluencerRow, 
       notes[i] = parsed;
       await sql`
         insert into distill_notes (influencer_id, batch_key, batch_index, notes, model)
-        values (${inf.id}, ${b.key}, ${i}, ${sql.json(parsed as never)}, ${model})
+        values (${inf.id}, ${b.key}, ${i}, ${sql.json(parsed as never)}, ${mapModel})
         on conflict (influencer_id, batch_key) do update set notes = excluded.notes, model = excluded.model, batch_index = excluded.batch_index`;
     }
     done++;

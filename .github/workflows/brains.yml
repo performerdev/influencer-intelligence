@@ -37,6 +37,8 @@ env:
   DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
   DATABASE_URL: ${{ secrets.DATABASE_URL }}
   DATABASE_POOL_MAX: "3"
+  # Bulk reading of posts on Flash, the final brain on Pro.
+  LLM_MODEL_MAP: deepseek-flash
   LLM_MODEL_DISTILL: deepseek-v4-pro
   FORCE_COLOR: "0"
 
@@ -64,7 +66,7 @@ jobs:
     timeout-minutes: 350
     strategy:
       fail-fast: false
-      max-parallel: 3
+      max-parallel: 5
       matrix:
         target: ${{ fromJson(needs.plan.outputs.targets) }}
     steps:

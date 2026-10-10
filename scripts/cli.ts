@@ -181,7 +181,8 @@ async function probe(list: InfluencerRow[]) {
       const tokensIn = (estPosts + estThreads) * 60;
       const batches = Math.ceil(tokensIn / 40_000);
       const pr = llmPrice(DISTILL_MODEL);
-      const distill = (tokensIn * pr.inputMiss + batches * 5_000 * pr.output + batches * 5_000 * pr.inputMiss + 40_000 * pr.output) / 1e6;
+      const pm = llmPrice(process.env.LLM_MODEL_MAP || DISTILL_MODEL);
+      const distill = (tokensIn * pm.inputMiss + batches * 5_000 * pm.output + batches * 5_000 * pr.inputMiss + 40_000 * pr.output) / 1e6;
       totalParse += parse;
       totalDistill += distill;
 
@@ -190,7 +191,7 @@ async function probe(list: InfluencerRow[]) {
       console.log(`  timeline page  ${tl.tweets.length} returned → ${kinds.post} posts, ${kinds.quote} quotes, ${kinds.thread} own-thread, ${kinds.dropped} dropped (reposts/replies) · spans ${span.toFixed(1)} days`);
       console.log(`  search         "-filter:replies" → ${s1.tweets.length} returned, ${s1Own} kept, ${s1Replies} replies slipped through ${s1.tweets.length && s1Replies === 0 ? "(operator works)" : s1.tweets.length ? "(operator ignored — replies get filtered by code)" : "(no results)"}`);
       console.log(`  threads        "to:${inf.handle}" → ${s2.tweets.length} returned, ${selfReplies} own-thread continuations ${selfReplies ? "(works)" : "(none found on first page)"}`);
-      console.log(`  estimate       ~${fmt(estPosts)} own posts + ~${fmt(estThreads)} thread parts · parse ~${usd(parse)} · distill ~${usd(distill)} (${DISTILL_MODEL}, peak rates)\n`);
+      console.log(`  estimate       ~${fmt(estPosts)} own posts + ~${fmt(estThreads)} thread parts · parse ~${usd(parse)} · distill ~${usd(distill)} (map ${process.env.LLM_MODEL_MAP || DISTILL_MODEL}, reduce ${DISTILL_MODEL}, peak rates)\n`);
     } catch (err) {
       console.log(`${inf.code} @${inf.handle}\n  FAILED: ${(err as Error).message}\n`);
     }
