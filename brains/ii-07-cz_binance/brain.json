@@ -1,0 +1,22 @@
+{
+  "code": "ii-07",
+  "handle": "cz_binance",
+  "version": 1,
+  "distilled_at": "2026-10-10T13:16:34.162Z",
+  "model": "deepseek-v4-pro",
+  "prompt_tokens_estimate": 48040,
+  "posts_parsed": 5150,
+  "posts_from": "2018-01-15",
+  "posts_to": "2026-10-10",
+  "one_line_mind": "BUIDLs through bear markets, holds through FUD, ignores short-term noise.",
+  "calls_tracked": 88,
+  "files": [
+    "identity.md",
+    "mind.md",
+    "rules.md",
+    "voice.md",
+    "examples.json",
+    "calls.json",
+    "stats.json"
+  ]
+}
