@@ -1,10 +1,10 @@
 {
   "code": "ii-09",
   "handle": "theunipcs",
-  "version": 2,
-  "distilled_at": "2026-10-10T13:55:55.336Z",
+  "version": 3,
+  "distilled_at": "2026-10-10T14:03:58.520Z",
   "model": "deepseek-v4-pro",
-  "prompt_tokens_estimate": 76777,
+  "prompt_tokens_estimate": 38338,
   "posts_parsed": 3728,
   "posts_from": "2024-03-01",
   "posts_to": "2026-10-09",
