@@ -123,6 +123,22 @@ async function main() {
     check("refresh with nothing new keeps the brain", /brain stays v/.test(r2), r2.match(/brain stays v\d+/)?.[0] ?? r2.slice(-300));
     void refreshOut;
 
+    // Replies (opt-in): only replies that say something, each with the post it answers.
+    const repliesOut = await run(["build", "blknoiz06", "--replies", "--max-usd", "5"], env);
+    const keptReplies = tweets.filter((t) => t.isReply && t.inReplyToUserId !== SELF.id && !/lol no/.test(t.text));
+    const substantive = keptReplies.length;
+    const parentsAlive = keptReplies.filter((t) => !String(t.inReplyToId).endsWith("21")).length; // mock "deletes" ids ending in 21
+    const [rep] = await sql`
+      select count(*)::int as n, count(*) filter (where reply_to_text <> '')::int as with_parent,
+             count(*) filter (where reply_to_text is null)::int as missing, count(*) filter (where reply_to_author = 'someone')::int as author
+      from posts where kind = 'reply'`;
+    check(
+      "replies collected with the post they answer",
+      rep.n === substantive && rep.missing === 0 && rep.with_parent === parentsAlive && parentsAlive < substantive && rep.author === rep.n,
+      `${rep.n}/${substantive} replies, ${rep.with_parent} with parent text`,
+    );
+    void repliesOut;
+
     // Over budget: calls switch to a per-ticker ledger; calls.json stays complete; no re-distill.
     const llmBefore = calls["/chat/completions"] ?? 0;
     const re = await run(["reassemble", "blknoiz06"], { ...env, BRAIN_MAX_TOKENS: "6500" });

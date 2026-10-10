@@ -166,7 +166,7 @@ export async function assembleBrain(sql: Sql, llm: LLM | null, inf: InfluencerRo
   const ids = files.example_ids;
   const rows = ids.length
     ? await sql<PostRow[]>`
-        select id, kind, text, created_at, quoted_author, quoted_text, likes, reposts, views
+        select id, kind, text, created_at, quoted_author, quoted_text, reply_to_author, reply_to_text, likes, reposts, views
         from posts where id in ${sql(ids)}`
     : [];
   const byId = new Map(rows.map((r) => [r.id, r]));

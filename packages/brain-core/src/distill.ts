@@ -39,7 +39,7 @@ const MERGE_THRESHOLD_TOKENS = 220_000;
 
 export async function loadPosts(sql: Sql, influencerId: number): Promise<PostRow[]> {
   return sql<PostRow[]>`
-    select id, kind, text, created_at, quoted_author, quoted_text, likes, reposts, views
+    select id, kind, text, created_at, quoted_author, quoted_text, reply_to_author, reply_to_text, likes, reposts, views
     from posts where influencer_id = ${influencerId} order by created_at, id`;
 }
 

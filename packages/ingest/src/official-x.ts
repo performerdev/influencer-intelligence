@@ -61,7 +61,7 @@ export class OfficialXSource implements XSource {
     const path = process.env.X_API_FULL_ARCHIVE === "true" ? "/2/tweets/search/all" : "/2/tweets/search/recent";
     // X API uses start_time/end_time instead of until_time:
     const m = query.match(/until_time:(\d+)/);
-    const q = query.replace(/\s*until_time:\d+/, "").replace(/-filter:replies/, "-is:reply");
+    const q = query.replace(/\s*until_time:\d+/, "").replace(/-filter:replies/, "-is:reply").replace(/(^|\s)filter:replies/, "$1is:reply");
     const j = await this.get(path, {
       query: q,
       max_results: "100",
@@ -70,6 +70,17 @@ export class OfficialXSource implements XSource {
       expansions: "referenced_tweets.id,referenced_tweets.id.author_id",
       "user.fields": "username",
       next_token: cursor ?? undefined,
+    });
+    return this.page(j);
+  }
+
+  async tweetsByIds(ids: string[]): Promise<XPage> {
+    if (!ids.length) return { tweets: [], nextCursor: null, billed: 0, costUsd: 0 };
+    const j = await this.get("/2/tweets", {
+      ids: ids.slice(0, 100).join(","),
+      "tweet.fields": TWEET_FIELDS,
+      expansions: "author_id,referenced_tweets.id,referenced_tweets.id.author_id",
+      "user.fields": "username",
     });
     return this.page(j);
   }
@@ -93,6 +104,7 @@ export class OfficialXSource implements XSource {
         isReply: Boolean(replied),
         inReplyToId: replied?.id ?? null,
         inReplyToUserId: t.in_reply_to_user_id ?? null,
+        inReplyToHandle: t.in_reply_to_user_id ? users.get(t.in_reply_to_user_id) ?? null : null,
         conversationId: t.conversation_id ?? null,
         isRetweet: refs.some((r) => r.type === "retweeted"),
         quoted: q ? { id: q.id, text: qt?.text ?? "", author: qt ? users.get(qt.author_id) ?? null : null } : null,

@@ -43,7 +43,16 @@ for (let i = 0; i < 260; i++) {
   };
   const r = i % 20;
   if (r === 0) tweets.push({ ...base, text: "RT @someone: not ours", retweeted_tweet: { id: "9", text: "not ours" } });
-  else if (r === 1) tweets.push({ ...base, text: "@someone lol no", isReply: true, inReplyToId: "8", inReplyToUserId: "777" });
+  else if (r === 1)
+    tweets.push({
+      ...base,
+      // half are one-word noise, half say something (only those are kept with --replies)
+      text: i % 40 === 1 ? "@someone lol no" : `@someone honestly the funding rate tells you everything here, i would wait (${i})`,
+      isReply: true,
+      inReplyToId: String(5_000_000 + i),
+      inReplyToUserId: "777",
+      inReplyToUsername: "someone",
+    });
   else if (r === 2) tweets.push({ ...base, text: `and the second part of the thread (${i})`, isReply: true, inReplyToId: String(1_000_000 + i - 1), inReplyToUserId: SELF.id });
   else if (r === 3) tweets.push({ ...base, text: `this is exactly the top signal (${i})`, quoted_tweet: { id: "5", text: "new ATH incoming", author: { userName: "loudguy" } } });
   else tweets.push({ ...base, ...lines[i % lines.length](i) });
@@ -148,8 +157,17 @@ export const api = createServer(async (req, res) => {
     const since = Number(query.match(/since_time:(\d+)/)?.[1] ?? 0);
     let list = newestFirst.filter((t) => ts(t) < until && ts(t) >= since);
     if (/-filter:replies/.test(query)) list = list.filter((t) => !t.isReply);
+    else if (/(^|\s)filter:replies/.test(query)) list = list.filter((t) => t.isReply);
     if (/to:/.test(query)) list = list.filter((t) => t.isReply && t.inReplyToUserId === SELF.id);
     return send(page(list, q.get("cursor")));
+  }
+  if (url.pathname === "/twitter/tweets") {
+    // Parents of replies: synthesized from the id; one is "deleted" to test empty parents.
+    const ids = (q.get("tweet_ids") ?? "").split(",").filter(Boolean);
+    return send({
+      tweets: ids.filter((id) => !id.endsWith("21")).map((id) => ({ type: "tweet", id, text: `what do you make of this pump? (${id})`, createdAt: new Date(start).toUTCString().replace("GMT", "+0000"), author: { id: "777", userName: "someone" } })),
+      status: "success",
+    });
   }
   if (url.pathname === "/chat/completions") {
     const b = JSON.parse(body);

@@ -8,6 +8,7 @@ export type XTweet = {
   isReply: boolean;
   inReplyToId: string | null;
   inReplyToUserId: string | null;
+  inReplyToHandle: string | null;
   conversationId: string | null;
   isRetweet: boolean;
   quoted: { id: string; text: string; author: string | null } | null;
@@ -46,19 +47,31 @@ export interface XSource {
   timeline(args: { userId: string; handle: string; cursor?: string | null }): Promise<XPage>;
   /** Search with X operators (from:, to:, until_time:, …), newest first. */
   search(args: { query: string; cursor?: string | null }): Promise<XPage>;
+  /** Specific posts by id (used for the post a reply answers). */
+  tweetsByIds(ids: string[]): Promise<XPage>;
 }
 
-export type PostKind = "post" | "quote" | "thread";
+export type PostKind = "post" | "quote" | "thread" | "reply";
 
 /**
  * What we keep: originals, quotes, and the author's own thread continuations.
- * Reposts and replies to other people are dropped.
+ * Reposts are always dropped; replies to other people only when asked for.
  */
-export function classify(t: XTweet, selfId: string | null): PostKind | null {
+export function classify(t: XTweet, selfId: string | null, opts: { replies?: boolean } = {}): PostKind | null {
   if (t.isRetweet || /^RT @\w+:/.test(t.text)) return null;
   if (selfId && t.authorId && t.authorId !== selfId) return null;
   if (t.isReply) {
-    return selfId && t.inReplyToUserId === selfId ? "thread" : null;
+    if (selfId && t.inReplyToUserId === selfId) return "thread";
+    return opts.replies && isSubstantive(t.text) ? "reply" : null;
   }
   return t.quoted ? "quote" : "post";
+}
+
+/** "gm", "lol", "@x 🔥" carry no signal; keep replies with something to say. */
+export function isSubstantive(text: string, minChars = Number(process.env.REPLIES_MIN_CHARS ?? 20)): boolean {
+  const body = text
+    .replace(/^(@\w+\s*)+/, "")
+    .replace(/https?:\/\/\S+/g, "")
+    .trim();
+  return Array.from(body).length >= minChars;
 }

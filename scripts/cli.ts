@@ -95,6 +95,7 @@ async function stepIngest(inf: InfluencerRow, opts: { refresh?: boolean } = {}) 
     maxUsd,
     threads: !flags.has("no-threads"),
     refresh: opts.refresh ?? flags.has("refresh"),
+    replies: flags.has("replies"),
     onProgress: (p) =>
       line(`  ${inf.code} @${inf.handle} · ${p.phase} · page ${p.pages} · kept ${fmt(p.kept)} · back to ${p.oldest?.toISOString().slice(0, 10) ?? "—"} · spent ${usd(p.spentUsd)}`),
   });
@@ -154,7 +155,7 @@ async function probe(list: InfluencerRow[]) {
     try {
       const p = await source.profile(inf.handle);
       const tl = await source.timeline({ userId: p.id, handle: inf.handle });
-      const kinds = { post: 0, quote: 0, thread: 0, dropped: 0 };
+      const kinds = { post: 0, quote: 0, thread: 0, reply: 0, dropped: 0 };
       for (const t of tl.tweets) {
         const k = classify(t, p.id);
         if (k) kinds[k]++;
@@ -338,7 +339,7 @@ function readUsage() {
   pnpm brain:stats   <handle|--all>
   pnpm brain:export  [handle|--all]
   pnpm brain:reassemble <handle|--all>   rebuild prompts from stored brain files, no API cost
-  pnpm brain:build   <handle|--all> [--max-usd 15] [--partial]
+  pnpm brain:build   <handle|--all> [--max-usd 15] [--partial] [--replies]
   pnpm brain:status`;
 }
 

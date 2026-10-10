@@ -60,6 +60,12 @@ export class TwitterApiIoSource implements XSource {
     return this.page(j);
   }
 
+  async tweetsByIds(ids: string[]): Promise<XPage> {
+    if (!ids.length) return { tweets: [], nextCursor: null, billed: 0, costUsd: 0 };
+    const j = await this.get("/twitter/tweets", { tweet_ids: ids.join(",") });
+    return this.page(j);
+  }
+
   private page(j: Json): XPage {
     if (j.status === "error") throw new Error(`twitterapi.io: ${j.message ?? j.msg ?? "error"}`);
     const raw: Json[] = j.tweets ?? j.data?.tweets ?? [];
@@ -90,6 +96,7 @@ function normalize(t: Json): XTweet | null {
     isReply: Boolean(t.isReply ?? t.inReplyToId),
     inReplyToId: t.inReplyToId ? String(t.inReplyToId) : null,
     inReplyToUserId: t.inReplyToUserId ? String(t.inReplyToUserId) : null,
+    inReplyToHandle: t.inReplyToUsername ?? t.inReplyToUserName ?? null,
     conversationId: t.conversationId ? String(t.conversationId) : null,
     isRetweet: Boolean(rt),
     quoted: q?.id ? { id: String(q.id), text: String(q.text ?? ""), author: q.author?.userName ?? null } : null,

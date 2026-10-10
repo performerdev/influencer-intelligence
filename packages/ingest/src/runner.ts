@@ -18,6 +18,8 @@ export type IngestOptions = {
   threads?: boolean;
   /** only fetch what's new since the last run */
   refresh?: boolean;
+  /** also collect replies to other people (with the post each one answers) */
+  replies?: boolean;
   onProgress?: (p: IngestProgress) => void;
 };
 
@@ -43,6 +45,8 @@ type StateRow = {
  *               to others are never fetched, so never billed)
  *   timeline  — optional (INGEST_USE_TIMELINE=true); returns reposts too
  *   threads   — the author's own replies to themselves (thread continuations)
+ *   replies   — opt-in: replies to other people that say something (newest →
+ *               oldest), then the posts they answer, fetched by id for context
  */
 export async function ingestInfluencer(
   sql: Sql,
@@ -83,7 +87,7 @@ export async function ingestInfluencer(
   };
 
   /** One request: bill it, keep what belongs, store. Returns the page and how many new rows landed. */
-  const fetchPage = async (state: StateRow, call: () => Promise<XPage>, keepOnly?: PostKind) => {
+  const fetchPage = async (state: StateRow, call: () => Promise<XPage>, keepOnly?: PostKind, classifyOpts: { replies?: boolean } = {}) => {
     const page = await call();
     spent += page.costUsd;
     totalBilled += page.billed;
@@ -95,7 +99,7 @@ export async function ingestInfluencer(
       meta: { phase: state.phase },
     });
     const kept = page.tweets
-      .map((t) => ({ t, kind: classify(t, selfId) }))
+      .map((t) => ({ t, kind: classify(t, selfId, classifyOpts) }))
       .filter((x): x is { t: XTweet; kind: PostKind } => !!x.kind && (!keepOnly || x.kind === keepOnly));
     const inserted = await insertPosts(sql, inf.id, kept);
     totalKept += inserted;
@@ -113,6 +117,46 @@ export async function ingestInfluencer(
     return { status: "budget", kept: totalKept, billed: totalBilled, spentUsd: spent };
   };
 
+  /** The post each stored reply answers, fetched by id in batches (deleted or protected parents stay empty). */
+  const fetchParents = async (): Promise<boolean> => {
+    const ph = await loadState("reply_parents");
+    const batch = Number(process.env.REPLY_PARENT_BATCH ?? 50);
+    for (;;) {
+      if (overBudget()) {
+        await saveState(ph);
+        return false;
+      }
+      const rows = await sql<{ id: string; in_reply_to_id: string }[]>`
+        select id, in_reply_to_id from posts
+        where influencer_id = ${inf.id} and kind = 'reply' and reply_to_text is null and in_reply_to_id is not null
+        order by created_at desc limit ${batch}`;
+      if (!rows.length) break;
+      const page = await source.tweetsByIds([...new Set(rows.map((r) => r.in_reply_to_id))]);
+      spent += page.costUsd;
+      totalBilled += page.billed;
+      await recordSpend(sql, { influencerId: inf.id, kind: "twitterapi", units: page.billed, usd: page.costUsd, meta: { phase: "reply_parents" } });
+      const byId = new Map(page.tweets.map((t) => [t.id, t]));
+      const ids = rows.map((r) => r.id);
+      const texts = rows.map((r) => byId.get(r.in_reply_to_id)?.text ?? "");
+      const authors = rows.map((r) => byId.get(r.in_reply_to_id)?.authorHandle ?? "");
+      await sql`
+        update posts p set reply_to_text = v.t, reply_to_author = coalesce(p.reply_to_author, nullif(v.a, ''))
+        from (select unnest(${sql.array(ids)}::text[]) as id, unnest(${sql.array(texts)}::text[]) as t, unnest(${sql.array(authors)}::text[]) as a) v
+        where p.id = v.id`;
+      ph.pages += 1;
+      ph.tweets_billed += page.billed;
+      ph.kept += page.tweets.length;
+      await saveState(ph);
+      opts.onProgress?.({ phase: ph.phase, pages: ph.pages, billed: ph.tweets_billed, kept: ph.kept, oldest: null, spentUsd: spent });
+    }
+    ph.done = true;
+    await saveState(ph);
+    return true;
+  };
+  const [{ on: repliesOn }] = await sql<{ on: boolean }[]>`
+    select exists (select 1 from ingest_state where influencer_id = ${inf.id} and phase = 'replies') as on`;
+  const wantReplies = !!opts.replies || repliesOn;
+
   // ── refresh: only what's new since the last stored post (search, so reposts and replies aren't billed) ──
   if (opts.refresh) {
     const [r] = await sql<{ t: Date | null }[]>`select max(created_at) as t from posts where influencer_id = ${inf.id}`;
@@ -120,18 +164,22 @@ export async function ingestInfluencer(
     for (const [phase, query] of [
       ["refresh", `from:${handle} -filter:replies since_time:${since}`],
       ["refresh_threads", `from:${handle} to:${handle} since_time:${since}`],
+      ["refresh_replies", `from:${handle} filter:replies since_time:${since}`],
     ] as const) {
       if (phase === "refresh_threads" && opts.threads === false) continue;
+      if (phase === "refresh_replies" && !wantReplies) continue;
       const s: StateRow = { ...(await loadState(phase)), cursor: null, done: false };
+      const keep = phase === "refresh_threads" ? "thread" : phase === "refresh_replies" ? "reply" : undefined;
       for (;;) {
         if (overBudget()) return stop();
-        const { page } = await fetchPage(s, () => source.search({ query, cursor: s.cursor }), phase === "refresh_threads" ? "thread" : undefined);
+        const { page } = await fetchPage(s, () => source.search({ query, cursor: s.cursor }), keep, { replies: phase === "refresh_replies" });
         s.cursor = page.nextCursor;
         if (!page.nextCursor || page.tweets.length === 0) break;
       }
       s.done = true;
       await saveState(s);
     }
+    if (wantReplies && !(await fetchParents())) return stop();
     await refreshInfluencerCounts(sql, inf.id);
     return { status: "done", kept: totalKept, billed: totalBilled, spentUsd: spent };
   }
@@ -209,6 +257,43 @@ export async function ingestInfluencer(
     }
   }
 
+  // ── replies to other people (opt-in), newest → oldest in until_time windows ──
+  if (wantReplies) {
+    const rp = await loadState("replies");
+    while (!rp.done) {
+      if (rp.window_until == null) rp.window_until = String(Math.floor(Date.now() / 1000) + 60);
+      const until = Number(rp.window_until);
+      if (until <= accountStart) {
+        rp.done = true;
+        break;
+      }
+      let windowMin = until;
+      let windowRows = 0;
+      for (;;) {
+        if (overBudget()) {
+          await saveState(rp);
+          return stop();
+        }
+        const { page, oldest } = await fetchPage(
+          rp,
+          () => source.search({ query: `from:${handle} filter:replies until_time:${until}`, cursor: rp.cursor }),
+          "reply",
+          { replies: true },
+        );
+        windowRows += page.tweets.length;
+        if (oldest) windowMin = Math.min(windowMin, Math.floor(oldest.getTime() / 1000));
+        rp.cursor = page.nextCursor;
+        await saveState(rp);
+        if (!page.nextCursor || page.tweets.length === 0) break;
+      }
+      rp.cursor = null;
+      if (windowRows === 0 || windowMin >= until) rp.done = true;
+      else rp.window_until = String(windowMin);
+      await saveState(rp);
+    }
+    if (!(await fetchParents())) return stop();
+  }
+
   await refreshInfluencerCounts(sql, inf.id);
   return { status: "done", kept: totalKept, billed: totalBilled, spentUsd: spent };
 }
@@ -226,6 +311,7 @@ async function insertPosts(sql: Sql, influencerId: number, rows: { t: XTweet; ki
     quoted_id: t.quoted?.id ?? null,
     quoted_author: t.quoted?.author ?? null,
     quoted_text: t.quoted?.text ?? null,
+    reply_to_author: kind === "reply" ? t.inReplyToHandle : null,
     likes: t.metrics.likes,
     reposts: t.metrics.reposts,
     replies: t.metrics.replies,

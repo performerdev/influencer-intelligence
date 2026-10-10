@@ -14,6 +14,7 @@ Rules:
 - Prefer their own words. Every point you note cites post IDs from this batch.
 - Lines marked "quote of @x" are quote posts: the quoted text is context, the author's own words follow "→".
 - Lines marked "thread" continue the author's own previous post.
+- Lines marked "reply to @x" are the author's replies to other people: the post they answer is context in «», the author's own words follow "→". Replies show how they talk one-on-one and react to others; weigh their own posts higher for beliefs and rules.
 
 Return ONE JSON object and nothing else, with exactly these keys:
 {
