@@ -1,0 +1,14 @@
+# Netlify (monorepo): base directory = repo root, package directory = apps/web.
+# Install and build run from the repo root; paths here are relative to the root.
+[build]
+  command = "pnpm --filter @ii/web build"
+  publish = "apps/web/.next"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+# Environment variables to set in Netlify (Site configuration → Environment variables):
+#   DATABASE_URL_POOLED  Supabase transaction pooler URL (port 6543)
+#   DEEPSEEK_API_KEY
+# Optional: LLM_MODEL_CHAT (default deepseek-v4-pro), CHAT_DAILY_LIMIT (default 40), CHAT_SALT (any random string)
