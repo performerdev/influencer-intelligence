@@ -340,7 +340,7 @@ function EmptyState({ intelligence, ready, onAsk }: { intelligence: ChatIntellig
     <div className="flex h-full min-h-[360px] flex-col items-center justify-center py-10 text-center">
       <ParticleSignature handle={intelligence.handle} postsParsed={intelligence.postsParsed} postsPerDay={intelligence.postsPerDay} size={200} />
       {ready ? (
-        <p className="mt-6 text-lead text-particle">
+        <p className="mt-6 font-pixel text-lead text-particle">
           Ask @{intelligence.handle} anything. Try:{" "}
           <button onClick={() => onAsk("Who are you?")} className="text-ceramic underline decoration-line-hover underline-offset-4 hover:decoration-ceramic">
             who are you?
@@ -363,7 +363,7 @@ function BrainPanel({ intelligence, brain, onOpenBrain }: { intelligence: ChatIn
         <ParticleSignature handle={intelligence.handle} postsParsed={intelligence.postsParsed} postsPerDay={intelligence.postsPerDay} size={56} />
         <div className="min-w-0">
           <p className="font-mono text-xs text-muted">{intelligence.code}</p>
-          <p className="truncate text-body font-medium">@{intelligence.handle}</p>
+          <p className="truncate font-pixel text-body">@{intelligence.handle}</p>
           <p className="font-mono text-xs text-muted">{formatCount(intelligence.postsParsed)} posts</p>
         </div>
       </div>
@@ -416,8 +416,8 @@ function BrainPanel({ intelligence, brain, onOpenBrain }: { intelligence: ChatIn
         <p className="mt-3 text-xs text-muted">{st ? `Computed on ${st.computedAt.slice(0, 10)} by code, not by the model.` : "Computed once the brain is built."}</p>
       </div>
 
-      <AppLink href={`/room?with=${intelligence.handle}`} className="btn-line w-full">
-        + Room
+      <AppLink href={`/group?with=${intelligence.handle}`} className="btn-line w-full">
+        + Group
       </AppLink>
     </div>
   );
@@ -548,7 +548,7 @@ function BrainDrawer({ handle, code, version, onClose }: { handle: string; code:
       {error && <p className="mt-6 text-sm text-muted">{error}</p>}
       {!data && !error && <p className="mt-6"><TypingIndicator /></p>}
       {body != null && (
-        <pre className="mt-4 overflow-x-auto whitespace-pre-wrap break-words rounded-panel border border-line bg-void p-4 font-mono text-xs leading-relaxed text-particle">{body}</pre>
+        <pre className="mt-4 overflow-x-auto whitespace-pre-wrap break-words rounded-panel border border-line bg-void p-4 font-code text-xs leading-relaxed text-particle">{body}</pre>
       )}
     </Sheet>
   );

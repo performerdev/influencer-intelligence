@@ -2,7 +2,7 @@
 
 import { forwardRef } from "react";
 
-/** Diameter (px) of the point element before GSAP scales it. */
+/** Side (px) of the square point before GSAP scales it: it becomes the pixel dot of the solid "i". */
 export const PRELOADER_POINT_PX = 100;
 
 /**
@@ -19,7 +19,7 @@ export const Preloader = forwardRef<HTMLDivElement>(function Preloader(_, ref) {
       </div>
       <div
         data-part="point"
-        className="absolute left-0 top-0 rounded-full bg-ceramic opacity-0"
+        className="absolute left-0 top-0 bg-ceramic opacity-0"
         style={{ width: PRELOADER_POINT_PX, height: PRELOADER_POINT_PX }}
       />
     </div>

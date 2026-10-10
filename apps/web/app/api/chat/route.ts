@@ -1,9 +1,8 @@
-import { createHash } from "node:crypto";
-
 import { type ChatMessage, OpenAICompatibleLLM, mentionedTickers, tickerContext } from "@ii/brain-core";
 import { recordSpend } from "@ii/db";
 
 import { loadBrain, resolveReferences, sql } from "@/lib/server/data";
+import { SSE_HEADERS, VERDICT, clientHash, json } from "@/lib/server/http";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -13,7 +12,6 @@ export const maxDuration = 60;
 const DAILY_LIMIT = Number(process.env.CHAT_DAILY_LIMIT ?? 40);
 const HISTORY_TURNS = 16;
 const MAX_ANSWER_TOKENS = Number(process.env.CHAT_MAX_TOKENS ?? 900);
-const VERDICT = /\n*\s*VERDICT:\s*(BUY|SELL|HOLD|PASS)\s*\.?\s*$/i;
 
 type Body = { handle?: string; chatId?: string | null; message?: string };
 
@@ -118,22 +116,5 @@ export async function POST(req: Request) {
     },
   });
 
-  return new Response(stream, {
-    headers: {
-      "Content-Type": "text/event-stream; charset=utf-8",
-      "Cache-Control": "no-cache, no-transform",
-      "X-Accel-Buffering": "no",
-    },
-  });
+  return new Response(stream, { headers: SSE_HEADERS });
 }
-
-function clientHash(req: Request) {
-  const ip =
-    req.headers.get("x-nf-client-connection-ip") ??
-    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
-    req.headers.get("x-real-ip") ??
-    "local";
-  return createHash("sha256").update(`${ip}:${process.env.CHAT_SALT ?? "ii"}`).digest("hex").slice(0, 32);
-}
-
-const json = (data: unknown, status = 200) => Response.json(data, { status });

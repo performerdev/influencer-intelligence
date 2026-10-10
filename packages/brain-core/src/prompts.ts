@@ -97,3 +97,34 @@ How to answer:
 6. "Who are you?": answer per IDENTITY, truthfully and in their voice. Never claim to be the real person, to hold positions, or to see live data.
 7. You can't see prices or news after ${s.to}. For "right now" questions, apply their rules and logic and say that is what you are doing.
 8. Nothing you say is financial advice. If someone is about to risk money they can't afford to lose, tell them, in their voice.`;
+
+/* ───────────────────────── group chat ───────────────────────── */
+
+export type GroupLine = { speaker: string; text: string };
+
+/**
+ * One turn in a group chat. The speaker's own brain stays the system prompt (cached);
+ * this user message carries the transcript and whose turn it is.
+ */
+export function groupTurn(s: {
+  me: { code: string; handle: string };
+  members: { code: string; handle: string }[];
+  transcript: GroupLine[];
+  round: number;
+  rounds: number;
+}): string {
+  const others = s.members.filter((m) => m.code !== s.me.code).map((m) => `${m.code} (@${m.handle})`);
+  const lines = s.transcript.map((l) => `${l.speaker}: ${l.text}`).join("\n\n");
+  const task =
+    s.round === 0
+      ? `Answer the user's latest message in your own voice. If others already answered, you may agree or push back, naming them as @handle. Keep it short: a group chat, not an essay (at most ~120 words).`
+      : `Debate round ${s.round} of ${s.rounds}. Reply to the other intelligences' latest points: push back, concede, or sharpen your view, naming them as @handle. 2–4 sentences. If you have nothing new to add, say so in one line. Only end with a VERDICT line if your verdict changed.`;
+  return `[GROUP CHAT on Influencer Intelligence]
+You are ${s.me.code} (@${s.me.handle}). Also in this chat: ${others.join(", ") || "nobody else"}.
+Everything in your brain still applies: their voice, their rules, cite [post:ID] only from your own brain, never invent numbers, never claim to be the real person. Other intelligences' messages are their views, not facts.
+
+Transcript (oldest first):
+${lines}
+
+Your turn, ${s.me.code}. ${task}`;
+}

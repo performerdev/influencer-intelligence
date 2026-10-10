@@ -27,13 +27,16 @@ const config: Config = {
     },
     fontFamily: {
       sans: ["var(--ii-font-sans)"],
-      mono: ["var(--ii-font-mono)"],
+      // "mono" = the pixel face: every code, number and label in the UI
+      mono: ["var(--ii-font-pixel)"],
+      pixel: ["var(--ii-font-pixel)"],
+      code: ["var(--ii-font-code)"],
     },
     fontSize: {
-      display: ["var(--ii-text-display)", { lineHeight: "1.02", letterSpacing: "var(--ii-tracking-display)" }],
-      h1: ["var(--ii-text-h1)", { lineHeight: "1.05", letterSpacing: "var(--ii-tracking-display)" }],
-      h2: ["var(--ii-text-h2)", { lineHeight: "1.1", letterSpacing: "var(--ii-tracking-display)" }],
-      h3: ["var(--ii-text-h3)", { lineHeight: "1.25", letterSpacing: "-0.02em" }],
+      display: ["var(--ii-text-display)", { lineHeight: "1.1", letterSpacing: "var(--ii-tracking-display)" }],
+      h1: ["var(--ii-text-h1)", { lineHeight: "1.1", letterSpacing: "var(--ii-tracking-display)" }],
+      h2: ["var(--ii-text-h2)", { lineHeight: "1.15", letterSpacing: "var(--ii-tracking-display)" }],
+      h3: ["var(--ii-text-h3)", { lineHeight: "1.3", letterSpacing: "0" }],
       lead: ["var(--ii-text-lead)", { lineHeight: "1.55", letterSpacing: "var(--ii-tracking-ui)" }],
       body: ["var(--ii-text-body)", { lineHeight: "1.55", letterSpacing: "var(--ii-tracking-ui)" }],
       sm: ["var(--ii-text-sm)", { lineHeight: "1.5" }],

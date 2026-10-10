@@ -91,6 +91,7 @@ export function HomeStage({ intelligences, questions = [] }: { intelligences: In
       }
       if (introPlayed) {
         settle();
+        unlockScroll();
         return;
       }
       introPlayed = true;
@@ -211,7 +212,8 @@ export function HomeStage({ intelligences, questions = [] }: { intelligences: In
         .to(heroStore, { dot: 1, duration: 0.16, ease: "none" }, T0)
         .to(point, { opacity: 0, duration: 0.22, ease: "none" }, T0 + 0.08)
         .to(part("bg"), { opacity: 0, duration: 0.35, ease: "none" }, T0)
-        .to(heroStore, { stem: 1, duration: 0.45, ease: "power2.out" }, T0)
+        // tiles set row by row, bottom first (per-tile easing lives in the scene)
+        .to(heroStore, { stem: 1, duration: 0.8, ease: "none" }, T0)
         .to(heroStore, { rise: 0, duration: heroTimeline.solidRise, ease: ease.out }, T0)
         .set(pre, { display: "none" }, T0 + 0.4)
         // 0.6–2.2 the copy: points stream out of the solid "i" (per-point expo.out in the shader)
@@ -264,17 +266,23 @@ function hasWebGL() {
   }
 }
 
+let scrollLocked = false;
+
 function lockScroll() {
+  scrollLocked = true;
   history.scrollRestoration = "manual";
   // Lenis keeps its own target; reset it too, or it glides back to the restored position on start().
   getLenis()?.scrollTo(0, { immediate: true, force: true });
   window.scrollTo(0, 0);
   document.documentElement.style.overflow = "hidden";
   getLenis()?.stop();
-  requestAnimationFrame(() => getLenis()?.stop());
+  // Lenis may mount a frame later; only stop it if we're still locked by then
+  // (a remount can unlock in between, and a late stop() would freeze scrolling).
+  requestAnimationFrame(() => scrollLocked && getLenis()?.stop());
 }
 
 function unlockScroll() {
+  scrollLocked = false;
   document.documentElement.style.overflow = "";
   getLenis()?.start();
 }

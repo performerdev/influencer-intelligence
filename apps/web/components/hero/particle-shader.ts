@@ -1,7 +1,8 @@
 /**
  * Particle "i" — one shader drives all three acts:
  *   1. copy:    points leave the solid "i" on a slight arc and assemble (top first, expo.out)
- *   2. idle:    looping simplex breathing + CPU spring offsets from the cursor
+ *   2. idle:    looping simplex breathing + CPU spring offsets from the cursor,
+ *               snapped to the LED lattice so pixels hop one step instead of drifting
  *   3. scatter: on scroll the "i" splits into 10 clusters that land on the card signatures
  * Colors are written straight to the sRGB framebuffer (no tone mapping) so the
  * on-screen values are exactly the palette tokens.
@@ -63,6 +64,7 @@ uniform float uScatter;   // 0..1 scroll progress
 uniform float uBreath;    // 0..1 breathing enabled
 uniform float uHeight;    // logo height (local units)
 uniform float uSize;      // css px
+uniform float uStep;      // LED lattice step (local units)
 uniform float uSigSize;   // css px once landed on a card
 uniform float uDpr;
 uniform vec3  uCamLocal;  // camera position in the group's local space
@@ -99,7 +101,9 @@ void main(){
   // ── Act 2: idle breathing (seamless 6s loop) ──────────
   float a = uTime * 6.2831853 / 6.0;
   vec3 q = position * 0.42 + vec3(cos(a), sin(a), 0.0) * 0.55;
-  vec3 target = position + aNormal * snoise(q) * uHeight * 0.006 * uBreath + aOffset;
+  // Breathing and cursor push move pixels in whole lattice steps: they hop, never drift.
+  vec3 disp = aNormal * snoise(q) * uStep * 1.4 * uBreath + aOffset;
+  vec3 target = position + floor(disp / uStep + 0.5) * uStep;
   vec3 hero = mix(aSource, target, e) + arc;
 
   // ── Act 3: scatter into 10 clusters ───────────────────
@@ -121,13 +125,14 @@ void main(){
   // ── Shading ───────────────────────────────────────────
   vec3 view = normalize(uCamLocal - target);
   float facing = dot(aNormal, view);
-  float heroAlpha = mix(0.2, 1.0, smoothstep(-0.25, 0.3, facing));  // back of the shell, dimmer
-  float rim = 1.0 - abs(facing);                                     // silhouettes read brighter, like the logo
+  // A flat LED panel: the front face carries the letter, side walls barely show, the back not at all.
+  float heroAlpha = facing > 0.5 ? 1.0 : (facing > -0.5 ? 0.14 : 0.0);
+  float rim = 0.0;
   float sigAlpha = 0.42 + 0.58 * (loc.z * 0.5 + 0.5);                 // front of each blob brighter
   float keep = aLocalIndex < uDensity[k] ? 1.0 : 1.0 - smoothstep(0.55, 0.95, se);
 
   vAlpha = mix(heroAlpha, sigAlpha, se) * smoothstep(0.0, 0.08, t) * keep;
-  vLight = mix(rim * rim * 0.9, 0.15, se);
+  vLight = mix(0.35 * step(0.5, facing), 0.15, se);              // front pixels a touch brighter than particle grey
   gl_PointSize = mix(uSize * aRand.x, uSigSize, se) * uDpr;
 }
 `;
@@ -139,10 +144,7 @@ varying float vLight;
 const vec3 PARTICLE = vec3(0.7255, 0.7216, 0.6980); // #B9B8B2
 const vec3 CERAMIC  = vec3(0.9490, 0.9451, 0.9255); // #F2F1EC
 void main(){
-  vec2 c = gl_PointCoord - 0.5;
-  float d = length(c);
-  if (d > 0.5) discard;
-  float soft = smoothstep(0.5, 0.18, d);
-  gl_FragColor = vec4(mix(PARTICLE, CERAMIC, clamp(vLight, 0.0, 1.0)), vAlpha * soft * uOpacity);
+  // square pixels, hard edges
+  gl_FragColor = vec4(mix(PARTICLE, CERAMIC, clamp(vLight, 0.0, 1.0)), vAlpha * uOpacity);
 }
 `;

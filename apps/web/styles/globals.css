@@ -27,6 +27,18 @@
     font-family: var(--ii-font-sans);
     font-size: 16px;
   }
+  /* The interface speaks in pixels; reading text stays in Geist Sans. */
+  h1,
+  h2,
+  h3,
+  button,
+  label,
+  nav,
+  input,
+  textarea,
+  select {
+    font-family: var(--ii-font-pixel);
+  }
   ::selection {
     background: var(--ii-ceramic);
     color: var(--ii-void);
@@ -35,6 +47,16 @@
   :focus-visible {
     outline: var(--ii-focus);
     outline-offset: var(--ii-focus-offset);
+  }
+  /* Stepped shapes clip anything drawn outside them, so their focus ring sits inside. */
+  .rounded-pill:focus-visible,
+  .rounded-chip:focus-visible,
+  .rounded-input:focus-visible,
+  .rounded-card:focus-visible,
+  .rounded-panel:focus-visible,
+  .btn-ceramic:focus-visible,
+  .btn-line:focus-visible {
+    outline-offset: -4px;
   }
   :focus:not(:focus-visible) {
     outline: none;
@@ -55,16 +77,48 @@
   }
 }
 
+/*
+ * Pixel corners. The radius tokens are 0; these classes cut each corner in
+ * 2px steps instead. One step for small controls, two for cards and panels.
+ * With a 1px border the corner pixel drops out — the pixel-art rounded corner.
+ */
+@layer utilities {
+  .rounded-pill,
+  .rounded-chip,
+  .rounded-input,
+  .btn-ceramic,
+  .btn-line {
+    clip-path: polygon(
+      0 var(--ii-px), var(--ii-px) var(--ii-px), var(--ii-px) 0,
+      calc(100% - var(--ii-px)) 0, calc(100% - var(--ii-px)) var(--ii-px), 100% var(--ii-px),
+      100% calc(100% - var(--ii-px)), calc(100% - var(--ii-px)) calc(100% - var(--ii-px)), calc(100% - var(--ii-px)) 100%,
+      var(--ii-px) 100%, var(--ii-px) calc(100% - var(--ii-px)), 0 calc(100% - var(--ii-px))
+    );
+  }
+  .rounded-card,
+  .rounded-panel {
+    --s: var(--ii-px);
+    --d: calc(var(--ii-px) * 2);
+    clip-path: polygon(
+      0 var(--d), var(--s) var(--d), var(--s) var(--s), var(--d) var(--s), var(--d) 0,
+      calc(100% - var(--d)) 0, calc(100% - var(--d)) var(--s), calc(100% - var(--s)) var(--s), calc(100% - var(--s)) var(--d), 100% var(--d),
+      100% calc(100% - var(--d)), calc(100% - var(--s)) calc(100% - var(--d)), calc(100% - var(--s)) calc(100% - var(--s)), calc(100% - var(--d)) calc(100% - var(--s)), calc(100% - var(--d)) 100%,
+      var(--d) 100%, var(--d) calc(100% - var(--s)), var(--s) calc(100% - var(--s)), var(--s) calc(100% - var(--d)), 0 calc(100% - var(--d))
+    );
+  }
+}
+
 @layer components {
   /* ── Solid material: things the user does ─────────────── */
   .btn-ceramic {
-    @apply inline-flex h-11 items-center justify-center gap-2 rounded-pill px-6 text-sm font-medium;
+    @apply inline-flex h-11 items-center justify-center gap-2 px-6 text-sm;
+    font-family: var(--ii-font-pixel);
     background: var(--ii-ceramic);
     color: var(--ii-void);
-    /* inner bevel: 1px highlight on top, faint shade at the bottom */
+    /* pixel bevel: light edge top-left, shade bottom-right */
     box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.95),
-      inset 0 -1px 0 rgb(0 0 0 / 0.14);
+      inset 2px 2px 0 rgb(255 255 255 / 0.9),
+      inset -2px -2px 0 rgb(0 0 0 / 0.2);
     transition:
       background-color var(--ii-dur-fast) var(--ii-ease-out),
       box-shadow var(--ii-dur-instant) var(--ii-ease-out),
@@ -77,14 +131,15 @@
   .btn-ceramic:active {
     /* bevel inverts: pressed into the ceramic */
     box-shadow:
-      inset 0 1px 0 rgb(0 0 0 / 0.16),
-      inset 0 -1px 0 rgb(255 255 255 / 0.8);
-    transform: translateY(0.5px);
+      inset 2px 2px 0 rgb(0 0 0 / 0.2),
+      inset -2px -2px 0 rgb(255 255 255 / 0.85);
+    transform: translateY(1px);
   }
 
   /* Quiet hairline pill for secondary actions */
   .btn-line {
-    @apply inline-flex h-11 items-center justify-center gap-2 rounded-pill px-5 text-sm font-medium text-ceramic;
+    @apply inline-flex h-11 items-center justify-center gap-2 px-5 text-sm text-ceramic;
+    font-family: var(--ii-font-pixel);
     border: 1px solid var(--ii-line);
     transition: border-color var(--ii-dur-fast) var(--ii-ease-out);
   }
@@ -95,6 +150,7 @@
   /* Text link with an arrow that nudges on hover */
   .link-quiet {
     @apply inline-flex items-center gap-1.5 text-sm text-particle;
+    font-family: var(--ii-font-pixel);
     transition: color var(--ii-dur-fast) var(--ii-ease-out);
   }
   .link-quiet:hover {
@@ -107,9 +163,9 @@
     transform: translate(2px, -2px);
   }
 
-  /* Small mono label — use sparingly, not above every section */
+  /* Small pixel label — use sparingly, not above every section */
   .label-mono {
-    @apply font-mono text-label uppercase text-muted;
+    @apply font-pixel text-xs text-muted;
   }
 
   /* Mask reveal: each word sits in an overflow-hidden line */

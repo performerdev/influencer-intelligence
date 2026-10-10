@@ -11,6 +11,7 @@ import { fileURLToPath } from "node:url";
 
 import { PGlite } from "@electric-sql/pglite";
 import { PGLiteSocketServer } from "@electric-sql/pglite-socket";
+import postgres from "postgres";
 
 import { API_PORT, api } from "./mocks";
 
@@ -39,4 +40,15 @@ await new Promise<void>((resolve, reject) => {
   const p = spawn(join(ROOT, "node_modules/.bin/tsx"), [join(ROOT, "scripts/cli.ts"), "build", "blknoiz06", "--max-usd", "5"], { cwd: ROOT, env: { ...process.env, ...env }, stdio: "inherit" });
   p.on("close", (code) => (code === 0 ? resolve() : reject(new Error(`build exited ${code}`))));
 });
+// Group chat needs several brains: give ii-02…ii-04 a copy of the mock brain.
+{
+  const sql = postgres(env.DATABASE_URL, { max: 1 });
+  await sql`
+    insert into brains (influencer_id, version, files, prompt, prompt_tokens, model, posts_from, posts_to)
+    select i.id, 1, b.files, replace(b.prompt, '@blknoiz06', '@' || i.handle), b.prompt_tokens, b.model, b.posts_from, b.posts_to
+    from influencers i, (select * from brains where influencer_id = (select id from influencers where code = 'ii-01') order by version desc limit 1) b
+    where i.code in ('ii-02', 'ii-03', 'ii-04') on conflict do nothing`;
+  await sql`update influencers set status = 'ready', posts_parsed = 234, one_line_mind = 'Mock brain for local testing' where code in ('ii-02', 'ii-03', 'ii-04')`;
+  await sql.end();
+}
 console.log(`\nMock stack is up. Start the site against it:\n\n  ${Object.entries(env).filter(([k]) => /DATABASE|LLM|II_/.test(k)).map(([k, v]) => `${k}=${v}`).join(" ")} pnpm dev\n`);

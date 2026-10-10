@@ -12,7 +12,7 @@ import { LogoMark } from "./LogoMark";
 
 const nav = [
   { href: "/#intelligences", label: "Intelligences" },
-  { href: "/room", label: "Room" },
+  { href: "/group", label: "Group" },
   { href: "/add", label: "Add" },
 ];
 
@@ -33,8 +33,8 @@ export function TopBar() {
     >
       <div className="mx-auto flex h-topbar max-w-site items-center gap-6 px-gutter">
         <AppLink href="/" className="flex items-center gap-3 rounded-chip" aria-label={`${site.name} — home`}>
-          <LogoMark size={22} />
-          <span className="hidden text-sm font-medium tracking-[-0.01em] sm:inline">{site.name}</span>
+          <LogoMark size={25} />
+          <span className="hidden font-pixel text-sm sm:inline">{site.name}</span>
         </AppLink>
 
         <nav aria-label="Primary" className="ml-auto hidden items-center gap-1 md:flex">

@@ -7,7 +7,7 @@ import * as THREE from "three";
 // three's own RoundedBoxGeometry: drei's barrel import drags in hls.js + mediapipe (~700 kB)
 import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 
-import { DOT_Y, LOGO_HEIGHT, LOGO_WIDTH, STEM_Y, logo, sampleISurface } from "@/lib/logo-geometry";
+import { CELL, DOT_Y, I_CELLS, LOGO_HEIGHT, LOGO_WIDTH, ROWS, SUB, logo, sampleISurface } from "@/lib/logo-geometry";
 import { gaussian, rng } from "@/lib/random";
 import { SIGNATURE_MAX_POINTS, SIGNATURE_TILT, advanceSignatureAngle, signaturePoints } from "@/lib/signature";
 import { color, heroTimeline, particle } from "@/lib/tokens";
@@ -140,58 +140,71 @@ function useGrainTexture() {
   }, []);
 }
 
+/** Reveal order inside each part: bottom row first (0) → top row (1). */
+const TILE_RANK = (() => {
+  const rows = { dot: [0, 5], stem: [7, ROWS - 1] } as const;
+  return I_CELLS.map((c) => {
+    const [top, bottom] = rows[c.part];
+    return (bottom - c.row) / (bottom - top);
+  });
+})();
+
+/**
+ * The human "i": ceramic tiles, one per pixel of the mark, with a thin seam
+ * between them. In the intro the tiles set in place row by row, bottom first.
+ */
 function SolidI({ fit }: { fit: React.RefObject<Fit> }) {
   const grain = useGrainTexture();
-  const stemGeometry = useMemo(
-    () => new RoundedBoxGeometry(logo.stem.w, logo.stem.h, logo.stem.d, 10, logo.stem.r),
-    [],
-  );
-  useEffect(() => () => stemGeometry.dispose(), [stemGeometry]);
+  const geometry = useMemo(() => new RoundedBoxGeometry(CELL * 0.9, CELL * 0.9, logo.stem.d, 2, CELL * 0.06), []);
+  useEffect(() => () => geometry.dispose(), [geometry]);
   const group = useRef<THREE.Group>(null);
-  const stemMat = useRef<THREE.MeshStandardMaterial>(null);
-  const dotMat = useRef<THREE.MeshStandardMaterial>(null);
+  const mesh = useRef<THREE.InstancedMesh>(null);
+  const mat = useRef<THREE.MeshStandardMaterial>(null);
+  const tmp = useMemo(() => ({ m: new THREE.Matrix4(), q: new THREE.Quaternion(), s: new THREE.Vector3(), p: new THREE.Vector3() }), []);
+  const shown = useRef({ stem: -1, dot: -1 });
 
   useFrame(() => {
     const f = fit.current;
     const g = group.current;
-    if (!g || !f) return;
+    const im = mesh.current;
+    if (!g || !f || !im) return;
     const sc = heroStore.scatter;
     const away = 1 - THREE.MathUtils.smoothstep(sc, 0, 0.45);
     // rise 12px into place, then on scroll fade back and stay behind
     g.position.y = (-heroStore.rise * heroTimeline.riseDistancePx * f.wpp) / f.scale;
     g.position.z = -sc * 2.5;
-    for (const [m, o] of [
-      [stemMat.current, heroStore.stem * away],
-      [dotMat.current, heroStore.dot * away],
-    ] as const) {
-      if (!m) continue;
-      m.opacity = o;
-      const t = o < 0.999;
+
+    const m = mat.current;
+    if (m) {
+      m.opacity = away;
+      const t = away < 0.999;
       if (m.transparent !== t) {
         m.transparent = t;
         m.needsUpdate = true;
       }
-      m.visible = o > 0.001;
     }
-  });
+    im.visible = away > 0.001 && (heroStore.stem > 0 || heroStore.dot > 0);
 
-  const material = {
-    color: color.ceramic,
-    roughness: 0.94,
-    metalness: 0,
-    bumpMap: grain,
-    bumpScale: 0.1,
-  } as const;
+    // Tiles only move during the intro; skip the matrix work once settled.
+    if (shown.current.stem === heroStore.stem && shown.current.dot === heroStore.dot) return;
+    shown.current = { stem: heroStore.stem, dot: heroStore.dot };
+    I_CELLS.forEach((c, i) => {
+      const prog = c.part === "stem" ? heroStore.stem : heroStore.dot;
+      const t = THREE.MathUtils.clamp((prog - TILE_RANK[i] * 0.6) / 0.4, 0, 1);
+      const e = 1 - (1 - t) ** 3;
+      tmp.p.set(logo.leftX + c.x, c.y + (1 - e) * CELL * 0.8, (1 - e) * 0.6);
+      tmp.s.setScalar(Math.max(1e-4, e));
+      tmp.m.compose(tmp.p, tmp.q, tmp.s);
+      im.setMatrixAt(i, tmp.m);
+    });
+    im.instanceMatrix.needsUpdate = true;
+  });
 
   return (
     <group ref={group}>
-      <mesh geometry={stemGeometry} position={[logo.leftX, STEM_Y, 0]}>
-        <meshStandardMaterial ref={stemMat} {...material} transparent opacity={0} />
-      </mesh>
-      <mesh position={[logo.leftX, DOT_Y, 0]}>
-        <sphereGeometry args={[logo.dot.r, 96, 64]} />
-        <meshStandardMaterial ref={dotMat} {...material} transparent opacity={0} />
-      </mesh>
+      <instancedMesh ref={mesh} args={[geometry, undefined, I_CELLS.length]} frustumCulled={false}>
+        <meshStandardMaterial ref={mat} color={color.ceramic} roughness={0.92} metalness={0} bumpMap={grain} bumpScale={0.06} transparent opacity={1} />
+      </instancedMesh>
     </group>
   );
 }
@@ -200,7 +213,7 @@ function SolidI({ fit }: { fit: React.RefObject<Fit> }) {
 
 function buildParticles(handles: string[]) {
   const r = rng(0x1111);
-  const { positions, normals } = sampleISurface(POINTS, logo.rightX, r);
+  const { positions, normals, step } = sampleISurface(POINTS, logo.rightX, r);
   const source = new Float32Array(POINTS * 3);
   const rand = new Float32Array(POINTS * 4);
   const cluster = new Float32Array(POINTS);
@@ -211,16 +224,15 @@ function buildParticles(handles: string[]) {
 
   for (let i = 0; i < POINTS; i++) {
     const i3 = i * 3;
-    // Fuzz along the normal: most points hug the skin, a few stray out — the
-    // logo's frayed silhouette.
-    const fuzz = r() < 0.05 ? 0.03 + r() * 0.12 : (r() - 0.35) * 0.035;
+    // A few points stray 1–3 lattice steps off the surface: pixel noise on the silhouette.
+    const fuzz = r() < 0.035 ? step * (1 + Math.floor(r() * 3)) : 0;
     for (let a = 0; a < 3; a++) positions[i3 + a] += normals[i3 + a] * fuzz;
     // Each point starts just inside the matching spot of the solid "i".
     source[i3] = positions[i3] - shift - normals[i3] * 0.08;
     source[i3 + 1] = positions[i3 + 1] - normals[i3 + 1] * 0.08;
     source[i3 + 2] = positions[i3 + 2] - normals[i3 + 2] * 0.08;
     const h = (positions[i3 + 1] - bottom) / LOGO_HEIGHT;
-    rand[i * 4] = r() < 0.04 ? 1.5 + r() * 0.5 : 0.65 + r() * 0.6; // size
+    rand[i * 4] = fuzz > 0 ? 0.7 : 1; // size: every pixel the same, strays a touch smaller
     rand[i * 4 + 1] = Math.min(1, Math.max(0, (1 - h) * 0.86 + r() * 0.14)); // top first
     rand[i * 4 + 2] = r(); // arc
   }
@@ -279,8 +291,9 @@ function ParticleI({ fit, handles }: { fit: React.RefObject<Fit>; handles: strin
           uScatter: { value: 0 },
           uBreath: { value: 0 },
           uHeight: { value: LOGO_HEIGHT },
-          uSize: { value: 1.55 },
-          uSigSize: { value: 1.5 },
+          uSize: { value: 3 },
+          uStep: { value: CELL / SUB },
+          uSigSize: { value: 1.6 },
           uDpr: { value: 1 },
           uOpacity: { value: 1 },
           uCamLocal: { value: new THREE.Vector3() },
@@ -312,6 +325,8 @@ function ParticleI({ fit, handles }: { fit: React.RefObject<Fit>; handles: strin
     u.uScatter.value = heroStore.scatter;
     u.uBreath.value = heroStore.breath;
     u.uDpr.value = gl.getPixelRatio();
+    // Pixel size follows the LED pitch on screen, leaving a visible gap between pixels.
+    u.uSize.value = THREE.MathUtils.clamp(((CELL / SUB) * f.scale * 0.66) / f.wpp, 1.5, 7);
     p.parent!.updateMatrixWorld();
     u.uCamLocal.value.copy(camera.position);
     p.worldToLocal(u.uCamLocal.value);

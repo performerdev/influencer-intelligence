@@ -1,60 +1,57 @@
-import { DOT_Y, LOGO_HEIGHT, LOGO_WIDTH, STEM_Y, logo } from "@/lib/logo-geometry";
-import { rng } from "@/lib/random";
+import { COLS, I_BITMAP, ROWS, SUB } from "@/lib/logo-geometry";
 
 /**
- * The "ii" mark as a tiny SVG for the top bar and favicon: a solid ceramic "i"
- * and the same shape stippled with points. Built from the same geometry as
- * the 3D hero. SVG y points down, so world y is negated.
+ * The "ii" mark as pixel art, from the same bitmap as the 3D hero.
+ * Small (top bar, favicon): the human "i" is solid, the AI "i" is a 50% dither
+ * of the same cells. Large (no-WebGL hero): the AI "i" is drawn as 3×3 LED
+ * points per cell, like the particle "i".
  */
-const { stem, dot, leftX, rightX } = logo;
+const PITCH = 10; // columns between letter centers, as in the hero
+const W = PITCH + COLS; // 16
+const RIGHT = PITCH; // x of the right letter's first column
 
-const STIPPLE = (() => {
-  const r = rng(42);
-  const dots: Array<[number, number, number]> = [];
-  const step = 0.36;
-  // stem
-  for (let y = -stem.h / 2 + 0.14; y <= stem.h / 2 - 0.1; y += step)
-    for (let x = -stem.w / 2 + 0.12; x <= stem.w / 2 - 0.08; x += step) {
-      const jx = x + (r() - 0.5) * step * 0.7;
-      const jy = y + (r() - 0.5) * step * 0.7;
-      dots.push([rightX + jx, -(STEM_Y + jy), 0.085 + r() * 0.06]);
-    }
-  // dot
-  for (let y = -dot.r; y <= dot.r; y += step)
-    for (let x = -dot.r; x <= dot.r; x += step) {
-      const jx = x + (r() - 0.5) * step * 0.7;
-      const jy = y + (r() - 0.5) * step * 0.7;
-      if (jx * jx + jy * jy > (dot.r - 0.05) ** 2) continue;
-      dots.push([rightX + jx, -(DOT_Y + jy), 0.085 + r() * 0.06]);
-    }
-  return dots;
+const cells = I_BITMAP.flatMap((line, y) => [...line].flatMap((ch, x) => (ch === "#" ? [{ x, y }] : [])));
+
+/** Solid letter as one path of 1×1 squares (crisp edges merge them). */
+const SOLID = cells.map(({ x, y }) => `M${x} ${y}h1v1h-1z`).join("");
+/** Checkerboard of the same cells, shifted to the right letter. */
+const DITHER = cells.filter(({ x, y }) => (x + y) % 2 === 0).map(({ x, y }) => `M${x + RIGHT} ${y}h1v1h-1z`).join("");
+/** 3×3 LED points per cell, each point 60% of its slot. */
+const LED = (() => {
+  const s = 1 / SUB;
+  const d = s * 0.6;
+  const o = (s - d) / 2;
+  return cells
+    .flatMap(({ x, y }) =>
+      Array.from({ length: SUB * SUB }, (_, k) => `M${(x + RIGHT + (k % SUB) * s + o).toFixed(3)} ${(y + Math.floor(k / SUB) * s + o).toFixed(3)}h${d.toFixed(3)}v${d.toFixed(3)}h-${d.toFixed(3)}z`),
+    )
+    .join("");
 })();
 
-export function LogoMark({ size = 22, className }: { size?: number; className?: string }) {
-  const vb = `${-LOGO_WIDTH / 2} ${-LOGO_HEIGHT / 2} ${LOGO_WIDTH} ${LOGO_HEIGHT}`;
+export function LogoMark({ size = 25, detail, className }: { size?: number; detail?: "dither" | "led"; className?: string }) {
+  const mode = detail ?? (size >= 120 ? "led" : "dither");
   return (
     <svg
-      viewBox={vb}
+      viewBox={`0 0 ${W} ${ROWS}`}
       height={size}
-      width={(size * LOGO_WIDTH) / LOGO_HEIGHT}
+      width={(size * W) / ROWS}
       className={className}
+      shapeRendering="crispEdges"
       aria-hidden
       focusable="false"
     >
-      <rect
-        x={leftX - stem.w / 2}
-        y={-(STEM_Y + stem.h / 2)}
-        width={stem.w}
-        height={stem.h}
-        rx={stem.r}
-        fill="var(--ii-ceramic)"
-      />
-      <circle cx={leftX} cy={-DOT_Y} r={dot.r} fill="var(--ii-ceramic)" />
-      <g fill="var(--ii-particle)">
-        {STIPPLE.map(([x, y, r], i) => (
-          <circle key={i} cx={x.toFixed(3)} cy={y.toFixed(3)} r={r.toFixed(3)} />
-        ))}
-      </g>
+      <path d={SOLID} fill="var(--ii-ceramic)" />
+      <path d={mode === "led" ? LED : DITHER} fill="var(--ii-particle)" />
     </svg>
   );
+}
+
+/** Same mark as a standalone SVG string (favicon / README). */
+export function logoSvg({ background = "#050506", ceramic = "#F2F1EC", particle = "#B9B8B2", pad = 3 } = {}) {
+  const w = W + pad * 2;
+  const h = ROWS + pad * 2;
+  const side = Math.max(w, h);
+  const ox = Math.floor((side - W) / 2); // whole pixels, so the favicon stays crisp
+  const oy = Math.floor((side - ROWS) / 2);
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${side} ${side}" shape-rendering="crispEdges"><rect width="${side}" height="${side}" fill="${background}"/><g transform="translate(${ox} ${oy})"><path d="${SOLID}" fill="${ceramic}"/><path d="${DITHER}" fill="${particle}"/></g></svg>`;
 }

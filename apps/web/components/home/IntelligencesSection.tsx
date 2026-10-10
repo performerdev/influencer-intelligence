@@ -77,7 +77,7 @@ function Card({ it, slotRef }: { it: Intelligence; slotRef: (el: HTMLDivElement 
 
         <div className="mt-5 flex items-baseline gap-2">
           <span className="font-mono text-xs text-muted">{it.code}</span>
-          <span className="truncate text-body font-medium text-ceramic">@{it.handle}</span>
+          <span className="truncate font-pixel text-body text-ceramic">@{it.handle}</span>
         </div>
         <p className={`mt-2 line-clamp-2 min-h-[3em] text-sm ${it.oneLineMind ? "text-particle" : "text-muted"}`}>
           {it.oneLineMind ?? "Brain not distilled yet."}

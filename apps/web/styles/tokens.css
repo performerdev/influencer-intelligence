@@ -2,9 +2,10 @@
  * Influencer Intelligence — design tokens
  * ----------------------------------------
  * Everything visual derives from the logo: a solid ceramic "i" (the human)
- * and the same shape made of points (the AI). Seven colors, two fonts,
- * hairlines instead of shadows. Mirror of these values for JS lives in
- * lib/tokens.ts — keep both in sync.
+ * and the same shape made of points (the AI) — drawn in pixels. Seven colors,
+ * one pixel face for the interface (Geist Pixel), Geist Sans for reading,
+ * hairlines instead of shadows, stepped corners instead of round ones.
+ * Mirror of these values for JS lives in lib/tokens.ts — keep both in sync.
  */
 
 :root {
@@ -31,30 +32,40 @@
   --ii-muted-rgb: 107 107 112;
 
   /* ── Type ──────────────────────────────────────────────── */
+  /* reading text: answers, brain files, descriptions */
   --ii-font-sans: var(--font-geist-sans, "Geist"), ui-sans-serif, system-ui, sans-serif;
-  --ii-font-mono: var(--font-geist-mono, "Geist Mono"), ui-monospace, "SFMono-Regular", monospace;
+  /* the interface: headings, nav, buttons, labels, codes, numbers */
+  --ii-font-pixel: var(--font-geist-pixel-square, "Geist Pixel"), var(--font-geist-mono, "Geist Mono"), ui-monospace, monospace;
+  /* long code (the raw prompt) only */
+  --ii-font-code: var(--font-geist-mono, "Geist Mono"), ui-monospace, "SFMono-Regular", monospace;
 
-  /* fluid display sizes; UI sizes fixed */
-  --ii-text-display: clamp(2.125rem, 1.45rem + 2.6vw, 4rem); /* 34 → 64 */
-  --ii-text-h1: clamp(2.25rem, 1.7rem + 2.2vw, 3.75rem);    /* 36 → 60 */
-  --ii-text-h2: clamp(1.75rem, 1.45rem + 1.2vw, 2.5rem);    /* 28 → 40 */
-  --ii-text-h3: 1.375rem;   /* 22 */
+  /*
+   * Pixel sizes sit on Geist Pixel's own grid (1 font pixel = 0.038em), so each
+   * font pixel lands on whole device pixels: 26.316px = 1px, 39.474 = 1.5px,
+   * 52.632 = 2px, 65.789 = 2.5px. Breakpoints step between them (see below).
+   */
+  --ii-text-display: 2.4671rem; /* 39.47 → 52.63 (md) */
+  --ii-text-h1: 2.4671rem;      /* 39.47 → 52.63 (md) */
+  --ii-text-h2: 1.6447rem;      /* 26.32 → 39.47 (md) */
+  --ii-text-h3: 1.2336rem;      /* 19.74 */
   --ii-text-lead: 1.125rem; /* 18 */
   --ii-text-body: 1rem;     /* 16 */
   --ii-text-sm: 0.875rem;   /* 14 */
   --ii-text-xs: 0.8125rem;  /* 13 — mono data */
   --ii-text-label: 0.6875rem; /* 11 — mono labels */
 
-  --ii-tracking-display: -0.03em;
+  --ii-tracking-display: 0em; /* pixel faces carry their own spacing */
   --ii-tracking-ui: -0.011em;
-  --ii-tracking-label: 0.08em;
+  --ii-tracking-label: 0em;
 
-  /* ── Radius ────────────────────────────────────────────── */
-  --ii-radius-pill: 999px; /* buttons, chips — the stem of the "i" */
-  --ii-radius-card: 20px;
-  --ii-radius-panel: 16px;
-  --ii-radius-input: 14px;
-  --ii-radius-chip: 8px;
+  /* ── Corners ───────────────────────────────────────────── */
+  /* No round corners: shapes step in 2px pixels (see .rounded-* in globals.css). */
+  --ii-px: 2px;
+  --ii-radius-pill: 0;
+  --ii-radius-card: 0;
+  --ii-radius-panel: 0;
+  --ii-radius-input: 0;
+  --ii-radius-chip: 0;
 
   /* ── Space / layout ────────────────────────────────────── */
   --ii-gutter: clamp(16px, 4vw, 40px);
@@ -77,6 +88,19 @@
   /* ── Focus ─────────────────────────────────────────────── */
   --ii-focus: 2px solid var(--ii-ceramic);
   --ii-focus-offset: 2px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --ii-text-display: 3.2895rem; /* 52.63 */
+    --ii-text-h1: 3.2895rem;
+    --ii-text-h2: 2.4671rem;      /* 39.47 */
+  }
+}
+@media (min-width: 1280px) {
+  :root {
+    --ii-text-display: 3.2895rem; /* stays 52.63: wider is louder than the mark */
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
