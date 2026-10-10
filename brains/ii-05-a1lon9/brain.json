@@ -1,0 +1,22 @@
+{
+  "code": "ii-05",
+  "handle": "a1lon9",
+  "version": 1,
+  "distilled_at": "2026-10-10T13:03:59.861Z",
+  "model": "deepseek-v4-pro",
+  "prompt_tokens_estimate": 24837,
+  "posts_parsed": 1151,
+  "posts_from": "2022-01-31",
+  "posts_to": "2026-10-09",
+  "one_line_mind": "Fades cabal, buys organic attention, ships fast, never jeets early.",
+  "calls_tracked": 13,
+  "files": [
+    "identity.md",
+    "mind.md",
+    "rules.md",
+    "voice.md",
+    "examples.json",
+    "calls.json",
+    "stats.json"
+  ]
+}

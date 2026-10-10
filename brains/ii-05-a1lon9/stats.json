@@ -1,0 +1,184 @@
+{
+  "notes": [
+    "Returns are signed in the call's favor: a sell call followed by a price drop counts as positive.",
+    "hold calls are measured like buys.",
+    "Calls without a known asset id or contract address in the post are left unpriced, never guessed.",
+    "Hold time pairs a buy with the next sell of the same ticker; only calls with an exit post count."
+  ],
+  "horizons": {
+    "1d": {
+      "n": 4,
+      "hit_rate": 1,
+      "mean_return": 0.0205,
+      "median_return": 0.0238
+    },
+    "7d": {
+      "n": 4,
+      "hit_rate": 1,
+      "mean_return": 0.07,
+      "median_return": 0.0689
+    },
+    "30d": {
+      "n": 4,
+      "hit_rate": 0.5,
+      "mean_return": 0.0947,
+      "median_return": 0.1359
+    }
+  },
+  "per_call": [
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "LUNA",
+      "post_id": "1523804384236212224",
+      "price_id": null,
+      "called_at": "2022-05-09T23:17:30.000Z",
+      "direction": "sell",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "WYNN",
+      "post_id": "1746706662017188018",
+      "price_id": null,
+      "called_at": "2024-01-15T01:31:35.000Z",
+      "direction": "sell",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ROSE",
+      "post_id": "1758658643925553531",
+      "price_id": null,
+      "called_at": "2024-02-17T01:04:29.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "FRIEND",
+      "post_id": "1786310925902901719",
+      "price_id": null,
+      "called_at": "2024-05-03T08:24:47.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ALON",
+      "post_id": "1882561883007521193",
+      "price_id": null,
+      "called_at": "2025-01-23T22:51:43.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": 0.024,
+      "r_7d": 0.0623,
+      "r_30d": 0.4515,
+      "ticker": "FARTCOIN",
+      "post_id": "1914787830359785553",
+      "price_id": "coingecko:fartcoin",
+      "called_at": "2025-04-22T21:06:08.000Z",
+      "direction": "hold",
+      "price_at_call": 1.061
+    },
+    {
+      "r_1d": 0.0236,
+      "r_7d": 0.0646,
+      "r_30d": 0.4509,
+      "ticker": "FARTCOIN",
+      "post_id": "1914787913281269809",
+      "price_id": "coingecko:fartcoin",
+      "called_at": "2025-04-22T21:06:28.000Z",
+      "direction": "hold",
+      "price_at_call": 1.061432254676433
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "TROLL",
+      "post_id": "1952748437163655390",
+      "price_id": null,
+      "called_at": "2025-08-05T15:08:02.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": 0.0247,
+      "r_7d": 0.0801,
+      "r_30d": -0.1791,
+      "ticker": "FARTCOIN",
+      "post_id": "1952866820748144795",
+      "price_id": "coingecko:fartcoin",
+      "called_at": "2025-08-05T22:58:27.000Z",
+      "direction": "hold",
+      "price_at_call": 0.915
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "TROLL",
+      "post_id": "1953226817583616022",
+      "price_id": null,
+      "called_at": "2025-08-06T22:48:57.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": 0.0096,
+      "r_7d": 0.0731,
+      "r_30d": -0.3444,
+      "ticker": "PUMP",
+      "post_id": "1981723195351646613",
+      "price_id": "coingecko:pump-fun",
+      "called_at": "2025-10-24T14:03:23.000Z",
+      "direction": "hold",
+      "price_at_call": 0.0040281982294774225
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "PENGUIN",
+      "post_id": "2015116003001167897",
+      "price_id": null,
+      "called_at": "2026-01-24T17:34:28.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "NEET",
+      "post_id": "2092986048062136515",
+      "price_id": null,
+      "called_at": "2026-08-27T14:42:14.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    }
+  ],
+  "hold_pairs": 0,
+  "calls_total": 13,
+  "computed_at": "2026-10-10T13:03:58.987Z",
+  "by_direction": {
+    "buy": 2,
+    "hold": 9,
+    "sell": 2
+  },
+  "calls_priced": 4,
+  "price_source": "DefiLlama coins API",
+  "median_hold_days": null
+}
