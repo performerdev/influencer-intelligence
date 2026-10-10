@@ -7,6 +7,7 @@
  *   pnpm brain:distill <handle|--all> [--fresh]
  *   pnpm brain:stats   <handle|--all>
  *   pnpm brain:export  [handle|--all]
+  pnpm brain:reassemble <handle|--all>   rebuild prompts from stored brain files, no API cost
  *   pnpm brain:build   <handle|--all> [--max-usd 15]   ingest → distill → stats → brain → export
  *   pnpm brain:status
  */
@@ -75,7 +76,7 @@ async function targets(): Promise<InfluencerRow[]> {
   const rows = await upsertInfluencers(sql, intelligences);
   if (flags.has("all")) return rows;
   if (!positional.length) {
-    if (command === "export" || command === "status") return rows;
+    if (command === "export" || command === "status" || command === "reassemble") return rows;
     throw new Error(`Name an influencer (handle or code) or pass --all. Configured: ${intelligences.map((i) => `${i.code} @${i.handle}`).join(", ")}`);
   }
   return Promise.all(
@@ -280,6 +281,18 @@ async function main() {
     case "export":
       for (const inf of await targets()) await stepExport(inf);
       break;
+    case "reassemble":
+      // Rebuild the prompt from the latest brain files (no ingest, no distill) — e.g. after a prompt-format change.
+      for (const inf of await targets()) {
+        const prev = await latestBrain(db(), inf.id);
+        if (!prev) {
+          done(`  ${inf.code} @${inf.handle} · no brain yet, skipped`);
+          continue;
+        }
+        await stepAssemble(inf, prev.files);
+        await stepExport(inf);
+      }
+      break;
     case "build":
       for (const inf of await targets()) {
         console.log(`\n${inf.code} @${inf.handle}`);
@@ -324,6 +337,7 @@ function readUsage() {
   pnpm brain:distill <handle|--all> [--fresh]
   pnpm brain:stats   <handle|--all>
   pnpm brain:export  [handle|--all]
+  pnpm brain:reassemble <handle|--all>   rebuild prompts from stored brain files, no API cost
   pnpm brain:build   <handle|--all> [--max-usd 15] [--partial]
   pnpm brain:status`;
 }

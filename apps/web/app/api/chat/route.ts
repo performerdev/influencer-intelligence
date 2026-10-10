@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 
-import { type ChatMessage, OpenAICompatibleLLM } from "@ii/brain-core";
+import { type ChatMessage, OpenAICompatibleLLM, mentionedTickers, tickerContext } from "@ii/brain-core";
 import { recordSpend } from "@ii/db";
 
 import { loadBrain, resolveReferences, sql } from "@/lib/server/data";
@@ -84,7 +84,14 @@ export async function POST(req: Request) {
           const llm = new OpenAICompatibleLLM();
           const model = process.env.LLM_MODEL_CHAT ?? process.env.LLM_MODEL_DISTILL ?? "deepseek-v4-pro";
           // Brain first and identical for every message → provider prompt caching applies.
-          const messages: ChatMessage[] = [{ role: "system", content: brain.prompt }, ...history, { role: "user", content: message }];
+          // Tickers asked about (here or in the previous question) get their complete call record attached to this turn only,
+          // so big brains keep a compact ledger in the cached prompt and still answer specifics exactly.
+          const lastUser = [...history].reverse().find((m) => m.role === "user")?.content ?? "";
+          let tickers = mentionedTickers(brain.files.calls, message);
+          if (!tickers.length) tickers = mentionedTickers(brain.files.calls, lastUser, 3);
+          const context = tickerContext(brain.files, tickers);
+          const turn = context ? `${message}\n\n${context}` : message;
+          const messages: ChatMessage[] = [{ role: "system", content: brain.prompt }, ...history, { role: "user", content: turn }];
           for await (const ev of llm.stream(messages, { model, temperature: 0.7, maxTokens: MAX_ANSWER_TOKENS, thinking: "disabled" })) {
             if ("delta" in ev) {
               full += ev.delta;

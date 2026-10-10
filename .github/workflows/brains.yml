@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
     inputs:
       command:
-        description: "probe = cheap API check + cost estimate · build = full brain · status = spend report"
+        description: "probe = cheap API check + cost estimate · build = full brain · status = spend report · reassemble = rebuild prompts from stored brains (free)"
         type: choice
-        options: [probe, build, status]
+        options: [probe, build, status, reassemble]
         default: probe
       target:
         description: "Handle or code (blknoiz06, ii-01), several separated by commas — or 'all'"
@@ -91,6 +91,12 @@ jobs:
           set -o pipefail
           { echo '```'; pnpm brain:status; echo '```'; } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
 
+      - name: Reassemble
+        if: github.event.inputs.command == 'reassemble'
+        run: |
+          set -o pipefail
+          { echo '```'; pnpm brain:reassemble ${{ matrix.target }}; echo '```'; } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
+
       - name: Build
         if: github.event.inputs.command == 'build'
         run: |
@@ -104,7 +110,7 @@ jobs:
           { echo '```'; pnpm brain:build ${{ matrix.target }} --refresh --max-usd 5; echo '```'; } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Commit open brain files
-        if: github.event.inputs.command == 'build' || github.event_name == 'schedule'
+        if: github.event.inputs.command == 'build' || github.event.inputs.command == 'reassemble' || github.event_name == 'schedule'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

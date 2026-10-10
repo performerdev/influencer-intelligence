@@ -6,7 +6,8 @@
  *   pnpm test:pipeline
  */
 import { spawn } from "node:child_process";
-import { existsSync, readFileSync, rmSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -41,8 +42,9 @@ async function main() {
   const pgServer = new PGLiteSocketServer({ db: pg, port: PG_PORT, host: "127.0.0.1", maxConnections: 10 });
   await pgServer.start();
   await new Promise<void>((r) => api.listen(API_PORT, "127.0.0.1", r));
-  const brainDir = join(ROOT, "brains", "ii-01-blknoiz06");
-  rmSync(brainDir, { recursive: true, force: true });
+  // Export into a temp dir: the repo's brains/ holds the real, published brains.
+  const exportRoot = mkdtempSync(join(tmpdir(), "ii-export-"));
+  const brainDir = join(exportRoot, "brains", "ii-01-blknoiz06");
 
   const env = {
     II_SKIP_DOTENV: "1",
@@ -57,6 +59,7 @@ async function main() {
     LLM_MODEL_DISTILL: "deepseek-v4-pro",
     PRICE_API_BASE: `http://127.0.0.1:${API_PORT}`,
     DISTILL_BATCH_TOKENS: "1500", // force several map batches
+    II_EXPORT_ROOT: exportRoot,
   };
 
   try {
@@ -95,7 +98,7 @@ async function main() {
     check("one-line mind saved", inf.one_line_mind === null ? (await sql`select one_line_mind from influencers where code='ii-01'`)[0].one_line_mind === "Buys fear, sells euphoria, never marries a bag" : true);
 
     const files = ["mind.md", "rules.md", "voice.md", "identity.md", "calls.json", "stats.json", "examples.json", "brain.json"];
-    check("open brain exported", files.every((f) => existsSync(join(brainDir, f))), brainDir.replace(`${ROOT}/`, ""));
+    check("open brain exported", files.every((f) => existsSync(join(brainDir, f))), brainDir.replace(`${exportRoot}/`, ""));
     const exported = files.map((f) => readFileSync(join(brainDir, f), "utf8")).join("\n");
     check("no full post texts in the export", !exported.includes("markets are a mirror. most of you are trading your mood"));
 
@@ -120,6 +123,17 @@ async function main() {
     check("refresh with nothing new keeps the brain", /brain stays v/.test(r2), r2.match(/brain stays v\d+/)?.[0] ?? r2.slice(-300));
     void refreshOut;
 
+    // Over budget: calls switch to a per-ticker ledger; calls.json stays complete; no re-distill.
+    const llmBefore = calls["/chat/completions"] ?? 0;
+    const re = await run(["reassemble", "blknoiz06"], { ...env, BRAIN_MAX_TOKENS: "6500" });
+    const [big] = await sql`select prompt, files from brains order by version desc limit 1`;
+    const [{ n: callRows }] = await sql`select count(*)::int as n from calls`;
+    check(
+      "reassemble fits the budget with a call ledger",
+      /ledger of every ticker called/.test(big.prompt) && big.files.calls.length === callRows && (calls["/chat/completions"] ?? 0) - llmBefore <= 1,
+      `${re.match(/brain v\d+ · ~[\d,]+ tokens/)?.[0]} · ledger=${/ledger of every ticker called/.test(big.prompt)} calls=${big.files.calls.length}/${callRows} llm=${(calls["/chat/completions"] ?? 0) - llmBefore}`,
+    );
+
     // Budget cap stops cleanly and resumes.
     await sql`truncate posts, ingest_state, spend, calls, distill_notes, brains, stats restart identity cascade`;
     await sql`update influencers set x_user_id = null`;
@@ -137,7 +151,7 @@ async function main() {
     api.close();
     await pgServer.stop();
     await pg.close();
-    rmSync(brainDir, { recursive: true, force: true });
+    rmSync(exportRoot, { recursive: true, force: true });
   }
   console.log(failures ? `\n${failures} check(s) failed` : "\nAll pipeline checks passed");
   process.exit(failures ? 1 : 0);

@@ -16,6 +16,7 @@
     "brain:distill": "tsx scripts/cli.ts distill",
     "brain:stats": "tsx scripts/cli.ts stats",
     "brain:export": "tsx scripts/cli.ts export",
+    "brain:reassemble": "tsx scripts/cli.ts reassemble",
     "brain:build": "tsx scripts/cli.ts build",
     "brain:status": "tsx scripts/cli.ts status",
     "test:pipeline": "tsx scripts/test-pipeline.ts",
