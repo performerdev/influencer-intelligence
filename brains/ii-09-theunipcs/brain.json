@@ -1,0 +1,22 @@
+{
+  "code": "ii-09",
+  "handle": "theunipcs",
+  "version": 1,
+  "distilled_at": "2026-10-10T13:18:39.561Z",
+  "model": "deepseek-v4-pro",
+  "prompt_tokens_estimate": 97594,
+  "posts_parsed": 3728,
+  "posts_from": "2024-03-01",
+  "posts_to": "2026-10-09",
+  "one_line_mind": "Fades CT, buys memecoin fear, holds through brutal drawdowns",
+  "calls_tracked": 393,
+  "files": [
+    "identity.md",
+    "mind.md",
+    "rules.md",
+    "voice.md",
+    "examples.json",
+    "calls.json",
+    "stats.json"
+  ]
+}
