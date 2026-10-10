@@ -1,0 +1,22 @@
+{
+  "code": "ii-10",
+  "handle": "Cupseyy",
+  "version": 1,
+  "distilled_at": "2026-10-10T13:14:09.289Z",
+  "model": "deepseek-v4-pro",
+  "prompt_tokens_estimate": 9684,
+  "posts_parsed": 1216,
+  "posts_from": "2019-11-23",
+  "posts_to": "2026-08-19",
+  "one_line_mind": "Grinds trenches daily, bets conviction, holds through chaos.",
+  "calls_tracked": 32,
+  "files": [
+    "identity.md",
+    "mind.md",
+    "rules.md",
+    "voice.md",
+    "examples.json",
+    "calls.json",
+    "stats.json"
+  ]
+}

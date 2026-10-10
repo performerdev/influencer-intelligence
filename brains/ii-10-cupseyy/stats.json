@@ -1,0 +1,393 @@
+{
+  "notes": [
+    "Returns are signed in the call's favor: a sell call followed by a price drop counts as positive.",
+    "hold calls are measured like buys.",
+    "Calls without a known asset id or contract address in the post are left unpriced, never guessed.",
+    "Hold time pairs a buy with the next sell of the same ticker; only calls with an exit post count."
+  ],
+  "horizons": {
+    "1d": {
+      "n": 7,
+      "hit_rate": 0.2857,
+      "mean_return": -0.0215,
+      "median_return": -0.0296
+    },
+    "7d": {
+      "n": 7,
+      "hit_rate": 0.7143,
+      "mean_return": 0.2275,
+      "median_return": 0.1972
+    },
+    "30d": {
+      "n": 7,
+      "hit_rate": 0.8571,
+      "mean_return": 0.3723,
+      "median_return": 0.2237
+    }
+  },
+  "per_call": [
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "DOGECOIN",
+      "post_id": "1355333418792275971",
+      "price_id": null,
+      "called_at": "2021-01-30T01:54:02.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": -0.0166,
+      "r_7d": -0.1493,
+      "r_30d": -0.3498,
+      "ticker": "SOL",
+      "post_id": "1481896055322988547",
+      "price_id": "coingecko:solana",
+      "called_at": "2022-01-14T07:48:46.000Z",
+      "direction": "buy",
+      "price_at_call": 148.1046533259302
+    },
+    {
+      "r_1d": -0.0504,
+      "r_7d": 0.0196,
+      "r_30d": 0.0451,
+      "ticker": "BTC",
+      "post_id": "1484669479753695233",
+      "price_id": "coingecko:bitcoin",
+      "called_at": "2022-01-21T23:29:22.000Z",
+      "direction": "buy",
+      "price_at_call": 37068.4015068282
+    },
+    {
+      "r_1d": -0.0746,
+      "r_7d": -0.0245,
+      "r_30d": 0.0174,
+      "ticker": "ETH",
+      "post_id": "1484669479753695233",
+      "price_id": "coingecko:ethereum",
+      "called_at": "2022-01-21T23:29:22.000Z",
+      "direction": "buy",
+      "price_at_call": 2602.2011011700606
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "TAIYO",
+      "post_id": "1493775766651228161",
+      "price_id": null,
+      "called_at": "2022-02-16T02:34:30.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "NFT",
+      "post_id": "1493784405327769610",
+      "price_id": null,
+      "called_at": "2022-02-16T03:08:50.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": 0.0021,
+      "r_7d": 0.1972,
+      "r_30d": 0.2237,
+      "ticker": "SOL",
+      "post_id": "1505709615178297345",
+      "price_id": "coingecko:solana",
+      "called_at": "2022-03-21T00:55:21.000Z",
+      "direction": "hold",
+      "price_at_call": 88.4078912658747
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "TAIYO",
+      "post_id": "1506111775485403141",
+      "price_id": null,
+      "called_at": "2022-03-22T03:33:24.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "OKAYBEARS",
+      "post_id": "1519938174461505536",
+      "price_id": null,
+      "called_at": "2022-04-29T07:14:34.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MUTANT",
+      "post_id": "1526783209794547713",
+      "price_id": null,
+      "called_at": "2022-05-18T04:34:18.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MUTANT",
+      "post_id": "1526799527788761088",
+      "price_id": null,
+      "called_at": "2022-05-18T05:39:08.000Z",
+      "direction": "sell",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "OKAYBEARS",
+      "post_id": "1534803886589939713",
+      "price_id": null,
+      "called_at": "2022-06-09T07:45:36.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "FROOT",
+      "post_id": "1552091610267148289",
+      "price_id": null,
+      "called_at": "2022-07-27T00:40:51.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "FROOT",
+      "post_id": "1552583673664311296",
+      "price_id": null,
+      "called_at": "2022-07-28T09:16:08.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "FROOT",
+      "post_id": "1553524620623478784",
+      "price_id": null,
+      "called_at": "2022-07-30T23:35:07.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "VANDAL",
+      "post_id": "1554967049734062081",
+      "price_id": null,
+      "called_at": "2022-08-03T23:06:49.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "SODEAD",
+      "post_id": "1567201490774929412",
+      "price_id": null,
+      "called_at": "2022-09-06T17:22:07.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "CETS",
+      "post_id": "1567592784118353927",
+      "price_id": null,
+      "called_at": "2022-09-07T19:16:58.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "JIKAN",
+      "post_id": "1567965533534048257",
+      "price_id": null,
+      "called_at": "2022-09-08T19:58:09.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "RIFF_RATS",
+      "post_id": "1567974929219620864",
+      "price_id": null,
+      "called_at": "2022-09-08T20:35:29.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "DUMBASS_DONKEYS",
+      "post_id": "1568316272416530432",
+      "price_id": null,
+      "called_at": "2022-09-09T19:11:51.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "NFTREES",
+      "post_id": "1568761621446631425",
+      "price_id": null,
+      "called_at": "2022-09-11T00:41:31.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "DEGODS",
+      "post_id": "1569125555668402177",
+      "price_id": null,
+      "called_at": "2022-09-12T00:47:40.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "CATASTROPHIC",
+      "post_id": "1569430114680840193",
+      "price_id": null,
+      "called_at": "2022-09-12T20:57:52.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "DEGODS",
+      "post_id": "1570355671425773568",
+      "price_id": null,
+      "called_at": "2022-09-15T10:15:42.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "UKIYO",
+      "post_id": "1570617742478422019",
+      "price_id": null,
+      "called_at": "2022-09-16T03:37:05.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "DEADGOD",
+      "post_id": "1580404857596350464",
+      "price_id": null,
+      "called_at": "2022-10-13T03:47:35.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": -0.0296,
+      "r_7d": 0.4109,
+      "r_30d": 1.4075,
+      "ticker": "SOL",
+      "post_id": "1607994901308018688",
+      "price_id": "coingecko:solana",
+      "called_at": "2022-12-28T07:00:34.000Z",
+      "direction": "buy",
+      "price_at_call": 9.938085212953673
+    },
+    {
+      "r_1d": -0.0507,
+      "r_7d": 0.6249,
+      "r_30d": 0.6874,
+      "ticker": "JUP",
+      "post_id": "1766938597234774436",
+      "price_id": "coingecko:jupiter-exchange-solana",
+      "called_at": "2024-03-10T21:26:04.000Z",
+      "direction": "buy",
+      "price_at_call": 0.800053
+    },
+    {
+      "r_1d": 0.0691,
+      "r_7d": 0.5138,
+      "r_30d": 0.5749,
+      "ticker": "JUP",
+      "post_id": "1767585703624585391",
+      "price_id": "coingecko:jupiter-exchange-solana",
+      "called_at": "2024-03-12T16:17:26.000Z",
+      "direction": "buy",
+      "price_at_call": 0.81912
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MUMU",
+      "post_id": "1771949702289789275",
+      "price_id": null,
+      "called_at": "2024-03-24T17:18:24.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "PUMP",
+      "post_id": "1808348461739241721",
+      "price_id": null,
+      "called_at": "2024-07-03T03:54:05.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    }
+  ],
+  "hold_pairs": 1,
+  "calls_total": 32,
+  "computed_at": "2026-10-10T13:14:07.937Z",
+  "by_direction": {
+    "buy": 28,
+    "hold": 3,
+    "sell": 1
+  },
+  "calls_priced": 7,
+  "price_source": "DefiLlama coins API",
+  "median_hold_days": 0
+}
