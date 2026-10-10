@@ -1,0 +1,22 @@
+{
+  "code": "ii-08",
+  "handle": "nikitabier",
+  "version": 1,
+  "distilled_at": "2026-10-10T13:14:00.299Z",
+  "model": "deepseek-v4-pro",
+  "prompt_tokens_estimate": 29166,
+  "posts_parsed": 2376,
+  "posts_from": "2013-10-05",
+  "posts_to": "2026-10-09",
+  "one_line_mind": "Builds small, seeds dense networks, shorts hype, mocks everyone including himself.",
+  "calls_tracked": 33,
+  "files": [
+    "identity.md",
+    "mind.md",
+    "rules.md",
+    "voice.md",
+    "examples.json",
+    "calls.json",
+    "stats.json"
+  ]
+}

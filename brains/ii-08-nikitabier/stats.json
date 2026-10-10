@@ -1,0 +1,404 @@
+{
+  "notes": [
+    "Returns are signed in the call's favor: a sell call followed by a price drop counts as positive.",
+    "hold calls are measured like buys.",
+    "Calls without a known asset id or contract address in the post are left unpriced, never guessed.",
+    "Hold time pairs a buy with the next sell of the same ticker; only calls with an exit post count."
+  ],
+  "horizons": {
+    "1d": {
+      "n": 8,
+      "hit_rate": 0.25,
+      "mean_return": -0.0384,
+      "median_return": -0.0483
+    },
+    "7d": {
+      "n": 8,
+      "hit_rate": 0.375,
+      "mean_return": -0.0784,
+      "median_return": -0.1099
+    },
+    "30d": {
+      "n": 8,
+      "hit_rate": 0.625,
+      "mean_return": -0.0554,
+      "median_return": 0.0299
+    }
+  },
+  "per_call": [
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "BHR",
+      "post_id": "1275971195817521153",
+      "price_id": null,
+      "called_at": "2020-06-25T01:56:54.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MTN",
+      "post_id": "1275975083094208512",
+      "price_id": null,
+      "called_at": "2020-06-25T02:12:20.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "VXX",
+      "post_id": "1282875700416876544",
+      "price_id": null,
+      "called_at": "2020-07-14T03:12:56.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "TLT",
+      "post_id": "1282875700416876544",
+      "price_id": null,
+      "called_at": "2020-07-14T03:12:56.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "UBER",
+      "post_id": "1323997964407173121",
+      "price_id": null,
+      "called_at": "2020-11-04T14:38:08.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "BHR",
+      "post_id": "1325801599621427201",
+      "price_id": null,
+      "called_at": "2020-11-09T14:05:08.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "BHR",
+      "post_id": "1325874502207639552",
+      "price_id": null,
+      "called_at": "2020-11-09T18:54:49.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "GME",
+      "post_id": "1357359783825735680",
+      "price_id": null,
+      "called_at": "2021-02-04T16:06:05.000Z",
+      "direction": "sell",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "GME",
+      "post_id": "1358164846127185921",
+      "price_id": null,
+      "called_at": "2021-02-06T21:25:07.000Z",
+      "direction": "sell",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "TWTR",
+      "post_id": "1360323387604623363",
+      "price_id": null,
+      "called_at": "2021-02-12T20:22:23.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "BITCLOUT",
+      "post_id": "1391116762679107586",
+      "price_id": null,
+      "called_at": "2021-05-08T19:44:16.000Z",
+      "direction": "sell",
+      "price_at_call": null
+    },
+    {
+      "r_1d": -0.0543,
+      "r_7d": -0.1584,
+      "r_30d": -0.3869,
+      "ticker": "ETH",
+      "post_id": "1391737704832847877",
+      "price_id": "coingecko:ethereum",
+      "called_at": "2021-05-10T12:51:40.000Z",
+      "direction": "buy",
+      "price_at_call": 4148.402758101393
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "SNAP",
+      "post_id": "1423665248272224260",
+      "price_id": null,
+      "called_at": "2021-08-06T15:20:20.000Z",
+      "direction": "sell",
+      "price_at_call": null
+    },
+    {
+      "r_1d": 0.0284,
+      "r_7d": 0.059,
+      "r_30d": 0.044,
+      "ticker": "BTC",
+      "post_id": "1485679049011712002",
+      "price_id": "coingecko:bitcoin",
+      "called_at": "2022-01-24T18:21:02.000Z",
+      "direction": "buy",
+      "price_at_call": 36351.68818952576
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "SNAP",
+      "post_id": "1489323431904481282",
+      "price_id": null,
+      "called_at": "2022-02-03T19:42:31.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "SNAP",
+      "post_id": "1489361543816880130",
+      "price_id": null,
+      "called_at": "2022-02-03T22:13:57.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": -0.148,
+      "r_7d": -0.2052,
+      "r_30d": -0.225,
+      "ticker": "ETH",
+      "post_id": "1536193160337977344",
+      "price_id": "coingecko:ethereum",
+      "called_at": "2022-06-13T03:46:05.000Z",
+      "direction": "buy",
+      "price_at_call": 1359.3771130796142
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "META",
+      "post_id": "1585670177495973904",
+      "price_id": null,
+      "called_at": "2022-10-27T16:30:05.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "SNAP",
+      "post_id": "1586029351442653186",
+      "price_id": null,
+      "called_at": "2022-10-28T16:17:19.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": 0.0238,
+      "r_7d": 0.0082,
+      "r_30d": 0.0491,
+      "ticker": "BTC",
+      "post_id": "1731707537609678891",
+      "price_id": "coingecko:bitcoin",
+      "called_at": "2023-12-04T16:10:25.000Z",
+      "direction": "buy",
+      "price_at_call": 41324
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "TECH",
+      "post_id": "1731707537609678891",
+      "price_id": null,
+      "called_at": "2023-12-04T16:10:25.000Z",
+      "direction": "sell",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "TREASURIES",
+      "post_id": "1731707537609678891",
+      "price_id": null,
+      "called_at": "2023-12-04T16:10:25.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MREITS",
+      "post_id": "1731707537609678891",
+      "price_id": null,
+      "called_at": "2023-12-04T16:10:25.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "CONSTRUCTION",
+      "post_id": "1731707537609678891",
+      "price_id": null,
+      "called_at": "2023-12-04T16:10:25.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": -0.058,
+      "r_7d": 0.0132,
+      "r_30d": -0.0212,
+      "ticker": "BTC",
+      "post_id": "1731808931536626010",
+      "price_id": "coingecko:bitcoin",
+      "called_at": "2023-12-04T22:53:19.000Z",
+      "direction": "sell",
+      "price_at_call": 41882
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "RIVN",
+      "post_id": "1805717030643097643",
+      "price_id": null,
+      "called_at": "2024-06-25T21:37:43.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "NVDA",
+      "post_id": "1829939603727663392",
+      "price_id": null,
+      "called_at": "2024-08-31T17:49:34.000Z",
+      "direction": "sell",
+      "price_at_call": null
+    },
+    {
+      "r_1d": -0.0028,
+      "r_7d": -0.0958,
+      "r_30d": 0.0223,
+      "ticker": "BTC",
+      "post_id": "1866243676860461301",
+      "price_id": "coingecko:bitcoin",
+      "called_at": "2024-12-09T22:09:00.000Z",
+      "direction": "sell",
+      "price_at_call": 96836
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "XAI",
+      "post_id": "1873093932353212596",
+      "price_id": null,
+      "called_at": "2024-12-28T19:49:28.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "CA",
+      "post_id": "1886100287514914916",
+      "price_id": null,
+      "called_at": "2025-02-02T17:12:05.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": -0.0483,
+      "r_7d": -0.1241,
+      "r_30d": 0.0374,
+      "ticker": "SOL",
+      "post_id": "1904595238871572965",
+      "price_id": "coingecko:solana",
+      "called_at": "2025-03-25T18:04:25.000Z",
+      "direction": "buy",
+      "price_at_call": 145.03
+    },
+    {
+      "r_1d": -0.0483,
+      "r_7d": -0.1241,
+      "r_30d": 0.0374,
+      "ticker": "SOL",
+      "post_id": "1904595240289284404",
+      "price_id": "coingecko:solana",
+      "called_at": "2025-03-25T18:04:25.000Z",
+      "direction": "buy",
+      "price_at_call": 145.03
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MRNA",
+      "post_id": "2090215623041462344",
+      "price_id": null,
+      "called_at": "2026-08-19T23:13:33.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    }
+  ],
+  "hold_pairs": 1,
+  "calls_total": 33,
+  "computed_at": "2026-10-10T13:13:58.739Z",
+  "by_direction": {
+    "buy": 23,
+    "hold": 2,
+    "sell": 8
+  },
+  "calls_priced": 8,
+  "price_source": "DefiLlama coins API",
+  "median_hold_days": 679.2
+}
