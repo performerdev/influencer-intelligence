@@ -21,6 +21,9 @@ const HeroScene = lazy(() => import("@/components/hero/HeroScene"));
 /** The intro plays once per page load; client-side returns to "/" skip it. */
 let introPlayed = false;
 
+// A reload should start at the hero, not wherever the page was left.
+if (typeof window !== "undefined" && "scrollRestoration" in history) history.scrollRestoration = "manual";
+
 const smooth = (a: number, b: number, x: number) => {
   const t = Math.min(1, Math.max(0, (x - a) / (b - a)));
   return t * t * (3 - 2 * t);
@@ -263,8 +266,11 @@ function hasWebGL() {
 
 function lockScroll() {
   history.scrollRestoration = "manual";
+  // Lenis keeps its own target; reset it too, or it glides back to the restored position on start().
+  getLenis()?.scrollTo(0, { immediate: true, force: true });
   window.scrollTo(0, 0);
   document.documentElement.style.overflow = "hidden";
+  getLenis()?.stop();
   requestAnimationFrame(() => getLenis()?.stop());
 }
 
