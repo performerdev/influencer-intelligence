@@ -1,0 +1,22 @@
+{
+  "code": "ii-03",
+  "handle": "MEADGod",
+  "version": 1,
+  "distilled_at": "2026-10-10T13:03:41.547Z",
+  "model": "deepseek-v4-pro",
+  "prompt_tokens_estimate": 9010,
+  "posts_parsed": 1496,
+  "posts_from": "2025-09-04",
+  "posts_to": "2026-10-09",
+  "one_line_mind": "Bear-market builder: buys capitulation, ships Pons, bets Robinhood.",
+  "calls_tracked": 14,
+  "files": [
+    "identity.md",
+    "mind.md",
+    "rules.md",
+    "voice.md",
+    "examples.json",
+    "calls.json",
+    "stats.json"
+  ]
+}

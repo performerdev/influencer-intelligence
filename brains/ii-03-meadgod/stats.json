@@ -1,0 +1,195 @@
+{
+  "notes": [
+    "Returns are signed in the call's favor: a sell call followed by a price drop counts as positive.",
+    "hold calls are measured like buys.",
+    "Calls without a known asset id or contract address in the post are left unpriced, never guessed.",
+    "Hold time pairs a buy with the next sell of the same ticker; only calls with an exit post count."
+  ],
+  "horizons": {
+    "1d": {
+      "n": 12,
+      "hit_rate": 0.5,
+      "mean_return": -0.0037,
+      "median_return": -0.0017
+    },
+    "7d": {
+      "n": 11,
+      "hit_rate": 0.6364,
+      "mean_return": -0.0074,
+      "median_return": 0.0082
+    },
+    "30d": {
+      "n": 11,
+      "hit_rate": 0.5455,
+      "mean_return": 0.0174,
+      "median_return": 0.028
+    }
+  },
+  "per_call": [
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "CC",
+      "post_id": "2043951110722072790",
+      "price_id": null,
+      "called_at": "2026-04-14T07:14:54.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": -0.0278,
+      "r_7d": 0.0207,
+      "r_30d": 0.194,
+      "ticker": "BTC",
+      "post_id": "2054591864993464760",
+      "price_id": "coingecko:bitcoin",
+      "called_at": "2026-05-13T15:57:27.000Z",
+      "direction": "sell",
+      "price_at_call": 79070.65329394456
+    },
+    {
+      "r_1d": -0.0313,
+      "r_7d": 0.0185,
+      "r_30d": 0.1928,
+      "ticker": "BTC",
+      "post_id": "2054592566805360829",
+      "price_id": "coingecko:bitcoin",
+      "called_at": "2026-05-13T16:00:15.000Z",
+      "direction": "sell",
+      "price_at_call": 78822.62506953224
+    },
+    {
+      "r_1d": 0.0324,
+      "r_7d": 0.023,
+      "r_30d": 0.028,
+      "ticker": "BTC",
+      "post_id": "2062418191242932399",
+      "price_id": "coingecko:bitcoin",
+      "called_at": "2026-06-04T06:16:29.000Z",
+      "direction": "sell",
+      "price_at_call": 64190.24831170507
+    },
+    {
+      "r_1d": -0.0116,
+      "r_7d": -0.0627,
+      "r_30d": -0.0439,
+      "ticker": "BTC",
+      "post_id": "2062922857089298895",
+      "price_id": "coingecko:bitcoin",
+      "called_at": "2026-06-05T15:41:51.000Z",
+      "direction": "sell",
+      "price_at_call": 60104.18155106461
+    },
+    {
+      "r_1d": 0.0178,
+      "r_7d": 0.062,
+      "r_30d": 0.0303,
+      "ticker": "BTC",
+      "post_id": "2066874152196198706",
+      "price_id": "coingecko:bitcoin",
+      "called_at": "2026-06-16T13:22:53.000Z",
+      "direction": "sell",
+      "price_at_call": 66142.47479456494
+    },
+    {
+      "r_1d": -0.0462,
+      "r_7d": -0.1583,
+      "r_30d": -0.1623,
+      "ticker": "HYPE",
+      "post_id": "2067332763875750249",
+      "price_id": "coingecko:hyperliquid",
+      "called_at": "2026-06-17T19:45:14.000Z",
+      "direction": "buy",
+      "price_at_call": 71.6725655123789
+    },
+    {
+      "r_1d": -0.0055,
+      "r_7d": 0.0571,
+      "r_30d": -0.0202,
+      "ticker": "BTC",
+      "post_id": "2067633875375861816",
+      "price_id": "coingecko:bitcoin",
+      "called_at": "2026-06-18T15:41:45.000Z",
+      "direction": "sell",
+      "price_at_call": 62753.63297060164
+    },
+    {
+      "r_1d": 0.0114,
+      "r_7d": 0.0082,
+      "r_30d": -0.0873,
+      "ticker": "HYPE",
+      "post_id": "2069999384960360658",
+      "price_id": "coingecko:hyperliquid",
+      "called_at": "2026-06-25T04:21:26.000Z",
+      "direction": "buy",
+      "price_at_call": 62.88103025348147
+    },
+    {
+      "r_1d": 0.0169,
+      "r_7d": 0.0053,
+      "r_30d": 0.0354,
+      "ticker": "BTC",
+      "post_id": "2074148839909446118",
+      "price_id": "coingecko:bitcoin",
+      "called_at": "2026-07-06T15:09:53.000Z",
+      "direction": "buy",
+      "price_at_call": 62354.653720411
+    },
+    {
+      "r_1d": -0.0328,
+      "r_7d": -0.0447,
+      "r_30d": -0.0502,
+      "ticker": "BTC",
+      "post_id": "2075048818677092382",
+      "price_id": "coingecko:bitcoin",
+      "called_at": "2026-07-09T02:46:05.000Z",
+      "direction": "sell",
+      "price_at_call": 61785.26939250542
+    },
+    {
+      "r_1d": 0.0297,
+      "r_7d": -0.0107,
+      "r_30d": 0.0747,
+      "ticker": "BTC",
+      "post_id": "2092644449759150182",
+      "price_id": "coingecko:bitcoin",
+      "called_at": "2026-08-26T16:04:50.000Z",
+      "direction": "buy",
+      "price_at_call": 78073.53117932155
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ROBOT",
+      "post_id": "2093364226353922315",
+      "price_id": null,
+      "called_at": "2026-08-28T15:44:59.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": 0.002,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "BTC",
+      "post_id": "2108403501105590570",
+      "price_id": "coingecko:bitcoin",
+      "called_at": "2026-10-09T03:45:41.000Z",
+      "direction": "buy",
+      "price_at_call": 82327.48960863634
+    }
+  ],
+  "hold_pairs": 1,
+  "calls_total": 14,
+  "computed_at": "2026-10-10T13:03:40.712Z",
+  "by_direction": {
+    "buy": 7,
+    "hold": 0,
+    "sell": 7
+  },
+  "calls_priced": 12,
+  "price_source": "DefiLlama coins API",
+  "median_hold_days": 2.5
+}
