@@ -5,6 +5,7 @@ import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "rea
 import { ParticleSignature } from "@/components/particles/ParticleSignature";
 import { AppLink } from "@/components/ui/AppLink";
 import { formatCount } from "@/lib/intelligences";
+import { normalizeRefs } from "@/lib/refs";
 
 import { Markdown, Sheet, TypingIndicator, type Verdict, VerdictChip } from "./bits";
 
@@ -306,7 +307,7 @@ export function ChatView({ intelligence, brain }: { intelligence: ChatIntelligen
 function Answer({ msg, onRef }: { msg: Extract<Msg, { role: "assistant" }>; onRef: (r: Reference) => void }) {
   if (msg.streaming) {
     // While streaming: hide citation markers and the verdict line; animate only the newest words.
-    const shown = msg.content.replace(/\[post:\d+\]/g, "").replace(/\[post:?\d*$/, "").replace(VERDICT_TAIL, "");
+    const shown = normalizeRefs(msg.content).replace(/\[post:\d+\]/g, "").replace(/\[(p(o(s(t(:[^\]]*)?)?)?)?)?$/, "").replace(VERDICT_TAIL, "");
     const tail = Math.min(msg.lastDelta.length, shown.length);
     return (
       <div className="whitespace-pre-wrap text-body leading-relaxed text-ceramic">
@@ -317,7 +318,7 @@ function Answer({ msg, onRef }: { msg: Extract<Msg, { role: "assistant" }>; onRe
     );
   }
   const byId = new Map(msg.refs.map((r) => [r.postId, r]));
-  const parts = msg.content.split(/(\[post:\d+\])/g);
+  const parts = normalizeRefs(msg.content).split(/(\[post:\d+\])/g);
   return (
     <div className="whitespace-pre-wrap text-body leading-relaxed text-ceramic">
       {parts.map((p, i) => {

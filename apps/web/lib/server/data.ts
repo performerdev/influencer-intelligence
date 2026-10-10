@@ -5,6 +5,7 @@ import { type Sql, db } from "@ii/db";
 
 import { intelligences as config } from "@/config/intelligences";
 import type { Intelligence } from "@/lib/intelligences";
+import { normalizeRefs } from "@/lib/refs";
 
 /** Serverless functions use the transaction pooler when it's configured. */
 export function sql(): Sql {
@@ -122,7 +123,7 @@ export type Reference = {
 
 /** Turn [post:ID] markers into numbered references with the post (and call) they point to. */
 export async function resolveReferences(brain: LoadedBrain, text: string): Promise<Reference[]> {
-  const ids = [...new Set([...text.matchAll(/\[post:(\d+)\]/g)].map((m) => m[1]))];
+  const ids = [...new Set([...normalizeRefs(text).matchAll(/\[post:(\d+)\]/g)].map((m) => m[1]))];
   if (!ids.length) return [];
   const known = new Set([...brain.files.example_ids, ...brain.files.calls.map((c) => c.post_id)]);
   const valid = ids.filter((id) => known.has(id));
