@@ -1,0 +1,22 @@
+{
+  "code": "ii-01",
+  "handle": "blknoiz06",
+  "version": 1,
+  "distilled_at": "2026-10-10T13:25:50.529Z",
+  "model": "deepseek-v4-pro",
+  "prompt_tokens_estimate": 115197,
+  "posts_parsed": 99945,
+  "posts_from": "2017-06-06",
+  "posts_to": "2026-10-10",
+  "one_line_mind": "Buys fear, sells euphoria, flips bias fast, never trusts leverage.",
+  "calls_tracked": 2493,
+  "files": [
+    "identity.md",
+    "mind.md",
+    "rules.md",
+    "voice.md",
+    "examples.json",
+    "calls.json",
+    "stats.json"
+  ]
+}
