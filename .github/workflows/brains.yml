@@ -17,6 +17,10 @@ on:
       max_usd:
         description: "twitterapi.io spend cap per account, USD"
         default: "15"
+      partial:
+        description: "If the cap is reached, still distill the posts collected so far"
+        type: boolean
+        default: false
   schedule:
     # Weekly refresh: new posts only, Mondays 03:17 UTC.
     - cron: "17 3 * * 1"
@@ -88,7 +92,7 @@ jobs:
         if: github.event.inputs.command == 'build'
         run: |
           set -o pipefail
-          { echo '```'; pnpm brain:build ${{ matrix.target }} --max-usd ${{ github.event.inputs.max_usd }}; echo '```'; } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
+          { echo '```'; pnpm brain:build ${{ matrix.target }} --max-usd ${{ github.event.inputs.max_usd }} ${{ github.event.inputs.partial == 'true' && '--partial' || '' }}; echo '```'; } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Weekly refresh
         if: github.event_name == 'schedule'
