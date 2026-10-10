@@ -1,0 +1,22 @@
+{
+  "code": "ii-04",
+  "handle": "MustStopMurad",
+  "version": 1,
+  "distilled_at": "2026-10-10T13:07:11.681Z",
+  "model": "deepseek-v4-pro",
+  "prompt_tokens_estimate": 21730,
+  "posts_parsed": 3671,
+  "posts_from": "2017-05-27",
+  "posts_to": "2026-10-09",
+  "one_line_mind": "Finds strongest belief communities, buys, holds for years, never trades.",
+  "calls_tracked": 66,
+  "files": [
+    "identity.md",
+    "mind.md",
+    "rules.md",
+    "voice.md",
+    "examples.json",
+    "calls.json",
+    "stats.json"
+  ]
+}

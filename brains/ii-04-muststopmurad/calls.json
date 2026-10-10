@@ -1,0 +1,662 @@
+[
+  {
+    "date": "2018-05-14",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Bitcoin and maybe Zcash are undervalued. Everything else is 10x+ overvalued.",
+    "post_id": "995898028778315776",
+    "url": "https://x.com/MustStopMurad/status/995898028778315776"
+  },
+  {
+    "date": "2018-05-14",
+    "ticker": "ZEC",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Bitcoin and maybe Zcash are undervalued. Everything else is 10x+ overvalued.",
+    "post_id": "995898028778315776",
+    "url": "https://x.com/MustStopMurad/status/995898028778315776"
+  },
+  {
+    "date": "2018-05-24",
+    "ticker": "ETH",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "Inb4 ETH $200",
+    "post_id": "999682186960932865",
+    "url": "https://x.com/MustStopMurad/status/999682186960932865"
+  },
+  {
+    "date": "2018-09-08",
+    "ticker": "ETH",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "I made this call on May 24th, when ETH was $550-$610. Today's price: $198. Next Target? $95",
+    "post_id": "1038498085322870786",
+    "url": "https://x.com/MustStopMurad/status/1038498085322870786"
+  },
+  {
+    "date": "2018-09-12",
+    "ticker": "ETH",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "$ETH intermediate target remains $95.",
+    "post_id": "1039917243696644097",
+    "url": "https://x.com/MustStopMurad/status/1039917243696644097"
+  },
+  {
+    "date": "2018-11-20",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "BTC is collapsing. I expect it to bottom around 3K",
+    "post_id": "1064752124804902913",
+    "url": "https://x.com/MustStopMurad/status/1064752124804902913"
+  },
+  {
+    "date": "2024-10-02",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "CEX listings starting to roll out for #SPX6900 Aeons are working diligently behind the scenes More to come iao (in aeon opinion) Stop Trading and Believe in Som",
+    "post_id": "1841476053048373548",
+    "url": "https://x.com/MustStopMurad/status/1841476053048373548"
+  },
+  {
+    "date": "2024-10-02",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Buy Long-termist, Organic, PvE, anti-KOL, anti-Cabal, anti-VC, decentralized, ambitious, unique meaningful coins like #SPX6900, $GIGA, $MOG, $APU, #BITCOIN, $PO",
+    "post_id": "1841554446666391768",
+    "url": "https://x.com/MustStopMurad/status/1841554446666391768"
+  },
+  {
+    "date": "2024-10-02",
+    "ticker": "GIGA",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Buy Long-termist, Organic, PvE, anti-KOL, anti-Cabal, anti-VC, decentralized, ambitious, unique meaningful coins like #SPX6900, $GIGA, $MOG, $APU, #BITCOIN, $PO",
+    "post_id": "1841554446666391768",
+    "url": "https://x.com/MustStopMurad/status/1841554446666391768"
+  },
+  {
+    "date": "2024-10-02",
+    "ticker": "MOG",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Buy Long-termist, Organic, PvE, anti-KOL, anti-Cabal, anti-VC, decentralized, ambitious, unique meaningful coins like #SPX6900, $GIGA, $MOG, $APU, #BITCOIN, $PO",
+    "post_id": "1841554446666391768",
+    "url": "https://x.com/MustStopMurad/status/1841554446666391768"
+  },
+  {
+    "date": "2024-10-02",
+    "ticker": "APU",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Buy Long-termist, Organic, PvE, anti-KOL, anti-Cabal, anti-VC, decentralized, ambitious, unique meaningful coins like #SPX6900, $GIGA, $MOG, $APU, #BITCOIN, $PO",
+    "post_id": "1841554446666391768",
+    "url": "https://x.com/MustStopMurad/status/1841554446666391768"
+  },
+  {
+    "date": "2024-10-02",
+    "ticker": "BITCOIN",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Buy Long-termist, Organic, PvE, anti-KOL, anti-Cabal, anti-VC, decentralized, ambitious, unique meaningful coins like #SPX6900, $GIGA, $MOG, $APU, #BITCOIN, $PO",
+    "post_id": "1841554446666391768",
+    "url": "https://x.com/MustStopMurad/status/1841554446666391768"
+  },
+  {
+    "date": "2024-10-02",
+    "ticker": "POPCAT",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Buy Long-termist, Organic, PvE, anti-KOL, anti-Cabal, anti-VC, decentralized, ambitious, unique meaningful coins like #SPX6900, $GIGA, $MOG, $APU, #BITCOIN, $PO",
+    "post_id": "1841554446666391768",
+    "url": "https://x.com/MustStopMurad/status/1841554446666391768"
+  },
+  {
+    "date": "2024-10-02",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Memecoins I am most Bullish on: #SPX6900 $GIGA $POPCAT $MOG $APU #HarryPotterObamaSonic10Inu #RETARDIO $LOCKIN $MINI",
+    "post_id": "1841614869755249063",
+    "url": "https://x.com/MustStopMurad/status/1841614869755249063"
+  },
+  {
+    "date": "2024-10-02",
+    "ticker": "GIGA",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Memecoins I am most Bullish on: #SPX6900 $GIGA $POPCAT $MOG $APU #HarryPotterObamaSonic10Inu #RETARDIO $LOCKIN $MINI",
+    "post_id": "1841614869755249063",
+    "url": "https://x.com/MustStopMurad/status/1841614869755249063"
+  },
+  {
+    "date": "2024-10-02",
+    "ticker": "POPCAT",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Memecoins I am most Bullish on: #SPX6900 $GIGA $POPCAT $MOG $APU #HarryPotterObamaSonic10Inu #RETARDIO $LOCKIN $MINI",
+    "post_id": "1841614869755249063",
+    "url": "https://x.com/MustStopMurad/status/1841614869755249063"
+  },
+  {
+    "date": "2024-10-02",
+    "ticker": "MOG",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Memecoins I am most Bullish on: #SPX6900 $GIGA $POPCAT $MOG $APU #HarryPotterObamaSonic10Inu #RETARDIO $LOCKIN $MINI",
+    "post_id": "1841614869755249063",
+    "url": "https://x.com/MustStopMurad/status/1841614869755249063"
+  },
+  {
+    "date": "2024-10-02",
+    "ticker": "APU",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Memecoins I am most Bullish on: #SPX6900 $GIGA $POPCAT $MOG $APU #HarryPotterObamaSonic10Inu #RETARDIO $LOCKIN $MINI",
+    "post_id": "1841614869755249063",
+    "url": "https://x.com/MustStopMurad/status/1841614869755249063"
+  },
+  {
+    "date": "2024-10-02",
+    "ticker": "RETARDIO",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Memecoins I am most Bullish on: #SPX6900 $GIGA $POPCAT $MOG $APU #HarryPotterObamaSonic10Inu #RETARDIO $LOCKIN $MINI",
+    "post_id": "1841614869755249063",
+    "url": "https://x.com/MustStopMurad/status/1841614869755249063"
+  },
+  {
+    "date": "2024-10-02",
+    "ticker": "LOCKIN",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Memecoins I am most Bullish on: #SPX6900 $GIGA $POPCAT $MOG $APU #HarryPotterObamaSonic10Inu #RETARDIO $LOCKIN $MINI",
+    "post_id": "1841614869755249063",
+    "url": "https://x.com/MustStopMurad/status/1841614869755249063"
+  },
+  {
+    "date": "2024-10-02",
+    "ticker": "MINI",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Memecoins I am most Bullish on: #SPX6900 $GIGA $POPCAT $MOG $APU #HarryPotterObamaSonic10Inu #RETARDIO $LOCKIN $MINI",
+    "post_id": "1841614869755249063",
+    "url": "https://x.com/MustStopMurad/status/1841614869755249063"
+  },
+  {
+    "date": "2024-10-18",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "We are still unbelievably early. I've stopped trading, and have chosen to Believe in Something. #SPX6900 $SPX",
+    "post_id": "1847408315112075669",
+    "url": "https://x.com/MustStopMurad/status/1847408315112075669"
+  },
+  {
+    "date": "2024-11-20",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "These are my TOP 10 CRYPTO PICKS for 2025. These are worth BUYING &amp; HOLDING for the coming year. Stop TRADING and BELIEVE in SOMETHING. ",
+    "post_id": "1859276199828054149",
+    "url": "https://x.com/MustStopMurad/status/1859276199828054149"
+  },
+  {
+    "date": "2024-11-30",
+    "ticker": "GIGA",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Operation “Close 11th Monthly Green” 8 hours to go. 1) Buy $GIGA to keep the Epic Streak Going 2) Retweet this 3) Tweet yourself",
+    "post_id": "1862884431486157260",
+    "url": "https://x.com/MustStopMurad/status/1862884431486157260"
+  },
+  {
+    "date": "2025-01-20",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Coins I am most bullish on for 2025: #SPX6900 $GIGA $MOG $APU $POPCAT #HarryPotterObamaSonic10Inu #RETARDIO $LOCKIN $MINI $USA",
+    "post_id": "1881390561510453719",
+    "url": "https://x.com/MustStopMurad/status/1881390561510453719"
+  },
+  {
+    "date": "2025-01-20",
+    "ticker": "GIGA",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Coins I am most bullish on for 2025: #SPX6900 $GIGA $MOG $APU $POPCAT #HarryPotterObamaSonic10Inu #RETARDIO $LOCKIN $MINI $USA",
+    "post_id": "1881390561510453719",
+    "url": "https://x.com/MustStopMurad/status/1881390561510453719"
+  },
+  {
+    "date": "2025-01-20",
+    "ticker": "MOG",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Coins I am most bullish on for 2025: #SPX6900 $GIGA $MOG $APU $POPCAT #HarryPotterObamaSonic10Inu #RETARDIO $LOCKIN $MINI $USA",
+    "post_id": "1881390561510453719",
+    "url": "https://x.com/MustStopMurad/status/1881390561510453719"
+  },
+  {
+    "date": "2025-01-20",
+    "ticker": "APU",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Coins I am most bullish on for 2025: #SPX6900 $GIGA $MOG $APU $POPCAT #HarryPotterObamaSonic10Inu #RETARDIO $LOCKIN $MINI $USA",
+    "post_id": "1881390561510453719",
+    "url": "https://x.com/MustStopMurad/status/1881390561510453719"
+  },
+  {
+    "date": "2025-01-20",
+    "ticker": "POPCAT",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Coins I am most bullish on for 2025: #SPX6900 $GIGA $MOG $APU $POPCAT #HarryPotterObamaSonic10Inu #RETARDIO $LOCKIN $MINI $USA",
+    "post_id": "1881390561510453719",
+    "url": "https://x.com/MustStopMurad/status/1881390561510453719"
+  },
+  {
+    "date": "2025-01-20",
+    "ticker": "RETARDIO",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Coins I am most bullish on for 2025: #SPX6900 $GIGA $MOG $APU $POPCAT #HarryPotterObamaSonic10Inu #RETARDIO $LOCKIN $MINI $USA",
+    "post_id": "1881390561510453719",
+    "url": "https://x.com/MustStopMurad/status/1881390561510453719"
+  },
+  {
+    "date": "2025-01-20",
+    "ticker": "LOCKIN",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Coins I am most bullish on for 2025: #SPX6900 $GIGA $MOG $APU $POPCAT #HarryPotterObamaSonic10Inu #RETARDIO $LOCKIN $MINI $USA",
+    "post_id": "1881390561510453719",
+    "url": "https://x.com/MustStopMurad/status/1881390561510453719"
+  },
+  {
+    "date": "2025-01-20",
+    "ticker": "MINI",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Coins I am most bullish on for 2025: #SPX6900 $GIGA $MOG $APU $POPCAT #HarryPotterObamaSonic10Inu #RETARDIO $LOCKIN $MINI $USA",
+    "post_id": "1881390561510453719",
+    "url": "https://x.com/MustStopMurad/status/1881390561510453719"
+  },
+  {
+    "date": "2025-01-20",
+    "ticker": "USA",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Coins I am most bullish on for 2025: #SPX6900 $GIGA $MOG $APU $POPCAT #HarryPotterObamaSonic10Inu #RETARDIO $LOCKIN $MINI $USA",
+    "post_id": "1881390561510453719",
+    "url": "https://x.com/MustStopMurad/status/1881390561510453719"
+  },
+  {
+    "date": "2025-04-11",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "If you believe in Memecoins as a Cultural Phenomenon and don't yet hold #SPX6900 then rebalance 5% from your holdings and DCA in. Digest some SPX content. If yo",
+    "post_id": "1910795319597552036",
+    "url": "https://x.com/MustStopMurad/status/1910795319597552036"
+  },
+  {
+    "date": "2025-06-13",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Those are the ones that will end up being Huge. Those are the ones to Buy.",
+    "post_id": "1933533974065983502",
+    "url": "https://x.com/MustStopMurad/status/1933533974065983502"
+  },
+  {
+    "date": "2025-07-11",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Join #SPX6900 and be a part of the strongest coin of this cycle.",
+    "post_id": "1943677051992478065",
+    "url": "https://x.com/MustStopMurad/status/1943677051992478065"
+  },
+  {
+    "date": "2025-07-23",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Buy SPX6900.",
+    "post_id": "1948050258648313960",
+    "url": "https://x.com/MustStopMurad/status/1948050258648313960"
+  },
+  {
+    "date": "2025-08-06",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Buy #SPX6900",
+    "post_id": "1953193319204266457",
+    "url": "https://x.com/MustStopMurad/status/1953193319204266457"
+  },
+  {
+    "date": "2025-08-07",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Buy #SPX6900 to get a chance at what used to be a normal life.",
+    "post_id": "1953579649646440935",
+    "url": "https://x.com/MustStopMurad/status/1953579649646440935"
+  },
+  {
+    "date": "2025-08-09",
+    "ticker": "ETH",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "ETH just broke $4,000 and will head towards $10,000+",
+    "post_id": "1954188518244102157",
+    "url": "https://x.com/MustStopMurad/status/1954188518244102157"
+  },
+  {
+    "date": "2025-09-20",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "I invite you to JOIN US on the MISSION of SPX6900 as we EXPAND from $1 to $1,000+",
+    "post_id": "1969414400478965993",
+    "url": "https://x.com/MustStopMurad/status/1969414400478965993"
+  },
+  {
+    "date": "2025-10-12",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "$200K+ BTC in a straight line over the next 2-5 months.",
+    "post_id": "1977465032184340696",
+    "url": "https://x.com/MustStopMurad/status/1977465032184340696"
+  },
+  {
+    "date": "2025-10-17",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "If you’re bullish on Crypto, buy SPX6900.",
+    "post_id": "1979265113720000871",
+    "url": "https://x.com/MustStopMurad/status/1979265113720000871"
+  },
+  {
+    "date": "2025-10-19",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Buy and HOLD SPX6900.",
+    "post_id": "1980016457598505367",
+    "url": "https://x.com/MustStopMurad/status/1980016457598505367"
+  },
+  {
+    "date": "2025-10-20",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "BTC to $200K+ SPX6900 to 100x+",
+    "post_id": "1980277812134343093",
+    "url": "https://x.com/MustStopMurad/status/1980277812134343093"
+  },
+  {
+    "date": "2025-10-24",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Buy.",
+    "post_id": "1981721181829874159",
+    "url": "https://x.com/MustStopMurad/status/1981721181829874159"
+  },
+  {
+    "date": "2025-12-19",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Buy as much SPX6900 as you can.",
+    "post_id": "2002111016130523512",
+    "url": "https://x.com/MustStopMurad/status/2002111016130523512"
+  },
+  {
+    "date": "2026-01-23",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Buy as much SPX6900 as you can. This is going to be the biggest movement of this decade.",
+    "post_id": "2014816928326680882",
+    "url": "https://x.com/MustStopMurad/status/2014816928326680882"
+  },
+  {
+    "date": "2026-02-09",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "I am extremely Bullish on the Crypto Market and think that BTC will soon begin a rapid ascent to $200,000+",
+    "post_id": "2020926157894647894",
+    "url": "https://x.com/MustStopMurad/status/2020926157894647894"
+  },
+  {
+    "date": "2026-03-26",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "BTC to $222k SPX6900 to $200+",
+    "post_id": "2037254945515208724",
+    "url": "https://x.com/MustStopMurad/status/2037254945515208724"
+  },
+  {
+    "date": "2026-04-12",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "DCA SPX6900.",
+    "post_id": "2043426485353030078",
+    "url": "https://x.com/MustStopMurad/status/2043426485353030078"
+  },
+  {
+    "date": "2026-04-13",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "The best time to accumulate is now.",
+    "post_id": "2043773006061736148",
+    "url": "https://x.com/MustStopMurad/status/2043773006061736148"
+  },
+  {
+    "date": "2026-04-22",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "If you are a Crypto Fund or a Whale, buy 1% of SPX6900 supply and hold in cold storage. Thank me later.",
+    "post_id": "2047051130715218170",
+    "url": "https://x.com/MustStopMurad/status/2047051130715218170"
+  },
+  {
+    "date": "2026-05-05",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "BTC is quietly preparing for a run towards $222,000 while no one is looking.",
+    "post_id": "2051741031830347871",
+    "url": "https://x.com/MustStopMurad/status/2051741031830347871"
+  },
+  {
+    "date": "2026-06-23",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Heed my words: Buy SPX6900 now when it is still cheap and extremely undervalued.",
+    "post_id": "2069511802715525565",
+    "url": "https://x.com/MustStopMurad/status/2069511802715525565"
+  },
+  {
+    "date": "2026-07-22",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Buy, and Hold.",
+    "post_id": "2080013589214015664",
+    "url": "https://x.com/MustStopMurad/status/2080013589214015664"
+  },
+  {
+    "date": "2026-08-05",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Accumulate SPX6900.",
+    "post_id": "2085078400163586214",
+    "url": "https://x.com/MustStopMurad/status/2085078400163586214"
+  },
+  {
+    "date": "2026-08-10",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "All you have to do is Hold.",
+    "post_id": "2086907397650460761",
+    "url": "https://x.com/MustStopMurad/status/2086907397650460761"
+  },
+  {
+    "date": "2026-08-29",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Grab at least 10,000 spx6900 even if you hate me. I’m trying to help you.",
+    "post_id": "2093779042981859452",
+    "url": "https://x.com/MustStopMurad/status/2093779042981859452"
+  },
+  {
+    "date": "2026-09-02",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "Stop Pretending you are a Trader and just HOLD.",
+    "post_id": "2095149062987067896",
+    "url": "https://x.com/MustStopMurad/status/2095149062987067896"
+  },
+  {
+    "date": "2026-09-14",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "buy SPX6900.",
+    "post_id": "2099546264178241754",
+    "url": "https://x.com/MustStopMurad/status/2099546264178241754"
+  },
+  {
+    "date": "2026-09-17",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "Don’t trade. Just Hold. This is the way to Valhalla.",
+    "post_id": "2100596822104260734",
+    "url": "https://x.com/MustStopMurad/status/2100596822104260734"
+  },
+  {
+    "date": "2026-09-19",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "join spx6900 while it's still early. flip the stock market.",
+    "post_id": "2101445394345476159",
+    "url": "https://x.com/MustStopMurad/status/2101445394345476159"
+  },
+  {
+    "date": "2026-09-20",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "The ONLY way to catch the coming Parabolic moves is to be positioned in advance and HOLD for YEARS.",
+    "post_id": "2101659359646220419",
+    "url": "https://x.com/MustStopMurad/status/2101659359646220419"
+  },
+  {
+    "date": "2026-10-01",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "“Stop Trading and Believe in Something” will end up being the winning strategy. spx6900 forever.",
+    "post_id": "2105752918020300964",
+    "url": "https://x.com/MustStopMurad/status/2105752918020300964"
+  },
+  {
+    "date": "2026-10-05",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "SPX6900 is the next Bitcoin.",
+    "post_id": "2107189502506934440",
+    "url": "https://x.com/MustStopMurad/status/2107189502506934440"
+  }
+]
