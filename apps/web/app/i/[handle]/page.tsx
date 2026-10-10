@@ -1,26 +1,86 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { ParticleSignature } from "@/components/particles/ParticleSignature";
-import { getIntelligences } from "@/lib/intelligences";
+import { type BrainSection, type ChatBrain, ChatView } from "@/components/chat/ChatView";
+import { intelligences } from "@/config/intelligences";
+import { hasDatabase, loadBrain, loadIntelligences } from "@/lib/server/data";
 
-/** Placeholder until deliverable 4 (the chat) lands — keeps card links from 404-ing. */
-export default async function IntelligencePage({ params }: { params: Promise<{ handle: string }> }) {
+export const revalidate = 300;
+
+type Props = { params: Promise<{ handle: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { handle } = await params;
-  const it = getIntelligences().find((i) => i.handle === handle);
+  const it = intelligences.find((i) => i.handle.toLowerCase() === handle.toLowerCase());
+  return it ? { title: `${it.code} @${it.handle}`, description: `Talk to the open-source AI model of @${it.handle}, built from public posts. Unofficial, not financial advice.` } : {};
+}
+
+export default async function IntelligencePage({ params }: Props) {
+  const { handle } = await params;
+  const all = await loadIntelligences();
+  const it = all.find((i) => i.handle.toLowerCase() === handle.toLowerCase());
   if (!it) notFound();
+
+  const brain = hasDatabase() ? await loadBrain(it.handle).catch(() => null) : null;
+  let chatBrain: ChatBrain | null = null;
+  if (brain) {
+    const f = brain.files;
+    const s = f.stats;
+    chatBrain = {
+      version: brain.version,
+      createdAt: brain.createdAt,
+      promptTokens: brain.promptTokens,
+      sections: [...splitSections(f.mind, "mind"), ...splitSections(f.rules, "rules"), { id: "voice", title: "Style", body: stripTitle(f.voice), source: "voice" as const }],
+      stats: s
+        ? {
+            computedAt: s.computed_at,
+            callsTotal: s.calls_total,
+            callsPriced: s.calls_priced,
+            hit7d: s.horizons["7d"].hit_rate,
+            median7d: s.horizons["7d"].median_return,
+            medianHoldDays: s.median_hold_days,
+            holdPairs: s.hold_pairs,
+          }
+        : null,
+      suggestions: suggestionsFor(f.calls.map((c) => c.ticker)),
+    };
+  }
+
   return (
-    <section className="mx-auto flex min-h-[100svh] max-w-site flex-col items-center justify-center px-gutter pt-topbar text-center">
-      <ParticleSignature handle={it.handle} postsParsed={it.postsParsed} postsPerDay={it.postsPerDay} size={200} />
-      <p className="mt-8 font-mono text-xs text-muted">{it.code}</p>
-      <h1 className="mt-1 text-h2 font-medium">@{it.handle}</h1>
-      <p className="mt-3 max-w-[52ch] text-sm text-muted">
-        Unofficial AI model built from public posts. Not affiliated with @{it.handle}. Not financial advice.
-      </p>
-      <p className="mt-8 text-particle">The chat arrives in the next build step.</p>
-    </section>
+    <ChatView
+      intelligence={{ code: it.code, handle: it.handle, displayName: it.displayName, postsParsed: it.postsParsed, postsPerDay: it.postsPerDay }}
+      brain={chatBrain}
+    />
   );
 }
 
-export function generateStaticParams() {
-  return getIntelligences().map((i) => ({ handle: i.handle }));
+/** "## Section" blocks of a brain file → collapsible items in the left panel. */
+function splitSections(md: string, source: "mind" | "rules"): BrainSection[] {
+  const parts = md.split(/\n(?=##\s)/).filter((p) => /^##\s/.test(p.trim()));
+  return parts
+    .map((p, i) => {
+      const [head, ...rest] = p.trim().split("\n");
+      const title = head.replace(/^##\s*/, "").trim();
+      const body = rest.join("\n").trim();
+      return { id: `${source}-${i}`, title: source === "rules" && !/rule/i.test(title) ? `${title} rules`.replace(/ and taking profit rules$/i, " rules") : title, body, source };
+    })
+    .filter((s) => s.body && !/^no stated rule\.?$/i.test(s.body));
+}
+
+const stripTitle = (md: string) => md.replace(/^#\s.*\n+/, "").trim();
+
+/** Prompts built from this brain's own data (most-called tickers), rotated by the chat. */
+function suggestionsFor(tickers: string[]): string[] {
+  const counts = new Map<string, number>();
+  for (const t of tickers) if (t !== "CA") counts.set(t, (counts.get(t) ?? 0) + 1);
+  const top = [...counts.entries()].sort((a, b) => b[1] - a[1]).map(([t]) => t);
+  return [
+    "Who are you?",
+    top[0] ? `Would you buy $${top[0]} here?` : "Would you buy this dip?",
+    "What's your rule for taking profit?",
+    top[1] ? `Still holding $${top[1]}?` : "How long do you hold a winner?",
+    "How do you size a position?",
+    "What would make you sell everything?",
+    "What's the trade you regret most?",
+  ];
 }

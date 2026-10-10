@@ -54,7 +54,15 @@ const maxUsd = Number(flags.get("max-usd") ?? process.env.INGEST_MAX_USD ?? 15);
 /* ───────────────────────── output ───────────────────────── */
 
 const isTTY = process.stdout.isTTY;
-const line = (s: string) => (isTTY ? process.stdout.write(`\r\x1b[2K${s}`) : undefined);
+let lastLog = 0;
+/** Live progress: rewrites one line in a terminal; in CI logs, one line per minute. */
+const line = (s: string) => {
+  if (isTTY) return process.stdout.write(`\r\x1b[2K${s}`);
+  if (Date.now() - lastLog > 60_000) {
+    lastLog = Date.now();
+    console.log(s);
+  }
+};
 const done = (s: string) => (isTTY ? process.stdout.write(`\r\x1b[2K${s}\n`) : console.log(s));
 const usd = (x: number) => `$${x.toFixed(x < 1 ? 3 : 2)}`;
 const fmt = (n: number) => n.toLocaleString("en-US");
@@ -129,7 +137,8 @@ async function stepAssemble(inf: InfluencerRow, files: Omit<BrainFiles, "identit
 
 async function stepExport(inf: InfluencerRow) {
   const fresh = (await getInfluencer(db(), inf.code))!;
-  const dir = await exportBrain(db(), fresh, ROOT);
+  // II_EXPORT_ROOT lets local mock runs write somewhere other than the repo's brains/ folder.
+  const dir = await exportBrain(db(), fresh, process.env.II_EXPORT_ROOT ?? ROOT);
   done(dir ? `  ${inf.code} @${inf.handle} · exported → ${dir.replace(`${ROOT}/`, "")}` : `  ${inf.code} @${inf.handle} · no brain yet, nothing to export`);
 }
 

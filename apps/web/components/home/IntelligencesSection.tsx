@@ -10,6 +10,8 @@ export const SIGNATURE_PX = 80;
 
 type Props = {
   intelligences: Intelligence[];
+  /** latest real questions asked on the site; the marquee hides when empty */
+  questions?: { q: string; code: string }[];
   /** card signature boxes, in order — the hero clusters land on these */
   slotRef: (index: number, el: HTMLDivElement | null) => void;
   gridRef: React.Ref<HTMLUListElement>;
@@ -17,7 +19,7 @@ type Props = {
 
 /** Screen 2 — the 10 intelligences. */
 export const IntelligencesSection = forwardRef<HTMLElement, Props>(function IntelligencesSection(
-  { intelligences, slotRef, gridRef },
+  { intelligences, questions = [], slotRef, gridRef },
   ref,
 ) {
   return (
@@ -39,7 +41,7 @@ export const IntelligencesSection = forwardRef<HTMLElement, Props>(function Inte
           </AppLink>
         </p>
       </div>
-      {/* Marquee of the latest real question goes here once chats exist; hidden while there's no data. */}
+      {questions.length > 0 && <Marquee items={questions} />}
 
       <ul ref={gridRef} className="mt-8 grid grid-cols-1 gap-3 md:grid-cols-2 min-[1120px]:grid-cols-5">
         {intelligences.map((it, i) => (
@@ -94,5 +96,22 @@ function Card({ it, slotRef }: { it: Intelligence; slotRef: (el: HTMLDivElement 
         </div>
       </AppLink>
     </li>
+  );
+}
+
+/** One slow marquee: real questions people asked, and which intelligence answered. Never faked. */
+function Marquee({ items }: { items: { q: string; code: string }[] }) {
+  const row = items.map((it, i) => (
+    <span key={i} className="mx-6 shrink-0 font-mono text-xs text-muted">
+      <span className="text-particle">&ldquo;{it.q}&rdquo;</span> → {it.code}
+    </span>
+  ));
+  return (
+    <div className="relative mt-6 overflow-hidden border-y border-line py-3" aria-label="Latest questions">
+      <div className="marquee-track flex w-max">
+        {row}
+        <span aria-hidden className="flex">{row}</span>
+      </div>
+    </div>
   );
 }

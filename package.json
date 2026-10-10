@@ -18,7 +18,8 @@
     "brain:export": "tsx scripts/cli.ts export",
     "brain:build": "tsx scripts/cli.ts build",
     "brain:status": "tsx scripts/cli.ts status",
-    "test:pipeline": "tsx scripts/test-pipeline.ts"
+    "test:pipeline": "tsx scripts/test-pipeline.ts",
+    "dev:mock": "tsx scripts/dev-mock.ts"
   },
   "type": "module",
   "engines": {

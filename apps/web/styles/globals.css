@@ -162,3 +162,42 @@
 @media (prefers-reduced-motion: reduce) {
   .scroll-cue { animation: none; }
 }
+
+/* ── Chat ── */
+@keyframes ii-verdict-pop {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+.verdict-pop {
+  animation: ii-verdict-pop var(--ii-dur-base) var(--ii-ease-back) both;
+}
+/* each new word resolves from noise to solid text */
+@keyframes ii-tok {
+  from { opacity: 0; filter: blur(3px); }
+  to { opacity: 1; filter: blur(0); }
+}
+.tok {
+  animation: ii-tok var(--ii-dur-instant) linear both;
+}
+@keyframes ii-sheet-right {
+  from { transform: translateX(24px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+@keyframes ii-sheet-up {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+.sheet-in-right { animation: ii-sheet-right var(--ii-dur-slow) var(--ii-ease-out) both; }
+.sheet-in-up { animation: ii-sheet-up var(--ii-dur-slow) var(--ii-ease-out) both; }
+
+@keyframes ii-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: ii-marquee 60s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .verdict-pop, .tok, .sheet-in-right, .sheet-in-up { animation: none; }
+  .marquee-track { animation: none; }
+}

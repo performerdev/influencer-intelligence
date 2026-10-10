@@ -30,7 +30,7 @@ const smooth = (a: number, b: number, x: number) => {
  * Home screens 1–2 as one continuous stage: the fixed WebGL canvas holds the
  * "ii" while the page scrolls, then hands each of its 10 clusters to a card.
  */
-export function HomeStage({ intelligences }: { intelligences: Intelligence[] }) {
+export function HomeStage({ intelligences, questions = [] }: { intelligences: Intelligence[]; questions?: { q: string; code: string }[] }) {
   const handles = useMemo(() => intelligences.map((i) => i.handle), [intelligences]);
   const [mode, setMode] = useState<"pending" | "motion" | "reduced" | "static">("pending");
 
@@ -247,7 +247,7 @@ export function HomeStage({ intelligences }: { intelligences: Intelligence[] }) 
         )}
       </div>
       <Hero ref={heroRef} logoSlotRef={logoSlotRef} onPick={onPick} staticLogo={mode === "static"} />
-      <IntelligencesSection ref={sectionRef} gridRef={gridRef} intelligences={intelligences} slotRef={setSlot} />
+      <IntelligencesSection ref={sectionRef} gridRef={gridRef} intelligences={intelligences} questions={questions} slotRef={setSlot} />
     </>
   );
 }
