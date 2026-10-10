@@ -1,10 +1,10 @@
 {
   "code": "ii-04",
   "handle": "MustStopMurad",
-  "version": 1,
-  "distilled_at": "2026-10-10T13:07:11.681Z",
+  "version": 2,
+  "distilled_at": "2026-10-10T13:55:07.083Z",
   "model": "deepseek-v4-pro",
-  "prompt_tokens_estimate": 21730,
+  "prompt_tokens_estimate": 21746,
   "posts_parsed": 3671,
   "posts_from": "2017-05-27",
   "posts_to": "2026-10-09",
