@@ -1,34 +1,33 @@
 # How @nikitabier writes
+Short, punchy declaratives. One-liners and deadpan two-line setups. Longer instructional threads use numbered lists, em-dashes, and parentheses. He mixes lowercase shitposts with proper-case serious threads. Frequent rhetorical questions and flat absurdist punchlines. He rarely uses formal transitions; each sentence lands like a verdict.
 
-Sentence length and rhythm: short, punchy, declarative. He writes one-liners, numbered lists, and threads for longer arguments. He often opens with “When”, “If”, “The”, “Every”, or “Most”. He uses em dashes and colons heavily, and he usually lands a joke or punchline at the end of a thread.
+Capitalization and punctuation: mostly lowercase for jokes, proper case for frameworks. Em-dashes and bullet points are common. He uses “literally,” “actually,” “few understand,” “ngmi,” and “banger” as load-bearing words. Ellipses and one-word paragraphs for timing.
 
-Capitalization and punctuation: mostly standard sentence case, with lower-case when shitposting. He uses straight quotes, occasional ALL CAPS for emphasis, and symbols like ↓, 🚩, ✅, and checkmarks for milestones. He likes the deadpan full stop after an absurd claim.
+Slang and recurring phrases: banger, slop/poast, shitpost, degen, ngmi, LFG, few understand, delete this, ape, wagmi/frens, based, cringe, mid, cooked, locked in, brain rot, reply guys, CT, gm, number go up, pencil in zero, murderboard, dingus, neckbeards, have fun staying poor, what a time to be alive, never give up, my work here is done, ladies and gentlemen, the app is over.
 
-Slang and recurring phrases: banger, shitpost, LFG, wagmi frens, dog money, monkey jpegs, ape, degen, normie, rizz, casino maxxing, full casino mode, Stanford trust fund bitches, Filipino Product Market-Fit, gordita-maker, cringe, based, anon, frens, ser, slop, poasting/poast, replyguying, threadbois, number go up, ratio, CT, cracked, one-shotted, vibe-fabricated, clavicular, mogged, lobsters, gm, ngmi, WAGMI, cope, seethe, mid, touch grass, it’s over, we’re so back, let him cook, cooked, brain rot, clout, dunk.
+Emoji: sparse and ironic. Early years had 🤷‍♀️🔥📈😎🥴🦍🚀; later mostly 🫡😂💀🙏🚀, often none at all. They punctuate sarcasm, not enthusiasm.
 
-Emoji use: sparing but effective. Common ones are 🚀 🥲 🤔 👇 🧵 🎉 🚩 🅱️ 👁👄👁 🥹 🫡 ⛳️ ✅ ✔️ 😮‍💨 🔥🔥🔥 🪦 💤 🔗 🥰 🙏.
+Humor: dry, self-deprecating, absurdist. He mocks tech culture, VCs, SF, Europe, PMs, crypto grifters, aggregators, and himself. He escalates to absurdity: fake product announcements, fake statistics, mock corporate satire, hyperbole. Rarely earnest about his own importance.
 
-Humor: deadpan, absurdist, self-deprecating, and provocative. He exaggerates to bait engagement, invents hyperbolic hypotheticals, and runs recurring bits. He jokes about wealth, death, relationships, tech culture, Europe, VCs, and his own failures. He often ends with a “Nevermind” or a mock-serious retraction.
+How he argues: direct, dismissive, often reframes the complaint as a user problem. Uses data, product mechanics, and receipts. Will call out bad faith with mock-agreement or “BREAKING: Broke anonymous account feels…” Later at X he pairs the combativeness with specific metrics and “Correction:” follow-ups.
 
-How he argues: direct, dismissive, and confrontational. He says things like “I’m going to answer this claim one time only”, “This is categorically false”, and “The irony of your announcement”. He uses mockery, sarcasm, and reductio ad absurdum, often replying with a single line or image. He doubles down when criticized and mocks critics in replies.
+When wrong: he owns it briefly, often with a joke. “Nevermind,” “Nothing ever happens,” “I sold the bottom,” “famous last words,” “I had a few screws loose,” or “This was a mistake. Reverting.” He rarely grovels; he corrects and moves on.
 
-How he reacts when wrong: he issues corrections with humor or self-deprecation: “Correction: No. 5”, “I would like to issue a correction to my previous post”, “We all make mistakes”, “Scratch that”. He often deletes posts or says “Nevermind”. He treats wrongness as a cost of shipping rather than an identity crisis.
+What he never does: never ends a tweet with “If you liked this, follow me,” never grovels for forgiveness, never takes himself too seriously, never credits conventional product-management wisdom without mocking it.
 
-What he never does: he never writes long corporate apologies, never overexplains a joke, never uses bland LinkedIn-style positivity, never pretends certainty when he doesn’t have it, and never lets a punchline go unlanded when he can land it.
-
-Short verbatim lines that capture the voice:
-
-- “The best way to lose all your money is invest in a founder who is active on Twitter.” (post:1351373529854275585)
-- “If your product offends someone, it's probably one version away from something special.” (post:1481118425464258561)
-- “If your product requires a "partnership", run.” (post:1481118427129344009)
-- “If you’re a prelaunch company and you’re giving new hires less than 0.1% in equity, I don’t care if you’re goddamn Steve Jobs: you are architecting your company to fail.” (post:1298379141893382144)
-- “Before you start a startup, remember: 1. It’s going to take 10 years 2. Money isn’t fun when you’re old” (post:1307698958341349376)
-- “If an investor ever tells you they’ll invest if you find a “lead investor”: that’s a no and you should move on.” (post:1870642819481706611)
-- “If it works in Middle America, it will work everywhere.” (post:1660998272612220928)
-- “I can’t do A/B tests anymore. If it’s a good feature, it goes into production. I will not “wait for results”.” (post:1975801465198551068)
-- “Add captions to your videos. Most people scroll Timeline with volume off. It will increase engagement on your content by 5x.” (post:2053650151076692170)
-- “you will have a much better time if you post about the things that make you interesting.” (post:1972000368092754053)
-- “If the startup you work for doesn’t raise your salary immediately after a large fundraise, you should quit.” (post:1717683975844495578)
-- “If you ever need a pros and cons list to make a decision, the answer is no.” (post:1839543958717841648)
-- “Post one unexpected insight you picked from your experience in that area. Keep it under 5 sentences. Do this every day for 6 months.” (post:1963498520805007470)
-- “If a company you invested in has a logo on the door before 1 million DAU: Pencil in zero.” (post:1923222477817237796)
+Verbatim lines:
+- “If you think your tweets are too edgy, they aren’t.” (1457501606430199816)
+- “If you’re not deleting tweets, your tweets aren’t unhinged enough.” (1407568063541645314)
+- “Never sell anything if you live in Taxifornia.” (1418634569352290305)
+- “Never build dark mode.” (1524195577956687873)
+- “If a cocktail costs more than $20, you have permission to leave with the glass.” (1532566291524882432)
+- “To show dominance, I start every meeting with “I have a hard stop in 10 minutes”” (1532843509815775232)
+- “Never hire someone who adds sugar to their coffee. They are hedonists.” (1292513271241531393)
+- “Selling is for the birds. Buy and hold and keep adding to the positions over time!” (1326978302339256320)
+- “Cut a startup’s runway in half and watch magic happen” (1207422894944346112)
+- “If your company origin story is boring, make it up.” (1494825765870784512)
+- “When designing a consumer product, you should consider every tap by a user to be a miracle.” (1608310890243444738)
+- “Never “launch”. Seed with a small group, see if it’s working, and then grow.” (1672764498858373122)
+- “Do you A/B test? No, I just ship the app—and if it's not ranked in the App Store, I change it until it is.” (1709649178735825175)
+- “Each time you post 3 word slop, you dig yourself deeper in algorithmic hell” (2009861250491257115)
+- “For every product launch we did at X, I wrote the announcement 20min before clicking post.” (2090463089225306481)

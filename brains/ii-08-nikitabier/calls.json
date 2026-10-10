@@ -1,5 +1,35 @@
 [
   {
+    "date": "2017-12-01",
+    "ticker": "TSLA",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "@willium I don’t understand how any of Big Auto will catch up to Tesla. They’ve been scanning the roads &amp; collecting data for almost a d",
+    "post_id": "936663140393148416",
+    "url": "https://x.com/nikitabier/status/936663140393148416"
+  },
+  {
+    "date": "2017-12-01",
+    "ticker": "TSLA",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "They’ll need to sell the same volume of their nerdmobiles to catch up to Elon",
+    "post_id": "936667264044089345",
+    "url": "https://x.com/nikitabier/status/936667264044089345"
+  },
+  {
+    "date": "2020-05-01",
+    "ticker": "CASH",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "100% Cash. How about you?",
+    "post_id": "1256309607355445248",
+    "url": "https://x.com/nikitabier/status/1256309607355445248"
+  },
+  {
     "date": "2020-06-25",
     "ticker": "BHR",
     "chain": null,
@@ -18,6 +48,16 @@
     "quote": "Another one that is completely packed for the 4th of July: Vail Resorts $MTN",
     "post_id": "1275975083094208512",
     "url": "https://x.com/nikitabier/status/1275975083094208512"
+  },
+  {
+    "date": "2020-07-01",
+    "ticker": "FDX",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Made a 500% return on $FDX calls this morning 😋",
+    "post_id": "1278437470409981956",
+    "url": "https://x.com/nikitabier/status/1278437470409981956"
   },
   {
     "date": "2020-07-14",
@@ -40,24 +80,94 @@
     "url": "https://x.com/nikitabier/status/1282875700416876544"
   },
   {
-    "date": "2020-11-04",
-    "ticker": "UBER",
+    "date": "2020-07-20",
+    "ticker": "USD",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "If you don't believe the market moves, make sure you're not holding USD. I've moved into foreign currencies and precious metals.",
+    "post_id": "1285354291012620290",
+    "url": "https://x.com/nikitabier/status/1285354291012620290"
+  },
+  {
+    "date": "2020-08-30",
+    "ticker": "AZEK",
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "Well, that was the easiest prediction I’ve ever made. $UBER",
-    "post_id": "1323997964407173121",
-    "url": "https://x.com/nikitabier/status/1323997964407173121"
+    "quote": "$AZEK - composite wood will be in all houses by 2030",
+    "post_id": "1299926132163137537",
+    "url": "https://x.com/nikitabier/status/1299926132163137537"
   },
   {
-    "date": "2020-11-09",
+    "date": "2020-09-01",
+    "ticker": "ZM",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "@alx_sacco Just speaking the truth https://t.co/uQc1c4KIg9",
+    "post_id": "1300785749625696262",
+    "url": "https://x.com/nikitabier/status/1300785749625696262"
+  },
+  {
+    "date": "2020-09-03",
+    "ticker": "TECH",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "I started buying big on tech. Might be too early",
+    "post_id": "1301553018047873025",
+    "url": "https://x.com/nikitabier/status/1301553018047873025"
+  },
+  {
+    "date": "2020-09-04",
+    "ticker": "MAR",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "My picks: $MAR, $LUV, $HST, $JETS, $BHR",
+    "post_id": "1301887539230384128",
+    "url": "https://x.com/nikitabier/status/1301887539230384128"
+  },
+  {
+    "date": "2020-09-04",
+    "ticker": "LUV",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "My picks: $MAR, $LUV, $HST, $JETS, $BHR",
+    "post_id": "1301887539230384128",
+    "url": "https://x.com/nikitabier/status/1301887539230384128"
+  },
+  {
+    "date": "2020-09-04",
+    "ticker": "HST",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "My picks: $MAR, $LUV, $HST, $JETS, $BHR",
+    "post_id": "1301887539230384128",
+    "url": "https://x.com/nikitabier/status/1301887539230384128"
+  },
+  {
+    "date": "2020-09-04",
+    "ticker": "JETS",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "My picks: $MAR, $LUV, $HST, $JETS, $BHR",
+    "post_id": "1301887539230384128",
+    "url": "https://x.com/nikitabier/status/1301887539230384128"
+  },
+  {
+    "date": "2020-09-04",
     "ticker": "BHR",
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "That feeling when everyone calls you crazy for buying travel stocks but you double down anyway",
-    "post_id": "1325801599621427201",
-    "url": "https://x.com/nikitabier/status/1325801599621427201"
+    "quote": "My picks: $MAR, $LUV, $HST, $JETS, $BHR",
+    "post_id": "1301887539230384128",
+    "url": "https://x.com/nikitabier/status/1301887539230384128"
   },
   {
     "date": "2020-11-09",
@@ -70,6 +180,86 @@
     "url": "https://x.com/nikitabier/status/1325874502207639552"
   },
   {
+    "date": "2020-11-10",
+    "ticker": "VTV",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "Are you just jealous of my absolutely massive position in $VTV?",
+    "post_id": "1326179680064466947",
+    "url": "https://x.com/nikitabier/status/1326179680064466947"
+  },
+  {
+    "date": "2020-11-12",
+    "ticker": "PDD",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "Sold at $30 like a chump",
+    "post_id": "1326972227170910209",
+    "url": "https://x.com/nikitabier/status/1326972227170910209"
+  },
+  {
+    "date": "2020-11-24",
+    "ticker": "TSLA",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "Yes, but much more oil, airlines, hotels, industrial materials (aluminum, steel, lumber)",
+    "post_id": "1331277028822110208",
+    "url": "https://x.com/nikitabier/status/1331277028822110208"
+  },
+  {
+    "date": "2020-12-13",
+    "ticker": "LUV",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Tough entry point with most trading at their Feb 2020 levels but I’m in $LUV $MAR $XOM $HST",
+    "post_id": "1337941184971382784",
+    "url": "https://x.com/nikitabier/status/1337941184971382784"
+  },
+  {
+    "date": "2020-12-13",
+    "ticker": "MAR",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Tough entry point with most trading at their Feb 2020 levels but I’m in $LUV $MAR $XOM $HST",
+    "post_id": "1337941184971382784",
+    "url": "https://x.com/nikitabier/status/1337941184971382784"
+  },
+  {
+    "date": "2020-12-13",
+    "ticker": "XOM",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Tough entry point with most trading at their Feb 2020 levels but I’m in $LUV $MAR $XOM $HST",
+    "post_id": "1337941184971382784",
+    "url": "https://x.com/nikitabier/status/1337941184971382784"
+  },
+  {
+    "date": "2020-12-13",
+    "ticker": "HST",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Tough entry point with most trading at their Feb 2020 levels but I’m in $LUV $MAR $XOM $HST",
+    "post_id": "1337941184971382784",
+    "url": "https://x.com/nikitabier/status/1337941184971382784"
+  },
+  {
+    "date": "2021-01-08",
+    "ticker": "IBKR",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "My position in $IBKR has gone straight vertical. As rates tick up, I only see more upside.",
+    "post_id": "1347350948604071936",
+    "url": "https://x.com/nikitabier/status/1347350948604071936"
+  },
+  {
     "date": "2021-02-04",
     "ticker": "GME",
     "chain": null,
@@ -80,8 +270,18 @@
     "url": "https://x.com/nikitabier/status/1357359783825735680"
   },
   {
-    "date": "2021-02-06",
+    "date": "2021-02-04",
     "ticker": "GME",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "It was a wild ride. I was down $75k at one point but I held the line.",
+    "post_id": "1357366864184152065",
+    "url": "https://x.com/nikitabier/status/1357366864184152065"
+  },
+  {
+    "date": "2021-02-06",
+    "ticker": "SNAP",
     "chain": null,
     "address": null,
     "direction": "sell",
@@ -90,14 +290,84 @@
     "url": "https://x.com/nikitabier/status/1358164846127185921"
   },
   {
-    "date": "2021-02-12",
-    "ticker": "TWTR",
+    "date": "2021-02-06",
+    "ticker": "SNAP",
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "Twitter is up 58% since the Trump ban 28 days ago. $TWTR",
-    "post_id": "1360323387604623363",
-    "url": "https://x.com/nikitabier/status/1360323387604623363"
+    "quote": "I doubled down on the 2nd dip after the earnings call.",
+    "post_id": "1358170845038968832",
+    "url": "https://x.com/nikitabier/status/1358170845038968832"
+  },
+  {
+    "date": "2021-02-12",
+    "ticker": "SNAP",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Ok I’m in on April puts",
+    "post_id": "1360253477805453312",
+    "url": "https://x.com/nikitabier/status/1360253477805453312"
+  },
+  {
+    "date": "2021-02-20",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "5.5% total net worth at $12,500/coin cost basis",
+    "post_id": "1363226246411292672",
+    "url": "https://x.com/nikitabier/status/1363226246411292672"
+  },
+  {
+    "date": "2021-03-02",
+    "ticker": "OIL",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Oil will be the best performing investment of the next 3 years",
+    "post_id": "1366776703125626881",
+    "url": "https://x.com/nikitabier/status/1366776703125626881"
+  },
+  {
+    "date": "2021-03-29",
+    "ticker": "BITCLOUT",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "The ship has sailed. Have fun staying poor",
+    "post_id": "1376380300666626053",
+    "url": "https://x.com/nikitabier/status/1376380300666626053"
+  },
+  {
+    "date": "2021-05-06",
+    "ticker": "RDFN",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Just did myself. Trading at 6x sales. Market is broken.",
+    "post_id": "1390335338774556678",
+    "url": "https://x.com/nikitabier/status/1390335338774556678"
+  },
+  {
+    "date": "2021-05-07",
+    "ticker": "RDFN",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "@nachkari $RDFN $ETSY and any growth name trading at &lt;10x sales, which is many as of today",
+    "post_id": "1390495286842204160",
+    "url": "https://x.com/nikitabier/status/1390495286842204160"
+  },
+  {
+    "date": "2021-05-07",
+    "ticker": "ETSY",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "@nachkari $RDFN $ETSY and any growth name trading at &lt;10x sales, which is many as of today",
+    "post_id": "1390495286842204160",
+    "url": "https://x.com/nikitabier/status/1390495286842204160"
   },
   {
     "date": "2021-05-08",
@@ -120,6 +390,46 @@
     "url": "https://x.com/nikitabier/status/1391737704832847877"
   },
   {
+    "date": "2021-06-09",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "I sold the bottom, so everyone should be good to go from here",
+    "post_id": "1402671831178366981",
+    "url": "https://x.com/nikitabier/status/1402671831178366981"
+  },
+  {
+    "date": "2021-06-17",
+    "ticker": "SLS",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Just put a deposit down on one. Inspection is tomorrow.",
+    "post_id": "1405656050901012481",
+    "url": "https://x.com/nikitabier/status/1405656050901012481"
+  },
+  {
+    "date": "2021-07-17",
+    "ticker": "SNAP",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "When that cohort ages up, Snap will be $1T",
+    "post_id": "1416412972059041794",
+    "url": "https://x.com/nikitabier/status/1416412972059041794"
+  },
+  {
+    "date": "2021-07-23",
+    "ticker": "SNAP",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "Why would you sell and take the tax hit? Just sell calls",
+    "post_id": "1418613233150169091",
+    "url": "https://x.com/nikitabier/status/1418613233150169091"
+  },
+  {
     "date": "2021-08-06",
     "ticker": "SNAP",
     "chain": null,
@@ -130,14 +440,164 @@
     "url": "https://x.com/nikitabier/status/1423665248272224260"
   },
   {
-    "date": "2022-01-24",
-    "ticker": "BTC",
+    "date": "2021-09-27",
+    "ticker": "GWAGON",
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "i bought the dip 🥴",
-    "post_id": "1485679049011712002",
-    "url": "https://x.com/nikitabier/status/1485679049011712002"
+    "quote": "got mine for $35k over sticker. not going to lose a dollar on it.",
+    "post_id": "1442612823515824130",
+    "url": "https://x.com/nikitabier/status/1442612823515824130"
+  },
+  {
+    "date": "2021-09-28",
+    "ticker": "GWAGON",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "After making 50% in a month of purchase on mine, I’m wondering why I even buy stocks.",
+    "post_id": "1442877380133994502",
+    "url": "https://x.com/nikitabier/status/1442877380133994502"
+  },
+  {
+    "date": "2021-10-15",
+    "ticker": "WEBAPP",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "Also for sale - if anyone wants to monetize a content/media site with 6.5 million monthly pageviews.",
+    "post_id": "1448823941632446464",
+    "url": "https://x.com/nikitabier/status/1448823941632446464"
+  },
+  {
+    "date": "2021-10-15",
+    "ticker": "NFTS",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "I think we can call this the top for NFTs.",
+    "post_id": "1449086969217052672",
+    "url": "https://x.com/nikitabier/status/1449086969217052672"
+  },
+  {
+    "date": "2021-10-20",
+    "ticker": "GWAGON",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "This was my best performing position for the quarter.",
+    "post_id": "1450921519496896515",
+    "url": "https://x.com/nikitabier/status/1450921519496896515"
+  },
+  {
+    "date": "2021-11-03",
+    "ticker": "COIN",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Keep buying. At a $16B market cap, this is a steal for the transaction platform for the largest sector of the economy.",
+    "post_id": "1455975080719052805",
+    "url": "https://x.com/nikitabier/status/1455975080719052805"
+  },
+  {
+    "date": "2021-11-04",
+    "ticker": "BLDR",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "$BLDR $AA $TREX $TCS",
+    "post_id": "1456343712477245440",
+    "url": "https://x.com/nikitabier/status/1456343712477245440"
+  },
+  {
+    "date": "2021-11-04",
+    "ticker": "AA",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "$BLDR $AA $TREX $TCS",
+    "post_id": "1456343712477245440",
+    "url": "https://x.com/nikitabier/status/1456343712477245440"
+  },
+  {
+    "date": "2021-11-04",
+    "ticker": "TREX",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "$BLDR $AA $TREX $TCS",
+    "post_id": "1456343712477245440",
+    "url": "https://x.com/nikitabier/status/1456343712477245440"
+  },
+  {
+    "date": "2021-11-04",
+    "ticker": "TCS",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "$BLDR $AA $TREX $TCS",
+    "post_id": "1456343712477245440",
+    "url": "https://x.com/nikitabier/status/1456343712477245440"
+  },
+  {
+    "date": "2021-11-05",
+    "ticker": "COMMODITIES",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "Stop spreading FUD. Half my portfolio is commodities.",
+    "post_id": "1456734785594744832",
+    "url": "https://x.com/nikitabier/status/1456734785594744832"
+  },
+  {
+    "date": "2021-11-12",
+    "ticker": "ETH",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "My bid is 10 ETH if you’re down",
+    "post_id": "1458949516749541376",
+    "url": "https://x.com/nikitabier/status/1458949516749541376"
+  },
+  {
+    "date": "2021-11-30",
+    "ticker": "ETH",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "no, that was me. 20 ETH and it’s yours.",
+    "post_id": "1465760987668119553",
+    "url": "https://x.com/nikitabier/status/1465760987668119553"
+  },
+  {
+    "date": "2021-12-26",
+    "ticker": "SHAAN",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "@austin_rief @ShaanVP @Replit @deel @XavierHelgesen Only direction is up",
+    "post_id": "1475171833573826560",
+    "url": "https://x.com/nikitabier/status/1475171833573826560"
+  },
+  {
+    "date": "2022-01-05",
+    "ticker": "STOCKS",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Ladies and gentleman, what stocks are we buying right now?",
+    "post_id": "1478814590410444801",
+    "url": "https://x.com/nikitabier/status/1478814590410444801"
+  },
+  {
+    "date": "2022-01-08",
+    "ticker": "CRYPTO",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "RIP Crypto 2009-2022",
+    "post_id": "1479885806265274369",
+    "url": "https://x.com/nikitabier/status/1479885806265274369"
   },
   {
     "date": "2022-02-03",
@@ -160,6 +620,16 @@
     "url": "https://x.com/nikitabier/status/1489361543816880130"
   },
   {
+    "date": "2022-05-12",
+    "ticker": "ZROZ",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Sold all my crypto and replaced it with bonds on Monday $ZROZ",
+    "post_id": "1524825700519202816",
+    "url": "https://x.com/nikitabier/status/1524825700519202816"
+  },
+  {
     "date": "2022-06-13",
     "ticker": "ETH",
     "chain": null,
@@ -168,6 +638,26 @@
     "quote": "Last chance to buy ETH above $1300",
     "post_id": "1536193160337977344",
     "url": "https://x.com/nikitabier/status/1536193160337977344"
+  },
+  {
+    "date": "2022-07-09",
+    "ticker": "MINT",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "$MINT - short duration bond fund that is always range-bound between $98-102. Will appreciate as the fed loosens as well.",
+    "post_id": "1545795002541809664",
+    "url": "https://x.com/nikitabier/status/1545795002541809664"
+  },
+  {
+    "date": "2022-07-11",
+    "ticker": "ZROZ",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "$ZROZ rates can only go down from here",
+    "post_id": "1546318337491161090",
+    "url": "https://x.com/nikitabier/status/1546318337491161090"
   },
   {
     "date": "2022-10-27",
@@ -180,14 +670,174 @@
     "url": "https://x.com/nikitabier/status/1585670177495973904"
   },
   {
-    "date": "2022-10-28",
-    "ticker": "SNAP",
+    "date": "2022-12-10",
+    "ticker": "ZILLOW",
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "Snapchat is easily the most undervalued social networking app. Literally one feature away away from 10x revenue: A girl viewed your story 3 times. $1.99 to reve",
-    "post_id": "1586029351442653186",
-    "url": "https://x.com/nikitabier/status/1586029351442653186"
+    "quote": "I told everyone to invest in Zillow at ATH.",
+    "post_id": "1601651520671428609",
+    "url": "https://x.com/nikitabier/status/1601651520671428609"
+  },
+  {
+    "date": "2022-12-20",
+    "ticker": "GME",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "The squeeze has not yet been squozed",
+    "post_id": "1605017112002453504",
+    "url": "https://x.com/nikitabier/status/1605017112002453504"
+  },
+  {
+    "date": "2023-02-14",
+    "ticker": "BEREAL",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "Sell now before it’s too late",
+    "post_id": "1625405269684658178",
+    "url": "https://x.com/nikitabier/status/1625405269684658178"
+  },
+  {
+    "date": "2023-05-13",
+    "ticker": "SWYXX",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Just buy $SWYXX if you don’t want to take on duration risk (and $SCAXX for CA).",
+    "post_id": "1657468174416195585",
+    "url": "https://x.com/nikitabier/status/1657468174416195585"
+  },
+  {
+    "date": "2023-05-13",
+    "ticker": "NCA",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Long duration would be $NCA or something.",
+    "post_id": "1657500173633724419",
+    "url": "https://x.com/nikitabier/status/1657500173633724419"
+  },
+  {
+    "date": "2023-06-16",
+    "ticker": "NVDA",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "Went short on NVDA at the close, pray for me",
+    "post_id": "1669556388232585217",
+    "url": "https://x.com/nikitabier/status/1669556388232585217"
+  },
+  {
+    "date": "2023-06-16",
+    "ticker": "NVDA",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "Sell covered calls. Implied volatility is insane on NVDA; good premium on them.",
+    "post_id": "1669558010144849920",
+    "url": "https://x.com/nikitabier/status/1669558010144849920"
+  },
+  {
+    "date": "2023-07-18",
+    "ticker": "BILS",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Put it in $BILS — it’s exempt from state taxes and yield is 5.39%.",
+    "post_id": "1681339293892218880",
+    "url": "https://x.com/nikitabier/status/1681339293892218880"
+  },
+  {
+    "date": "2023-10-03",
+    "ticker": "NCA",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Many unlevered CEFs like $NCA and $NXC are trading at a 52-week low with a tax equivalent yield of 8.24%.",
+    "post_id": "1709224311771234713",
+    "url": "https://x.com/nikitabier/status/1709224311771234713"
+  },
+  {
+    "date": "2023-10-03",
+    "ticker": "NXC",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Many unlevered CEFs like $NCA and $NXC are trading at a 52-week low with a tax equivalent yield of 8.24%.",
+    "post_id": "1709224311771234713",
+    "url": "https://x.com/nikitabier/status/1709224311771234713"
+  },
+  {
+    "date": "2023-10-24",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "40% munis, 40% treasuries, 20% bitcoin",
+    "post_id": "1716809832169140331",
+    "url": "https://x.com/nikitabier/status/1716809832169140331"
+  },
+  {
+    "date": "2023-10-24",
+    "ticker": "BMN",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Take a look at $BMN. Around 5.1% yield, exempt from federal, and trading at a big discount.",
+    "post_id": "1716815959531376746",
+    "url": "https://x.com/nikitabier/status/1716815959531376746"
+  },
+  {
+    "date": "2023-11-14",
+    "ticker": "ZROZ",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "$ZROZ, $TLT, $BMN, $NCA, $NXC",
+    "post_id": "1724434312555049439",
+    "url": "https://x.com/nikitabier/status/1724434312555049439"
+  },
+  {
+    "date": "2023-11-14",
+    "ticker": "TLT",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "$ZROZ, $TLT, $BMN, $NCA, $NXC",
+    "post_id": "1724434312555049439",
+    "url": "https://x.com/nikitabier/status/1724434312555049439"
+  },
+  {
+    "date": "2023-11-14",
+    "ticker": "BMN",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "$ZROZ, $TLT, $BMN, $NCA, $NXC",
+    "post_id": "1724434312555049439",
+    "url": "https://x.com/nikitabier/status/1724434312555049439"
+  },
+  {
+    "date": "2023-11-14",
+    "ticker": "NCA",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "$ZROZ, $TLT, $BMN, $NCA, $NXC",
+    "post_id": "1724434312555049439",
+    "url": "https://x.com/nikitabier/status/1724434312555049439"
+  },
+  {
+    "date": "2023-11-14",
+    "ticker": "NXC",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "$ZROZ, $TLT, $BMN, $NCA, $NXC",
+    "post_id": "1724434312555049439",
+    "url": "https://x.com/nikitabier/status/1724434312555049439"
   },
   {
     "date": "2023-12-04",
@@ -201,43 +851,13 @@
   },
   {
     "date": "2023-12-04",
-    "ticker": "TECH",
-    "chain": null,
-    "address": null,
-    "direction": "sell",
-    "quote": "Sold covered calls on my tech positions",
-    "post_id": "1731707537609678891",
-    "url": "https://x.com/nikitabier/status/1731707537609678891"
-  },
-  {
-    "date": "2023-12-04",
-    "ticker": "TREASURIES",
+    "ticker": "IAT",
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "Bought long duration treasuries and muni bonds",
-    "post_id": "1731707537609678891",
-    "url": "https://x.com/nikitabier/status/1731707537609678891"
-  },
-  {
-    "date": "2023-12-04",
-    "ticker": "MREITS",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "Bought Mortgage REITs",
-    "post_id": "1731707537609678891",
-    "url": "https://x.com/nikitabier/status/1731707537609678891"
-  },
-  {
-    "date": "2023-12-04",
-    "ticker": "CONSTRUCTION",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "Bought construction material stocks",
-    "post_id": "1731707537609678891",
-    "url": "https://x.com/nikitabier/status/1731707537609678891"
+    "quote": "Oh and bought regional bank ETFs.",
+    "post_id": "1731711028415582264",
+    "url": "https://x.com/nikitabier/status/1731711028415582264"
   },
   {
     "date": "2023-12-04",
@@ -250,74 +870,244 @@
     "url": "https://x.com/nikitabier/status/1731808931536626010"
   },
   {
-    "date": "2024-06-25",
-    "ticker": "RIVN",
+    "date": "2023-12-08",
+    "ticker": "SHITCOINS",
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "Some guy bought Rivian calls this morning that expire on Friday for 12 cents each—and they're now worth $5.30. He made $2 million in 5 hours.",
-    "post_id": "1805717030643097643",
-    "url": "https://x.com/nikitabier/status/1805717030643097643"
+    "quote": "When I started seeing monkey avatars tweeting again, I bought 10 random shitcoins and they’re all up 100%",
+    "post_id": "1733145004707553545",
+    "url": "https://x.com/nikitabier/status/1733145004707553545"
   },
   {
-    "date": "2024-08-31",
-    "ticker": "NVDA",
+    "date": "2023-12-13",
+    "ticker": "SOFR",
     "chain": null,
     "address": null,
-    "direction": "sell",
-    "quote": "My G Wagon was repossessed this weekend (NVDA call options) so I had to downgrade to the Mini G Wagon.",
-    "post_id": "1829939603727663392",
-    "url": "https://x.com/nikitabier/status/1829939603727663392"
+    "direction": "buy",
+    "quote": "Coming along for the ride",
+    "post_id": "1735081288422342817",
+    "url": "https://x.com/nikitabier/status/1735081288422342817"
   },
   {
-    "date": "2024-12-09",
+    "date": "2023-12-26",
+    "ticker": "IAT",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Yes, but as an ETF ($IAT) since I don’t know enough about the ones he listed.",
+    "post_id": "1739763368003838283",
+    "url": "https://x.com/nikitabier/status/1739763368003838283"
+  },
+  {
+    "date": "2023-12-30",
+    "ticker": "TJX",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "TJ Maxx is my favorite store and has been the largest position in my portfolio for 5 years.",
+    "post_id": "1741162883084607627",
+    "url": "https://x.com/nikitabier/status/1741162883084607627"
+  },
+  {
+    "date": "2024-01-10",
     "ticker": "BTC",
     "chain": null,
     "address": null,
-    "direction": "sell",
-    "quote": "Since Bitcoin is going to zero, who is making Quantum Coin?",
-    "post_id": "1866243676860461301",
-    "url": "https://x.com/nikitabier/status/1866243676860461301"
+    "direction": "hold",
+    "quote": "Because I can borrow against it at my rock bottom margin rate and also sell covered calls against it",
+    "post_id": "1745176018804170885",
+    "url": "https://x.com/nikitabier/status/1745176018804170885"
   },
   {
-    "date": "2024-12-28",
-    "ticker": "XAI",
+    "date": "2024-02-21",
+    "ticker": "NVDA",
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "xAI — After advising them for 6 months and realizing them winning was inevitable",
-    "post_id": "1873093932353212596",
-    "url": "https://x.com/nikitabier/status/1873093932353212596"
+    "quote": "Last chance to buy NVDA over $600",
+    "post_id": "1760409700875583721",
+    "url": "https://x.com/nikitabier/status/1760409700875583721"
   },
   {
-    "date": "2025-02-02",
+    "date": "2024-03-03",
+    "ticker": "DOGWIFHAT",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "I have made more on meme coins this week than 3 months of salary. Top signal.",
+    "post_id": "1764431294975369258",
+    "url": "https://x.com/nikitabier/status/1764431294975369258"
+  },
+  {
+    "date": "2024-03-29",
+    "ticker": "DITHER",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "It’s literally in my Solana wallet",
+    "post_id": "1773531112649675122",
+    "url": "https://x.com/nikitabier/status/1773531112649675122"
+  },
+  {
+    "date": "2024-03-31",
     "ticker": "CA",
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "Ladies and gentlemen, the moment you’ve been waiting for: The Contract Address ⬇️",
-    "post_id": "1886100287514914916",
-    "url": "https://x.com/nikitabier/status/1886100287514914916"
+    "quote": "This might be the stupidest way I’ve ever made money: +716% return in 72 hours",
+    "post_id": "1774504596313903324",
+    "url": "https://x.com/nikitabier/status/1774504596313903324"
   },
   {
-    "date": "2025-03-25",
-    "ticker": "SOL",
+    "date": "2025-04-09",
+    "ticker": "TQQQ",
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "Meme coin mania has put Phantom wallets with Solana on millions of phones—providing a source of liquidity in consumer-grade packaging",
-    "post_id": "1904595238871572965",
-    "url": "https://x.com/nikitabier/status/1904595238871572965"
+    "quote": "I bought 450 TQQQ calls and 30 /ES future contracts in the morning. Closed out both (around a $400k gain).",
+    "post_id": "1910101429425000828",
+    "url": "https://x.com/nikitabier/status/1910101429425000828"
   },
   {
-    "date": "2025-03-25",
-    "ticker": "SOL",
+    "date": "2025-04-09",
+    "ticker": "ES",
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "So today I’m joining @Solana as an advisor to help select companies launch & grow their apps.",
-    "post_id": "1904595240289284404",
-    "url": "https://x.com/nikitabier/status/1904595240289284404"
+    "quote": "I bought 450 TQQQ calls and 30 /ES future contracts in the morning. Closed out both (around a $400k gain).",
+    "post_id": "1910101429425000828",
+    "url": "https://x.com/nikitabier/status/1910101429425000828"
+  },
+  {
+    "date": "2025-04-10",
+    "ticker": "SPX",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "I cancelled all my work for the week. Went 30x long yesterday morning.",
+    "post_id": "1910313162886217768",
+    "url": "https://x.com/nikitabier/status/1910313162886217768"
+  },
+  {
+    "date": "2025-04-10",
+    "ticker": "TQQQ",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "I closed most of it out: TQQQ and /ES futures (1 day hold things).",
+    "post_id": "1910314726124376454",
+    "url": "https://x.com/nikitabier/status/1910314726124376454"
+  },
+  {
+    "date": "2025-04-10",
+    "ticker": "ES",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "I closed most of it out: TQQQ and /ES futures (1 day hold things).",
+    "post_id": "1910314726124376454",
+    "url": "https://x.com/nikitabier/status/1910314726124376454"
+  },
+  {
+    "date": "2025-04-10",
+    "ticker": "UI",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "But I did bottom-tick a few long term holds (UI, HOOD, and VOO).",
+    "post_id": "1910314726124376454",
+    "url": "https://x.com/nikitabier/status/1910314726124376454"
+  },
+  {
+    "date": "2025-04-10",
+    "ticker": "HOOD",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "But I did bottom-tick a few long term holds (UI, HOOD, and VOO).",
+    "post_id": "1910314726124376454",
+    "url": "https://x.com/nikitabier/status/1910314726124376454"
+  },
+  {
+    "date": "2025-04-10",
+    "ticker": "VOO",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "But I did bottom-tick a few long term holds (UI, HOOD, and VOO).",
+    "post_id": "1910314726124376454",
+    "url": "https://x.com/nikitabier/status/1910314726124376454"
+  },
+  {
+    "date": "2025-04-12",
+    "ticker": "SPX",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "No, I closed out $1.4 million in gains this week on 60x leverage on SPX. Zero insider knowledge.",
+    "post_id": "1911107318063796490",
+    "url": "https://x.com/nikitabier/status/1911107318063796490"
+  },
+  {
+    "date": "2025-05-03",
+    "ticker": "CASH",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "Went to 80% cash.",
+    "post_id": "1918678565840638354",
+    "url": "https://x.com/nikitabier/status/1918678565840638354"
+  },
+  {
+    "date": "2025-05-09",
+    "ticker": "PUTS",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "Andy when are my puts supposed to go green?",
+    "post_id": "1920935896624300397",
+    "url": "https://x.com/nikitabier/status/1920935896624300397"
+  },
+  {
+    "date": "2026-01-11",
+    "ticker": "CT",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "My bags are literally in my bio",
+    "post_id": "2010388073398616101",
+    "url": "https://x.com/nikitabier/status/2010388073398616101"
+  },
+  {
+    "date": "2026-02-14",
+    "ticker": "XLB",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "My full port into $XLB is untouched by AI disruption narrative. I am a raw materials mogul.",
+    "post_id": "2022541499326697541",
+    "url": "https://x.com/nikitabier/status/2022541499326697541"
+  },
+  {
+    "date": "2026-03-01",
+    "ticker": "CRYPTO",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Sorry for the bluntness, but you’re a moron. This is bullish.",
+    "post_id": "2028200598399824211",
+    "url": "https://x.com/nikitabier/status/2028200598399824211"
+  },
+  {
+    "date": "2026-04-14",
+    "ticker": "CRYPTO",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Crypto has had a rough year. Maybe we should launch something to fix it.",
+    "post_id": "2043893779552448735",
+    "url": "https://x.com/nikitabier/status/2043893779552448735"
   },
   {
     "date": "2026-08-19",
@@ -328,5 +1118,35 @@
     "quote": "With cancer vaccines now being discovered with AI ($MRNA), it seems that the US government might actually grow its way out of its budget deficit.",
     "post_id": "2090215623041462344",
     "url": "https://x.com/nikitabier/status/2090215623041462344"
+  },
+  {
+    "date": "2026-08-25",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "Bitcoin, gold, commodities, and natural resources",
+    "post_id": "2092090439402659987",
+    "url": "https://x.com/nikitabier/status/2092090439402659987"
+  },
+  {
+    "date": "2026-08-25",
+    "ticker": "SPCX",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "I don't see this why is news: it's already available on the $SPCX ticker",
+    "post_id": "2092357993560252908",
+    "url": "https://x.com/nikitabier/status/2092357993560252908"
+  },
+  {
+    "date": "2026-09-09",
+    "ticker": "AAPL",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "I’m buying it. GFY Apple.",
+    "post_id": "2097748652337066266",
+    "url": "https://x.com/nikitabier/status/2097748652337066266"
   }
 ]
