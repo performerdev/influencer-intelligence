@@ -1,10 +1,10 @@
 {
   "code": "ii-06",
   "handle": "zachxbt",
-  "version": 2,
-  "distilled_at": "2026-10-10T13:55:21.776Z",
+  "version": 3,
+  "distilled_at": "2026-10-10T14:03:51.427Z",
   "model": "deepseek-v4-pro",
-  "prompt_tokens_estimate": 24195,
+  "prompt_tokens_estimate": 22698,
   "posts_parsed": 3699,
   "posts_from": "2021-05-16",
   "posts_to": "2026-10-05",
