@@ -7,25 +7,36 @@
   ],
   "horizons": {
     "1d": {
-      "n": 4,
-      "hit_rate": 1,
-      "mean_return": 0.0205,
-      "median_return": 0.0238
+      "n": 15,
+      "hit_rate": 0.7333,
+      "mean_return": 0.0418,
+      "median_return": 0.0239
     },
     "7d": {
-      "n": 4,
-      "hit_rate": 1,
-      "mean_return": 0.07,
-      "median_return": 0.0689
+      "n": 15,
+      "hit_rate": 0.4667,
+      "mean_return": 0.0707,
+      "median_return": -0.0169
     },
     "30d": {
-      "n": 4,
-      "hit_rate": 0.5,
-      "mean_return": 0.0947,
-      "median_return": 0.1359
+      "n": 15,
+      "hit_rate": 0.5333,
+      "mean_return": 0.3482,
+      "median_return": 0.1525
     }
   },
   "per_call": [
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "UST",
+      "post_id": "1523636175583727616",
+      "price_id": null,
+      "called_at": "2022-05-09T12:09:06.000Z",
+      "direction": "sell",
+      "price_at_call": null
+    },
     {
       "r_1d": null,
       "r_7d": null,
@@ -38,6 +49,39 @@
       "price_at_call": null
     },
     {
+      "r_1d": -0.0205,
+      "r_7d": 0.0105,
+      "r_30d": -0.2757,
+      "ticker": "ETH",
+      "post_id": "1586357788934287360",
+      "price_id": "coingecko:ethereum",
+      "called_at": "2022-10-29T14:02:24.000Z",
+      "direction": "buy",
+      "price_at_call": 1618.4
+    },
+    {
+      "r_1d": 0.0045,
+      "r_7d": -0.0259,
+      "r_30d": 0.2185,
+      "ticker": "BTC",
+      "post_id": "1586357788934287360",
+      "price_id": "coingecko:bitcoin",
+      "called_at": "2022-10-29T14:02:24.000Z",
+      "direction": "sell",
+      "price_at_call": 20733
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "WYNN",
+      "post_id": "1746702207905309020",
+      "price_id": null,
+      "called_at": "2024-01-15T01:13:53.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
@@ -45,7 +89,18 @@
       "post_id": "1746706662017188018",
       "price_id": null,
       "called_at": "2024-01-15T01:31:35.000Z",
-      "direction": "sell",
+      "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "AF",
+      "post_id": "1748478268867502281",
+      "price_id": null,
+      "called_at": "2024-01-19T22:51:19.000Z",
+      "direction": "buy",
       "price_at_call": null
     },
     {
@@ -53,11 +108,143 @@
       "r_7d": null,
       "r_30d": null,
       "ticker": "ROSE",
-      "post_id": "1758658643925553531",
+      "post_id": "1758664605491191857",
       "price_id": null,
-      "called_at": "2024-02-17T01:04:29.000Z",
+      "called_at": "2024-02-17T01:28:11.000Z",
       "direction": "buy",
       "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ROSE",
+      "post_id": "1758935932823019818",
+      "price_id": null,
+      "called_at": "2024-02-17T19:26:20.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "TRENCH",
+      "post_id": "1758935932823019818",
+      "price_id": null,
+      "called_at": "2024-02-17T19:26:20.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "DZHV",
+      "post_id": "1762883369988505918",
+      "price_id": null,
+      "called_at": "2024-02-28T16:52:02.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "REMILIO",
+      "post_id": "1764736547016818768",
+      "price_id": null,
+      "called_at": "2024-03-04T19:35:54.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "KALIMBO",
+      "post_id": "1767287931427860643",
+      "price_id": null,
+      "called_at": "2024-03-11T20:34:12.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "SNIFF",
+      "post_id": "1767287931427860643",
+      "price_id": null,
+      "called_at": "2024-03-11T20:34:12.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "SNIFF",
+      "post_id": "1767289626920652843",
+      "price_id": null,
+      "called_at": "2024-03-11T20:40:56.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "CA",
+      "post_id": "1767957057792102585",
+      "price_id": null,
+      "called_at": "2024-03-13T16:53:04.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "PUSSYINBIO",
+      "post_id": "1769683950551630073",
+      "price_id": null,
+      "called_at": "2024-03-18T11:15:07.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "PUMP",
+      "post_id": "1770873007184941546",
+      "price_id": null,
+      "called_at": "2024-03-21T18:00:00.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": -0.0139,
+      "r_7d": -0.0404,
+      "r_30d": -0.2362,
+      "ticker": "SOL",
+      "post_id": "1772779684654113122",
+      "price_id": "coingecko:solana",
+      "called_at": "2024-03-27T00:16:28.000Z",
+      "direction": "buy",
+      "price_at_call": 188.94
+    },
+    {
+      "r_1d": 0.0281,
+      "r_7d": -0.0169,
+      "r_30d": 0.174,
+      "ticker": "SOL",
+      "post_id": "1781376580624719937",
+      "price_id": "coingecko:solana",
+      "called_at": "2024-04-19T17:37:27.000Z",
+      "direction": "buy",
+      "price_at_call": 145.6
     },
     {
       "r_1d": null,
@@ -74,10 +261,362 @@
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
-      "ticker": "ALON",
-      "post_id": "1882561883007521193",
+      "ticker": "MOTHER",
+      "post_id": "1796956472275877985",
       "price_id": null,
-      "called_at": "2025-01-23T22:51:43.000Z",
+      "called_at": "2024-06-01T17:26:23.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MOTHER",
+      "post_id": "1799807198601879673",
+      "price_id": null,
+      "called_at": "2024-06-09T14:14:09.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "BODEN",
+      "post_id": "1815086511332987117",
+      "price_id": null,
+      "called_at": "2024-07-21T18:08:41.000Z",
+      "direction": "sell",
+      "price_at_call": null
+    },
+    {
+      "r_1d": 0.0125,
+      "r_7d": 0.0835,
+      "r_30d": 0.1525,
+      "ticker": "SOL",
+      "post_id": "1832101103724548592",
+      "price_id": "coingecko:solana",
+      "called_at": "2024-09-06T16:58:36.000Z",
+      "direction": "buy",
+      "price_at_call": 126.06
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MICHI",
+      "post_id": "1834632953235718614",
+      "price_id": null,
+      "called_at": "2024-09-13T16:39:16.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MICHI",
+      "post_id": "1837980394957762931",
+      "price_id": null,
+      "called_at": "2024-09-22T22:20:48.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "WDOG",
+      "post_id": "1837980394957762931",
+      "price_id": null,
+      "called_at": "2024-09-22T22:20:48.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MICHI",
+      "post_id": "1844130011575620033",
+      "price_id": null,
+      "called_at": "2024-10-09T21:37:11.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MICHI",
+      "post_id": "1844131805974396978",
+      "price_id": null,
+      "called_at": "2024-10-09T21:44:19.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "BILLY",
+      "post_id": "1844131805974396978",
+      "price_id": null,
+      "called_at": "2024-10-09T21:44:19.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "FWOG",
+      "post_id": "1844131805974396978",
+      "price_id": null,
+      "called_at": "2024-10-09T21:44:19.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "SCF",
+      "post_id": "1844131805974396978",
+      "price_id": null,
+      "called_at": "2024-10-09T21:44:19.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "SIGMA",
+      "post_id": "1844131805974396978",
+      "price_id": null,
+      "called_at": "2024-10-09T21:44:19.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "SELFIE",
+      "post_id": "1844131805974396978",
+      "price_id": null,
+      "called_at": "2024-10-09T21:44:19.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "PUMP",
+      "post_id": "1844423536242475284",
+      "price_id": null,
+      "called_at": "2024-10-10T17:03:33.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "PUMP",
+      "post_id": "1853522586732310671",
+      "price_id": null,
+      "called_at": "2024-11-04T19:39:56.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "PUMP",
+      "post_id": "1853528300355731471",
+      "price_id": null,
+      "called_at": "2024-11-04T20:02:38.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "PUMP",
+      "post_id": "1853528681307676856",
+      "price_id": null,
+      "called_at": "2024-11-04T20:04:09.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "PUMP",
+      "post_id": "1853543202424291399",
+      "price_id": null,
+      "called_at": "2024-11-04T21:01:51.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "PUMP",
+      "post_id": "1855779120703246744",
+      "price_id": null,
+      "called_at": "2024-11-11T01:06:35.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "FUJI",
+      "post_id": "1855780019143905786",
+      "price_id": null,
+      "called_at": "2024-11-11T01:10:09.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": 0.3923,
+      "r_7d": 0.2231,
+      "r_30d": -0.0615,
+      "ticker": "PNUT",
+      "post_id": "1856655267968008620",
+      "price_id": "coingecko:peanut-the-squirrel",
+      "called_at": "2024-11-13T11:08:05.000Z",
+      "direction": "buy",
+      "price_at_call": 1.3
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "PUMP",
+      "post_id": "1856872519757623759",
+      "price_id": null,
+      "called_at": "2024-11-14T01:31:22.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "PUMP",
+      "post_id": "1857189121120493581",
+      "price_id": null,
+      "called_at": "2024-11-14T22:29:26.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "PUMP",
+      "post_id": "1858302637931631056",
+      "price_id": null,
+      "called_at": "2024-11-18T00:14:09.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "CUPSEY",
+      "post_id": "1858954678219776231",
+      "price_id": null,
+      "called_at": "2024-11-19T19:25:07.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": -0.1603,
+      "r_7d": -0.3684,
+      "r_30d": 2.2724,
+      "ticker": "FARTCOIN",
+      "post_id": "1860800453144891615",
+      "price_id": "coingecko:fartcoin",
+      "called_at": "2024-11-24T21:39:34.000Z",
+      "direction": "buy",
+      "price_at_call": 0.34837
+    },
+    {
+      "r_1d": 0.1339,
+      "r_7d": 1.5584,
+      "r_30d": 2.5441,
+      "ticker": "FARTCOIN",
+      "post_id": "1865883523262886144",
+      "price_id": "coingecko:fartcoin",
+      "called_at": "2024-12-08T22:17:53.000Z",
+      "direction": "buy",
+      "price_at_call": 0.316016
+    },
+    {
+      "r_1d": 0.1875,
+      "r_7d": -0.2759,
+      "r_30d": -0.7141,
+      "ticker": "PNUT",
+      "post_id": "1878890354990342487",
+      "price_id": "coingecko:peanut-the-squirrel",
+      "called_at": "2025-01-13T19:42:23.000Z",
+      "direction": "buy",
+      "price_at_call": 0.522797
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ALON",
+      "post_id": "1881759833105564014",
+      "price_id": null,
+      "called_at": "2025-01-21T17:44:40.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ALON",
+      "post_id": "1882561234618458499",
+      "price_id": null,
+      "called_at": "2025-01-23T22:49:09.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ALON",
+      "post_id": "1882563524884627732",
+      "price_id": null,
+      "called_at": "2025-01-23T22:58:15.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ALON",
+      "post_id": "1882565945060995187",
+      "price_id": null,
+      "called_at": "2025-01-23T23:07:52.000Z",
       "direction": "hold",
       "price_at_call": null
     },
@@ -93,26 +632,59 @@
       "price_at_call": 1.061
     },
     {
-      "r_1d": 0.0236,
-      "r_7d": 0.0646,
-      "r_30d": 0.4509,
+      "r_1d": -0.0579,
+      "r_7d": -0.0263,
+      "r_30d": 0.3421,
       "ticker": "FARTCOIN",
-      "post_id": "1914787913281269809",
+      "post_id": "1914810169982169507",
       "price_id": "coingecko:fartcoin",
-      "called_at": "2025-04-22T21:06:28.000Z",
+      "called_at": "2025-04-22T22:34:54.000Z",
       "direction": "hold",
-      "price_at_call": 1.061432254676433
+      "price_at_call": 1.1400000000000001
     },
     {
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
-      "ticker": "TROLL",
-      "post_id": "1952748437163655390",
+      "ticker": "PUMP",
+      "post_id": "1942948097237172509",
       "price_id": null,
-      "called_at": "2025-08-05T15:08:02.000Z",
-      "direction": "hold",
+      "called_at": "2025-07-09T14:04:59.000Z",
+      "direction": "buy",
       "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "PUMP",
+      "post_id": "1942948099854328150",
+      "price_id": null,
+      "called_at": "2025-07-09T14:04:59.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "PUMP",
+      "post_id": "1942948102362591363",
+      "price_id": null,
+      "called_at": "2025-07-09T14:05:00.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": 0.0419,
+      "r_7d": -0.1934,
+      "r_30d": -0.2926,
+      "ticker": "PUMP",
+      "post_id": "1944804295611650538",
+      "price_id": "coingecko:pump-fun",
+      "called_at": "2025-07-14T17:00:51.000Z",
+      "direction": "hold",
+      "price_at_call": 0.005431291965590056
     },
     {
       "r_1d": 0.0247,
@@ -126,35 +698,35 @@
       "price_at_call": 0.915
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
-      "ticker": "TROLL",
-      "post_id": "1953226817583616022",
-      "price_id": null,
-      "called_at": "2025-08-06T22:48:57.000Z",
-      "direction": "hold",
-      "price_at_call": null
-    },
-    {
-      "r_1d": 0.0096,
-      "r_7d": 0.0731,
-      "r_30d": -0.3444,
+      "r_1d": 0.0068,
+      "r_7d": -0.0736,
+      "r_30d": 1.2986,
       "ticker": "PUMP",
-      "post_id": "1981723195351646613",
+      "post_id": "1956465835100233927",
       "price_id": "coingecko:pump-fun",
-      "called_at": "2025-10-24T14:03:23.000Z",
+      "called_at": "2025-08-15T21:19:39.000Z",
+      "direction": "buy",
+      "price_at_call": 0.00342541
+    },
+    {
+      "r_1d": 0.0239,
+      "r_7d": 0.0638,
+      "r_30d": -0.4718,
+      "ticker": "FARTCOIN",
+      "post_id": "1973141501178946019",
+      "price_id": "coingecko:fartcoin",
+      "called_at": "2025-09-30T21:42:47.000Z",
       "direction": "hold",
-      "price_at_call": 0.0040281982294774225
+      "price_at_call": 0.619936
     },
     {
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
-      "ticker": "PENGUIN",
-      "post_id": "2015116003001167897",
+      "ticker": "AGENTS",
+      "post_id": "2071995373086806020",
       "price_id": null,
-      "called_at": "2026-01-24T17:34:28.000Z",
+      "called_at": "2026-06-30T16:32:47.000Z",
       "direction": "hold",
       "price_at_call": null
     },
@@ -162,23 +734,45 @@
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
-      "ticker": "NEET",
-      "post_id": "2092986048062136515",
+      "ticker": "HOMEDAO",
+      "post_id": "2080682367165841595",
       "price_id": null,
-      "called_at": "2026-08-27T14:42:14.000Z",
+      "called_at": "2026-07-24T15:51:48.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "SAPPHY",
+      "post_id": "2090130633192272210",
+      "price_id": null,
+      "called_at": "2026-08-19T17:35:50.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "PUMPFUN",
+      "post_id": "2104306627943796773",
+      "price_id": null,
+      "called_at": "2026-09-27T20:26:10.000Z",
       "direction": "hold",
       "price_at_call": null
     }
   ],
   "hold_pairs": 0,
-  "calls_total": 13,
-  "computed_at": "2026-10-10T13:03:58.987Z",
+  "calls_total": 67,
+  "computed_at": "2026-10-10T15:24:47.403Z",
   "by_direction": {
-    "buy": 2,
-    "hold": 9,
-    "sell": 2
+    "buy": 48,
+    "hold": 15,
+    "sell": 4
   },
-  "calls_priced": 4,
+  "calls_priced": 15,
   "price_source": "DefiLlama coins API",
   "median_hold_days": null
 }

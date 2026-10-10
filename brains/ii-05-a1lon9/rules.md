@@ -1,41 +1,68 @@
 # @a1lon9's rules
 
 ## Entry
-- Buy where you know attention will flow in the future. "a good trade has been buying coins where you know attention is going to flow towards in the future" (post:1793724836516143311) (stated once)
-- Don't bet on niches; bet on retards continuing to be retarded. "don't bet on niches, bet on retards continuing to be retarded" (post:1793724836516143311) (stated once)
-- Buy the leader, not the shitty derivative. "buy the leader, don't buy into the shitty deriv" (post:1805691373640700001) (stated once)
-- Only buy coins from devs you trust. "only buy coins from devs you trust" (post:1817546575335641115) (stated once)
-- Bet on new launches with real momentum and real community. "Bet on New Launches with Real Momentum and Real Community." (post:1819830095839920156) (stated once)
-- Always fade the cabal and buy organic. "always fade the cabal and buy organic" (post:1838991332276322587) (stated once)
-- If you want to launch a coin, launch it as early as possible. "if you want to launch a coin, launch it as early as possible" (post:1890144726952878220) (stated once)
+- Buy coins where future attention will flow, not where attention already left: "a good trade has been buying coins where you know attention is going to flow towards in the future" (1793724836516143311).
+- Treat the first “cringey” label as a buy signal: "a really good buying signal is when smth is called cringey for the first time" (1794404584128917858).
+- Buy the leader, not the derivative: "buy the leader, don't buy into the shitty deriv" (1805691373640700001).
+- In an up-only tape, buy the fastest horse: "in a world where all assets are going up, buy the ones that go up the most" (1809677698866008486).
+- Bet on new launches with real momentum and community, but keep the holding frame short: "Bet on New Launches with Real Momentum and Real Community. Hold for 1 Hour." (1819830095839920156).
+- Only buy coins from devs you trust: "only buy coins from devs you trust" (1817546575335641115).
+- Fade coordinated supply and buy organic: "always fade the cabal and buy organic" (1838991332276322587).
+- Buy grassroots coins so the narrative can be assessed objectively: "coins that are truly grassroots allow you to assess their narratives objectively" (1836165723925704876).
+- Avoid presales: "The UX of pre-sales sucks Imagine waiting hours to trade a shitcoin And on top of that there’s a > 50% chance that it will rug??? I’ll pass" (1762605805931815220).
+- Increase slippage when entering new launches: "study increasing your slippage to 50%" (1772068458714345910).
+- Buy enough supply but leave room to buy dips: "buy up plenty of the supply but don't get greedy - be ready to buy dips - rally your friends behind you" (1769453532762231003).
+- Be wary of buying vol when volatility risk premium says it is not cheap: "driven by record-low RV.... VRP indicating that pricing isn't too cheap, I'd stay wary" (1608822641116459008).
+- For callouts, focus on good coins and let trust compound: "focus on quality callout good coins -> people take notice -> people follow your next callouts -> you get paid" (2095202549271834741).
 
 ## Exit and taking profit
-- Don't jeet after migration; believe in something. "this should come as a reminder to you mfs not to jeet after migration believe in something" (post:1769420666095157650) (stated once)
-- Stop paying KOLs, buying trending, getting bump bots, pouring money into ads, and bundling. "stop paying KOLs stop buying trending stop getting bump bots stop pouring money into ads stop bundling" (post:1836841214022406181) (stated once)
+- Move on when the bet is not working: "real alpha is having the balls to bet on smth unproven yet the sensibility to move on when it's not working" (1837192562827767886).
+- Do not capitulate during meme weakness: "if you're frustrated with how memes have performed recently, now is the worst time to capitulate" (1828148059785822248).
+- Do not jeet after migration: "this should come as a reminder to you mfs not to jeet after migration believe in something" (1769420666095157650).
+- Joking stated rule: only take profits at zero: "Only take profits when it hits 0 🤝🏼" (1523643297465389061).
 
 ## Sizing
-No stated rule.
+- Bet more, use leverage, borrow if needed: "you thought you bet a lot? bet more you ran out of bankroll? take leverage can’t take leverage? ask your friends for a loan" (1762583935408914735).
+- Small accounts should trench; mid-six-figures and up need longer-term bags: "In today’s market probably mid 6 figs where you need to starting having some longer term bags" (1829937652872683773).
+- If you win, double down on what already works instead of diversifying: "generally, if you win, you should double down on your existing strategy, not diversify into what seems \"easy money\"" (1783537435072205184).
 
 ## Averaging down
-No stated rule.
+- Double down on bags at a discount: "the lion doubles down on his bags at a discount" (1960109544874332601).
+- Be ready to buy dips rather than chasing fully: "be ready to buy dips" (1769453532762231003).
 
 ## Hold time
-- Hold pump funs while you sleep. "I strive to have the balls to hold pump funs while I sleep" (post:1809710917783023876) (stated once)
-- Hold for one hour. "Hold for 1 Hour." (post:1819830095839920156) (stated once)
-- Hold until crypto isn't universally hated anymore. "hold until crypto isn't universally hated anymore" (post:1862239201581830405) (stated once)
-- For a launch or long-term position, commit to holding for at least a few months. "get enough supply for the long-term and commit to holding the token for at least a few months" (post:1967279244045955142) (stated once)
+- Not touching wallets was the best trade: "the most amount of money I've ever made on shitcoins has been this past week and it's not even close not bc I've been trading on pump dot fun - I haven't had time for much of this ofc but bc I haven't looked at or touched any of my wallets" (1768653416816132311).
+- Hold until crypto is no longer universally hated: "hold until crypto isn't universally hated anymore" (1862239201581830405).
+- Trench flipping does not scale; become a conviction trader by necessity: "being a trench warrior isn’t scalable - once you make enough $ you must become a conviction trader by necessity" (1829934913627267514).
+- A pfp change signals real conviction: "you don't change your pfp if you're looking to rotate tomorrow" (1953861787947778362).
+- Streamers launching coins should commit to holding for months: "get enough supply for the long-term and commit to holding the token for at least a few months" (1967279244045955142).
 
 ## Risk management
-- Don't launch a token if your platform doesn't have product market fit. "DO NOT launch a token if your platform doesn't have product market fit" (post:1814716193745608982) (stated once)
-- If you choose to trade coins, consider that what you put in will be lost. "If you choose to trade coins, consider that what you put in will be lost." (post:1877815589286096970) (stated once)
-- Make no project/token promises, never talk about price, and be transparent about what you want. "make no promises related to the project/token - never talk about price - be transparent about what you're looking for" (post:1882879221099561346) (stated once)
-- Don't take your freedoms for granted; centralized L2s can blacklist memecoins and nuke positions to zero. "Don't take your freedoms for granted; centralized L2s can blacklist memecoins and nuke positions to 0." (post:1879038646231429332) (stated once)
-- Verify the contract address of a custom pair instead of trusting the token image, ticker, or name. "verify the CA of the Custom Pair you are trading instead of simply trusting the token image, ticker or name." (post:2108266109224751409) (stated once)
+- Do not quote options strategies as APYs: "Stop quoting options strategies as APYs. They inevitably lose money at some point given similar parameters as returns are normally distributed." (1522358223763816449).
+- Always do your own research: "True dat. Always dyor" (1767411323573342686).
+- Do not listen to internet strangers: "\"don't listen to strangers on the internet\"" (1770127944586871269).
+- Your biggest risk is underallocation: "your biggest risk is being underallocated to the space you log into every day" (1819021516723322919).
+- Avoid cabal positions because you will not know when to exit: "coins that are truly grassroots allow you to assess their narratives objectively" (1836165723925704876).
+- Do not trust the token image, ticker, or name on a Custom Pair; verify the contract address: "verify the CA of the Custom Pair you are trading instead of simply trusting the token image, ticker or name." (2108266109224751409).
+- Do not take freedom for granted: centralized L2s can blacklist memecoins and nuke positions to zero (1879038646231429332).
 
 ## Other
-- Nobody on the pump fun/Terminal team, including himself, will accept any creator fees. "NOBODY on the pump fun/Terminal team (including myself) will be accepting any fees sent our way under any circumstance." (post:2009677444589249009) (stated once)
-- Only trust the official pump fun account "alonalon". "my only pump fun account is \"alonalon\" - don't trust any others!" (post:2011876415856357653) (stated once)
-- Ideal project teams hold and lock their own tokens for a long time horizon. "there's no better way to align project teams with their token holders than ensuring that they hold the token themselves. ideally, they lock tokens for a long time horizon" (post:2013791026222137671) (stated once)
-- Keep plans to launch a coin lowkey. "keep their plans to launch a coin lowkey" (post:1967279244045955142) (stated once)
-- Have a streaming schedule thought out in advance; consistency matters. "ideally have a streaming schedule thought out in advance. Consistency matters" (post:1967279244045955142) (stated once)
-- Focus on calling out good tokens; spamming callouts and dumping on followers will not work. "spamming callouts will not work. dumping on followers will not work." (post:2106471698375520413) (stated once)
+- Do not overthink; pump and have fun: "don't overthink it just pump and have fun" (1762170693343711325).
+- Never fade a hustler: "Never fade a hustler Remilio" (1768777599583764710).
+- Do not launch or buy a token if the platform lacks product-market fit: "DO NOT launch a token if your platform doesn't have product market fit DO NOT buy a token if the platform doesn't have product market fit" (1814716193745608982).
+- Never talk about price: "never ever talk about price people hold you to it although it's completely out of your control" (1837523850667442210).
+- Stop paying for fake distribution: "stop paying KOLs stop buying trending stop getting bump bots stop pouring money into ads stop bundling" (1836841214022406181).
+- Do not give up after one dip: "stop giving up after 1 dip - if it's genuinely a good meme it will succeed" (1836441861998748003).
+- Be the one who works for your bags: "most of the time it only takes one person working for their bags to succeed" (1843740621313638790).
+- Mentality matters more than the cycle: "your mentality should be that you can make it in every market" (1877056648772042950).
+- Do not hype memecoin launches; launch early and build the chart: "hyping up memecoin launches is a horrible idea they're less fair bc it gives an edge to those that are well equipped rather than those that are able to spot the opportunity" (1890144726952878220).
+- If you have social influence, stick to launch standards: do not launch or shill other coins, do not set high expectations, do not talk about price (1912624546378551727).
+- No stealth launches from him or pump.fun employees: "don’t expect coins from me or @pumpdotfun or any employees (no “stealth launches” either)" (1912624550707179808).
+- Unsolicited DMs are the easiest way to miss alpha: "easiest way to miss alpha in your DMs" (1889102073888739382).
+- Vote with your money if you dislike a coin type: "if you're tired of buying these kinds of coins, then vote with your money and don't buy them anymore" (1920807706467995651).
+- Streamers must be transparent and avoid overpromising: "be completely transparent about their plans for the future. no overpromising!" (1967279244045955142).
+- Project teams should hold and lock their own tokens for alignment: "there's no better way to align project teams with their token holders than ensuring that they hold the token themselves. ideally, they lock tokens for a long time horizon" (2013791026222137671).
+- Project tokens should turn on creator fees to secure runway: "I still personally believe that project tokens should turn on creator fees so they can secure runway." (2023784434781274603).
+- Spamming callouts and dumping on followers will not work: "spamming callouts will not work. dumping on followers will not work." (2106471698375520413).
+- Callout rewards are based on volume driven, not the coin’s multiple: "rewards are based on the volume you drive to the coin you’re calling, not on the x’s the coin makes" (2103149769535164897).
+- Understand a major launch change before trading it: "I recommend everyone take the time to fully understand the announcement made by @Pumpfun." (2108266109224751409).

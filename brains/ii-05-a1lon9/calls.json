@@ -1,6 +1,16 @@
 [
   {
     "date": "2022-05-09",
+    "ticker": "UST",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "100x leverage short UST",
+    "post_id": "1523636175583727616",
+    "url": "https://x.com/a1lon9/status/1523636175583727616"
+  },
+  {
+    "date": "2022-05-09",
     "ticker": "LUNA",
     "chain": null,
     "address": null,
@@ -10,14 +20,54 @@
     "url": "https://x.com/a1lon9/status/1523804384236212224"
   },
   {
+    "date": "2022-10-29",
+    "ticker": "ETH",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Long eth and short btc in equal amounts on Arbitrum GMX",
+    "post_id": "1586357788934287360",
+    "url": "https://x.com/a1lon9/status/1586357788934287360"
+  },
+  {
+    "date": "2022-10-29",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "Long eth and short btc in equal amounts on Arbitrum GMX",
+    "post_id": "1586357788934287360",
+    "url": "https://x.com/a1lon9/status/1586357788934287360"
+  },
+  {
     "date": "2024-01-15",
     "ticker": "WYNN",
     "chain": null,
     "address": null,
-    "direction": "sell",
+    "direction": "buy",
+    "quote": "@TravisBickle0x midcurved this one like 5 times calling tops, this coin CAN’T succeed or else",
+    "post_id": "1746702207905309020",
+    "url": "https://x.com/a1lon9/status/1746702207905309020"
+  },
+  {
+    "date": "2024-01-15",
+    "ticker": "WYNN",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
     "quote": "I am the biggest $WYNN hater. I WILL NEVER BUY AAAAAA",
     "post_id": "1746706662017188018",
     "url": "https://x.com/a1lon9/status/1746706662017188018"
+  },
+  {
+    "date": "2024-01-19",
+    "ticker": "AF",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "unironically bullish $AF. Future of france",
+    "post_id": "1748478268867502281",
+    "url": "https://x.com/a1lon9/status/1748478268867502281"
   },
   {
     "date": "2024-02-17",
@@ -25,9 +75,129 @@
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "they weren’t there when you had to refresh 20 times to buy they weren’t there when early buyers sold before dexscreener they weren’t there w",
-    "post_id": "1758658643925553531",
-    "url": "https://x.com/a1lon9/status/1758658643925553531"
+    "quote": "Thanks for the entry $ROSE",
+    "post_id": "1758664605491191857",
+    "url": "https://x.com/a1lon9/status/1758664605491191857"
+  },
+  {
+    "date": "2024-02-17",
+    "ticker": "ROSE",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "manlet coins lanuched on pump $rose $trench",
+    "post_id": "1758935932823019818",
+    "url": "https://x.com/a1lon9/status/1758935932823019818"
+  },
+  {
+    "date": "2024-02-17",
+    "ticker": "TRENCH",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "manlet coins lanuched on pump $rose $trench",
+    "post_id": "1758935932823019818",
+    "url": "https://x.com/a1lon9/status/1758935932823019818"
+  },
+  {
+    "date": "2024-02-28",
+    "ticker": "DZHV",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "$DZHV kinda cool but deploying a coin for a couple $ isn't even that special @pumpdotfun already did it + pool launches upon deployment so you don't have to see",
+    "post_id": "1762883369988505918",
+    "url": "https://x.com/a1lon9/status/1762883369988505918"
+  },
+  {
+    "date": "2024-03-04",
+    "ticker": "REMILIO",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "stop thinking and ape remilio",
+    "post_id": "1764736547016818768",
+    "url": "https://x.com/a1lon9/status/1764736547016818768"
+  },
+  {
+    "date": "2024-03-11",
+    "ticker": "KALIMBO",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "so many to choose from... my pick is kalimbo or sniff",
+    "post_id": "1767287931427860643",
+    "url": "https://x.com/a1lon9/status/1767287931427860643"
+  },
+  {
+    "date": "2024-03-11",
+    "ticker": "SNIFF",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "so many to choose from... my pick is kalimbo or sniff",
+    "post_id": "1767287931427860643",
+    "url": "https://x.com/a1lon9/status/1767287931427860643"
+  },
+  {
+    "date": "2024-03-11",
+    "ticker": "SNIFF",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "you heard it here first",
+    "post_id": "1767289626920652843",
+    "url": "https://x.com/a1lon9/status/1767289626920652843"
+  },
+  {
+    "date": "2024-03-13",
+    "ticker": "CA",
+    "chain": "solana",
+    "address": "E9pBR4xjscYLPqFZ4YM4gUkczqz7MHpB6dk4sfSQTnJD",
+    "direction": "buy",
+    "quote": "E9pBR4xjscYLPqFZ4YM4gUkczqz7MHpB6dk4sfSQTnJD",
+    "post_id": "1767957057792102585",
+    "url": "https://x.com/a1lon9/status/1767957057792102585"
+  },
+  {
+    "date": "2024-03-18",
+    "ticker": "PUSSYINBIO",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "meme has potential to get to $1b. unironically",
+    "post_id": "1769683950551630073",
+    "url": "https://x.com/a1lon9/status/1769683950551630073"
+  },
+  {
+    "date": "2024-03-21",
+    "ticker": "PUMP",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "going long pump dot fun is going long this cycle don't get caught offside",
+    "post_id": "1770873007184941546",
+    "url": "https://x.com/a1lon9/status/1770873007184941546"
+  },
+  {
+    "date": "2024-03-27",
+    "ticker": "SOL",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "volumes are high and are about to go higher on solana I'm a buyer",
+    "post_id": "1772779684654113122",
+    "url": "https://x.com/a1lon9/status/1772779684654113122"
+  },
+  {
+    "date": "2024-04-19",
+    "ticker": "SOL",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "I am long $SOL. should answer your q",
+    "post_id": "1781376580624719937",
+    "url": "https://x.com/a1lon9/status/1781376580624719937"
   },
   {
     "date": "2024-05-03",
@@ -40,14 +210,334 @@
     "url": "https://x.com/a1lon9/status/1786310925902901719"
   },
   {
+    "date": "2024-06-01",
+    "ticker": "MOTHER",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Iggy seems genuine in her intentions with $MOTHER",
+    "post_id": "1796956472275877985",
+    "url": "https://x.com/a1lon9/status/1796956472275877985"
+  },
+  {
+    "date": "2024-06-09",
+    "ticker": "MOTHER",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "most will definitely not. but I think mother has a realistic shot",
+    "post_id": "1799807198601879673",
+    "url": "https://x.com/a1lon9/status/1799807198601879673"
+  },
+  {
+    "date": "2024-07-21",
+    "ticker": "BODEN",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "last time boden went this low was two days after it’s launch (over 4 months ago) rugged.",
+    "post_id": "1815086511332987117",
+    "url": "https://x.com/a1lon9/status/1815086511332987117"
+  },
+  {
+    "date": "2024-09-06",
+    "ticker": "SOL",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "thanks for the entry",
+    "post_id": "1832101103724548592",
+    "url": "https://x.com/a1lon9/status/1832101103724548592"
+  },
+  {
+    "date": "2024-09-13",
+    "ticker": "MICHI",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "How in the world is $Michi only C tier?",
+    "post_id": "1834632953235718614",
+    "url": "https://x.com/a1lon9/status/1834632953235718614"
+  },
+  {
+    "date": "2024-09-22",
+    "ticker": "MICHI",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Michi and wDOG stand out here imo",
+    "post_id": "1837980394957762931",
+    "url": "https://x.com/a1lon9/status/1837980394957762931"
+  },
+  {
+    "date": "2024-09-22",
+    "ticker": "WDOG",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Michi and wDOG stand out here imo",
+    "post_id": "1837980394957762931",
+    "url": "https://x.com/a1lon9/status/1837980394957762931"
+  },
+  {
+    "date": "2024-10-09",
+    "ticker": "MICHI",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "long truly decentralized communities, long memes that aren't dependent on any one person or group to shill them",
+    "post_id": "1844130011575620033",
+    "url": "https://x.com/a1lon9/status/1844130011575620033"
+  },
+  {
+    "date": "2024-10-09",
+    "ticker": "MICHI",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Michi, Billy, FWOG, SCF, SIGMA, SELFIE all look good for their respective market caps",
+    "post_id": "1844131805974396978",
+    "url": "https://x.com/a1lon9/status/1844131805974396978"
+  },
+  {
+    "date": "2024-10-09",
+    "ticker": "BILLY",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Michi, Billy, FWOG, SCF, SIGMA, SELFIE all look good for their respective market caps",
+    "post_id": "1844131805974396978",
+    "url": "https://x.com/a1lon9/status/1844131805974396978"
+  },
+  {
+    "date": "2024-10-09",
+    "ticker": "FWOG",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Michi, Billy, FWOG, SCF, SIGMA, SELFIE all look good for their respective market caps",
+    "post_id": "1844131805974396978",
+    "url": "https://x.com/a1lon9/status/1844131805974396978"
+  },
+  {
+    "date": "2024-10-09",
+    "ticker": "SCF",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Michi, Billy, FWOG, SCF, SIGMA, SELFIE all look good for their respective market caps",
+    "post_id": "1844131805974396978",
+    "url": "https://x.com/a1lon9/status/1844131805974396978"
+  },
+  {
+    "date": "2024-10-09",
+    "ticker": "SIGMA",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Michi, Billy, FWOG, SCF, SIGMA, SELFIE all look good for their respective market caps",
+    "post_id": "1844131805974396978",
+    "url": "https://x.com/a1lon9/status/1844131805974396978"
+  },
+  {
+    "date": "2024-10-09",
+    "ticker": "SELFIE",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Michi, Billy, FWOG, SCF, SIGMA, SELFIE all look good for their respective market caps",
+    "post_id": "1844131805974396978",
+    "url": "https://x.com/a1lon9/status/1844131805974396978"
+  },
+  {
+    "date": "2024-10-10",
+    "ticker": "PUMP",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "buying everything you possibly could when pump fun was being called a dead scam turned out to be a great trade",
+    "post_id": "1844423536242475284",
+    "url": "https://x.com/a1lon9/status/1844423536242475284"
+  },
+  {
+    "date": "2024-11-04",
+    "ticker": "PUMP",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "@AgentChud talk about a 180 pivot",
+    "post_id": "1853522586732310671",
+    "url": "https://x.com/a1lon9/status/1853522586732310671"
+  },
+  {
+    "date": "2024-11-04",
+    "ticker": "PUMP",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "monthly would miss 1000 metas, more like weekly",
+    "post_id": "1853528300355731471",
+    "url": "https://x.com/a1lon9/status/1853528300355731471"
+  },
+  {
+    "date": "2024-11-04",
+    "ticker": "PUMP",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "ca in the next tweet notis ON 🔔",
+    "post_id": "1853528681307676856",
+    "url": "https://x.com/a1lon9/status/1853528681307676856"
+  },
+  {
+    "date": "2024-11-04",
+    "ticker": "PUMP",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "addy is in the next tweet notis ON 🔔",
+    "post_id": "1853543202424291399",
+    "url": "https://x.com/a1lon9/status/1853543202424291399"
+  },
+  {
+    "date": "2024-11-11",
+    "ticker": "PUMP",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "only the coolest, most organic shit wins",
+    "post_id": "1855779120703246744",
+    "url": "https://x.com/a1lon9/status/1855779120703246744"
+  },
+  {
+    "date": "2024-11-11",
+    "ticker": "FUJI",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "this one is crazy tbh",
+    "post_id": "1855780019143905786",
+    "url": "https://x.com/a1lon9/status/1855780019143905786"
+  },
+  {
+    "date": "2024-11-13",
+    "ticker": "PNUT",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "$1bn ✅ $10bn 🔜",
+    "post_id": "1856655267968008620",
+    "url": "https://x.com/a1lon9/status/1856655267968008620"
+  },
+  {
+    "date": "2024-11-14",
+    "ticker": "PUMP",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "the day you dropped the pump fun ticker is the day I knew that we made it",
+    "post_id": "1856872519757623759",
+    "url": "https://x.com/a1lon9/status/1856872519757623759"
+  },
+  {
+    "date": "2024-11-14",
+    "ticker": "PUMP",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "still 0% fees try it",
+    "post_id": "1857189121120493581",
+    "url": "https://x.com/a1lon9/status/1857189121120493581"
+  },
+  {
+    "date": "2024-11-18",
+    "ticker": "PUMP",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "there will be multiple",
+    "post_id": "1858302637931631056",
+    "url": "https://x.com/a1lon9/status/1858302637931631056"
+  },
+  {
+    "date": "2024-11-19",
+    "ticker": "CUPSEY",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "this is so cute bullish art",
+    "post_id": "1858954678219776231",
+    "url": "https://x.com/a1lon9/status/1858954678219776231"
+  },
+  {
+    "date": "2024-11-24",
+    "ticker": "FARTCOIN",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "saying that \"fartcoin\" isn't funny is an incredible midcurve",
+    "post_id": "1860800453144891615",
+    "url": "https://x.com/a1lon9/status/1860800453144891615"
+  },
+  {
+    "date": "2024-12-08",
+    "ticker": "FARTCOIN",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "She’s beautiful, isn’t she?",
+    "post_id": "1865883523262886144",
+    "url": "https://x.com/a1lon9/status/1865883523262886144"
+  },
+  {
+    "date": "2025-01-13",
+    "ticker": "PNUT",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "even Coinbase knows that only pump funs are worth listing",
+    "post_id": "1878890354990342487",
+    "url": "https://x.com/a1lon9/status/1878890354990342487"
+  },
+  {
+    "date": "2025-01-21",
+    "ticker": "ALON",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "for avoidance of any doubt, the above is the canonical $ALON coin",
+    "post_id": "1881759833105564014",
+    "url": "https://x.com/a1lon9/status/1881759833105564014"
+  },
+  {
     "date": "2025-01-23",
     "ticker": "ALON",
     "chain": null,
     "address": null,
     "direction": "hold",
-    "quote": "@thetism (nfa)",
-    "post_id": "1882561883007521193",
-    "url": "https://x.com/a1lon9/status/1882561883007521193"
+    "quote": "in a world with permissionless asset creation, most people will have their own coins that being said, it's probably best to agree on one for yourself relatively",
+    "post_id": "1882561234618458499",
+    "url": "https://x.com/a1lon9/status/1882561234618458499"
+  },
+  {
+    "date": "2025-01-23",
+    "ticker": "ALON",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "not endorsing in the sense that I'm not recommending anyone to buy it. I previously said that the coin is the canonical one",
+    "post_id": "1882563524884627732",
+    "url": "https://x.com/a1lon9/status/1882563524884627732"
+  },
+  {
+    "date": "2025-01-23",
+    "ticker": "ALON",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "for clarity, I didn't create it nor do I recommend anyone to buy the coin. I took ownership of the TG that was created for the coin over half a year ago + paid ",
+    "post_id": "1882565945060995187",
+    "url": "https://x.com/a1lon9/status/1882565945060995187"
   },
   {
     "date": "2025-04-22",
@@ -55,7 +545,7 @@
     "chain": null,
     "address": null,
     "direction": "hold",
-    "quote": "Fartcoin getting no major CEX listings was a blessing in disguise",
+    "quote": "Fartcoin getting no major CEX listings was a blessing in disguise trading volume exclusively flowing through its pump fun LP allowed it to grow thick unruggable",
     "post_id": "1914787830359785553",
     "url": "https://x.com/a1lon9/status/1914787830359785553"
   },
@@ -65,19 +555,49 @@
     "chain": null,
     "address": null,
     "direction": "hold",
-    "quote": "not a recommendation to buy, NFA, etc etc",
-    "post_id": "1914787913281269809",
-    "url": "https://x.com/a1lon9/status/1914787913281269809"
+    "quote": "Fartcoin looking good here",
+    "post_id": "1914810169982169507",
+    "url": "https://x.com/a1lon9/status/1914810169982169507"
   },
   {
-    "date": "2025-08-05",
-    "ticker": "TROLL",
+    "date": "2025-07-09",
+    "ticker": "PUMP",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "today we announce $PUMP pump fun invented a completely new way to launch tokens, owned this crypto cycle, and became one of the most successful startups ever. n",
+    "post_id": "1942948097237172509",
+    "url": "https://x.com/a1lon9/status/1942948097237172509"
+  },
+  {
+    "date": "2025-07-09",
+    "ticker": "PUMP",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "buy $PUMP and you’ll become a part of creating this reality.",
+    "post_id": "1942948099854328150",
+    "url": "https://x.com/a1lon9/status/1942948099854328150"
+  },
+  {
+    "date": "2025-07-09",
+    "ticker": "PUMP",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "we decided to return to tradition by launching $PUMP through an ICO. ICOs have proven to be the best mechanism to quickly distribute tokens amongst a really wid",
+    "post_id": "1942948102362591363",
+    "url": "https://x.com/a1lon9/status/1942948102362591363"
+  },
+  {
+    "date": "2025-07-14",
+    "ticker": "PUMP",
     "chain": null,
     "address": null,
     "direction": "hold",
-    "quote": "$TROLL, $USDUC, $TOKABU just to name a few",
-    "post_id": "1952748437163655390",
-    "url": "https://x.com/a1lon9/status/1952748437163655390"
+    "quote": "the ticker is $PUMP",
+    "post_id": "1944804295611650538",
+    "url": "https://x.com/a1lon9/status/1944804295611650538"
   },
   {
     "date": "2025-08-05",
@@ -90,43 +610,63 @@
     "url": "https://x.com/a1lon9/status/1952866820748144795"
   },
   {
-    "date": "2025-08-06",
-    "ticker": "TROLL",
-    "chain": null,
-    "address": null,
-    "direction": "hold",
-    "quote": "$TROLL is the first time in a long time that we're seeing genuine onboarding into the ecosystem",
-    "post_id": "1953226817583616022",
-    "url": "https://x.com/a1lon9/status/1953226817583616022"
-  },
-  {
-    "date": "2025-10-24",
+    "date": "2025-08-15",
     "ticker": "PUMP",
-    "chain": null,
-    "address": null,
-    "direction": "hold",
-    "quote": "to all onchain traders: now’s probably a good time to make the switch.",
-    "post_id": "1981723195351646613",
-    "url": "https://x.com/a1lon9/status/1981723195351646613"
+    "chain": "solana",
+    "address": "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn",
+    "direction": "buy",
+    "quote": "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn",
+    "post_id": "1956465835100233927",
+    "url": "https://x.com/a1lon9/status/1956465835100233927"
   },
   {
-    "date": "2026-01-24",
-    "ticker": "PENGUIN",
+    "date": "2025-09-30",
+    "ticker": "FARTCOIN",
     "chain": null,
     "address": null,
     "direction": "hold",
-    "quote": "The early success of $PENGUIN is proof that onchain trading was never dead, just a sleeping giant waiting for the right moment.",
-    "post_id": "2015116003001167897",
-    "url": "https://x.com/a1lon9/status/2015116003001167897"
+    "quote": "there is no pumpfolio without fartcoin",
+    "post_id": "1973141501178946019",
+    "url": "https://x.com/a1lon9/status/1973141501178946019"
   },
   {
-    "date": "2026-08-27",
-    "ticker": "NEET",
+    "date": "2026-06-30",
+    "ticker": "AGENTS",
     "chain": null,
     "address": null,
     "direction": "hold",
-    "quote": "happy NEET ATH to those who celebrate",
-    "post_id": "2092986048062136515",
-    "url": "https://x.com/a1lon9/status/2092986048062136515"
+    "quote": "we're still super bullish on that sector and will see how we can support it in our ecosystem, but it likely won't come as a launch option",
+    "post_id": "2071995373086806020",
+    "url": "https://x.com/a1lon9/status/2071995373086806020"
+  },
+  {
+    "date": "2026-07-24",
+    "ticker": "HOMEDAO",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "forever bullish on HomeDAO.",
+    "post_id": "2080682367165841595",
+    "url": "https://x.com/a1lon9/status/2080682367165841595"
+  },
+  {
+    "date": "2026-08-19",
+    "ticker": "SAPPHY",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "$10m soon",
+    "post_id": "2090130633192272210",
+    "url": "https://x.com/a1lon9/status/2090130633192272210"
+  },
+  {
+    "date": "2026-09-27",
+    "ticker": "PUMPFUN",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "very bullish, although our actual all time high for volume was on sep 4 (~$82m) and was mostly crosschain volume",
+    "post_id": "2104306627943796773",
+    "url": "https://x.com/a1lon9/status/2104306627943796773"
   }
 ]
