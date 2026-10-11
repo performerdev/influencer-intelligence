@@ -2,6 +2,7 @@ import { type ChatMessage, OpenAICompatibleLLM, type GroupLine, groupTurn, menti
 import { recordSpend } from "@ii/db";
 
 import { intelligences } from "@/config/intelligences";
+import { charge, currentUser, gate, usageOf } from "@/lib/server/auth";
 import { loadBrain, resolveReferences, sql } from "@/lib/server/data";
 import { SSE_HEADERS, VERDICT, clientHash, json } from "@/lib/server/http";
 
@@ -10,13 +11,13 @@ export const dynamic = "force-dynamic";
 // One speaker per request, so every request fits Netlify's 60s streaming window.
 export const maxDuration = 60;
 
-const DAILY_LIMIT = Number(process.env.CHAT_DAILY_LIMIT ?? 40);
 const MIN_MEMBERS = 2;
 const MAX_MEMBERS = 4;
 const DEBATE_ROUNDS = 2;
 const TRANSCRIPT_MESSAGES = 30;
-const ANSWER_TOKENS = Number(process.env.GROUP_MAX_TOKENS ?? 450);
-const DEBATE_TOKENS = Number(process.env.GROUP_DEBATE_MAX_TOKENS ?? 260);
+// group turns are short; Plus gets a little more room
+const ANSWER_TOKENS = { free: 450, plus: 650 };
+const DEBATE_TOKENS = 260;
 
 type AskBody = { action: "ask"; members?: string[]; message?: string; debate?: boolean; chatId?: string | null };
 type SpeakBody = { action: "speak"; chatId?: string; handle?: string; round?: number };
@@ -60,38 +61,45 @@ async function ask(req: Request, body: AskBody) {
   const ids = members.map((m) => rows.find((r) => r.handle.toLowerCase() === m.handle.toLowerCase())!.id);
 
   const client = clientHash(req);
-  const [{ n }] = await db<{ n: number }[]>`
-    select count(*)::int as n from messages where client_hash = ${client} and role = 'user' and created_at > now() - interval '24 hours'`;
-  if (n >= DAILY_LIMIT) return json({ error: `That's the daily limit of ${DAILY_LIMIT} free questions. Come back tomorrow.` }, 429);
+  const g = await gate(client);
+  if (!g.ok) return json(g.body, g.status);
+  const { user, usage } = g;
 
-  // Same chat while the members stay the same; a new lineup starts a new chat.
+  // Same chat while the members stay the same; a new lineup starts a new chat. Only your own chats continue.
   let chatId: string | null = null;
   if (isUuid(body.chatId)) {
-    const [c] = await db<{ id: string; influencer_ids: number[] }[]>`select id, influencer_ids from chats where id = ${body.chatId} and kind = 'group'`;
-    if (c && [...c.influencer_ids].sort().join() === [...ids].sort().join()) chatId = c.id;
+    const [c] = await db<{ id: string; influencer_ids: number[]; user_id: number | null }[]>`select id, influencer_ids, user_id from chats where id = ${body.chatId} and kind = 'group'`;
+    if (c && (c.user_id ?? null) === (user?.id ?? null) && [...c.influencer_ids].sort().join() === [...ids].sort().join()) chatId = c.id;
   }
   if (!chatId) {
-    const [c] = await db<{ id: string }[]>`insert into chats (kind, influencer_ids) values ('group', ${ids}) returning id`;
+    const [c] = await db<{ id: string }[]>`insert into chats (kind, influencer_ids, user_id) values ('group', ${ids}, ${user?.id ?? null}) returning id`;
     chatId = c.id;
   }
-  await db`insert into messages (chat_id, role, content, client_hash) values (${chatId}, 'user', ${message}, ${client})`;
+  await db`insert into messages (chat_id, role, content, client_hash, user_id) values (${chatId}, 'user', ${message}, ${client}, ${user?.id ?? null})`;
+  await db`update chats set updated_at = now() where id = ${chatId}`;
 
   // "@ii-04" or "@handle" asks only those; otherwise everyone, in lineup order.
   const mentioned = members.filter((m) => new RegExp(`@(${escape(m.handle)}|${escape(m.code)})\\b`, "i").test(message));
   const speakers = mentioned.length ? mentioned : members;
-  const debate = Boolean(body.debate) && speakers.length > 1;
+  // Debate rounds are a Plus feature.
+  const debate = Boolean(body.debate) && speakers.length > 1 && usage.debate;
   const queue: { handle: string; round: number }[] = [];
   for (let round = 0; round <= (debate ? DEBATE_ROUNDS : 0); round++) for (const m of speakers) queue.push({ handle: m.handle, round });
 
-  return json({ chatId, queue, rounds: debate ? DEBATE_ROUNDS : 0 });
+  return json({ chatId, queue, rounds: debate ? DEBATE_ROUNDS : 0, debateLocked: Boolean(body.debate) && !usage.debate });
 }
 
 async function speak(body: SpeakBody) {
   const round = Number(body.round ?? 0);
   if (!isUuid(body.chatId) || !body.handle || !Number.isInteger(round) || round < 0 || round > DEBATE_ROUNDS) return json({ error: "Bad request." }, 400);
   const db = sql();
-  const [chat] = await db<{ id: string; influencer_ids: number[] }[]>`select id, influencer_ids from chats where id = ${body.chatId} and kind = 'group'`;
+  const [chat] = await db<{ id: string; influencer_ids: number[]; user_id: number | null }[]>`select id, influencer_ids, user_id from chats where id = ${body.chatId} and kind = 'group'`;
   if (!chat) return json({ error: "Chat not found." }, 404);
+  const user = await currentUser();
+  if ((chat.user_id ?? null) !== (user?.id ?? null)) return json({ error: "Not your chat." }, 403);
+  const usage = usageOf(user);
+  // The question was already allowed at "ask"; logged-in users stop mid-queue once the session is spent.
+  if (user && usage.used >= 1) return json({ error: "Session usage spent — the rest of the group will answer after it refills.", reason: "limit", resetsAt: usage.resetsAt }, 429);
   const brain = await loadBrain(body.handle);
   if (!brain || !chat.influencer_ids.includes(brain.influencerId)) return json({ error: "Not in this chat." }, 400);
 
@@ -129,24 +137,27 @@ async function speak(body: SpeakBody) {
       const send = (event: string, data: unknown) => controller.enqueue(encoder.encode(`event: ${event}\ndata: ${JSON.stringify(data)}\n\n`));
       send("meta", { chatId: chat.id, brainVersion: brain.version, code: brain.code, handle: brain.handle, round });
       let full = "";
+      let cost = 0;
       try {
         const llm = new OpenAICompatibleLLM();
         const model = process.env.LLM_MODEL_CHAT ?? process.env.LLM_MODEL_DISTILL ?? "deepseek-v4-pro";
-        for await (const ev of llm.stream(messages, { model, temperature: 0.75, maxTokens: round ? DEBATE_TOKENS : ANSWER_TOKENS, thinking: "disabled" })) {
+        for await (const ev of llm.stream(messages, { model, temperature: 0.75, maxTokens: round ? DEBATE_TOKENS : ANSWER_TOKENS[usage.plan === "plus" ? "plus" : "free"], thinking: "disabled" })) {
           if ("delta" in ev) {
             full += ev.delta;
             send("delta", { t: ev.delta });
           } else {
+            cost = ev.usage.costUsd;
             await recordSpend(db, { influencerId: brain.influencerId, kind: "llm", units: ev.usage.input + ev.usage.output, usd: ev.usage.costUsd, meta: { step: "group", model, round, ...ev.usage } });
           }
         }
+        await charge(user, cost);
         // Models sometimes echo the "ii-01 (@handle):" transcript prefix; drop it.
         const verdict = full.match(VERDICT)?.[1]?.toUpperCase() ?? null;
         const content = full.replace(VERDICT, "").replace(new RegExp(`^\\s*${escape(brain.code)}\\s*(\\(@?${escape(brain.handle)}\\))?\\s*:\\s*`, "i"), "").trim();
         const refs = await resolveReferences(brain, content);
         await db`
-          insert into messages (chat_id, role, influencer_id, brain_version, content, verdict, refs, round)
-          values (${chat.id}, 'assistant', ${brain.influencerId}, ${brain.version}, ${content}, ${verdict}, ${db.json(refs.map((r) => r.postId) as never)}, ${round})`;
+          insert into messages (chat_id, role, influencer_id, brain_version, content, verdict, refs, round, user_id, cost_usd)
+          values (${chat.id}, 'assistant', ${brain.influencerId}, ${brain.version}, ${content}, ${verdict}, ${db.json(refs.map((r) => r.postId) as never)}, ${round}, ${user?.id ?? null}, ${cost})`;
         send("done", { verdict, refs, content });
       } catch (err) {
         console.error("group:", err);

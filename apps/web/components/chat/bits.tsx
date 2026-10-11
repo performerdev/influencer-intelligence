@@ -158,7 +158,7 @@ export function Sheet({
             Esc
           </button>
         </div>
-        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-[max(20px,env(safe-area-inset-bottom))] pt-4">{children}</div>
+        <div data-scroll-main data-lenis-prevent className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-[max(20px,env(safe-area-inset-bottom))] pt-4">{children}</div>
       </div>
     </div>
   );

@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 
-import { paymentsEnabled } from "@/config/chain";
 import { site } from "@/config/site";
 import { token } from "@/config/token";
+import { XGlyph, useAuth } from "@/components/account/AuthProvider";
 import { AppLink } from "@/components/ui/AppLink";
 import { Popover } from "@/components/ui/Popover";
 
@@ -55,7 +55,7 @@ export function TopBar() {
 
         <div className="ml-auto flex items-center gap-2 md:ml-2">
           <TokenPopover />
-          <ConnectButton />
+          <AccountButton />
           <MobileMenu />
         </div>
       </div>
@@ -106,19 +106,31 @@ function TokenPopover() {
   );
 }
 
-function ConnectButton() {
-  if (paymentsEnabled) {
+function AccountButton() {
+  const { me, loginHref } = useAuth();
+  if (me?.user) {
     return (
-      <button type="button" className="btn-ceramic h-9 px-4">
-        Connect
-      </button>
+      <AppLink href="/account" className="btn-line h-9 gap-2 px-2.5" aria-label={`Account @${me.user.handle}`}>
+        {me.user.avatar && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={me.user.avatar} alt="" width={20} height={20} className="h-5 w-5" style={{ imageRendering: "pixelated" }} />
+        )}
+        <span className="hidden max-w-[120px] truncate sm:inline">@{me.user.handle}</span>
+        {me.user.plus && <span className="border border-line-hover px-1 text-[11px] leading-4 text-ceramic">Plus</span>}
+      </AppLink>
+    );
+  }
+  if (me && !me.loginAvailable) {
+    return (
+      <Popover label="Log in" triggerClassName="btn-ceramic h-9 px-4" trigger="Log in">
+        <p className="text-sm text-ceramic">Login with X opens shortly.</p>
+      </Popover>
     );
   }
   return (
-    <Popover label="Connect wallet" triggerClassName="btn-ceramic h-9 px-4" trigger="Connect">
-      <p className="text-sm text-ceramic">Payments coming soon.</p>
-      <p className="mt-1 text-sm text-muted">A wallet is only needed to add a brain.</p>
-    </Popover>
+    <a href={loginHref} className="btn-ceramic h-9 gap-2 px-4">
+      <XGlyph size={12} /> Log in
+    </a>
   );
 }
 

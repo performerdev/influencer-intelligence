@@ -6,7 +6,7 @@ import { SIGNATURE_TILT, advanceSignatureAngle, signatureDensity, signaturePoint
 
 /** Must match SIGNATURE_RADIUS_FRAC in the hero scene so clusters land exactly. */
 const RADIUS_FRAC = 0.36;
-const RGB = "185,184,178"; // particle
+const PARTICLE = "#B9B8B2";
 
 type Props = {
   handle: string;
@@ -16,6 +16,8 @@ type Props = {
   size?: number;
   /** speeds rotation up ×3 (card hover) */
   active?: boolean;
+  /** the brain's color (defaults to particle grey) */
+  color?: string;
   className?: string;
   style?: React.CSSProperties;
 };
@@ -27,7 +29,7 @@ type Props = {
  * Density = posts parsed, rotation speed = posting frequency.
  */
 export const ParticleSignature = forwardRef<HTMLCanvasElement, Props>(function ParticleSignature(
-  { handle, postsParsed, postsPerDay, size = 80, active = false, className, style },
+  { handle, postsParsed, postsPerDay, size = 80, active = false, color = PARTICLE, className, style },
   ref,
 ) {
   const canvas = useRef<HTMLCanvasElement>(null);
@@ -96,7 +98,7 @@ export const ParticleSignature = forwardRef<HTMLCanvasElement, Props>(function P
       ctx.globalAlpha = 1;
     };
 
-    ctx.fillStyle = `rgb(${RGB})`;
+    ctx.fillStyle = color;
     const loop = () => {
       draw();
       raf = visible ? requestAnimationFrame(loop) : 0;
@@ -116,7 +118,7 @@ export const ParticleSignature = forwardRef<HTMLCanvasElement, Props>(function P
       io.disconnect();
       cancelAnimationFrame(raf);
     };
-  }, [handle, postsParsed, postsPerDay, size]);
+  }, [handle, postsParsed, postsPerDay, size, color]);
 
   return (
     <canvas

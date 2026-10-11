@@ -63,6 +63,7 @@ const ts = (t: T) => new Date(t.createdAt).getTime() / 1000;
 /* ───────────────────────── mock APIs ───────────────────────── */
 
 export const calls: Record<string, number> = {};
+const paidRefs = new Set<string>();
 const page = (list: T[], cursor: string | null) => {
   const off = Number(cursor || 0);
   const slice = list.slice(off, off + 20);
@@ -160,6 +161,43 @@ export const api = createServer(async (req, res) => {
     else if (/(^|\s)filter:replies/.test(query)) list = list.filter((t) => t.isReply);
     if (/to:/.test(query)) list = list.filter((t) => t.isReply && t.inReplyToUserId === SELF.id);
     return send(page(list, q.get("cursor")));
+  }
+  /* ── X OAuth 2.0 (login) ── */
+  if (url.pathname === "/i/oauth2/authorize") {
+    // consent screen auto-approves: back to the app with a code
+    const back = new URL(q.get("redirect_uri")!);
+    back.searchParams.set("code", `code-${q.get("code_challenge")?.slice(0, 8)}`);
+    back.searchParams.set("state", q.get("state") ?? "");
+    res.writeHead(302, { location: back.toString() });
+    return res.end();
+  }
+  if (url.pathname === "/2/oauth2/token") return send({ token_type: "bearer", access_token: "mock-access", scope: "tweet.read users.read" });
+  if (url.pathname === "/2/users/me") {
+    return send({ data: { id: "4242", username: "mock_user", name: "Mock User", profile_image_url: "https://pbs.twimg.com/profile_images/0/mock_normal.png" } });
+  }
+  /* ── Solana JSON-RPC (Plus payments) ── */
+  if (url.pathname === "/solana/pay") {
+    // test hook: mark a reference as paid
+    paidRefs.add(q.get("ref") ?? "");
+    return send({ ok: true });
+  }
+  if (url.pathname === "/solana") {
+    const b = JSON.parse(body || "{}");
+    const ok = (result: unknown) => send({ jsonrpc: "2.0", id: b.id, result });
+    if (b.method === "getSignaturesForAddress") return ok(paidRefs.has(b.params[0]) ? [{ signature: `sig-${b.params[0].slice(0, 8)}`, err: null }] : []);
+    if (b.method === "getTransaction") {
+      const owner = process.env.NEXT_PUBLIC_PLUS_RECIPIENT ?? "";
+      const mint = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v";
+      return ok({
+        meta: {
+          err: null,
+          preTokenBalances: [{ accountIndex: 2, mint, owner, uiTokenAmount: { amount: "5000000" } }],
+          postTokenBalances: [{ accountIndex: 2, mint, owner, uiTokenAmount: { amount: "15000000" } }],
+        },
+      });
+    }
+    if (b.method === "getLatestBlockhash") return ok({ context: { slot: 1 }, value: { blockhash: "11111111111111111111111111111111", lastValidBlockHeight: 10 } });
+    return send({ jsonrpc: "2.0", id: b.id, error: { code: -32601, message: "mock: unsupported" } });
   }
   if (url.pathname === "/twitter/tweets") {
     // Parents of replies: synthesized from the id; one is "deleted" to test empty parents.

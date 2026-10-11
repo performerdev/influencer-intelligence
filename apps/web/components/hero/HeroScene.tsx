@@ -50,7 +50,7 @@ function measureFit(vw: number, vh: number): Fit {
 
 /* ───────────────────────────── scene ───────────────────────────── */
 
-export default function HeroScene({ handles }: { handles: string[] }) {
+export default function HeroScene({ handles, colors }: { handles: string[]; colors: string[] }) {
   return (
     <Canvas
       frameloop="demand"
@@ -62,12 +62,12 @@ export default function HeroScene({ handles }: { handles: string[] }) {
       style={{ position: "absolute", inset: 0, pointerEvents: "none" }}
       aria-hidden
     >
-      <Rig handles={handles} />
+      <Rig handles={handles} colors={colors} />
     </Canvas>
   );
 }
 
-function Rig({ handles }: { handles: string[] }) {
+function Rig({ handles, colors }: { handles: string[]; colors: string[] }) {
   const size = useThree((s) => s.size);
   const invalidate = useThree((s) => s.invalidate);
   const group = useRef<THREE.Group>(null);
@@ -115,7 +115,7 @@ function Rig({ handles }: { handles: string[] }) {
       <directionalLight position={[8, -2, 6]} intensity={0.35} color={color.ceramic} />
       <group ref={group}>
         <SolidI fit={fit} />
-        <ParticleI fit={fit} handles={handles} />
+        <ParticleI fit={fit} handles={handles} colors={colors} />
       </group>
     </>
   );
@@ -269,7 +269,7 @@ function buildParticles(handles: string[]) {
   return geo;
 }
 
-function ParticleI({ fit, handles }: { fit: React.RefObject<Fit>; handles: string[] }) {
+function ParticleI({ fit, handles, colors }: { fit: React.RefObject<Fit>; handles: string[]; colors: string[] }) {
   const camera = useThree((s) => s.camera);
   const gl = useThree((s) => s.gl);
   const points = useRef<THREE.Points>(null);
@@ -302,6 +302,8 @@ function ParticleI({ fit, handles }: { fit: React.RefObject<Fit>; handles: strin
           uAngles: { value: new Array(CLUSTERS).fill(0) },
           uDensity: { value: new Array(CLUSTERS).fill(SIGNATURE_MAX_POINTS) },
           uTilt: { value: SIGNATURE_TILT },
+          // each cluster takes on its brain's color as it lands on the card
+          uColors: { value: Array.from({ length: CLUSTERS }, (_, k) => hexToVec3(colors[k] ?? color.particle)) },
         },
       }),
     [],
@@ -401,4 +403,10 @@ function ParticleI({ fit, handles }: { fit: React.RefObject<Fit>; handles: strin
   }
 
   return <points ref={points} geometry={geometry} material={material} frustumCulled={false} />;
+}
+
+/** Raw sRGB components: the shader writes straight to the framebuffer, no color management. */
+function hexToVec3(hex: string) {
+  const n = parseInt(hex.replace("#", ""), 16);
+  return new THREE.Vector3(((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255);
 }

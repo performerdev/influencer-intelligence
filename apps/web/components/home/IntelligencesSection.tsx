@@ -2,7 +2,7 @@
 
 import { forwardRef, useState } from "react";
 
-import { ParticleSignature } from "@/components/particles/ParticleSignature";
+import { BrainAvatar } from "@/components/particles/BrainAvatar";
 import { AppLink } from "@/components/ui/AppLink";
 import { formatCount, type Intelligence } from "@/lib/intelligences";
 
@@ -62,21 +62,15 @@ function Card({ it, slotRef }: { it: Intelligence; slotRef: (el: HTMLDivElement 
         onPointerLeave={() => setActive(false)}
         onFocus={() => setActive(true)}
         onBlur={() => setActive(false)}
-        className="group flex h-full flex-col rounded-card border border-line bg-panel p-5 transition-[border-color,transform] duration-fast ease-ii-out hover:border-line-hover active:scale-[0.98]"
+        className="group flex h-full flex-col rounded-card border border-line bg-panel p-5 transition-[border-color,transform] duration-fast ease-ii-out hover:border-[var(--brain)] active:scale-[0.98]"
+        style={{ "--brain": `color-mix(in srgb, ${it.color} 55%, transparent)` } as React.CSSProperties}
       >
         <div ref={slotRef} className="-ml-2 -mt-1" style={{ width: SIGNATURE_PX, height: SIGNATURE_PX }}>
-          <ParticleSignature
-            handle={it.handle}
-            postsParsed={it.postsParsed}
-            postsPerDay={it.postsPerDay}
-            size={SIGNATURE_PX}
-            active={active}
-            style={{ opacity: "var(--sig-o, 1)" }}
-          />
+          <BrainAvatar it={it} size={SIGNATURE_PX} active={active} style={{ opacity: "var(--sig-o, 1)" }} />
         </div>
 
         <div className="mt-5 flex items-baseline gap-2">
-          <span className="font-mono text-xs text-muted">{it.code}</span>
+          <span className="font-mono text-xs" style={{ color: it.color }}>{it.code}</span>
           <span className="truncate font-pixel text-body text-ceramic">@{it.handle}</span>
         </div>
         <p className={`mt-2 line-clamp-2 min-h-[3em] text-sm ${it.oneLineMind ? "text-particle" : "text-muted"}`}>

@@ -2,8 +2,9 @@
 
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
 
+import { UsageMeter, untilText, useAuth } from "@/components/account/AuthProvider";
 import { Markdown, TypingIndicator, type Verdict, VerdictChip } from "@/components/chat/bits";
-import { ParticleSignature } from "@/components/particles/ParticleSignature";
+import { BrainAvatar } from "@/components/particles/BrainAvatar";
 import { AppLink } from "@/components/ui/AppLink";
 import { Popover } from "@/components/ui/Popover";
 import { formatCount, type Intelligence } from "@/lib/intelligences";
@@ -30,11 +31,38 @@ type Item =
       error?: string;
     };
 
-export function GroupView({ available, initial }: { available: Intelligence[]; initial: string[] }) {
+export type GroupHistory = {
+  chatId: string;
+  items: { role: "user" | "assistant"; handle: string | null; content: string; verdict: Verdict | null; refs: Reference[]; round: number }[];
+};
+
+/** Saved messages → view items, with round dividers back in place. */
+function fromHistory(h: GroupHistory | null | undefined): Item[] {
+  const out: Item[] = [];
+  let round = 0;
+  h?.items.forEach((it, i) => {
+    if (it.role === "user") {
+      round = 0;
+      out.push({ id: `h${i}`, kind: "user", content: it.content });
+      return;
+    }
+    if (it.round !== round) {
+      round = it.round;
+      out.push({ id: `hr${i}`, kind: "round", round, rounds: 2 });
+    }
+    out.push({ id: `h${i}`, kind: "ai", handle: it.handle ?? "", round: it.round, content: it.content, streaming: false, verdict: it.verdict, refs: it.refs });
+  });
+  return out;
+}
+
+export function GroupView({ available, initial, history }: { available: Intelligence[]; initial: string[]; history?: GroupHistory | null }) {
+  const auth = useAuth();
+  const canDebate = auth.me?.usage.debate ?? false;
   const [members, setMembers] = useState<string[]>(initial);
   const [debate, setDebate] = useState(false);
-  const [items, setItems] = useState<Item[]>([]);
-  const [chatId, setChatId] = useState<string | null>(null);
+  const [note, setNote] = useState<string | null>(null);
+  const [items, setItems] = useState<Item[]>(() => fromHistory(history));
+  const [chatId, setChatId] = useState<string | null>(history?.chatId ?? null);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const [speaking, setSpeaking] = useState<string | null>(null);
@@ -69,7 +97,8 @@ export function GroupView({ available, initial }: { available: Intelligence[]; i
   const patch = (id: string, fn: (it: Extract<Item, { kind: "ai" }>) => Partial<Extract<Item, { kind: "ai" }>>) =>
     setItems((all) => all.map((it) => (it.id === id && it.kind === "ai" ? { ...it, ...fn(it) } : it)));
 
-  const speakOne = async (cid: string, turn: Turn, signal: AbortSignal) => {
+  /** Streams one speaker's turn. Returns false when the queue should stop (session spent). */
+  const speakOne = async (cid: string, turn: Turn, signal: AbortSignal): Promise<boolean> => {
     const id = `a${Date.now()}${turn.handle}${turn.round}`;
     setItems((all) => [...all, { id, kind: "ai", handle: turn.handle, round: turn.round, content: "", streaming: true, verdict: null, refs: [] }]);
     setSpeaking(turn.handle);
@@ -81,8 +110,9 @@ export function GroupView({ available, initial }: { available: Intelligence[]; i
     });
     if (!res.ok || !res.body) {
       const j = await res.json().catch(() => ({}));
-      patch(id, () => ({ streaming: false, error: j.error ?? "No answer. Try again." }));
-      return;
+      const error = j.reason === "limit" && j.resetsAt ? `${j.error} Refills in ${untilText(j.resetsAt)}.` : (j.error ?? "No answer. Try again.");
+      patch(id, () => ({ streaming: false, error }));
+      return j.reason !== "limit";
     }
     const reader = res.body.getReader();
     const dec = new TextDecoder();
@@ -103,6 +133,7 @@ export function GroupView({ available, initial }: { available: Intelligence[]; i
       }
     }
     patch(id, (m) => (m.streaming ? { streaming: false } : {}));
+    return true;
   };
 
   const send = useCallback(
@@ -123,10 +154,13 @@ export function GroupView({ available, initial }: { available: Intelligence[]; i
         });
         const j = await res.json();
         if (!res.ok) {
-          setItems((all) => [...all, { id: `e${Date.now()}`, kind: "ai", handle: "", round: 0, content: "", streaming: false, verdict: null, refs: [], error: j.error }]);
+          if (j.reason === "login") auth.askLogin();
+          const error = j.reason === "limit" && j.resetsAt ? `${j.error} Refills in ${untilText(j.resetsAt)}.` : j.error;
+          setItems((all) => [...all, { id: `e${Date.now()}`, kind: "ai", handle: "", round: 0, content: "", streaming: false, verdict: null, refs: [], error }]);
           return;
         }
         setChatId(j.chatId);
+        setNote(j.debateLocked ? "Debate rounds are a Plus feature — this time they answered once each." : null);
         let round = 0;
         for (const turn of j.queue as Turn[]) {
           if (ctrl.signal.aborted) break;
@@ -134,7 +168,7 @@ export function GroupView({ available, initial }: { available: Intelligence[]; i
             round = turn.round;
             setItems((all) => [...all, { id: `r${Date.now()}${round}`, kind: "round", round, rounds: j.rounds }]);
           }
-          await speakOne(j.chatId, turn, ctrl.signal);
+          if (!(await speakOne(j.chatId, turn, ctrl.signal))) break;
         }
       } catch (err) {
         if ((err as Error).name !== "AbortError") {
@@ -145,12 +179,13 @@ export function GroupView({ available, initial }: { available: Intelligence[]; i
         abort.current = null;
         setSpeaking(null);
         setBusy(false);
+        auth.refresh();
         requestAnimationFrame(() => inputRef.current?.focus());
       }
     },
     // speakOne only touches state setters
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [busy, ready, members, debate, chatId],
+    [busy, ready, members, debate, chatId, auth],
   );
 
   return (
@@ -161,8 +196,8 @@ export function GroupView({ available, initial }: { available: Intelligence[]; i
           <h1 className="mr-2 text-body font-medium">Group</h1>
           {lineup.map((it) => (
             <span key={it.handle} className="inline-flex h-9 items-center gap-2 rounded-pill border border-line bg-panel pl-1.5 pr-1">
-              <ParticleSignature handle={it.handle} postsParsed={it.postsParsed} postsPerDay={it.postsPerDay} size={22} />
-              <span className="font-mono text-xs text-muted">{it.code}</span>
+              <BrainAvatar it={it} size={22} />
+              <span className="font-mono text-xs" style={{ color: it.color }}>{it.code}</span>
               <span className="font-pixel text-sm text-ceramic">@{it.handle}</span>
               <button
                 onClick={() => toggle(it.handle)}
@@ -180,17 +215,29 @@ export function GroupView({ available, initial }: { available: Intelligence[]; i
             </Popover>
           )}
           <label className="ml-auto inline-flex cursor-pointer select-none items-center gap-2 text-sm text-particle">
-            <input type="checkbox" checked={debate} disabled={busy} onChange={(e) => setDebate(e.target.checked)} className="peer sr-only" />
+            <input
+              type="checkbox"
+              checked={debate}
+              disabled={busy}
+              onChange={(e) => {
+                if (e.target.checked && !canDebate) {
+                  setNote(auth.me?.user ? "Debate rounds come with Plus." : "Debate rounds come with Plus — log in with X first.");
+                  return;
+                }
+                setDebate(e.target.checked);
+              }}
+              className="peer sr-only"
+            />
             <span aria-hidden className="relative h-5 w-9 rounded-pill border border-line bg-panel transition-colors duration-fast peer-checked:border-ceramic peer-focus-visible:outline peer-focus-visible:outline-1 peer-focus-visible:outline-ceramic">
               <span className={`absolute top-[3px] h-3 w-3 bg-ceramic transition-[left] duration-fast ${debate ? "left-[19px]" : "left-[3px]"}`} />
             </span>
-            Debate
+            Debate{!canDebate && <span className="text-muted">· Plus</span>}
           </label>
         </div>
       </header>
 
       {/* conversation */}
-      <div ref={scrollRef} className="min-h-0 flex-1 overflow-y-auto px-gutter lg:px-8" aria-live="polite">
+      <div ref={scrollRef} data-scroll-main data-lenis-prevent className="min-h-0 flex-1 overflow-y-auto px-gutter lg:px-8" aria-live="polite">
         {items.length === 0 ? (
           <Empty available={available} members={members} onPick={toggle} ready={ready} onAsk={send} />
         ) : (
@@ -219,8 +266,8 @@ export function GroupView({ available, initial }: { available: Intelligence[]; i
                 <li key={it.id}>
                   {who && (
                     <div className="mb-2 flex items-center gap-2">
-                      <ParticleSignature handle={who.handle} postsParsed={who.postsParsed} postsPerDay={who.postsPerDay} size={22} />
-                      <span className="font-mono text-xs text-muted">{who.code}</span>
+                      <BrainAvatar it={who} size={22} active={it.streaming} />
+                      <span className="font-mono text-xs" style={{ color: who.color }}>{who.code}</span>
                       <AppLink href={`/i/${who.handle}`} className="font-pixel text-sm text-particle hover:text-ceramic">
                         @{who.handle}
                       </AppLink>
@@ -276,6 +323,15 @@ export function GroupView({ available, initial }: { available: Intelligence[]; i
             </button>
           )}
         </form>
+        {note && (
+          <p className="mx-auto mt-2 max-w-[760px] font-pixel text-xs text-particle">
+            {note}{" "}
+            <a href="/account#plus" className="underline decoration-line-hover underline-offset-4 hover:text-ceramic">
+              See Plus
+            </a>
+          </p>
+        )}
+        <UsageMeter className="mx-auto mt-2 max-w-[760px]" />
         <p className="mx-auto mt-2 max-w-[760px] text-xs text-muted">
           {speaking ? `@${speaking} is answering…` : "Unofficial AI models built from public posts. Not affiliated with anyone. Not financial advice."}
         </p>
@@ -369,7 +425,7 @@ function Tally({ items, byHandle }: { items: Item[]; byHandle: Map<string, Intel
       <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
         {[...latest].map(([h, v]) => (
           <span key={h} className="inline-flex items-center gap-2">
-            <span className="font-mono text-xs text-muted">{byHandle.get(h)?.code}</span>
+            <span className="font-mono text-xs" style={{ color: byHandle.get(h)?.color }}>{byHandle.get(h)?.code}</span>
             <VerdictChip verdict={v} />
           </span>
         ))}
@@ -385,7 +441,7 @@ function Picker({ available, members, onPick }: { available: Intelligence[]; mem
       {rest.map((it) => (
         <li key={it.handle}>
           <button onClick={() => onPick(it.handle)} className="flex w-full items-center gap-3 rounded-chip px-1 py-2 text-left transition-colors duration-fast hover:bg-panel">
-            <ParticleSignature handle={it.handle} postsParsed={it.postsParsed} postsPerDay={it.postsPerDay} size={24} />
+            <BrainAvatar it={it} size={24} />
             <span className="font-mono text-xs text-muted">{it.code}</span>
             <span className="truncate text-sm text-ceramic">@{it.handle}</span>
           </button>
@@ -428,7 +484,7 @@ function Empty({
                   on ? "border-ceramic bg-panel" : "border-line hover:border-line-hover"
                 }`}
               >
-                <ParticleSignature handle={it.handle} postsParsed={it.postsParsed} postsPerDay={it.postsPerDay} size={40} active={on} />
+                <BrainAvatar it={it} size={40} active={on} />
                 <span className="mt-3 font-mono text-xs text-muted">{it.code}</span>
                 <span className="truncate font-pixel text-sm text-ceramic">@{it.handle}</span>
                 <span className="mt-1 line-clamp-2 text-xs text-muted">{it.oneLineMind ?? `${formatCount(it.postsParsed)} posts`}</span>

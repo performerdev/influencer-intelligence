@@ -3,6 +3,8 @@ import { GeistMono } from "geist/font/mono";
 import { GeistPixelSquare } from "geist/font/pixel";
 import { GeistSans } from "geist/font/sans";
 
+import { AuthProvider } from "@/components/account/AuthProvider";
+import { KeyboardScroll } from "@/components/layout/KeyboardScroll";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { TopBar } from "@/components/layout/TopBar";
 import { site } from "@/config/site";
@@ -31,9 +33,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <WalletProvider>
-          <SmoothScroll />
-          <TopBar />
-          <main className="relative">{children}</main>
+          <AuthProvider>
+            <SmoothScroll />
+            <KeyboardScroll />
+            <TopBar />
+            <main className="relative">{children}</main>
+          </AuthProvider>
         </WalletProvider>
       </body>
     </html>

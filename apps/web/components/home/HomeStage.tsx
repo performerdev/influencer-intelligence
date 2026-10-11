@@ -35,6 +35,7 @@ const smooth = (a: number, b: number, x: number) => {
  */
 export function HomeStage({ intelligences, questions = [] }: { intelligences: Intelligence[]; questions?: { q: string; code: string }[] }) {
   const handles = useMemo(() => intelligences.map((i) => i.handle), [intelligences]);
+  const colors = useMemo(() => intelligences.map((i) => i.color), [intelligences]);
   const [mode, setMode] = useState<"pending" | "motion" | "reduced" | "static">("pending");
 
   const heroRef = useRef<HTMLElement>(null);
@@ -247,7 +248,7 @@ export function HomeStage({ intelligences, questions = [] }: { intelligences: In
       >
         {(mode === "motion" || mode === "reduced") && (
           <Suspense fallback={null}>
-            <HeroScene handles={handles} />
+            <HeroScene handles={handles} colors={colors} />
           </Suspense>
         )}
       </div>

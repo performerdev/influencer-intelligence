@@ -73,6 +73,7 @@ uniform float uSlotR[${CLUSTERS}];
 uniform float uAngles[${CLUSTERS}];
 uniform float uDensity[${CLUSTERS}];
 uniform float uTilt;
+uniform vec3  uColors[${CLUSTERS}];
 
 attribute vec3 aSource;   // matching point inside the solid "i"
 attribute vec3 aNormal;
@@ -84,6 +85,8 @@ attribute vec3 aOffset;   // cursor spring offset (CPU)
 
 varying float vAlpha;
 varying float vLight;
+varying vec3  vBrain;
+varying float vLanded;
 
 ${SIMPLEX}
 
@@ -133,6 +136,8 @@ void main(){
 
   vAlpha = mix(heroAlpha, sigAlpha, se) * smoothstep(0.0, 0.08, t) * keep;
   vLight = mix(0.35 * step(0.5, facing), 0.15, se);              // front pixels a touch brighter than particle grey
+  vBrain = uColors[k];
+  vLanded = se;
   gl_PointSize = mix(uSize * aRand.x, uSigSize, se) * uDpr;
 }
 `;
@@ -141,10 +146,13 @@ export const particleFragment = /* glsl */ `
 uniform float uOpacity;
 varying float vAlpha;
 varying float vLight;
+varying vec3  vBrain;
+varying float vLanded;
 const vec3 PARTICLE = vec3(0.7255, 0.7216, 0.6980); // #B9B8B2
 const vec3 CERAMIC  = vec3(0.9490, 0.9451, 0.9255); // #F2F1EC
 void main(){
   // square pixels, hard edges
-  gl_FragColor = vec4(mix(PARTICLE, CERAMIC, clamp(vLight, 0.0, 1.0)), vAlpha * uOpacity);
+  vec3 base = mix(PARTICLE, CERAMIC, clamp(vLight, 0.0, 1.0));
+  gl_FragColor = vec4(mix(base, vBrain, smoothstep(0.35, 0.95, vLanded)), vAlpha * uOpacity);
 }
 `;

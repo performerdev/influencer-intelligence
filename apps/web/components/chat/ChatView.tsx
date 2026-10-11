@@ -2,7 +2,8 @@
 
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import { ParticleSignature } from "@/components/particles/ParticleSignature";
+import { UsageMeter, untilText, useAuth } from "@/components/account/AuthProvider";
+import { BrainAvatar } from "@/components/particles/BrainAvatar";
 import { AppLink } from "@/components/ui/AppLink";
 import { formatCount } from "@/lib/intelligences";
 import { normalizeRefs } from "@/lib/refs";
@@ -31,6 +32,8 @@ export type ChatIntelligence = {
   code: string;
   handle: string;
   displayName: string;
+  color: string;
+  avatar?: string;
   postsParsed: number | null;
   postsPerDay: number | null;
 };
@@ -52,10 +55,22 @@ type Msg =
 
 const VERDICT_TAIL = /\n*\s*VERDICT:?\s*[A-Z]*\.?\s*$/i;
 
-export function ChatView({ intelligence, brain }: { intelligence: ChatIntelligence; brain: ChatBrain | null }) {
+export type ChatHistory = {
+  chatId: string;
+  items: { role: "user" | "assistant"; content: string; verdict: Verdict | null; refs: Reference[]; brainVersion: number | null }[];
+};
+
+export function ChatView({ intelligence, brain, history }: { intelligence: ChatIntelligence; brain: ChatBrain | null; history?: ChatHistory | null }) {
   const { handle, code } = intelligence;
-  const [messages, setMessages] = useState<Msg[]>([]);
-  const [chatId, setChatId] = useState<string | null>(null);
+  const auth = useAuth();
+  const [messages, setMessages] = useState<Msg[]>(() =>
+    (history?.items ?? []).map((it, i) =>
+      it.role === "user"
+        ? { id: `h${i}`, role: "user" as const, content: it.content }
+        : { id: `h${i}`, role: "assistant" as const, content: it.content, streaming: false, lastDelta: "", verdict: it.verdict, refs: it.refs, brainVersion: it.brainVersion },
+    ),
+  );
+  const [chatId, setChatId] = useState<string | null>(history?.chatId ?? null);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const [selected, setSelected] = useState<Reference | null>(null);
@@ -114,7 +129,9 @@ export function ChatView({ intelligence, brain }: { intelligence: ChatIntelligen
         });
         if (!res.ok || !res.body) {
           const j = await res.json().catch(() => ({}));
-          patch(() => ({ streaming: false, error: j.error ?? "Something went wrong. Try again." }));
+          if (j.reason === "login") auth.askLogin();
+          const error = j.reason === "limit" && j.resetsAt ? `${j.error} Refills in ${untilText(j.resetsAt)}.` : (j.error ?? "Something went wrong. Try again.");
+          patch(() => ({ streaming: false, error }));
           return;
         }
         const reader = res.body.getReader();
@@ -139,6 +156,7 @@ export function ChatView({ intelligence, brain }: { intelligence: ChatIntelligen
               patch((m) => ({ streaming: false, verdict: data.verdict, refs: data.refs, content: m.content.replace(VERDICT_TAIL, "").trim() }));
               if (data.refs?.length) setSelected(data.refs[0]);
               else setSelected(null);
+              auth.refresh();
             } else if (ev === "error") {
               patch(() => ({ streaming: false, error: data.message }));
             }
@@ -151,7 +169,7 @@ export function ChatView({ intelligence, brain }: { intelligence: ChatIntelligen
         requestAnimationFrame(() => inputRef.current?.focus());
       }
     },
-    [busy, brain, chatId, handle],
+    [busy, brain, chatId, handle, auth],
   );
 
   const openRef = (r: Reference) => {
@@ -184,7 +202,7 @@ export function ChatView({ intelligence, brain }: { intelligence: ChatIntelligen
           </button>
         </header>
 
-        <div ref={scrollRef} className="min-h-0 flex-1 overflow-y-auto px-gutter lg:px-8" aria-live="polite">
+        <div ref={scrollRef} data-scroll-main data-lenis-prevent className="min-h-0 flex-1 overflow-y-auto px-gutter lg:px-8" aria-live="polite">
           {messages.length === 0 ? (
             <EmptyState intelligence={intelligence} ready={!!brain} onAsk={send} />
           ) : (
@@ -197,8 +215,8 @@ export function ChatView({ intelligence, brain }: { intelligence: ChatIntelligen
                 ) : (
                   <li key={m.id}>
                     <div className="mb-2 flex items-center gap-2">
-                      <ParticleSignature handle={handle} postsParsed={intelligence.postsParsed} postsPerDay={intelligence.postsPerDay} size={20} />
-                      <span className="font-mono text-xs text-muted">{code}</span>
+                      <BrainAvatar it={intelligence} size={20} active={m.streaming} />
+                      <span className="font-mono text-xs" style={{ color: intelligence.color }}>{code}</span>
                       {m.streaming && !m.content && <TypingIndicator />}
                     </div>
                     {m.error ? (
@@ -269,6 +287,7 @@ export function ChatView({ intelligence, brain }: { intelligence: ChatIntelligen
               →
             </button>
           </form>
+          <UsageMeter className="mx-auto mt-2 max-w-[720px]" />
           {suggestions.length > 0 && (
             <div className="mx-auto mt-2 flex max-w-[720px] gap-2 overflow-x-auto pb-1 [scrollbar-width:none]">
               {suggestions.map((s) => (
@@ -338,7 +357,7 @@ function Answer({ msg, onRef }: { msg: Extract<Msg, { role: "assistant" }>; onRe
 function EmptyState({ intelligence, ready, onAsk }: { intelligence: ChatIntelligence; ready: boolean; onAsk: (q: string) => void }) {
   return (
     <div className="flex h-full min-h-[360px] flex-col items-center justify-center py-10 text-center">
-      <ParticleSignature handle={intelligence.handle} postsParsed={intelligence.postsParsed} postsPerDay={intelligence.postsPerDay} size={200} />
+      <BrainAvatar it={intelligence} size={200} />
       {ready ? (
         <p className="mt-6 font-pixel text-lead text-particle">
           Ask @{intelligence.handle} anything. Try:{" "}
@@ -360,9 +379,9 @@ function BrainPanel({ intelligence, brain, onOpenBrain }: { intelligence: ChatIn
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-3">
-        <ParticleSignature handle={intelligence.handle} postsParsed={intelligence.postsParsed} postsPerDay={intelligence.postsPerDay} size={56} />
+        <BrainAvatar it={intelligence} size={56} />
         <div className="min-w-0">
-          <p className="font-mono text-xs text-muted">{intelligence.code}</p>
+          <p className="font-mono text-xs" style={{ color: intelligence.color }}>{intelligence.code}</p>
           <p className="truncate font-pixel text-body">@{intelligence.handle}</p>
           <p className="font-mono text-xs text-muted">{formatCount(intelligence.postsParsed)} posts</p>
         </div>

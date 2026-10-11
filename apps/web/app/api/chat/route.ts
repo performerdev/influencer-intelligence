@@ -1,6 +1,7 @@
 import { type ChatMessage, OpenAICompatibleLLM, mentionedTickers, tickerContext } from "@ii/brain-core";
 import { recordSpend } from "@ii/db";
 
+import { charge, gate } from "@/lib/server/auth";
 import { loadBrain, resolveReferences, sql } from "@/lib/server/data";
 import { SSE_HEADERS, VERDICT, clientHash, json } from "@/lib/server/http";
 
@@ -9,9 +10,7 @@ export const dynamic = "force-dynamic";
 // Netlify streams up to 60s; one intelligence's answer fits well inside that.
 export const maxDuration = 60;
 
-const DAILY_LIMIT = Number(process.env.CHAT_DAILY_LIMIT ?? 40);
 const HISTORY_TURNS = 16;
-const MAX_ANSWER_TOKENS = Number(process.env.CHAT_MAX_TOKENS ?? 900);
 
 type Body = { handle?: string; chatId?: string | null; message?: string };
 
@@ -32,14 +31,18 @@ export async function POST(req: Request) {
 
   const db = sql();
   const client = clientHash(req);
-  const [{ n }] = await db<{ n: number }[]>`
-    select count(*)::int as n from messages
-    where client_hash = ${client} and role = 'user' and created_at > now() - interval '24 hours'`;
-  if (n >= DAILY_LIMIT) return json({ error: `That's the daily limit of ${DAILY_LIMIT} free questions. Come back tomorrow.` }, 429);
+  // Guests: one message, then log in. Logged in: a session budget in real model cost.
+  const g = await gate(client);
+  if (!g.ok) return json(g.body, g.status);
+  const { user, usage } = g;
 
-  // Conversation: history comes from the database, never from the client.
+  // Conversation: history comes from the database, never from the client — and only from your own chats.
   let chatId = body.chatId && /^[0-9a-f-]{36}$/i.test(body.chatId) ? body.chatId : null;
   let history: ChatMessage[] = [];
+  if (chatId) {
+    const [owner] = await db<{ user_id: number | null }[]>`select user_id from chats where id = ${chatId} and kind = 'single'`;
+    if (!owner || (owner.user_id ?? null) !== (user?.id ?? null)) chatId = null;
+  }
   if (chatId) {
     const rows = await db<{ role: "user" | "assistant"; content: string }[]>`
       select role, content from messages where chat_id = ${chatId} order by id desc limit ${HISTORY_TURNS}`;
@@ -47,10 +50,11 @@ export async function POST(req: Request) {
     if (!rows.length) chatId = null;
   }
   if (!chatId) {
-    const [c] = await db<{ id: string }[]>`insert into chats (kind, influencer_ids) values ('single', ${[brain.influencerId]}) returning id`;
+    const [c] = await db<{ id: string }[]>`insert into chats (kind, influencer_ids, user_id) values ('single', ${[brain.influencerId]}, ${user?.id ?? null}) returning id`;
     chatId = c.id;
   }
-  await db`insert into messages (chat_id, role, influencer_id, content, client_hash) values (${chatId}, 'user', ${brain.influencerId}, ${message}, ${client})`;
+  await db`insert into messages (chat_id, role, influencer_id, content, client_hash, user_id) values (${chatId}, 'user', ${brain.influencerId}, ${message}, ${client}, ${user?.id ?? null})`;
+  await db`update chats set updated_at = now() where id = ${chatId}`;
 
   // Identical first questions within the hour reuse the answer (same brain version).
   const cached = history.length
@@ -71,6 +75,7 @@ export async function POST(req: Request) {
       const send = (event: string, data: unknown) => controller.enqueue(encoder.encode(`event: ${event}\ndata: ${JSON.stringify(data)}\n\n`));
       send("meta", { chatId, brainVersion: brain.version, code: brain.code });
       let full = "";
+      let cost = 0;
       try {
         if (cached) {
           for (const piece of cached.content.match(/\S+\s*/g) ?? []) {
@@ -90,21 +95,23 @@ export async function POST(req: Request) {
           const context = tickerContext(brain.files, tickers);
           const turn = context ? `${message}\n\n${context}` : message;
           const messages: ChatMessage[] = [{ role: "system", content: brain.prompt }, ...history, { role: "user", content: turn }];
-          for await (const ev of llm.stream(messages, { model, temperature: 0.7, maxTokens: MAX_ANSWER_TOKENS, thinking: "disabled" })) {
+          for await (const ev of llm.stream(messages, { model, temperature: 0.7, maxTokens: usage.maxAnswerTokens, thinking: "disabled" })) {
             if ("delta" in ev) {
               full += ev.delta;
               send("delta", { t: ev.delta });
             } else {
+              cost = ev.usage.costUsd;
               await recordSpend(db, { influencerId: brain.influencerId, kind: "llm", units: ev.usage.input + ev.usage.output, usd: ev.usage.costUsd, meta: { step: "chat", model, ...ev.usage } });
             }
           }
+          await charge(user, cost);
         }
         const verdict = full.match(VERDICT)?.[1]?.toUpperCase() ?? null;
         const content = full.replace(VERDICT, "").trim();
         const refs = await resolveReferences(brain, content);
         const [m] = await db<{ id: string }[]>`
-          insert into messages (chat_id, role, influencer_id, brain_version, content, verdict, refs)
-          values (${chatId}, 'assistant', ${brain.influencerId}, ${brain.version}, ${content}, ${verdict}, ${db.json(refs.map((r) => r.postId) as never)})
+          insert into messages (chat_id, role, influencer_id, brain_version, content, verdict, refs, user_id, cost_usd)
+          values (${chatId}, 'assistant', ${brain.influencerId}, ${brain.version}, ${content}, ${verdict}, ${db.json(refs.map((r) => r.postId) as never)}, ${user?.id ?? null}, ${cost})
           returning id`;
         send("done", { verdict, refs, messageId: String(m.id), cached: Boolean(cached) });
       } catch (err) {
