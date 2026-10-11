@@ -1,6 +1,6 @@
 /**
  * Brain signature — each intelligence's avatar: a small rotating pixel brain
- * whose shape is deterministic from its handle. Density follows the number of posts
+ * in the intelligence's color. Density follows the number of posts
  * parsed and rotation speed follows posting frequency (both real values; when
  * they're unknown we fall back to neutral defaults, never invented numbers).
  *
@@ -8,7 +8,8 @@
  * points that fly down from the particle "i" are exactly the points each card
  * keeps drawing after the handoff.
  */
-import { gaussian, hashString, rng } from "./random";
+import { brainModel } from "./brain-model";
+import { hashString } from "./random";
 
 /** Max points any signature uses; the hero clusters use this many each. */
 export const SIGNATURE_MAX_POINTS = 1800;
@@ -16,65 +17,20 @@ export const SIGNATURE_MAX_POINTS = 1800;
 export const SIGNATURE_TILT = 0.38;
 
 /**
- * A brain, as a point cloud: two hemispheres split by the longitudinal fissure,
- * folded with gyri, a flatter base and a cerebellum at the back. Proportions
- * and fold phases vary per handle, so every intelligence has its own brain.
- * Long axis is z (front → back), so a turn around y shows the profile.
+ * The brain as a point cloud (see brain-model.ts): every intelligence gets the
+ * same brain, traced from the reference picture, in its own color. The first n
+ * points are spread evenly over the outer surface, so any n reads as a brain.
  */
-export function brainPoints(handle: string, n: number, salt = 0, folds?: Float32Array): Float32Array {
-  const seed = hashString(handle) ^ salt;
-  const v = rng(seed ^ 0x9e3779b9);
-  const W = 0.78 + v() * 0.1; // half-width
-  const H = 0.6 + v() * 0.08; // half-height
-  const L = 1; // half-length
-  const f1 = 9 + v() * 4;
-  const f2 = 8 + v() * 4;
-  const p1 = v() * Math.PI * 2;
-  const p2 = v() * Math.PI * 2;
-  const r = rng(seed);
+export function brainPoints(_handle: string, n: number, _salt = 0, folds?: Float32Array): Float32Array {
+  const m = brainModel();
   const out = new Float32Array(n * 3);
-  let maxR = 0;
-  let i = 0;
-  while (i < n) {
-    if (r() < 0.12) {
-      // cerebellum: small, tightly folded, back and below
-      const z = r() * 2 - 1;
-      const t = r() * Math.PI * 2;
-      const s = Math.sqrt(1 - z * z);
-      const fold = 1 + 0.08 * Math.sin(z * 26 + t * 2);
-      const x = s * Math.cos(t) * 0.5 * fold;
-      const y = -0.42 + s * Math.sin(t) * 0.22 * fold;
-      const zz = -0.72 + z * 0.3 * fold;
-      out.set([x, y, zz], i * 3);
-      if (folds) folds[i] = 0.5 + 0.5 * Math.sin(z * 26 + t * 2);
-      maxR = Math.max(maxR, Math.hypot(x, y, zz));
-      i++;
-      continue;
-    }
-    const z = r() * 2 - 1;
-    const t = r() * Math.PI * 2;
-    const s = Math.sqrt(1 - z * z);
-    const d = [s * Math.cos(t), s * Math.sin(t), z];
-    // gyri: wavy ridges over the cortex
-    const fold = Math.sin(f1 * d[1] + 4 * Math.sin(7 * d[2] + p1)) * Math.cos(f2 * d[2] + 3 * Math.sin(6 * d[0] + p2));
-    // keep more points on the ridges, so the folds read in pixels
-    if (r() > 0.45 + 0.55 * (fold * 0.5 + 0.5)) continue;
-    let rad = 1 + 0.075 * fold;
-    // longitudinal fissure between the hemispheres (top and front/back, not the base)
-    if (d[1] > -0.25) rad *= 1 - 0.22 * Math.exp(-((d[0] / 0.09) ** 2));
-    const shell = r() < 0.86 ? 1 + gaussian(r) * 0.02 : Math.cbrt(r()) * 0.9;
-    rad *= shell;
-    let x = d[0] * W * rad;
-    let y = d[1] * H * rad;
-    const zz = d[2] * L * rad;
-    if (y < -0.3 * H) y = -0.3 * H + (y + 0.3 * H) * 0.55; // flatter base
-    x *= 1 + 0.12 * Math.max(0, -d[2]); // a little wider at the back
-    out.set([x, y, zz], i * 3);
-    if (folds) folds[i] = fold * 0.5 + 0.5; // 1 on a ridge, 0 in a groove
-    maxR = Math.max(maxR, Math.hypot(x, y, zz));
-    i++;
+  for (let i = 0; i < n; i++) {
+    const j = i % m.n;
+    out[i * 3] = m.pos[j * 3];
+    out[i * 3 + 1] = m.pos[j * 3 + 1];
+    out[i * 3 + 2] = m.pos[j * 3 + 2];
+    if (folds) folds[i] = m.fold[j];
   }
-  for (let k = 0; k < out.length; k++) out[k] /= maxR;
   return out;
 }
 

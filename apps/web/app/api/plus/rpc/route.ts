@@ -3,7 +3,7 @@ import { rpcUrl } from "@/lib/server/solana";
 export const dynamic = "force-dynamic";
 
 /** Minimal Solana RPC proxy for the in-browser wallet flow: only what building a transfer needs. */
-const ALLOWED = new Set(["getLatestBlockhash", "getAccountInfo", "getMinimumBalanceForRentExemption", "getSignatureStatuses"]);
+const ALLOWED = new Set(["getLatestBlockhash", "getAccountInfo", "getTokenAccountBalance", "getMinimumBalanceForRentExemption", "getSignatureStatuses"]);
 
 export async function POST(req: Request) {
   const body = (await req.json().catch(() => null)) as { method?: string } | null;

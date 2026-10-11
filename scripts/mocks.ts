@@ -186,7 +186,7 @@ export const api = createServer(async (req, res) => {
     const ok = (result: unknown) => send({ jsonrpc: "2.0", id: b.id, result });
     if (b.method === "getSignaturesForAddress") return ok(paidRefs.has(b.params[0]) ? [{ signature: `sig-${b.params[0].slice(0, 8)}`, err: null }] : []);
     if (b.method === "getTransaction") {
-      const owner = process.env.NEXT_PUBLIC_PLUS_RECIPIENT ?? "";
+      const owner = process.env.NEXT_PUBLIC_PLUS_RECIPIENT || "H1Gck5JTfM4T67jQ1Q5hgRFBRgqbLGNrVVGDXc8t7bqz";
       const mint = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v";
       return ok({
         meta: {
@@ -196,6 +196,7 @@ export const api = createServer(async (req, res) => {
         },
       });
     }
+    if (b.method === "getTokenAccountBalance") return ok({ context: { slot: 1 }, value: { amount: "25000000", decimals: 6, uiAmount: 25, uiAmountString: "25" } });
     if (b.method === "getLatestBlockhash") return ok({ context: { slot: 1 }, value: { blockhash: "11111111111111111111111111111111", lastValidBlockHeight: 10 } });
     return send({ jsonrpc: "2.0", id: b.id, error: { code: -32601, message: "mock: unsupported" } });
   }

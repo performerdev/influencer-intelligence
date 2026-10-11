@@ -59,8 +59,13 @@ export function VerdictChip({ verdict }: { verdict: Verdict }) {
 
 /* ───────────────────────── tiny markdown ───────────────────────── */
 
-/** Enough markdown for brain files: headings, bullets, bold, paragraphs. Citations are muted. */
-export function Markdown({ text, className }: { text: string; className?: string }) {
+/**
+ * Enough markdown for brain files: headings, bullets, bold, paragraphs.
+ * Citations (post:123…) become a small ↗ that opens the post on X — with no
+ * handle to link to, they're left out — so long IDs never show in the text.
+ */
+export function Markdown({ text, className, handle }: { text: string; className?: string; handle?: string }) {
+  const inline = (s: string) => inlineMd(s, handle);
   const blocks = text.trim().split(/\n{2,}/);
   return (
     <div className={className}>
@@ -104,10 +109,32 @@ export function Markdown({ text, className }: { text: string; className?: string
   );
 }
 
-function inline(s: string) {
-  return s.split(/(\*\*[^*]+\*\*|\(post:\d+\)|\[post:\d+\])/g).map((part, i) => {
+const CITE = "\u0000";
+
+function inlineMd(s: string, handle?: string) {
+  const marked = s
+    // "(post:1, post:2)" and "[post:1]" → markers; a bare "post:1" too
+    .replace(/\s*[([]\s*post:\d+(?:\s*[,;]\s*post:\d+)*\s*[)\]]/g, (m) => m.match(/\d{5,}/g)!.map((id) => `${CITE}${id}${CITE}`).join(""))
+    .replace(/[,;]?\s*post:(\d{5,})/g, (_, id) => `${CITE}${id}${CITE}`);
+  return marked.split(/(\*\*[^*]+\*\*|\u0000\d+\u0000)/g).map((part, i) => {
     if (/^\*\*.*\*\*$/.test(part)) return <strong key={i} className="font-medium text-ceramic">{part.slice(2, -2)}</strong>;
-    if (/^[([]post:\d+[)\]]$/.test(part)) return <span key={i} className="font-mono text-[0.85em] text-muted">{part}</span>;
+    if (part.startsWith(CITE)) {
+      if (!handle) return null;
+      const id = part.slice(1, -1);
+      return (
+        <a
+          key={i}
+          href={`https://x.com/${handle}/status/${id}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Open the post on X"
+          aria-label="Source post on X"
+          className="ml-0.5 align-super text-[0.7em] leading-none text-muted transition-colors duration-fast hover:text-ceramic"
+        >
+          ↗
+        </a>
+      );
+    }
     return <Fragment key={i}>{part}</Fragment>;
   });
 }

@@ -105,8 +105,9 @@ export function HomeStage({ intelligences, questions = [] }: { intelligences: In
       st = ScrollTrigger.create({
         trigger: hero,
         start: "top top",
-        endTrigger: gridRef.current!,
-        end: "top 22%",
+        // the cards' row near the top of the screen — or the bottom of the page, if that comes first
+        // (on tall screens the page ends before the row can climb that high, and the handoff never finished)
+        end: () => Math.min(ScrollTrigger.maxScroll(window) - 2, gridRef.current!.getBoundingClientRect().top + window.scrollY - window.innerHeight * 0.22),
         scrub: true,
         onRefresh: (self) => (scatterEnd.current = self.end),
         onUpdate: (self) => applyScatter(self.progress),

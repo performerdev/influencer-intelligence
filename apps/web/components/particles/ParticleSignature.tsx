@@ -2,7 +2,8 @@
 
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 
-import { SIGNATURE_TILT, advanceSignatureAngle, signatureDensity, signatureFolds, signaturePoints, signatureSpeed } from "@/lib/signature";
+import { createBrainRenderer } from "@/lib/brain-render";
+import { advanceSignatureAngle, signatureSpeed } from "@/lib/signature";
 
 /** Must match SIGNATURE_RADIUS_FRAC in the hero scene so clusters land exactly. */
 const RADIUS_FRAC = 0.36;
@@ -23,10 +24,9 @@ type Props = {
 };
 
 /**
- * An intelligence's avatar: a small 3D point cloud, deterministic from the
- * handle, drawn with Canvas2D (no WebGL context per card) as square pixels on
- * a grid — each grid cell lights once, as bright as its nearest point.
- * Density = posts parsed, rotation speed = posting frequency.
+ * An intelligence's avatar when it has no PFP yet: the turning pixel brain in
+ * its color, drawn with Canvas2D (no WebGL context per card). Turn speed
+ * follows posting frequency.
  */
 export const ParticleSignature = forwardRef<HTMLCanvasElement, Props>(function ParticleSignature(
   { handle, postsParsed, postsPerDay, size = 80, active = false, color = PARTICLE, className, style },
@@ -49,20 +49,8 @@ export const ParticleSignature = forwardRef<HTMLCanvasElement, Props>(function P
     el.height = Math.round(size * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    const density = signatureDensity(postsParsed);
     const speed = signatureSpeed(postsPerDay);
-    const pts = signaturePoints(handle, density);
-    const folds = signatureFolds(handle);
-    const n = pts.length / 3;
-    const R = size * RADIUS_FRAC;
-    const c = size / 2;
-    const ct = Math.cos(SIGNATURE_TILT);
-    const st = Math.sin(SIGNATURE_TILT);
-    // ~40 cells across, never finer than 1 css px: 80px card → 2px pixels, 200px → 5px
-    const grid = Math.max(1, Math.round(size / 40));
-    const cellsAcross = Math.ceil(size / grid);
-    const light = new Float32Array(cellsAcross * cellsAcross);
-    const gap = grid >= 3 ? 1 : 0;
+    const renderer = createBrainRenderer({ size, color, radius: RADIUS_FRAC });
     let mult = 1;
     let raf = 0;
     let visible = false;
@@ -70,38 +58,9 @@ export const ParticleSignature = forwardRef<HTMLCanvasElement, Props>(function P
     const draw = () => {
       const now = performance.now() / 1000;
       mult += ((activeRef.current ? 3 : 1) - mult) * 0.08;
-      const a = advanceSignatureAngle(handle, speed * mult, now);
-      const ca = Math.cos(a);
-      const sa = Math.sin(a);
-      ctx.clearRect(0, 0, size, size);
-      light.fill(0);
-      for (let i = 0; i < n; i++) {
-        const x0 = pts[i * 3];
-        const y0 = pts[i * 3 + 1];
-        const z0 = pts[i * 3 + 2];
-        // rotate Y, then tilt X — same order as the hero shader
-        const x = ca * x0 + sa * z0;
-        const z1 = -sa * x0 + ca * z0;
-        const y = ct * y0 - st * z1;
-        const z = st * y0 + ct * z1;
-        const gx = Math.floor((c + x * R) / grid);
-        const gy = Math.floor((c - y * R) / grid);
-        if (gx < 0 || gy < 0 || gx >= cellsAcross || gy >= cellsAcross) continue;
-        const k = gy * cellsAcross + gx;
-        // depth, light from the upper left, ridges brighter than grooves
-        const sun = Math.max(0, (-0.45 * x + 0.6 * y + 0.66 * z) / (Math.hypot(x, y, z) || 1));
-        const v = Math.min(1, (0.3 + 0.7 * (z * 0.5 + 0.5)) * (0.5 + 0.7 * sun) * (0.65 + 0.5 * folds[i]));
-        if (v > light[k]) light[k] = v;
-      }
-      for (let k = 0; k < light.length; k++) {
-        if (!light[k]) continue;
-        ctx.globalAlpha = light[k];
-        ctx.fillRect((k % cellsAcross) * grid, Math.floor(k / cellsAcross) * grid, grid - gap, grid - gap);
-      }
-      ctx.globalAlpha = 1;
+      const angle = advanceSignatureAngle(handle, speed * mult, now);
+      renderer.draw(ctx, { angle, reveal: 0, opening: true, t: now, active: activeRef.current });
     };
-
-    ctx.fillStyle = color;
     const loop = () => {
       draw();
       raf = visible ? requestAnimationFrame(loop) : 0;

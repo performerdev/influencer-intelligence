@@ -2,25 +2,24 @@ import { payments, plusPaymentsEnabled } from "@/config/payments";
 import { plans } from "@/config/plans";
 import { currentUser } from "@/lib/server/auth";
 import { sql } from "@/lib/server/data";
-import { newReference, transferUrl } from "@/lib/server/solana";
+import { checkoutInfo } from "@/lib/server/plus";
+import { newReference } from "@/lib/server/solana";
 
 export const dynamic = "force-dynamic";
 
-/** Start a Plus checkout: a Solana Pay transfer request for 10 USDC, tied to this account by a reference key. */
+/** Start a Plus checkout: a USDC transfer request on Solana, tied to this account by a reference key. */
 export async function POST() {
   const user = await currentUser();
   if (!user) return Response.json({ error: "Log in with X first." }, { status: 401 });
   if (!plusPaymentsEnabled()) return Response.json({ error: "Payments coming soon." }, { status: 503 });
   const reference = newReference();
-  const amount = plans.plus.priceUsd;
-  await sql()`insert into payments (user_id, reference, amount_usd, recipient) values (${user.id}, ${reference}, ${amount}, ${payments.recipient})`;
-  return Response.json({
-    reference,
-    amount,
-    token: payments.token,
-    mint: payments.mint,
-    decimals: payments.decimals,
-    recipient: payments.recipient,
-    url: transferUrl(reference, amount, `Plus · ${plans.plus.days} days · @${user.handle}`),
-  });
+  await sql()`insert into payments (user_id, reference, amount_usd, recipient) values (${user.id}, ${reference}, ${plans.plus.priceUsd}, ${payments.recipient})`;
+  return Response.json(await checkoutInfo(reference));
+}
+
+/** GET ?ref=… — a checkout's details, for the pay page opened inside a wallet app. */
+export async function GET(req: Request) {
+  const info = await checkoutInfo(new URL(req.url).searchParams.get("ref") ?? "");
+  if (!info) return Response.json({ error: "Unknown checkout." }, { status: 404 });
+  return Response.json(info);
 }

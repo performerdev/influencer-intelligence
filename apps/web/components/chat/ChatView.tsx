@@ -401,7 +401,7 @@ function BrainPanel({ intelligence, brain, onOpenBrain }: { intelligence: ChatIn
                   {s.title}
                   <span className="font-mono text-xs text-muted">{open === s.id ? "−" : "+"}</span>
                 </button>
-                {open === s.id && <Markdown text={s.body} className="pb-3 text-sm leading-relaxed text-particle" />}
+                {open === s.id && <Markdown text={s.body} handle={intelligence.handle} className="pb-3 text-sm leading-relaxed text-particle" />}
               </li>
             ))}
           </ul>
