@@ -79,16 +79,27 @@ const X_AUTHORIZE = () => process.env.X_AUTHORIZE_URL || "https://x.com/i/oauth2
 const X_API = () => (process.env.X_API_BASE || "https://api.x.com").replace(/\/$/, "");
 export const xLoginConfigured = () => Boolean(process.env.X_CLIENT_ID);
 
-function callbackUrl(req: Request) {
-  const base = process.env.SITE_URL || new URL(req.url).origin;
-  return `${base.replace(/\/$/, "")}/api/auth/x/callback`;
+/**
+ * The site's public address. On Netlify a function sees its per-deploy URL
+ * (abc123--site.netlify.app), which X won't accept as a callback and where the
+ * session cookie wouldn't apply — so prefer SITE_URL, then the host the visitor
+ * actually used, then Netlify's primary URL.
+ */
+export function siteOrigin(req: Request): string {
+  if (process.env.SITE_URL) return process.env.SITE_URL.replace(/\/$/, "");
+  const host = req.headers.get("x-forwarded-host") ?? req.headers.get("host");
+  if (host && !/^[0-9a-f]{20,}--/.test(host)) return `${req.headers.get("x-forwarded-proto") ?? "https"}://${host}`;
+  if (process.env.URL) return process.env.URL.replace(/\/$/, "");
+  return new URL(req.url).origin;
 }
+
+const callbackUrl = (req: Request) => `${siteOrigin(req)}/api/auth/x/callback`;
 
 /** Only same-site paths after login. */
 const safeNext = (n: string | null) => (n && n.startsWith("/") && !n.startsWith("//") ? n : "/");
 
 export async function startXLogin(req: Request): Promise<Response> {
-  if (!xLoginConfigured()) return Response.redirect(new URL("/account?error=x-not-configured", req.url), 302);
+  if (!xLoginConfigured()) return Response.redirect(`${siteOrigin(req)}/account?error=x-not-configured`, 302);
   const next = safeNext(new URL(req.url).searchParams.get("next"));
   const state = b64u(randomBytes(18));
   const verifier = b64u(randomBytes(48));
@@ -114,7 +125,7 @@ export async function finishXLogin(req: Request): Promise<Response> {
   const jar = await cookies();
   const saved = verify<{ state: string; verifier: string; next: string }>(jar.get(OAUTH_COOKIE)?.value);
   jar.delete(OAUTH_COOKIE);
-  const fail = (why: string) => Response.redirect(new URL(`/account?error=${why}`, req.url), 302);
+  const fail = (why: string) => Response.redirect(`${siteOrigin(req)}/account?error=${why}`, 302);
   if (q.get("error")) return fail("x-denied");
   if (!saved || !q.get("code") || q.get("state") !== saved.state) return fail("x-state");
 
@@ -152,7 +163,7 @@ export async function finishXLogin(req: Request): Promise<Response> {
     on conflict (x_id) do update set handle = excluded.handle, name = excluded.name, avatar_url = excluded.avatar_url, last_seen_at = now()
     returning id`;
   jar.set(SESSION_COOKIE, sign({ uid: u.id, exp: Math.floor(Date.now() / 1000) + SESSION_DAYS * 86400 }), { ...cookieBase, maxAge: SESSION_DAYS * 86400 });
-  return Response.redirect(new URL(saved.next, req.url), 302);
+  return Response.redirect(`${siteOrigin(req)}${saved.next}`, 302);
 }
 
 export async function logout(): Promise<void> {
