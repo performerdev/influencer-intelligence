@@ -206,8 +206,14 @@ export async function gate(clientHash: string): Promise<Gate> {
   if (!user) {
     const [{ n }] = await sql()<{ n: number }[]>`
       select count(*)::int as n from messages
-      where client_hash = ${clientHash} and role = 'user' and user_id is null and created_at > now() - make_interval(hours => ${plans.guest.windowHours})`;
-    if (n >= plans.guest.messages) return { ok: false, status: 401, body: { error: "Log in with X to keep talking — it's free.", reason: "login" } };
+      where client_hash = ${clientHash} and role = 'user' and user_id is null and created_at > now() - make_interval(hours => ${xLoginConfigured() ? plans.guest.windowHours : 24})`;
+    // Until X login is switched on there is nowhere to send guests, so they keep a daily allowance instead.
+    const allowed = xLoginConfigured() ? plans.guest.messages : Number(process.env.GUEST_DAILY_LIMIT_WITHOUT_LOGIN ?? 40);
+    if (n >= allowed) {
+      return xLoginConfigured()
+        ? { ok: false, status: 401, body: { error: "Log in with X to keep talking — it's free.", reason: "login" } }
+        : { ok: false, status: 429, body: { error: "That's today's limit. Come back tomorrow.", reason: "limit" } };
+    }
     return { ok: true, user: null, usage: usageOf(null) };
   }
   const usage = usageOf(user);
