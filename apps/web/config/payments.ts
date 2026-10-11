@@ -10,7 +10,7 @@ export const payments = {
   /** USDC SPL mint on Solana mainnet */
   mint: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
   decimals: 6,
-  recipient: process.env.NEXT_PUBLIC_PLUS_RECIPIENT ?? "",
+  recipient: process.env.NEXT_PUBLIC_PLUS_RECIPIENT || "H1Gck5JTfM4T67jQ1Q5hgRFBRgqbLGNrVVGDXc8t7bqz",
   label: "Influencer Intelligence",
   /** shown under the checkout */
   note: "Soon Plus will be paid in our own token only.",

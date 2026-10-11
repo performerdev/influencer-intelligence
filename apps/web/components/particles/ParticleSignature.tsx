@@ -2,7 +2,7 @@
 
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 
-import { SIGNATURE_TILT, advanceSignatureAngle, signatureDensity, signaturePoints, signatureSpeed } from "@/lib/signature";
+import { SIGNATURE_TILT, advanceSignatureAngle, signatureDensity, signatureFolds, signaturePoints, signatureSpeed } from "@/lib/signature";
 
 /** Must match SIGNATURE_RADIUS_FRAC in the hero scene so clusters land exactly. */
 const RADIUS_FRAC = 0.36;
@@ -52,6 +52,7 @@ export const ParticleSignature = forwardRef<HTMLCanvasElement, Props>(function P
     const density = signatureDensity(postsParsed);
     const speed = signatureSpeed(postsPerDay);
     const pts = signaturePoints(handle, density);
+    const folds = signatureFolds(handle);
     const n = pts.length / 3;
     const R = size * RADIUS_FRAC;
     const c = size / 2;
@@ -87,7 +88,9 @@ export const ParticleSignature = forwardRef<HTMLCanvasElement, Props>(function P
         const gy = Math.floor((c - y * R) / grid);
         if (gx < 0 || gy < 0 || gx >= cellsAcross || gy >= cellsAcross) continue;
         const k = gy * cellsAcross + gx;
-        const v = 0.42 + 0.58 * (z * 0.5 + 0.5);
+        // depth, light from the upper left, ridges brighter than grooves
+        const sun = Math.max(0, (-0.45 * x + 0.6 * y + 0.66 * z) / (Math.hypot(x, y, z) || 1));
+        const v = Math.min(1, (0.3 + 0.7 * (z * 0.5 + 0.5)) * (0.5 + 0.7 * sun) * (0.65 + 0.5 * folds[i]));
         if (v > light[k]) light[k] = v;
       }
       for (let k = 0; k < light.length; k++) {

@@ -23,7 +23,7 @@ const ERRORS: Record<string, string> = {
 };
 
 const PERKS = [
-  ["Session", `$${plans.free.sessionUsd.toFixed(2)} of usage every 4h`, `${Math.round(plans.plus.sessionUsd / plans.free.sessionUsd)}× bigger, every 4h`],
+  ["Session", "Standard, refills every 4h", `${Math.round(plans.plus.sessionUsd / plans.free.sessionUsd)}× bigger, refills every 4h`],
   ["Group debates", "—", "2 extra rounds where they argue"],
   ["Answers", "Standard length", "Longer, more detailed"],
   ["Chat history", `${plans.free.historyDays} days`, "Forever"],
@@ -93,7 +93,7 @@ export default async function AccountPage({ searchParams }: { searchParams: Prom
           </table>
         </div>
         <p className="mt-3 text-xs text-muted">
-          Usage is measured in real model cost, so short questions use less. Plus has a fair-use ceiling of ${plans.plus.periodCapUsd} of usage per {plans.plus.days} days; past it, sessions return to the free size until the period renews.
+          Short questions use less of a session than long ones or group debates. Plus includes a generous monthly fair-use limit; past it, sessions return to the standard size until the next period.
         </p>
         <div className="mt-8">
           {!user ? (

@@ -6,7 +6,7 @@ import { createContext, useCallback, useContext, useEffect, useState } from "rea
 export type Me = {
   loginAvailable: boolean;
   user: { handle: string; name: string | null; avatar: string | null; plus: boolean; plusUntil: string | null } | null;
-  usage: { plan: "guest" | "free" | "plus"; used: number; sessionUsd: number; spentUsd: number; resetsAt: string | null; capped: boolean; debate: boolean };
+  usage: { plan: "guest" | "free" | "plus"; used: number; resetsAt: string | null; capped: boolean; debate: boolean };
 };
 
 type Auth = {
@@ -101,6 +101,7 @@ export function UsageMeter({ className = "" }: { className?: string }) {
   }, []);
   if (!me) return null;
   if (!me.user) {
+    if (!me.loginAvailable) return null;
     return (
       <p className={`font-pixel text-xs text-muted ${className}`}>
         1 free message ·{" "}

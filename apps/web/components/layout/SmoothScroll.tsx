@@ -26,7 +26,16 @@ export function scrollToTarget(target: string | number) {
 export function SmoothScroll() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const l = new Lenis({ lerp: 0.1, smoothWheel: true });
+    const l = new Lenis({
+      lerp: 0.1,
+      smoothWheel: true,
+      // Panels that scroll on their own (brain file, chat, sheets) keep the native wheel.
+      prevent: (node) => {
+        if (node.hasAttribute?.("data-lenis-prevent")) return true;
+        const oy = getComputedStyle(node).overflowY;
+        return (oy === "auto" || oy === "scroll") && node.scrollHeight > node.clientHeight;
+      },
+    });
     lenis = l;
     l.on("scroll", ScrollTrigger.update);
     const raf = (time: number) => l.raf(time * 1000);

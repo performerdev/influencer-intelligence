@@ -8,6 +8,7 @@ export async function GET() {
   return Response.json({
     loginAvailable: xLoginConfigured(),
     user: u ? { handle: u.handle, name: u.name, avatar: u.avatar_url, plus: isPlus(u), plusUntil: u.plus_until } : null,
-    usage: usageOf(u),
+    // percentages and times only — budgets stay server-side
+    usage: (({ plan, used, resetsAt, capped, debate }) => ({ plan, used, resetsAt, capped, debate }))(usageOf(u)),
   });
 }

@@ -1,6 +1,6 @@
 /**
- * Brain signature — each intelligence's avatar: a small 3D point cloud whose
- * shape is deterministic from its handle. Density follows the number of posts
+ * Brain signature — each intelligence's avatar: a small rotating pixel brain
+ * whose shape is deterministic from its handle. Density follows the number of posts
  * parsed and rotation speed follows posting frequency (both real values; when
  * they're unknown we fall back to neutral defaults, never invented numbers).
  *
@@ -15,24 +15,77 @@ export const SIGNATURE_MAX_POINTS = 1800;
 /** Fixed tilt so blobs read as 3D, not as flat discs. */
 export const SIGNATURE_TILT = 0.38;
 
-type Lobe = { k: [number, number, number]; f: number; a: number; ph: number };
-
-function lobes(seed: number): Lobe[] {
-  const r = rng(seed ^ 0x9e3779b9);
-  return Array.from({ length: 4 }, () => {
+/**
+ * A brain, as a point cloud: two hemispheres split by the longitudinal fissure,
+ * folded with gyri, a flatter base and a cerebellum at the back. Proportions
+ * and fold phases vary per handle, so every intelligence has its own brain.
+ * Long axis is z (front → back), so a turn around y shows the profile.
+ */
+export function brainPoints(handle: string, n: number, salt = 0, folds?: Float32Array): Float32Array {
+  const seed = hashString(handle) ^ salt;
+  const v = rng(seed ^ 0x9e3779b9);
+  const W = 0.78 + v() * 0.1; // half-width
+  const H = 0.6 + v() * 0.08; // half-height
+  const L = 1; // half-length
+  const f1 = 9 + v() * 4;
+  const f2 = 8 + v() * 4;
+  const p1 = v() * Math.PI * 2;
+  const p2 = v() * Math.PI * 2;
+  const r = rng(seed);
+  const out = new Float32Array(n * 3);
+  let maxR = 0;
+  let i = 0;
+  while (i < n) {
+    if (r() < 0.12) {
+      // cerebellum: small, tightly folded, back and below
+      const z = r() * 2 - 1;
+      const t = r() * Math.PI * 2;
+      const s = Math.sqrt(1 - z * z);
+      const fold = 1 + 0.08 * Math.sin(z * 26 + t * 2);
+      const x = s * Math.cos(t) * 0.5 * fold;
+      const y = -0.42 + s * Math.sin(t) * 0.22 * fold;
+      const zz = -0.72 + z * 0.3 * fold;
+      out.set([x, y, zz], i * 3);
+      if (folds) folds[i] = 0.5 + 0.5 * Math.sin(z * 26 + t * 2);
+      maxR = Math.max(maxR, Math.hypot(x, y, zz));
+      i++;
+      continue;
+    }
     const z = r() * 2 - 1;
     const t = r() * Math.PI * 2;
     const s = Math.sqrt(1 - z * z);
-    return {
-      k: [s * Math.cos(t), s * Math.sin(t), z] as [number, number, number],
-      f: 1.4 + r() * 2.2,
-      a: 0.05 + r() * 0.14,
-      ph: r() * Math.PI * 2,
-    };
-  });
+    const d = [s * Math.cos(t), s * Math.sin(t), z];
+    // gyri: wavy ridges over the cortex
+    const fold = Math.sin(f1 * d[1] + 4 * Math.sin(7 * d[2] + p1)) * Math.cos(f2 * d[2] + 3 * Math.sin(6 * d[0] + p2));
+    // keep more points on the ridges, so the folds read in pixels
+    if (r() > 0.45 + 0.55 * (fold * 0.5 + 0.5)) continue;
+    let rad = 1 + 0.075 * fold;
+    // longitudinal fissure between the hemispheres (top and front/back, not the base)
+    if (d[1] > -0.25) rad *= 1 - 0.22 * Math.exp(-((d[0] / 0.09) ** 2));
+    const shell = r() < 0.86 ? 1 + gaussian(r) * 0.02 : Math.cbrt(r()) * 0.9;
+    rad *= shell;
+    let x = d[0] * W * rad;
+    let y = d[1] * H * rad;
+    const zz = d[2] * L * rad;
+    if (y < -0.3 * H) y = -0.3 * H + (y + 0.3 * H) * 0.55; // flatter base
+    x *= 1 + 0.12 * Math.max(0, -d[2]); // a little wider at the back
+    out.set([x, y, zz], i * 3);
+    if (folds) folds[i] = fold * 0.5 + 0.5; // 1 on a ridge, 0 in a groove
+    maxR = Math.max(maxR, Math.hypot(x, y, zz));
+    i++;
+  }
+  for (let k = 0; k < out.length; k++) out[k] /= maxR;
+  return out;
 }
 
 const cache = new Map<string, Float32Array>();
+const foldCache = new Map<string, Float32Array>();
+
+/** Ridge (1) / groove (0) value per signature point, for shading. */
+export function signatureFolds(handle: string): Float32Array {
+  signaturePoints(handle);
+  return foldCache.get(handle)!;
+}
 
 /**
  * Unit-scale positions (max radius ≈ 1). The first n points of a larger
@@ -42,29 +95,10 @@ const cache = new Map<string, Float32Array>();
 export function signaturePoints(handle: string, n = SIGNATURE_MAX_POINTS): Float32Array {
   let all = cache.get(handle);
   if (!all) {
-    const seed = hashString(handle);
-    const L = lobes(seed);
-    const r = rng(seed);
-    const raw = new Float32Array(SIGNATURE_MAX_POINTS * 3);
-    let maxR = 0;
-    for (let i = 0; i < SIGNATURE_MAX_POINTS; i++) {
-      const z = r() * 2 - 1;
-      const t = r() * Math.PI * 2;
-      const s = Math.sqrt(1 - z * z);
-      const d: [number, number, number] = [s * Math.cos(t), s * Math.sin(t), z];
-      let rad = 1;
-      for (const l of L) rad += l.a * Math.sin(l.f * (d[0] * l.k[0] + d[1] * l.k[1] + d[2] * l.k[2]) * Math.PI + l.ph);
-      // mostly a skin, with a soft interior so it reads as a volume
-      const shell = r() < 0.78 ? 1 + gaussian(r) * 0.025 : Math.cbrt(r()) * 0.92;
-      rad *= shell;
-      maxR = Math.max(maxR, rad);
-      raw[i * 3] = d[0] * rad;
-      raw[i * 3 + 1] = d[1] * rad;
-      raw[i * 3 + 2] = d[2] * rad;
-    }
-    for (let i = 0; i < raw.length; i++) raw[i] /= maxR;
-    all = raw;
+    const folds = new Float32Array(SIGNATURE_MAX_POINTS);
+    all = brainPoints(handle, SIGNATURE_MAX_POINTS, 0, folds);
     cache.set(handle, all);
+    foldCache.set(handle, folds);
   }
   return n >= SIGNATURE_MAX_POINTS ? all : all.subarray(0, n * 3);
 }
@@ -73,7 +107,8 @@ export function signaturePoints(handle: string, n = SIGNATURE_MAX_POINTS): Float
 export function signatureDensity(postsParsed: number | null): number {
   if (postsParsed == null) return 560;
   const d = 240 + 150 * Math.log10(postsParsed + 1);
-  return Math.round(Math.min(SIGNATURE_MAX_POINTS * 0.62, Math.max(160, d)));
+  // a brain needs a few hundred points before its folds read
+  return Math.round(Math.min(SIGNATURE_MAX_POINTS * 0.62, Math.max(420, d)));
 }
 
 /** Rotation speed in rad/s for a given posting frequency. null → neutral default. */
