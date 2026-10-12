@@ -3594,7 +3594,7 @@
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
-      "ticker": "APEX",
+      "ticker": "ASTER",
       "post_id": "1974201977560015311",
       "price_id": null,
       "called_at": "2025-10-03T19:56:45.000Z",
@@ -3605,7 +3605,7 @@
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
-      "ticker": "ASTER",
+      "ticker": "APEX",
       "post_id": "1974201977560015311",
       "price_id": null,
       "called_at": "2025-10-03T19:56:45.000Z",
@@ -4698,7 +4698,7 @@
       "post_id": "2008209045543375037",
       "price_id": null,
       "called_at": "2026-01-05T16:08:41.000Z",
-      "direction": "buy",
+      "direction": "hold",
       "price_at_call": null
     },
     {
@@ -4709,7 +4709,7 @@
       "post_id": "2008209045543375037",
       "price_id": null,
       "called_at": "2026-01-05T16:08:41.000Z",
-      "direction": "hold",
+      "direction": "buy",
       "price_at_call": null
     },
     {
@@ -5712,14 +5712,36 @@
       "called_at": "2026-10-12T09:00:03.000Z",
       "direction": "hold",
       "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "USELESS",
+      "post_id": "2109723023502930302",
+      "price_id": null,
+      "called_at": "2026-10-12T19:09:00.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "USELESS",
+      "post_id": "2109742485106982948",
+      "price_id": null,
+      "called_at": "2026-10-12T20:26:20.000Z",
+      "direction": "hold",
+      "price_at_call": null
     }
   ],
   "hold_pairs": 0,
-  "calls_total": 517,
-  "computed_at": "2026-10-12T10:59:29.056Z",
+  "calls_total": 519,
+  "computed_at": "2026-10-12T22:39:15.832Z",
   "by_direction": {
     "buy": 379,
-    "hold": 138,
+    "hold": 140,
     "sell": 0
   },
   "calls_priced": 218,
