@@ -7,16 +7,16 @@
   ],
   "horizons": {
     "1d": {
-      "n": 67,
-      "hit_rate": 0.4328,
-      "mean_return": -0.0044,
-      "median_return": -0.0052
+      "n": 70,
+      "hit_rate": 0.4571,
+      "mean_return": -0.0036,
+      "median_return": -0.0046
     },
     "7d": {
-      "n": 66,
-      "hit_rate": 0.4848,
-      "mean_return": 0.0062,
-      "median_return": -0.0082
+      "n": 70,
+      "hit_rate": 0.5143,
+      "mean_return": 0.0099,
+      "median_return": 0.0015
     },
     "30d": {
       "n": 66,
@@ -984,26 +984,59 @@
       "price_at_call": null
     },
     {
-      "r_1d": 0.003,
-      "r_7d": null,
+      "r_1d": 0.0109,
+      "r_7d": 0.1211,
       "r_30d": null,
       "ticker": "BTC",
-      "post_id": "2106762406890447225",
+      "post_id": "2100197973997277520",
       "price_id": "coingecko:bitcoin",
-      "called_at": "2026-10-04T15:04:34.000Z",
+      "called_at": "2026-09-16T12:19:51.000Z",
+      "direction": "buy",
+      "price_at_call": 76058.6413814315
+    },
+    {
+      "r_1d": 0.0127,
+      "r_7d": 0.1088,
+      "r_30d": null,
+      "ticker": "BTC",
+      "post_id": "2100252952007209320",
+      "price_id": "coingecko:bitcoin",
+      "called_at": "2026-09-16T15:58:19.000Z",
       "direction": "hold",
-      "price_at_call": 85321.12837716182
+      "price_at_call": 75732.54245953917
+    },
+    {
+      "r_1d": 0.0119,
+      "r_7d": 0.029,
+      "r_30d": null,
+      "ticker": "BNB",
+      "post_id": "2100811057736581158",
+      "price_id": "coingecko:binancecoin",
+      "called_at": "2026-09-18T04:56:02.000Z",
+      "direction": "hold",
+      "price_at_call": 751.3704312504293
+    },
+    {
+      "r_1d": 0.0109,
+      "r_7d": 0.0264,
+      "r_30d": null,
+      "ticker": "BNB",
+      "post_id": "2100816055979642901",
+      "price_id": "coingecko:binancecoin",
+      "called_at": "2026-09-18T05:15:53.000Z",
+      "direction": "hold",
+      "price_at_call": 753.0808237736791
     }
   ],
   "hold_pairs": 0,
-  "calls_total": 88,
-  "computed_at": "2026-10-10T13:16:32.035Z",
+  "calls_total": 91,
+  "computed_at": "2026-10-12T10:56:13.628Z",
   "by_direction": {
-    "buy": 30,
-    "hold": 57,
+    "buy": 31,
+    "hold": 59,
     "sell": 1
   },
-  "calls_priced": 67,
+  "calls_priced": 70,
   "price_source": "DefiLlama coins API",
   "median_hold_days": null
 }
