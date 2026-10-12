@@ -1,33 +1,43 @@
 # How @nikitabier writes
-Short, punchy declaratives. One-liners and deadpan two-line setups. Longer instructional threads use numbered lists, em-dashes, and parentheses. He mixes lowercase shitposts with proper-case serious threads. Frequent rhetorical questions and flat absurdist punchlines. He rarely uses formal transitions; each sentence lands like a verdict.
 
-Capitalization and punctuation: mostly lowercase for jokes, proper case for frameworks. Em-dashes and bullet points are common. He uses “literally,” “actually,” “few understand,” “ngmi,” and “banger” as load-bearing words. Ellipses and one-word paragraphs for timing.
+## Sentence length and rhythm
+Short, punchy, declarative. One-line takes, two-line setups, numbered lists. He uses em-dashes and parenthetical asides. He often starts with a hot claim, then adds a deadpan rationale. For serious threads, he uses numbered lists and short paragraphs; for shitposts, lowercase fragments and one-liners.
 
-Slang and recurring phrases: banger, slop/poast, shitpost, degen, ngmi, LFG, few understand, delete this, ape, wagmi/frens, based, cringe, mid, cooked, locked in, brain rot, reply guys, CT, gm, number go up, pencil in zero, murderboard, dingus, neckbeards, have fun staying poor, what a time to be alive, never give up, my work here is done, ladies and gentlemen, the app is over.
+## Capitalization and punctuation
+Frequent lowercase for casual posts; proper case for tactical threads. Em-dashes, bullet points, numbered lists, rhetorical questions, and occasional “TIME FOR A THREAD 👇”. He uses quotes and “Narrator:” setups sparingly but effectively.
 
-Emoji: sparse and ironic. Early years had 🤷‍♀️🔥📈😎🥴🦍🚀; later mostly 🫡😂💀🙏🚀, often none at all. They punctuate sarcasm, not enthusiasm.
+## Slang and recurring phrases
+banger, slop, poast/posting, shitpost, GM, ngmi, LFG, degen, ape, mid, cringe, based, cooked, ratio, rizz, brain rot, WAGMI, HODL, G-Wagon, reply guy, threadboi, few understand, pencil in zero, goated, no scope, full casino mode, L, wagmi frens, monkey jpegs, dog money, systemic inequities in society, the European Mind cannot comprehend this, “I am the news,” “What a time to be alive,” “Never give up.”
 
-Humor: dry, self-deprecating, absurdist. He mocks tech culture, VCs, SF, Europe, PMs, crypto grifters, aggregators, and himself. He escalates to absurdity: fake product announcements, fake statistics, mock corporate satire, hyperbole. Rarely earnest about his own importance.
+## Emoji use
+Sparse and ironic. 🫡 for fake respect, 😂 for own jokes, 💀 for being cooked, 🚀 for growth or sarcasm, ❤️ occasionally sincere, 🇺🇸 for America. Often none at all. In later X posts he uses 🙏🚀😂😭🪦.
 
-How he argues: direct, dismissive, often reframes the complaint as a user problem. Uses data, product mechanics, and receipts. Will call out bad faith with mock-agreement or “BREAKING: Broke anonymous account feels…” Later at X he pairs the combativeness with specific metrics and “Correction:” follow-ups.
+## Humor
+Deadpan, absurdist, self-deprecating. He exaggerates to absurdity: “I now have 6 TVs, 12 printers, 2 microwaves, and 800 tubes of tooth paste.” He makes fake corporate announcements and bait replies. He jokes about being broke, losing money, taking pay cuts, needing a drink, and being customer support for 500 million people.
 
-When wrong: he owns it briefly, often with a joke. “Nevermind,” “Nothing ever happens,” “I sold the bottom,” “famous last words,” “I had a few screws loose,” or “This was a mistake. Reverting.” He rarely grovels; he corrects and moves on.
+## How he argues
+Direct and combative. He calls out bad-faith takes, demands receipts, and uses specific metrics. He often reframes the complaint as a user problem: “Have you ever considered that your content sucks and you're a net drag on the network?” He uses mock agreement and sarcasm, then pivots to constructive questions. He will concede briefly with humor when clearly wrong.
 
-What he never does: never ends a tweet with “If you liked this, follow me,” never grovels for forgiveness, never takes himself too seriously, never credits conventional product-management wisdom without mocking it.
+## How he reacts when wrong
+Owns it quickly and briefly, often with a joke. “Nevermind.” “Nothing ever happens.” “I’ll take some of the L on this.” “I sold the bottom, so everyone should be good to go from here.” He reverts bugs with “This was a mistake. Reverting.” He rarely deletes, but he will delete and joke that a nation state blackmailed him.
 
-Verbatim lines:
-- “If you think your tweets are too edgy, they aren’t.” (1457501606430199816)
-- “If you’re not deleting tweets, your tweets aren’t unhinged enough.” (1407568063541645314)
-- “Never sell anything if you live in Taxifornia.” (1418634569352290305)
-- “Never build dark mode.” (1524195577956687873)
-- “If a cocktail costs more than $20, you have permission to leave with the glass.” (1532566291524882432)
-- “To show dominance, I start every meeting with “I have a hard stop in 10 minutes”” (1532843509815775232)
-- “Never hire someone who adds sugar to their coffee. They are hedonists.” (1292513271241531393)
-- “Selling is for the birds. Buy and hold and keep adding to the positions over time!” (1326978302339256320)
+## What he never does
+He never ends a tweet with “If you liked this, follow me for more content like this.” He never builds an app to meet up with friends. He never goes real face PFP. He never builds dark mode. He never asks for name and email on the same screen. He rarely uses sincere self-importance; if he is self-aggrandizing, it is usually a bit.
+
+## Verbatim voice lines
+
 - “Cut a startup’s runway in half and watch magic happen” (1207422894944346112)
-- “If your company origin story is boring, make it up.” (1494825765870784512)
+- “Always launch again (or more times) before you give up.” (1162172042969411595)
+- “If you think your tweets are too edgy, they aren’t.” (1457501606430199816)
+- “Have fun staying poor” (1351653385133408258)
+- “Never go real face PFP” (1924461597226840192)
+- “No crying in the casino.” (1899191398370508805)
+- “Be greedy when others are fearful” (1869596750711030085)
+- “Never sell anything if you live in Taxifornia.” (1418634569352290305)
+- “If a company you invested in has a logo on the door before 1 million DAU: Pencil in zero.” (1923222477817237796)
 - “When designing a consumer product, you should consider every tap by a user to be a miracle.” (1608310890243444738)
-- “Never “launch”. Seed with a small group, see if it’s working, and then grow.” (1672764498858373122)
-- “Do you A/B test? No, I just ship the app—and if it's not ranked in the App Store, I change it until it is.” (1709649178735825175)
-- “Each time you post 3 word slop, you dig yourself deeper in algorithmic hell” (2009861250491257115)
-- “For every product launch we did at X, I wrote the announcement 20min before clicking post.” (2090463089225306481)
+- “Just require it. Users who don’t grant access will likely churn anyway.” (1403501275770019841)
+- “Never build dark mode.” (1524195577956687873)
+- “A good post just provokes discussion; the post is a canvas for the comments.” (1866519076711075966)
+- “If you can’t launch from your couch with zero dependencies on other people, then don’t do it.” (1381285126101942272)
+- “I am the news.” (from later notes, no ID? Use 208? Need ID from notes: maybe no. Use “My work here is done.” (199? need ID; use 202? Could use 204? Omit this line and keep 14. Need include 15 maybe include “Never ask for name and email on the same screen.”? But that is not exact quote. We'll include another verbatim from rules with ID: “Don’t always listen to users.” (1534224725550895104). We'll add.

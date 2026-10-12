@@ -7,22 +7,22 @@
   ],
   "horizons": {
     "1d": {
-      "n": 13,
-      "hit_rate": 0.5385,
-      "mean_return": -0.0093,
-      "median_return": 0.0017
+      "n": 14,
+      "hit_rate": 0.5,
+      "mean_return": -0.0121,
+      "median_return": -0.0022
     },
     "7d": {
-      "n": 13,
-      "hit_rate": 0.3846,
-      "mean_return": -0.0444,
-      "median_return": -0.028
+      "n": 14,
+      "hit_rate": 0.3571,
+      "mean_return": -0.0501,
+      "median_return": -0.0386
     },
     "30d": {
-      "n": 13,
-      "hit_rate": 0.5385,
-      "mean_return": -0.0173,
-      "median_return": 0.0294
+      "n": 14,
+      "hit_rate": 0.5714,
+      "mean_return": -0.0134,
+      "median_return": 0.0334
     }
   },
   "per_call": [
@@ -1086,6 +1086,94 @@
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
+      "ticker": "TJX",
+      "post_id": "1867989825938473227",
+      "price_id": null,
+      "called_at": "2024-12-14T17:47:34.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "TJX",
+      "post_id": "1871759270569730310",
+      "price_id": null,
+      "called_at": "2024-12-25T03:26:00.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "GROK",
+      "post_id": "1877546256186175569",
+      "price_id": null,
+      "called_at": "2025-01-10T02:41:25.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "CA",
+      "post_id": "1884794112567562414",
+      "price_id": null,
+      "called_at": "2025-01-30T02:41:48.000Z",
+      "direction": "sell",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "CA",
+      "post_id": "1886100287514914916",
+      "price_id": null,
+      "called_at": "2025-02-02T17:12:05.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "OPENAI",
+      "post_id": "1891733997689913681",
+      "price_id": null,
+      "called_at": "2025-02-18T06:18:26.000Z",
+      "direction": "sell",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "GOLD",
+      "post_id": "1901855316284678295",
+      "price_id": null,
+      "called_at": "2025-03-18T04:36:56.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": -0.0483,
+      "r_7d": -0.1241,
+      "r_30d": 0.0374,
+      "ticker": "SOL",
+      "post_id": "1904595240289284404",
+      "price_id": "coingecko:solana",
+      "called_at": "2025-03-25T18:04:25.000Z",
+      "direction": "buy",
+      "price_at_call": 145.03
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "ticker": "TQQQ",
       "post_id": "1910101429425000828",
       "price_id": null,
@@ -1248,17 +1336,6 @@
       "price_at_call": null
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
-      "ticker": "MRNA",
-      "post_id": "2090215623041462344",
-      "price_id": null,
-      "called_at": "2026-08-19T23:13:33.000Z",
-      "direction": "buy",
-      "price_at_call": null
-    },
-    {
       "r_1d": -0.0199,
       "r_7d": -0.028,
       "r_30d": 0.0424,
@@ -1273,11 +1350,33 @@
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
+      "ticker": "GOLD",
+      "post_id": "2092090439402659987",
+      "price_id": null,
+      "called_at": "2026-08-25T03:23:24.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "COMMODITIES",
+      "post_id": "2092090439402659987",
+      "price_id": null,
+      "called_at": "2026-08-25T03:23:24.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "ticker": "SPCX",
       "post_id": "2092357993560252908",
       "price_id": null,
       "called_at": "2026-08-25T21:06:34.000Z",
-      "direction": "buy",
+      "direction": "hold",
       "price_at_call": null
     },
     {
@@ -1292,15 +1391,15 @@
       "price_at_call": null
     }
   ],
-  "hold_pairs": 7,
-  "calls_total": 115,
-  "computed_at": "2026-10-10T15:02:44.093Z",
+  "hold_pairs": 8,
+  "calls_total": 124,
+  "computed_at": "2026-10-12T10:55:47.305Z",
   "by_direction": {
-    "buy": 74,
-    "hold": 21,
-    "sell": 20
+    "buy": 78,
+    "hold": 24,
+    "sell": 22
   },
-  "calls_priced": 13,
+  "calls_priced": 14,
   "price_source": "DefiLlama coins API",
-  "median_hold_days": 40.7
+  "median_hold_days": 41
 }

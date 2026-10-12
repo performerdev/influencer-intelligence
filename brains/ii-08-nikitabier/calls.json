@@ -960,6 +960,86 @@
     "url": "https://x.com/nikitabier/status/1774504596313903324"
   },
   {
+    "date": "2024-12-14",
+    "ticker": "TJX",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "TJX is not a retailer—it’s a habit-forming treasure hunt experience. One of my largest positions; it never goes down.",
+    "post_id": "1867989825938473227",
+    "url": "https://x.com/nikitabier/status/1867989825938473227"
+  },
+  {
+    "date": "2024-12-25",
+    "ticker": "TJX",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Take a short position and post the screenshot. I already have a long position.",
+    "post_id": "1871759270569730310",
+    "url": "https://x.com/nikitabier/status/1871759270569730310"
+  },
+  {
+    "date": "2025-01-10",
+    "ticker": "GROK",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Delete ChatGPT off your phone",
+    "post_id": "1877546256186175569",
+    "url": "https://x.com/nikitabier/status/1877546256186175569"
+  },
+  {
+    "date": "2025-01-30",
+    "ticker": "CA",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "That's a rug. Send it to zero.",
+    "post_id": "1884794112567562414",
+    "url": "https://x.com/nikitabier/status/1884794112567562414"
+  },
+  {
+    "date": "2025-02-02",
+    "ticker": "CA",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Ladies and gentlemen, the moment you’ve been waiting for: The Contract Address ⬇️",
+    "post_id": "1886100287514914916",
+    "url": "https://x.com/nikitabier/status/1886100287514914916"
+  },
+  {
+    "date": "2025-02-18",
+    "ticker": "OPENAI",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "Game over. Grok won. If you’re an investor in OpenAI, you can report the tax loss to your accountant this year.",
+    "post_id": "1891733997689913681",
+    "url": "https://x.com/nikitabier/status/1891733997689913681"
+  },
+  {
+    "date": "2025-03-18",
+    "ticker": "GOLD",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Once Michael Saylor started tweeting again, I bought a million dollars of gold, gold miners, and silver",
+    "post_id": "1901855316284678295",
+    "url": "https://x.com/nikitabier/status/1901855316284678295"
+  },
+  {
+    "date": "2025-03-25",
+    "ticker": "SOL",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "So today I’m joining @Solana as an advisor to help select companies launch & grow their apps.",
+    "post_id": "1904595240289284404",
+    "url": "https://x.com/nikitabier/status/1904595240289284404"
+  },
+  {
     "date": "2025-04-09",
     "ticker": "TQQQ",
     "chain": null,
@@ -1110,18 +1190,28 @@
     "url": "https://x.com/nikitabier/status/2043893779552448735"
   },
   {
-    "date": "2026-08-19",
-    "ticker": "MRNA",
+    "date": "2026-08-25",
+    "ticker": "BTC",
     "chain": null,
     "address": null,
-    "direction": "buy",
-    "quote": "With cancer vaccines now being discovered with AI ($MRNA), it seems that the US government might actually grow its way out of its budget deficit.",
-    "post_id": "2090215623041462344",
-    "url": "https://x.com/nikitabier/status/2090215623041462344"
+    "direction": "hold",
+    "quote": "Bitcoin, gold, commodities, and natural resources",
+    "post_id": "2092090439402659987",
+    "url": "https://x.com/nikitabier/status/2092090439402659987"
   },
   {
     "date": "2026-08-25",
-    "ticker": "BTC",
+    "ticker": "GOLD",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "Bitcoin, gold, commodities, and natural resources",
+    "post_id": "2092090439402659987",
+    "url": "https://x.com/nikitabier/status/2092090439402659987"
+  },
+  {
+    "date": "2026-08-25",
+    "ticker": "COMMODITIES",
     "chain": null,
     "address": null,
     "direction": "hold",
@@ -1134,7 +1224,7 @@
     "ticker": "SPCX",
     "chain": null,
     "address": null,
-    "direction": "buy",
+    "direction": "hold",
     "quote": "I don't see this why is news: it's already available on the $SPCX ticker",
     "post_id": "2092357993560252908",
     "url": "https://x.com/nikitabier/status/2092357993560252908"
