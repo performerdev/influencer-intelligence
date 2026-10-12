@@ -36,8 +36,8 @@ export default async function Admin() {
       });
   };
 
-  const [today, days, spendToday, users, takedowns, errors, jobs, brains, shares] = await Promise.all([
-    q("today", 
+  // one at a time: the Supabase transaction pooler stalls when one function pipelines many queries at once
+  const today = await q("today", 
       db<{ messages: number; asked_users: number; asked_guests: number; new_users: number }[]>`
         select
           (select count(*)::int from messages where role = 'user' and created_at >= date_trunc('day', now() at time zone 'utc') at time zone 'utc') as messages,
@@ -45,8 +45,8 @@ export default async function Admin() {
           (select count(distinct client_hash)::int from messages where role = 'user' and user_id is null and created_at >= date_trunc('day', now() at time zone 'utc') at time zone 'utc') as asked_guests,
           (select count(*)::int from users where created_at >= date_trunc('day', now() at time zone 'utc') at time zone 'utc') as new_users`,
       [],
-    ),
-    q("days", 
+    );
+  const days = await q("days", 
       db<{ day: string; messages: number; people: number; chat_usd: string; other_usd: string; signups: number }[]>`
         with d as (select generate_series(date_trunc('day', now() at time zone 'utc') - interval '13 days', date_trunc('day', now() at time zone 'utc'), interval '1 day') as day)
         select to_char(d.day, 'Mon DD') as day,
@@ -57,25 +57,25 @@ export default async function Admin() {
           (select count(*)::int from users u where u.created_at >= d.day at time zone 'utc' and u.created_at < (d.day + interval '1 day') at time zone 'utc') as signups
         from d order by d.day desc`,
       [],
-    ),
-    q("spendToday", spentTodayUsd(), 0),
-    q("users", 
+    );
+  const spendToday = await q("spendToday", spentTodayUsd(), 0);
+  const users = await q("users", 
       db<{ total: number; plus: number; paid_7d: number; revenue_7d: string }[]>`
         select (select count(*)::int from users) as total,
           (select count(*)::int from users where plus_until > now()) as plus,
           (select count(*)::int from payments where status = 'paid' and paid_at > now() - interval '7 days') as paid_7d,
           (select coalesce(sum(amount_usd), 0) from payments where status = 'paid' and paid_at > now() - interval '7 days') as revenue_7d`,
       [],
-    ),
-    q("takedowns", db<{ id: string; handle: string; proof_url: string; contact: string | null; reason: string | null; note: string | null; status: string; created_at: Date }[]>`
-        select id, handle, proof_url, contact, reason, note, status, created_at from takedown_requests order by (status = 'open') desc, created_at desc limit 50`, []),
-    q("errors", db<{ id: string; at: Date; source: string; route: string | null; message: string }[]>`select id, at, source, route, message from errors order by at desc limit 40`, []),
-    q("jobs", db<{ id: string; handle: string; status: string; quote_usd: string | null; error: string | null; created_at: Date; who: string | null }[]>`
+    );
+  const takedowns = await q("takedowns", db<{ id: string; handle: string; proof_url: string; contact: string | null; reason: string | null; note: string | null; status: string; created_at: Date }[]>`
+        select id, handle, proof_url, contact, reason, note, status, created_at from takedown_requests order by (status = 'open') desc, created_at desc limit 50`, []);
+  const errors = await q("errors", db<{ id: string; at: Date; source: string; route: string | null; message: string }[]>`select id, at, source, route, message from errors order by at desc limit 40`, []);
+  const jobs = await q("jobs", db<{ id: string; handle: string; status: string; quote_usd: string | null; error: string | null; created_at: Date; who: string | null }[]>`
         select j.id, j.handle, j.status, j.quote_usd, j.error, j.created_at, u.handle as who from jobs j left join users u on u.id = j.user_id
-        where j.kind = 'add_brain' and j.status <> 'awaiting_payment' order by j.created_at desc limit 30`, []),
-    q("brains", db<{ code: string; handle: string; hidden: boolean; added: boolean }[]>`select code, handle, coalesce(hidden, false) as hidden, added_by is not null as added from influencers order by code`, []),
-    q("shares", db<{ n: number; claimed: number; views: number }[]>`select count(*)::int as n, count(claimed_at)::int as claimed, coalesce(sum(views), 0)::int as views from shares`, []),
-  ]);
+        where j.kind = 'add_brain' and j.status <> 'awaiting_payment' order by j.created_at desc limit 30`, []);
+  const brains = await q("brains", db<{ code: string; handle: string; hidden: boolean; added: boolean }[]>`select code, handle, coalesce(hidden, false) as hidden, added_by is not null as added from influencers order by code`, []);
+  const shares = await q("shares", db<{ n: number; claimed: number; views: number }[]>`select count(*)::int as n, count(claimed_at)::int as claimed, coalesce(sum(views), 0)::int as views from shares`, []);
+
 
   const t = today[0];
   const u = users[0];
