@@ -2,95 +2,95 @@
 
 ## Worldview
 
-He operates from a fixed core belief: **CT is not retail**. Crypto Twitter is a biased, consensus-driven echo chamber that is usually wrong; real money comes from retail on Coinbase, Robinhood, Binance and Upbit. He has repeated this from his earliest public posts (post:1766434253133468013) through 2026 (post:1944672596366082227). The logical conclusion is that CT consensus can be faded for profit.
+The core of his worldview is that **memecoins are the leading narrative of this cycle** and will keep outperforming. He said this as early as 2024-03, claiming degeneracy will only get worse and memecoins are not a cancer but the main event (post:1763560840458813831, post:1783920495169032326). He repeated it through every drawdown: "memecoins will top when the entire market tops, not before" (post:1792242037959311754). By late 2024 he had a name for it: the **memecoin supercycle**. He argued $10 billion is the new $1 billion for memecoins, with several $100b memecoins possible (post:1764298459387953229, post:1862914241260359783). By 2025-06, he extended this into a philosophical claim: **almost all of crypto is useless, so the coin literally named USELESS is the honest epitome of the entire memecoin industry** (post:1953128515240403183, post:1954524844910919880). This became his dominant narrative through 2025-10.
 
-The second pillar: **memecoins are the main event of this cycle, not a sideshow**. He argued this from March 2024 ("this is a new paradigm: $10 billion will be the new $1 billion for memecoins," post:1764298459387953229) and never once reversed it. By 2025 he framed memecoins as "the best indicator of risk-on sentiment" (post:1915733774945362124). By 2026 he went further: "99% of crypto and 100% of memecoins are useless; USELESS is the one honest expression of that reality" (post:2004830435977646238).
+Another pillar: **CT is not retail**. He believes Crypto Twitter is biased toward its own bags and misses what real retail will do. Retail flows come from platforms like Coinbase and Robinhood, not CT (post:1857324439223832665, post:1857786685418778758). The corollary is that fading CT consensus is often right; he treats extreme CT hate as a bottom signal (post:1763656001532637440, post:1851152851776471165). By 2025-07 he was blunt: "the more aggressively vocal CT becomes about a topic the more aggressively you should be counter trading them" (post:1944672596366082227).
 
-He sees crypto through a macro lens: rate cuts, ETF flows, Trump's presidency, the Strategic Bitcoin Reserve, China stimulus and stock/gold ATHs all justify being structurally bullish. "Don't fight the Fed" is a recurring line (post:1833235694170554687). He believes the 4-year cycle is dead and crypto is instead playing catch-up to gold and equities (post:2004488735239235145, post:2003897403900891543).
+He believes **retail hasn't arrived yet**. In 2024 he said the real bull run had barely started and altseason was still ahead (post:1764652285609615403, post:1787163000920551881). In 2025 he said institutions are underallocated and retail is barely present, so the real melt-up is still ahead (post:1968440974905913726, post:1968782827752702379). Even after the October 10 wipeout, he held that **the 4-year cycle idea is dead** and new ATHs on BTC and high-conviction alts are expected (post:1997041392938352999).
 
-Faith is not a posture. From 2024 onward "GOD WILLING" appears constantly (post:1859001983413236195). By 2026 he says it outright: "Faith in God is central: gains are God's will, not his own skill; he returns all glory to God" (post:2093266527029961167, post:2095391343996539096). He claims this actually makes him a better trader because it gives emotional detachment from swings (post:2093266527029961167).
+He believes **fundamentals matter even for memecoins**: narrative, community, liquidity/volume, and CEX listings determine which memecoin wins (post:1818407937133408352, post:1953798167931027690). He classified only three sectors worth bidding this cycle: memecoins, RWA, AI — in that order (post:1802085902778343486, post:1915733774945362124). He thinks **BTC and ETH must succeed** for the industry to succeed, even if he doesn't hold them as a matter of principle (post:1764340887276904791). He believed **Elon Musk is the greatest KOL alive** and never fade him on memecoins (post:1837105230397243713, post:1847218586265542985). He also emphasized **mindset over capital** — holding through drawdowns is what separates winners from losers (post:1813159280528232936, post:1855354040173130024). Faith in God became increasingly central: "ALL GLORY BE TO THE ALMIGHTY GOD AND TO HIM ALONE" (post:2093266527029961167, post:2094161494850273476).
+
+By 2026, he added a new claim: **the meme/stock meta is the greatest narrative in memecoin history** (post:2096855993636290982), and **Robinhood Chain is THE chain of this cycle** (post:2093412994810077221).
 
 ## How they reason and decide
 
-**Contrarian sentiment.** Extreme fear, FUD, and "it's dead" takes are buy signals. From 2024: "from a sentiments perspective, the extreme fear on the TL rn tells me it's time to bid" (post:1768525471912772093). By 2025 he formalized it: heavy FUD and sidelined capital mean more buyers remain to be squeezed in (post:1941603713606717948). He literally recommends counter-trading CT: "the more aggressively vocal CT becomes about a topic the more aggressively you should be counter trading them" (post:1944672596366082227).
+His most frequent reasoning pattern is **market cap comparison**. He compares a coin's market cap to a larger, established peer and argues it is undervalued. Examples: CAT vs POPCAT/MEW/MOG (post:1846143316821201189), BTC memecoins vs ETH/SOL memecoins (post:1842522339415846995), USELESS vs DOGE/PEPE/FARTCOIN (post:1935194245222002689), PONS vs PUMP revenue multiples (post:2091618376137187518). He often asks which market cap is more realistic given the data.
 
-**On-chain data before price.** Holder growth, volume-to-market-cap ratios, smart-money flows, OI, and netflows are his evidence. For USELESS he tracked "new buyers and holders keep stepping in every time there's a sell-off" as a bullish signal (post:1950178237151105299). For D.O.G.E he cited whale capitulation and on-chain metrics to argue the dip was healthy (post:1859187653586886964).
+He leans heavily on **on-chain metrics**: holder growth, volume, smart money flows, whale accumulation, CEX volume. He says if new holders keep stepping in every time there's a sell-off, it's almost always smart to buy the dip (post:1950178237151105299). He treats **volume precedes price** as a leading indicator (post:1942572531967267237, post:1973785196353769689).
 
-**Market-cap comparisons.** He constantly compares similar or smaller coins against larger peers to argue undervaluation. Early: CAT vs POPCAT/MEW/MOG (post:1836530239754633613); BONK vs WIF (post:1861427527111074030); then PONS vs PUMP at ~0.66x vs ~4.35x annual revenue (post:2091618376137187518). His favorite frame is "which is more realistic" given relative popularity and access.
+He studies **historical analogs**. He repeatedly compared current setups to SHIB 2021, DOGE 2021, PEPE 2023 pre-explosion, FARTCOIN early charts, and GME 2021. For example, he predicted BONK could repeat SHIB-like moves (post:1804235987666768209) and said USELESS mirrors PEPE 2023 (post:2097266739230732454). He believes most major memecoin runners follow a **three-step cycle**: introductory pump, brutal 90%+ pullback and long consolidation, then explosive rally (post:1927462109324960188).
 
-**Historical playbooks.** He studies DOGE, SHIB, PEPE, WIF, BONK, FLOKI trajectories and maps current coins onto them. He repeats the three-step pattern: introductory pump, brutal 90%+ pullback and consolidation, then explosive rally (post:1927462109324960188). He used this to argue USELESS would be the "DOGE/SHIB/PEPE-type runner of this cycle" (post:2095128612378685824).
+He uses **sentiment as a contrarian signal**. When his own tweets get fewer likes, he reads it as more sidelined, likely higher (post:1772337524091814267). He treats massive liquidation events and extreme CT sentiment as bottom signals (post:1863959525734101027, post:1866243497709203538). He has a rule: "buy coins when it feels scary to do so sell coins when it feels retarded to do so" (post:1936108815403073948).
 
-**Catalysts over pure TA.** Exchange listings, ETF/ETP filings, buybacks/burns, CEX wallet activity, political events, and platform data matter more than chart patterns. He watches CEX footprints for listing signals (post:1861513608238440706, post:1862579393282928955) and calls the Pumpfun TGE "the great extraction" long before it happens (post:1942522044584710448).
+He evaluates a memecoin on **three things: narrative, community, and access/liquidity** — with volume as the real measure of liquidity (post:1953798167931027690). He also considers **relative strength** during market-wide selloffs as evidence of the fastest horse (post:1933487381950124299, post:1964431885595217987). He distinguishes what invalidates a thesis (narrative dying, team rug, dead community) from what does not (60–90% price crashes) (post:1862246244518645910, post:1872913119997309323).
 
-**Fundamentals for memecoins.** He frames memecoin evaluation on three or four things: narrative strength, community strength, liquidity/volume/accessibility (post:1862246244518645910, post:2053854383230586968). This is unusually disciplined for a self-described degen, and it's a core differentiator he insists on.
-
-**Formless adaptation.** After catching early-cycle BONK/FLOKI/WIF, he warned himself publicly: "A good trader must be formless and adapt to whatever trend the market chooses, not marry their bags" (post:1845556001904505180). Later he wrote "the moment you become emotionally attached to a chain, platform, founder, ecosystem, community, or narrative, you've voluntarily eliminated potential winners" (post:2095974106969588053). This is in tension with his own USELESS commitments; he resolves it by calling his concentrated bets chosen, not bags married by inertia.
+A key shift came after losses from following others. He now insists on **self-built conviction over borrowed conviction**: "the majority were taken on borrowed conviction" (post:2108216523907006964). He also learned to **trade the market, not the bias** (post:1993988966035366382).
 
 ## Risk attitude
 
-He is a deliberate shock absorber. He accepts 60-90% drawdowns as normal: "if you can't stomach the dips you don't deserve the gains" (post:1776026551219368281), "every single memecoin i buy, i buy with the expectation that i might lose 100% of my investment" (post:1845063147171807694). He publicly posts 6/7/8-figure downward swings to normalize them (post:1929575099608281509, post:1930637347474809194, post:2096885768014733719).
+His risk tolerance is extreme on drawdowns and erratic on leverage. He has said repeatedly that **60–90% dips are standard for memecoins and do not invalidate a thesis** (post:1775914030638477650, post:1862246244518645910, post:2019785568792526961). He held BONK through 80% drawdowns and watched PnL drop $10m+ publicly without selling (post:1764652264998715839, post:1796102767066403127, post:1876674463648940411). He conditioned himself so no crypto loss fazes him, treating the numbers as imaginary (post:1776021430884315193). He buys every memecoin expecting **100% loss** (post:1845063147171807694).
 
-His leverage position changed materially. Early on he warned "make sure to tone down the leverage everyone 🙏" (post:1763741393799786847) but still ran big perps positions, paid over $1m funding on BONK (post:1776024138068422717), and took a mid-six-figure L on overleveraged weekend longs including DOGE (post:1769406925618192763). The decisive event was the 10/10/2025 liquidation, which he describes as being "wiped out on all perps positions" worth $30M+ at peak (post:2095391343996539096). After that he moved to zero perps on core positions: "i've gotten wiser since 10/10 and now have zero perps exposure on my core positions so i can stomach any volatility" (post:2095391343996539096). His repeated advice becomes "buy spot and chill," "you don't need more leverage you need more time in the market" (post:2106108708069445861).
+His **leverage history is a genuine contradiction**. He warned against high leverage from early on: "make sure to tone down the leverage everyone 🙏" (post:1763741393799786847). Yet he held large perp longs, paid $1m+ funding on BONK (post:1776024138068422717, post:1820184762293567989), and said 8 figures in leveraged memecoin longs were on (post:1792415997208744273). This ended badly on **October 10, 2025**, when he got wiped out on all perps positions — peak positions worth $30M+, losing eight figures (post:1977047126015459602, post:2095391343996539096). After that, his stance hardened: "stay away from leverage" (post:1985303490999030123) and "you don't need more leverage you need more time in the market" (post:2106108708069445861). He now has **zero perps exposure on core positions** (post:2095391343996539096).
 
-He sizes wins to overwhelm losses, admitting he's often wrong: "my approach is based on making sure the size of my wins greatly overwhelms that of my losses" (post:1932235802576085328). He also shared that he puts "less than 1% of my portfolio into most trades" and uses isolated margin, not cross (post:1953518789795909983). Detachment is his stated psychological device: "i've conditioned myself so no crypto loss fazes me; treats the numbers as imaginary" (post:1776021430884315193).
+He sizes for asymmetry: "my approach is based on making sure the size of my wins greatly overwhelms that of my losses" (post:1932235802576085328). He says he loses more often than he wins, but a few big wins make up for losses (post:1910687854272942413). He rarely uses stop losses on high-conviction trades and will reopen with lower leverage and DCA if stopped out (post:1915056783304908830). His single explicit rule on leverage mechanics: he uses **isolated margin only, never cross** (post:1953518789795909983).
 
-## Favorite narratives (stance, and how it changed)
+He frames survival as the one job: "don't get liquidated. don't panic-close high-conviction trades" (post:1909117312709390574). Yet he admitted after 10/10 he did not make it back that quarter (post:2006433668730908994) and was humbled (post:2052788553893990515).
 
-**BONK — bullish from 2024 to 2026, never abandoned.** This is his identity coin ("bonk guy"). Early thesis: $10b/$40b (post:1764652290269421631), then "the main memecoin of Solana" (post:1880646081500918020), then "the $HYPE trade re-run and will reach $10 billion+" (post:1945196489799545307). He cited BONK's 80% drawdown hold as proof of his conviction (post:1876674463648940411).
+## Favorite narratives
 
-**FLOKI — bullish throughout.** He repeatedly faded FLOKI haters ("People fading FLOKI" mocked, post:1763970679639015623) and called it the DOGE beta (post:1847481264699326684). Still accumulating in 2025 and 2026 (post:1850996449821020418, post:1950853811884425438).
+**BONK** — Bullish from the start. He called it the main memecoin of Solana and held from $20m to $4b (post:1859043765098623327). His thesis: CEX listings, unit bias, ETF filings, provenance (post:1881078225125720166). Even after the 10/10 wipeout, he stayed bullish, arguing BONK is a deca-billion play (post:1940501332240355726).
 
-**DOGE and the Department of Government Efficiency — bullish, saw two narratives in one.** "The 'DOGE' narrative has two sides: Dogecoin and the Department of Government Efficiency ETH memecoin" (post:1846234409910804626). He bought D.O.G.E repeatedly during dips (post:1857742424946196649, post:1863337157370245426) and used the Elon/Trump connection as a catalyst (post:1856640674637951399).
+**FLOKI** — Bullish throughout. He treated it as a levered beta to DOGE, BNB, and PEPE: "if you see $doge pumping hard, long floki" (post:1814697389820649973). He defended it against bears and held through boring price action.
 
-**Simon's Cat (CAT) — bullish with a hard exit line.** He publicly committed "won't be selling a single CAT token until above $1b market cap, God willing" (post:1845128468104687968). He kept that pledge through 2025 (post:1875152881432567924, post:1880271283440480524) and into 2026 (post:1920914224131568113). He argued cats are underpriced vs dogs (post:1862567437008609728).
+**DOGE / D.O.G.E** — Bullish, with a twist. He distinguished Dogecoin (familiar retail magnet) from the Department of Government Efficiency ETH memecoin. He called Elon's D.O.G.E tweet hugely significant (post:1856640674637951399) and bought dips aggressively, including $450k during capitulation (post:1863337157370245426).
 
-**BTC memecoins / Runes — bullish 2024, faded later.** "BTC memecoins are the most asymmetric bet in crypto" (post:1842522339415846995). This was a major thesis through late 2024 (post:1851231246463967505) but nearly disappears by 2025, replaced by BONK, FARTCOIN, and USELESS. It was not publicly recanted; it just stopped being mentioned.
+**USELESS coin** — This became his largest narrative from 2025-06 onward. He calls it the DOGE/SHIB/PEPE-type runner of this cycle and the first memecoin to hit $1B+ (post:2095128612378685824). He bought $100k+ at market caps around $45M, accumulating over days (post:2096855993636290982, post:1992254285124354449). He held through 92% drawdowns (post:2019785568792526961) and still calls it the best trenches memecoin of 2025 (post:2000981375558496644). He even made it the core of his 2026 tier list: every slot is USELESS (post:2008417398446014817).
 
-**RWA — bullish early 2024, faded.** He called RWA a "major underrated narrative" (post:1770793300548583816). Still listed it in 2024 as one of the leading three narratives (post:1862973117624180824), but by 2025 the order is "memecoins, RWA, and AI—in that order" (post:1915733774945362124), and by 2026 he is actively arguing against "institutions only want revenue-generating protocols" (post:2003787973045756085).
+**BonkFun** — He flipped from neutral to strongly bullish when he saw it overtake Pumpfun in volume. He called it the trenches and defended it against gravedancers (post:1941835070127456289, post:1957739727861219531). His stance on **Pumpfun** changed from respectful (Alon) to bearish around PUMP TGE, which he called "the great extraction" (post:1942522044584710448).
 
-**AI / AI memecoins — bullish mid-cycle, later a backdrop.** He was bullish on AI agents and Project89 (post:1865495499882786969). By 2025-09 he acknowledged "utility meta is real and strong right now" but insists memecoins remain the dominant narrative (post:1971568987407569219).
+**RWA** — Early bullish, as a tiny category versus memecoins, pushed by BlackRock/tokenization (post:1770793300548583816). It faded as he concentrated on memecoins but he still mentioned it as one of three sectors.
 
-**Solana — bullish 2024-2025, mixed 2026, then bullish again.** "Solana has won the cycle" (post:1875464863859847448). After the Robinhood Chain rise he was publicly still exposed to Solana (post:2095974106969588053) but turned bullish on Solana again after leadership changes: "leadership reaching into the trenches changed his bias" (post:2097652983567700107).
+**AI** — Bullish on AI memecoins early (post:1859686240549060766) but he mocked AI holders who fudded SI while their own coin had worse dips (post:2107102943488946287). He still called Super Intelligence "the freest 100m narrative" (post:2105027973120172056).
 
-**ETH — occasional tactical bull.** He called a "hated rally to $10K+" in 2025 (post:1945492912009015345) and argued ETH money would flow through Robinhood Chain in 2026 (post:2094794638741623125). But he earlier said holding majors isn't how degens make it (post:1836739117398344182).
+**Cat coins / Simon's Cat** — Bullish from 2024: cats are underpriced vs dogs, GCR's cat prophecy will be fulfilled (post:1772245492849594760). He committed to not selling CAT below $1b (post:1845128468104687968). This faded as USELESS took over.
 
-**USELESS — the dominant 2025-2026 narrative.** He frames it as the honest epitome of crypto: "99% of crypto and 100% of memecoins are useless; USELESS is the one honest expression of that reality" (post:2004830435977646238). He built the "resistance is USELESS" refrain (post:1954524844910919880) and repeatedly compared its setup to pre-explosion PEPE (post:2061823586914971821, post:2097266739230732454).
+**BTC memecoins / Runes** — Called them the most asymmetric bet in crypto and easiest 50-100x (post:1842522339415846995). He held PUPS, WZRD, BONGO. The narrative never fully materialized but he kept it as a side bet.
 
-**BonkFun vs Pumpfun — the launchpad war.** He declared "BonkFun is the trenches now" (post:1944726909503324652) and described Pumpfun's TGE as "the great extraction" (post:1942522044584710448). He saw BonkFun's pro-trenches, pro-Solana alignment as the winning side (post:1952961808987275592).
+**Robinhood Chain / PONS** — His newest 2026 narrative. He argues Robinhood Chain is THE chain of this cycle (post:2093412994810077221) and PONS is the dominant launchpad with buyback flywheel (post:2097341438917030215). He also went bullish on MARSCOIN, MEME, and the BNB Chain memestock meta.
 
-**Robinhood Chain / PONS — the 2026 theme.** "Robinhood Chain is THE chain of this cycle; fading it is cope" (post:2093412994810077221). PONS became his designated launchpad play on revenue-multiple metrics vs PUMP (post:2091618376137187518).
+**NEIRO** — Bullish then bearish. He held solana NEIRO with conviction, then publicly admitted the thesis was invalidated: "my NEIRO thesis was invalidated" (post:1824535673740956009). This is his clearest documented bearish reversal.
 
 ## Who they respect
 
-- **Elon Musk**: "Never fade Elon Musk on memecoins; he is the single most powerful player for starting memecoin movements" (post:1837105230397243713, post:1854614316319682665).
-- **CZ**: He campaigns for USELESS listings and BNB chain revivals, quoting "if you can't hold, you won't be rich" with respect (post:2012081416419377592). "Never fade CZ and Yi He when they align behind something" (post:2093412994810077221).
-- **GCR**: Defended repeatedly, trusts his cat prophecy (post:1772245492849594760, post:1789732148192149896).
-- **Bluntz / Bluntz_Capital**: referenced for chart alignment (post:1837277666296160521, post:2022804675335188751).
-- **Ansem (@blknoiz06)** and **Murad**: respected KOLs (post:1921214601888227748).
-- **Cobie**: counter-trading CT hate on Cobie is "100% hit rate" (post:1864579041283518795).
-- **Vlad Tenev / Robinhood**: trusted as the retail-distribution edge (post:2106021394966540608).
-- **Adam_Tehc**: respected fellow trader (post:1945617123721556461, post:2097652983567700107).
-- **Warren Buffett**: he quotes "When it rains gold, put out the bucket, not the thimble" repeatedly (post:2003883277376278860).
+- **GCR** — repeatedly defended him and cited his cat prophecy (post:1763669248595964325, post:1789732148192149896, post:1851152851776471165).
+- **Elon Musk** — "never fade Elon" (post:1837105230397243713); called him the most powerful starter of memecoin movements.
+- **CZ / Binance** — he praised CZ and Yin He, pleaded with CZ to list USELESS (post:1944155738525298890), and said never fade CZ and Yi He (post:2093412994810077221).
+- **Ansem (@blknoiz06)** — cited repeatedly for early calls and defended against envy (post:1763680137592136064, post:1799790652928229882).
+- **Bluntz_Capital** — respected for chart analysis (post:1794971535460974788, post:1855845652854436219, post:1955576070192628204).
+- **Murad** — defended him and said UTX coins like SPX are early (post:1847246227508703646).
+- **Adam_Tehc** — for best crypto data dashboards (post:2107774000437035348).
+- **Alon / Pumpfun** — respected even while calling TGE extractive (post:1942522044584710448).
+- **Warren Buffett** — quoted constantly for the "be greedy when others are fearful" ethos (post:1983995382062276945, post:1950522650138173541).
+- **Solana founders Toly/Raj** — he compared himself to them when defending supporting multiple eco coins (post:1943721312876220717).
 
 ## Who and what they mock
 
-- **CT consensus and anon clowns**: constant target. "CT is NOT retail" (post:1766434253133468013); "anon clowns attacking his calls / demanding 100% win rate" (post:1831041484293800255).
-- **Bears, doomers, top-callers**: "Bears are mentally ill" (post:1851908054788313506); counter-trades cycle-top consensus (post:1877081728289767527).
-- **Pocket watchers**: people who clown his BONK or USELESS drawdowns get hit with "pocket watching" (post:1887141070544547869, post:2029172995218935876).
-- **Paid KOL FUD gang / fudders**: he accuses coordinated FUD on BONK, USELESS, BonkFun (post:1950916247496859933, post:1951374163349807212).
-- **POPCAT maxis** and **WIF fanbois who FUD BONK** (post:1861427527111074030, post:1862624760846258548).
-- **Pumpfun / PUMP maxis**: mocked as extractive, late, and wearing the "BonkFun market cap ceiling" FUD (post:1945869443684319492, post:2096294283431092537).
-- **Utility-token "experts" who declared memecoins dead in 2026** (post:2008659295605235944).
-- **Hunter Biden coin buyers** and extractive celebrity grifts (post:2097663341011341732).
+- **CT bears, cycle top callers, doomers** — "Bears are mentally ill" (post:1851908054788313506); he says top callers are consistently wrong (post:1765072460968603948, post:1790276350894379223).
+- **Pocket watchers, gravedancers, sidelinoors** — he sneers at people who clown his BONK trade and those who fade USELESS then cry cabal (post:1887141070544547869, post:2029172995218935876).
+- **Fudders and paid KOL FUD gangs** — he tells them to block him and says FUD is a buy signal (post:1952057603300970810, post:2107102943488946287).
+- **Vitalik Buterin** — mocked ETH gas elitism and called him out as elitist (post:1813630748425146695).
+- **DonAlt** (the duck) — mocked as wrong (post:1790826316729565301).
+- **People who say memecoins are a cancer/froth** — he calls them midcurve and says they'll miss the move (post:1768208243967316083).
+- **People who tell others to take profits early** — he says "take profit is dangerous at the beginning of a new bull run" (post:1764351140685115830).
+- **People who launch coins using his name or call him a paid shill** — he threatens legal action and says never paid shill (post:1835712242530075130, post:2031020303824957948).
+- **XRP army** — mocked for their token (post:1945807918898798943).
+- **Hunter Biden** — mocked his celebrity coin as extractive grift (post:2097369379339919593).
 
 ## Recurring mistakes they admit
 
-- **Overleverage, repeatedly**: took a mid-six-figure L on overleveraged weekend longs including DOGE early on (post:1769406925618192763); got "carried out on a couple of smaller, higher-leverage positions" in Feb 2025 (post:1886572123256402179); then the 10/10 perps wipeout of eight figures (post:1977047126015459602, post:2006433668730908994).
-- **Being usually wrong**: he says he has "probably tweeted a dozen times that i'm usually wrong, more so than right" (post:1861460433082716278) and "no trader has a 100% win rate" (post:1790313174522011781).
-- **Bad at taking profits historically**: "Admits being bad at taking profits historically, a mindset he says he's grown out of" (post:2052788553893990515).
-- **Borrowed conviction**: lost ~$100k on a new token, says "the majority were taken on borrowed conviction" (post:2108216523907006964).
-- **Overtrading**: "the biggest mistake you can make right now is burning through your capital chasing every shiny new narrative" (post:2097977503616729250); says his mistake was overtrading (post:2108216523907006964).
-- **Roundtripping event-based memecoins**: "Roundtripped tens of millions on DOGEGOV, MAGA, and GME meta coins; learned to prefer timeless narratives over event-based ones" (post:1953553490845806702).
-- **NEIRO thesis invalidated**: admitted plainly and moved on (post:1824535673740956009).
-- **Arc DD insufficient**: "Admits mistakes publicly: Arc DD was insufficient, lost ~$100k on a new token, got rugged" (post:2099414251798515966).
-- **Fading GOAT at $1m**: acknowledged that mistake (post:1860363821908373536 context; note says he "faded GOAT at $1m").
+- **Overleveraging** — "i got carried out on a couple of smaller, higher-leverage positions" (post:1886572123256402179). On 10/10, "went and dropped all my perps positions" (post:1977047126015459602). He now says leverage has been a net negative (post:1985303490999030123).
+- **Overtrading after getting into money** — "lost 7 figures in days/weeks from greed and overtrading" (post:1813159285204894130).
+- **Borrowing conviction** — "the majority were taken on borrowed conviction" and his ~$100k rug loss came from sizing too big on someone else's call (post:2108216523907006964).
+- **NEIRO thesis invalidated** — he held it, then admitted publicly the thesis failed and moved on (post:1824535673740956009).
+- **Not taking profits** — admitted he was historically bad at taking profits, a mindset he says he's grown out of (post:2052788553893990515). He roundtripped tens of millions on DOGEGOV, MAGA, and GME meta coins (post:1953553490845806702).
+- **Waiting for a slightly better entry** — "i regret not sizing in more aggressively at lows due to waiting for a bigger dip" (post:1996693006913564674).
