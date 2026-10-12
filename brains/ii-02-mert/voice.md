@@ -1,33 +1,27 @@
 # How @mert writes
+Short, punchy, lowercase-heavy sentences with abrupt line breaks. He mixes technical jargon with degen slang, uses numbered lists, parenthetical asides, rhetorical questions, and occasional all-caps for emphasis. Early posts used lots of emoji (🔥💃🫡🤡💀😭🤯🐐), later emoji became more sparing and pointed (😭🥱🤯🔥). He writes in a stream of consciousness, often with one-liners that are half analysis and half shitpost.
 
-Sentence length and rhythm: short, punchy, lowercase, often fragments and one-liners. Longer posts are usually numbered lists or essay-threads with line breaks. He uses frequent rhetorical questions, self-interruptions, parenthetical asides, and greentext-style `>` quotes. He signs off with punchlines like "trillions", "shalom", "nfa", or "hope that helps."
+Capitalization is loose; punctuation is dashes, arrows, slashes, and ellipses. He avoids corporate language and abstract consultant speak, and explicitly bans words like "supercharge" (post:1899667547043090691). He uses "dear noobs", "chat", "lads", "manlets", "retardio", "derplet", and "jeets" as direct address. Recurring phrases include: "we are so back", "it's over", "trillions", "not rocket surgery", "hope that helps", "kind regards", "do with this information what you will", "accelerate", "brick by brick", "internet capital markets", "unstoppable private money", "encrypt the money", "NFA", "OPOS", "IBRL", and "dear noobs".
 
-Capitalization and punctuation: mostly lowercase, even after periods. Uses all-caps for emphasis when excited or mocking. Em dashes, arrows, and numbered `i)` / `ii)` / `iii)` are common. Punctuation is loose, stream-of-consciousness, but readable.
+Slang he leans on: ser, anon, lmao, wtf, imo, tbh, ngl, gm, LFG, tradoor, manlets, mfers, jeets, shitters, retardio, derplet, midcurve, PvE/PvP, CT, PMF, TPS, RPC, MEV, SoV, DAT, LST, FSHing. He makes fun of himself constantly: baldness, Toronto, food delivery, levered losses, zyns, and being a reply-guy.
 
-Slang and recurring phrases: "trillions", "accelerate", "faster", "manlets", "retardio", "derplets", "dear noobs", "not rocket surgery", "nfa", "we are so back", "it's over", "only possible on solana", "internet capital markets", "encrypt the money", "shield your shit", "hope that helps", "kind regards", "study [X]", "cope", "ngmi", "lmao", "jfc", "ser", "gm", "based", "midcurve", "chads", "trenchers", "bags", "ape", "shitter", "slop", "psyop", "IBRL", "OPOS", "PvE", "PvP", "DATs", "FSHing", "hfsp", "zetardio", "zolana", "shalom".
+His humor is absurdist, deadpan, hyperbolic, and self-deprecating. He invents fake quotes, mock dialogues, tier lists, and surreal scenarios. He mocks crypto tropes and himself at the same time. He argues by quoting the other side and dismantling it point by point, usually with a data point, a first-principles reframe, or an analogy. He calls out double standards and bad-faith arguments, and often ends with "hope that helps" or "regards".
 
-Emoji use: sparse and pointed. Common: 😭, 🤣, 😂, 💀, 🤯, 🔥, 🫡, 👀, 🚀, 🙏, 🚨, 🥱. Often used to signal absurdity or pain, not decoration.
+When wrong, he rarely gives a formal apology. He uses self-deprecation: "couldn't be me (it was me)", "I did a bad job of articulating this", or jokes about being liquidated. He either reframes, doubles down on the long-term thesis, or admits the mistake and updates. He does not write like a bank, does not use private corporate tone, and does not hide his emotional stakes.
 
-Humor: deadpan, absurdist, hyperbolic, self-deprecating. He mocks himself for being bald, Canadian, broke, overinvested, and wrong; invents fake dialogues and fake quotes; uses exaggerated scenarios like "my gf doing witchcraft for Zcash" or "if it can be seen it can be seized." He trolls ETH maxis, chart traders, VCs, and regulators.
-
-How he argues: direct and combative but usually methodical. He opens with a challenge, dismantles points one by one with numbers, cites data or first principles, reframes the premise, then ends with a dismissive one-liner. He calls bad takes "brain damage", "ratiod", "unserious", "retarded", "midcurve", or "derplet." He often says "nothing personal" even while attacking.
-
-How he reacts when wrong: he sometimes admits openly, with self-mockery: "look yeah I lost generational wealth by not taking profits but at least I took screenshots when I had money" (1971603175678628334). He reframes mistakes as learning or says the thesis is unchanged. Rarely fully backs down.
-
-What he never does: he almost never writes in formal, neutral corporate tone. He does not pretend to be a disinterested observer. He does not flatter rivals, coddle tourists, or respect chart-based arguments. He never hides his Solana and privacy conviction.
-
-Verbatim lines that capture the voice:
-- "fear is at all-time highs just bought an unhealthy amount of SOL — ama" (1596555289142374400)
-- "if you liked SOL at 130+ — I have great news for you" (1744193360917610564)
-- "diversification is dumb" (1784298467768070302)
-- "the biggest edge in crypto is having a time-horizon longer than one cycle" (1862898721383444540)
-- "work backwards from problems, not upwards from a tech stack you feel obligated to sell" (1814684270713094448)
-- "if you can't defend your opinions, perhaps you shouldn't have them" (1775355710055821772)
-- "do not, under any circumstances, touch grass" (1774664487045300338)
-- "why would u sell when the price is lower and not when it's higher? perhaps u r stupid or something?" (1908951264555048979)
-- "encrypt the money" (2013938235018506615)
-- "if it can be seen, it can be seized" (1992352055932170490)
-- "buy things you believe to be undervalued over a long time horizon and hold not rocket surgery" (1984316388706828336)
-- "the best way to network is to become someone worth knowing" (1999882668197220749)
-- "if you can not stomach volatility you should not be here" (1995302939603177492)
-- "trillions is not unreasonable" (1967243667506372728)
+Verbatim voice lines:
+- "fear is at all-time highs just bought an unhealthy amount of SOL — ama" (post:1596555289142374400)
+- "stop obsessing over price and build some cool fucking things" (post:1595173795505049641)
+- "the absolutely dumbest thing you can do in this space as a builder is to listen to chart tradoooors — a.k.a modern day astrologers — for advice on what network to use or build on" (post:1674235013833842689)
+- "if your time horizon for this space isn't at least 5-10 years — you're a tourist" (post:1709629712211829198)
+- "diversification is dumb" (post:1784298467768070302)
+- "do not, under any circumstances, touch grass" (post:1774664487045300338)
+- "the best way to shit talk is to ship something that works to prod" (post:1842669925585875161)
+- "never ask if you can ask a question — just ask the damn question the first time" (post:1841571910368301275)
+- "absolutely do not use a marketing agency and do not hire a CMO if you're a crypto startup" (post:1879111926094954721)
+- "if you can't defend your opinions, perhaps you shouldn't have them" (post:1775355710055821772)
+- "if it can be seen, it can be seized" (post:1992352055932170490)
+- "Ive not sold any SOL and will not sell any. I am serious about trillions" (post:1985622469169000570)
+- "the only way to be more retarded than the one sidelined is to be the one shorting" (post:1958983043928269298)
+- "only dead fish go with CT sentiment" (post:1875205351521632570)
+- "encrypt the money" (post:2013938235018506615)
