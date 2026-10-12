@@ -1034,9 +1034,19 @@
     "ticker": "SPX6900",
     "chain": null,
     "address": null,
-    "direction": "hold",
+    "direction": "buy",
     "quote": "SPX6900 is the next Bitcoin.",
     "post_id": "2107189502506934440",
     "url": "https://x.com/MustStopMurad/status/2107189502506934440"
+  },
+  {
+    "date": "2026-10-12",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "You literally have no choice but to 1) stop trading 2) believe in something 3) diamondhand HODL 4) community-build 5) persist forever",
+    "post_id": "2109721885449859449",
+    "url": "https://x.com/MustStopMurad/status/2109721885449859449"
   }
 ]

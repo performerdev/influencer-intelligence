@@ -1167,15 +1167,26 @@
       "post_id": "2107189502506934440",
       "price_id": null,
       "called_at": "2026-10-05T19:21:41.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "SPX6900",
+      "post_id": "2109721885449859449",
+      "price_id": null,
+      "called_at": "2026-10-12T19:04:28.000Z",
       "direction": "hold",
       "price_at_call": null
     }
   ],
   "hold_pairs": 3,
-  "calls_total": 104,
-  "computed_at": "2026-10-12T10:58:53.910Z",
+  "calls_total": 105,
+  "computed_at": "2026-10-12T22:35:48.332Z",
   "by_direction": {
-    "buy": 89,
+    "buy": 90,
     "hold": 9,
     "sell": 6
   },
