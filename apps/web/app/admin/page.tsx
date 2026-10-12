@@ -19,10 +19,25 @@ export default async function Admin() {
   const user = await currentUser().catch(() => null);
   if (!isAdmin(user)) notFound();
   const db = sql();
-  const q = <T extends readonly unknown[] | number>(p: Promise<T>, fallback: T | []) => p.then((r) => (Array.isArray(r) ? [...r] : r) as T).catch(() => fallback as T);
+  // each block has its own time limit, so one slow query can't take the page down (and the log says which)
+  const q = <T,>(name: string, p: PromiseLike<T>, fallback: unknown): Promise<T> => {
+    const t0 = Date.now();
+    return Promise.race([
+      Promise.resolve(p).then((r) => (Array.isArray(r) ? ([...r] as T) : r)),
+      new Promise<T>((_, rej) => setTimeout(() => rej(new Error("timeout")), 8000)),
+    ])
+      .then((r) => {
+        if (Date.now() - t0 > 2000) console.warn(`admin ${name}: ${Date.now() - t0}ms`);
+        return r;
+      })
+      .catch((err) => {
+        console.error(`admin ${name}:`, (err as Error)?.message ?? err);
+        return fallback as T;
+      });
+  };
 
   const [today, days, spendToday, users, takedowns, errors, jobs, brains, shares] = await Promise.all([
-    q(
+    q("today", 
       db<{ messages: number; asked_users: number; asked_guests: number; new_users: number }[]>`
         select
           (select count(*)::int from messages where role = 'user' and created_at >= date_trunc('day', now() at time zone 'utc') at time zone 'utc') as messages,
@@ -31,7 +46,7 @@ export default async function Admin() {
           (select count(*)::int from users where created_at >= date_trunc('day', now() at time zone 'utc') at time zone 'utc') as new_users`,
       [],
     ),
-    q(
+    q("days", 
       db<{ day: string; messages: number; people: number; chat_usd: string; other_usd: string; signups: number }[]>`
         with d as (select generate_series(date_trunc('day', now() at time zone 'utc') - interval '13 days', date_trunc('day', now() at time zone 'utc'), interval '1 day') as day)
         select to_char(d.day, 'Mon DD') as day,
@@ -43,8 +58,8 @@ export default async function Admin() {
         from d order by d.day desc`,
       [],
     ),
-    q(spentTodayUsd(), 0),
-    q(
+    q("spendToday", spentTodayUsd(), 0),
+    q("users", 
       db<{ total: number; plus: number; paid_7d: number; revenue_7d: string }[]>`
         select (select count(*)::int from users) as total,
           (select count(*)::int from users where plus_until > now()) as plus,
@@ -52,14 +67,14 @@ export default async function Admin() {
           (select coalesce(sum(amount_usd), 0) from payments where status = 'paid' and paid_at > now() - interval '7 days') as revenue_7d`,
       [],
     ),
-    q(db<{ id: string; handle: string; proof_url: string; contact: string | null; reason: string | null; note: string | null; status: string; created_at: Date }[]>`
+    q("takedowns", db<{ id: string; handle: string; proof_url: string; contact: string | null; reason: string | null; note: string | null; status: string; created_at: Date }[]>`
         select id, handle, proof_url, contact, reason, note, status, created_at from takedown_requests order by (status = 'open') desc, created_at desc limit 50`, []),
-    q(db<{ id: string; at: Date; source: string; route: string | null; message: string }[]>`select id, at, source, route, message from errors order by at desc limit 40`, []),
-    q(db<{ id: string; handle: string; status: string; quote_usd: string | null; error: string | null; created_at: Date; who: string | null }[]>`
+    q("errors", db<{ id: string; at: Date; source: string; route: string | null; message: string }[]>`select id, at, source, route, message from errors order by at desc limit 40`, []),
+    q("jobs", db<{ id: string; handle: string; status: string; quote_usd: string | null; error: string | null; created_at: Date; who: string | null }[]>`
         select j.id, j.handle, j.status, j.quote_usd, j.error, j.created_at, u.handle as who from jobs j left join users u on u.id = j.user_id
         where j.kind = 'add_brain' and j.status <> 'awaiting_payment' order by j.created_at desc limit 30`, []),
-    q(db<{ code: string; handle: string; hidden: boolean; added: boolean }[]>`select code, handle, coalesce(hidden, false) as hidden, added_by is not null as added from influencers order by code`, []),
-    q(db<{ n: number; claimed: number; views: number }[]>`select count(*)::int as n, count(claimed_at)::int as claimed, coalesce(sum(views), 0)::int as views from shares`, []),
+    q("brains", db<{ code: string; handle: string; hidden: boolean; added: boolean }[]>`select code, handle, coalesce(hidden, false) as hidden, added_by is not null as added from influencers order by code`, []),
+    q("shares", db<{ n: number; claimed: number; views: number }[]>`select count(*)::int as n, count(claimed_at)::int as claimed, coalesce(sum(views), 0)::int as views from shares`, []),
   ]);
 
   const t = today[0];
