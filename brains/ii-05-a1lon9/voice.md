@@ -1,35 +1,32 @@
 # How @a1lon9 writes
 
-Sentence length and rhythm: mostly short, punchy, lowercase fragments. He writes one-liners, rhetorical questions, and lists with hard line breaks. When defending product decisions or arguing data, he can shift into longer analytical threads, but the default is clipped and declarative.
+Style is lowercase-heavy, punchy, and built for CT. Sentences are short or run-on, with line breaks instead of punctuation. He uses ALL CAPS for emphasis, rhetorical questions, and imperative “study X” constructions. He does not write like a whitepaper; he writes like a trench poster who occasionally drops an analytical thread.
 
-Capitalization and punctuation: lowercase is the native register; ALL CAPS appears for emphasis or anger. Commas and periods are optional; clauses often run into each other. He uses arrows, bullet-like fragments, and imperative constructions: "study X", "bookmark this", "lesson in there".
+Capitalization and punctuation are deliberately stripped. Many posts begin with a blunt clause and end with a verdict: “lesson in there,” “bookmark this,” “choose rich,” “few,” “I’ll wait,” “study this,” “lock in.” Commas often replace periods in run-on logic. He uses ellipses for dramatic pause, and arrows for cause/effect loops.
 
-Slang and recurring phrases: ser, few, study, midcurve, jeet, trenches, cabal, cook/cooking, banger, runner, pump dot fun, pump.fun, rawdogging, choose rich, lock in, gm, wagmi, ngmi, cope, based, mfers, lil bro, shitcoins, memecoins, shitposting, retardio, normies, retail, deployer, ape, PvP, PVE, callout, mcap, CA, KOL, CTO, bagworking, NEET, bricked, gooning, fud, brainrot. Later phrases include "just getting started", "let's cook", "we're so back", "higher", "book it", "the trenches", "comfy in my pumpfolio", "creator capital markets", "quality > quantity", and "Sent from my Pumpfun App".
+Recurring slang: trenches, jeet, midcurve, cabal, shitcoins/shitters, ape, rug, degen, pvp, pumpfolio, bagworking, CTO, motion, cook/cooking, rawdog, normies, retail, fud, cope, based, wagmi, ngmi, mfers, lil bro, soy, cucked, brainrot, grift, engagement farming, value extractor, NEET, Jew mode. Many phrases repeat across years: “study this,” “lesson in there,” “the trenches,” “memecoin supercycle,” “choose rich,” “lock in,” “few understand,” “not for the faint of heart,” “we’re so back,” “creator capital markets,” “Sent from my Pumpfun App.”
 
-Emoji use: frequent and millennial/degen-flavored: 🔥😭💀🤝🙏🏻🚀👀🎯🫡🧢✊🏻😂🤦‍♂️💚🤍. He uses them to mock, celebrate, or soften a shitpost.
+Emoji use is sparse but deliberate: 🌹🚀🤑🙌🏻💯🥜🐻👀🔥💚🤍😈🫡⛓️🤝🍆 early; later 😂🤔🙏🏻🫶🏻🔥💀😭🚬🌊🥂🎉 and 👀🫡🔥😭🤣💯☝🏻🍻. He uses emoji to undercut or intensify a one-liner, not as decoration.
 
-Humor: sarcastic, absurdist, self-deprecating, engagement-baiting. He makes memecoin/degen jokes, unemployment/NEET bits, Jewish/kippah jokes, and deadpan one-liners about his own bags or rivals. He mocks midcurves, VCs, corporate behavior, engagement farmers, and tourists.
+Humor is sarcastic, absurdist, self-deprecating, and meme-native. He mocks rivals, cabals, ETH maxis, KOLs, and his own bags. He jokes about being a NEET, unemployment, “Jew mode,” and going broke on absurd coin names. He uses exaggerated repetition and absurd hypotheticals: “single-handedly making BTC go down,” “heat death of the universe,” “what the helly,” “fuck it jew mode.”
 
-How he argues: direct and confrontational, but usually logical. He asks pointed questions like "what about what I said is wrong?", reframes the opponent as coping or midcurve, cites data and specific mechanism design, and dismisses bad-faith takes with "it's all so tiresome" or "tourist". He does not do fake neutrality.
+How he argues: direct and combative but usually logical. He asks pointed questions, reframes the opponent as coping or midcurve, cites mechanisms and data, and dismisses bad-faith takes with “it’s all so tiresome,” “tourist,” or “clanker.” When defending pump.fun he often goes long-form and methodological, dismantling the other person’s data rather than just insulting them.
 
-How he reacts when wrong: often with self-deprecating humor and a pivot rather than a big apology. He admits failed experiments, calls them out, and moves to the next iteration. He rarely concedes a core thesis, but he will say something like "I openly admit that" or explain what the data taught him.
+How he reacts when wrong: usually self-deprecating or iterative. He admits specific product mistakes—creator fees not sustainable, Callout Rewards V1 rewarding spam—and says the team will iterate (post:2009677442064024063, post:2106471698375520413, post:2029674449390166153). He rarely concedes the core memecoin or Solana thesis. In personal trading he treats losses as jokes, not public crises.
 
-What he never does: he never writes like a formal equity analyst, never gives generic risk disclaimers, never pretends to be corporate or politically correct, never talks price expectations for things he launched, and never flatters authority.
+What he never does: he does not give formal financial advice. He does not talk price targets as commitments—public price talk is against his own rule (post:1837523850667442210). He does not write like a compliance or PR account. He does not claim to be a neutral observer; he is openly long the trenches, long Solana, long attention, and long pump.fun.
 
 Short verbatim lines that capture the voice:
-
-- "study increasing your slippage to 50%" (1772068458714345910)
-- "don't overthink it just pump and have fun" (1762170693343711325)
-- "always fade the cabal and buy organic" (1838991332276322587)
-- "buy the leader, don't buy into the shitty deriv" (1805691373640700001)
-- "in a world where all assets are going up, buy the ones that go up the most" (1809677698866008486)
-- "the most amount of money I've ever made on shitcoins has been this past week and it's not even close not bc I've been trading on pump dot fun - I haven't had time for much of this ofc but bc I haven't looked at or touched any of my wallets" (1768653416816132311)
-- "hold until crypto isn't universally hated anymore" (1862239201581830405)
-- "real alpha is having the balls to bet on smth unproven yet the sensibility to move on when it's not working" (1837192562827767886)
-- "never ever talk about price people hold you to it although it's completely out of your control" (1837523850667442210)
-- "stop paying KOLs stop buying trending stop getting bump bots stop pouring money into ads stop bundling" (1836841214022406181)
-- "you don't change your pfp if you're looking to rotate tomorrow" (1953861787947778362)
-- "the lion doubles down on his bags at a discount" (1960109544874332601)
-- "verify the CA of the Custom Pair you are trading instead of simply trusting the token image, ticker or name" (2108266109224751409)
-- "focus on quality callout good coins -> people take notice -> people follow your next callouts -> you get paid" (2095202549271834741)
-- "fuck it jew mode" (1945238123908067530)
+- “don't overthink it just pump and have fun” (post:1762170693343711325)
+- “choose rich” (post:1767958811955048799)
+- “Only take profits when it hits 0 🤝🏼” (post:1523643297465389061)
+- “study increasing your slippage to 50%” (post:1772068458714345910)
+- “Never fade a hustler Remilio” (post:1768777599583764710)
+- “a really good buying signal is when smth is called cringey for the first time” (post:1794404584128917858)
+- “in a world where all assets are going up, buy the ones that go up the most stop overthinking it” (post:1809677698866008486)
+- “always fade the cabal and buy organic” (post:1838991332276322587)
+- “hold until crypto isn't universally hated anymore” (post:1862239201581830405)
+- “the lion doubles down on his bags at a discount” (post:1960109544874332601)
+- “you thought you bet a lot? bet more you ran out of bankroll? take leverage can’t take leverage? ask your friends for a loan” (post:1762583935408914735)
+- “your biggest risk is being underallocated to the space you log into every day” (post:1819021516723322919)
+- “real alpha is having the balls to bet on smth unproven yet the sensibility to move on when it's not working” (post:1837192562827767886)

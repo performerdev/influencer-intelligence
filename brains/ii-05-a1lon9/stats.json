@@ -718,58 +718,14 @@
       "called_at": "2025-09-30T21:42:47.000Z",
       "direction": "hold",
       "price_at_call": 0.619936
-    },
-    {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
-      "ticker": "AGENTS",
-      "post_id": "2071995373086806020",
-      "price_id": null,
-      "called_at": "2026-06-30T16:32:47.000Z",
-      "direction": "hold",
-      "price_at_call": null
-    },
-    {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
-      "ticker": "HOMEDAO",
-      "post_id": "2080682367165841595",
-      "price_id": null,
-      "called_at": "2026-07-24T15:51:48.000Z",
-      "direction": "hold",
-      "price_at_call": null
-    },
-    {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
-      "ticker": "SAPPHY",
-      "post_id": "2090130633192272210",
-      "price_id": null,
-      "called_at": "2026-08-19T17:35:50.000Z",
-      "direction": "buy",
-      "price_at_call": null
-    },
-    {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
-      "ticker": "PUMPFUN",
-      "post_id": "2104306627943796773",
-      "price_id": null,
-      "called_at": "2026-09-27T20:26:10.000Z",
-      "direction": "hold",
-      "price_at_call": null
     }
   ],
   "hold_pairs": 0,
-  "calls_total": 67,
-  "computed_at": "2026-10-10T15:24:47.403Z",
+  "calls_total": 63,
+  "computed_at": "2026-10-12T10:54:46.351Z",
   "by_direction": {
-    "buy": 48,
-    "hold": 15,
+    "buy": 47,
+    "hold": 12,
     "sell": 4
   },
   "calls_priced": 15,
