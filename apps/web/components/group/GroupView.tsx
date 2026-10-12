@@ -4,6 +4,7 @@ import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "rea
 
 import { UsageMeter, untilText, useAuth } from "@/components/account/AuthProvider";
 import { Markdown, TypingIndicator, type Verdict, VerdictChip } from "@/components/chat/bits";
+import { ShareBar } from "@/components/chat/ShareBar";
 import { BrainAvatar } from "@/components/particles/BrainAvatar";
 import { AppLink } from "@/components/ui/AppLink";
 import { Popover } from "@/components/ui/Popover";
@@ -29,11 +30,12 @@ type Item =
       verdict: Verdict | null;
       refs: Reference[];
       error?: string;
+      messageId?: string;
     };
 
 export type GroupHistory = {
   chatId: string;
-  items: { role: "user" | "assistant"; handle: string | null; content: string; verdict: Verdict | null; refs: Reference[]; round: number }[];
+  items: { id?: string; role: "user" | "assistant"; handle: string | null; content: string; verdict: Verdict | null; refs: Reference[]; round: number }[];
 };
 
 /** Saved messages → view items, with round dividers back in place. */
@@ -50,7 +52,7 @@ function fromHistory(h: GroupHistory | null | undefined): Item[] {
       round = it.round;
       out.push({ id: `hr${i}`, kind: "round", round, rounds: 2 });
     }
-    out.push({ id: `h${i}`, kind: "ai", handle: it.handle ?? "", round: it.round, content: it.content, streaming: false, verdict: it.verdict, refs: it.refs });
+    out.push({ id: `h${i}`, kind: "ai", handle: it.handle ?? "", round: it.round, content: it.content, streaming: false, verdict: it.verdict, refs: it.refs, messageId: it.id });
   });
   return out;
 }
@@ -128,7 +130,7 @@ export function GroupView({ available, initial, history }: { available: Intellig
         const ev = raw.match(/^event: (\w+)/m)?.[1];
         const data = JSON.parse(raw.match(/^data: (.*)$/m)?.[1] ?? "{}");
         if (ev === "delta") patch(id, (m) => ({ content: m.content + data.t }));
-        else if (ev === "done") patch(id, () => ({ streaming: false, verdict: data.verdict, refs: data.refs ?? [], content: data.content }));
+        else if (ev === "done") patch(id, () => ({ streaming: false, verdict: data.verdict, refs: data.refs ?? [], content: data.content, messageId: data.messageId }));
         else if (ev === "error") patch(id, () => ({ streaming: false, error: data.message }));
       }
     }
@@ -242,7 +244,7 @@ export function GroupView({ available, initial, history }: { available: Intellig
           <Empty available={available} members={members} onPick={toggle} ready={ready} onAsk={send} />
         ) : (
           <ol className="mx-auto max-w-[760px] space-y-7 py-8">
-            {items.map((it) => {
+            {items.map((it, idx) => {
               if (it.kind === "user") {
                 return (
                   <li key={it.id} className="flex justify-end">
@@ -275,6 +277,15 @@ export function GroupView({ available, initial, history }: { available: Intellig
                     </div>
                   )}
                   {it.error ? <p className="text-body text-muted">{it.error}</p> : <GroupAnswer item={it} />}
+                  {!it.streaming && !it.error && it.messageId && (
+                    <div className="mt-2 flex flex-wrap items-center gap-2">
+                      <ShareBar
+                        messageId={it.messageId}
+                        handle={it.handle}
+                        question={(items.slice(0, idx).reverse().find((x) => x.kind === "user") as { content: string } | undefined)?.content ?? null}
+                      />
+                    </div>
+                  )}
                 </li>
               );
             })}

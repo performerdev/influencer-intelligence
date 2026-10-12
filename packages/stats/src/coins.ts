@@ -63,6 +63,9 @@ const COINGECKO: Record<string, string> = {
   PUMP: "pump-fun",
 };
 
+/** Ticker → CoinGecko id for well-known assets (also used for live prices on the site). */
+export const COINGECKO_IDS: Readonly<Record<string, string>> = COINGECKO;
+
 /** Chains to try for a bare EVM address, in order. */
 const EVM_CHAINS = ["ethereum", "base", "bsc", "arbitrum"];
 

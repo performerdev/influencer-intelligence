@@ -9,6 +9,7 @@ import { formatCount } from "@/lib/intelligences";
 import { normalizeRefs } from "@/lib/refs";
 
 import { Markdown, Sheet, TypingIndicator, type Verdict, VerdictChip } from "./bits";
+import { ShareBar } from "./ShareBar";
 
 export type BrainSection = { id: string; title: string; body: string; source: "mind" | "rules" | "voice" };
 export type BrainStats = {
@@ -51,13 +52,13 @@ type Reference = {
 
 type Msg =
   | { id: string; role: "user"; content: string }
-  | { id: string; role: "assistant"; content: string; streaming: boolean; lastDelta: string; verdict: Verdict | null; refs: Reference[]; brainVersion: number | null; error?: string };
+  | { id: string; role: "assistant"; content: string; streaming: boolean; lastDelta: string; verdict: Verdict | null; refs: Reference[]; brainVersion: number | null; error?: string; messageId?: string };
 
 const VERDICT_TAIL = /\n*\s*VERDICT:?\s*[A-Z]*\.?\s*$/i;
 
 export type ChatHistory = {
   chatId: string;
-  items: { role: "user" | "assistant"; content: string; verdict: Verdict | null; refs: Reference[]; brainVersion: number | null }[];
+  items: { id?: string; role: "user" | "assistant"; content: string; verdict: Verdict | null; refs: Reference[]; brainVersion: number | null }[];
 };
 
 export function ChatView({ intelligence, brain, history }: { intelligence: ChatIntelligence; brain: ChatBrain | null; history?: ChatHistory | null }) {
@@ -67,7 +68,7 @@ export function ChatView({ intelligence, brain, history }: { intelligence: ChatI
     (history?.items ?? []).map((it, i) =>
       it.role === "user"
         ? { id: `h${i}`, role: "user" as const, content: it.content }
-        : { id: `h${i}`, role: "assistant" as const, content: it.content, streaming: false, lastDelta: "", verdict: it.verdict, refs: it.refs, brainVersion: it.brainVersion },
+        : { id: `h${i}`, role: "assistant" as const, content: it.content, streaming: false, lastDelta: "", verdict: it.verdict, refs: it.refs, brainVersion: it.brainVersion, messageId: it.id },
     ),
   );
   const [chatId, setChatId] = useState<string | null>(history?.chatId ?? null);
@@ -78,6 +79,20 @@ export function ChatView({ intelligence, brain, history }: { intelligence: ChatI
   const [brainSheet, setBrainSheet] = useState(false);
   const [drawer, setDrawer] = useState<{ version: number } | null>(null);
   const [suggestOffset, setSuggestOffset] = useState(0);
+  // the "post it on X for a free session" invite: at most once per page view
+  const [offerFor, setOfferFor] = useState<string | null>(null);
+  const offered = useRef(false);
+  const maybeOffer = useCallback(
+    (messageId: string | undefined, force = false) => {
+      const me = auth.me;
+      if (!messageId || offered.current || !me?.user || !me.shareBonus?.available) return;
+      if (force || me.usage.used >= 0.5 || Math.random() < 0.2) {
+        offered.current = true;
+        setOfferFor(messageId);
+      }
+    },
+    [auth.me],
+  );
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -132,6 +147,12 @@ export function ChatView({ intelligence, brain, history }: { intelligence: ChatI
           if (j.reason === "login") auth.askLogin();
           const error = j.reason === "limit" && j.resetsAt ? `${j.error} Refills in ${untilText(j.resetsAt)}.` : (j.error ?? "Something went wrong. Try again.");
           patch(() => ({ streaming: false, error }));
+          // out of session: the share invite under the last answer is a way back in
+          if (j.reason === "limit") {
+            auth.refresh();
+            const prev = [...messages].reverse().find((m) => m.role === "assistant" && m.messageId) as Extract<Msg, { role: "assistant" }> | undefined;
+            maybeOffer(prev?.messageId, true);
+          }
           return;
         }
         const reader = res.body.getReader();
@@ -153,7 +174,8 @@ export function ChatView({ intelligence, brain, history }: { intelligence: ChatI
             } else if (ev === "delta") {
               patch((m) => ({ content: m.content + data.t, lastDelta: data.t }));
             } else if (ev === "done") {
-              patch((m) => ({ streaming: false, verdict: data.verdict, refs: data.refs, content: m.content.replace(VERDICT_TAIL, "").trim() }));
+              patch((m) => ({ streaming: false, verdict: data.verdict, refs: data.refs, content: m.content.replace(VERDICT_TAIL, "").trim(), messageId: data.messageId }));
+              maybeOffer(data.messageId);
               if (data.refs?.length) setSelected(data.refs[0]);
               else setSelected(null);
               auth.refresh();
@@ -169,7 +191,7 @@ export function ChatView({ intelligence, brain, history }: { intelligence: ChatI
         requestAnimationFrame(() => inputRef.current?.focus());
       }
     },
-    [busy, brain, chatId, handle, auth],
+    [busy, brain, chatId, handle, auth, messages, maybeOffer],
   );
 
   const openRef = (r: Reference) => {
@@ -207,7 +229,7 @@ export function ChatView({ intelligence, brain, history }: { intelligence: ChatI
             <EmptyState intelligence={intelligence} ready={!!brain} onAsk={send} />
           ) : (
             <ol className="mx-auto max-w-[720px] space-y-8 py-8">
-              {messages.map((m) =>
+              {messages.map((m, idx) =>
                 m.role === "user" ? (
                   <li key={m.id} className="flex justify-end">
                     <p className="max-w-[85%] whitespace-pre-wrap rounded-panel border border-line bg-panel px-4 py-3 text-body">{m.content}</p>
@@ -243,6 +265,14 @@ export function ChatView({ intelligence, brain, history }: { intelligence: ChatI
                           <button onClick={() => setDrawer({ version: m.brainVersion! })} className="link-quiet ml-1 text-xs">
                             Open the brain <span className="arrow">↗</span>
                           </button>
+                        )}
+                        {m.messageId && (
+                          <ShareBar
+                            messageId={m.messageId}
+                            handle={handle}
+                            question={(messages.slice(0, idx).reverse().find((x) => x.role === "user")?.content as string | undefined) ?? null}
+                            offer={offerFor === m.messageId}
+                          />
                         )}
                       </div>
                     )}

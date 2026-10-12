@@ -1,4 +1,4 @@
-# Builds and refreshes the open brains.
+# Builds and refreshes the open brains, and runs paid "Add a brain" builds.
 # Secrets (Settings → Secrets and variables → Actions):
 #   TWITTERAPI_IO_KEY, DEEPSEEK_API_KEY, DATABASE_URL
 name: Brains
@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
     inputs:
       command:
-        description: "probe = cheap API check + cost estimate · build = full brain · status = spend report · reassemble = rebuild prompts from stored brains (free)"
+        description: "probe = cheap API check + cost estimate · build = full brain · status = spend report · reassemble = rebuild prompts from stored brains (free) · jobs = paid Add builds"
         type: choice
-        options: [probe, build, status, reassemble]
+        options: [probe, build, status, reassemble, jobs]
         default: probe
       target:
         description: "Handle or code (blknoiz06, ii-01), several separated by commas — or 'all'"
@@ -26,17 +26,22 @@ on:
         type: boolean
         default: false
   schedule:
-    # Weekly refresh: new posts only, Mondays 03:17 UTC.
+    # Weekly refresh: new posts only, Mondays 03:17 UTC — and again at 15:17 in case
+    # GitHub skipped the first (it does under load); a second run finds nothing new and costs ~nothing.
     - cron: "17 3 * * 1"
+    - cron: "17 15 * * 1"
+    # Paid "Add a brain" builds: the site also wakes this right after payment when it can.
+    - cron: "*/10 * * * *"
 
 concurrency:
-  group: brains-${{ github.event.inputs.command }}-${{ github.event.inputs.target || 'refresh' }}
+  group: brains-${{ github.event.inputs.command || (github.event.schedule == '*/10 * * * *' && 'jobs' || 'refresh') }}-${{ github.event.inputs.target || 'auto' }}
   cancel-in-progress: false
 
 permissions:
   contents: write
 
 env:
+  SITE_URL: https://ii.plus
   TWITTERAPI_IO_KEY: ${{ secrets.TWITTERAPI_IO_KEY }}
   DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
   DATABASE_URL: ${{ secrets.DATABASE_URL }}
@@ -52,21 +57,45 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       targets: ${{ steps.t.outputs.targets }}
+      mode: ${{ steps.t.outputs.mode }}
     steps:
       - uses: actions/checkout@v4
+      - id: mode
+        name: Mode
+        run: |
+          if [ "${{ github.event.schedule }}" = "*/10 * * * *" ] || [ "${{ github.event.inputs.command }}" = "jobs" ]; then echo "mode=jobs" >> "$GITHUB_OUTPUT";
+          elif [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event.inputs.target }}" = "all" ]; then echo "mode=all" >> "$GITHUB_OUTPUT";
+          else echo "mode=list" >> "$GITHUB_OUTPUT"; fi
+      # every brain, including ones added by users (they live only in the database)
+      - if: steps.mode.outputs.mode == 'all'
+        uses: pnpm/action-setup@v4
+      - if: steps.mode.outputs.mode == 'all'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - if: steps.mode.outputs.mode == 'all'
+        run: pnpm install --frozen-lockfile
       - id: t
         name: Resolve targets
         run: |
-          T="${{ github.event.inputs.target }}"
-          if [ "${{ github.event_name }}" = "schedule" ] || [ "$T" = "all" ]; then
-            LIST=$(grep -oE 'handle: "[^"]+"' apps/web/config/intelligences.ts | cut -d'"' -f2 | jq -R . | jq -sc .)
+          MODE="${{ steps.mode.outputs.mode }}"
+          echo "mode=$MODE" >> "$GITHUB_OUTPUT"
+          if [ "$MODE" = "jobs" ]; then
+            # an idle tick ends here: the site says whether any paid build is waiting (and settles payments)
+            Q=$(curl -fsS --max-time 30 "$SITE_URL/api/jobs/pending" | jq -r '.queued // 0' || echo 1)
+            if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "$Q" != "0" ]; then LIST='["jobs"]'; else LIST='[]'; fi
+          elif [ "$MODE" = "all" ]; then
+            LIST=$(pnpm -s brain:list | tail -n 1)
+            echo "$LIST" | jq -e 'type == "array"' > /dev/null || LIST=$(grep -oE 'handle: "[^"]+"' apps/web/config/intelligences.ts | cut -d'"' -f2 | jq -R . | jq -sc .)
           else
-            LIST=$(jq -nc --arg t "$T" '$t | split(",") | map(gsub("^[\\s@]+|\\s+$"; "")) | map(select(length > 0))')
+            LIST=$(jq -nc --arg t "${{ github.event.inputs.target }}" '$t | split(",") | map(gsub("^[\\s@]+|\\s+$"; "")) | map(select(length > 0))')
           fi
           echo "targets=$LIST" >> "$GITHUB_OUTPUT"
 
   run:
     needs: plan
+    if: needs.plan.outputs.targets != '[]'
     runs-on: ubuntu-latest
     timeout-minutes: 350
     strategy:
@@ -82,6 +111,12 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+
+      - name: Paid builds
+        if: needs.plan.outputs.mode == 'jobs'
+        run: |
+          set -o pipefail
+          { echo '```'; pnpm brain:jobs; echo '```'; } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Probe
         if: github.event.inputs.command == 'probe'
@@ -108,13 +143,13 @@ jobs:
           { echo '```'; pnpm brain:build ${{ matrix.target }} --max-usd ${{ github.event.inputs.max_usd }} ${{ github.event.inputs.partial == 'true' && '--partial' || '' }} ${{ github.event.inputs.replies == 'true' && '--replies' || '' }}; echo '```'; } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Weekly refresh
-        if: github.event_name == 'schedule'
+        if: github.event_name == 'schedule' && needs.plan.outputs.mode == 'all'
         run: |
           set -o pipefail
           { echo '```'; pnpm brain:build ${{ matrix.target }} --refresh --max-usd 5; echo '```'; } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Commit open brain files
-        if: github.event.inputs.command == 'build' || github.event.inputs.command == 'reassemble' || github.event_name == 'schedule'
+        if: github.event.inputs.command == 'build' || github.event.inputs.command == 'reassemble' || github.event_name == 'schedule' || needs.plan.outputs.mode == 'jobs'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

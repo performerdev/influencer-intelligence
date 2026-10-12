@@ -54,6 +54,13 @@ export function PixelBrain({ handle, src, color, size = 80, active = false, clas
 
     const img = new Image();
     img.decoding = "async";
+    // no PFP (or it can't be loaded): the brain alone, in its color
+    img.onerror = () => {
+      if (cancelled) return;
+      renderer = createBrainRenderer({ size, color, radius: 0.42 });
+      if (reduced) renderer.draw(ctx, { angle: Math.PI / 2, reveal: 0, opening: true, t: 0, active: false });
+      else if (visible && !raf) raf = requestAnimationFrame(loop);
+    };
     img.src = src;
     img.onload = () => {
       if (cancelled) return;

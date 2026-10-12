@@ -1,10 +1,11 @@
 import { type ChatMessage, OpenAICompatibleLLM, type GroupLine, groupTurn, mentionedTickers, tickerContext } from "@ii/brain-core";
 import { recordSpend } from "@ii/db";
 
-import { intelligences } from "@/config/intelligences";
 import { charge, currentUser, gate, usageOf } from "@/lib/server/auth";
-import { loadBrain, resolveReferences, sql } from "@/lib/server/data";
+import { loadBrain, loadIntelligences, resolveReferences, sql } from "@/lib/server/data";
 import { SSE_HEADERS, VERDICT, clientHash, json } from "@/lib/server/http";
+import { liveContext } from "@/lib/server/live";
+import { logError, noteSpend, overBudget } from "@/lib/server/ops";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -22,7 +23,6 @@ const DEBATE_TOKENS = 260;
 type AskBody = { action: "ask"; members?: string[]; message?: string; debate?: boolean; chatId?: string | null };
 type SpeakBody = { action: "speak"; chatId?: string; handle?: string; round?: number };
 
-const byHandle = new Map(intelligences.map((i) => [i.handle.toLowerCase(), i]));
 const isUuid = (s: unknown): s is string => typeof s === "string" && /^[0-9a-f-]{36}$/i.test(s);
 
 /**
@@ -49,8 +49,12 @@ async function ask(req: Request, body: AskBody) {
   if (message.length > 1000) return json({ error: "Keep messages under 1,000 characters." }, 400);
 
   const handles = [...new Set((body.members ?? []).map((h) => String(h).replace(/^@/, "").toLowerCase()))];
-  const members = handles.map((h) => byHandle.get(h)).filter((m): m is (typeof intelligences)[number] => !!m);
+  const byHandle = new Map((await loadIntelligences()).map((i) => [i.handle.toLowerCase(), i]));
+  const members = handles.map((h) => byHandle.get(h)).filter((m) => !!m);
   if (members.length < MIN_MEMBERS || members.length > MAX_MEMBERS) return json({ error: `Pick ${MIN_MEMBERS}–${MAX_MEMBERS} intelligences.` }, 400);
+
+  const busy = await overBudget();
+  if (busy) return json(busy, 503);
 
   const db = sql();
   const rows = await db<{ id: number; handle: string; has_brain: boolean }[]>`
@@ -126,6 +130,11 @@ async function speak(body: SpeakBody) {
   let turn = groupTurn({ me: { code: brain.code, handle: brain.handle }, members: order, transcript, round, rounds: DEBATE_ROUNDS });
   const context = tickerContext(brain.files, mentionedTickers(brain.files.calls, last.content));
   if (context) turn += `\n\n${context}`;
+  // live prices and posts since the brain was built (debate rounds reuse what the first round saw)
+  if (round === 0) {
+    const live = await liveContext(brain, last.content);
+    if (live) turn += `\n\n${live}`;
+  }
   const messages: ChatMessage[] = [
     { role: "system", content: brain.prompt },
     { role: "user", content: turn },
@@ -147,6 +156,7 @@ async function speak(body: SpeakBody) {
             send("delta", { t: ev.delta });
           } else {
             cost = ev.usage.costUsd;
+            noteSpend(cost);
             await recordSpend(db, { influencerId: brain.influencerId, kind: "llm", units: ev.usage.input + ev.usage.output, usd: ev.usage.costUsd, meta: { step: "group", model, round, ...ev.usage } });
           }
         }
@@ -155,12 +165,14 @@ async function speak(body: SpeakBody) {
         const verdict = full.match(VERDICT)?.[1]?.toUpperCase() ?? null;
         const content = full.replace(VERDICT, "").replace(new RegExp(`^\\s*${escape(brain.code)}\\s*(\\(@?${escape(brain.handle)}\\))?\\s*:\\s*`, "i"), "").trim();
         const refs = await resolveReferences(brain, content);
-        await db`
+        const [m] = await db<{ id: string }[]>`
           insert into messages (chat_id, role, influencer_id, brain_version, content, verdict, refs, round, user_id, cost_usd)
-          values (${chat.id}, 'assistant', ${brain.influencerId}, ${brain.version}, ${content}, ${verdict}, ${db.json(refs.map((r) => r.postId) as never)}, ${round}, ${user?.id ?? null}, ${cost})`;
-        send("done", { verdict, refs, content });
+          values (${chat.id}, 'assistant', ${brain.influencerId}, ${brain.version}, ${content}, ${verdict}, ${db.json(refs.map((r) => r.postId) as never)}, ${round}, ${user?.id ?? null}, ${cost})
+          returning id`;
+        send("done", { verdict, refs, content, messageId: String(m.id) });
       } catch (err) {
         console.error("group:", err);
+        await logError("server", "/api/group", err, { userId: user?.id });
         send("error", { message: `${brain.code} didn't answer. Try again in a moment.` });
       } finally {
         controller.close();

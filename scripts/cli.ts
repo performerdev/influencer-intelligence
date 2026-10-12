@@ -10,6 +10,8 @@
   pnpm brain:reassemble <handle|--all>   rebuild prompts from stored brain files, no API cost
  *   pnpm brain:build   <handle|--all> [--max-usd 15]   ingest → distill → stats → brain → export
  *   pnpm brain:status
+ *   pnpm brain:jobs                     run paid "Add a brain" builds from the queue
+ *   pnpm brain:list                     every brain's handle as JSON (for the weekly refresh)
  */
 import { existsSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -28,6 +30,7 @@ import { type XTweet, classify, createSource, ingestInfluencer } from "@ii/inges
 import { DefiLlamaPrices, computeStats } from "@ii/stats";
 
 import { intelligences } from "../apps/web/config/intelligences";
+import { brainColor } from "../apps/web/lib/colors";
 import { LLM_PRICES, PARSE_PRICE_PER_1K_POSTS, llmPrice } from "../config/pricing";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -325,9 +328,99 @@ async function main() {
       }
       await status(await targets());
       break;
+    case "jobs":
+      await migrate(db());
+      await upsertInfluencers(db(), intelligences);
+      await runJobs();
+      break;
+    case "list": {
+      await migrate(db());
+      await upsertInfluencers(db(), intelligences);
+      const rows = await db()<{ handle: string }[]>`select handle from influencers where not coalesce(hidden, false) order by code`;
+      console.log(JSON.stringify(rows.map((r) => r.handle)));
+      break;
+    }
     default:
       console.log(readUsage());
   }
+}
+
+/* ───────────────────────── paid builds ───────────────────────── */
+
+type JobRow = { id: string; handle: string; user_id: number | null; profile: { id?: string; name?: string | null; avatar?: string | null } | null; max_usd: string | null };
+
+/**
+ * "Add a brain" worker: claims paid jobs one at a time and builds each brain
+ * (ingest → distill → stats → brain → export), writing progress to the job so
+ * the site can show it. Stops after ~5h so the Actions job never times out.
+ */
+async function runJobs() {
+  const sql = db();
+  const started = Date.now();
+  let n = 0;
+  while (Date.now() - started < 5 * 3600_000) {
+    const [job] = await sql<JobRow[]>`
+      update jobs set status = 'parsing', started_at = now(), updated_at = now(), progress = '{}'::jsonb
+      where id = (select id from jobs where kind = 'add_brain' and status = 'queued' order by paid_at nulls last, created_at limit 1 for update skip locked)
+      returning id, handle, user_id, profile, max_usd`;
+    if (!job) break;
+    n++;
+    console.log(`\njob ${job.id} @${job.handle}`);
+    let last = 0;
+    const progress = async (p: Record<string, unknown>, status?: string, force = false) => {
+      if (!force && Date.now() - last < 8000) return;
+      last = Date.now();
+      await sql`update jobs set progress = ${sql.json(p as never)}, status = coalesce(${status ?? null}, status), updated_at = now() where id = ${job.id}`.catch(() => {});
+    };
+    try {
+      const inf = await influencerFor(job);
+      await sql`update jobs set influencer_id = ${inf.id} where id = ${job.id}`;
+      const res = await ingestInfluencer(sql, createSource(), inf, {
+        maxUsd: Number(job.max_usd ?? 20),
+        threads: true,
+        onProgress: (p) => void progress({ phase: p.phase, kept: p.kept, spent: Math.round(p.spentUsd * 100) / 100 }),
+      });
+      const [{ posts_parsed }] = await sql<{ posts_parsed: number }[]>`select posts_parsed from influencers where id = ${inf.id}`;
+      done(`  ${inf.code} @${inf.handle} · ingest ${res.status} · ${fmt(posts_parsed)} posts`);
+      if (!posts_parsed) throw new Error("no public posts to learn from");
+      // paid: a budget stop still builds from what was read
+      await progress({ kept: posts_parsed }, "distilling", true);
+      const llm = new OpenAICompatibleLLM();
+      const files = await distillInfluencer(sql, llm, inf, {
+        model: DISTILL_MODEL,
+        onProgress: (p) => void progress({ step: p.step, done: p.done, total: p.total }),
+      });
+      await progress({ kept: posts_parsed }, "building", true);
+      const stats = await stepStats(inf);
+      await stepAssemble(inf, { one_line_mind: files.oneLineMind, mind: files.mind, rules: files.rules, voice: files.voice, intro: files.intro, example_ids: files.exampleIds, calls: files.calls, stats });
+      await stepExport(inf);
+      await sql`update jobs set status = 'ready', finished_at = now(), updated_at = now(), progress = ${sql.json({ kept: posts_parsed } as never)} where id = ${job.id}`;
+      done(`  @${inf.handle} · live`);
+    } catch (err) {
+      const message = String((err as Error)?.message ?? err).slice(0, 500);
+      console.log(`  FAILED: ${message}`);
+      await sql`update jobs set status = 'failed', error = ${message}, finished_at = now(), updated_at = now() where id = ${job.id}`;
+    }
+  }
+  console.log(n ? `\n${n} build(s) processed.` : "No builds waiting.");
+}
+
+/** The influencer row for a job: existing (same handle) or the next free code, ii-11, ii-12, … */
+async function influencerFor(job: JobRow): Promise<InfluencerRow> {
+  const sql = db();
+  const existing = await getInfluencer(sql, job.handle);
+  if (existing) return existing;
+  return sql.begin(async (tx) => {
+    await tx`select pg_advisory_xact_lock(4242002)`;
+    const [{ next }] = await tx<{ next: number }[]>`
+      select coalesce(max(substring(code from 4)::int), 0) + 1 as next from influencers where code ~ '^ii-[0-9]+$'`;
+    const code = `ii-${String(next).padStart(2, "0")}`;
+    const [row] = await tx<InfluencerRow[]>`
+      insert into influencers (code, handle, display_name, x_user_id, avatar_url, color, added_by)
+      values (${code}, ${job.handle}, ${job.profile?.name ?? null}, ${job.profile?.id ?? null}, ${job.profile?.avatar ?? null}, ${brainColor(code)}, ${job.user_id})
+      returning *`;
+    return row;
+  });
 }
 
 function readUsage() {

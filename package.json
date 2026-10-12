@@ -20,7 +20,9 @@
     "brain:build": "tsx scripts/cli.ts build",
     "brain:status": "tsx scripts/cli.ts status",
     "test:pipeline": "tsx scripts/test-pipeline.ts",
-    "dev:mock": "tsx scripts/dev-mock.ts"
+    "dev:mock": "tsx scripts/dev-mock.ts",
+    "brain:jobs": "tsx scripts/cli.ts jobs",
+    "brain:list": "tsx scripts/cli.ts list"
   },
   "type": "module",
   "engines": {

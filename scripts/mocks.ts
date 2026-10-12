@@ -64,6 +64,26 @@ const ts = (t: T) => new Date(t.createdAt).getTime() / 1000;
 
 export const calls: Record<string, number> = {};
 const paidRefs = new Set<string>();
+// the CLI asks for timelines by user id; remember which added handle that id belongs to
+const idToHandle = new Map<string, string>();
+// test hooks: posts made "on X" during a test, and the last chat request the model saw
+const posted = new Map<string, T[]>();
+let lastChat: unknown = null;
+/** Any other handle gets its own copy of the account (fresh ids, its own author id) — for "Add a brain" tests. */
+const otherId = (h: string) => `88${[...h.toLowerCase()].reduce((a, c) => (a * 31 + c.charCodeAt(0)) % 1_000_000, 7)}`;
+const isSelf = (h: string | null | undefined) => !h || h.toLowerCase() === SELF.handle.toLowerCase();
+function asHandle(list: T[], h: string | null | undefined): T[] {
+  if (isSelf(h)) return list;
+  const id = otherId(h!);
+  const re = (x: unknown) => (x == null ? x : `${x}77`);
+  return list.map((t) => ({
+    ...t,
+    id: re(t.id),
+    author: { id, userName: h },
+    inReplyToId: t.inReplyToUserId === SELF.id ? re(t.inReplyToId) : t.inReplyToId,
+    inReplyToUserId: t.inReplyToUserId === SELF.id ? id : t.inReplyToUserId,
+  }));
+}
 const page = (list: T[], cursor: string | null) => {
   const off = Number(cursor || 0);
   const slice = list.slice(off, off + 20);
@@ -145,21 +165,30 @@ export const api = createServer(async (req, res) => {
   const q = url.searchParams;
   if (url.pathname === "/twitter/user/info") {
     if (req.headers["x-api-key"] !== "test-key") return res.writeHead(401).end("bad key");
+    const who = q.get("userName");
+    if (!isSelf(who)) {
+      if (/^nobody/i.test(who!)) return send({ status: "error", message: "User not found" });
+      idToHandle.set(otherId(who!), who!);
+      return send({ data: { id: otherId(who!), userName: who, name: `Mock ${who}`, followers: 4321, statusesCount: 260, createdAt: "Sun Jan 01 00:00:00 +0000 2023", profilePicture: "https://pbs.twimg.com/profile_images/1/mock_normal.png" }, status: "success" });
+    }
     return send({ data: { id: SELF.id, userName: SELF.handle, name: "Test Account", followers: 12345, statusesCount: 260, createdAt: "Sun Jan 01 00:00:00 +0000 2023" }, status: "success" });
   }
   if (url.pathname === "/twitter/user/last_tweets") {
     // Simulate a timeline that only reaches back 140 tweets, so search must back-fill.
-    const own = newestFirst.slice(0, 140).filter((t) => !t.isReply || q.get("includeReplies") === "true");
+    const extra = posted.get((q.get("userName") ?? "").toLowerCase()) ?? [];
+    if (extra.length) return send(page([...extra], q.get("cursor")));
+    const own = asHandle(newestFirst, q.get("userName") ?? idToHandle.get(q.get("userId") ?? "") ?? null).slice(0, 140).filter((t) => !t.isReply || q.get("includeReplies") === "true");
     return send(page(own, q.get("cursor")));
   }
   if (url.pathname === "/twitter/tweet/advanced_search") {
     const query = q.get("query") ?? "";
     const until = Number(query.match(/until_time:(\d+)/)?.[1] ?? Infinity);
     const since = Number(query.match(/since_time:(\d+)/)?.[1] ?? 0);
-    let list = newestFirst.filter((t) => ts(t) < until && ts(t) >= since);
+    const fromH = query.match(/from:(\w+)/)?.[1];
+    let list = asHandle(newestFirst, fromH).filter((t) => ts(t) < until && ts(t) >= since);
     if (/-filter:replies/.test(query)) list = list.filter((t) => !t.isReply);
     else if (/(^|\s)filter:replies/.test(query)) list = list.filter((t) => t.isReply);
-    if (/to:/.test(query)) list = list.filter((t) => t.isReply && t.inReplyToUserId === SELF.id);
+    if (/to:/.test(query)) list = list.filter((t) => t.isReply && t.inReplyToUserId === (isSelf(fromH) ? SELF.id : otherId(fromH!)));
     return send(page(list, q.get("cursor")));
   }
   /* ── X OAuth 2.0 (login) ── */
@@ -208,10 +237,31 @@ export const api = createServer(async (req, res) => {
       status: "success",
     });
   }
+  if (url.pathname === "/__post") {
+    const h = (q.get("handle") ?? "").toLowerCase();
+    const t = { type: "tweet", id: String(Date.now()), createdAt: new Date().toUTCString().replace("GMT", "+0000"), text: q.get("text") ?? "", author: { id: "999", userName: h }, entities: { urls: [{ expanded_url: q.get("url") ?? "" }] } };
+    posted.set(h, [t, ...(posted.get(h) ?? [])]);
+    return send({ ok: true });
+  }
+  if (url.pathname === "/__last_chat") return send(lastChat ?? {});
   if (url.pathname === "/chat/completions") {
     const b = JSON.parse(body);
+    lastChat = b;
     if (b.stream) return streamChat(b, res);
     return send(chat(b));
+  }
+  /* ── live prices (DefiLlama current + DexScreener) ── */
+  if (url.pathname.startsWith("/prices/current/")) {
+    const ids = decodeURIComponent(url.pathname.slice("/prices/current/".length)).split(",");
+    return send({ coins: Object.fromEntries(ids.map((id) => [id, { price: id.includes("solana") ? 142.5 : id.includes("bitcoin") ? 97000 : 3.21, symbol: "X", timestamp: Math.floor(Date.now() / 1000), confidence: 0.99 }])) });
+  }
+  if (url.pathname.startsWith("/percentage/")) {
+    const ids = decodeURIComponent(url.pathname.slice("/percentage/".length)).split(",");
+    return send({ coins: Object.fromEntries(ids.map((id) => [id, 2.4])) });
+  }
+  if (url.pathname === "/latest/dex/search" || url.pathname.startsWith("/latest/dex/tokens/")) {
+    const sym = (q.get("q") ?? "MOCK").toUpperCase();
+    return send({ pairs: [{ chainId: "solana", baseToken: { symbol: sym, address: SOL_CA, name: sym }, priceUsd: "0.0123", priceChange: { h24: -5.5 }, liquidity: { usd: 250000 }, marketCap: 12300000 }] });
   }
   if (url.pathname === "/batchHistorical") return send(prices(JSON.parse(q.get("coins") ?? "{}")));
   res.writeHead(404).end("not found");

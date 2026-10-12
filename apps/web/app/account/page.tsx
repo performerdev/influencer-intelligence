@@ -4,10 +4,11 @@ import { LogoutButton } from "@/components/account/LogoutButton";
 import { PlusCheckout } from "@/components/account/PlusCheckout";
 import { UsageMeter, XGlyph } from "@/components/account/AuthProvider";
 import { AppLink } from "@/components/ui/AppLink";
-import { intelligences } from "@/config/intelligences";
 import { payments, plusPaymentsEnabled } from "@/config/payments";
 import { plans } from "@/config/plans";
 import { currentUser, isPlus, xLoginConfigured } from "@/lib/server/auth";
+import { loadIntelligences } from "@/lib/server/data";
+import { isAdmin } from "@/lib/server/ops";
 import { hasDatabase } from "@/lib/server/data";
 import { listChats } from "@/lib/server/history";
 
@@ -34,7 +35,7 @@ export default async function AccountPage({ searchParams }: { searchParams: Prom
   const user = hasDatabase() ? await currentUser().catch(() => null) : null;
   const chats = user ? await listChats(user).catch(() => []) : [];
   const plus = isPlus(user);
-  const colorOf = new Map(intelligences.map((i) => [i.handle, i.color]));
+  const colorOf = new Map((await loadIntelligences()).map((i) => [i.handle, i.color]));
 
   return (
     <div className="mx-auto max-w-[920px] px-gutter pb-24 pt-[calc(var(--ii-topbar-h)+40px)]">
@@ -65,6 +66,11 @@ export default async function AccountPage({ searchParams }: { searchParams: Prom
               {user.name ? ` · ${user.name}` : ""}
             </p>
           </div>
+          {isAdmin(user) && (
+            <AppLink href="/admin" className="btn-line h-9 px-4">
+              Admin
+            </AppLink>
+          )}
           <LogoutButton />
           <UsageMeter className="w-full" />
         </section>

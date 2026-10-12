@@ -13,6 +13,8 @@ export type Intelligence = IntelligenceConfig & {
   postsPerDay: number | null;
   /** brain version timestamp (ISO) */
   distilledAt: string | null;
+  /** added by a user through Add (not one of the launch ten) */
+  added?: boolean;
 };
 
 export function getIntelligences(): Intelligence[] {

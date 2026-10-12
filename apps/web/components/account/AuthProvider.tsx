@@ -7,6 +7,8 @@ export type Me = {
   loginAvailable: boolean;
   user: { handle: string; name: string | null; avatar: string | null; plus: boolean; plusUntil: string | null } | null;
   usage: { plan: "guest" | "free" | "plus"; used: number; resetsAt: string | null; capped: boolean; debate: boolean };
+  /** post an answer on X → a free 2-hour session (once a day); null for guests */
+  shareBonus?: { available: boolean } | null;
 };
 
 type Auth = {
@@ -138,7 +140,8 @@ export function UsageMeter({ className = "" }: { className?: string }) {
 export function untilText(iso: string) {
   const ms = new Date(iso).getTime() - Date.now();
   if (ms <= 0) return "a moment";
-  const h = Math.floor(ms / 3_600_000);
-  const m = Math.ceil((ms % 3_600_000) / 60_000);
-  return h ? `${h}h ${m}m` : `${m}m`;
+  const mins = Math.ceil(ms / 60_000);
+  const h = Math.floor(mins / 60);
+  const m = mins % 60;
+  return h ? (m ? `${h}h ${m}m` : `${h}h`) : `${m}m`;
 }

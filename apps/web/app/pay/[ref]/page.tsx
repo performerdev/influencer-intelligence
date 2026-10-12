@@ -17,7 +17,7 @@ export default async function PayPage({ params }: { params: Promise<{ ref: strin
   if (!info) notFound();
   return (
     <main className="mx-auto max-w-[640px] px-gutter pb-24 pt-[calc(var(--ii-topbar-h)+40px)]">
-      <h1 className="text-h3">Plus · {info.amount} USDC</h1>
+      <h1 className="text-h3">{info.purpose === "add" ? info.label : "Plus"} · {info.amount} USDC</h1>
       <div className="mt-8">
         <PayPanel co={info} />
       </div>

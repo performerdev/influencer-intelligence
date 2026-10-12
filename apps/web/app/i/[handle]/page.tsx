@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { type BrainSection, type ChatBrain, type ChatHistory, ChatView } from "@/components/chat/ChatView";
-import { intelligences } from "@/config/intelligences";
 import { currentUser } from "@/lib/server/auth";
-import { hasDatabase, loadBrain, loadIntelligences } from "@/lib/server/data";
+import { findIntelligence, hasDatabase, loadBrain, loadIntelligences } from "@/lib/server/data";
 import { loadChat } from "@/lib/server/history";
 
 // Per visitor (saved chats), so rendered on request; the brain itself is cached in memory.
@@ -14,7 +13,7 @@ type Props = { params: Promise<{ handle: string }>; searchParams: Promise<{ c?: 
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { handle } = await params;
-  const it = intelligences.find((i) => i.handle.toLowerCase() === handle.toLowerCase());
+  const it = await findIntelligence(handle);
   return it ? { title: `${it.code} @${it.handle}`, description: `Talk to the open-source AI model of @${it.handle}, built from public posts. Unofficial, not financial advice.` } : {};
 }
 
@@ -25,7 +24,12 @@ export default async function IntelligencePage({ params, searchParams }: Props) 
   const it = all.find((i) => i.handle.toLowerCase() === handle.toLowerCase());
   if (!it) notFound();
 
-  const brain = hasDatabase() ? await loadBrain(it.handle).catch(() => null) : null;
+  // one retry: a cold database connection shouldn't make a brain look "not distilled"
+  const brain = hasDatabase()
+    ? await loadBrain(it.handle)
+        .catch(() => loadBrain(it.handle))
+        .catch((err) => (console.error("loadBrain:", err), null))
+    : null;
   let chatBrain: ChatBrain | null = null;
   if (brain) {
     const f = brain.files;
@@ -56,7 +60,7 @@ export default async function IntelligencePage({ params, searchParams }: Props) 
     const user = await currentUser().catch(() => null);
     const saved = user ? await loadChat(user, c).catch(() => null) : null;
     if (saved && saved.kind === "single" && saved.handles[0]?.toLowerCase() === it.handle.toLowerCase()) {
-      history = { chatId: c, items: saved.items.map((i) => ({ role: i.role, content: i.content, verdict: i.verdict, refs: i.refs, brainVersion: i.brainVersion })) };
+      history = { chatId: c, items: saved.items.map((i) => ({ id: i.id, role: i.role, content: i.content, verdict: i.verdict, refs: i.refs, brainVersion: i.brainVersion })) };
     }
   }
 

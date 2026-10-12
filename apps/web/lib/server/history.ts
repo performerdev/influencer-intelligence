@@ -15,6 +15,8 @@ export type ChatSummary = {
 };
 
 export type HistoryItem = {
+  /** message id, for sharing */
+  id: string;
   role: "user" | "assistant";
   handle: string | null;
   content: string;
@@ -56,8 +58,8 @@ export async function loadChat(user: User, id: string): Promise<{ kind: "single"
   if (!c) return null;
   const members = await db<{ id: number; handle: string }[]>`select id, handle from influencers where id = any(${c.influencer_ids})`;
   const handleOf = new Map(members.map((m) => [m.id, m.handle]));
-  const rows = await db<{ role: "user" | "assistant"; influencer_id: number | null; content: string; verdict: HistoryItem["verdict"]; round: number; brain_version: number | null }[]>`
-    select role, influencer_id, content, verdict, round, brain_version from messages where chat_id = ${id} order by id limit 200`;
+  const rows = await db<{ id: string; role: "user" | "assistant"; influencer_id: number | null; content: string; verdict: HistoryItem["verdict"]; round: number; brain_version: number | null }[]>`
+    select id, role, influencer_id, content, verdict, round, brain_version from messages where chat_id = ${id} order by id limit 200`;
   const items: HistoryItem[] = [];
   for (const r of rows) {
     const handle = r.influencer_id ? (handleOf.get(r.influencer_id) ?? null) : null;
@@ -66,7 +68,7 @@ export async function loadChat(user: User, id: string): Promise<{ kind: "single"
       const brain = await loadBrain(handle, r.brain_version ?? undefined).catch(() => null);
       if (brain) refs = await resolveReferences(brain, r.content).catch(() => []);
     }
-    items.push({ role: r.role, handle: r.role === "assistant" ? handle : null, content: r.content, verdict: r.verdict, refs, round: r.round ?? 0, brainVersion: r.brain_version });
+    items.push({ id: String(r.id), role: r.role, handle: r.role === "assistant" ? handle : null, content: r.content, verdict: r.verdict, refs, round: r.round ?? 0, brainVersion: r.brain_version });
   }
   return { kind: c.kind === "group" ? "group" : "single", handles: c.influencer_ids.map((i) => handleOf.get(i)!).filter(Boolean), items };
 }

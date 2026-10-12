@@ -11,4 +11,12 @@
 # Environment variables to set in Netlify (Site configuration → Environment variables):
 #   DATABASE_URL_POOLED  Supabase transaction pooler URL (port 6543)
 #   DEEPSEEK_API_KEY
-# Optional: LLM_MODEL_CHAT (default deepseek-v4-pro), CHAT_DAILY_LIMIT (default 40), CHAT_SALT (any random string)
+#   X_CLIENT_ID, X_CLIENT_SECRET   Log in with X (OAuth 2.0)
+#   TWITTERAPI_IO_KEY    fresh posts in answers, "Add a brain" quotes, share-for-a-session checks
+# Optional:
+#   GITHUB_DISPATCH_TOKEN  fine-grained token (this repo, Actions: read & write) — starts a paid build
+#                          the moment it's paid; without it the 10-minute schedule picks it up
+#   DAILY_BUDGET_USD       ceiling on chat/group model spend per UTC day (default 50)
+#   ADMIN_HANDLES          X handles allowed on /admin, comma-separated
+#   SITE_URL               public address (default: the host the visitor used)
+#   LLM_MODEL_CHAT (default deepseek-v4-pro), CHAT_SALT (any random string), SOLANA_RPC_URL

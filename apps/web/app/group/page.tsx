@@ -28,7 +28,7 @@ export default async function GroupPage({ searchParams }: { searchParams: Promis
     const user = await currentUser().catch(() => null);
     const saved = user ? await loadChat(user, c).catch(() => null) : null;
     if (saved?.kind === "group") {
-      history = { chatId: c, items: saved.items.map((i) => ({ role: i.role, handle: i.handle, content: i.content, verdict: i.verdict, refs: i.refs, round: i.round })) };
+      history = { chatId: c, items: saved.items.map((i) => ({ id: i.id, role: i.role, handle: i.handle, content: i.content, verdict: i.verdict, refs: i.refs, round: i.round })) };
       lineup = saved.handles.filter((h) => available.some((a) => a.handle === h));
     }
   }

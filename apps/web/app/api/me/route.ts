@@ -1,4 +1,5 @@
 import { currentUser, isPlus, usageOf, xLoginConfigured } from "@/lib/server/auth";
+import { shareBonusAvailable } from "@/lib/server/share";
 
 export const dynamic = "force-dynamic";
 
@@ -10,5 +11,7 @@ export async function GET() {
     user: u ? { handle: u.handle, name: u.name, avatar: u.avatar_url, plus: isPlus(u), plusUntil: u.plus_until } : null,
     // percentages and times only — budgets stay server-side
     usage: (({ plan, used, resetsAt, capped, debate }) => ({ plan, used, resetsAt, capped, debate }))(usageOf(u)),
+    // post an answer on X → a free 2-hour session, once a day
+    shareBonus: u ? { available: shareBonusAvailable(u) } : null,
   });
 }

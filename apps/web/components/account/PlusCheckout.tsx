@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { useAuth } from "./AuthProvider";
 import { type Checkout, type Wallet, openInWalletLinks, payWith, watchWallets } from "./wallets";
 
-type Info = Checkout & { token: string; handle: string; status?: string };
+export type Info = Checkout & { token: string; handle: string; status?: string; purpose?: string; label?: string; jobId?: string | null };
 
 /**
  * Plus checkout: 10 USDC on Solana. Pick a wallet (Phantom, OKX, Solflare,
@@ -116,13 +116,28 @@ export function PayPanel({ co, onPaid }: { co: Info; onPaid?: () => void }) {
     }
   };
 
-  if (paid) return <p className="font-pixel text-body text-ceramic">Paid. Plus is on for @{co.handle}.</p>;
+  if (paid)
+    return (
+      <p className="font-pixel text-body text-ceramic">
+        {co.purpose === "add" ? (
+          <>
+            Paid. The brain is being built —{" "}
+            <a href={`/add/${co.jobId}`} className="underline decoration-line-hover underline-offset-4">
+              follow it here
+            </a>
+            .
+          </>
+        ) : (
+          <>Paid. Plus is on for @{co.handle}.</>
+        )}
+      </p>
+    );
 
   const none = wallets !== null && wallets.length === 0;
   return (
     <div className="space-y-6">
       <p className="font-pixel text-sm text-particle">
-        {co.amount} USDC on Solana · Plus for @{co.handle}
+        {co.amount} USDC on Solana · {co.label ?? `Plus for @${co.handle}`}
       </p>
 
       <div>

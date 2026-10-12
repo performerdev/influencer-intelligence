@@ -4,6 +4,8 @@ import { recordSpend } from "@ii/db";
 import { charge, gate } from "@/lib/server/auth";
 import { loadBrain, resolveReferences, sql } from "@/lib/server/data";
 import { SSE_HEADERS, VERDICT, clientHash, json } from "@/lib/server/http";
+import { liveContext } from "@/lib/server/live";
+import { logError, noteSpend, overBudget } from "@/lib/server/ops";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -28,6 +30,10 @@ export async function POST(req: Request) {
 
   const brain = await loadBrain(handle);
   if (!brain) return json({ error: `@${handle} has no brain yet. It appears here as soon as it's distilled.` }, 404);
+
+  // Daily ceiling on model spend across the whole site.
+  const busy = await overBudget();
+  if (busy) return json(busy, 503);
 
   const db = sql();
   const client = clientHash(req);
@@ -93,7 +99,9 @@ export async function POST(req: Request) {
           let tickers = mentionedTickers(brain.files.calls, message);
           if (!tickers.length) tickers = mentionedTickers(brain.files.calls, lastUser, 3);
           const context = tickerContext(brain.files, tickers);
-          const turn = context ? `${message}\n\n${context}` : message;
+          // what the brain can't know: prices now, and posts since it was built
+          const live = await liveContext(brain, message);
+          const turn = [message, context, live].filter(Boolean).join("\n\n");
           const messages: ChatMessage[] = [{ role: "system", content: brain.prompt }, ...history, { role: "user", content: turn }];
           for await (const ev of llm.stream(messages, { model, temperature: 0.7, maxTokens: usage.maxAnswerTokens, thinking: "disabled" })) {
             if ("delta" in ev) {
@@ -101,6 +109,7 @@ export async function POST(req: Request) {
               send("delta", { t: ev.delta });
             } else {
               cost = ev.usage.costUsd;
+              noteSpend(cost);
               await recordSpend(db, { influencerId: brain.influencerId, kind: "llm", units: ev.usage.input + ev.usage.output, usd: ev.usage.costUsd, meta: { step: "chat", model, ...ev.usage } });
             }
           }
@@ -116,6 +125,7 @@ export async function POST(req: Request) {
         send("done", { verdict, refs, messageId: String(m.id), cached: Boolean(cached) });
       } catch (err) {
         console.error("chat:", err);
+        await logError("server", "/api/chat", err, { userId: user?.id, clientHash: client });
         send("error", { message: "The model didn't answer. Try again in a moment." });
       } finally {
         controller.close();

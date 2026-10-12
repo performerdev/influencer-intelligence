@@ -4,6 +4,7 @@ import type { BrainFiles } from "@ii/brain-core";
 import { type Sql, db } from "@ii/db";
 
 import { intelligences as config } from "@/config/intelligences";
+import { brainColor } from "@/lib/colors";
 import type { Intelligence } from "@/lib/intelligences";
 import { normalizeRefs } from "@/lib/refs";
 
@@ -25,37 +26,70 @@ type InfluencerRow = {
   posts_per_day: number | null;
   one_line_mind: string | null;
   status: string;
+  avatar_url: string | null;
+  color: string | null;
+  hidden: boolean;
   version: number | null;
   distilled_at: Date | null;
 };
 
-/** Config order, real numbers from the database where they exist (never invented). */
+/**
+ * Launch brains in config order, then brains added by users (in code order).
+ * Real numbers from the database where they exist (never invented); hidden
+ * brains (taken down by hand) are left out everywhere.
+ */
 export async function loadIntelligences(): Promise<Intelligence[]> {
-  const base = config.map((c) => ({ ...c, oneLineMind: null, postsParsed: null, postsPerDay: null, distilledAt: null }));
+  const base: Intelligence[] = config.map((c) => ({ ...c, oneLineMind: null, postsParsed: null, postsPerDay: null, distilledAt: null }));
   if (!hasDatabase()) return base;
   try {
     const rows = await sql()<InfluencerRow[]>`
       select i.id, i.code, i.handle, i.display_name, i.posts_parsed, i.posts_per_day, i.one_line_mind, i.status,
+        i.avatar_url, i.color, coalesce(i.hidden, false) as hidden,
         b.version, b.created_at as distilled_at
       from influencers i
-      left join lateral (select version, created_at from brains where influencer_id = i.id order by version desc limit 1) b on true`;
+      left join lateral (select version, created_at from brains where influencer_id = i.id order by version desc limit 1) b on true
+      order by i.code`;
     const byCode = new Map(rows.map((r) => [r.code, r]));
-    return base.map((c) => {
-      const r = byCode.get(c.code);
-      if (!r) return c;
-      return {
-        ...c,
-        displayName: r.display_name ?? c.displayName,
-        oneLineMind: r.one_line_mind,
-        postsParsed: r.posts_parsed > 0 ? r.posts_parsed : null,
-        postsPerDay: r.posts_per_day,
-        distilledAt: r.distilled_at ? new Date(r.distilled_at).toISOString() : null,
-      };
+    const fill = (c: Intelligence, r: InfluencerRow): Intelligence => ({
+      ...c,
+      displayName: r.display_name ?? c.displayName,
+      oneLineMind: r.one_line_mind,
+      postsParsed: r.posts_parsed > 0 ? r.posts_parsed : null,
+      postsPerDay: r.posts_per_day,
+      distilledAt: r.distilled_at ? new Date(r.distilled_at).toISOString() : null,
     });
+    const launch = base.filter((c) => !byCode.get(c.code)?.hidden).map((c) => (byCode.has(c.code) ? fill(c, byCode.get(c.code)!) : c));
+    const known = new Set(config.map((c) => c.code));
+    const added = rows
+      .filter((r) => !known.has(r.code as Intelligence["code"]) && !r.hidden)
+      .map((r) =>
+        fill(
+          {
+            code: r.code as Intelligence["code"],
+            handle: r.handle,
+            displayName: "",
+            color: r.color ?? brainColor(r.code),
+            avatar: r.avatar_url ? `/api/avatar/${encodeURIComponent(r.handle)}` : undefined,
+            added: true,
+            oneLineMind: null,
+            postsParsed: null,
+            postsPerDay: null,
+            distilledAt: null,
+          },
+          r,
+        ),
+      );
+    return [...launch, ...added];
   } catch (err) {
     console.error("loadIntelligences:", err);
     return base;
   }
+}
+
+/** One intelligence by handle (launch or added), or null. */
+export async function findIntelligence(handle: string): Promise<Intelligence | null> {
+  const h = handle.replace(/^@/, "").toLowerCase();
+  return (await loadIntelligences()).find((i) => i.handle.toLowerCase() === h) ?? null;
 }
 
 /* ───────────────────────── brains ───────────────────────── */
@@ -69,6 +103,8 @@ export type LoadedBrain = {
   promptTokens: number;
   model: string;
   createdAt: string;
+  /** newest post the brain was built from */
+  postsTo: string | null;
   files: BrainFiles;
 };
 
@@ -84,11 +120,11 @@ export async function loadBrain(handle: string, version?: number): Promise<Loade
   const hit = cache.get(key);
   if (hit && (version != null || Date.now() - hit.at < TTL_MS)) return hit.brain;
   const rows = await sql()<
-    { influencer_id: number; code: string; handle: string; version: number; prompt: string; prompt_tokens: number; model: string; created_at: Date; files: BrainFiles }[]
+    { influencer_id: number; code: string; handle: string; version: number; prompt: string; prompt_tokens: number; model: string; created_at: Date; posts_to: Date | null; files: BrainFiles }[]
   >`
-    select b.influencer_id, i.code, i.handle, b.version, b.prompt, b.prompt_tokens, b.model, b.created_at, b.files
+    select b.influencer_id, i.code, i.handle, b.version, b.prompt, b.prompt_tokens, b.model, b.created_at, b.posts_to, b.files
     from brains b join influencers i on i.id = b.influencer_id
-    where lower(i.handle) = lower(${handle}) ${version != null ? sql()`and b.version = ${version}` : sql()``}
+    where lower(i.handle) = lower(${handle}) and not coalesce(i.hidden, false) ${version != null ? sql()`and b.version = ${version}` : sql()``}
     order by b.version desc limit 1`;
   const r = rows[0];
   if (!r) return null;
@@ -101,6 +137,7 @@ export async function loadBrain(handle: string, version?: number): Promise<Loade
     promptTokens: r.prompt_tokens,
     model: r.model,
     createdAt: new Date(r.created_at).toISOString(),
+    postsTo: r.posts_to ? new Date(r.posts_to).toISOString() : null,
     files: r.files,
   };
   cache.set(key, { at: Date.now(), brain });

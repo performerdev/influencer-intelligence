@@ -61,6 +61,7 @@ export type User = {
   plus_spent_usd: string;
   session_started_at: Date | null;
   session_spent_usd: string;
+  share_bonus_at?: Date | null;
 };
 
 export async function currentUser(): Promise<User | null> {
