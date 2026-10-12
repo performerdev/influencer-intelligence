@@ -7,22 +7,22 @@
   ],
   "horizons": {
     "1d": {
-      "n": 156,
-      "hit_rate": 0.4936,
-      "mean_return": 0.0046,
-      "median_return": -0.0005
+      "n": 159,
+      "hit_rate": 0.5031,
+      "mean_return": 0.0053,
+      "median_return": 0.0005
     },
     "7d": {
-      "n": 156,
-      "hit_rate": 0.5577,
-      "mean_return": 0.0208,
-      "median_return": 0.0122
+      "n": 159,
+      "hit_rate": 0.5597,
+      "mean_return": 0.0206,
+      "median_return": 0.0131
     },
     "30d": {
-      "n": 153,
-      "hit_rate": 0.5556,
-      "mean_return": 0.0523,
-      "median_return": 0.0202
+      "n": 157,
+      "hit_rate": 0.5605,
+      "mean_return": 0.0543,
+      "median_return": 0.0212
     }
   },
   "per_call": [
@@ -113,6 +113,17 @@
       "called_at": "2023-04-02T18:40:13.000Z",
       "direction": "hold",
       "price_at_call": null
+    },
+    {
+      "r_1d": 0.068,
+      "r_7d": 0.0578,
+      "r_30d": 0.4259,
+      "ticker": "SOL",
+      "post_id": "1667406803099844608",
+      "price_id": "coingecko:solana",
+      "called_at": "2023-06-10T05:42:15.000Z",
+      "direction": "buy",
+      "price_at_call": 14.7
     },
     {
       "r_1d": 0.014,
@@ -2854,6 +2865,413 @@
       "price_at_call": 122.80443007747708
     },
     {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2004206656448876879",
+      "price_id": null,
+      "called_at": "2025-12-25T15:04:37.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2004238723987505555",
+      "price_id": null,
+      "called_at": "2025-12-25T17:12:03.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2004545217555489158",
+      "price_id": null,
+      "called_at": "2025-12-26T13:29:57.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2005778966758686931",
+      "price_id": null,
+      "called_at": "2025-12-29T23:12:25.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2006392224028737791",
+      "price_id": null,
+      "called_at": "2025-12-31T15:49:17.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2006720130504614041",
+      "price_id": null,
+      "called_at": "2026-01-01T13:32:16.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2007136798481494078",
+      "price_id": null,
+      "called_at": "2026-01-02T17:07:58.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2007432659950027098",
+      "price_id": null,
+      "called_at": "2026-01-03T12:43:37.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2008198555652305182",
+      "price_id": null,
+      "called_at": "2026-01-05T15:27:00.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2008651888087232765",
+      "price_id": null,
+      "called_at": "2026-01-06T21:28:23.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2008653146109997361",
+      "price_id": null,
+      "called_at": "2026-01-06T21:33:23.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2008989379038240944",
+      "price_id": null,
+      "called_at": "2026-01-07T19:49:27.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2009261308542116030",
+      "price_id": null,
+      "called_at": "2026-01-08T13:50:00.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2009266813893529766",
+      "price_id": null,
+      "called_at": "2026-01-08T14:11:53.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2009267660819685642",
+      "price_id": null,
+      "called_at": "2026-01-08T14:15:15.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2009271153634812036",
+      "price_id": null,
+      "called_at": "2026-01-08T14:29:08.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2009274124137279741",
+      "price_id": null,
+      "called_at": "2026-01-08T14:40:56.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2009284234486165904",
+      "price_id": null,
+      "called_at": "2026-01-08T15:21:06.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2009296129331007700",
+      "price_id": null,
+      "called_at": "2026-01-08T16:08:22.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2009323866909503984",
+      "price_id": null,
+      "called_at": "2026-01-08T17:58:35.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2009327581573861794",
+      "price_id": null,
+      "called_at": "2026-01-08T18:13:21.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2009630582045847596",
+      "price_id": null,
+      "called_at": "2026-01-09T14:17:22.000Z",
+      "direction": "hold",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2010083150433833075",
+      "price_id": null,
+      "called_at": "2026-01-10T20:15:43.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2010085411868332444",
+      "price_id": null,
+      "called_at": "2026-01-10T20:24:42.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2010352758013210634",
+      "price_id": null,
+      "called_at": "2026-01-11T14:07:02.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2010434652327330065",
+      "price_id": null,
+      "called_at": "2026-01-11T19:32:27.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2011350775654678576",
+      "price_id": null,
+      "called_at": "2026-01-14T08:12:48.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2011353742579511770",
+      "price_id": null,
+      "called_at": "2026-01-14T08:24:36.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2011363756799107340",
+      "price_id": null,
+      "called_at": "2026-01-14T09:04:23.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2011493103153398242",
+      "price_id": null,
+      "called_at": "2026-01-14T17:38:22.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2011867368906277301",
+      "price_id": null,
+      "called_at": "2026-01-15T18:25:34.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2012083263737909713",
+      "price_id": null,
+      "called_at": "2026-01-16T08:43:27.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": 0.0055,
+      "r_7d": -0.0995,
+      "r_30d": -0.3982,
+      "ticker": "SOL",
+      "post_id": "2012233028077261097",
+      "price_id": "coingecko:solana",
+      "called_at": "2026-01-16T18:38:34.000Z",
+      "direction": "buy",
+      "price_at_call": 143.36536951828253
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2012233028077261097",
+      "price_id": null,
+      "called_at": "2026-01-16T18:38:34.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2013250612687941902",
+      "price_id": null,
+      "called_at": "2026-01-19T14:02:05.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2013355841953628290",
+      "price_id": null,
+      "called_at": "2026-01-19T21:00:13.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": 0.0501,
+      "r_7d": 0.0711,
+      "r_30d": 0.3941,
+      "ticker": "SOL",
+      "post_id": "2013375671205294356",
+      "price_id": "coingecko:solana",
+      "called_at": "2026-01-19T22:19:01.000Z",
+      "direction": "sell",
+      "price_at_call": 133.9514068332644
+    },
+    {
       "r_1d": 0.0426,
       "r_7d": 0.6268,
       "r_30d": 0.4089,
@@ -3549,7 +3967,7 @@
     {
       "r_1d": 0.0045,
       "r_7d": 0.1109,
-      "r_30d": null,
+      "r_30d": 0.1006,
       "ticker": "SOL",
       "post_id": "2098484215658733787",
       "price_id": "coingecko:solana",
@@ -3638,7 +4056,18 @@
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
-      "ticker": "ZCASH",
+      "ticker": "NEAR",
+      "post_id": "2108073189087875167",
+      "price_id": null,
+      "called_at": "2026-10-08T05:53:09.000Z",
+      "direction": "buy",
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
       "post_id": "2108372691845861444",
       "price_id": null,
       "called_at": "2026-10-09T01:43:16.000Z",
@@ -3646,15 +4075,15 @@
       "price_at_call": null
     }
   ],
-  "hold_pairs": 8,
-  "calls_total": 329,
-  "computed_at": "2026-10-10T13:25:48.232Z",
+  "hold_pairs": 9,
+  "calls_total": 368,
+  "computed_at": "2026-10-12T10:55:44.086Z",
   "by_direction": {
-    "buy": 179,
-    "hold": 133,
-    "sell": 17
+    "buy": 215,
+    "hold": 135,
+    "sell": 18
   },
-  "calls_priced": 156,
+  "calls_priced": 159,
   "price_source": "DefiLlama coins API",
-  "median_hold_days": 99.9
+  "median_hold_days": 139.7
 }

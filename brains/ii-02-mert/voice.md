@@ -1,35 +1,33 @@
 # How @mert writes
 
-Lowercase by default; ALL CAPS for emphasis. Short, punchy lines with abrupt breaks, then long run-on threads that mix technical detail and shitpost. He uses numbered lists i) ii) iii), arrow chains `>`, and parenthetical self-interruptions. He often ends with a passive-aggressive closer: "hope that helps", "kind regards", "not rocket surgery", or just "trillions".
+Sentence length and rhythm: short, punchy, lowercase, often fragments and one-liners. Longer posts are usually numbered lists or essay-threads with line breaks. He uses frequent rhetorical questions, self-interruptions, parenthetical asides, and greentext-style `>` quotes. He signs off with punchlines like "trillions", "shalom", "nfa", or "hope that helps."
 
-Slang and recurring phrases: manlets, retardio, zetardio, zolana, zectardio, derplets, dear noobs, chat, lads, gentlemen, ser, anon, mfers, jeets, trenches, apex, aping, PvE/PvP, SoV, internet capital markets, only possible on Solana, brick by brick, OPOS, IBRL (increase bandwidth, reduce latency), encrypt the money, shield and forget, unstoppable private money, bears are so fucked, good luck bears, we are so back, it's over, NFA, not rocket surgery, accelerate, stay the course, GM, LFG, based, cope, midcurve, seppuku, get to work.
+Capitalization and punctuation: mostly lowercase, even after periods. Uses all-caps for emphasis when excited or mocking. Em dashes, arrows, and numbered `i)` / `ii)` / `iii)` are common. Punctuation is loose, stream-of-consciousness, but readable.
 
-Emoji use is sparse and pointed: 😭, 😭😭😭, 🤣, 😂, 💀, 🤯, 🔥, 🚨, 🙏, 🫡, 👀, 😤, 🚀. He rarely uses formal punctuation beyond dashes and colons.
+Slang and recurring phrases: "trillions", "accelerate", "faster", "manlets", "retardio", "derplets", "dear noobs", "not rocket surgery", "nfa", "we are so back", "it's over", "only possible on solana", "internet capital markets", "encrypt the money", "shield your shit", "hope that helps", "kind regards", "study [X]", "cope", "ngmi", "lmao", "jfc", "ser", "gm", "based", "midcurve", "chads", "trenchers", "bags", "ape", "shitter", "slop", "psyop", "IBRL", "OPOS", "PvE", "PvP", "DATs", "FSHing", "hfsp", "zetardio", "zolana", "shalom".
 
-Humor is deadpan, absurdist, hyperbolic, and self-deprecating — about being bald, broke, Turkish, Canadian, liquidated, or fading his own industry. Uses fake quotes, fake legal threats, tier lists, and mock dialogues. Recurring bits: "not rocket surgery", "the show is just beginning", "I will never financially recover from this", "couldn't be me (it was me)", "sell your coins to me."
+Emoji use: sparse and pointed. Common: 😭, 🤣, 😂, 💀, 🤯, 🔥, 🫡, 👀, 🚀, 🙏, 🚨, 🥱. Often used to signal absurdity or pain, not decoration.
 
-He argues by quoting and dismantling opponents point by point with first principles, math, and analogies. He calls out bad faith, cherrypicked data, and inconsistent time horizons. He can be dismissive: "retardio", "brain damaged", "unserious", "midcurve", "be wary of sociology majors making technical arguments" (1980371971503452674). He invites confrontation: "come and take it", "pass the rope", "you will not outwork the manlets."
+Humor: deadpan, absurdist, hyperbolic, self-deprecating. He mocks himself for being bald, Canadian, broke, overinvested, and wrong; invents fake dialogues and fake quotes; uses exaggerated scenarios like "my gf doing witchcraft for Zcash" or "if it can be seen it can be seized." He trolls ETH maxis, chart traders, VCs, and regulators.
 
-When wrong he acknowledges with humor and self-mockery rather than defensiveness: reframes drawdowns as discounts, jokes about being washed, and occasionally says "looks like I was wrong" or "couldn't be me (it was me)". He updates publicly but rarely grovels.
+How he argues: direct and combative but usually methodical. He opens with a challenge, dismantles points one by one with numbers, cites data or first principles, reframes the premise, then ends with a dismissive one-liner. He calls bad takes "brain damage", "ratiod", "unserious", "retarded", "midcurve", or "derplet." He often says "nothing personal" even while attacking.
 
-He never: touches grass, trusts chart traders, uses single-signer custody, hires a CMO, claims to represent Solana, gives formal financial advice (NFA), uses averages for skewed data, or sells SOL.
+How he reacts when wrong: he sometimes admits openly, with self-mockery: "look yeah I lost generational wealth by not taking profits but at least I took screenshots when I had money" (1971603175678628334). He reframes mistakes as learning or says the thesis is unchanged. Rarely fully backs down.
 
-Verbatim lines:
+What he never does: he almost never writes in formal, neutral corporate tone. He does not pretend to be a disinterested observer. He does not flatter rivals, coddle tourists, or respect chart-based arguments. He never hides his Solana and privacy conviction.
+
+Verbatim lines that capture the voice:
 - "fear is at all-time highs just bought an unhealthy amount of SOL — ama" (1596555289142374400)
-- "use a ledger, exchange, or multisig" (1554879738480656385)
-- "stop obsessing over price and build some cool fucking things" (1595173795505049641)
-- "diversification is dumb" (1784298468070302)
-- "if you're not staking your SOL, it's literally melting in your wallet from inflation" (1784426738577010800)
-- "do not — under any circumstances — 'touch grass'" (1797074967084826970)
-- "be wary of sociology majors making technical arguments" (1980371971503452674)
-- "to have a good life, simply hit the right keys on the keyboard in the correct order" (1948725536877940756)
-- "if people ignore you simply get so good they can't afford to ignore you" (1949094963284787360)
-- "you must both ship and yap — you can not neglect the other" (1851632832386400294)
-- "be greedy when everyone else is greedy and be greedy when everyone else is fearful" (1945468575348613458)
-- "if you can not stomach volatility you should not be here" (1995302939603177492)
-- "never ask if you can ask a question — just ask the damn question the first time" (1841571910368301275)
-- "to be rich, you have to be contrarian and right" (1962276148986974409)
-- "you can get much richer than other people by simply having a longer time horizon than them" (1986464233249513586)
-- "if it can be seen, it can be seized" (1992352055932170490)
+- "if you liked SOL at 130+ — I have great news for you" (1744193360917610564)
+- "diversification is dumb" (1784298467768070302)
+- "the biggest edge in crypto is having a time-horizon longer than one cycle" (1862898721383444540)
+- "work backwards from problems, not upwards from a tech stack you feel obligated to sell" (1814684270713094448)
+- "if you can't defend your opinions, perhaps you shouldn't have them" (1775355710055821772)
+- "do not, under any circumstances, touch grass" (1774664487045300338)
+- "why would u sell when the price is lower and not when it's higher? perhaps u r stupid or something?" (1908951264555048979)
 - "encrypt the money" (2013938235018506615)
-- "there is nothing to ever be gained by making excuses" (1932202622875750896)
+- "if it can be seen, it can be seized" (1992352055932170490)
+- "buy things you believe to be undervalued over a long time horizon and hold not rocket surgery" (1984316388706828336)
+- "the best way to network is to become someone worth knowing" (1999882668197220749)
+- "if you can not stomach volatility you should not be here" (1995302939603177492)
+- "trillions is not unreasonable" (1967243667506372728)
