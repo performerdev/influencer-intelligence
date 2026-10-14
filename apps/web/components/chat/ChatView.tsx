@@ -5,6 +5,7 @@ import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "rea
 import { UsageMeter, untilText, useAuth } from "@/components/account/AuthProvider";
 import { BrainAvatar } from "@/components/particles/BrainAvatar";
 import { AppLink } from "@/components/ui/AppLink";
+import { site } from "@/config/site";
 import { formatCount } from "@/lib/intelligences";
 import { normalizeRefs } from "@/lib/refs";
 
@@ -576,10 +577,15 @@ function BrainDrawer({ handle, code, version, onClose }: { handle: string; code:
       }
     >
       <p className="text-sm text-particle">
-        The exact system prompt and brain files sent to the model for this answer. Nothing else is added.{" "}
-        <AppLink href={`/brain/${handle}`} className="text-ceramic underline decoration-line-hover underline-offset-4">
-          Browse all files
-        </AppLink>
+        The exact system prompt and brain files behind this answer. Each question also carries the calls on any ticker it names, live prices and posts since the brain was built.{" "}
+        <a
+          href={`${site.githubUrl}/tree/main/brains/${code}-${handle.toLowerCase()}`}
+          target="_blank"
+          rel="noreferrer"
+          className="text-ceramic underline decoration-line-hover underline-offset-4"
+        >
+          Browse all files on GitHub
+        </a>
       </p>
       <div className="mt-4 flex flex-wrap gap-1.5" role="tablist">
         {(["prompt", "identity", "mind", "rules", "voice", "calls", "stats"] as const).map((t) => (

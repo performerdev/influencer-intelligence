@@ -183,8 +183,99 @@ export function PayPanel({ co, onPaid }: { co: Info; onPaid?: () => void }) {
         </div>
       </div>
 
+      <ManualTransfer
+        co={co}
+        onPaid={() => {
+          if (done.current) return;
+          done.current = true;
+          setPaid(true);
+          onPaidRef.current?.();
+        }}
+      />
+
       <p className="font-pixel text-xs text-muted">Waiting for the transfer… this updates by itself.</p>
       {msg && <p className="text-sm text-particle">{msg}</p>}
+    </div>
+  );
+}
+
+/**
+ * Send it yourself: address + this checkout's exact amount, from any wallet
+ * or exchange. The server spots a transfer of exactly that amount; anything
+ * else can be claimed by pasting the transaction signature.
+ */
+function ManualTransfer({ co, onPaid }: { co: Info; onPaid: () => void }) {
+  const [copied, setCopied] = useState<string | null>(null);
+  const [sig, setSig] = useState("");
+  const [checking, setChecking] = useState(false);
+  const [note, setNote] = useState<string | null>(null);
+  const amount = String(co.amount);
+
+  const copy = async (what: string, text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(what);
+      setTimeout(() => setCopied((c) => (c === what ? null : c)), 1500);
+    } catch {
+      /* clipboard blocked: the text is selectable */
+    }
+  };
+
+  const claim = async () => {
+    if (!sig.trim()) return;
+    setChecking(true);
+    setNote(null);
+    const r = await fetch("/api/plus/claim", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ref: co.reference, signature: sig.trim() }) }).catch(() => null);
+    const j = r ? await r.json().catch(() => ({})) : {};
+    setChecking(false);
+    if (j.status === "paid") return onPaid();
+    setNote(j.error ?? "Couldn't check that transaction. Try again.");
+  };
+
+  const row = (label: string, value: string, copyKey?: string) => (
+    <div className="flex items-start justify-between gap-3 border-b border-line py-2.5 last:border-b-0">
+      <span className="label-mono shrink-0 pt-0.5">{label}</span>
+      <span className="flex min-w-0 items-start gap-3">
+        <span className="min-w-0 break-all text-right font-code text-sm text-ceramic">{value}</span>
+        {copyKey && (
+          <button onClick={() => copy(copyKey, value)} className="link-quiet shrink-0 text-xs">
+            {copied === copyKey ? "Copied" : "Copy"}
+          </button>
+        )}
+      </span>
+    </div>
+  );
+
+  return (
+    <div className="border-t border-line pt-6">
+      <p className="label-mono">Or send it yourself</p>
+      <p className="mt-2 text-sm text-particle">
+        From any wallet or exchange: send exactly this amount of USDC on the Solana network to this address. We find it on-chain and switch it on by itself, usually within a minute.
+      </p>
+      <div className="rounded-panel mt-4 border border-line bg-void px-4">
+        {row("Amount", `${amount} USDC`, "amount")}
+        {row("Network", "Solana")}
+        {row("Address", co.recipient, "address")}
+      </div>
+      <p className="mt-3 text-xs text-muted">
+        The last digits ({amount}) tell us the payment is yours, so send it exactly. From an exchange, make sure the amount that arrives is exact — fees are often taken from it.
+      </p>
+      <div className="mt-5">
+        <p className="text-sm text-particle">Sent a different amount? Paste the transaction signature:</p>
+        <div className="mt-2 flex flex-col gap-2 sm:flex-row">
+          <input
+            value={sig}
+            onChange={(e) => setSig(e.target.value)}
+            placeholder="Transaction signature"
+            spellCheck={false}
+            className="rounded-input h-11 min-w-0 flex-1 border border-line bg-void px-3 font-code text-xs text-ceramic outline-none placeholder:text-muted focus:border-line-hover"
+          />
+          <button onClick={claim} disabled={checking || !sig.trim()} className="btn-line h-11 px-5">
+            {checking ? "Checking…" : "Check"}
+          </button>
+        </div>
+        {note && <p className="mt-2 text-sm text-particle">{note}</p>}
+      </div>
     </div>
   );
 }

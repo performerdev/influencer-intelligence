@@ -76,3 +76,61 @@ export async function findPayment(reference: string, amountUsd: number): Promise
   }
   return null;
 }
+
+/* ── Plain transfers (no reference key): a copy-paste send from any wallet or exchange ── */
+
+const recipientDelta = (tx: ParsedTx): bigint => {
+  const mine = (b: TokenBalance) => b.mint === payments.mint && b.owner === payments.recipient;
+  const pre = tx.meta?.preTokenBalances?.filter(mine).reduce((a, b) => a + BigInt(b.uiTokenAmount.amount), 0n) ?? 0n;
+  const post = tx.meta?.postTokenBalances?.filter(mine).reduce((a, b) => a + BigInt(b.uiTokenAmount.amount), 0n) ?? 0n;
+  return post - pre;
+};
+
+export const toUnits = (amountUsd: number) => BigInt(Math.round(amountUsd * 10 ** payments.decimals));
+export const validSignature = (s: string) => /^[1-9A-HJ-NP-Za-km-z]{64,90}$/.test(s);
+
+export type Incoming = { signature: string; units: bigint; time: number };
+
+// a confirmed transaction never changes, so what it paid us is cached for the life of the instance
+const seen = new Map<string, Incoming | null>();
+
+/** USDC this transaction moved into the recipient wallet (null: failed, unknown, or nothing received). */
+export async function receivedIn(signature: string): Promise<Incoming | null> {
+  if (seen.has(signature)) return seen.get(signature)!;
+  const tx = await rpc<(ParsedTx & { blockTime?: number | null }) | null>("getTransaction", [signature, { commitment: "confirmed", maxSupportedTransactionVersion: 0, encoding: "jsonParsed" }]);
+  if (!tx) return null; // not found yet: don't cache, it may still land
+  const units = tx.meta && !tx.meta.err ? recipientDelta(tx) : 0n;
+  const r = units > 0n ? { signature, units, time: tx.blockTime ?? 0 } : null;
+  if (seen.size > 5000) seen.clear();
+  seen.set(signature, r);
+  return r;
+}
+
+let tokenAccounts: { at: number; list: string[] } | null = null;
+/** The recipient's USDC token account(s): plain transfers show up in their history. */
+async function recipientTokenAccounts(): Promise<string[]> {
+  if (tokenAccounts && Date.now() - tokenAccounts.at < 3_600_000) return tokenAccounts.list;
+  const r = await rpc<{ value: { pubkey: string }[] }>("getTokenAccountsByOwner", [payments.recipient, { mint: payments.mint }, { encoding: "jsonParsed", commitment: "confirmed" }]);
+  tokenAccounts = { at: Date.now(), list: r.value.map((v) => v.pubkey) };
+  return tokenAccounts.list;
+}
+
+let recent: { at: number; sigs: { signature: string; time: number }[] } | null = null;
+/** USDC received since `sinceSec` (unix seconds), newest first. One history read per ~10s, shared by every checkout. */
+export async function incomingSince(sinceSec: number): Promise<Incoming[]> {
+  if (!recent || Date.now() - recent.at > 10_000) {
+    const sigs: { signature: string; time: number }[] = [];
+    for (const acc of await recipientTokenAccounts()) {
+      const list = await rpc<{ signature: string; err: unknown; blockTime?: number | null }[]>("getSignaturesForAddress", [acc, { limit: 50, commitment: "confirmed" }]);
+      for (const s of list) if (!s.err) sigs.push({ signature: s.signature, time: s.blockTime ?? 0 });
+    }
+    recent = { at: Date.now(), sigs: sigs.sort((a, b) => b.time - a.time) };
+  }
+  const out: Incoming[] = [];
+  for (const s of recent.sigs) {
+    if (s.time && s.time < sinceSec) continue;
+    const r = await receivedIn(s.signature).catch(() => null);
+    if (r) out.push(r);
+  }
+  return out;
+}

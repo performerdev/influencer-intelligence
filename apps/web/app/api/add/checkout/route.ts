@@ -4,7 +4,7 @@ import { sql } from "@/lib/server/data";
 import { json } from "@/lib/server/http";
 import { addConfigured, existingFor, normalizeHandle, quote, validHandle } from "@/lib/server/jobs";
 import { logError } from "@/lib/server/ops";
-import { checkoutInfo } from "@/lib/server/plus";
+import { checkoutInfo, uniqueAmount } from "@/lib/server/plus";
 import { newReference } from "@/lib/server/solana";
 
 export const dynamic = "force-dynamic";
@@ -30,7 +30,7 @@ export async function POST(req: Request) {
       values ('add_brain', ${q.handle}, 'awaiting_payment', ${q.priceUsd}, ${user.id}, ${db.json(q.profile as never)}, ${db.json({ ...q.breakdown, estimatedPosts: q.estimatedPosts } as never)}, ${q.maxParseUsd})
       returning id`;
     const reference = newReference();
-    await db`insert into payments (user_id, reference, amount_usd, recipient, purpose, job_id) values (${user.id}, ${reference}, ${q.priceUsd}, ${payments.recipient}, 'add', ${job.id})`;
+    await db`insert into payments (user_id, reference, amount_usd, recipient, purpose, job_id) values (${user.id}, ${reference}, ${await uniqueAmount(q.priceUsd)}, ${payments.recipient}, 'add', ${job.id})`;
     return json({ jobId: job.id, checkout: await checkoutInfo(reference) });
   } catch (err) {
     await logError("server", "/api/add/checkout", err, { userId: user.id });

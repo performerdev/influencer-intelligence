@@ -2,7 +2,7 @@ import { payments, plusPaymentsEnabled } from "@/config/payments";
 import { plans } from "@/config/plans";
 import { currentUser } from "@/lib/server/auth";
 import { sql } from "@/lib/server/data";
-import { checkoutInfo } from "@/lib/server/plus";
+import { checkoutInfo, uniqueAmount } from "@/lib/server/plus";
 import { newReference } from "@/lib/server/solana";
 
 export const dynamic = "force-dynamic";
@@ -13,7 +13,7 @@ export async function POST() {
   if (!user) return Response.json({ error: "Log in with X first." }, { status: 401 });
   if (!plusPaymentsEnabled()) return Response.json({ error: "Payments coming soon." }, { status: 503 });
   const reference = newReference();
-  await sql()`insert into payments (user_id, reference, amount_usd, recipient) values (${user.id}, ${reference}, ${plans.plus.priceUsd}, ${payments.recipient})`;
+  await sql()`insert into payments (user_id, reference, amount_usd, recipient) values (${user.id}, ${reference}, ${await uniqueAmount(plans.plus.priceUsd)}, ${payments.recipient})`;
   return Response.json(await checkoutInfo(reference));
 }
 

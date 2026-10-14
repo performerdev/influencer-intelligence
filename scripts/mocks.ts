@@ -64,6 +64,8 @@ const ts = (t: T) => new Date(t.createdAt).getTime() / 1000;
 
 export const calls: Record<string, number> = {};
 const paidRefs = new Set<string>();
+const plainSends: { signature: string; units: number; time: number }[] = [];
+const MOCK_USDC_ACCOUNT = "MockUsdcAccount1111111111111111111111111111";
 // the CLI asks for timelines by user id; remember which added handle that id belongs to
 const idToHandle = new Map<string, string>();
 // test hooks: posts made "on X" during a test, and the last chat request the model saw
@@ -210,10 +212,32 @@ export const api = createServer(async (req, res) => {
     paidRefs.add(q.get("ref") ?? "");
     return send({ ok: true });
   }
+  if (url.pathname === "/solana/send") {
+    // test hook: a plain USDC transfer to the recipient (no reference), e.g. ?amount=10.0371
+    const signature = `MockPay${String(plainSends.length + 1).padStart(70, "1")}`;
+    plainSends.unshift({ signature, units: Math.round(Number(q.get("amount") ?? "0") * 1e6), time: Math.floor(Date.now() / 1000) });
+    return send({ ok: true, signature });
+  }
   if (url.pathname === "/solana") {
     const b = JSON.parse(body || "{}");
     const ok = (result: unknown) => send({ jsonrpc: "2.0", id: b.id, result });
+    if (b.method === "getTokenAccountsByOwner") return ok({ context: { slot: 1 }, value: [{ pubkey: MOCK_USDC_ACCOUNT, account: {} }] });
+    if (b.method === "getSignaturesForAddress" && b.params[0] === MOCK_USDC_ACCOUNT) return ok(plainSends.map((p) => ({ signature: p.signature, err: null, blockTime: p.time })));
     if (b.method === "getSignaturesForAddress") return ok(paidRefs.has(b.params[0]) ? [{ signature: `sig-${b.params[0].slice(0, 8)}`, err: null }] : []);
+    if (b.method === "getTransaction" && String(b.params[0]).startsWith("MockPay")) {
+      const p = plainSends.find((x) => x.signature === b.params[0]);
+      if (!p) return ok(null);
+      const owner = process.env.NEXT_PUBLIC_PLUS_RECIPIENT || "H1Gck5JTfM4T67jQ1Q5hgRFBRgqbLGNrVVGDXc8t7bqz";
+      const mint = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v";
+      return ok({
+        blockTime: p.time,
+        meta: {
+          err: null,
+          preTokenBalances: [{ accountIndex: 2, mint, owner, uiTokenAmount: { amount: "5000000" } }],
+          postTokenBalances: [{ accountIndex: 2, mint, owner, uiTokenAmount: { amount: String(5000000 + p.units) } }],
+        },
+      });
+    }
     if (b.method === "getTransaction") {
       const owner = process.env.NEXT_PUBLIC_PLUS_RECIPIENT || "H1Gck5JTfM4T67jQ1Q5hgRFBRgqbLGNrVVGDXc8t7bqz";
       const mint = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v";
