@@ -15,6 +15,8 @@ import { PGlite } from "@electric-sql/pglite";
 import { PGLiteSocketServer } from "@electric-sql/pglite-socket";
 import postgres from "postgres";
 
+import { DefiLlamaPrices, GeckoTerminalPrices, computeStats, dexPriceIds, resolveTickers } from "@ii/stats";
+
 import { API_PORT, SELF, SOL_CA, api, calls, newestFirst, tweets } from "./mocks";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -58,6 +60,9 @@ async function main() {
     LLM_API_KEY: "test",
     LLM_MODEL_DISTILL: "deepseek-v4-pro",
     PRICE_API_BASE: `http://127.0.0.1:${API_PORT}`,
+    DEXSCREENER_BASE: `http://127.0.0.1:${API_PORT}`,
+    GECKOTERMINAL_BASE: `http://127.0.0.1:${API_PORT}/gt`,
+    GECKOTERMINAL_DELAY_MS: "0",
     DISTILL_BATCH_TOKENS: "1500", // force several map batches
     II_EXPORT_ROOT: exportRoot,
   };
@@ -90,6 +95,23 @@ async function main() {
 
     const [st] = await sql`select data from stats`;
     check("stats computed and dated", st.data.calls_priced > 0 && !!st.data.computed_at && st.data.horizons["7d"].n > 0, `priced ${st.data.calls_priced}/${st.data.calls_total}`);
+
+    {
+      // memecoins by ticker: DexScreener finds the token, DefiLlama prices it by address, GeckoTerminal fills in
+      for (const [k, v] of Object.entries(env)) process.env[k] = v;
+      const at = new Date(Date.now() - 60 * 86_400_000);
+      const memeCalls = ["MEMEX", "GTONLY", "NEWCOIN"].map((ticker, i) => ({ post_id: `m${i}`, ticker, chain: null, address: null, direction: "buy" as const, called_at: at }));
+      const tokens = await resolveTickers(new Map(memeCalls.map((c) => [c.ticker, Math.floor(at.getTime() / 1000)])), { delayMs: 0 });
+      const ms = await computeStats(memeCalls, new DefiLlamaPrices(), new Date(), {
+        extraIds: (c) => dexPriceIds(tokens.get(c.ticker), Math.floor(at.getTime() / 1000)),
+        fallback: new GeckoTerminalPrices(),
+      });
+      const by = Object.fromEntries(ms.per_call.map((p) => [p.ticker, p]));
+      check("memecoin priced by address from DexScreener", by.MEMEX?.price_id === `solana:${SOL_CA}` && by.MEMEX.r_7d != null, by.MEMEX?.price_id ?? "none");
+      check("copycat with no liquidity ignored", tokens.get("MEMEX")?.length === 1 && tokens.get("MEMEX")![0].address === SOL_CA);
+      check("GeckoTerminal candles fill in", !!by.GTONLY?.price_id?.startsWith("gt:solana:") && by.GTONLY.r_30d != null, by.GTONLY?.price_id ?? "none");
+      check("token listed after the call is not used", by.NEWCOIN?.price_at_call == null && by.NEWCOIN?.price_id == null);
+    }
 
     const [brain] = await sql`select * from brains order by version desc limit 1`;
     check("brain prompt assembled in order", /=== IDENTITY ===[\s\S]*=== MIND ===[\s\S]*=== RULES ===[\s\S]*=== VOICE ===[\s\S]*=== EXAMPLES[\s\S]*=== CALLS[\s\S]*=== STATS ===/.test(brain.prompt), `v${brain.version}, ~${brain.prompt_tokens} tokens`);

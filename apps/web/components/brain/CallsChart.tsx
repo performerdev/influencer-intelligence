@@ -11,6 +11,8 @@ export type ChartCall = {
   quote: string;
   r7: number | null;
   r30: number | null;
+  /** priced via a ticker match on DexScreener (no address in the post) */
+  byTicker?: boolean;
 };
 
 const PAD = { top: 16, right: 12, bottom: 30, left: 48 };
@@ -186,6 +188,7 @@ export function CallsChart({ calls, handle }: { calls: ChartCall[]; handle: stri
                 {h === "r30" && hp.r7 != null ? ` · 7d: ${pct(hp.r7)}` : h === "r7" && hp.r30 != null ? ` · 30d: ${pct(hp.r30)}` : ""}
               </p>
               {hp.quote && <p className="mt-2 line-clamp-3 text-xs text-particle">“{hp.quote}”</p>}
+              {hp.byTicker && <p className="mt-2 font-pixel text-xs text-muted">Coin matched by ticker on DexScreener</p>}
               <p className="mt-2 font-pixel text-xs text-muted">Click to open the post ↗</p>
             </div>
           )}

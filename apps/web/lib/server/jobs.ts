@@ -20,14 +20,17 @@ const DISTILL_MODEL = process.env.LLM_MODEL_DISTILL ?? "deepseek-v4-pro";
 const MAP_MODEL = process.env.LLM_MODEL_MAP ?? "deepseek-flash";
 
 export type Profile = { id: string; handle: string; name: string | null; avatar: string | null; followers: number | null; statuses: number | null; createdAt: string | null; protected: boolean };
+export type Breakdown = { parse: number; distill: number; cost: number; markup: number };
 export type Quote = {
   handle: string;
   profile: Profile;
   estimatedPosts: number;
-  breakdown: { parse: number; distill: number; cost: number; markup: number };
+  breakdown: Breakdown;
   priceUsd: number;
   /** spend cap for reading posts during the build */
   maxParseUsd: number;
+  /** the same build, also reading replies to other people (and the post each one answers) */
+  withReplies: { estimatedReplies: number; breakdown: Breakdown & { replies: number }; priceUsd: number; maxParseUsd: number };
 };
 
 const base = () => (process.env.TWITTERAPI_IO_BASE_URL ?? "https://api.twitterapi.io").replace(/\/$/, "");
@@ -64,32 +67,53 @@ export async function quote(handle: string): Promise<Quote | { error: string }> 
   const profile = await fetchProfile(handle).catch(() => null);
   if (!profile) return { error: `Couldn't find @${handle} on X.` };
   if (profile.protected) return { error: `@${profile.handle} is a private account — only public posts can be used.` };
-  const j = await tapi("/twitter/tweet/advanced_search", { query: `from:${profile.handle} -filter:replies`, queryType: "Latest" }).catch(() => null);
-  const tweets: any[] = j?.tweets ?? j?.data?.tweets ?? [];
-  const own = tweets.filter((t) => !t?.retweeted_tweet && String(t?.author?.id ?? profile.id) === profile.id);
-  const times = own.map((t) => new Date(t.createdAt).getTime()).filter((x) => !Number.isNaN(x));
-  const spanDays = times.length > 1 ? (Math.max(...times) - Math.min(...times)) / 86_400_000 : 0;
   const ageDays = profile.createdAt ? (Date.now() - new Date(profile.createdAt).getTime()) / 86_400_000 : 365;
   const cap = profile.statuses ?? 5000;
-  // fewer than a page of results: the whole history is about that size
-  const rate = spanDays > 0.5 ? own.length / spanDays : 0;
-  const posts = Math.max(own.length, Math.round(Math.min(cap, rate * ageDays * 0.6)));
+  // one search page each: the account's own posts, and its replies to other people
+  const [ownPage, replyPage] = await Promise.all([
+    tapi("/twitter/tweet/advanced_search", { query: `from:${profile.handle} -filter:replies`, queryType: "Latest" }).catch(() => null),
+    tapi("/twitter/tweet/advanced_search", { query: `from:${profile.handle} filter:replies`, queryType: "Latest" }).catch(() => null),
+  ]);
+  const estimate = (j: any, limit: number) => {
+    const tweets: any[] = j?.tweets ?? j?.data?.tweets ?? [];
+    const own = tweets.filter((t) => !t?.retweeted_tweet && String(t?.author?.id ?? profile.id) === profile.id);
+    const times = own.map((t) => new Date(t.createdAt).getTime()).filter((x) => !Number.isNaN(x));
+    const spanDays = times.length > 1 ? (Math.max(...times) - Math.min(...times)) / 86_400_000 : 0;
+    // fewer than a page of results: the whole history is about that size
+    const rate = spanDays > 0.5 ? own.length / spanDays : 0;
+    return Math.max(own.length, Math.round(Math.min(limit, rate * ageDays * 0.6)));
+  };
+  const posts = estimate(ownPage, cap);
   const withThreads = Math.round(posts * 1.12);
-  const parse = (withThreads / 1000) * PARSE_PRICE_PER_1K_POSTS * 1.05 + 0.02;
-  const tokensIn = withThreads * 60;
-  const batches = Math.max(1, Math.ceil(tokensIn / 40_000));
+  // replies share the account's tweet count with posts (reposts too)
+  const replies = estimate(replyPage, Math.max(0, cap - posts));
+
   const pm = llmPrice(MAP_MODEL);
   const pr = llmPrice(DISTILL_MODEL);
-  const distill = (tokensIn * pm.inputMiss + batches * 5_000 * pm.output + batches * 5_000 * pr.inputMiss + 40_000 * pr.output) / 1e6 + 0.05;
-  const cost = parse + distill;
-  const priceUsd = Math.max(MIN_PRICE_USD, Math.ceil(cost * MARKUP));
+  const price = (reading: number, tokensIn: number): Breakdown => {
+    const batches = Math.max(1, Math.ceil(tokensIn / 40_000));
+    const distill = (tokensIn * pm.inputMiss + batches * 5_000 * pm.output + batches * 5_000 * pr.inputMiss + 40_000 * pr.output) / 1e6 + 0.05;
+    return { parse: round(reading), distill: round(distill), cost: round(reading + distill), markup: MARKUP };
+  };
+  const postsRead = (withThreads / 1000) * PARSE_PRICE_PER_1K_POSTS * 1.05 + 0.02;
+  const base = price(postsRead, withThreads * 60);
+  // each reply is read, and so is the post it answers; ~60% say something and go to the model, with that post as context
+  const repliesRead = ((replies * 2) / 1000) * PARSE_PRICE_PER_1K_POSTS * 1.05;
+  const full = price(postsRead + repliesRead, withThreads * 60 + replies * 0.6 * 110);
+  const priceOf = (b: Breakdown) => Math.max(MIN_PRICE_USD, Math.ceil(b.cost * MARKUP));
   return {
     handle: profile.handle,
     profile,
     estimatedPosts: withThreads,
-    breakdown: { parse: round(parse), distill: round(distill), cost: round(cost), markup: MARKUP },
-    priceUsd,
-    maxParseUsd: Math.min(MAX_PARSE_USD, round(parse * 1.6 + 1)),
+    breakdown: base,
+    priceUsd: priceOf(base),
+    maxParseUsd: Math.min(MAX_PARSE_USD, round(postsRead * 1.6 + 1)),
+    withReplies: {
+      estimatedReplies: replies,
+      breakdown: { ...full, replies: round(repliesRead) },
+      priceUsd: priceOf(full),
+      maxParseUsd: Math.min(MAX_PARSE_USD, round((postsRead + repliesRead) * 1.6 + 1)),
+    },
   };
 }
 

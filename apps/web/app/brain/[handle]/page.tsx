@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 type FileCall = { post_id: string; ticker: string; direction: "buy" | "sell" | "hold"; called_at: string; quote: string };
-type PerCall = { post_id: string; r_7d: number | null; r_30d: number | null; price_at_call: number | null };
+type PerCall = { post_id: string; r_7d: number | null; r_30d: number | null; price_at_call: number | null; matched_by?: string | null };
 
 const pct = (x: number | null | undefined, signed = false) => (x == null ? "—" : `${signed && x > 0 ? "+" : ""}${(x * 100).toFixed(Math.abs(x) < 0.1 ? 1 : 0)}%`);
 const share = (x: number | null | undefined) => (x == null ? "—" : `${Math.round(x * 100)}%`);
@@ -58,7 +58,7 @@ export default async function BrainProfile({ params }: Props) {
     .filter((c) => priced.has(c.post_id))
     .map((c) => {
       const p = priced.get(c.post_id)!;
-      return { t: new Date(c.called_at).getTime(), ticker: tickerKey(c.ticker), dir: c.direction, post: c.post_id, quote: c.quote.slice(0, 180), r7: p.r_7d, r30: p.r_30d };
+      return { t: new Date(c.called_at).getTime(), ticker: tickerKey(c.ticker), dir: c.direction, post: c.post_id, quote: c.quote.slice(0, 180), r7: p.r_7d, r30: p.r_30d, byTicker: p.matched_by === "ticker" };
     });
 
   // most-called coins
@@ -75,6 +75,7 @@ export default async function BrainProfile({ params }: Props) {
       return { k, total: cs.length, ...n, first: sorted[0].called_at, last: sorted[sorted.length - 1].called_at, n30: r30.length, hit30: r30.length ? r30.filter((x) => x > 0).length / r30.length : null, med30: median(r30) };
     });
 
+  const byTicker = chart.filter((c) => c.byTicker).length;
   const latest = [...calls].sort((a, b) => b.called_at.localeCompare(a.called_at)).slice(0, 12);
   const rules = f ? ruleHighlights(f.rules) : [];
   const h7 = stats?.horizons["7d"];
@@ -135,8 +136,9 @@ export default async function BrainProfile({ params }: Props) {
       <section className="mt-12">
         <h2 className="text-h3">Every call, priced</h2>
         <p className="mt-2 text-sm text-particle">
-          Calls @{it.handle} made in public posts on X — bought, sold, holding — found by the brain build and priced by code from DefiLlama. Not what the AI says on this site.
-          {stats && stats.calls_total > stats.calls_priced ? ` ${formatCount(stats.calls_total - stats.calls_priced)} calls have no price history (mostly small memecoins) and aren't counted.` : ""}
+          Calls @{it.handle} made in public posts on X — bought, sold, holding — found by the brain build and priced by code from DefiLlama; small coins named only by ticker are looked up on DexScreener. Not what the AI says on this site.
+          {byTicker > 0 ? ` ${formatCount(byTicker)} were matched by ticker alone, so now and then one can be a different coin with the same name.` : ""}
+          {stats && stats.calls_total > stats.calls_priced ? ` ${formatCount(stats.calls_total - stats.calls_priced)} calls have no price history and aren't counted.` : ""}
         </p>
         <div className="mt-5 rounded-panel border border-line bg-panel p-4 sm:p-5">
           <CallsChart calls={chart} handle={it.handle} />

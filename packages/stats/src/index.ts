@@ -1,3 +1,4 @@
 export { computeStats, type CallInput, type CallStat, type Stats } from "./compute";
 export { DefiLlamaPrices, type PriceSource, type PricePoint } from "./prices";
 export { COINGECKO_IDS, priceIds } from "./coins";
+export { GeckoTerminalPrices, dexPriceIds, resolveTickers, type DexToken } from "./dex";

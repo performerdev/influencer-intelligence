@@ -27,7 +27,7 @@ import {
 } from "@ii/brain-core";
 import { type InfluencerRow, closeDb, db, getInfluencer, migrate, upsertInfluencers } from "@ii/db";
 import { type XTweet, classify, createSource, ingestInfluencer } from "@ii/ingest";
-import { DefiLlamaPrices, computeStats } from "@ii/stats";
+import { DefiLlamaPrices, GeckoTerminalPrices, computeStats, dexPriceIds, priceIds, resolveTickers } from "@ii/stats";
 
 import { intelligences } from "../apps/web/config/intelligences";
 import { brainColor } from "../apps/web/lib/colors";
@@ -125,7 +125,22 @@ async function stepStats(inf: InfluencerRow) {
     { post_id: string; ticker: string; chain: string | null; address: string | null; direction: "buy" | "sell" | "hold"; called_at: Date }[]
   >`select post_id, ticker, chain, address, direction, called_at from calls where influencer_id = ${inf.id} order by called_at`;
   line(`  ${inf.code} @${inf.handle} · pricing ${calls.length} calls…`);
-  const stats = await computeStats(calls, new DefiLlamaPrices());
+  // tickers no list knows (mostly memecoins): find the token on DexScreener, price it by address
+  const firstSeen = new Map<string, number>();
+  for (const c of calls) {
+    if (priceIds(c).length) continue;
+    const k = c.ticker.replace(/^\$/, "").toUpperCase();
+    const t = Math.floor(new Date(c.called_at).getTime() / 1000);
+    firstSeen.set(k, Math.min(firstSeen.get(k) ?? t, t));
+  }
+  const tokens = process.env.DEX_PRICING === "off" ? new Map() : await resolveTickers(firstSeen, { log: (s) => done(`  ${inf.code} @${inf.handle} · ${s}`) });
+  const stats = await computeStats(calls, new DefiLlamaPrices(), new Date(), {
+    extraIds: (c) => {
+      const tok = tokens.get(c.ticker.replace(/^\$/, "").toUpperCase());
+      return dexPriceIds(tok, Math.floor(new Date(c.called_at).getTime() / 1000));
+    },
+    fallback: new GeckoTerminalPrices(),
+  });
   await db()`
     insert into stats (influencer_id, data, computed_at) values (${inf.id}, ${db().json(stats as never)}, ${stats.computed_at})
     on conflict (influencer_id) do update set data = excluded.data, computed_at = excluded.computed_at`;
@@ -279,7 +294,10 @@ async function main() {
       for (const inf of await targets()) {
         const stats = await stepStats(inf);
         const prev = await latestBrain(db(), inf.id);
-        if (prev) await stepAssemble(inf, { ...prev.files, stats });
+        if (prev) {
+          await stepAssemble(inf, { ...prev.files, stats });
+          await stepExport(inf);
+        }
       }
       break;
     case "export":
@@ -347,7 +365,7 @@ async function main() {
 
 /* ───────────────────────── paid builds ───────────────────────── */
 
-type JobRow = { id: string; handle: string; user_id: number | null; profile: { id?: string; name?: string | null; avatar?: string | null } | null; max_usd: string | null };
+type JobRow = { id: string; handle: string; user_id: number | null; profile: { id?: string; name?: string | null; avatar?: string | null } | null; max_usd: string | null; breakdown: { replies?: boolean } | null };
 
 /**
  * "Add a brain" worker: claims paid jobs one at a time and builds each brain
@@ -362,7 +380,7 @@ async function runJobs() {
     const [job] = await sql<JobRow[]>`
       update jobs set status = 'parsing', started_at = now(), updated_at = now(), progress = '{}'::jsonb
       where id = (select id from jobs where kind = 'add_brain' and status = 'queued' order by paid_at nulls last, created_at limit 1 for update skip locked)
-      returning id, handle, user_id, profile, max_usd`;
+      returning id, handle, user_id, profile, max_usd, breakdown`;
     if (!job) break;
     n++;
     console.log(`\njob ${job.id} @${job.handle}`);
@@ -378,6 +396,8 @@ async function runJobs() {
       const res = await ingestInfluencer(sql, createSource(), inf, {
         maxUsd: Number(job.max_usd ?? 20),
         threads: true,
+        // paid for at checkout: replies to other people, with the post each one answers
+        replies: job.breakdown?.replies === true,
         onProgress: (p) => void progress({ phase: p.phase, kept: p.kept, spent: Math.round(p.spentUsd * 100) / 100 }),
       });
       const [{ posts_parsed }] = await sql<{ posts_parsed: number }[]>`select posts_parsed from influencers where id = ${inf.id}`;

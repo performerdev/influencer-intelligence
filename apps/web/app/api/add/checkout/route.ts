@@ -9,12 +9,13 @@ import { newReference } from "@/lib/server/solana";
 
 export const dynamic = "force-dynamic";
 
-/** POST { handle } → a build job waiting for payment, and its USDC checkout. */
+/** POST { handle, replies? } → a build job waiting for payment, and its USDC checkout. */
 export async function POST(req: Request) {
   const user = await currentUser();
   if (!user) return json({ error: "Log in with X first." }, 401);
   if (!addConfigured() || !plusPaymentsEnabled()) return json({ error: "Adding brains opens shortly." }, 503);
-  const b = (await req.json().catch(() => null)) as { handle?: string } | null;
+  const b = (await req.json().catch(() => null)) as { handle?: string; replies?: boolean } | null;
+  const withReplies = b?.replies === true;
   const handle = normalizeHandle(String(b?.handle ?? ""));
   if (!validHandle(handle)) return json({ error: "That doesn't look like an X handle." }, 400);
   try {
@@ -24,13 +25,16 @@ export async function POST(req: Request) {
     // re-quote on the server: the price paid is always the price computed here
     const q = await quote(handle);
     if ("error" in q) return json({ error: q.error }, 404);
+    const price = withReplies ? q.withReplies.priceUsd : q.priceUsd;
+    const breakdown = withReplies ? { ...q.withReplies.breakdown, replies: true, estimatedReplies: q.withReplies.estimatedReplies } : { ...q.breakdown, replies: false };
+    const maxParse = withReplies ? q.withReplies.maxParseUsd : q.maxParseUsd;
     const db = sql();
     const [job] = await db<{ id: string }[]>`
       insert into jobs (kind, handle, status, quote_usd, user_id, profile, breakdown, max_usd)
-      values ('add_brain', ${q.handle}, 'awaiting_payment', ${q.priceUsd}, ${user.id}, ${db.json(q.profile as never)}, ${db.json({ ...q.breakdown, estimatedPosts: q.estimatedPosts } as never)}, ${q.maxParseUsd})
+      values ('add_brain', ${q.handle}, 'awaiting_payment', ${price}, ${user.id}, ${db.json(q.profile as never)}, ${db.json({ ...breakdown, repliesRead: withReplies ? q.withReplies.breakdown.replies : 0, estimatedPosts: q.estimatedPosts } as never)}, ${maxParse})
       returning id`;
     const reference = newReference();
-    await db`insert into payments (user_id, reference, amount_usd, recipient, purpose, job_id) values (${user.id}, ${reference}, ${await uniqueAmount(q.priceUsd)}, ${payments.recipient}, 'add', ${job.id})`;
+    await db`insert into payments (user_id, reference, amount_usd, recipient, purpose, job_id) values (${user.id}, ${reference}, ${await uniqueAmount(price)}, ${payments.recipient}, 'add', ${job.id})`;
     return json({ jobId: job.id, checkout: await checkoutInfo(reference) });
   } catch (err) {
     await logError("server", "/api/add/checkout", err, { userId: user.id });

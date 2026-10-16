@@ -29,6 +29,9 @@ const env = {
   LLM_BASE_URL: `http://127.0.0.1:${API_PORT}`,
   LLM_API_KEY: "test",
   PRICE_API_BASE: `http://127.0.0.1:${API_PORT}`,
+  DEXSCREENER_BASE: `http://127.0.0.1:${API_PORT}`,
+  GECKOTERMINAL_BASE: `http://127.0.0.1:${API_PORT}/gt`,
+  GECKOTERMINAL_DELAY_MS: "0",
   DISTILL_BATCH_TOKENS: "1500",
   II_EXPORT_ROOT: "/tmp/ii-mock-export",
 };

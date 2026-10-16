@@ -4,7 +4,7 @@ import { logError } from "@/lib/server/ops";
 
 export const dynamic = "force-dynamic";
 
-// each quote costs two small API reads: cache per handle, cap per visitor
+// each quote costs a few small API reads: cache per handle, cap per visitor
 const cache = new Map<string, { at: number; body: unknown }>();
 const perClient = new Map<string, number[]>();
 
@@ -36,6 +36,7 @@ export async function GET(req: Request) {
       estimatedPosts: q.estimatedPosts,
       breakdown: q.breakdown,
       priceUsd: q.priceUsd,
+      withReplies: { estimatedReplies: q.withReplies.estimatedReplies, breakdown: q.withReplies.breakdown, priceUsd: q.withReplies.priceUsd },
     };
     cache.set(key, { at: Date.now(), body });
     if (cache.size > 300) cache.delete(cache.keys().next().value!);

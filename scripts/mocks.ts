@@ -150,7 +150,7 @@ Short, lowercase, dry.
 function prices(coins: Record<string, number[]>) {
   const out: T = {};
   for (const [coin, tss] of Object.entries(coins)) {
-    if (coin.startsWith("ethereum:") || coin.startsWith("base:")) continue;
+    if (coin.startsWith("ethereum:") || coin.startsWith("base:") || coin.includes("GtOnly")) continue;
     out[coin] = { symbol: coin, prices: tss.map((t) => ({ timestamp: t, price: 100 + ((t / 86400) % 30), confidence: 0.99 })) };
   }
   return { coins: out };
@@ -286,7 +286,20 @@ export const api = createServer(async (req, res) => {
   }
   if (url.pathname === "/latest/dex/search" || url.pathname.startsWith("/latest/dex/tokens/")) {
     const sym = (q.get("q") ?? "MOCK").toUpperCase();
-    return send({ pairs: [{ chainId: "solana", baseToken: { symbol: sym, address: SOL_CA, name: sym }, priceUsd: "0.0123", priceChange: { h24: -5.5 }, liquidity: { usd: 250000 }, marketCap: 12300000 }] });
+    // "GTONLY" is a coin only GeckoTerminal has candles for; "NEWCOIN" started trading after any call (must not be used)
+    const address = sym === "GTONLY" ? "GtOnlyMint11111111111111111111111111111111" : SOL_CA;
+    const created = sym === "NEWCOIN" ? Date.now() : Date.UTC(2020, 0, 1);
+    return send({
+      pairs: [
+        { chainId: "solana", pairAddress: `Pool${sym}`.padEnd(44, "1"), baseToken: { symbol: sym, address, name: sym }, priceUsd: "0.0123", priceChange: { h24: -5.5 }, liquidity: { usd: 250000 }, marketCap: 12300000, pairCreatedAt: created },
+        // a same-symbol copycat with almost no liquidity
+        { chainId: "solana", pairAddress: "CopycatPool1111111111111111111111111111111", baseToken: { symbol: sym, address: "Copycat111111111111111111111111111111111111", name: sym }, liquidity: { usd: 300 }, pairCreatedAt: Date.UTC(2019, 0, 1) },
+      ],
+    });
+  }
+  if (url.pathname.startsWith("/gt/networks/") && url.pathname.endsWith("/ohlcv/day")) {
+    const now = Math.floor(Date.now() / 1000 / 86400) * 86400;
+    return send({ data: { attributes: { ohlcv_list: Array.from({ length: 182 }, (_, i) => { const t = now - i * 86400; const p = 0.5 + ((t / 86400) % 9) / 10; return [t, p, p, p, p, 1000]; }) } } });
   }
   if (url.pathname === "/batchHistorical") return send(prices(JSON.parse(q.get("coins") ?? "{}")));
   res.writeHead(404).end("not found");

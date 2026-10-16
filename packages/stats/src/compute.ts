@@ -1,5 +1,5 @@
 import { priceIds } from "./coins";
-import type { PriceSource } from "./prices";
+import type { PricePoint, PriceSource } from "./prices";
 
 export type CallInput = {
   post_id: string;
@@ -24,6 +24,8 @@ export type CallStat = {
   r_1d: number | null;
   r_7d: number | null;
   r_30d: number | null;
+  /** "ticker": the coin was found by its ticker on DexScreener (no address in the post), so it may be a namesake */
+  matched_by?: "ticker" | null;
 };
 
 export type HorizonStat = { n: number; median_return: number | null; mean_return: number | null; hit_rate: number | null };
@@ -55,22 +57,44 @@ const median = (xs: number[]) => {
  * every number here is computed, and the whole object is stamped with
  * computed_at.
  */
-export async function computeStats(calls: CallInput[], prices: PriceSource, now = new Date()): Promise<Stats> {
+export async function computeStats(
+  calls: CallInput[],
+  prices: PriceSource,
+  now = new Date(),
+  /** more candidate ids per call (tokens resolved by ticker), and where "gt:" ids are priced */
+  opts: { extraIds?: (c: CallInput) => string[]; fallback?: PriceSource } = {},
+): Promise<Stats> {
   const nowSec = Math.floor(now.getTime() / 1000);
   // Request every candidate id at call time + each horizon (future points skipped).
   const req: Record<string, number[]> = {};
   const plan = calls.map((c) => {
     const t0 = Math.floor(new Date(c.called_at).getTime() / 1000);
     const ts = [t0, ...Object.values(HORIZONS).map((d) => t0 + d * DAY)].filter((t) => t <= nowSec);
-    const ids = priceIds(c);
-    for (const id of ids) req[id] = [...new Set([...(req[id] ?? []), ...ts])].sort((a, b) => a - b);
-    return { c, t0, ids };
+    const known = priceIds(c);
+    const ids = known.length ? known : (opts.extraIds?.(c) ?? []);
+    for (const id of ids) if (!id.startsWith("gt:")) req[id] = [...new Set([...(req[id] ?? []), ...ts])].sort((a, b) => a - b);
+    return { c, t0, ts, ids };
   });
-  const got = Object.keys(req).length ? await prices.batch(req) : {};
+  const got: Record<string, (PricePoint | null)[]> = Object.keys(req).length ? await prices.batch(req) : {};
   const lookup = (id: string, ts: number) => {
     const i = req[id]?.indexOf(ts) ?? -1;
     return i >= 0 ? got[id]?.[i]?.price ?? null : null;
   };
+  // second pass, only for calls the main source couldn't price: the fallback ("gt:" pool candles)
+  if (opts.fallback) {
+    const more: Record<string, number[]> = {};
+    for (const { t0, ts, ids } of plan) {
+      if (ids.some((x) => !x.startsWith("gt:") && lookup(x, t0) != null)) continue;
+      for (const id of ids.filter((x) => x.startsWith("gt:"))) more[id] = [...new Set([...(more[id] ?? []), ...ts])].sort((a, b) => a - b);
+    }
+    if (Object.keys(more).length) {
+      const extra = await opts.fallback.batch(more);
+      for (const [id, tss] of Object.entries(more)) {
+        req[id] = tss;
+        got[id] = extra[id] ?? tss.map(() => null);
+      }
+    }
+  }
 
   const per_call: CallStat[] = plan.map(({ c, t0, ids }) => {
     const id = ids.find((x) => lookup(x, t0) != null) ?? null;
@@ -88,6 +112,7 @@ export async function computeStats(calls: CallInput[], prices: PriceSource, now 
       called_at: new Date(c.called_at).toISOString(),
       price_id: id,
       price_at_call: p0,
+      matched_by: id && !priceIds(c).includes(id) ? "ticker" : null,
       r_1d: r(1),
       r_7d: r(7),
       r_30d: r(30),
@@ -130,7 +155,7 @@ export async function computeStats(calls: CallInput[], prices: PriceSource, now 
 
   return {
     computed_at: now.toISOString(),
-    price_source: prices.name,
+    price_source: opts.extraIds ? `${prices.name}, small coins found on DexScreener${opts.fallback ? ` (+ ${opts.fallback.name})` : ""}` : prices.name,
     calls_total: calls.length,
     calls_priced: per_call.filter((p) => p.price_at_call != null).length,
     by_direction,

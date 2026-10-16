@@ -32,10 +32,29 @@ export class DefiLlamaPrices implements PriceSource {
 
   async batch(req: Record<string, number[]>): Promise<Record<string, (PricePoint | null)[]>> {
     const out: Record<string, (PricePoint | null)[]> = {};
-    const entries = Object.entries(req);
-    // keep URLs short: a handful of coins per request
-    for (let i = 0; i < entries.length; i += 8) {
-      const chunk = Object.fromEntries(entries.slice(i, i + 8));
+    for (const [coin, tss] of Object.entries(req)) out[coin] = tss.map(() => null);
+    // Keep each URL short: the API answers 414 past ~8 KB, and a coin called hundreds of times
+    // (SOL, ETH) has well over a thousand timestamps. Chunks of at most PER_REQUEST timestamps.
+    const PER_REQUEST = 120;
+    const chunks: Record<string, number[]>[] = [];
+    let cur: Record<string, number[]> = {};
+    let size = 0;
+    for (const [coin, tss] of Object.entries(req)) {
+      for (let i = 0; i < tss.length; i += PER_REQUEST) {
+        const part = tss.slice(i, i + PER_REQUEST);
+        if (size + part.length > PER_REQUEST && size > 0) {
+          chunks.push(cur);
+          cur = {};
+          size = 0;
+        }
+        cur[coin] = [...(cur[coin] ?? []), ...part];
+        size += part.length;
+      }
+    }
+    if (size) chunks.push(cur);
+
+    const points = new Map<string, PricePoint[]>();
+    for (const chunk of chunks) {
       let data: any = null;
       try {
         data = await this.get(`/batchHistorical?coins=${encodeURIComponent(JSON.stringify(chunk))}&searchWidth=12h`);
@@ -44,21 +63,27 @@ export class DefiLlamaPrices implements PriceSource {
       }
       for (const [coin, tss] of Object.entries(chunk)) {
         const pts: PricePoint[] = (data?.coins?.[coin]?.prices ?? []).map((p: any) => ({ timestamp: Number(p.timestamp), price: Number(p.price) }));
-        out[coin] = await Promise.all(
-          tss.map(async (ts) => {
-            const hit = nearest(pts, ts, this.widthSec);
-            if (hit || data) return hit;
-            // batch endpoint failed: fall back to one point at a time
-            try {
-              const j = await this.get(`/prices/historical/${ts}/${encodeURIComponent(coin)}?searchWidth=12h`);
-              const c = j?.coins?.[coin];
-              return c ? { timestamp: Number(c.timestamp), price: Number(c.price) } : null;
-            } catch {
-              return null;
-            }
-          }),
-        );
+        if (data) points.set(coin, [...(points.get(coin) ?? []), ...pts]);
+        else {
+          // this chunk failed: one point at a time
+          const one = await Promise.all(
+            tss.map(async (ts) => {
+              try {
+                const j = await this.get(`/prices/historical/${ts}/${encodeURIComponent(coin)}?searchWidth=12h`);
+                const c = j?.coins?.[coin];
+                return c ? { timestamp: Number(c.timestamp), price: Number(c.price) } : null;
+              } catch {
+                return null;
+              }
+            }),
+          );
+          points.set(coin, [...(points.get(coin) ?? []), ...one.filter((x): x is PricePoint => !!x)]);
+        }
       }
+    }
+    for (const [coin, tss] of Object.entries(req)) {
+      const pts = points.get(coin) ?? [];
+      out[coin] = tss.map((ts) => nearest(pts, ts, this.widthSec));
     }
     return out;
   }

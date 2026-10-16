@@ -16,6 +16,7 @@ type Quote = {
   estimatedPosts: number;
   breakdown: { parse: number; distill: number; cost: number; markup: number };
   priceUsd: number;
+  withReplies?: { estimatedReplies: number; breakdown: { parse: number; distill: number; cost: number; markup: number; replies: number }; priceUsd: number };
 };
 
 const usd = (x: number) => `$${x.toFixed(2)}`;
@@ -30,12 +31,14 @@ export function AddFlow({ enabled, initialHandle }: { enabled: boolean; initialH
   const [state, setState] = useState<"idle" | "quoting" | "checkout" | "paying">("idle");
   const [msg, setMsg] = useState<React.ReactNode>(null);
   const [co, setCo] = useState<{ jobId: string; checkout: Info } | null>(null);
+  const [replies, setReplies] = useState(false);
 
   const getQuote = async (h = handle) => {
     if (!h.trim()) return;
     setState("quoting");
     setMsg(null);
     setQ(null);
+    setReplies(false);
     const r = await fetch(`/api/add/quote?handle=${encodeURIComponent(h.trim())}`).catch(() => null);
     const j = r ? await r.json().catch(() => ({})) : {};
     setState("idle");
@@ -71,7 +74,7 @@ export function AddFlow({ enabled, initialHandle }: { enabled: boolean; initialH
     if (!q) return;
     setState("checkout");
     setMsg(null);
-    const r = await fetch("/api/add/checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ handle: q.handle }) }).catch(() => null);
+    const r = await fetch("/api/add/checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ handle: q.handle, replies: replies && !!q.withReplies }) }).catch(() => null);
     const j = r ? await r.json().catch(() => ({})) : {};
     if (!r?.ok) {
       setState("idle");
@@ -92,6 +95,9 @@ export function AddFlow({ enabled, initialHandle }: { enabled: boolean; initialH
       </div>
     );
 
+  // the price card follows the replies checkbox
+  const b = replies && q?.withReplies ? q.withReplies.breakdown : (q?.breakdown ?? { parse: 0, distill: 0, cost: 0, markup: 2 });
+  const price = replies && q?.withReplies ? q.withReplies.priceUsd : (q?.priceUsd ?? 0);
   const loginHref = `/api/auth/x/login?next=${encodeURIComponent(`/add?handle=${q?.handle ?? handle}`)}`;
 
   return (
@@ -128,11 +134,26 @@ export function AddFlow({ enabled, initialHandle }: { enabled: boolean; initialH
             </div>
           </div>
 
+          {q.withReplies && q.withReplies.estimatedReplies > 0 && (
+            <label className="mt-6 flex cursor-pointer items-start gap-3 rounded-panel border border-line bg-void p-4 transition-colors hover:border-line-hover">
+              <input type="checkbox" checked={replies} onChange={(e) => setReplies(e.target.checked)} className="mt-1 h-4 w-4 shrink-0 accent-[var(--ii-ceramic)]" />
+              <span className="min-w-0">
+                <span className="block font-pixel text-sm text-ceramic">
+                  Also read their replies · ~{formatCount(q.withReplies.estimatedReplies)} · {q.withReplies.priceUsd > q.priceUsd ? `+${q.withReplies.priceUsd - q.priceUsd} USDC` : "same price"}
+                </span>
+                <span className="mt-1 block text-xs text-muted">
+                  How they talk to people one-on-one: arguing, joking, answering questions. Each reply is read with the post it answers. The brain sounds more like them; it costs more to read.
+                </span>
+              </span>
+            </label>
+          )}
+
           <dl className="mt-6 font-mono text-sm">
             {(
               [
-                [`Reading ~${formatCount(q.estimatedPosts)} own posts and threads (twitterapi.io)`, usd(q.breakdown.parse)],
-                ["Distilling the brain (DeepSeek)", usd(q.breakdown.distill)],
+                [`Reading ~${formatCount(q.estimatedPosts)} own posts and threads (twitterapi.io)`, usd(b.parse - (replies ? (q.withReplies?.breakdown.replies ?? 0) : 0))],
+                ...(replies && q.withReplies ? ([[`Reading ~${formatCount(q.withReplies.estimatedReplies)} replies + the posts they answer`, usd(q.withReplies.breakdown.replies)]] as const) : []),
+                ["Distilling the brain (DeepSeek)", usd(b.distill)],
               ] as const
             ).map(([k, v]) => (
               <div key={k} className="flex items-baseline justify-between gap-3 py-1">
@@ -143,18 +164,18 @@ export function AddFlow({ enabled, initialHandle }: { enabled: boolean; initialH
             ))}
             <div className="mt-2 flex items-baseline justify-between gap-3 border-t border-line pt-3">
               <dt className="text-particle">Real cost</dt>
-              <dd className="text-particle">{usd(q.breakdown.cost)}</dd>
+              <dd className="text-particle">{usd(b.cost)}</dd>
             </div>
             <div className="flex items-baseline justify-between gap-3 py-1">
               <dt className="text-muted">
-                Our margin × {q.breakdown.markup}
-                {q.priceUsd > Math.ceil(q.breakdown.cost * q.breakdown.markup) ? ` · minimum ${q.priceUsd} USDC` : ", rounded up"}
+                Our margin × {b.markup}
+                {price > Math.ceil(b.cost * b.markup) ? ` · minimum ${price} USDC` : ", rounded up"}
               </dt>
-              <dd className="text-muted">{usd(q.breakdown.cost * q.breakdown.markup)}</dd>
+              <dd className="text-muted">{usd(b.cost * b.markup)}</dd>
             </div>
             <div className="mt-2 flex items-baseline justify-between gap-3 border-t border-line pt-3 text-body">
               <dt className="font-pixel text-ceramic">Price</dt>
-              <dd className="font-pixel text-ceramic">{q.priceUsd} USDC</dd>
+              <dd className="font-pixel text-ceramic">{price} USDC</dd>
             </div>
           </dl>
           <p className="mt-4 text-xs text-muted">
@@ -164,7 +185,7 @@ export function AddFlow({ enabled, initialHandle }: { enabled: boolean; initialH
           <div className="mt-6">
             {me?.user ? (
               <button onClick={checkout} disabled={state === "checkout"} className="btn-ceramic">
-                {state === "checkout" ? "Preparing…" : `Pay ${q.priceUsd} USDC and build`}
+                {state === "checkout" ? "Preparing…" : `Pay ${price} USDC and build`}
               </button>
             ) : (
               <a href={loginHref} className="btn-ceramic">

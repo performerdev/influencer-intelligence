@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
     inputs:
       command:
-        description: "probe = cheap API check + cost estimate · build = full brain · status = spend report · reassemble = rebuild prompts from stored brains (free) · jobs = paid Add builds"
+        description: "probe = cheap API check + cost estimate · build = full brain · status = spend report · reassemble = rebuild prompts from stored brains (free) · stats = re-price every call (free) · jobs = paid Add builds"
         type: choice
-        options: [probe, build, status, reassemble, jobs]
+        options: [probe, build, status, reassemble, stats, jobs]
         default: probe
       target:
         description: "Handle or code (blknoiz06, ii-01), several separated by commas — or 'all'"
@@ -136,6 +136,12 @@ jobs:
           set -o pipefail
           { echo '```'; pnpm brain:reassemble ${{ matrix.target }}; echo '```'; } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
 
+      - name: Re-price calls
+        if: github.event.inputs.command == 'stats'
+        run: |
+          set -o pipefail
+          { echo '```'; pnpm brain:stats ${{ matrix.target }}; echo '```'; } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
+
       - name: Build
         if: github.event.inputs.command == 'build'
         run: |
@@ -149,7 +155,7 @@ jobs:
           { echo '```'; pnpm brain:build ${{ matrix.target }} --refresh --max-usd 5; echo '```'; } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Commit open brain files
-        if: github.event.inputs.command == 'build' || github.event.inputs.command == 'reassemble' || github.event_name == 'schedule' || needs.plan.outputs.mode == 'jobs'
+        if: github.event.inputs.command == 'build' || github.event.inputs.command == 'reassemble' || github.event.inputs.command == 'stats' || github.event_name == 'schedule' || needs.plan.outputs.mode == 'jobs'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
