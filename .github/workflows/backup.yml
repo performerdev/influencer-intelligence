@@ -22,7 +22,8 @@ permissions:
 
 jobs:
   dump:
-    runs-on: ubuntu-latest
+    # pinned: the PostgreSQL apt repo needs the Ubuntu release it was built for
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
