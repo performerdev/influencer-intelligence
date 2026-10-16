@@ -1,10 +1,10 @@
 {
   "code": "ii-10",
   "handle": "Cupseyy",
-  "version": 4,
-  "distilled_at": "2026-10-10T15:31:41.758Z",
+  "version": 5,
+  "distilled_at": "2026-10-16T12:48:29.037Z",
   "model": "deepseek-v4-pro",
-  "prompt_tokens_estimate": 19069,
+  "prompt_tokens_estimate": 19386,
   "posts_parsed": 3572,
   "posts_from": "2019-09-06",
   "posts_to": "2026-08-23",
