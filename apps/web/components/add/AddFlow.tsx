@@ -128,22 +128,32 @@ export function AddFlow({ enabled, initialHandle }: { enabled: boolean; initialH
             </div>
           </div>
 
-          <dl className="mt-6 space-y-2 font-mono text-sm">
-            {[
-              [`Reading ~${formatCount(q.estimatedPosts)} posts (twitterapi.io)`, usd(q.breakdown.parse)],
-              ["Distilling the brain (DeepSeek)", usd(q.breakdown.distill)],
-              ["Real cost", usd(q.breakdown.cost)],
-              [`× ${q.breakdown.markup}`, ""],
-            ].map(([k, v]) => (
-              <div key={k} className="flex items-baseline justify-between gap-3">
+          <dl className="mt-6 font-mono text-sm">
+            {(
+              [
+                [`Reading ~${formatCount(q.estimatedPosts)} own posts and threads (twitterapi.io)`, usd(q.breakdown.parse)],
+                ["Distilling the brain (DeepSeek)", usd(q.breakdown.distill)],
+              ] as const
+            ).map(([k, v]) => (
+              <div key={k} className="flex items-baseline justify-between gap-3 py-1">
                 <dt className="text-muted">{k}</dt>
                 <dd className="flex-1 border-b border-dotted border-line" aria-hidden />
                 <dd className="text-particle">{v}</dd>
               </div>
             ))}
-            <div className="flex items-baseline justify-between gap-3 pt-2 text-body">
+            <div className="mt-2 flex items-baseline justify-between gap-3 border-t border-line pt-3">
+              <dt className="text-particle">Real cost</dt>
+              <dd className="text-particle">{usd(q.breakdown.cost)}</dd>
+            </div>
+            <div className="flex items-baseline justify-between gap-3 py-1">
+              <dt className="text-muted">
+                Our margin × {q.breakdown.markup}
+                {q.priceUsd > Math.ceil(q.breakdown.cost * q.breakdown.markup) ? ` · minimum ${q.priceUsd} USDC` : ", rounded up"}
+              </dt>
+              <dd className="text-muted">{usd(q.breakdown.cost * q.breakdown.markup)}</dd>
+            </div>
+            <div className="mt-2 flex items-baseline justify-between gap-3 border-t border-line pt-3 text-body">
               <dt className="font-pixel text-ceramic">Price</dt>
-              <dd className="flex-1" aria-hidden />
               <dd className="font-pixel text-ceramic">{q.priceUsd} USDC</dd>
             </div>
           </dl>
