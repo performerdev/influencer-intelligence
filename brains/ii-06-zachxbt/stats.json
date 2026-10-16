@@ -7,57 +7,60 @@
   ],
   "horizons": {
     "1d": {
-      "n": 0,
-      "hit_rate": null,
-      "mean_return": null,
-      "median_return": null
+      "n": 4,
+      "hit_rate": 0.75,
+      "mean_return": -0.0241,
+      "median_return": 0.0118
     },
     "7d": {
-      "n": 0,
-      "hit_rate": null,
-      "mean_return": null,
-      "median_return": null
+      "n": 4,
+      "hit_rate": 0.25,
+      "mean_return": -0.1313,
+      "median_return": -0.1037
     },
     "30d": {
-      "n": 0,
-      "hit_rate": null,
-      "mean_return": null,
-      "median_return": null
+      "n": 4,
+      "hit_rate": 0.25,
+      "mean_return": -0.3732,
+      "median_return": -0.483
     }
   },
   "per_call": [
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": 0.0108,
+      "r_7d": -0.0046,
+      "r_30d": 0.1595,
       "ticker": "TIME",
       "post_id": "1452737696309329933",
-      "price_id": null,
+      "price_id": "bsc:0x3b198e26E473b8faB2085b37978e36c9DE5D7f68",
       "called_at": "2021-10-25T20:43:52.000Z",
       "direction": "hold",
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 44.29618034356514
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": 0.0128,
+      "r_7d": -0.2029,
+      "r_30d": -0.6593,
       "ticker": "SANTA",
       "post_id": "1471862214126710785",
-      "price_id": null,
+      "price_id": "bsc:0x4F1A6FC6A7B65Dc7ebC4EB692Dc3641bE997c2F2",
       "called_at": "2021-12-17T15:17:52.000Z",
       "direction": "buy",
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 4.201949457534977e-9
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": -0.2047,
+      "r_7d": -0.3746,
+      "r_30d": -0.6861,
       "ticker": "SANTA",
       "post_id": "1474387550928355328",
-      "price_id": null,
+      "price_id": "bsc:0x4F1A6FC6A7B65Dc7ebC4EB692Dc3641bE997c2F2",
       "called_at": "2021-12-24T14:32:39.000Z",
       "direction": "hold",
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 3.3682674912762112e-9
     },
     {
       "r_1d": null,
@@ -68,6 +71,7 @@
       "price_id": null,
       "called_at": "2022-01-11T23:27:58.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -79,6 +83,7 @@
       "price_id": null,
       "called_at": "2022-01-26T18:11:56.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -90,18 +95,20 @@
       "price_id": null,
       "called_at": "2022-02-14T12:52:45.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": 0.0845,
+      "r_7d": 0.0567,
+      "r_30d": -0.3067,
       "ticker": "ORK",
       "post_id": "1501578176077697025",
-      "price_id": null,
+      "price_id": "bsc:0xCed0CE92F4bdC3c2201E255FAF12f05cf8206dA8",
       "called_at": "2022-03-09T15:18:29.000Z",
       "direction": "sell",
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 0.0027529253107678228
     },
     {
       "r_1d": null,
@@ -112,6 +119,7 @@
       "price_id": null,
       "called_at": "2023-08-25T03:29:29.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -123,6 +131,7 @@
       "price_id": null,
       "called_at": "2023-11-14T20:03:57.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -134,6 +143,7 @@
       "price_id": null,
       "called_at": "2024-04-14T02:17:40.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -145,6 +155,7 @@
       "price_id": null,
       "called_at": "2024-04-14T04:28:07.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -156,6 +167,7 @@
       "price_id": null,
       "called_at": "2024-04-14T14:37:34.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -167,6 +179,7 @@
       "price_id": null,
       "called_at": "2024-07-25T12:02:23.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -178,18 +191,19 @@
       "price_id": null,
       "called_at": "2026-04-03T13:17:23.000Z",
       "direction": "hold",
+      "matched_by": null,
       "price_at_call": null
     }
   ],
   "hold_pairs": 0,
   "calls_total": 14,
-  "computed_at": "2026-10-10T13:08:02.876Z",
+  "computed_at": "2026-10-16T12:47:34.022Z",
   "by_direction": {
     "buy": 1,
     "hold": 3,
     "sell": 10
   },
-  "calls_priced": 0,
-  "price_source": "DefiLlama coins API",
+  "calls_priced": 4,
+  "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal)",
   "median_hold_days": null
 }
