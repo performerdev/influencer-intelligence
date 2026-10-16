@@ -44,10 +44,13 @@ jobs:
           [ "$size" -gt 100000 ] || { echo "Dump is only $size bytes, something is wrong"; exit 1; }
           openssl enc -aes-256-cbc -pbkdf2 -iter 200000 -salt -pass env:DATABASE_URL -in db.dump -out "$name.dump.enc"
           rm db.dump
-          # prove it opens before keeping it
-          openssl enc -d -aes-256-cbc -pbkdf2 -iter 200000 -pass env:DATABASE_URL -in "$name.dump.enc" | /usr/lib/postgresql/17/bin/pg_restore --list > /dev/null
+          # prove it opens before keeping it (to a file: pg_restore stops reading a pipe early)
+          openssl enc -d -aes-256-cbc -pbkdf2 -iter 200000 -pass env:DATABASE_URL -in "$name.dump.enc" -out check.dump
+          tables=$(/usr/lib/postgresql/17/bin/pg_restore --list check.dump | grep -c "TABLE DATA" || true)
+          rm check.dump
+          [ "$tables" -gt 10 ] || { echo "Backup opens but has only $tables tables"; exit 1; }
           echo "NAME=$name" >> "$GITHUB_ENV"
-          echo "### Backup $name: $(numfmt --to=iec "$size") (encrypted)" >> "$GITHUB_STEP_SUMMARY"
+          echo "### Backup $name: $(numfmt --to=iec "$size"), $tables tables (encrypted)" >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ env.NAME }}
