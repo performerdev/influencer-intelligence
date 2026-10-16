@@ -1,10 +1,10 @@
 {
   "code": "ii-02",
   "handle": "mert",
-  "version": 5,
-  "distilled_at": "2026-10-12T22:37:49.733Z",
+  "version": 6,
+  "distilled_at": "2026-10-16T12:47:41.664Z",
   "model": "deepseek-v4-pro",
-  "prompt_tokens_estimate": 49736,
+  "prompt_tokens_estimate": 48122,
   "posts_parsed": 14743,
   "posts_from": "2021-03-28",
   "posts_to": "2026-10-12",
