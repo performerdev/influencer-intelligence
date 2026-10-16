@@ -7,7 +7,7 @@ import { BrainAvatar } from "@/components/particles/BrainAvatar";
 import { AppLink } from "@/components/ui/AppLink";
 import { site } from "@/config/site";
 import { formatCount } from "@/lib/intelligences";
-import { normalizeRefs } from "@/lib/refs";
+import { normalizeRefs, stripCitations } from "@/lib/refs";
 
 import { Markdown, Sheet, TypingIndicator, type Verdict, VerdictChip } from "./bits";
 import { ShareBar } from "./ShareBar";
@@ -432,7 +432,7 @@ function BrainPanel({ intelligence, brain, onOpenBrain }: { intelligence: ChatIn
                   {s.title}
                   <span className="font-mono text-xs text-muted">{open === s.id ? "−" : "+"}</span>
                 </button>
-                {open === s.id && <Markdown text={s.body} handle={intelligence.handle} className="pb-3 text-sm leading-relaxed text-particle" />}
+                {open === s.id && <Markdown text={stripCitations(s.body)} className="pb-3 text-sm leading-relaxed text-particle" />}
               </li>
             ))}
           </ul>

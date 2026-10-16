@@ -6,6 +6,7 @@ import { BrainAvatar } from "@/components/particles/BrainAvatar";
 import { AppLink } from "@/components/ui/AppLink";
 import { site } from "@/config/site";
 import { formatCount } from "@/lib/intelligences";
+import { stripCitations } from "@/lib/refs";
 import { findIntelligence, hasDatabase, loadBrain } from "@/lib/server/data";
 
 // Public and the same for everyone: cached, rebuilt at most every 10 minutes.
@@ -258,8 +259,7 @@ function ruleHighlights(md: string): { kind: string; rule: string }[] {
     const head = part.match(/^##\s+(.+)$/m)?.[1]?.trim();
     const first = part.match(/^\s*[-*]\s+(.+)$/m)?.[1];
     if (!head || !first) continue;
-    const rule = first
-      .replace(/\s*\((?:post:[^)]*)\)/g, "")
+    const rule = stripCitations(first)
       .replace(/\s*["“][^"”]*["”]\s*$/, "")
       .replace(/\s*["“].*$/, "")
       .replace(/[\s:;,—-]+$/, "")
