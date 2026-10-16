@@ -66,6 +66,7 @@ export const calls: Record<string, number> = {};
 const paidRefs = new Set<string>();
 const plainSends: { signature: string; units: number; time: number }[] = [];
 const MOCK_USDC_ACCOUNT = "MockUsdcAccount1111111111111111111111111111";
+const MOCK_PAYER = "MockPayerWa11et111111111111111111111111111111";
 // the CLI asks for timelines by user id; remember which added handle that id belongs to
 const idToHandle = new Map<string, string>();
 // test hooks: posts made "on X" during a test, and the last chat request the model saw
@@ -233,8 +234,8 @@ export const api = createServer(async (req, res) => {
         blockTime: p.time,
         meta: {
           err: null,
-          preTokenBalances: [{ accountIndex: 2, mint, owner, uiTokenAmount: { amount: "5000000" } }],
-          postTokenBalances: [{ accountIndex: 2, mint, owner, uiTokenAmount: { amount: String(5000000 + p.units) } }],
+          preTokenBalances: [{ accountIndex: 2, mint, owner, uiTokenAmount: { amount: "5000000" } }, { accountIndex: 1, mint, owner: MOCK_PAYER, uiTokenAmount: { amount: "50000000" } }],
+          postTokenBalances: [{ accountIndex: 2, mint, owner, uiTokenAmount: { amount: String(5000000 + p.units) } }, { accountIndex: 1, mint, owner: MOCK_PAYER, uiTokenAmount: { amount: String(50000000 - p.units) } }],
         },
       });
     }
@@ -244,8 +245,8 @@ export const api = createServer(async (req, res) => {
       return ok({
         meta: {
           err: null,
-          preTokenBalances: [{ accountIndex: 2, mint, owner, uiTokenAmount: { amount: "5000000" } }],
-          postTokenBalances: [{ accountIndex: 2, mint, owner, uiTokenAmount: { amount: "15000000" } }],
+          preTokenBalances: [{ accountIndex: 2, mint, owner, uiTokenAmount: { amount: "5000000" } }, { accountIndex: 1, mint, owner: MOCK_PAYER, uiTokenAmount: { amount: "50000000" } }],
+          postTokenBalances: [{ accountIndex: 2, mint, owner, uiTokenAmount: { amount: "15000000" } }, { accountIndex: 1, mint, owner: MOCK_PAYER, uiTokenAmount: { amount: "40000000" } }],
         },
       });
     }

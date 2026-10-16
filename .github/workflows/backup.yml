@@ -1,0 +1,56 @@
+# Weekly database backup (and on demand: Actions → Backup → Run workflow).
+#
+# The dump is ENCRYPTED before it leaves the runner: this repo is public, and
+# anyone with a GitHub account can download a public repo's run artifacts.
+# The key is the DATABASE_URL secret itself, so whoever can open a backup
+# could already read the live database, and no extra secret is needed.
+# (If the database password is ever changed, keep the old URL to open older backups.)
+#
+# Restore (on any machine with the PostgreSQL 17 client):
+#   openssl enc -d -aes-256-cbc -pbkdf2 -iter 200000 -pass env:DATABASE_URL -in ii-db-*.dump.enc -out ii.dump
+#   pg_restore --no-owner --no-privileges --clean --if-exists -d "$NEW_DATABASE_URL" ii.dump
+name: Backup
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Sundays 20:41 UTC, away from the Monday brain refresh
+    - cron: "41 20 * * 0"
+
+permissions:
+  contents: read
+
+jobs:
+  dump:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    steps:
+      - name: PostgreSQL 17 client
+        run: |
+          sudo install -d /usr/share/postgresql-common/pgdg
+          sudo curl -fsSL -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc https://www.postgresql.org/media/keys/ACCC4CF8.asc
+          echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list > /dev/null
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq postgresql-client-17
+      - name: Dump and encrypt
+        run: |
+          set -euo pipefail
+          name="ii-db-$(date -u +%Y-%m-%d)"
+          # only the app's own tables (public schema); Supabase's internal schemas aren't ours to dump
+          /usr/lib/postgresql/17/bin/pg_dump "$DATABASE_URL" --schema=public --format=custom --compress=9 --no-owner --no-privileges --file=db.dump
+          size=$(stat -c %s db.dump)
+          [ "$size" -gt 100000 ] || { echo "Dump is only $size bytes, something is wrong"; exit 1; }
+          openssl enc -aes-256-cbc -pbkdf2 -iter 200000 -salt -pass env:DATABASE_URL -in db.dump -out "$name.dump.enc"
+          rm db.dump
+          # prove it opens before keeping it
+          openssl enc -d -aes-256-cbc -pbkdf2 -iter 200000 -pass env:DATABASE_URL -in "$name.dump.enc" | /usr/lib/postgresql/17/bin/pg_restore --list > /dev/null
+          echo "NAME=$name" >> "$GITHUB_ENV"
+          echo "### Backup $name: $(numfmt --to=iec "$size") (encrypted)" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.NAME }}
+          path: ${{ env.NAME }}.dump.enc
+          retention-days: 90
+          compression-level: 0

@@ -464,6 +464,9 @@ function BrainPanel({ intelligence, brain, onOpenBrain }: { intelligence: ChatIn
           ))}
         </dl>
         <p className="mt-3 text-xs text-muted">{st ? `Computed on ${st.computedAt.slice(0, 10)} by code, not by the model.` : "Computed once the brain is built."}</p>
+        <AppLink href={`/brain/${intelligence.handle}`} className="link-quiet mt-3 inline-block text-xs">
+          Every call, priced <span className="arrow">↗</span>
+        </AppLink>
       </div>
 
       <AppLink href={`/group?with=${intelligence.handle}`} className="btn-line w-full">

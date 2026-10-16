@@ -396,6 +396,7 @@ async function runJobs() {
       await stepExport(inf);
       await sql`update jobs set status = 'ready', finished_at = now(), updated_at = now(), progress = ${sql.json({ kept: posts_parsed } as never)} where id = ${job.id}`;
       done(`  @${inf.handle} · live`);
+      await pokeSite();
     } catch (err) {
       const message = String((err as Error)?.message ?? err).slice(0, 500);
       console.log(`  FAILED: ${message}`);
@@ -403,6 +404,13 @@ async function runJobs() {
     }
   }
   console.log(n ? `\n${n} build(s) processed.` : "No builds waiting.");
+}
+
+/** Ask the site to refresh its cached pages, so a new brain shows on the home page right away. */
+async function pokeSite() {
+  const site = process.env.SITE_URL;
+  if (!site) return;
+  await fetch(`${site.replace(/\/$/, "")}/api/jobs/pending?fresh=1`, { signal: AbortSignal.timeout(20_000) }).catch(() => null);
 }
 
 /** The influencer row for a job: existing (same handle) or the next free code, ii-11, ii-12, … */

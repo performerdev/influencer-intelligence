@@ -134,3 +134,28 @@ export async function incomingSince(sinceSec: number): Promise<Incoming[]> {
   }
   return out;
 }
+
+/**
+ * Who paid, and how much reached us, in a transaction: for refunds. The payer is
+ * the USDC owner whose balance went down the most (an exchange withdrawal shows
+ * the exchange's hot wallet, which is still where a refund should go only if
+ * the payer says so; the admin page warns about that).
+ */
+export async function payerOf(signature: string): Promise<{ payer: string | null; receivedUsd: number } | null> {
+  const tx = await rpc<ParsedTx | null>("getTransaction", [signature, { commitment: "confirmed", maxSupportedTransactionVersion: 0, encoding: "jsonParsed" }]);
+  if (!tx?.meta) return null;
+  const byOwner = new Map<string, bigint>();
+  const add = (list: TokenBalance[] | undefined, sign: 1n | -1n) => {
+    for (const b of list ?? []) if (b.mint === payments.mint && b.owner && b.owner !== payments.recipient) byOwner.set(b.owner, (byOwner.get(b.owner) ?? 0n) + sign * BigInt(b.uiTokenAmount.amount));
+  };
+  add(tx.meta.postTokenBalances, 1n);
+  add(tx.meta.preTokenBalances, -1n);
+  let payer: string | null = null;
+  let most = 0n;
+  for (const [owner, delta] of byOwner) if (delta < most) [payer, most] = [owner, delta];
+  return { payer, receivedUsd: Number(recipientDelta(tx)) / 10 ** payments.decimals };
+}
+
+/** A Solana Pay link that opens a wallet with this USDC transfer filled in. */
+export const refundUrl = (to: string, amountUsd: number, message: string) =>
+  `solana:${to}?${new URLSearchParams({ amount: String(amountUsd), "spl-token": payments.mint, label: payments.label, message }).toString()}`;

@@ -69,6 +69,18 @@ export function GroupView({ available, initial, history }: { available: Intellig
   const [busy, setBusy] = useState(false);
   const [speaking, setSpeaking] = useState<string | null>(null);
   const abort = useRef<AbortController | null>(null);
+  // the "post it on X for a free session" invite, as in single chat: at most once per page view
+  const [offerFor, setOfferFor] = useState<string | null>(null);
+  const offered = useRef(false);
+  const lastAnswer = useRef<string | null>(null);
+  const maybeOffer = (messageId: string | null, force = false) => {
+    const me = auth.me;
+    if (!messageId || offered.current || !me?.user || !me.shareBonus?.available) return;
+    if (force || me.usage.used >= 0.5 || Math.random() < 0.2) {
+      offered.current = true;
+      setOfferFor(messageId);
+    }
+  };
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -130,7 +142,10 @@ export function GroupView({ available, initial, history }: { available: Intellig
         const ev = raw.match(/^event: (\w+)/m)?.[1];
         const data = JSON.parse(raw.match(/^data: (.*)$/m)?.[1] ?? "{}");
         if (ev === "delta") patch(id, (m) => ({ content: m.content + data.t }));
-        else if (ev === "done") patch(id, () => ({ streaming: false, verdict: data.verdict, refs: data.refs ?? [], content: data.content, messageId: data.messageId }));
+        else if (ev === "done") {
+          if (data.messageId) lastAnswer.current = String(data.messageId);
+          patch(id, () => ({ streaming: false, verdict: data.verdict, refs: data.refs ?? [], content: data.content, messageId: data.messageId }));
+        }
         else if (ev === "error") patch(id, () => ({ streaming: false, error: data.message }));
       }
     }
@@ -164,14 +179,21 @@ export function GroupView({ available, initial, history }: { available: Intellig
         setChatId(j.chatId);
         setNote(j.debateLocked ? "Debate rounds are a Plus feature — this time they answered once each." : null);
         let round = 0;
+        let spent = false;
+        lastAnswer.current = null;
         for (const turn of j.queue as Turn[]) {
           if (ctrl.signal.aborted) break;
           if (turn.round !== round) {
             round = turn.round;
             setItems((all) => [...all, { id: `r${Date.now()}${round}`, kind: "round", round, rounds: j.rounds }]);
           }
-          if (!(await speakOne(j.chatId, turn, ctrl.signal))) break;
+          if (!(await speakOne(j.chatId, turn, ctrl.signal))) {
+            spent = true;
+            break;
+          }
         }
+        // under the last answer: always when the session ran out, otherwise sometimes
+        maybeOffer(lastAnswer.current, spent);
       } catch (err) {
         if ((err as Error).name !== "AbortError") {
           setItems((all) => [...all, { id: `e${Date.now()}`, kind: "ai", handle: "", round: 0, content: "", streaming: false, verdict: null, refs: [], error: "Connection dropped. Try again." }]);
@@ -283,6 +305,7 @@ export function GroupView({ available, initial, history }: { available: Intellig
                         messageId={it.messageId}
                         handle={it.handle}
                         question={(items.slice(0, idx).reverse().find((x) => x.kind === "user") as { content: string } | undefined)?.content ?? null}
+                        offer={offerFor === it.messageId}
                       />
                     </div>
                   )}

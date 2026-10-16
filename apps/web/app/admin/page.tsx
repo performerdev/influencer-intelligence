@@ -1,9 +1,12 @@
 import { notFound } from "next/navigation";
+import { Fragment } from "react";
 
 import { AdminButton } from "@/components/admin/AdminButton";
+import { RefundBox } from "@/components/admin/RefundBox";
 import { currentUser } from "@/lib/server/auth";
 import { sql } from "@/lib/server/data";
 import { dailyBudgetUsd, isAdmin, spentTodayUsd } from "@/lib/server/ops";
+import { payerOf, refundUrl } from "@/lib/server/solana";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Admin", robots: { index: false } };
@@ -70,9 +73,18 @@ export default async function Admin() {
   const takedowns = await q("takedowns", db<{ id: string; handle: string; proof_url: string; contact: string | null; reason: string | null; note: string | null; status: string; created_at: Date }[]>`
         select id, handle, proof_url, contact, reason, note, status, created_at from takedown_requests order by (status = 'open') desc, created_at desc limit 50`, []);
   const errors = await q("errors", db<{ id: string; at: Date; source: string; route: string | null; message: string }[]>`select id, at, source, route, message from errors order by at desc limit 40`, []);
-  const jobs = await q("jobs", db<{ id: string; handle: string; status: string; quote_usd: string | null; error: string | null; created_at: Date; who: string | null }[]>`
-        select j.id, j.handle, j.status, j.quote_usd, j.error, j.created_at, u.handle as who from jobs j left join users u on u.id = j.user_id
+  const jobs = await q("jobs", db<{ id: string; handle: string; status: string; quote_usd: string | null; error: string | null; created_at: Date; who: string | null; paid_tx: string | null; paid_usd: string | null }[]>`
+        select j.id, j.handle, j.status, j.quote_usd, j.error, j.created_at, u.handle as who, j.paid_tx,
+          (select p.amount_usd from payments p where p.job_id = j.id and p.status = 'paid' limit 1) as paid_usd
+        from jobs j left join users u on u.id = j.user_id
         where j.kind = 'add_brain' and j.status <> 'awaiting_payment' order by j.created_at desc limit 30`, []);
+  // failed builds: who paid and how much arrived, read from the payment on Solana (one at a time, a few at most)
+  const refunds = new Map<string, { payer: string | null; amount: number; url: string | null }>();
+  for (const j of jobs.filter((x) => x.status === "failed" && x.paid_tx).slice(0, 5)) {
+    const info = await q(`refund ${j.handle}`, payerOf(j.paid_tx!), null);
+    const amount = Number((info?.receivedUsd || Number(j.paid_usd ?? j.quote_usd ?? 0)).toFixed(6));
+    refunds.set(j.id, { payer: info?.payer ?? null, amount, url: info?.payer ? refundUrl(info.payer, amount, `Refund: @${j.handle} brain build`) : null });
+  }
   const brains = await q("brains", db<{ code: string; handle: string; hidden: boolean; added: boolean }[]>`select code, handle, coalesce(hidden, false) as hidden, added_by is not null as added from influencers order by code`, []);
   const shares = await q("shares", db<{ n: number; claimed: number; views: number }[]>`select count(*)::int as n, count(claimed_at)::int as claimed, coalesce(sum(views), 0)::int as views from shares`, []);
 
@@ -181,7 +193,8 @@ export default async function Admin() {
             <table className="w-full min-w-[640px] text-left font-mono text-xs">
               <tbody className="text-particle">
                 {jobs.map((j) => (
-                  <tr key={j.id} className="border-b border-line last:border-0">
+                  <Fragment key={j.id}>
+                  <tr className="border-b border-line last:border-0">
                     <td className={cell}>@{j.handle}</td>
                     <td className={cell}>{j.status}</td>
                     <td className={cell}>{j.quote_usd ? `${Number(j.quote_usd)} USDC` : "—"}</td>
@@ -197,6 +210,15 @@ export default async function Admin() {
                       )}
                     </td>
                   </tr>
+                  {j.status === "failed" && (
+                    <tr className="border-b border-line bg-void last:border-0">
+                      <td className={`${cell} text-muted`}>refund</td>
+                      <td className={cell} colSpan={6}>
+                        <RefundBox payer={refunds.get(j.id)?.payer ?? null} amount={refunds.get(j.id)?.amount ?? Number(j.paid_usd ?? j.quote_usd ?? 0)} paidTx={j.paid_tx} url={refunds.get(j.id)?.url ?? null} />
+                      </td>
+                    </tr>
+                  )}
+                  </Fragment>
                 ))}
               </tbody>
             </table>

@@ -1,3 +1,4 @@
+import { refreshListings } from "@/lib/server/listings";
 import { sql } from "@/lib/server/data";
 import { json } from "@/lib/server/http";
 import { settle } from "@/lib/server/plus";
@@ -20,5 +21,7 @@ export async function GET() {
     for (const p of pending) await settle(p.reference).catch(() => null);
   }
   const [{ n }] = await db<{ n: number }[]>`select count(*)::int as n from jobs where kind = 'add_brain' and status = 'queued'`;
+  // a build just finished: show the new brain on the home page now, not at the next cache refresh
+  await refreshListings();
   return json({ queued: n });
 }

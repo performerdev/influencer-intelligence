@@ -2,6 +2,7 @@ import { currentUser } from "@/lib/server/auth";
 import { sql } from "@/lib/server/data";
 import { json } from "@/lib/server/http";
 import { dispatchJobs } from "@/lib/server/jobs";
+import { refreshListings } from "@/lib/server/listings";
 import { isAdmin } from "@/lib/server/ops";
 
 export const dynamic = "force-dynamic";
@@ -22,9 +23,11 @@ export async function POST(req: Request) {
       return json({ ok: true });
     case "hide":
       await db`update influencers set hidden = true where lower(handle) = lower(${String(b?.handle ?? "")})`;
+      await refreshListings(true);
       return json({ ok: true });
     case "unhide":
       await db`update influencers set hidden = false where lower(handle) = lower(${String(b?.handle ?? "")})`;
+      await refreshListings(true);
       return json({ ok: true });
     case "job-retry":
       await db`update jobs set status = 'queued', error = null, updated_at = now() where id = ${id} and status in ('failed', 'queued')`;
