@@ -1,0 +1,22 @@
+{
+  "code": "ii-11",
+  "handle": "vladtenev",
+  "version": 1,
+  "distilled_at": "2026-10-16T11:34:39.140Z",
+  "model": "deepseek-v4-pro",
+  "prompt_tokens_estimate": 15954,
+  "posts_parsed": 1496,
+  "posts_from": "2012-10-26",
+  "posts_to": "2026-10-14",
+  "one_line_mind": "Democratizes ownership, builds onchain, chases mathematical superintelligence via first principles.",
+  "calls_tracked": 30,
+  "files": [
+    "identity.md",
+    "mind.md",
+    "rules.md",
+    "voice.md",
+    "examples.json",
+    "calls.json",
+    "stats.json"
+  ]
+}
