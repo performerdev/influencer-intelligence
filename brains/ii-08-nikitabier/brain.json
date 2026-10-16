@@ -1,10 +1,10 @@
 {
   "code": "ii-08",
   "handle": "nikitabier",
-  "version": 5,
-  "distilled_at": "2026-10-12T10:55:49.008Z",
+  "version": 6,
+  "distilled_at": "2026-10-16T12:48:48.542Z",
   "model": "deepseek-v4-pro",
-  "prompt_tokens_estimate": 42066,
+  "prompt_tokens_estimate": 42181,
   "posts_parsed": 9170,
   "posts_from": "2013-10-05",
   "posts_to": "2026-10-12",

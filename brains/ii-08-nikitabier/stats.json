@@ -7,22 +7,22 @@
   ],
   "horizons": {
     "1d": {
-      "n": 14,
+      "n": 18,
       "hit_rate": 0.5,
-      "mean_return": -0.0121,
-      "median_return": -0.0022
+      "mean_return": -0.0088,
+      "median_return": -0.0001
     },
     "7d": {
-      "n": 14,
-      "hit_rate": 0.3571,
-      "mean_return": -0.0501,
-      "median_return": -0.0386
+      "n": 18,
+      "hit_rate": 0.5,
+      "mean_return": -0.0203,
+      "median_return": -0.0006
     },
     "30d": {
-      "n": 14,
-      "hit_rate": 0.5714,
-      "mean_return": -0.0134,
-      "median_return": 0.0334
+      "n": 18,
+      "hit_rate": 0.5,
+      "mean_return": -0.0538,
+      "median_return": -0.0093
     }
   },
   "per_call": [
@@ -35,6 +35,7 @@
       "price_id": null,
       "called_at": "2017-12-01T18:27:49.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -46,6 +47,7 @@
       "price_id": null,
       "called_at": "2017-12-01T18:44:12.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -57,6 +59,7 @@
       "price_id": null,
       "called_at": "2020-05-01T19:48:46.000Z",
       "direction": "hold",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -68,6 +71,7 @@
       "price_id": null,
       "called_at": "2020-06-25T01:56:54.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -79,6 +83,7 @@
       "price_id": null,
       "called_at": "2020-06-25T02:12:20.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -90,6 +95,7 @@
       "price_id": null,
       "called_at": "2020-07-01T21:16:59.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -101,6 +107,7 @@
       "price_id": null,
       "called_at": "2020-07-14T03:12:56.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -112,6 +119,7 @@
       "price_id": null,
       "called_at": "2020-07-14T03:12:56.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -123,6 +131,7 @@
       "price_id": null,
       "called_at": "2020-07-20T23:21:58.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -134,6 +143,7 @@
       "price_id": null,
       "called_at": "2020-08-30T04:25:16.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -145,6 +155,7 @@
       "price_id": null,
       "called_at": "2020-09-01T13:21:04.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -156,6 +167,7 @@
       "price_id": null,
       "called_at": "2020-09-03T16:09:55.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -167,6 +179,7 @@
       "price_id": null,
       "called_at": "2020-09-04T14:19:11.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -178,6 +191,7 @@
       "price_id": null,
       "called_at": "2020-09-04T14:19:11.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -189,6 +203,7 @@
       "price_id": null,
       "called_at": "2020-09-04T14:19:11.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -200,6 +215,7 @@
       "price_id": null,
       "called_at": "2020-09-04T14:19:11.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -211,6 +227,7 @@
       "price_id": null,
       "called_at": "2020-09-04T14:19:11.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -222,6 +239,7 @@
       "price_id": null,
       "called_at": "2020-11-09T18:54:49.000Z",
       "direction": "hold",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -233,6 +251,7 @@
       "price_id": null,
       "called_at": "2020-11-10T15:07:29.000Z",
       "direction": "hold",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -244,6 +263,7 @@
       "price_id": null,
       "called_at": "2020-11-12T19:36:47.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -255,6 +275,7 @@
       "price_id": null,
       "called_at": "2020-11-24T16:42:32.000Z",
       "direction": "hold",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -266,6 +287,7 @@
       "price_id": null,
       "called_at": "2020-12-13T02:03:30.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -277,6 +299,7 @@
       "price_id": null,
       "called_at": "2020-12-13T02:03:30.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -288,6 +311,7 @@
       "price_id": null,
       "called_at": "2020-12-13T02:03:30.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -299,6 +323,7 @@
       "price_id": null,
       "called_at": "2020-12-13T02:03:30.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -310,6 +335,7 @@
       "price_id": null,
       "called_at": "2021-01-08T01:14:33.000Z",
       "direction": "hold",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -321,6 +347,7 @@
       "price_id": null,
       "called_at": "2021-02-04T16:06:05.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -332,6 +359,7 @@
       "price_id": null,
       "called_at": "2021-02-04T16:34:13.000Z",
       "direction": "hold",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -343,6 +371,7 @@
       "price_id": null,
       "called_at": "2021-02-06T21:25:07.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -354,6 +383,7 @@
       "price_id": null,
       "called_at": "2021-02-06T21:48:57.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -365,6 +395,7 @@
       "price_id": null,
       "called_at": "2021-02-12T15:44:36.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -376,6 +407,7 @@
       "price_id": "coingecko:bitcoin",
       "called_at": "2021-02-20T20:37:19.000Z",
       "direction": "hold",
+      "matched_by": null,
       "price_at_call": 57136.192299398266
     },
     {
@@ -387,6 +419,7 @@
       "price_id": null,
       "called_at": "2021-03-02T15:45:34.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -398,6 +431,7 @@
       "price_id": null,
       "called_at": "2021-03-29T03:46:50.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -409,6 +443,7 @@
       "price_id": null,
       "called_at": "2021-05-06T15:59:10.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -420,6 +455,7 @@
       "price_id": null,
       "called_at": "2021-05-07T02:34:45.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -431,6 +467,7 @@
       "price_id": null,
       "called_at": "2021-05-07T02:34:45.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -442,6 +479,7 @@
       "price_id": null,
       "called_at": "2021-05-08T19:44:16.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -453,6 +491,7 @@
       "price_id": "coingecko:ethereum",
       "called_at": "2021-05-10T12:51:40.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": 4148.402758101393
     },
     {
@@ -464,6 +503,7 @@
       "price_id": "coingecko:bitcoin",
       "called_at": "2021-06-09T16:59:59.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": 36608.34215251187
     },
     {
@@ -475,6 +515,7 @@
       "price_id": null,
       "called_at": "2021-06-17T22:38:13.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -486,6 +527,7 @@
       "price_id": null,
       "called_at": "2021-07-17T15:02:22.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -497,6 +539,7 @@
       "price_id": null,
       "called_at": "2021-07-23T16:45:25.000Z",
       "direction": "hold",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -508,6 +551,7 @@
       "price_id": null,
       "called_at": "2021-08-06T15:20:20.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -519,6 +563,7 @@
       "price_id": null,
       "called_at": "2021-09-27T22:11:14.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -530,6 +575,7 @@
       "price_id": null,
       "called_at": "2021-09-28T15:42:29.000Z",
       "direction": "hold",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -541,6 +587,7 @@
       "price_id": null,
       "called_at": "2021-10-15T01:32:00.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -552,6 +599,7 @@
       "price_id": null,
       "called_at": "2021-10-15T18:57:10.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -563,6 +611,7 @@
       "price_id": null,
       "called_at": "2021-10-20T20:27:01.000Z",
       "direction": "hold",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -574,6 +623,7 @@
       "price_id": null,
       "called_at": "2021-11-03T19:08:04.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -585,6 +635,7 @@
       "price_id": null,
       "called_at": "2021-11-04T19:32:53.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -596,6 +647,7 @@
       "price_id": null,
       "called_at": "2021-11-04T19:32:53.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -607,6 +659,7 @@
       "price_id": null,
       "called_at": "2021-11-04T19:32:53.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -618,6 +671,7 @@
       "price_id": null,
       "called_at": "2021-11-04T19:32:53.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -629,6 +683,7 @@
       "price_id": null,
       "called_at": "2021-11-05T21:26:52.000Z",
       "direction": "hold",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -640,6 +695,7 @@
       "price_id": "coingecko:ethereum",
       "called_at": "2021-11-12T00:07:25.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": 4732.9244503493555
     },
     {
@@ -651,6 +707,7 @@
       "price_id": "coingecko:ethereum",
       "called_at": "2021-11-30T19:13:46.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": 4673.589171108343
     },
     {
@@ -662,6 +719,7 @@
       "price_id": null,
       "called_at": "2021-12-26T18:29:07.000Z",
       "direction": "hold",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -673,6 +731,7 @@
       "price_id": null,
       "called_at": "2022-01-05T19:44:08.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -684,6 +743,7 @@
       "price_id": null,
       "called_at": "2022-01-08T18:40:45.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -695,6 +755,7 @@
       "price_id": null,
       "called_at": "2022-02-03T19:42:31.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -706,6 +767,7 @@
       "price_id": null,
       "called_at": "2022-02-03T22:13:57.000Z",
       "direction": "hold",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -717,6 +779,7 @@
       "price_id": null,
       "called_at": "2022-05-12T18:55:51.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -728,6 +791,7 @@
       "price_id": "coingecko:ethereum",
       "called_at": "2022-06-13T03:46:05.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": 1359.3771130796142
     },
     {
@@ -739,6 +803,7 @@
       "price_id": null,
       "called_at": "2022-07-09T15:40:22.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -750,6 +815,7 @@
       "price_id": null,
       "called_at": "2022-07-11T02:19:55.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -761,6 +827,7 @@
       "price_id": null,
       "called_at": "2022-10-27T16:30:05.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -772,6 +839,7 @@
       "price_id": null,
       "called_at": "2022-12-10T18:54:14.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -783,6 +851,7 @@
       "price_id": null,
       "called_at": "2022-12-20T01:47:53.000Z",
       "direction": "hold",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -794,6 +863,7 @@
       "price_id": null,
       "called_at": "2023-02-14T08:03:09.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -805,6 +875,7 @@
       "price_id": null,
       "called_at": "2023-05-13T19:29:41.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -816,6 +887,7 @@
       "price_id": null,
       "called_at": "2023-05-13T21:36:50.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -827,6 +899,7 @@
       "price_id": null,
       "called_at": "2023-06-16T04:03:56.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -838,6 +911,7 @@
       "price_id": null,
       "called_at": "2023-06-16T04:10:23.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -849,6 +923,7 @@
       "price_id": null,
       "called_at": "2023-07-18T16:25:00.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -860,6 +935,7 @@
       "price_id": null,
       "called_at": "2023-10-03T15:10:06.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -871,6 +947,7 @@
       "price_id": null,
       "called_at": "2023-10-03T15:10:06.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -882,6 +959,7 @@
       "price_id": "coingecko:bitcoin",
       "called_at": "2023-10-24T13:32:15.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": 34417
     },
     {
@@ -893,6 +971,7 @@
       "price_id": null,
       "called_at": "2023-10-24T13:56:36.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -904,6 +983,7 @@
       "price_id": null,
       "called_at": "2023-11-14T14:29:13.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -915,6 +995,7 @@
       "price_id": null,
       "called_at": "2023-11-14T14:29:13.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -926,6 +1007,7 @@
       "price_id": null,
       "called_at": "2023-11-14T14:29:13.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -937,6 +1019,7 @@
       "price_id": null,
       "called_at": "2023-11-14T14:29:13.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -948,6 +1031,7 @@
       "price_id": null,
       "called_at": "2023-11-14T14:29:13.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -959,6 +1043,7 @@
       "price_id": "coingecko:bitcoin",
       "called_at": "2023-12-04T16:10:25.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": 41324
     },
     {
@@ -970,6 +1055,7 @@
       "price_id": null,
       "called_at": "2023-12-04T16:24:17.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -981,6 +1067,7 @@
       "price_id": "coingecko:bitcoin",
       "called_at": "2023-12-04T22:53:19.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": 41882
     },
     {
@@ -992,6 +1079,7 @@
       "price_id": null,
       "called_at": "2023-12-08T15:22:24.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -1003,6 +1091,7 @@
       "price_id": null,
       "called_at": "2023-12-13T23:36:30.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -1014,6 +1103,7 @@
       "price_id": null,
       "called_at": "2023-12-26T21:41:24.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -1025,6 +1115,7 @@
       "price_id": null,
       "called_at": "2023-12-30T18:22:35.000Z",
       "direction": "hold",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -1036,6 +1127,7 @@
       "price_id": "coingecko:bitcoin",
       "called_at": "2024-01-10T20:09:21.000Z",
       "direction": "hold",
+      "matched_by": null,
       "price_at_call": 46249
     },
     {
@@ -1047,18 +1139,20 @@
       "price_id": null,
       "called_at": "2024-02-21T21:02:34.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": -0.1265,
+      "r_7d": 0.0346,
+      "r_30d": -0.0191,
       "ticker": "DOGWIFHAT",
       "post_id": "1764431294975369258",
-      "price_id": null,
+      "price_id": "ethereum:0x8AEC4bbDcfB451aA289bfBD3C2F4E34A44ADa1be",
       "called_at": "2024-03-03T23:22:56.000Z",
       "direction": "hold",
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 0.04194884
     },
     {
       "r_1d": null,
@@ -1069,6 +1163,7 @@
       "price_id": null,
       "called_at": "2024-03-29T02:02:22.000Z",
       "direction": "hold",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -1080,6 +1175,7 @@
       "price_id": null,
       "called_at": "2024-03-31T18:30:39.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -1091,6 +1187,7 @@
       "price_id": null,
       "called_at": "2024-12-14T17:47:34.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -1102,18 +1199,20 @@
       "price_id": null,
       "called_at": "2024-12-25T03:26:00.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": 0.0868,
+      "r_7d": 0.0681,
+      "r_30d": -0.3764,
       "ticker": "GROK",
       "post_id": "1877546256186175569",
-      "price_id": null,
+      "price_id": "ethereum:0x8390a1DA07E376ef7aDd4Be859BA74Fb83aA02D5",
       "called_at": "2025-01-10T02:41:25.000Z",
       "direction": "buy",
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 0.00480774
     },
     {
       "r_1d": null,
@@ -1124,6 +1223,7 @@
       "price_id": null,
       "called_at": "2025-01-30T02:41:48.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -1135,6 +1235,7 @@
       "price_id": null,
       "called_at": "2025-02-02T17:12:05.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -1146,6 +1247,7 @@
       "price_id": null,
       "called_at": "2025-02-18T06:18:26.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -1157,6 +1259,7 @@
       "price_id": null,
       "called_at": "2025-03-18T04:36:56.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -1168,6 +1271,7 @@
       "price_id": "coingecko:solana",
       "called_at": "2025-03-25T18:04:25.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": 145.03
     },
     {
@@ -1179,6 +1283,7 @@
       "price_id": null,
       "called_at": "2025-04-09T22:44:03.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -1190,6 +1295,7 @@
       "price_id": null,
       "called_at": "2025-04-09T22:44:03.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -1201,6 +1307,7 @@
       "price_id": "coingecko:spx6900",
       "called_at": "2025-04-10T12:45:24.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": 0.458189
     },
     {
@@ -1212,6 +1319,7 @@
       "price_id": null,
       "called_at": "2025-04-10T12:51:37.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -1223,6 +1331,7 @@
       "price_id": null,
       "called_at": "2025-04-10T12:51:37.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -1234,6 +1343,7 @@
       "price_id": null,
       "called_at": "2025-04-10T12:51:37.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -1245,6 +1355,7 @@
       "price_id": null,
       "called_at": "2025-04-10T12:51:37.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -1256,6 +1367,7 @@
       "price_id": null,
       "called_at": "2025-04-10T12:51:37.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -1267,6 +1379,7 @@
       "price_id": "coingecko:spx6900",
       "called_at": "2025-04-12T17:21:05.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": 0.529214
     },
     {
@@ -1278,6 +1391,7 @@
       "price_id": null,
       "called_at": "2025-05-03T14:46:32.000Z",
       "direction": "sell",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -1289,18 +1403,20 @@
       "price_id": null,
       "called_at": "2025-05-09T20:16:21.000Z",
       "direction": "hold",
+      "matched_by": null,
       "price_at_call": null
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": 0.0531,
+      "r_7d": 0.2332,
+      "r_30d": -0.3849,
       "ticker": "CT",
       "post_id": "2010388073398616101",
-      "price_id": null,
+      "price_id": "solana:6fUwECXzRQeh2wYuTg3xeQHGt4wSbiUbsdd1PYw3pump",
       "called_at": "2026-01-11T16:27:22.000Z",
       "direction": "hold",
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 0.00002183617575273622
     },
     {
       "r_1d": null,
@@ -1311,6 +1427,7 @@
       "price_id": null,
       "called_at": "2026-02-14T05:20:45.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -1322,6 +1439,7 @@
       "price_id": null,
       "called_at": "2026-03-01T20:07:59.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -1333,6 +1451,7 @@
       "price_id": null,
       "called_at": "2026-04-14T03:27:05.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -1344,6 +1463,7 @@
       "price_id": "coingecko:bitcoin",
       "called_at": "2026-08-25T03:23:24.000Z",
       "direction": "hold",
+      "matched_by": null,
       "price_at_call": 80687.0298278729
     },
     {
@@ -1355,6 +1475,7 @@
       "price_id": null,
       "called_at": "2026-08-25T03:23:24.000Z",
       "direction": "hold",
+      "matched_by": null,
       "price_at_call": null
     },
     {
@@ -1366,18 +1487,20 @@
       "price_id": null,
       "called_at": "2026-08-25T03:23:24.000Z",
       "direction": "hold",
+      "matched_by": null,
       "price_at_call": null
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": -0.0019,
+      "r_7d": 0.0008,
+      "r_30d": 0.0004,
       "ticker": "SPCX",
       "post_id": "2092357993560252908",
-      "price_id": null,
+      "price_id": "gt:solana:canP3bBi4tiRLkyU4xGWHT7wxQq1Fmc7WrRr7Wv6Uts",
       "called_at": "2026-08-25T21:06:34.000Z",
       "direction": "hold",
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 0.01246151049336722
     },
     {
       "r_1d": null,
@@ -1388,18 +1511,19 @@
       "price_id": null,
       "called_at": "2026-09-09T18:07:07.000Z",
       "direction": "buy",
+      "matched_by": null,
       "price_at_call": null
     }
   ],
   "hold_pairs": 8,
   "calls_total": 124,
-  "computed_at": "2026-10-12T10:55:47.305Z",
+  "computed_at": "2026-10-16T12:48:45.263Z",
   "by_direction": {
     "buy": 78,
     "hold": 24,
     "sell": 22
   },
-  "calls_priced": 14,
-  "price_source": "DefiLlama coins API",
+  "calls_priced": 18,
+  "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal)",
   "median_hold_days": 41
 }
