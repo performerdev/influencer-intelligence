@@ -206,6 +206,18 @@
   }
 }
 
+/* ── Home stage: words and card brains dither in with the squares (only with JS) ── */
+.dither {
+  -webkit-mask-size: 8px 8px;
+  mask-size: 8px 8px;
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+}
+.js .dither-pre,
+.js .brain-slot canvas {
+  visibility: hidden;
+}
+
 @keyframes ii-scroll-cue {
   0% { transform: scaleY(0); transform-origin: top; }
   45% { transform: scaleY(1); transform-origin: top; }

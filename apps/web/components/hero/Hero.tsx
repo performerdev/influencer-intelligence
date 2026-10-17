@@ -1,54 +1,45 @@
 "use client";
 
-import { Fragment, forwardRef } from "react";
+import { forwardRef } from "react";
 
 import { LogoMark } from "@/components/layout/LogoMark";
 import { site } from "@/config/site";
 
-const LINES = [
-  ["Every", "mind", "on", "Crypto", "Twitter."],
-  ["Cloned", "in", "the", "open."],
-];
-
 type Props = {
-  logoSlotRef: React.Ref<HTMLDivElement>;
+  /** the box the WebGL "ii" is fitted into */
+  iiBoxRef: React.Ref<HTMLDivElement>;
   onPick: () => void;
-  /** no WebGL: draw the SVG mark in the slot instead */
+  /** no WebGL: draw the SVG mark in the box instead */
   staticLogo?: boolean;
 };
 
 /**
- * Screen 1 — DOM layer of the hero. The 3D mark itself lives in the fixed
- * canvas (HeroScene) and is fitted into `logoSlotRef`; this component owns
- * the copy, the two actions and the scroll cue.
+ * Screen 1, DOM layer. The "ii" itself is drawn by the stage canvas (ii-stage.ts)
+ * into `iiBoxRef`; this owns the copy, the two actions and the scroll cue.
+ * Every `data-d` element dithers in and out with the squares.
  */
-export const Hero = forwardRef<HTMLElement, Props>(function Hero({ logoSlotRef, onPick, staticLogo }, ref) {
+export const Hero = forwardRef<HTMLElement, Props>(function Hero({ iiBoxRef, onPick, staticLogo }, ref) {
   return (
-    <section ref={ref} className="relative z-10 flex h-[100svh] min-h-[600px] flex-col pt-topbar" aria-labelledby="hero-title">
-      {/* The 3D "ii" is fitted into this box. */}
-      <div ref={logoSlotRef} className="mx-auto mt-[3vh] flex w-full max-w-[520px] flex-1 items-center justify-center" aria-hidden>
-        {staticLogo && <LogoMark detail="led" className="h-[86%] w-auto" />}
+    <section ref={ref} className="relative z-10 flex h-[100svh] min-h-[600px] flex-col items-center pt-topbar" aria-labelledby="hero-title">
+      <div className="mt-[3vh] grid min-h-0 w-full max-w-[460px] flex-1 place-items-center px-gutter" aria-hidden>
+        <div ref={iiBoxRef} className="aspect-[144/225] h-[min(72%,230px)] max-w-full sm:h-[min(88%,300px)]">
+          {staticLogo && <LogoMark detail="led" className="h-full w-auto" />}
+        </div>
       </div>
 
-      <div className="px-gutter pb-[clamp(72px,12vh,128px)] pt-[clamp(20px,4vh,44px)] text-center" style={{ opacity: "var(--hero-fade, 1)" }}>
+      <div className="px-gutter pb-[clamp(76px,12vh,124px)] pt-[clamp(18px,3.5vh,40px)] text-center">
         <h1 id="hero-title" aria-label={site.tagline} className="text-display font-medium [text-wrap:balance]">
-          {LINES.map((line, li) => (
-            <span key={li} className="block" aria-hidden>
-              {line.map((w, wi) => (
-                <Fragment key={wi}>
-                  <span className="mask-line">
-                    <span className="mask-word hero-word">{w}</span>
-                  </span>
-                  {wi < line.length - 1 ? " " : null}
-                </Fragment>
-              ))}
-            </span>
-          ))}
+          <span className="dither dither-pre block" data-d="l1" aria-hidden>
+            {site.headline[0]}
+          </span>
+          <span className="dither dither-pre block" data-d="l2" aria-hidden>
+            {site.headline[1]}
+          </span>
         </h1>
-        <p className="hero-follow mx-auto mt-5 max-w-[34ch] text-lead text-particle sm:max-w-none" data-step="0">
+        <p className="dither dither-pre mx-auto mt-5 max-w-[34ch] text-lead text-particle sm:max-w-none" data-d="lead">
           {site.description}
         </p>
-        <div className="hero-follow mt-9 flex flex-wrap items-center justify-center gap-x-7 gap-y-4" data-step="1">
+        <div className="dither dither-pre mt-9 flex flex-wrap items-center justify-center gap-x-7 gap-y-4" data-d="cta">
           <button type="button" className="btn-ceramic" onClick={onPick}>
             Pick an intelligence
           </button>
@@ -58,10 +49,10 @@ export const Hero = forwardRef<HTMLElement, Props>(function Hero({ logoSlotRef, 
         </div>
       </div>
 
-      <div className="hero-follow pointer-events-none absolute inset-x-0 bottom-6" data-step="2" aria-hidden>
-        <div className="flex flex-col items-center gap-2" style={{ opacity: "var(--hero-fade, 1)" }}>
-        <span className="font-pixel text-xs text-muted">Scroll</span>
-        <span className="scroll-cue block h-6 w-px origin-top bg-muted" />
+      <div className="dither dither-pre pointer-events-none absolute inset-x-0 bottom-6" data-d="cue" aria-hidden>
+        <div className="flex flex-col items-center gap-2">
+          <span className="font-pixel text-xs text-muted">Scroll</span>
+          <span className="scroll-cue block h-6 w-px origin-top bg-muted" />
         </div>
       </div>
     </section>

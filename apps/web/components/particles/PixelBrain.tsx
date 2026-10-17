@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-import { type PortraitCell, brainGrid, createBrainRenderer } from "@/lib/brain-render";
+import { brainGrid, createBrainRenderer, portraitCells } from "@/lib/brain-render";
 
 type Props = {
   handle: string;
@@ -64,23 +64,7 @@ export function PixelBrain({ handle, src, color, size = 80, active = false, clas
     img.src = src;
     img.onload = () => {
       if (cancelled) return;
-      const tmp = document.createElement("canvas");
-      tmp.width = tmp.height = N;
-      const t = tmp.getContext("2d", { willReadFrequently: true })!;
-      t.imageSmoothingQuality = "high";
-      t.drawImage(img, 0, 0, N, N);
-      const data = t.getImageData(0, 0, N, N).data;
-      const R = N / 2;
-      const q = (x: number) => Math.round(x / 24) * 24;
-      const cells: PortraitCell[] = [];
-      for (let y = 0; y < N; y++)
-        for (let x = 0; x < N; x++) {
-          const d = Math.hypot(x + 0.5 - R, y + 0.5 - R) / R;
-          if (d > 1) continue;
-          const i = (y * N + x) * 4;
-          const v = 1.08 - (0.62 * Math.max(0, d - 0.5)) / 0.5; // vignette: the subject pops
-          cells.push({ x, y, r: q(Math.min(255, data[i] * v)), g: q(Math.min(255, data[i + 1] * v)), b: q(Math.min(255, data[i + 2] * v)), a: d > 0.9 ? (1 - d) / 0.1 : 1 });
-        }
+      const cells = portraitCells(img, N);
       renderer = createBrainRenderer({ size, color, radius: 0.42, portrait: cells });
       if (reduced) renderer.draw(ctx, { angle: Math.PI / 2, reveal: 0, opening: true, t: 0, active: false });
       else if (visible && !raf) raf = requestAnimationFrame(loop);

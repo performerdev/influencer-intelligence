@@ -20,6 +20,8 @@ export type BrainFrame = {
   t: number;
   /** thinking / hover: livelier activity */
   active: boolean;
+  /** draw in this color instead of the brain's own (0–255) */
+  rgb?: readonly [number, number, number];
 };
 
 /** Cells across and their size, for a canvas of `size` css px: about 40 across, never under 1px. */
@@ -54,7 +56,7 @@ export function createBrainRenderer(opts: { size: number; color: string; radius?
   const c = size / 2;
   const m = brainModel();
   const B = m.n;
-  const [br, bg, bb] = hexRgb(color);
+  const base = hexRgb(color);
   const ct = Math.cos(SIGNATURE_TILT);
   const st = Math.sin(SIGNATURE_TILT);
   const gap = cell >= 3 ? 1 : 0;
@@ -77,8 +79,10 @@ export function createBrainRenderer(opts: { size: number; color: string; radius?
   const octx = off2?.getContext("2d") ?? null;
   const img = octx ? octx.createImageData(N, N) : null;
 
-  function draw(ctx: CanvasRenderingContext2D, f: BrainFrame) {
+  /** Render a frame into `img` (N×N, one pixel per cell) without touching any canvas. */
+  function render(f: BrainFrame) {
     if (!octx || !img) return;
+    const [br, bg, bb] = f.rgb ?? base;
     const a = turnAngle(f.angle);
     const ca = Math.cos(a);
     const sa = Math.sin(a);
@@ -176,6 +180,11 @@ export function createBrainRenderer(opts: { size: number; color: string; radius?
       d[o + 2] = b;
       d[o + 3] = 255 * (mm > 0 ? (1 - mm) + mm * pa : 1);
     }
+  }
+
+  /** Put the last rendered frame on a canvas of `size` css px. */
+  function blit(ctx: CanvasRenderingContext2D) {
+    if (!octx || !img) return;
     octx.putImageData(img, 0, 0);
     ctx.clearRect(0, 0, size, size);
     ctx.imageSmoothingEnabled = false;
@@ -191,5 +200,32 @@ export function createBrainRenderer(opts: { size: number; color: string; radius?
     }
   }
 
-  return { draw, N, cell };
+  function draw(ctx: CanvasRenderingContext2D, f: BrainFrame) {
+    render(f);
+    blit(ctx);
+  }
+
+  return { draw, render, blit, img, N, cell, off };
+}
+
+/** A PFP as portrait cells for the brain to unfold into: N×N, cut to a circle, colors quantized, edges vignetted. */
+export function portraitCells(image: CanvasImageSource, N: number): PortraitCell[] {
+  const tmp = document.createElement("canvas");
+  tmp.width = tmp.height = N;
+  const t = tmp.getContext("2d", { willReadFrequently: true })!;
+  t.imageSmoothingQuality = "high";
+  t.drawImage(image, 0, 0, N, N);
+  const data = t.getImageData(0, 0, N, N).data;
+  const R = N / 2;
+  const q = (x: number) => Math.round(x / 24) * 24;
+  const cells: PortraitCell[] = [];
+  for (let y = 0; y < N; y++)
+    for (let x = 0; x < N; x++) {
+      const d = Math.hypot(x + 0.5 - R, y + 0.5 - R) / R;
+      if (d > 1) continue;
+      const i = (y * N + x) * 4;
+      const v = 1.08 - (0.62 * Math.max(0, d - 0.5)) / 0.5; // vignette: the subject pops
+      cells.push({ x, y, r: q(Math.min(255, data[i] * v)), g: q(Math.min(255, data[i + 1] * v)), b: q(Math.min(255, data[i + 2] * v)), a: d > 0.9 ? (1 - d) / 0.1 : 1 });
+    }
+  return cells;
 }
