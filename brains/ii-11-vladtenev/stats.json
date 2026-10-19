@@ -9,20 +9,20 @@
     "1d": {
       "n": 17,
       "hit_rate": 0.5294,
-      "mean_return": 0.0409,
+      "mean_return": 0.041,
       "median_return": 0.0001
     },
     "7d": {
       "n": 17,
       "hit_rate": 0.5294,
-      "mean_return": 0.0401,
+      "mean_return": 0.0402,
       "median_return": 0.001
     },
     "30d": {
       "n": 17,
       "hit_rate": 0.4706,
-      "mean_return": 0.002,
-      "median_return": -0.0005
+      "mean_return": 0.0019,
+      "median_return": -0.0027
     }
   },
   "per_call": [
@@ -339,16 +339,16 @@
       "price_at_call": null
     },
     {
-      "r_1d": -0.0039,
-      "r_7d": -0.0037,
-      "r_30d": -0.0005,
-      "ticker": "SPACEX",
+      "r_1d": -0.0024,
+      "r_7d": -0.0017,
+      "r_30d": -0.0027,
+      "ticker": "SPCX",
       "post_id": "2070186626928529892",
-      "price_id": "gt:solana:7C2hweCtEw7wt3WqnHRqqHSv9NAJaZGJa6KZ5veV1ajN",
+      "price_id": "gt:solana:canP3bBi4tiRLkyU4xGWHT7wxQq1Fmc7WrRr7Wv6Uts",
       "called_at": "2026-06-25T16:45:28.000Z",
       "direction": "buy",
       "matched_by": "ticker",
-      "price_at_call": 0.000010122886413378739
+      "price_at_call": 0.012505509075956997
     },
     {
       "r_1d": null,
@@ -365,7 +365,7 @@
   ],
   "hold_pairs": 0,
   "calls_total": 28,
-  "computed_at": "2026-10-19T09:04:48.634Z",
+  "computed_at": "2026-10-19T20:46:03.726Z",
   "by_direction": {
     "buy": 27,
     "hold": 1,
