@@ -7,22 +7,22 @@
   ],
   "horizons": {
     "1d": {
-      "n": 75,
-      "hit_rate": 0.44,
-      "mean_return": -0.0061,
-      "median_return": -0.0052
+      "n": 76,
+      "hit_rate": 0.4474,
+      "mean_return": -0.006,
+      "median_return": -0.005
     },
     "7d": {
       "n": 75,
       "hit_rate": 0.4933,
-      "mean_return": 0.0081,
+      "mean_return": 0.007,
       "median_return": -0.0035
     },
     "30d": {
       "n": 75,
-      "hit_rate": 0.64,
-      "mean_return": 0.0645,
-      "median_return": 0.0512
+      "hit_rate": 0.6267,
+      "mean_return": 0.063,
+      "median_return": 0.0506
     }
   },
   "per_call": [
@@ -1083,27 +1083,39 @@
       "price_at_call": 76058.6413814315
     },
     {
-      "r_1d": 0.0127,
-      "r_7d": 0.1088,
-      "r_30d": 0.0743,
-      "ticker": "BTC",
-      "post_id": "2100252952007209320",
-      "price_id": "coingecko:bitcoin",
-      "called_at": "2026-09-16T15:58:19.000Z",
+      "r_1d": 0.0113,
+      "r_7d": 0.0284,
+      "r_30d": -0.0427,
+      "ticker": "BNB",
+      "post_id": "2100811458024227069",
+      "price_id": "coingecko:binancecoin",
+      "called_at": "2026-09-18T04:57:37.000Z",
       "direction": "hold",
       "matched_by": null,
-      "price_at_call": 75732.54245953917
+      "price_at_call": 751.8415997040671
+    },
+    {
+      "r_1d": 0.0003,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "BNB",
+      "post_id": "2111507843329454322",
+      "price_id": "coingecko:binancecoin",
+      "called_at": "2026-10-17T17:21:14.000Z",
+      "direction": "hold",
+      "matched_by": null,
+      "price_at_call": 712.3029711075742
     }
   ],
   "hold_pairs": 0,
-  "calls_total": 89,
-  "computed_at": "2026-10-19T08:59:42.210Z",
+  "calls_total": 90,
+  "computed_at": "2026-10-19T20:41:45.088Z",
   "by_direction": {
     "buy": 31,
-    "hold": 57,
+    "hold": 58,
     "sell": 1
   },
-  "calls_priced": 75,
+  "calls_priced": 76,
   "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal)",
   "median_hold_days": null
 }
