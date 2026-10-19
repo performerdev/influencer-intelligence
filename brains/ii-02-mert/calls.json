@@ -200,6 +200,56 @@
     "url": "https://x.com/mert/status/1724645039433748578"
   },
   {
+    "date": "2023-12-11",
+    "ticker": "USDC",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Circle confirmed bullish Solana send USDC higher with haste",
+    "post_id": "1734024650164707444",
+    "url": "https://x.com/mert/status/1734024650164707444"
+  },
+  {
+    "date": "2023-12-14",
+    "ticker": "SOL",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "I have *two* Solana Saga phones and I bought them before they were cool",
+    "post_id": "1735445340172554742",
+    "url": "https://x.com/mert/status/1735445340172554742"
+  },
+  {
+    "date": "2023-12-15",
+    "ticker": "SOL",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "I bought the Solana Saga phone the day it came out the phone has now paid for itself about 3x over lmao",
+    "post_id": "1735470867369336890",
+    "url": "https://x.com/mert/status/1735470867369336890"
+  },
+  {
+    "date": "2023-12-16",
+    "ticker": "SOL",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "yeah tbh didn't really hurt that bad",
+    "post_id": "1735922705537384476",
+    "url": "https://x.com/mert/status/1735922705537384476"
+  },
+  {
+    "date": "2023-12-17",
+    "ticker": "SOL",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "if you're in ETH only, you'd be silly to not get SOL exposure",
+    "post_id": "1736244789329199143",
+    "url": "https://x.com/mert/status/1736244789329199143"
+  },
+  {
     "date": "2023-12-23",
     "ticker": "ETH",
     "chain": null,
@@ -3820,63 +3870,33 @@
     "url": "https://x.com/mert/status/2106077183651565647"
   },
   {
-    "date": "2026-10-03",
-    "ticker": "HELIUSPRIVACY",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "if youre on Solana and haven't thought about @HeliusPrivacy, I humbly guarantee you will fall behind your competitors",
-    "post_id": "2106367720841257227",
-    "url": "https://x.com/mert/status/2106367720841257227"
-  },
-  {
-    "date": "2026-10-07",
-    "ticker": "ZCASH",
-    "chain": null,
-    "address": null,
-    "direction": "hold",
-    "quote": "last year when I landed in Singapore for token2049, Naval QT'd my zcash post which was the start of the run",
-    "post_id": "2107663367909618132",
-    "url": "https://x.com/mert/status/2107663367909618132"
-  },
-  {
-    "date": "2026-10-08",
-    "ticker": "ZCASH",
-    "chain": null,
-    "address": null,
-    "direction": "hold",
-    "quote": "zcash was quite literally created for this and btw, no, do not move your funds no matter what chain youre on",
-    "post_id": "2107996849919701390",
-    "url": "https://x.com/mert/status/2107996849919701390"
-  },
-  {
-    "date": "2026-10-08",
-    "ticker": "SOL",
-    "chain": null,
-    "address": null,
-    "direction": "hold",
-    "quote": "I am irresponsibly confident in the talent and skill of solana &amp; zcash core teams to overcome any future technical challenge",
-    "post_id": "2108132274546028982",
-    "url": "https://x.com/mert/status/2108132274546028982"
-  },
-  {
-    "date": "2026-10-08",
-    "ticker": "ZCASH",
-    "chain": null,
-    "address": null,
-    "direction": "hold",
-    "quote": "I am irresponsibly confident in the talent and skill of solana &amp; zcash core teams to overcome any future technical challenge",
-    "post_id": "2108132274546028982",
-    "url": "https://x.com/mert/status/2108132274546028982"
-  },
-  {
     "date": "2026-10-09",
-    "ticker": "ZCASH",
+    "ticker": "ZEC",
     "chain": null,
     "address": null,
     "direction": "buy",
     "quote": "in fact, Zcash will be resistant (on transparent side) by January $10,000",
     "post_id": "2108372691845861444",
     "url": "https://x.com/mert/status/2108372691845861444"
+  },
+  {
+    "date": "2026-10-13",
+    "ticker": "ZEC",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "if you hold an asset 100x bigger but can't stop lashing out on a so-called memecoin",
+    "post_id": "2109886248521458004",
+    "url": "https://x.com/mert/status/2109886248521458004"
+  },
+  {
+    "date": "2026-10-15",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "GENTLEMEN HOLD THE LINE",
+    "post_id": "2110580548620173419",
+    "url": "https://x.com/mert/status/2110580548620173419"
   }
 ]

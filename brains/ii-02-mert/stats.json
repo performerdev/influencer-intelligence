@@ -7,22 +7,22 @@
   ],
   "horizons": {
     "1d": {
-      "n": 335,
-      "hit_rate": 0.5134,
-      "mean_return": 0.0121,
-      "median_return": 0.0012
+      "n": 340,
+      "hit_rate": 0.5147,
+      "mean_return": 0.0119,
+      "median_return": 0.0014
     },
     "7d": {
-      "n": 336,
-      "hit_rate": 0.5238,
-      "mean_return": 0.0198,
-      "median_return": 0.0083
+      "n": 338,
+      "hit_rate": 0.5325,
+      "mean_return": 0.0234,
+      "median_return": 0.0097
     },
     "30d": {
-      "n": 327,
-      "hit_rate": 0.4893,
-      "mean_return": 0.0846,
-      "median_return": -0.009
+      "n": 331,
+      "hit_rate": 0.4924,
+      "mean_return": 0.086,
+      "median_return": -0.0033
     }
   },
   "per_call": [
@@ -265,6 +265,66 @@
       "direction": "buy",
       "matched_by": null,
       "price_at_call": 56.77
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "USDC",
+      "post_id": "1734024650164707444",
+      "price_id": null,
+      "called_at": "2023-12-11T01:37:47.000Z",
+      "direction": "buy",
+      "matched_by": null,
+      "price_at_call": null
+    },
+    {
+      "r_1d": -0.0398,
+      "r_7d": 0.2372,
+      "r_30d": 0.2581,
+      "ticker": "SOL",
+      "post_id": "1735445340172554742",
+      "price_id": "coingecko:solana",
+      "called_at": "2023-12-14T23:43:06.000Z",
+      "direction": "hold",
+      "matched_by": null,
+      "price_at_call": 75.9
+    },
+    {
+      "r_1d": -0.017,
+      "r_7d": 0.2814,
+      "r_30d": 0.2671,
+      "ticker": "SOL",
+      "post_id": "1735470867369336890",
+      "price_id": "coingecko:solana",
+      "called_at": "2023-12-15T01:24:32.000Z",
+      "direction": "hold",
+      "matched_by": null,
+      "price_at_call": 74.95
+    },
+    {
+      "r_1d": -0.0149,
+      "r_7d": 0.2938,
+      "r_30d": 0.2912,
+      "ticker": "SOL",
+      "post_id": "1735922705537384476",
+      "price_id": "coingecko:solana",
+      "called_at": "2023-12-16T07:19:59.000Z",
+      "direction": "buy",
+      "matched_by": null,
+      "price_at_call": 74.0762431606905
+    },
+    {
+      "r_1d": -0.0515,
+      "r_7d": 0.5632,
+      "r_30d": 0.3005,
+      "ticker": "SOL",
+      "post_id": "1736244789329199143",
+      "price_id": "coingecko:solana",
+      "called_at": "2023-12-17T04:39:50.000Z",
+      "direction": "buy",
+      "matched_by": null,
+      "price_at_call": 73.67115934370622
     },
     {
       "r_1d": 0.0017,
@@ -771,16 +831,16 @@
       "price_at_call": 147.18
     },
     {
-      "r_1d": -0.0122,
-      "r_7d": 0.2439,
-      "r_30d": 0.1523,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "ticker": "ZETA",
       "post_id": "1790388563978199194",
-      "price_id": "ethereum:0xB281d84989c06e2A6CCdC5eA7BF1663c79a1c31A",
+      "price_id": null,
       "called_at": "2024-05-14T14:27:52.000Z",
       "direction": "buy",
-      "matched_by": "ticker",
-      "price_at_call": 0.00007646695708792132
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": -0.126,
@@ -4529,7 +4589,7 @@
     {
       "r_1d": 0.0851,
       "r_7d": 0.1335,
-      "r_30d": null,
+      "r_30d": -0.1508,
       "ticker": "ZEC",
       "post_id": "2100298886208450741",
       "price_id": "coingecko:zcash",
@@ -4611,87 +4671,51 @@
       "price_at_call": 1365.3887575891222
     },
     {
-      "r_1d": null,
-      "r_7d": null,
+      "r_1d": 0.022,
+      "r_7d": 0.0286,
       "r_30d": null,
-      "ticker": "HELIUSPRIVACY",
-      "post_id": "2106367720841257227",
-      "price_id": null,
-      "called_at": "2026-10-03T12:56:13.000Z",
-      "direction": "buy",
-      "matched_by": null,
-      "price_at_call": null
-    },
-    {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
-      "ticker": "ZCASH",
-      "post_id": "2107663367909618132",
-      "price_id": null,
-      "called_at": "2026-10-07T02:44:40.000Z",
-      "direction": "hold",
-      "matched_by": null,
-      "price_at_call": null
-    },
-    {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
-      "ticker": "ZCASH",
-      "post_id": "2107996849919701390",
-      "price_id": null,
-      "called_at": "2026-10-08T00:49:48.000Z",
-      "direction": "hold",
-      "matched_by": null,
-      "price_at_call": null
-    },
-    {
-      "r_1d": -0.0416,
-      "r_7d": -0.1074,
-      "r_30d": null,
-      "ticker": "SOL",
-      "post_id": "2108132274546028982",
-      "price_id": "coingecko:solana",
-      "called_at": "2026-10-08T09:47:56.000Z",
-      "direction": "hold",
-      "matched_by": null,
-      "price_at_call": 115.12920016721412
-    },
-    {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
-      "ticker": "ZCASH",
-      "post_id": "2108132274546028982",
-      "price_id": null,
-      "called_at": "2026-10-08T09:47:56.000Z",
-      "direction": "hold",
-      "matched_by": null,
-      "price_at_call": null
-    },
-    {
-      "r_1d": null,
-      "r_7d": -0.0125,
-      "r_30d": null,
-      "ticker": "ZCASH",
+      "ticker": "ZEC",
       "post_id": "2108372691845861444",
-      "price_id": "gt:base:0xbfa13d2133f38dd25f1a0e4b2152ce1e0e8d9f7e99567e2d8783d2e9ca3e1ba2",
+      "price_id": "coingecko:zcash",
       "called_at": "2026-10-09T01:43:16.000Z",
       "direction": "buy",
-      "matched_by": "ticker",
-      "price_at_call": 2.45720317242385e-7
+      "matched_by": null,
+      "price_at_call": 1191.5886112851035
+    },
+    {
+      "r_1d": 0.0277,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "ZEC",
+      "post_id": "2109886248521458004",
+      "price_id": "coingecko:zcash",
+      "called_at": "2026-10-13T05:57:36.000Z",
+      "direction": "hold",
+      "matched_by": null,
+      "price_at_call": 1210.6067350463406
+    },
+    {
+      "r_1d": 0.016,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "BTC",
+      "post_id": "2110580548620173419",
+      "price_id": "coingecko:bitcoin",
+      "called_at": "2026-10-15T03:56:30.000Z",
+      "direction": "hold",
+      "matched_by": null,
+      "price_at_call": 80785.88328804653
     }
   ],
   "hold_pairs": 11,
-  "calls_total": 388,
-  "computed_at": "2026-10-16T12:47:28.165Z",
+  "calls_total": 390,
+  "computed_at": "2026-10-19T08:57:39.783Z",
   "by_direction": {
-    "buy": 220,
+    "buy": 222,
     "hold": 144,
     "sell": 24
   },
-  "calls_priced": 336,
+  "calls_priced": 340,
   "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal)",
   "median_hold_days": 65.8
 }
