@@ -8,20 +8,20 @@
   "horizons": {
     "1d": {
       "n": 19,
-      "hit_rate": 0.4211,
-      "mean_return": -0.0142,
-      "median_return": -0.0019
+      "hit_rate": 0.5263,
+      "mean_return": -0.0071,
+      "median_return": 0.0017
     },
     "7d": {
       "n": 19,
-      "hit_rate": 0.4211,
-      "mean_return": -0.0857,
-      "median_return": -0.0273
+      "hit_rate": 0.5263,
+      "mean_return": -0.0154,
+      "median_return": 0.0008
     },
     "30d": {
       "n": 19,
-      "hit_rate": 0.4737,
-      "mean_return": -0.0865,
+      "hit_rate": 0.4211,
+      "mean_return": -0.0612,
       "median_return": -0.0191
     }
   },
@@ -1467,16 +1467,16 @@
       "price_at_call": null
     },
     {
-      "r_1d": -0.06,
-      "r_7d": -0.9885,
-      "r_30d": -0.9892,
+      "r_1d": 0.0531,
+      "r_7d": 0.2332,
+      "r_30d": -0.3849,
       "ticker": "CT",
       "post_id": "2010388073398616101",
-      "price_id": "solana:9YZZtRDqd9kiJMqgZ8XmFaE1mfK2T4kNpYgW1Nfn9rYV",
+      "price_id": "solana:6fUwECXzRQeh2wYuTg3xeQHGt4wSbiUbsdd1PYw3pump",
       "called_at": "2026-01-11T16:27:22.000Z",
       "direction": "hold",
       "matched_by": "ticker",
-      "price_at_call": 0.13288875116552465
+      "price_at_call": 0.00002183617575273622
     },
     {
       "r_1d": null,
@@ -1515,16 +1515,16 @@
       "price_at_call": null
     },
     {
-      "r_1d": -0.0015,
-      "r_7d": -0.0273,
-      "r_30d": 0.1084,
+      "r_1d": 0.0202,
+      "r_7d": 0.0852,
+      "r_30d": -0.0152,
       "ticker": "BITCOIN",
       "post_id": "2092090439402659987",
-      "price_id": "gt:bsc:0xa24CF556E66279F53C93F70BD507A0084060bd6D",
+      "price_id": "ethereum:0x72e4f9F808C49A2a61dE9C5896298920Dc4EEEa9",
       "called_at": "2026-08-25T03:23:24.000Z",
       "direction": "hold",
       "matched_by": "ticker",
-      "price_at_call": 2.10847208295334e-9
+      "price_at_call": 0.01645389436256664
     },
     {
       "r_1d": -0.0019,
@@ -1553,7 +1553,7 @@
   ],
   "hold_pairs": 9,
   "calls_total": 127,
-  "computed_at": "2026-10-19T09:04:40.759Z",
+  "computed_at": "2026-10-19T20:44:42.905Z",
   "by_direction": {
     "buy": 81,
     "hold": 22,
