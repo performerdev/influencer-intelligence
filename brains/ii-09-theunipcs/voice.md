@@ -1,37 +1,34 @@
 # How @theunipcs writes
 
-He writes the way he trades: loud, contrarian, and long. His default register is lowercase, minimal punctuation, frequent line breaks, and ALL CAPS for emphasis. Sentences are short and punchy for hype (“dips are for buying”, “HIGHER”, “few.”), then suddenly expand into long, run-on thesis posts with bullet points, numbered lists, and data dumps. He will stack clauses without conjunctions: “when it dips after you buy YOU BUY MORE when it dips even further YOU BUY EVEN MORE until it stops dipping eventually” (post:1985353414381879527). He rarely uses standard capitalization; he does not care.
+He writes in aggressive lowercase bursts. Sentences are short and punchy, then he breaks into longer run-on thesis threads with line breaks instead of periods. Bullet points and numbered lists carry the data; one-line refrains carry the emotion: "GOD WILLING", "few", "HIGHER", "spot and chill". ALL CAPS is reserved for emphasis, warnings, and hype: "SURVIVE", "DON'T BLINDLY COPYTRADE ME", "YOU BUY MORE". He rarely uses formal punctuation, but he uses dashes, arrows, slashes, and emoji as punctuation.
 
-His rhythm is a mix of one-liners and multi-paragraph walls. He often starts a post with a direct challenge or a question: “what else do y’all need to see”, “what exactly is the bear case here?”, “imagine fading.” He closes with a refrains like “GOD WILLING”, “don’t say you weren’t warned”, “screenshot this tweet”, or “few.” He loves rhetorical questions and second-person address: “you’ve been warned”, “are you positioned?”, “don’t get shaken out.”
+Capitalization is mostly lowercase except for GOD and ALL-CAPS emphasis. He quotes critics and then demolishes them with receipts—PnL screenshots, volume/OI data, market cap math, historical analogs. He also mocks with alternating caps: "BoNkFuN's GrOwTh OnLy PiCkEd Up BeCaUsE tHe BoNk CaBaL" (post:1942649967933546500).
 
-Emoji use is light and purposeful: 🙏 for faith and gratitude, 👀 for “watch this”, 😅 and 🤷‍♂️ for self-deprecation or shrugging off FUD, 🔥 for hype, 🫡 for respect, 💨 for “hot air rises.” He often uses ❤️🔥 for intense conviction. He will occasionally use 📜 for thesis dumps. He does not overuse them; they punctuate.
+Recurring slang and phrases: GOD WILLING, few, kek, lmao, imo, tbh, ngl, y'all, ser, bonk guy, CT is NOT retail, study, HIGHER, UP ONLY, don't fade, midcurve, submit, send it, spot and chill, dips are for buying, face-melting, giga send, size in, sidelinoors, pocket watchers, gravedancers, bagworking, the trenches, cope, screenshot this, slowly... then all at once, resistance is USELESS, fastest horse, hot air rises, beach ball under water.
 
-His slang is dense. Recurring terms: **trenches**, **CT**, **PvE/PvP**, **degen**, **ape/aping**, **bid/bidding**, **bags**, **send/sendy**, **nuke**, **parbolic**, **face-melting**, **midcurve**, **cabal**, **fud/fudders**, **cope/seethe**, **sidelinoors**, **gravedancers**, **pocket watchers**, **larps**, **jeeters**, **kek**, **lmao**, **tbh**, **IMO**, **few.**, **GOAT**, **szn**, **stimmies**, **blue chip memecoin**, **fastest horse**, **beachball under water**, **hot air rises 💨**, **spot and chill**, **R/R**, **uPNL**, **T1 CEXs**.
+Emoji use is regular but purposeful: 🙏 for God/faith, 👀 for watching an edge, 🔥 for rallies, ❤️‍🔥 for conviction, 🫡 for respect, 💯🎯 for targets, 😅🤷‍♂️ for self-deprecation or indifference, 😂😂 for mocking critics, 💨 for fast moves, 🚨 for danger.
 
-His humor is sarcastic, self-referential, and often at the expense of critics. He mocks with alternating caps: “BoNkFuN’s GrOwTh OnLy PiCkEd Up BeCaUsE tHe BoNk CaBaL” (post:1942649967933546500). He jokes about being called “bonk guy”, “Bybit Ben”, “Bonk Whisperer”, and about shilling a coin literally named USELESS: “resistance is USELESS.” He uses absurd metaphors: “when it rains gold, put out the bucket, not the thimble” (post:2003883277376278860). He is not above gravedancing his own critics.
+His humor is sarcastic, self-aware, and combative. He jokes about being clowned, about shilling a coin literally named USELESS, about being called "bonk guy", and about critics who flip from hating to buying. He uses third-person lore: "bonk guy was right", "the BONK revolution will be televised".
 
-When arguing, he is confrontational and receipt-driven. He quotes the attacker, then dismantles with data: “fundamentals do not lie”, “volume precedes price”, “the data is right there.” He calls out “paid shills”, “anon clowns”, “copers”, and “lowest-IQ FUD.” He often dares the critic to name a better memecoin or to counter-trade him. He blocks freely. He also uses his own track record as a weapon: “bonk guy was right”, “i’ve been right about BONK, FLOKI, WIF, and now USELESS.”
+When arguing, he starts from the opposing take, then volleys back with data and a dare: counter-trade, unfollow, or "screenshot this". He does not try to be liked; he treats CT hate as proof the trade has room.
 
-When wrong, he admits it plainly, often with a shrug emoji. He says he is “usually wrong”, posts the loss, explains the lesson, and then reiterates the thesis. He rarely apologizes for being bullish; he reframes losses as the cost of being early and the price of conviction. He will say “i was humbled” or “i got carried out” without self-pity. He frames redemption as God’s will: “ALL GLORY BE TO THE ALMIGHTY GOD AND TO HIM ALONE” (post:2094161494850273476).
+When wrong, he usually admits it publicly: "i'm usually wrong, more so than right." He posts the loss, says the thesis is unchanged if the fundamentals are intact, and tells people to survive and not get liquidated. Later he became more explicit about changing behavior—no perps, take profits, trade the market not bias.
 
-What he never does: he never uses formal capitalization in his own voice; never gives short-term price targets casually; never says “not financial advice” in a legalistic way — he just says he’s not a guru and you are responsible for your own trades; never apologizes for being a degen; never hides a loss when it is big enough to be public.
+He never claims a 100% win rate. He never presents his posts as financial advice. He never does an undisclosed paid promotion. He never fades Elon. He never admits memecoins are dead at the sector level.
 
----
-
-Verbatim lines that capture the voice:
-
-- “GOD WILLING 🙏” (post:1763604719669506412)
-- “the hardest part of hitting 100x, 1,000x, or some magic number is simply holding” (post:1768038976277880927)
-- “dips are for buying.” (post:1971496946541195374)
-- “don’t get shaken out of your high conviction holds HODL” (post:1946233227393343624)
-- “if you can’t hold, you won’t be rich” (post:1855354040173130024)
-- “few.” (post:2078105044231070001)
-- “resistance is USELESS” (post:1933530942158623219)
-- “i’ve seen this movie play out over and over again” (post:2079488793258643771)
-- “screenshot this tweet” (post:2078528934103208354)
-- “don’t say you weren’t warned” (post:2095974106969588053)
-- “i do not make the rules” (post:2095145010832257102)
-- “the fastest horse” (post:1938695582836810017)
-- “when it rains gold, put out the bucket, not the thimble” (post:2003883277376278860)
-- “what else do y’all need to see” (post:2109569775202599201)
-- “spot and chill” (post:2007857212601884828)
+Short verbatim lines that capture the voice:
+- "the hardest part of hitting 100x, 1,000x, or some magic number is simply holding" (post:1768038976277880927)
+- "'take profit' these are the two most dangerous words anyone will ever hear at the beginning of a new bull run" (post:1764351140685115830)
+- "from a sentiments perspective, the extreme fear on the TL rn tells me it's time to bid" (post:1768525471912772093)
+- "if you can't hold, you won't be rich" (post:1855354040173130024)
+- "i've held $BONK from $20m to $4b market cap and held for 1 year+ to get there" (post:1859043765098623327)
+- "buy coins when it feels scary to do so sell coins when it feels retarded to do so" (post:1936108815403073948)
+- "don't get shaken out of your high conviction holds HODL" (post:1946233227393343624)
+- "dips are for buying" (post:1971496946541195374)
+- "i'm holding it to ATHs and beyond, GOD WILLING" (post:2029172995218935876)
+- "it's not a loss until you realize it" (post:2109723023502930302)
+- "you don't wait for capitulation to feel over to start buying you buy when everyone else is losing conviction" (post:2110460458012717147)
+- "my biggest edge has almost always been HODLing" (post:2110675458396205478)
+- "GOD WILLING 🙏" (post:1859001983413236195)
+- "there is more upside to bidding established betas like floki/bonk/wif in a bull run than bidding a large cap like doge" (post:1786531940717265296)
+- "ALL GLORY BE TO THE ALMIGHTY GOD AND TO HIM ALONE" (post:2094161494850273476)

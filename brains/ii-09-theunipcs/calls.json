@@ -5465,39 +5465,9 @@
     "chain": null,
     "address": null,
     "direction": "hold",
-    "quote": "$USELESS is ALSO leading memecoins in whale inflows especially on Solana",
+    "quote": "$USELESS is positioning itself as THE memecoin of this cycle",
     "post_id": "2109569775919841300",
     "url": "https://x.com/theunipcs/status/2109569775919841300"
-  },
-  {
-    "date": "2026-10-12",
-    "ticker": "USELESS",
-    "chain": null,
-    "address": null,
-    "direction": "hold",
-    "quote": "this is THE memecoin of the cycle?",
-    "post_id": "2109742485106982948",
-    "url": "https://x.com/theunipcs/status/2109742485106982948"
-  },
-  {
-    "date": "2026-10-13",
-    "ticker": "CA",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "the capitulation is for buying, not panicking position accordingly",
-    "post_id": "2109871757175996430",
-    "url": "https://x.com/theunipcs/status/2109871757175996430"
-  },
-  {
-    "date": "2026-10-13",
-    "ticker": "CA",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "buy the capitulation",
-    "post_id": "2109907982368862271",
-    "url": "https://x.com/theunipcs/status/2109907982368862271"
   },
   {
     "date": "2026-10-14",
@@ -5515,7 +5485,7 @@
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "many will look back at this $SI capitulation candle and wish they had bought it",
+    "quote": "i objectively believe $SI makes new ATHs and runs to hundreds of millions",
     "post_id": "2110460458012717147",
     "url": "https://x.com/theunipcs/status/2110460458012717147"
   },
@@ -5541,33 +5511,13 @@
   },
   {
     "date": "2026-10-15",
-    "ticker": "SI",
-    "chain": null,
-    "address": null,
-    "direction": "hold",
-    "quote": "remember the name 'Super Inu' & the ticker $SI",
-    "post_id": "2110676398931124681",
-    "url": "https://x.com/theunipcs/status/2110676398931124681"
-  },
-  {
-    "date": "2026-10-15",
     "ticker": "USELESS",
     "chain": null,
     "address": null,
-    "direction": "hold",
+    "direction": "buy",
     "quote": "i think this starts to aggressively outperform again soon",
     "post_id": "2110776393349136475",
     "url": "https://x.com/theunipcs/status/2110776393349136475"
-  },
-  {
-    "date": "2026-10-15",
-    "ticker": "SI",
-    "chain": null,
-    "address": null,
-    "direction": "hold",
-    "quote": "SI is going to be one of the strongest memecoins of Q4 IMO!",
-    "post_id": "2110848970272706573",
-    "url": "https://x.com/theunipcs/status/2110848970272706573"
   },
   {
     "date": "2026-10-15",
@@ -5584,8 +5534,8 @@
     "ticker": "SI",
     "chain": null,
     "address": null,
-    "direction": "hold",
-    "quote": "i have a very high degree of confidence that this will be one of the major memecoin runners of this quarter",
+    "direction": "buy",
+    "quote": "first target is ATH second target is hundreds of millions get ready!",
     "post_id": "2111058086752325911",
     "url": "https://x.com/theunipcs/status/2111058086752325911"
   },
@@ -5615,8 +5565,18 @@
     "chain": null,
     "address": null,
     "direction": "hold",
-    "quote": "Nullmask / $MASK chart btw yeh i think this looks pretty good and on top of insane fundamentals too send it!",
+    "quote": "yeh i think this looks pretty good and on top of insane fundamentals too send it!",
     "post_id": "2111480927310299618",
     "url": "https://x.com/theunipcs/status/2111480927310299618"
+  },
+  {
+    "date": "2026-10-19",
+    "ticker": "USELESS",
+    "chain": "solana",
+    "address": "Dz9mQ9NzkBcCsuGPFJ3r1bS4wgqKMHBPiVuniW8Mbonk",
+    "direction": "hold",
+    "quote": "solana:Dz9mQ9NzkBcCsuGPFJ3r1bS4wgqKMHBPiVuniW8Mbonk is the $DOGE / $PEPE type runner of the cycle zoom out",
+    "post_id": "2112204016134271306",
+    "url": "https://x.com/theunipcs/status/2112204016134271306"
   }
 ]
