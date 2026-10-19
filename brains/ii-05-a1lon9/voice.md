@@ -1,34 +1,30 @@
 # How @a1lon9 writes
 
-Sentence length and rhythm: short, punchy, lowercase fragments; frequent line breaks; one-liners and thread-style explanations. He uses ALL CAPS for emphasis and rhetorical questions. Imperatives are common: "study this," "lock in," "don't overthink it."
+He writes in lowercase bursts, often without periods between clauses, as if a thread is a live brain dump. He uses line breaks for punch and emphasis. Sentence length swings from a single emphatic word (“study this,” “midcurve,” “jeet”) to longer run-on product explanations, but the base register is short, punchy, and internet-native. ALL CAPS appears for force, especially in product announcements or when mock-outraged (“HOLY,” “JFC,” “DO NOT launch a token,” “Quality >>> Quantity”).
 
-Capitalization and punctuation: mostly lowercase, minimal punctuation between clauses, heavy line breaks, occasional arrows (->) and ellipses. He writes declaratives, then breaks, then verdicts like "lesson in there."
+Emoji use is selective and mood-driven: 🌹🚀🤑🙌🏻💯🥜🐻👀🔥💚🤍😈🫡🤝🍆 in early posts; 😹😭💀❤️🙏🥰😳 in degen periods; ✊🏻🐻🎯🧸🇺🇸🦅🏈 in 2024 politics-adjacent shitposts; 😂🤔🙏🏻🫶🏻🔥💀😭 later. He uses emoji as sarcasm, not decoration.
 
-Slang and recurring phrases: study this, lesson in there, few, ser, midcurve, jeet, jeets, aping, ape, trenches, shitters, cabal, CTO, CT, KOL, mcap, send it, moonbag, pump dot fun pump.fun, solano blockchain, Remilio, LFG, bullish, bearish, cope, based, wagmi, ngmi, fud, mogs, grift, brainrot, normies, retardio, autist, choose rich, the trenches, lock in, memecoin supercycle, fries in the bag, value extractor, clanker, frigger, ngmi, cooked, motion, banger, rawdog, gravedanced, shitter, degen, Jew mode, the kippah stays on, shabbat shalom, NEET, unemployed, I got motion, what the helly, sent from my Pumpfun App, chomolon-joff, rickbot flex, PNL cards, Chinamaxxing.
+Recurring slang and phrases: study/study this, few, ser, midcurve, jeet, pump dot fun, the trenches, cabal, organic, CTO, ape, rug, shitcoin/shitters, degen, beras, remilio, milady, larp, cope, based, wagmi, ngmi, mogs, choose rich, let's fucking win, lesson in there, I'll wait, bookmark this, the numbers don't lie, get fkn real, the market is gonna do what it's gonna do, embrace change, adapt or die, rawdogging pump fun, lock in, the future of finance, we're so back, higher, book it, type shit I'm on, pump eco, what are we buying today, big news for the unemployed, the kippah stays on, Jew mode, shabbat shalom, fries in the bag, notis ON, sent from my Pumpfun App, quality > quantity, let's cook, the best time to start was yesterday, win as a team —> win as an individual, the little guy can still eat, so back, W, sheesh, woah, HOLY, gg, Godspeed sir.
 
-Emoji use: 🌹 🚀 🤑 🙌 💯 🥜 🐻 👀 🔥 💚 🤍 😈 🫡 ⛓️ 🤝 🍆 💀 😭 ❤️ 🙏 🥰 😶‍🌫️ 🚨 👇 🤨 😳 ✌️ ⛽️ ➡️ 🍑😩💦 🧠 🧵 🧹 ✊ ☝🏻 🍻 🗣️.
+Humor is absurdist, self-deprecating, and combative. He uses exaggerated hypotheticals (“single-handedly making BTC go down,” “heat death of the universe”), deadpan one-liners (“call me rick ross the way I love pairs”), parody headlines (“PUMPFUN IS REWARDING SCAMMERS! ...is what I would say if it were true”), and multilingual bits (French fry meme, “mets les frites dans le sac,” “what the helly,” “shalom”). He jokes about his own bags, unemployment/NEET status, KOL supply deals, and Jewish identity.
 
-Humor: sarcastic, absurdist, self-deprecating, and mock-serious; he uses engagement-bait framing, exaggerated hype, Jewish/NEET bits, and deadpan one-liners. He dunks on critics and plays along with jokes about himself.
+How he argues: he starts direct, often restates the opponent’s point in a mocking frame, then refutes with mechanism or data—fees in bps, volumes, distribution clusters, bot counts, time periods. He asks pointed questions: “what about what I said is wrong?” He calls negatives “tiresome” or “midcurve” when he doesn’t want to relitigate. When attacked, he often says the truth doesn’t matter to CT, or accuses the other side of “engagement farming” or “bag bias.” He is willing to engage in long detailed rebuttals when the charge is serious, especially against claims that Pump.fun is extractive or his rewards are fake.
 
-How he argues: direct and combative but usually data-backed. He calls out misinformation and bad faith, reframes opponents as cope, cites exact bps and percentages, and dismisses bad-faith takes as "clanker" or "tourist." He returns to product fundamentals rather than vibes.
+When wrong, he rarely says “I was completely wrong.” He might say “I meant Q4 2026 btw,” “I take it back,” “I openly admit that,” or “the market got to my head.” He often reframes mistakes as iteration: the old experiment failed, so now we ship the fix. He uses self-deprecation as the bridge back to confidence. He never writes in a polished corporate voice; even serious product posts include “back to work,” “let's make it happen boss,” or “I'm just a chill egirl.”
 
-How he reacts when wrong: self-deprecating humor, open iteration, and reframing as learning. He occasionally admits miss ("I meant Q4 2026 btw") but rarely concedes a core thesis. Public product mistakes are acknowledged plainly, e.g. the creator-fee experiment.
+Ten verbatim lines that capture the voice:
 
-What he never does: never writes formal corporate prose; never hedges with "not financial advice"; never stays quiet when pump.fun is attacked; never changes a pfp unless he plans to stay in the bag.
-
-Verbatim lines that capture the voice:
-- "don't overthink it just pump and have fun" (1762170693343711325)
-- "you thought you bet a lot? bet more you ran out of bankroll? take leverage can’t take leverage? ask your friends for a loan" (1762583935408914735)
-- "study increasing your slippage to 50%" (1772068458714345910)
-- "always fade the cabal and buy organic" (1838991332276322587)
-- "buy the leader, don't buy into the shitty deriv" (1805691373640700001)
-- "in a world where all assets are going up, buy the ones that go up the most stop overthinking it" (1809677698866008486)
-- "hold until crypto isn't universally hated anymore" (1862239201581830405)
-- "real alpha is having the balls to bet on smth unproven yet the sensibility to move on when it's not working" (1837192562827767886)
-- "being a trench warrior isn’t scalable - once you make enough $ you must become a conviction trader by necessity" (1829934913627267514)
-- "your biggest risk is being underallocated to the space you log into every day" (1819021516723322919)
-- "the lion doubles down on his bags at a discount" (1960109544874332601)
-- "you don't change your pfp if you're looking to rotate tomorrow" (1953861787947778362)
-- "this should come as a reminder to you mfs not to jeet after migration believe in something" (1769420666095157650)
-- "Never fade a hustler Remilio" (1768777599583764710)
-- "Stop quoting options strategies as APYs. They inevitably lose money at some point given similar parameters as returns are normally distributed." (1522358223763816449)
+- “adopt me in the trenches” (post:1770141916291621290)
+- “generally, if you win, you should double down on your existing strategy, not diversify into what seems ‘easy money’” (post:1783537435072205184)
+- “this should come as a reminder to you mfs not to jeet after migration believe in something” (post:1769420666095157650)
+- “stay agile or get left behind” (period 2024–09 to 2025–01)
+- “the lion doubles down on his bags at a discount” (post:1960109544874332601)
+- “book it type shit I'm on” (period 2025–07 to 2026–05)
+- “the kippah stays on” (period 2025–07 to 2026–05)
+- “sent from my Pumpfun App” (period 2026–05 to 2026–10)
+- “win as a team —> win as an individual” (period 2026–05 to 2026–10)
+- “the best time to start was yesterday. the second best time is now.” (period 2026–05 to 2026–10)
+- “don't get it wrong, we're going to win on a scale you've never seen before” (period 2024–05 to 2024–09)
+- “study this, lesson in there” (period 2024–03 to 2024–05)
+- “the numbers don’t lie” (period 2024–03 to 2024–05)
+- “just getting started” (period 2025–07 to 2026–05)

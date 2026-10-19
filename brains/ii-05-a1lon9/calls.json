@@ -630,58 +630,18 @@
     "url": "https://x.com/a1lon9/status/1973141501178946019"
   },
   {
-    "date": "2026-07-02",
-    "ticker": "CA",
+    "date": "2026-06-30",
+    "ticker": "AGENTS",
     "chain": null,
     "address": null,
-    "direction": "buy",
-    "quote": "$1 to $100k run it followed!",
-    "post_id": "2072725514272276791",
-    "url": "https://x.com/a1lon9/status/2072725514272276791"
-  },
-  {
-    "date": "2026-07-02",
-    "ticker": "CA",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "run it back 2024 style",
-    "post_id": "2072734796342522271",
-    "url": "https://x.com/a1lon9/status/2072734796342522271"
-  },
-  {
-    "date": "2026-07-02",
-    "ticker": "CA",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "dropped a follow, let's see you!",
-    "post_id": "2072735270210851137",
-    "url": "https://x.com/a1lon9/status/2072735270210851137"
-  },
-  {
-    "date": "2026-08-07",
-    "ticker": "CA",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "who should I follow?",
-    "post_id": "2085734211365847319",
-    "url": "https://x.com/a1lon9/status/2085734211365847319"
-  },
-  {
-    "date": "2026-08-12",
-    "ticker": "CA",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "followed",
-    "post_id": "2087639048839929886",
-    "url": "https://x.com/a1lon9/status/2087639048839929886"
+    "direction": "hold",
+    "quote": "we're still super bullish on that sector and will see how we can support it in our ecosystem",
+    "post_id": "2071995373086806020",
+    "url": "https://x.com/a1lon9/status/2071995373086806020"
   },
   {
     "date": "2026-08-19",
-    "ticker": "CA",
+    "ticker": "SAPPHY",
     "chain": null,
     "address": null,
     "direction": "buy",
@@ -690,63 +650,23 @@
     "url": "https://x.com/a1lon9/status/2090130633192272210"
   },
   {
-    "date": "2026-08-26",
-    "ticker": "CA",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "welcome legend",
-    "post_id": "2092652864023781856",
-    "url": "https://x.com/a1lon9/status/2092652864023781856"
-  },
-  {
-    "date": "2026-08-27",
-    "ticker": "CA",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "sheesh",
-    "post_id": "2093060392700272908",
-    "url": "https://x.com/a1lon9/status/2093060392700272908"
-  },
-  {
-    "date": "2026-08-29",
-    "ticker": "CA",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "Godspeed sir",
-    "post_id": "2093829583628038446",
-    "url": "https://x.com/a1lon9/status/2093829583628038446"
-  },
-  {
-    "date": "2026-09-03",
-    "ticker": "CA",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "next target?",
-    "post_id": "2095554282019799135",
-    "url": "https://x.com/a1lon9/status/2095554282019799135"
-  },
-  {
-    "date": "2026-09-25",
-    "ticker": "CA",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "took you a month to 100x that means you’ve got 3 days to get to 7 figs. lock in.",
-    "post_id": "2103285670085288166",
-    "url": "https://x.com/a1lon9/status/2103285670085288166"
-  },
-  {
     "date": "2026-09-29",
-    "ticker": "CA",
+    "ticker": "CATECOIN",
     "chain": null,
     "address": null,
-    "direction": "buy",
+    "direction": "hold",
     "quote": "my favorite troublemaker ;)",
     "post_id": "2105054503032725857",
     "url": "https://x.com/a1lon9/status/2105054503032725857"
+  },
+  {
+    "date": "2026-10-15",
+    "ticker": "HUGO",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "investing in hugo at 13k is like investing in bitcoin at 13k",
+    "post_id": "2110782663636259306",
+    "url": "https://x.com/a1lon9/status/2110782663636259306"
   }
 ]
