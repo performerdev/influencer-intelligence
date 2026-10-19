@@ -7,22 +7,22 @@
   ],
   "horizons": {
     "1d": {
-      "n": 2,
-      "hit_rate": 1,
-      "mean_return": 0.0477,
-      "median_return": 0.0477
+      "n": 4,
+      "hit_rate": 0.75,
+      "mean_return": -0.0241,
+      "median_return": 0.0118
     },
     "7d": {
-      "n": 2,
-      "hit_rate": 0.5,
-      "mean_return": 0.0261,
-      "median_return": 0.0261
+      "n": 4,
+      "hit_rate": 0.25,
+      "mean_return": -0.1313,
+      "median_return": -0.1037
     },
     "30d": {
-      "n": 2,
-      "hit_rate": 0.5,
-      "mean_return": -0.0736,
-      "median_return": -0.0736
+      "n": 4,
+      "hit_rate": 0.25,
+      "mean_return": -0.3732,
+      "median_return": -0.483
     }
   },
   "per_call": [
@@ -39,28 +39,28 @@
       "price_at_call": 44.29618034356514
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": 0.0128,
+      "r_7d": -0.2029,
+      "r_30d": -0.6593,
       "ticker": "SANTA",
       "post_id": "1471862214126710785",
-      "price_id": null,
+      "price_id": "bsc:0x4F1A6FC6A7B65Dc7ebC4EB692Dc3641bE997c2F2",
       "called_at": "2021-12-17T15:17:52.000Z",
       "direction": "buy",
-      "matched_by": null,
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 4.201949457534977e-9
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": -0.2047,
+      "r_7d": -0.3746,
+      "r_30d": -0.6861,
       "ticker": "SANTA",
       "post_id": "1474387550928355328",
-      "price_id": null,
+      "price_id": "bsc:0x4F1A6FC6A7B65Dc7ebC4EB692Dc3641bE997c2F2",
       "called_at": "2021-12-24T14:32:39.000Z",
       "direction": "hold",
-      "matched_by": null,
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 3.3682674912762112e-9
     },
     {
       "r_1d": null,
@@ -197,13 +197,13 @@
   ],
   "hold_pairs": 0,
   "calls_total": 14,
-  "computed_at": "2026-10-19T08:54:08.912Z",
+  "computed_at": "2026-10-19T20:38:42.052Z",
   "by_direction": {
     "buy": 1,
     "hold": 3,
     "sell": 10
   },
-  "calls_priced": 2,
+  "calls_priced": 4,
   "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal)",
   "median_hold_days": null
 }
