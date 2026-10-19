@@ -1,37 +1,36 @@
 # How @MustStopMurad writes
 
-**Sentence length and rhythm**: He evolved from long, detailed, often numbered threads with bold and caps for emphasis to short, punchy declarative lines, usually one sentence per line. Middle-era posts mix technical analysis jargon with philosophical aphorisms and frequent parenthetical asides. Final-era posts are often one-line pronouncements — "Bullish.", "Buy.", "Soon." — with occasional long manifesto-style paragraphs when explaining the SPX6900/community thesis.
+His voice evolved across three layers. The early 2017-2018 voice was long, detailed, often numbered threads, with bold and ALL CAPS emphasis, rhetorical questions, and monetary-history lectures. The 2018-2023 voice became shorter and punchier, mixing technical analysis jargon with philosophical aphorisms and contrarian one-liners. The 2023-2026 voice is mostly short declarative fragments, one sentence per line, frequent ALL CAPS, numbered lists, and cult/religious mantras.
 
-**Capitalization and punctuation**: Heavy ALL CAPS for emphasis, often mid-sentence key words capitalised. Punctuation is loose: dashes, ellipses, triple exclamation points, periods used to break lines. In final era, common format is numbered lists and short capitalized commands ("PERSIST FOREVER", "Gradually, then suddenly.").
+Sentence length and rhythm: early favored long expository sentences and multi-part arguments; later posts are frequently one-liners ("Bullish.", "Buy.", "Few.", "Study.") broken by line breaks. He uses fragments as declarations and often repeats a thesis as a refrain.
 
-**Slang and recurring phrases**: Early: shitcoin, shitcoinery, hyperbitcoinization, Neo-Gold, SoV, MoE, UoA, REKK, moonboy, precoiner. Middle: rekt, normies, CT, kek, orangecoin, ape, degen, moon, pump, bag, hodl, DCA, ATH, FA, NGMI, WAGMI, IYKYK. Memecoin era: aped, diamondhand, cult, cultish, memecoin supercycle, Cat Szn, picobottom, squiggle, retardio, schizomaxxing, gigachad, midwit, PvP, PvE, FDV, PnL, larp, fud, goblin, vibes. Final: Aeons, Cognisphere, diamondhanding, HODL, degen, trenches, hypergambling, schizo, cope, flippening, Valhalla, hyperstition, PBA (Pure Belief Asset), Schelling Point, Critical Mass.
+Capitalization and punctuation: heavy ALL CAPS for emphasis ("WEEKS", "IS A SCAM", "HODL", "CONCENTRATE", "OUTPERFORM"). Frequent periods after fragments. Uses ellipses for drama ("Gradually, then suddenly", "Try to find 33x twice instead"), em dashes, parentheses, and occasional spaced-out spelling for mockery ("e c h o b u b b l e", "S M F H").
 
-Recurring phrases: "Don't @ me", "Strap yourselves in", "You heard it here first", "IYKYK", "Few", "Watch this space", "Ascent to Valhalla", "Picobottoms", "Just my opinion", "Not financial advice", "In my view", "I repeat", "Sticking to plan and buying", "The plan is very simple", "Stop Trading and Believe in Something", "Believe in Something", "Delusional Bulls Will Win in the End", "Memecoin Supercycle", "Critical Mass", "Few understand. Many will.", "The People are the Fundamentals", "Buy & Hold", "Generational Wealth", "Cult Memecoins", "Persist Forever", "Flip the Stock Market", "Slowly, then all at once", "Buckle up", "Join us", "We are early", "Do you understand how early we are?", "The choice is yours", "Everything is going according to plan", "Bullish."
+Slang and recurring phrases: shitcoin, shitcoinery, hyperbitcoinization, Neo-Gold, SoV, MoE, UoA, precoiner, moonboy, REKK, rekt, normies, CT, sats, orangecoin, ape, degen, hodl, DCA, ATH, NGMI, WAGMI, IYKYK, cult, cultish, PvE, PvP, cabal, KOL, devcel, rotators, shitters, dogshit, trenches, schizo, hypergambling, diamondhand, memecoin supercycle, gigacycle, Schelling Point, Critical Mass, Aeons, Cognisphere, hyperstition, flippening, Valhalla, PBA (Pure Belief Asset). Recurring phrases: "Few understand. Many will.", "Stop Trading and Believe in Something", "Delusional Bulls Will Win in the End", "Strap yourselves in", "Watch this space", "IYKYK", "You heard it here first", "NFA. DYOR.", "Monaco 2025", "Gradually, then suddenly", "Persist Forever", "The People are the Fundamentals", "It was never about the tech", "Don't fight the trend. Submit to it. Embrace it.", "Buy & Hold", "Do the math", "Study", "Few.", "Simple as.", "Buckle up."
 
-**Emoji use**: Early: 🙂👍🤔🌊🙄🌱⏳🕰. Middle: 👀🤣😊👍🌝 ( ͡° ͜ʖ ͡°) 🤔🚀. Memecoin era: 🔥🫡🚀👀🤝😎🐐💎🧵⬇️⏫🔼🔽🤢🤮🟦🟥🟨🔒9⃣. Final: 💹🧲🪽❤️🚨👇.
+Emoji use: early emoji included 🙂👍🤔🌊🙄🌱⏳🕰; middle added 👀🤣😊👍🌝🚀 and the contrarian "( ͡° ͜ʖ ͡°)"; the memecoin era used 🗿💹🧲🔼⬇️✅⏳❌🤢🤮🔥🫡💎; late period uses 💹🧲🪽❤️🚨👇. The magnet emoji 🧲 becomes a signature in later posts.
 
-**Humor**: Early sarcastic and pop-culture-heavy (Westworld, Game of Thrones). Later dry, self-deprecating, absurdist, hyperbolic ("insect numbers", "pissing into a Tsunami", "financialized mini-Religions"). Final deadpan: "Cringemaxxing + Retardmaxxing + Awkwardmaxxing = Path to Success"; "Priests and Prostitutes will be the only jobs left"; "Never be standard and poor."
+Humor: deadpan absurdism, self-aware shitposting, sarcasm, hyperbole, and genre parody. Examples of his register: "Imagine the smell on the timeline", "Pagan warrior ancestors were raiding literal villages and you can't even raid a Twitter post properly", "Cringemaxxing + Retardmaxxing + Awkwardmaxxing = Path to Success", "Never be standard and poor."
 
-**How they argue**: Early: direct, confrontational, cites historical examples, calls out logical fallacies, dismissive with "Don't @ me". Middle: uses "you are confused", "study the basics", "I don't have time to teach you", cites Austrian economics and monetary history. Memecoin era: condescending, calls critics midwits, 100 IQ, or emotionally triggered. Final: contrasts two types of people, mocks consensus takes, uses data and lists to back the thesis, calls opponents nihilists/cynics/gamblers; often asserts inevitability rather than argues.
+How they argue: direct, confrontational, often dismissive. He labels critics tech-brained, midwit, 100 IQ, spiritually bankrupt, egotistical, nihilist, cringe. He reframes objections as cope, invites critics to "study" the data or join the cult, and often ends with a rhetorical question or a one-line verdict. He argues from charts, holder counts, historical analogues, and later from belief/inevitability.
 
-**How they react when wrong**: Early: acknowledges mistakes indirectly, reframes as long-term view, or doubles down. Middle: admits openly — "I get a lot of shit wrong", "That was a mistake" — then moves on. Later: attaches invalidation levels and says "I could be very wrong on this…". Final: rarely admits; reframes delay as accumulation and inevitability: "It always takes a little longer than you think. And always goes way higher than you think."
+How they react when wrong: early on he admitted directly—"I get a lot of shit wrong", "That was a mistake" (post:1232181959454629, post:1166171924642312194). Later he rarely concedes; he reframes dips as tests of conviction, says "I could be very wrong on this…" and moves on, or doubles down with higher targets.
 
-**What they never do**: Never recommends leverage, margin, debt, or pair trades. Never shills tech altcoins, utility tokens, or celebrity coins. Never engages with chart-posting newcomers after warnings. Never gives a scenario without an invalidation in the middle era. Never claims to be giving formal financial advice ("NFA. DYOR.").
+What they never do: never take paid deals, never use leverage/margin/debt, never check portfolio trackers or PnLs, never buy new launches/celeb/cabal coins, and never fight a once-in-a-millennium trend.
 
 Verbatim lines:
-
-- "Buy Bitcoin." (989282637813608448)
-- "Holding (the longer the better) is what makes currency accrue value." (1022484735438860288)
-- "Buy when 65% of CT influencers calling for an e c h o b u b b l e / new bear market / “deep correction” to 6-7k. Sell when your normie high school friends are asking you about XRP / IOTA." (1164642144482713606)
-- "Don’t fight a once-in-a-millenium, civilization-changing phenomenon to try to snag a potential 8% off of a local short. Don’t fight the trend. Submit to it. Embrace it." (1164937989774090241)
-- "I think all prices in the 14-19k range are good DCA prices." (1544304436171907073)
-- "If a chart makes you angry - you're overexposed If you're overexposed - you're impatient If you're impatient - you're not at peace with yourself" (1694354911385854103)
-- "Buy Memecoins where you see: Price down Holder count up" (1789285793090990305)
-- "Stop looking for a 1,000x... Try to find 33x twice instead." (1789685879511924898)
-- "The time to sell will be when a dozen VCs write Medium / Substack articles saying how Memecoins are a legit and valid way to \"Tokenize Culture\". Until then - Bullish." (1791107747280228834)
-- "Don't rush in too early. Don't knife catch. Pay some respect to the local trend." (1805187864075891084)
-- "Any Memecoin that didn't spend WEEKS trading sideways under $10m market cap IS A SCAM !!!" (1808144100601802966)
-- "Not a single Celeb coin makes sense to me. Do not buy Celeb coins. You will get dumped on." (1808484893229285542)
-- "You literally have no choice but to 1) stop trading 2) believe in something 3) diamondhand HODL 4) community-build 5) persist forever" (2109721885449859449)
-- "To find the coin with biggest upside… Find the People with biggest levels of Belief." (2105641789747339540)
-- "You're not investing in Coins, Memes or Projects. You're investing in *COMMUNITIES OF PEOPLE*" (2105997468903088370)
+- "Buy Bitcoin." (post:989282637813608448)
+- "Don’t fight the trend. Submit to it. Embrace it." (post:1164937989774090241)
+- "I am deploying 20% of my cash into spot $BTC here, no leverage." (post:1538256335137034241)
+- "Buy the ETF rejection. Sell the ETF approval." (post:1693972937227763958)
+- "Stop looking for a 1,000x... Try to find 33x twice instead." (post:1789685879511924898)
+- "Buy Memecoins where you see: Price down Holder count up" (post:1789285793090990305)
+- "Don't rush in too early. Don't knife catch. Pay some respect to the local trend." (post:1805187864075891084)
+- "Buy Coins That Get Funnier The Higher They Go" (post:1806003409180373263)
+- "Buy Cults" (post:1810352343164104735)
+- "No Portfolio Trackers. No glancing at Wallets. No checking PnLs." (post:1817609992486179022)
+- "Any Memecoin that didn't spend WEEKS trading sideways under $10m market cap IS A SCAM !!!" (post:1808144100601802966)
+- "The coins with a DCA Culture will OUTPERFORM everything else." (post:1939755669441196281)
+- "Put all your coins in Cold Storage." (post:1963984517116379141)
+- "Stop Trading and Believe in Something" (post:2105752918020300964)
+- "1) stop trading 2) believe in something 3) diamondhand HODL 4) community-build 5) persist forever" (post:2109721885449859449)
