@@ -7,22 +7,22 @@
   ],
   "horizons": {
     "1d": {
-      "n": 18,
-      "hit_rate": 0.5556,
-      "mean_return": 0.0387,
-      "median_return": 0.0008
+      "n": 17,
+      "hit_rate": 0.5294,
+      "mean_return": 0.0409,
+      "median_return": 0.0001
     },
     "7d": {
-      "n": 18,
-      "hit_rate": 0.5556,
+      "n": 17,
+      "hit_rate": 0.5294,
       "mean_return": 0.0401,
-      "median_return": 0.0083
+      "median_return": 0.001
     },
     "30d": {
-      "n": 18,
-      "hit_rate": 0.5,
-      "mean_return": 0.0021,
-      "median_return": 0.0014
+      "n": 17,
+      "hit_rate": 0.4706,
+      "mean_return": 0.002,
+      "median_return": -0.0005
     }
   },
   "per_call": [
@@ -270,30 +270,6 @@
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
-      "ticker": "TSLA",
-      "post_id": "1996270789385969821",
-      "price_id": null,
-      "called_at": "2025-12-03T17:30:19.000Z",
-      "direction": "buy",
-      "matched_by": null,
-      "price_at_call": null
-    },
-    {
-      "r_1d": 0.0014,
-      "r_7d": 0.0395,
-      "r_30d": 0.0048,
-      "ticker": "BTC",
-      "post_id": "2005085844722647075",
-      "price_id": "coingecko:bitcoin",
-      "called_at": "2025-12-28T01:18:12.000Z",
-      "direction": "hold",
-      "matched_by": null,
-      "price_at_call": 87754.27886307059
-    },
-    {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
       "ticker": "STRIPE",
       "post_id": "2026793469768073459",
       "price_id": null,
@@ -346,7 +322,7 @@
       "post_id": "2067326045368484137",
       "price_id": "gt:solana:canP3bBi4tiRLkyU4xGWHT7wxQq1Fmc7WrRr7Wv6Uts",
       "called_at": "2026-06-17T19:18:32.000Z",
-      "direction": "buy",
+      "direction": "hold",
       "matched_by": "ticker",
       "price_at_call": 0.012475351563131065
     },
@@ -388,14 +364,14 @@
     }
   ],
   "hold_pairs": 0,
-  "calls_total": 30,
-  "computed_at": "2026-10-16T12:48:30.449Z",
+  "calls_total": 28,
+  "computed_at": "2026-10-19T09:04:48.634Z",
   "by_direction": {
-    "buy": 29,
+    "buy": 27,
     "hold": 1,
     "sell": 0
   },
-  "calls_priced": 18,
+  "calls_priced": 17,
   "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal)",
   "median_hold_days": null
 }
