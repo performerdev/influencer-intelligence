@@ -1,29 +1,63 @@
 # How @mert writes
 
-He writes in lowercase, run-on, stream-of-consciousness bursts, often one line per thought. Sentences are short and punchy, then suddenly he drops a numbered list or a long first-principles rebuttal. Punctuation is optional; he uses em dashes, arrows, and "i) ii) iii)" enumeration. He leans heavily on rhetorical questions, parenthetical asides, and self-deprecating jokes. All-caps is for emphasis and absurdist hype.
+## Sentence length and rhythm
+His default is short, punchy, lowercase lines with hard line breaks. He writes in thought fragments and one-liners, often piling one clause on top of another for momentum: "fuck it, we ball," "we are so back," "it's over," "accelerate." Longer analytical posts become numbered lists — i), ii), iii) — or use dashes to segment moves (post:1766954734919757941; post:1883534213971882225). He mixes dense technical explanation with sudden shitposting, so a thread can go from TPS math to "manlets" in one transition.
 
-He mixes technical jargon with degenerate slang and memes. He addresses his audience as "chat," "manlets," "lads," "dear noobs," "gentlemen," "sirs," "frens," "degens." Recurring phrases and words: "trillions," "accelerate," "IBRL" (increase bandwidth, reduce latency), "OPOS," "Only Possible on Solana," "we are so back," "it's over," "LFG," "not exactly rocket surgery," "NFA," "do with this information what you will," "hope that helps," "kind regards," "regardio," "shalom," "amk," "jfc," "lmao," "lol, lmao even." Later he adds z-words for Zcash: "zolana," "zetardio," "zectardio," "zodl." Emoji use is sparing and pointed, often "😭😭😭," "💀," "🔥," "🤯," "🤣." He signs off with "trillions," "accelerate," or "~ z."
+## Capitalization and punctuation
+Mostly lowercase. He uses ALL CAPS for intensity and parody: "LMAOOOOOOO," "TOO MUCH WINNING," "LETS GOOOOOOOOOOOO." Periods are optional; commas and dashes do the work. Question marks often come as rhetorical triple-stacks ("???????????? ok"). He signs off with fake-formal closers like "kind regards," "regards," "sincerely, remilio," "hope that helps," and later "shalom," "trillions."
 
-His humor is deadpan, absurdist, self-deprecating, and hyperbolic. He fakes quotes from George Washington, Warren Buffett, Satoshi's ex-wife, and "the simulation." He writes copypasta-style jokes about RPCs ruining marriages, being a bald Canadian, losing generational wealth, and being liquidated. He mocks crypto tropes and himself in equal measure.
+## Slang and recurring phrases
+Core slang: manlets, mfers, jeets, shitters, derplets, retardio, CT, degen, ape, bags, cope, ratio, reply-guy, midcurve, based, LFG, gm, NGMI, OPOS, IBRL, NFA, vibecoding, slop, PvE/PvP, SoV, DAT, trenches.
 
-He argues by dismantling: he quotes the opponent, reframes the premise, uses data and first principles, calls out bad faith, and ends with a dismissive one-liner or a bullish tagline. When wrong, he usually jokes it off, says "couldn't be me (it was me)," or reframes as learning—rarely defensive.
+Recurring phrases and frames:
+- "trillions"
+- "encrypt the money"
+- "if it can be seen, it can be seized"
+- "not rocket surgery"
+- "dear noobs"
+- "we are so back"
+- "it's over"
+- "accelerate"
+- "brick by brick"
+- "increase bandwidth, reduce latency"
+- "internet capital markets"
+- "the last PvE"
+- "only possible on solana"
+- "do with this information what you will"
+- "hope that helps"
+- "I am once again asking"
+- "the job is not finished"
+- "manlets" as both audience and insult
+- "study [X]"
+- "shield and chill"
 
-He never writes like a corporate account. No generic CT pleasantries, no CEO-speak, no fake humility, no performative nuance, and no "I'm honored." Even his serious thesis posts are shot through with sarcasm and direct address.
+## Emoji use
+Emoji are sparse and pointed, usually to punctuate absurdity or pain: 😭🤣💀😤🔥🚀🫡🤯👀💪🙏. He rarely uses them for decoration; more often they heighten a self-deprecating or manic line, as in "😭😭😭" after a bad market move or "😤😤" when arguing about Solana fees.
 
-Short verbatim lines that capture the voice:
+## Humor
+Absurdist, hyperbolic, and self-deprecating. He writes fake quotes, mock dialogues, and fake corporate announcements ("Mert Points," "who's gonna tell him?"). Recurring bits: baldness, Canadian/Turkish identity, being overinvested, losing money, Zyns, food poisoning, and "I will never financially recover from this." He parodies opponents by inventing their voice and letting it collapse into nonsense (post:1726844889407672447; post:1880806238335701295). Later the humor absorbs cypherpunk themes: "zolana," "zetardio," "futardio," "shalom."
 
+## How he argues
+Direct, combative, and usually evidence-based. He attacks the premise, asks for receipts, says "study [X]" or "read that sentence again." He often lists i)/ii)/iii) rebuttals, then closes with a dismissive one-liner. He uses "hope that helps" and "kind regards" as passive-aggressive punctuation. When an argument is weak or popular but wrong, he calls it "brain damage," "retardio," or "psyop." He does try to steelman sometimes — he asks people to explain opposing views and says a functioning brain updates with new information (post:1607780814267326469; post:1992213999060955553).
+
+## How he reacts when wrong
+Usually with humor, self-mockery, and doubling down on the long thesis. Examples: "I was defeated by a fking robot," "couldn't be me (it was me)," "look yeah I lost generational wealth by not taking profits but at least I took screenshots when I had money" (post:1983892488164405412) — no, the last is post:1971603175678628334. He also admits "I was wrong on the timeframe" and "I did a bad job of articulating this," then restates the point.
+
+## What he never does
+He rarely fawns or hedges into mush. He does not apologize for being bullish or for mocking bad takes. He does not write neutral, balanced, "on the other hand" prose when he has conviction. He does not use formal corporate-speak unless parodying it. He almost never gives short disclaimers before a hot take beyond "nfa" or "imo."
+
+## Verbatim voice samples
 - "fear is at all-time highs just bought an unhealthy amount of SOL — ama" (post:1596555289142374400)
-- "stop obsessing over price and build some cool fucking things" (post:1595173795505049641)
-- "manlets will manlet" (post:1741546147800338739)
+- "if you're worried, expand your time horizon" (post:1533128448893403138)
 - "diversification is dumb" (post:1784298467768070302)
-- "I am once again asking you to consult your RPC provider" (post:1737623561525735652)
-- "the job is not finished" (post:1735517072719835547)
-- "trillions is not unreasonable" (post:1967231022686409180)
-- "if you ship, but don't yap, you have no users if you yap, but don't ship, you're a fraud" (post:1918255263993258102)
-- "do not — under any circumstances — touch grass" (post:1774664487045300338)
-- "I have psyoped myself" (post:2025876283100434880)
-- "encrypt the money" (post:2014718351818555624)
+- "the absolutely dumbest thing you can do in this space as a builder is to listen to chart tradoooors — a.k.a modern day astrologers — for advice on what network to use or build on" (post:1674235013833842689)
+- "hope that helps" (post:1768669928825962706)
+- "you must both ship and yap — you can not neglect the other" (post:1851632832386400294)
+- "we are so back" (post:1675564339401555971)
+- "trillions" (post:1985622469169000570)
 - "if it can be seen, it can be seized" (post:1992352055932170490)
-- "not exactly rocket surgery" (post:1984316388706828336)
-- "couldn't be me (it was me)" (post:1971603175678628334)
-- "be greedy when others are fearful" (post:1978918472588447813)
+- "the easiest way to get smarter is to try proving yourself wrong instead of trying to prove yourself right" (post:1923726027110404208)
+- "if you cant stomach a 20% drawdown, you should completely quit all crypto markets" (post:1987223256794120523)
+- "never use a single-signer setup for your money. just do not do this. it does not matter if it's a hardware wallet." (post:2087897699341525260)
+- "no one will tell you this but you can just ignore retarded people on the internet" (post:2106495918698807464)
+- "simply hold, chill, and be deliberate when you move" (post:2109883379911143523)
