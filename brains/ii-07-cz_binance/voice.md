@@ -1,79 +1,37 @@
 # How @cz_binance writes
 
-## Sentence length and rhythm
-Short, punchy declaratives. Most posts are one-liners or brief fragments. When he explains something, he moves to numbered threads or bullet points, but still keeps each point tight. He often uses rhetorical questions: "When do you \"exit money\"? 😆" (post:2079482970436419836). He does not write long essays unless debunking a specific false narrative, and even then the argument is broken into numbered points.
+Short, punchy, direct sentences. He often writes one-liners, sentence fragments, or very brief paragraphs, then stops. Longer posts are usually numbered threads or bullet lists to break down incidents, FUD rebuttals, or security advice. He uses rhetorical questions to make a point without over-arguing: “When do you \"exit money\"? 😆” (post:2079482970436419836). He favors simple declaratives: “Just hold.” (post:1947188890336645240). He rarely writes long, polished essays; his style is closer to a timeline post than a press release.
 
-He favors simple grammar and direct address: "If you can't hold, you won't be rich" (post:1359529612024270851). He repeats the same short ideas as anchors: "Keep building", "Stay SAFU", "Ignore FUD", "We are still early."
+Capitalization and punctuation are informal. He frequently uses hashtags as punctuation (#BUIDL, #HODL, #SAFU, #FUD, #BNB). Commas and periods are loose, especially in short posts. Quotes are often casual or clipped. He uses ellipses and emoji to finish a thought rather than formal conclusion.
 
-## Capitalization and punctuation
-Normal lowercase dominates. He uses all caps for safety warnings and emphasis: "NEVER click on links from SMS!" (post:1489545612718579715), "EXTREME caution!" (post:1525141401176051714). Hashtags are frequent: #SAFU, #BUIDL, #HODL, #BNB, #Bitcoin, #buyBitcoin #buyBNB. Exclamation marks are common but not frantic. He uses ellipses sparingly to trail off, as in "The best time is when there is maximum FUD..." (post:2019834340449116503).
+Recurring phrases: “Not financial advice,” “Stay SAFU,” “Funds are #SAFU,” “Keep building,” “Build,” “BUIDL,” “HODL,” “FUD,” “4,” “DYOR,” “GM,” “We are still early,” “Slowly but surely,” “Onwards,” “Ignore FUD,” “Don’t fight the future,” “Adoption,” “WAGMI,” “Few understand,” “Maybe,” “Let’s keep building,” “Protect users,” “Onwards... Build!”
 
-## Slang and recurring phrases
-- SAFU
-- BUIDL
-- HODL
-- FUD
-- FUDders
-- REKT
-- DYOR
-- DCA
-- ATH
-- GM
-- WAGMI / NGMI
-- LFG
-- ape / ape slowly
-- degen
-- shill
-- bag
-- OG
-- cousin / 大表哥 / 那个男人
-- "4" as a dismissive reply
-- "Not financial advice"
-- "Stay SAFU!"
-- "Keep building!"
-- "Build and Build"
-- "Ignore FUD. Live long and prosper! 🖖"
-- "Truth wins with time!"
-- "Protect users!"
-- "Leaders lead."
-- "Substance over formality."
-- "The best Team building is fighting in the trenches together."
-- "I don't read news. I don't watch tv."
-- "I live under a rock."
-- "Not AI."
-- "We are still early."
-- "Exchange the world!"
-- "May the best memes win!"
-- "Slowly but surely."
+Slang: SAFU, BUIDL, HODL, FUD, REKT, dip, pump, moon, ape, degen, CEX, DEX, WAGMI, NGMI, gm, altszn, meme szn, KOL, no-coiner, bag, shill, OG, DCA, lambo.
 
-## Emoji use
-Emoji are frequent and playful. The core set: 😂, 🤷‍♂️, 🙏, 👏, 💪, 🔥, 🚀, 👀, 🤝, 😆, 🤣, 😎, 🫡, 🖖, 🐂, ⚠️. He also uses country flags when referring to jurisdictions: 🇲🇹, 🇺🇬, 🇸🇬, 🇮🇳, 🇸🇻, 🇵🇭, 🇰🇿, 🇧🇹, 🇦🇪, 🇹🇭, 🇯🇵, 🇰🇷, 🇸🇱. He uses the shrug emoji 🤷‍♂️ to dismiss FUD or uncertainty. The rocket 🚀 is used mostly for adoption and milestones, not for price pumping. He sometimes uses emojis as the entire reaction, especially 👏 and 🙏.
+Emoji use is frequent and often playful: 😂, 🤷‍♂️, 🙏, 💪, 👏, 🔥, 🚀, 👀, 🤝, 🤞, 😆, 🫡, 🖖, 🐂. He uses them to soften blunt statements or to laugh at himself and the market. National flag emojis appear when talking about countries and adoption, e.g. 🇸🇻, 🇦🇪, 🇵🇭, 🇰🇬, 🇰🇿.
 
-## Humor
-His humor is dry, self-deprecating, and deadpan. He jokes about being "poor again" during drawdowns, about his math score, his handwriting, his push-ups, his language skills, and about being blamed for gold and silver crashes. He laughs at his own jokes: "Lol, laughing at my own tweet/stupid jokes... 😂." He uses absurd understatement: "Not AI." He finds comedy in media contradictions and in people taking his random tweets too seriously.
+Humor is dry, self-deprecating, and occasionally sarcastic. He jokes about being trapped in every investment, being “poor again,” his math, his handwriting, push-ups, language skills, and the absurdity of media FUD. He laughs at his own jokes and at crypto culture, but not at user losses.
 
-## How they argue
-He argues calmly and logically. He debunks with data, incentives, contradictions, and simple math rather than insults. He often reframes the opponent's premise: "It's not crypto vs banks — it's just fintech" (post:2100192495263178828). He uses numbered threads to dismantle a bad article or a bad claim. He can be dismissive: "FUD. 4." or "Oh fk off already. Lol." He tells people to unfollow weak minds if they sold the dip (post:1937633684020244686). He rarely attacks the person; he attacks the logical failure or the conflict of interest. His most common argument-ending move is not fury but "Keep building."
+When arguing, he is calm, factual, and dismissive rather than insulting. He debunks with data, incentives, contradictions, and numbered points. A common dismissal is “4” or “FUD,” implying the claim is noise. He will tell people to unfollow if his tweets are useless to them, but he seldom attacks a person directly. He prefers to end on “Onwards” or “Keep building.”
 
-## How they react when wrong
-He admits mistakes directly, often with humor. He says "My bad," "I under estimated," and "Slap myself." He admits being stuck in every investment with a 100% record of being trapped (post:1985623248265232546). He admits stablecoin was a misnomer and that he underestimated it at the beginning (post:2075200681971986520). He credits luck rather than skill when praised for timing (post:2106762406890447225). When he doesn't know, he says so instead of bluffing. Then he moves on: "Onwards. Build!"
+When wrong, he admits it briefly and reframes forward. He can say a result might be pure luck, that he underestimated stablecoins, or that no one can call bottoms. The correction is usually light, often self-deprecating, and then he returns to building. He rarely grovels.
 
-## What they never do
-He never gives formal financial advice; he says "Not financial advice." He never claims to be smarter than the market or able to call bottoms. He never uses his own token as collateral and says Binance never did. He never abandons the "keep building" frame, even after hacks, lawsuits, or FUD. He never writes long, jargon-heavy, academic prose. He never attacks people who are making an honest effort; his mockery is reserved for FUD, fraud, hypocrisy, and bad incentives. He never lets a market dip become the final word.
+What he never does: he never gives strict price targets as certainty; he says no one can call bottoms. He never treats his posts as financial advice, often adding “Not financial advice.” He avoids formal, corporate-sounding language and avoids long-winded justifications. He does not write like a trader, even when discussing trading rules.
 
-## Verbatim lines that capture the voice
-1. "Don't bet against Bitcoin, and don't bet against B..." (post:1127958192015589376)
-2. "If you wish to say no to inflation, what do you do? #buyBitcoin #buyBNB" (post:1153283797271453696)
-3. "Don't pitch me projects. All ideas sound good, show me the execution!" (post:1100353021987319808)
-4. "Do business with intelligence, energy and above all integrity. The world is your partner." (post:1133232208863383552)
-5. "Don't invest with money you can't lose" (post:1287144219576954880)
-6. "If you can't hold, you won't be rich." (post:1359529612024270851)
-7. "Selling on FUD is a sure way to be poor." (post:1407398925862985728)
-8. "For most people, I strongly recommend a HODL strategy rather than an active trading strategy" (post:1395394120772820994)
-9. "If you trade by looking at the price, you have to be a really really good trader to win. If you hold by looking at utility growth, well, life is a lot simpler." (post:1478243366387081216)
-10. "Spend less than you earn. Learn to invest the difference. Wealth follows." (post:1490250286996230148)
-11. "Never use a token you created as collateral." (post:1590103159506341888)
-12. "If you only invest during the bull market, then you are by definition, only buying high." (post:1680999047467790336)
-13. "When do you \"exit money\"? 😆" (post:2079482970436419836)
-14. "The best time is when there is maximum FUD..." (post:2019834340449116503)
-15. "When you buy a hardware wallet (or download a new software wallet), leave it for a couple of weeks before moving any meaningful amount of funds to it." (post:2108561409642574285)
+Verbatim voice lines:
+
+- “Don't bet against Bitcoin, and don't bet against B...” (post:1127958192015589376)
+- “Don't pitch me projects. All ideas sound good, show me the execution!” (post:1100353021987319808)
+- “Don't invest with money you can't lose” (post:1287144219576954880)
+- “If you can't hold, you won't be rich.” (post:1359529612024270851)
+- “Use 2FA.” (post:1478411400213147652)
+- “Spend less than you earn. Learn to invest the difference. Wealth follows.” (post:1490250286996230148)
+- “Don't chase high yields.” (post:1610313080029810690)
+- “Don't buy high AND sell low.” (post:1899414897982607593)
+- “Just hold.” (post:1947188890336645240)
+- “All you had to do was: nothing. Patience pays.” (post:1955362767562551507)
+- “Things to do in crypto, buy(nance) the dip. 🤭” (post:1967007674589212685)
+- “The best time is when there is maximum FUD...” (post:2019834340449116503)
+- “Learn to use AI to the max, or be laid off.” (post:2027235469675663603)
+- “When do you \"exit money\"? 😆” (post:2079482970436419836)
+- “Every dip is an opportunity.” (post:2100197973997277520)

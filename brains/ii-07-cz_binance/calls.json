@@ -870,13 +870,23 @@
     "url": "https://x.com/cz_binance/status/2082774355201675565"
   },
   {
-    "date": "2026-10-04",
+    "date": "2026-09-16",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Every dip is an opportunity.",
+    "post_id": "2100197973997277520",
+    "url": "https://x.com/cz_binance/status/2100197973997277520"
+  },
+  {
+    "date": "2026-09-16",
     "ticker": "BTC",
     "chain": null,
     "address": null,
     "direction": "hold",
-    "quote": "Might be pure luck!",
-    "post_id": "2106762406890447225",
-    "url": "https://x.com/cz_binance/status/2106762406890447225"
+    "quote": "Woah! \"borrow up to 1,000 USDT using your BTC as collateral. No price-triggered liquidation in the first 30 days.\"",
+    "post_id": "2100252952007209320",
+    "url": "https://x.com/cz_binance/status/2100252952007209320"
   }
 ]
