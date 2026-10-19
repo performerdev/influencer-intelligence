@@ -960,6 +960,56 @@
     "url": "https://x.com/nikitabier/status/1774504596313903324"
   },
   {
+    "date": "2024-08-31",
+    "ticker": "NVDA",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "My G Wagon was repossessed this weekend (NVDA call options) so I had to downgrade to the Mini G Wagon.",
+    "post_id": "1829939603727663392",
+    "url": "https://x.com/nikitabier/status/1829939603727663392"
+  },
+  {
+    "date": "2024-09-13",
+    "ticker": "MUNIS",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Put 30% of my portfolio into long duration munis, treasuries, mortgage REITs in October last year",
+    "post_id": "1834611214703542632",
+    "url": "https://x.com/nikitabier/status/1834611214703542632"
+  },
+  {
+    "date": "2024-10-08",
+    "ticker": "SP",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "Fingers crossed I beat the S&amp;P",
+    "post_id": "1843500909948743809",
+    "url": "https://x.com/nikitabier/status/1843500909948743809"
+  },
+  {
+    "date": "2024-11-06",
+    "ticker": "POLYMARKET",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "My calls are going to be up 500% at open",
+    "post_id": "1854029287541653826",
+    "url": "https://x.com/nikitabier/status/1854029287541653826"
+  },
+  {
+    "date": "2024-11-23",
+    "ticker": "CA",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "This is a rug. Going to zero.",
+    "post_id": "1860468184140116439",
+    "url": "https://x.com/nikitabier/status/1860468184140116439"
+  },
+  {
     "date": "2024-12-14",
     "ticker": "TJX",
     "chain": null,
@@ -1191,27 +1241,7 @@
   },
   {
     "date": "2026-08-25",
-    "ticker": "BTC",
-    "chain": null,
-    "address": null,
-    "direction": "hold",
-    "quote": "Bitcoin, gold, commodities, and natural resources",
-    "post_id": "2092090439402659987",
-    "url": "https://x.com/nikitabier/status/2092090439402659987"
-  },
-  {
-    "date": "2026-08-25",
-    "ticker": "GOLD",
-    "chain": null,
-    "address": null,
-    "direction": "hold",
-    "quote": "Bitcoin, gold, commodities, and natural resources",
-    "post_id": "2092090439402659987",
-    "url": "https://x.com/nikitabier/status/2092090439402659987"
-  },
-  {
-    "date": "2026-08-25",
-    "ticker": "COMMODITIES",
+    "ticker": "BITCOIN",
     "chain": null,
     "address": null,
     "direction": "hold",
@@ -1224,14 +1254,14 @@
     "ticker": "SPCX",
     "chain": null,
     "address": null,
-    "direction": "hold",
+    "direction": "buy",
     "quote": "I don't see this why is news: it's already available on the $SPCX ticker",
     "post_id": "2092357993560252908",
     "url": "https://x.com/nikitabier/status/2092357993560252908"
   },
   {
     "date": "2026-09-09",
-    "ticker": "AAPL",
+    "ticker": "APPLE",
     "chain": null,
     "address": null,
     "direction": "buy",

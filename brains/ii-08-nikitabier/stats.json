@@ -7,22 +7,22 @@
   ],
   "horizons": {
     "1d": {
-      "n": 18,
-      "hit_rate": 0.5,
-      "mean_return": -0.0088,
-      "median_return": -0.0001
+      "n": 19,
+      "hit_rate": 0.4211,
+      "mean_return": -0.0142,
+      "median_return": -0.0019
     },
     "7d": {
-      "n": 18,
-      "hit_rate": 0.5,
-      "mean_return": -0.0203,
-      "median_return": -0.0006
+      "n": 19,
+      "hit_rate": 0.4211,
+      "mean_return": -0.0857,
+      "median_return": -0.0273
     },
     "30d": {
-      "n": 18,
-      "hit_rate": 0.5,
-      "mean_return": -0.0538,
-      "median_return": -0.0093
+      "n": 19,
+      "hit_rate": 0.4737,
+      "mean_return": -0.0865,
+      "median_return": -0.0191
     }
   },
   "per_call": [
@@ -1182,6 +1182,66 @@
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
+      "ticker": "NVDA",
+      "post_id": "1829939603727663392",
+      "price_id": null,
+      "called_at": "2024-08-31T17:49:34.000Z",
+      "direction": "sell",
+      "matched_by": null,
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "MUNIS",
+      "post_id": "1834611214703542632",
+      "price_id": null,
+      "called_at": "2024-09-13T15:12:53.000Z",
+      "direction": "buy",
+      "matched_by": null,
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "SP",
+      "post_id": "1843500909948743809",
+      "price_id": null,
+      "called_at": "2024-10-08T03:57:22.000Z",
+      "direction": "hold",
+      "matched_by": null,
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "POLYMARKET",
+      "post_id": "1854029287541653826",
+      "price_id": null,
+      "called_at": "2024-11-06T05:13:23.000Z",
+      "direction": "buy",
+      "matched_by": null,
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "CA",
+      "post_id": "1860468184140116439",
+      "price_id": null,
+      "called_at": "2024-11-23T23:39:15.000Z",
+      "direction": "sell",
+      "matched_by": null,
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "ticker": "TJX",
       "post_id": "1867989825938473227",
       "price_id": null,
@@ -1407,16 +1467,16 @@
       "price_at_call": null
     },
     {
-      "r_1d": 0.0531,
-      "r_7d": 0.2332,
-      "r_30d": -0.3849,
+      "r_1d": -0.06,
+      "r_7d": -0.9885,
+      "r_30d": -0.9892,
       "ticker": "CT",
       "post_id": "2010388073398616101",
-      "price_id": "solana:6fUwECXzRQeh2wYuTg3xeQHGt4wSbiUbsdd1PYw3pump",
+      "price_id": "solana:9YZZtRDqd9kiJMqgZ8XmFaE1mfK2T4kNpYgW1Nfn9rYV",
       "called_at": "2026-01-11T16:27:22.000Z",
       "direction": "hold",
       "matched_by": "ticker",
-      "price_at_call": 0.00002183617575273622
+      "price_at_call": 0.13288875116552465
     },
     {
       "r_1d": null,
@@ -1455,40 +1515,16 @@
       "price_at_call": null
     },
     {
-      "r_1d": -0.0199,
-      "r_7d": -0.028,
-      "r_30d": 0.0424,
-      "ticker": "BTC",
+      "r_1d": -0.0015,
+      "r_7d": -0.0273,
+      "r_30d": 0.1084,
+      "ticker": "BITCOIN",
       "post_id": "2092090439402659987",
-      "price_id": "coingecko:bitcoin",
+      "price_id": "gt:bsc:0xa24CF556E66279F53C93F70BD507A0084060bd6D",
       "called_at": "2026-08-25T03:23:24.000Z",
       "direction": "hold",
-      "matched_by": null,
-      "price_at_call": 80687.0298278729
-    },
-    {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
-      "ticker": "GOLD",
-      "post_id": "2092090439402659987",
-      "price_id": null,
-      "called_at": "2026-08-25T03:23:24.000Z",
-      "direction": "hold",
-      "matched_by": null,
-      "price_at_call": null
-    },
-    {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
-      "ticker": "COMMODITIES",
-      "post_id": "2092090439402659987",
-      "price_id": null,
-      "called_at": "2026-08-25T03:23:24.000Z",
-      "direction": "hold",
-      "matched_by": null,
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 2.10847208295334e-9
     },
     {
       "r_1d": -0.0019,
@@ -1498,32 +1534,32 @@
       "post_id": "2092357993560252908",
       "price_id": "gt:solana:canP3bBi4tiRLkyU4xGWHT7wxQq1Fmc7WrRr7Wv6Uts",
       "called_at": "2026-08-25T21:06:34.000Z",
-      "direction": "hold",
+      "direction": "buy",
       "matched_by": "ticker",
       "price_at_call": 0.01246151049336722
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
-      "ticker": "AAPL",
+      "r_1d": -0.0166,
+      "r_7d": -0.0421,
+      "r_30d": -0.1368,
+      "ticker": "APPLE",
       "post_id": "2097748652337066266",
-      "price_id": null,
+      "price_id": "solana:H33XL6HHDReCVRgSApZpsXM7Hy7JGyLztRJaGxjapump",
       "called_at": "2026-09-09T18:07:07.000Z",
       "direction": "buy",
-      "matched_by": null,
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 0.00008208508177302582
     }
   ],
-  "hold_pairs": 8,
-  "calls_total": 124,
-  "computed_at": "2026-10-16T12:48:45.263Z",
+  "hold_pairs": 9,
+  "calls_total": 127,
+  "computed_at": "2026-10-19T09:04:40.759Z",
   "by_direction": {
-    "buy": 78,
-    "hold": 24,
-    "sell": 22
+    "buy": 81,
+    "hold": 22,
+    "sell": 24
   },
-  "calls_priced": 18,
+  "calls_priced": 19,
   "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal)",
-  "median_hold_days": 41
+  "median_hold_days": 41.4
 }
