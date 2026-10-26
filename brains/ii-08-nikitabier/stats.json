@@ -8,21 +8,21 @@
   "horizons": {
     "1d": {
       "n": 18,
-      "hit_rate": 0.5,
-      "mean_return": -0.0078,
-      "median_return": 0.0001
+      "hit_rate": 0.5556,
+      "mean_return": -0.0113,
+      "median_return": 0.002
     },
     "7d": {
       "n": 18,
       "hit_rate": 0.5,
-      "mean_return": -0.0202,
+      "mean_return": -0.022,
       "median_return": -0.0006
     },
     "30d": {
       "n": 18,
-      "hit_rate": 0.5,
-      "mean_return": -0.0501,
-      "median_return": -0.0093
+      "hit_rate": 0.4444,
+      "mean_return": -0.0597,
+      "median_return": -0.0182
     }
   },
   "per_call": [
@@ -1143,16 +1143,16 @@
       "price_at_call": null
     },
     {
-      "r_1d": -0.1265,
-      "r_7d": 0.0346,
-      "r_30d": -0.0191,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "ticker": "DOGWIFHAT",
       "post_id": "1764431294975369258",
-      "price_id": "ethereum:0x8AEC4bbDcfB451aA289bfBD3C2F4E34A44ADa1be",
+      "price_id": null,
       "called_at": "2024-03-03T23:22:56.000Z",
       "direction": "hold",
-      "matched_by": "ticker",
-      "price_at_call": 0.04194884
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": null,
@@ -1515,16 +1515,28 @@
       "price_at_call": null
     },
     {
-      "r_1d": -0.0015,
-      "r_7d": -0.0273,
-      "r_30d": 0.1084,
+      "r_1d": -0.2122,
+      "r_7d": -0.1093,
+      "r_30d": -0.0689,
+      "ticker": "MRNA",
+      "post_id": "2090215623041462344",
+      "price_id": "gt:solana:DQcg3DtWrGRhdBmQh9MpgjuFQYdjN47xB7Do99kPzZRC",
+      "called_at": "2026-08-19T23:13:33.000Z",
+      "direction": "buy",
+      "matched_by": "ticker",
+      "price_at_call": 165.39077438555086
+    },
+    {
+      "r_1d": 0.0202,
+      "r_7d": 0.0852,
+      "r_30d": -0.0152,
       "ticker": "BITCOIN",
       "post_id": "2092090439402659987",
-      "price_id": "gt:bsc:0xa24CF556E66279F53C93F70BD507A0084060bd6D",
+      "price_id": "ethereum:0x72e4f9F808C49A2a61dE9C5896298920Dc4EEEa9",
       "called_at": "2026-08-25T03:23:24.000Z",
       "direction": "hold",
       "matched_by": "ticker",
-      "price_at_call": 2.10847208295334e-9
+      "price_at_call": 0.01645389436256664
     },
     {
       "r_1d": -0.0019,
@@ -1542,6 +1554,18 @@
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
+      "ticker": "AAPL",
+      "post_id": "2097748652337066266",
+      "price_id": null,
+      "called_at": "2026-09-09T18:07:07.000Z",
+      "direction": "buy",
+      "matched_by": null,
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "ticker": "UNL",
       "post_id": "2112780491225285006",
       "price_id": "gt:solana:Bb5M3QUChvbEhbWUwudb1gqE6PWjcTYddowu3JUeQ3ri",
@@ -1552,10 +1576,10 @@
     }
   ],
   "hold_pairs": 9,
-  "calls_total": 127,
-  "computed_at": "2026-10-26T09:12:49.727Z",
+  "calls_total": 129,
+  "computed_at": "2026-10-26T20:42:14.996Z",
   "by_direction": {
-    "buy": 80,
+    "buy": 82,
     "hold": 23,
     "sell": 24
   },
