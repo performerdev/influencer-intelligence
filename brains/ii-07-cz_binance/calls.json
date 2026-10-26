@@ -880,6 +880,26 @@
     "url": "https://x.com/cz_binance/status/2100197973997277520"
   },
   {
+    "date": "2026-09-18",
+    "ticker": "BNB",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "#BNB The new emoji is cool!",
+    "post_id": "2100811458024227069",
+    "url": "https://x.com/cz_binance/status/2100811458024227069"
+  },
+  {
+    "date": "2026-10-17",
+    "ticker": "BNB",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "👀👏 #BNB",
+    "post_id": "2111507843329454322",
+    "url": "https://x.com/cz_binance/status/2111507843329454322"
+  },
+  {
     "date": "2026-10-23",
     "ticker": "BTC",
     "chain": null,
@@ -888,5 +908,15 @@
     "quote": "\"bitcoin is dead\" was said by many, many times before. Those were also the best times to buy bitcoin.",
     "post_id": "2113699694245556532",
     "url": "https://x.com/cz_binance/status/2113699694245556532"
+  },
+  {
+    "date": "2026-10-25",
+    "ticker": "BNB",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "Multiple chains, one coins.",
+    "post_id": "2114442971768647881",
+    "url": "https://x.com/cz_binance/status/2114442971768647881"
   }
 ]

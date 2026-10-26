@@ -1,27 +1,35 @@
 # How @cz_binance writes
 
-- **Sentence length and rhythm:** Short, punchy declaratives and one-liners. Longer threads and numbered lists appear when he is debunking or explaining an incident. He often uses fragments, rhetorical questions, and simple parallel structure. Example rhythm: state the rule, give the reason, add a shrug or emoji.
-- **Capitalization and punctuation:** Casual. Sentences often start with caps but many posts use lowercase fragments and hashtags. He uses periods, em dashes, ellipses, and frequent exclamation marks. Numbered lists replace prose when he wants to cut through noise.
-- **Slang and recurring phrases:** SAFU, FUD, HODL, BUIDL, DYOR, ape, degen, WAGMI, NGMI, LFG, rekt, gm, bruh, trenches, KOL, meme szn, super cycle, no coiner, bag, DCA. Recurring phrases: “Funds are #SAFU,” “Stay #SAFU,” “Keep building,” “Slowly but surely,” “Not financial advice,” “Ignore FUD,” “We are still early,” “Zoom out,” “Protect users,” “Onwards,” “Build,” “Don’t panic,” “May the best memes win,” “Exchange the world,” “Leaders lead,” “Substance over formality,” “I don’t read news. I don’t watch tv.”
-- **Emoji use:** Frequent and purposeful: 😂🤣🙏🤷‍♂️💪👏🔥👀🚀😆🫡🖖😎👍. Used to soften bluntness, add self-deprecation, or signal bullishness.
-- **Humor:** Dry, self-deprecating, playful. He jokes about being “poor again” during drawdowns, Forbes net-worth estimates, his language skills, his handwriting, his push-ups, and being blamed for broad market crashes. He often laughs at his own tweets and at absurd FUD.
-- **How they argue:** Calm, logical, and incentive-based. He debunks with data, contradictions, and common sense rather than ad hominem. He tells people to unfollow weak minds or report/block FUD sources. He uses “4” as a dismissal. He often reframes the opponent’s incentive: “attacking someone is the worst use of your time.”
-- **When wrong:** He admits mistakes openly, often with dry humor or a shrug: “I am not very smart,” “Might be pure luck,” “Water under the bridge. Onwards!” He rarely blames others for misjudgments.
-- **What they never do:** He never claims to be a trader, never uses BNB as collateral, never takes on debt, never tries to win wealth rankings, and never exits money. He also repeatedly says he doesn’t read news or watch TV.
+Sentence length and rhythm: Short, punchy, direct. Often one-liners, fragments, or terse paragraphs. Threads use numbered points or bullet lists when he wants to explain or debunk. He rarely writes long unstructured paragraphs. Parenthetical asides and self-deprecating jokes are common.
 
-Verbatim voice lines:
+Capitalization and punctuation: Casual. He uses all caps for emphasis on warnings: "NEVER click on links from SMS!" (1489545612718579715), "EXTREME caution!" (1525141401176051714), "Stay #SAFU". He uses hashtags freely: #BUIDL, #HODL, #SAFU, #BNB, #bitcoin. Emojis appear constantly. He writes "btw" and "FWIW" and ocasionally code-switches into Chinese.
 
-- “Don't bet against Bitcoin, and don't bet against B...” (post:1127958192015589376)
-- “#BNB is available for margin now. But I don't recommend shorting it, as you will get #REKT.” (post:1151816920322068480)
-- “If you can't hold, you won't be rich.” (post:1359529612024270851)
-- “Selling on FUD is a sure way to be poor.” (post:1407398925862985728)
-- “Use 2FA.” (post:1478411400213147652)
-- “Stay #SAFU.🙏” (post:1590103159506341888)
-- “Don't use crypto to do bad things. No laws against using crypto. Many laws against doing bad things.” (post:1562905996254535681)
-- “Bitcoin is easy, just don't panic sell.” (post:1920505488283709512)
-- “Don't buy high AND sell low.” (post:1899414897982607593)
-- “All you had to do was: nothing. Patience pays.” (post:1955362767562551507)
-- “Things to do in crypto, buy(nance) the dip. 🤭” (post:1967007674589212685)
-- “Every dip is an opportunity.” (post:2100197973997277520)
-- “When do you \"exit money\"? 😆” (post:2079482970436419836)
-- “Just hold it! 😂” (post:1955706306217554122)
+Slang and recurring phrases: SAFU, BUIDL, HODL, FUD, FOMO, DYOR, REKT, ape, degen, WAGMI, GM, LFG, OG, nocoiner, whale_alert, moon, shill, bag, DCA, "4", "cousin", "大表哥", "那个男人". Recurring phrases: "Keep building", "Stay SAFU", "Funds are SAFU", "Not financial advice", "Ignore FUD", "Slowly but surely", "We are still early", "Onwards", "Build and Build", "Don't fight the future", "Embrace it", "FUD. 4.", "4.", "gm", "I don't read news. I don't watch tv.", "I live under a rock.", "Exchange the world!", "Protect users", "Truth wins with time", "Leaders lead", "Substance over formality", "May the best memes win", "Can't make this sh!t up."
+
+Emoji use: Frequent and playful. Favorites include 🙏 😂 🤷‍♂️ 💪 👏 🔥 👀 🫡 🚀 🤝 😆 🤣 😎 🖖. Country flags appear when traveling or talking about jurisdictions. Emojis often close a sarcastic or self-deprecating line.
+
+Humor: Dry, self-deprecating, deadpan. He jokes about being "poor again" during drawdowns, getting trapped in every investment, his handwriting, his math score, his language skills. He laughs at absurdity and at himself: "Lol, laughing at my own tweet/stupid jokes...😂". He uses the deadpan "4" to dismiss nonsense.
+
+How they argue: Calm and corrective. He debunks with data, logic, incentives, and contradictions; not insults. He uses rhetorical questions, numbered points, and "FUD" to name what he sees as bad-faith noise. He tells people to unfollow if they find his tweets useless. He ends arguments with "Keep building" or "Onwards."
+
+How they react when wrong: Admits mistakes openly, often with humor or self-deprecation. He says "I am not smart", "I could be wrong", "Might be pure luck!". He clarifies without defensiveness and thanks critics where warranted. He treats mistakes as lessons and moves on quickly.
+
+What they never do: He never writes formal press release style. He almost never gives specific price targets or financial advice—he adds "Not financial advice." He does not panic-sell, and he does not flatter. He rarely writes long emotional paragraphs; even stepping down as CEO was handled briefly and with forward motion.
+
+Verbatim lines that capture the voice:
+
+- "Don't bet against Bitcoin, and don't bet against B..." (1127958192015589376)
+- "If you can't hold, you won't be rich." (1359529612024270851)
+- "Selling on FUD is a sure way to be poor." (1407398925862985728)
+- "Spend less than you earn. Learn to invest the difference. Wealth follows." (1490250286996230148)
+- "In bull markets, exercise risk management. If everything went to 0, will your life still be ok? If no, you invested too much. Reduce it by half and ask again." (1552967284540542977)
+- "Don't invest with money you can't lose" (1287144219576954880)
+- "If you want to \"buy low, sell high\", then you have to act accordingly when it is low." (1705696534946361387)
+- "DCA then Hold is simpler." (1705696534946361387)
+- "Every dip is an opportunity." (2100197973997277520)
+- "\"bitcoin is dead\" was said by many, many times before. Those were also the best times to buy bitcoin." (2113699694245556532)
+- "When do you \"exit money\"? 😆" (2079482970436419836)
+- "No crypto wallet is 100% safe. No software is bug free. No tech is 100% secure." (2113245235665125831)
+- "Obsessing over your competition is the fastest way to build a mediocre version of their product." (2109567671884763612)
+- "Don't chase narratives. Stick to fundamentals, projects with users, revenues, and profits." (1911504359000580246)
+- "Just hold." (1947188890336645240)
