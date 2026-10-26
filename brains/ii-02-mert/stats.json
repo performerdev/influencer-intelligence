@@ -19,10 +19,10 @@
       "median_return": 0.009
     },
     "30d": {
-      "n": 334,
-      "hit_rate": 0.488,
-      "mean_return": 0.0841,
-      "median_return": -0.0097
+      "n": 335,
+      "hit_rate": 0.4866,
+      "mean_return": 0.0834,
+      "median_return": -0.0104
     }
   },
   "per_call": [
@@ -4625,7 +4625,7 @@
     {
       "r_1d": 0.0222,
       "r_7d": -0.0145,
-      "r_30d": null,
+      "r_30d": -0.1636,
       "ticker": "SOL",
       "post_id": "2103811340276056170",
       "price_id": "coingecko:solana",
@@ -4721,7 +4721,7 @@
   ],
   "hold_pairs": 11,
   "calls_total": 391,
-  "computed_at": "2026-10-26T09:05:37.110Z",
+  "computed_at": "2026-10-26T20:35:45.850Z",
   "by_direction": {
     "buy": 223,
     "hold": 144,
