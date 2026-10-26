@@ -9,20 +9,20 @@
     "1d": {
       "n": 4,
       "hit_rate": 0.75,
-      "mean_return": -0.0241,
+      "mean_return": -0.0364,
       "median_return": 0.0118
     },
     "7d": {
       "n": 4,
       "hit_rate": 0.25,
-      "mean_return": -0.1313,
+      "mean_return": -0.1388,
       "median_return": -0.1037
     },
     "30d": {
       "n": 4,
-      "hit_rate": 0.25,
-      "mean_return": -0.3732,
-      "median_return": -0.483
+      "hit_rate": 0.5,
+      "mean_return": -0.2537,
+      "median_return": -0.2499
     }
   },
   "per_call": [
@@ -75,16 +75,16 @@
       "price_at_call": null
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": 0.0355,
+      "r_7d": 0.027,
+      "r_30d": 0.1711,
       "ticker": "MOON",
       "post_id": "1486401532807499778",
-      "price_id": null,
+      "price_id": "bsc:0xE8c93310af068aa50bd7bF0ebFa459Df2a02ceba",
       "called_at": "2022-01-26T18:11:56.000Z",
       "direction": "sell",
-      "matched_by": null,
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 0.761255553334375
     },
     {
       "r_1d": null,
@@ -99,16 +99,16 @@
       "price_at_call": null
     },
     {
-      "r_1d": 0.0845,
-      "r_7d": 0.0567,
-      "r_30d": -0.3067,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "ticker": "ORK",
       "post_id": "1501578176077697025",
-      "price_id": "bsc:0xCed0CE92F4bdC3c2201E255FAF12f05cf8206dA8",
+      "price_id": null,
       "called_at": "2022-03-09T15:18:29.000Z",
       "direction": "sell",
-      "matched_by": "ticker",
-      "price_at_call": 0.0027529253107678228
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": null,
@@ -197,7 +197,7 @@
   ],
   "hold_pairs": 0,
   "calls_total": 14,
-  "computed_at": "2026-10-19T20:38:42.052Z",
+  "computed_at": "2026-10-26T09:01:59.097Z",
   "by_direction": {
     "buy": 1,
     "hold": 3,
