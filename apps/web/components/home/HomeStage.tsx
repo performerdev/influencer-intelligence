@@ -32,7 +32,7 @@ const POINTS = [
  * The home page for visitors: the "ii" and headline, the minds, how it works.
  * Logged-in visitors get the app on "/" instead (see app/page.tsx).
  */
-export function HomeStage({ intelligences, questions = [] }: { intelligences: Intelligence[]; questions?: { q: string; code: string }[] }) {
+export function HomeStage({ intelligences }: { intelligences: Intelligence[] }) {
   const [staticLogo, setStaticLogo] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -87,7 +87,7 @@ export function HomeStage({ intelligences, questions = [] }: { intelligences: In
   return (
     <div ref={rootRef}>
       <Hero iiBoxRef={iiBoxRef} canvasRef={canvasRef} onPick={onPick} staticLogo={staticLogo} />
-      <IntelligencesSection intelligences={intelligences} questions={questions} />
+      <IntelligencesSection intelligences={intelligences} />
 
       <section aria-labelledby="how-title" className="mx-auto max-w-site px-gutter pt-[clamp(80px,12vh,128px)]">
         <div className="reveal">

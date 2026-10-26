@@ -9,14 +9,10 @@ import { formatCount, type Intelligence } from "@/lib/intelligences";
 
 export const SIGNATURE_PX = 80;
 
-type Props = {
-  intelligences: Intelligence[];
-  /** latest real questions asked on the site; the marquee hides when empty */
-  questions?: { q: string; code: string }[];
-};
+type Props = { intelligences: Intelligence[] };
 
 /** The minds, then a card to add one more. Cards rise in quietly as they scroll into view (`reveal`). */
-export const IntelligencesSection = forwardRef<HTMLElement, Props>(function IntelligencesSection({ intelligences, questions = [] }, ref) {
+export const IntelligencesSection = forwardRef<HTMLElement, Props>(function IntelligencesSection({ intelligences }, ref) {
   const colors = intelligences.map((i) => i.color);
   return (
     <section ref={ref} id="intelligences" aria-labelledby="intelligences-title" className="relative z-10 mx-auto max-w-site scroll-mt-20 px-gutter pt-8">
@@ -31,7 +27,6 @@ export const IntelligencesSection = forwardRef<HTMLElement, Props>(function Inte
         </div>
         <p className="shrink-0 pb-1 font-mono text-xs text-particle">{intelligences.length} online</p>
       </div>
-      {questions.length > 0 && <Marquee items={questions} />}
 
       <ul className="mt-8 grid grid-cols-1 gap-3 min-[380px]:grid-cols-2 md:grid-cols-3 min-[1080px]:grid-cols-4">
         {intelligences.map((it) => (
@@ -130,24 +125,5 @@ function Go({ label }: { label: string }) {
         →
       </span>
     </span>
-  );
-}
-
-/** One slow marquee: real questions people asked, and which intelligence answered. Never faked. */
-function Marquee({ items }: { items: { q: string; code: string }[] }) {
-  const row = items.map((it, i) => (
-    <span key={i} className="mx-6 shrink-0 font-mono text-xs text-muted">
-      <span className="text-particle">&ldquo;{it.q}&rdquo;</span> → {it.code}
-    </span>
-  ));
-  return (
-    <div className="reveal relative mt-6 overflow-hidden border-y border-line py-3" aria-label="Latest questions">
-      <div className="marquee-track flex w-max">
-        {row}
-        <span aria-hidden className="flex">
-          {row}
-        </span>
-      </div>
-    </div>
   );
 }

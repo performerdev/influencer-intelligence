@@ -207,7 +207,7 @@ export function ChatView({ intelligence, brain, history, embedded = false }: { i
   const disclaimer = `Unofficial AI model built from public posts. Not affiliated with @${handle}. Not financial advice.`;
 
   return (
-    <div className={embedded ? "flex h-full min-h-0 flex-col" : "mx-auto grid h-[100svh] max-w-site grid-cols-1 pt-topbar lg:grid-cols-[264px_minmax(0,1fr)_300px]"}>
+    <div className={embedded ? "flex h-full min-h-0 flex-1 flex-col" : "mx-auto grid h-[100svh] max-w-site grid-cols-1 pt-topbar lg:grid-cols-[264px_minmax(0,1fr)_300px]"}>
       {/* ── left: the brain ── */}
       {!embedded && (
         <aside className="hidden min-h-0 overflow-y-auto border-r border-line px-5 py-6 lg:block" aria-label={`${code} brain summary`}>

@@ -13,7 +13,8 @@ export type CallRow = { at: number; ticker: string; dir: Dir; r7: number | null;
 export function callRows(f: BrainFilesLite): CallRow[] {
   const quotes = new Map(f.calls.map((c) => [c.post_id, c.quote]));
   return (f.stats?.per_call ?? [])
-    .filter((p) => p.r_7d != null || p.r_30d != null)
+    // priced calls, plus last week's calls that are too young to price yet
+    .filter((p) => p.r_7d != null || p.r_30d != null || Date.now() - new Date(p.called_at).getTime() < 8 * 864e5)
     .map((p) => ({
       at: new Date(p.called_at).getTime(),
       ticker: p.ticker.toUpperCase(),

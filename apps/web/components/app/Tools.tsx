@@ -43,7 +43,7 @@ export function Tools({ mode, handle, rows, rules, medianHold }: { mode: Mode; h
   };
 
   return (
-    <div className="flex h-full min-h-0 flex-col">
+    <div className="flex h-full min-h-0 flex-1 flex-col">
       <div ref={scroller} data-lenis-prevent className="min-h-0 flex-1 overflow-y-auto px-gutter lg:px-8">
         <div className="mx-auto grid max-w-[760px] gap-6 py-8">
           {entries.length === 0 && (

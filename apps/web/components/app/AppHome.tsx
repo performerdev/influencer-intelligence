@@ -96,7 +96,7 @@ export function AppHome({ intelligences, recent }: { intelligences: Intelligence
   const chatIt = { code: it.code, handle: it.handle, displayName: it.displayName, color: it.color, avatar: it.avatar, postsParsed: it.postsParsed, postsPerDay: it.postsPerDay };
 
   return (
-    <div className="fixed inset-0 z-40 grid bg-void pt-topbar xl:grid-cols-[248px_minmax(0,1fr)_380px] lg:grid-cols-[232px_minmax(0,1fr)]">
+    <div className="fixed inset-0 z-40 grid grid-rows-[minmax(0,1fr)] bg-void pt-topbar xl:grid-cols-[248px_minmax(0,1fr)_380px] lg:grid-cols-[232px_minmax(0,1fr)]">
       {/* ── left: minds and chats ── */}
       {railOpen && <button type="button" aria-label="Close" className="fixed inset-0 z-[55] bg-black/60 lg:hidden" onClick={() => setRailOpen(false)} />}
       <aside
@@ -208,7 +208,7 @@ export function AppHome({ intelligences, recent }: { intelligences: Intelligence
           </div>
         </header>
 
-        <div className={`min-h-0 flex-1 ${view === "calls" ? "hidden xl:block" : ""}`}>
+        <div className={`min-h-0 flex-1 flex-col ${view === "calls" ? "hidden xl:flex" : "flex"}`}>
           {ready === undefined ? (
             <p className="px-gutter py-10 font-pixel text-xs text-muted lg:px-8">Loading @{it.handle}&apos;s brain…</p>
           ) : mode === "ask" ? (
@@ -221,14 +221,14 @@ export function AppHome({ intelligences, recent }: { intelligences: Intelligence
         </div>
         {view === "calls" && (
           <div data-lenis-prevent className="min-h-0 flex-1 overflow-y-auto px-gutter py-5 xl:hidden">
-            {ready ? <CallsDashboard handle={it.handle} color={it.color} rows={rows} stats={ready.files.stats} /> : <p className="text-sm text-muted">No call record yet.</p>}
+            {ready ? <CallsDashboard handle={it.handle} color={it.color} rows={rows} calls={ready.files.calls} stats={ready.files.stats} /> : <p className="text-sm text-muted">No call record yet.</p>}
           </div>
         )}
       </section>
 
       {/* ── right: the call record ── */}
       <aside data-lenis-prevent aria-label={`@${it.handle}'s calls`} className="hidden min-h-0 overflow-y-auto border-l border-line px-5 py-5 xl:block">
-        {ready ? <CallsDashboard handle={it.handle} color={it.color} rows={rows} stats={ready.files.stats} /> : <p className="font-pixel text-xs text-muted">{ready === null ? "No call record yet." : "Loading…"}</p>}
+        {ready ? <CallsDashboard handle={it.handle} color={it.color} rows={rows} calls={ready.files.calls} stats={ready.files.stats} /> : <p className="font-pixel text-xs text-muted">{ready === null ? "No call record yet." : "Loading…"}</p>}
       </aside>
     </div>
   );
