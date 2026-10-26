@@ -7,22 +7,22 @@
   ],
   "horizons": {
     "1d": {
-      "n": 76,
-      "hit_rate": 0.4474,
-      "mean_return": -0.006,
-      "median_return": -0.005
+      "n": 75,
+      "hit_rate": 0.4267,
+      "mean_return": -0.0064,
+      "median_return": -0.0062
     },
     "7d": {
-      "n": 75,
-      "hit_rate": 0.4933,
-      "mean_return": 0.007,
-      "median_return": -0.0035
+      "n": 74,
+      "hit_rate": 0.4865,
+      "mean_return": 0.0067,
+      "median_return": -0.0082
     },
     "30d": {
-      "n": 75,
-      "hit_rate": 0.6267,
-      "mean_return": 0.063,
-      "median_return": 0.0506
+      "n": 74,
+      "hit_rate": 0.6351,
+      "mean_return": 0.0644,
+      "median_return": 0.0509
     }
   },
   "per_call": [
@@ -711,6 +711,18 @@
       "price_at_call": 1595.65
     },
     {
+      "r_1d": -0.0178,
+      "r_7d": 0.1412,
+      "r_30d": 0.9401,
+      "ticker": "FTT",
+      "post_id": "1668735411705765893",
+      "price_id": "solana:AGFEad2et2ZJif9jaGpdMixQqvW5i81aBdvKe7PHNfz3",
+      "called_at": "2023-06-13T21:41:40.000Z",
+      "direction": "hold",
+      "matched_by": "ticker",
+      "price_at_call": 0.819541
+    },
+    {
       "r_1d": -0.0299,
       "r_7d": 0.0909,
       "r_30d": 0.2076,
@@ -733,18 +745,6 @@
       "direction": "hold",
       "matched_by": null,
       "price_at_call": 240.24
-    },
-    {
-      "r_1d": -0.0178,
-      "r_7d": 0.1412,
-      "r_30d": 0.9401,
-      "ticker": "FTT",
-      "post_id": "1668735411705765893",
-      "price_id": "solana:AGFEad2et2ZJif9jaGpdMixQqvW5i81aBdvKe7PHNfz3",
-      "called_at": "2023-06-13T21:41:40.000Z",
-      "direction": "hold",
-      "matched_by": "ticker",
-      "price_at_call": 0.819541
     },
     {
       "r_1d": 0.0549,
@@ -1083,39 +1083,27 @@
       "price_at_call": 76058.6413814315
     },
     {
-      "r_1d": 0.0113,
-      "r_7d": 0.0284,
-      "r_30d": -0.0427,
-      "ticker": "BNB",
-      "post_id": "2100811458024227069",
-      "price_id": "coingecko:binancecoin",
-      "called_at": "2026-09-18T04:57:37.000Z",
-      "direction": "hold",
-      "matched_by": null,
-      "price_at_call": 751.8415997040671
-    },
-    {
-      "r_1d": 0.0003,
+      "r_1d": -0.0142,
       "r_7d": null,
       "r_30d": null,
-      "ticker": "BNB",
-      "post_id": "2111507843329454322",
-      "price_id": "coingecko:binancecoin",
-      "called_at": "2026-10-17T17:21:14.000Z",
-      "direction": "hold",
+      "ticker": "BTC",
+      "post_id": "2113699694245556532",
+      "price_id": "coingecko:bitcoin",
+      "called_at": "2026-10-23T18:30:52.000Z",
+      "direction": "buy",
       "matched_by": null,
-      "price_at_call": 712.3029711075742
+      "price_at_call": 81468.12601564478
     }
   ],
   "hold_pairs": 0,
-  "calls_total": 90,
-  "computed_at": "2026-10-19T20:41:45.088Z",
+  "calls_total": 89,
+  "computed_at": "2026-10-26T09:08:11.433Z",
   "by_direction": {
-    "buy": 31,
-    "hold": 58,
+    "buy": 32,
+    "hold": 56,
     "sell": 1
   },
-  "calls_priced": 76,
+  "calls_priced": 75,
   "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal)",
   "median_hold_days": null
 }
