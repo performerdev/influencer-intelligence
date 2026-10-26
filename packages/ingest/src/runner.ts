@@ -70,6 +70,7 @@ export async function ingestInfluencer(
   const handle = inf.handle;
 
   let spent = await spentUsd(sql, inf.id, "twitterapi");
+  const spentAtStart = spent;
   let totalKept = 0;
   let totalBilled = 0;
 
@@ -111,7 +112,11 @@ export async function ingestInfluencer(
     return { page, inserted, oldest };
   };
 
-  const overBudget = () => spent + 0.004 > opts.maxUsd;
+  // A first build's cap covers the account's whole history (resumable across runs).
+  // A refresh's cap is for this run only: big accounts have long spent more than
+  // the weekly $5 on their first build, and a lifetime cap stopped them at once.
+  const capUsd = opts.refresh ? spentAtStart + opts.maxUsd : opts.maxUsd;
+  const overBudget = () => spent + 0.004 > capUsd;
   const stop = async (): Promise<IngestResult> => {
     await refreshInfluencerCounts(sql, inf.id);
     return { status: "budget", kept: totalKept, billed: totalBilled, spentUsd: spent };

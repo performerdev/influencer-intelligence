@@ -135,8 +135,12 @@ async function main() {
     // Weekly refresh: a new post appears, refresh fetches only it and bumps the brain.
     const fresh = { ...tweets[4], id: "2000000", createdAt: new Date().toUTCString().replace("GMT", "+0000"), text: "bought more $SOL again, same rule (new)" };
     newestFirst.unshift(fresh);
+    // A big account has long spent more than the weekly cap on its first build; the cap is per refresh, not lifetime.
+    await sql`insert into spend (influencer_id, kind, units, usd, meta)
+      select id, 'twitterapi', 0, 40, null from influencers where handle = 'blknoiz06'`;
     const r1 = calls["/twitter/tweet/advanced_search"] ?? 0;
     const refreshOut = await run(["build", "blknoiz06", "--refresh", "--max-usd", "5"], env);
+    check("refresh runs even after lifetime spend passed the cap", !/stopped at the budget cap/.test(refreshOut), refreshOut.match(/stopped at the budget cap.*/)?.[0] ?? "ok");
     const [{ n: hasNew }] = await sql`select count(*)::int as n from posts where id = '2000000'`;
     check("refresh picks up only new posts", hasNew === 1 && (calls["/twitter/tweet/advanced_search"] ?? 0) - r1 <= 4, `${(calls["/twitter/tweet/advanced_search"] ?? 0) - r1} search calls`);
     const [{ v }] = await sql`select max(version)::int as v from brains`;
@@ -144,6 +148,7 @@ async function main() {
     const r2 = await run(["build", "blknoiz06", "--refresh", "--max-usd", "5"], env);
     check("refresh with nothing new keeps the brain", /brain stays v/.test(r2), r2.match(/brain stays v\d+/)?.[0] ?? r2.slice(-300));
     void refreshOut;
+    await sql`delete from spend where kind = 'twitterapi' and units = 0 and usd = 40`;
 
     // Replies (opt-in): only replies that say something, each with the post it answers.
     const repliesOut = await run(["build", "blknoiz06", "--replies", "--max-usd", "5"], env);
