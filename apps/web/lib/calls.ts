@@ -63,7 +63,7 @@ export function rulesOf(md: string, section: string, n = 2): string[] {
     .split("\n")
     .map((l) => l.match(/^\s*[-*]\s+(.+)/)?.[1])
     .filter((l): l is string => !!l)
-    .map((l) => stripCitations(l.split(/:\s*[“"]|\s[“"]/)[0]).replace(/[\s:;,—-]+$/, "").trim())
+    .map((l) => stripCitations(l.replace(/\*\*|__/g, "").split(/:\s*[“"]|\s[“"]/)[0]).replace(/[\s:;,.—-]+$/, "").trim())
     .filter((l) => l.length > 8 && !/^no stated rule/i.test(l) && !/nigg|fag|retard/i.test(l))
     .slice(0, n);
 }
