@@ -7,22 +7,22 @@
   ],
   "horizons": {
     "1d": {
-      "n": 17,
-      "hit_rate": 0.5294,
-      "mean_return": 0.041,
-      "median_return": 0.0001
+      "n": 16,
+      "hit_rate": 0.5625,
+      "mean_return": 0.0437,
+      "median_return": 0.0033
     },
     "7d": {
-      "n": 17,
-      "hit_rate": 0.5294,
-      "mean_return": 0.0402,
-      "median_return": 0.001
+      "n": 16,
+      "hit_rate": 0.5625,
+      "mean_return": 0.0428,
+      "median_return": 0.0083
     },
     "30d": {
-      "n": 17,
-      "hit_rate": 0.4706,
-      "mean_return": 0.0019,
-      "median_return": -0.0027
+      "n": 16,
+      "hit_rate": 0.5,
+      "mean_return": 0.0021,
+      "median_return": -0.0329
     }
   },
   "per_call": [
@@ -270,6 +270,18 @@
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
+      "ticker": "TSLA",
+      "post_id": "1996270789385969821",
+      "price_id": null,
+      "called_at": "2025-12-03T17:30:19.000Z",
+      "direction": "buy",
+      "matched_by": null,
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "ticker": "STRIPE",
       "post_id": "2026793469768073459",
       "price_id": null,
@@ -322,7 +334,7 @@
       "post_id": "2067326045368484137",
       "price_id": "gt:solana:canP3bBi4tiRLkyU4xGWHT7wxQq1Fmc7WrRr7Wv6Uts",
       "called_at": "2026-06-17T19:18:32.000Z",
-      "direction": "hold",
+      "direction": "buy",
       "matched_by": "ticker",
       "price_at_call": 0.012475351563131065
     },
@@ -339,18 +351,6 @@
       "price_at_call": null
     },
     {
-      "r_1d": -0.0024,
-      "r_7d": -0.0017,
-      "r_30d": -0.0027,
-      "ticker": "SPCX",
-      "post_id": "2070186626928529892",
-      "price_id": "gt:solana:canP3bBi4tiRLkyU4xGWHT7wxQq1Fmc7WrRr7Wv6Uts",
-      "called_at": "2026-06-25T16:45:28.000Z",
-      "direction": "buy",
-      "matched_by": "ticker",
-      "price_at_call": 0.012505509075956997
-    },
-    {
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
@@ -365,13 +365,13 @@
   ],
   "hold_pairs": 0,
   "calls_total": 28,
-  "computed_at": "2026-10-19T20:46:03.726Z",
+  "computed_at": "2026-10-26T09:13:46.464Z",
   "by_direction": {
-    "buy": 27,
-    "hold": 1,
+    "buy": 28,
+    "hold": 0,
     "sell": 0
   },
-  "calls_priced": 17,
+  "calls_priced": 16,
   "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal)",
   "median_hold_days": null
 }

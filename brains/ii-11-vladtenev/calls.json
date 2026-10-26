@@ -200,12 +200,22 @@
     "url": "https://x.com/vladtenev/status/1981405533501608229"
   },
   {
+    "date": "2025-12-03",
+    "ticker": "TSLA",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Welcome to @RobinhoodApp to all the $TSLA shareholders who transferred more than $1.4B to Robinhood",
+    "post_id": "1996270789385969821",
+    "url": "https://x.com/vladtenev/status/1996270789385969821"
+  },
+  {
     "date": "2026-02-25",
     "ticker": "STRIPE",
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "Exactly the kind of company RVI likes to get behind. Proud to soon be investors.",
+    "quote": "Congrats to Patrick and the entire Stripe team. Exactly the kind of company RVI likes to get behind. Proud to soon be investors.",
     "post_id": "2026793469768073459",
     "url": "https://x.com/vladtenev/status/2026793469768073459"
   },
@@ -244,7 +254,7 @@
     "ticker": "SPCX",
     "chain": null,
     "address": null,
-    "direction": "hold",
+    "direction": "buy",
     "quote": "Congratulations to the 855,424 Robinhood customers who requested shares in the $SPCX IPO — you're now $SPCX owners.",
     "post_id": "2067326045368484137",
     "url": "https://x.com/vladtenev/status/2067326045368484137"
@@ -258,16 +268,6 @@
     "quote": "Proud to give everyday investors access to Canva as they work to transform how people create and communicate.",
     "post_id": "2070160108424663202",
     "url": "https://x.com/vladtenev/status/2070160108424663202"
-  },
-  {
-    "date": "2026-06-25",
-    "ticker": "SPCX",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "Why not get 1% with your access? Terms apply.",
-    "post_id": "2070186626928529892",
-    "url": "https://x.com/vladtenev/status/2070186626928529892"
   },
   {
     "date": "2026-09-18",
