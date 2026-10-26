@@ -8,22 +8,28 @@ import { site } from "@/config/site";
 type Props = {
   /** the box the WebGL "ii" is fitted into */
   iiBoxRef: React.Ref<HTMLDivElement>;
+  /** the canvas over that box (a little larger, so a key can sink) */
+  canvasRef: React.Ref<HTMLCanvasElement>;
   onPick: () => void;
   /** no WebGL: draw the SVG mark in the box instead */
   staticLogo?: boolean;
 };
 
 /**
- * Screen 1, DOM layer. The "ii" itself is drawn by the stage canvas (ii-stage.ts)
- * into `iiBoxRef`; this owns the copy, the two actions and the scroll cue.
- * Every `data-d` element dithers in and out with the squares.
+ * Screen 1: the "ii" (drawn by ii-stage.ts into the canvas over `iiBoxRef`),
+ * the headline, the two actions and the scroll cue. Every `data-d` element
+ * dithers in as the letters set.
  */
-export const Hero = forwardRef<HTMLElement, Props>(function Hero({ iiBoxRef, onPick, staticLogo }, ref) {
+export const Hero = forwardRef<HTMLElement, Props>(function Hero({ iiBoxRef, canvasRef, onPick, staticLogo }, ref) {
   return (
     <section ref={ref} className="relative z-10 flex h-[100svh] min-h-[600px] flex-col items-center pt-topbar" aria-labelledby="hero-title">
-      <div className="mt-[3vh] grid min-h-0 w-full max-w-[460px] flex-1 place-items-center px-gutter" aria-hidden>
-        <div ref={iiBoxRef} className="aspect-[144/225] h-[min(72%,230px)] max-w-full sm:h-[min(88%,300px)]">
-          {staticLogo && <LogoMark detail="led" className="h-full w-auto" />}
+      <div className="mt-[3vh] grid min-h-0 w-full max-w-[460px] flex-1 place-items-center px-gutter">
+        <div ref={iiBoxRef} className="relative aspect-[144/225] h-[min(72%,230px)] max-w-full sm:h-[min(88%,300px)]">
+          {staticLogo ? (
+            <LogoMark detail="led" className="h-full w-auto" />
+          ) : (
+            <canvas ref={canvasRef} className="pointer-events-none absolute -left-2 -top-3 h-[calc(100%+24px)] w-[calc(100%+16px)]" />
+          )}
         </div>
       </div>
 

@@ -213,9 +213,18 @@
   -webkit-mask-repeat: repeat;
   mask-repeat: repeat;
 }
-.js .dither-pre,
-.js .brain-slot canvas {
+.js .dither-pre {
   visibility: hidden;
+}
+/* sections below the fold rise in once (HomeStage adds these only off-screen, never with reduced motion) */
+.reveal-pre {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s var(--ii-ease-out), transform 0.7s var(--ii-ease-out);
+}
+.reveal-pre.reveal-in {
+  opacity: 1;
+  transform: none;
 }
 
 @keyframes ii-scroll-cue {

@@ -62,7 +62,11 @@ export type ChatHistory = {
   items: { id?: string; role: "user" | "assistant"; content: string; verdict: Verdict | null; refs: Reference[]; brainVersion: number | null }[];
 };
 
-export function ChatView({ intelligence, brain, history }: { intelligence: ChatIntelligence; brain: ChatBrain | null; history?: ChatHistory | null }) {
+/**
+ * One chat with one mind. Full page on /i/<handle>; `embedded` inside the app on "/"
+ * (the app draws the header, the minds and the calls; sources open in a sheet).
+ */
+export function ChatView({ intelligence, brain, history, embedded = false }: { intelligence: ChatIntelligence; brain: ChatBrain | null; history?: ChatHistory | null; embedded?: boolean }) {
   const { handle, code } = intelligence;
   const auth = useAuth();
   const [messages, setMessages] = useState<Msg[]>(() =>
@@ -197,20 +201,23 @@ export function ChatView({ intelligence, brain, history }: { intelligence: ChatI
 
   const openRef = (r: Reference) => {
     setSelected(r);
-    if (window.matchMedia("(max-width: 1023px)").matches) setRefsSheet(true);
+    if (embedded || window.matchMedia("(max-width: 1023px)").matches) setRefsSheet(true);
   };
 
   const disclaimer = `Unofficial AI model built from public posts. Not affiliated with @${handle}. Not financial advice.`;
 
   return (
-    <div className="mx-auto grid h-[100svh] max-w-site grid-cols-1 pt-topbar lg:grid-cols-[264px_minmax(0,1fr)_300px]">
+    <div className={embedded ? "flex h-full min-h-0 flex-col" : "mx-auto grid h-[100svh] max-w-site grid-cols-1 pt-topbar lg:grid-cols-[264px_minmax(0,1fr)_300px]"}>
       {/* ── left: the brain ── */}
-      <aside className="hidden min-h-0 overflow-y-auto border-r border-line px-5 py-6 lg:block" aria-label={`${code} brain summary`}>
-        <BrainPanel intelligence={intelligence} brain={brain} onOpenBrain={() => brain && setDrawer({ version: brain.version })} />
-      </aside>
+      {!embedded && (
+        <aside className="hidden min-h-0 overflow-y-auto border-r border-line px-5 py-6 lg:block" aria-label={`${code} brain summary`}>
+          <BrainPanel intelligence={intelligence} brain={brain} onOpenBrain={() => brain && setDrawer({ version: brain.version })} />
+        </aside>
+      )}
 
       {/* ── center: the conversation ── */}
-      <section className="flex min-h-0 min-w-0 flex-col" aria-label="Conversation">
+      <section className={`flex min-h-0 min-w-0 flex-col ${embedded ? "flex-1" : ""}`} aria-label="Conversation">
+        {!embedded && (
         <header className="flex items-start justify-between gap-4 border-b border-line px-gutter py-4 lg:px-8">
           <div className="min-w-0">
             <div className="flex items-baseline gap-2">
@@ -224,6 +231,7 @@ export function ChatView({ intelligence, brain, history }: { intelligence: ChatI
             Brain
           </button>
         </header>
+        )}
 
         <div ref={scrollRef} data-scroll-main data-lenis-prevent className="min-h-0 flex-1 overflow-y-auto px-gutter lg:px-8" aria-live="polite">
           {messages.length === 0 ? (
@@ -337,9 +345,11 @@ export function ChatView({ intelligence, brain, history }: { intelligence: ChatI
       </section>
 
       {/* ── right: from the brain ── */}
-      <aside className="hidden min-h-0 overflow-y-auto border-l border-line px-5 py-6 lg:block" aria-label="From the brain">
-        <RefsPanel answer={lastAnswer} selected={selected} onSelect={setSelected} brain={brain} />
-      </aside>
+      {!embedded && (
+        <aside className="hidden min-h-0 overflow-y-auto border-l border-line px-5 py-6 lg:block" aria-label="From the brain">
+          <RefsPanel answer={lastAnswer} selected={selected} onSelect={setSelected} brain={brain} />
+        </aside>
+      )}
 
       <Sheet open={refsSheet} onClose={() => setRefsSheet(false)} title="From the brain" side="bottom">
         <RefsPanel answer={lastAnswer} selected={selected} onSelect={setSelected} brain={brain} />
