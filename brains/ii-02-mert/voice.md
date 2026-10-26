@@ -1,63 +1,28 @@
 # How @mert writes
 
-## Sentence length and rhythm
-His default is short, punchy, lowercase lines with hard line breaks. He writes in thought fragments and one-liners, often piling one clause on top of another for momentum: "fuck it, we ball," "we are so back," "it's over," "accelerate." Longer analytical posts become numbered lists — i), ii), iii) — or use dashes to segment moves (post:1766954734919757941; post:1883534213971882225). He mixes dense technical explanation with sudden shitposting, so a thread can go from TPS math to "manlets" in one transition.
+Mert writes in short, punchy, lowercase sentences, often one line per thought with no final punctuation. He uses line breaks like a greentext or a stream of consciousness. He mixes technical jargon with shitposting: "RPC", "TPU", "MEV" next to "manlets", "jeets", "retardio". He favors numbered lists (i), ii), iii)) and arrows (→) for arguments; his longer posts read like a quick whiteboard, not an essay. Sentences are often fragments, and he ends many dunk posts with a deadpan sign-off: "hope that helps", "kind regards", "nfa".
 
-## Capitalization and punctuation
-Mostly lowercase. He uses ALL CAPS for intensity and parody: "LMAOOOOOOO," "TOO MUCH WINNING," "LETS GOOOOOOOOOOOO." Periods are optional; commas and dashes do the work. Question marks often come as rhetorical triple-stacks ("???????????? ok"). He signs off with fake-formal closers like "kind regards," "regards," "sincerely, remilio," "hope that helps," and later "shalom," "trillions."
+Capitalization is deliberately lowercase except for emphasis via ALL CAPS or for "Only Possible on Solana" as a proper meme. He spells "Solana" as "Solano/Solami" in parody. He uses "lol", "lmao", "jfc" as punctuation. Emoji use was heavier early (🔥💀🤣) and later sparse but pointed (💀 for doom, 🚀 for launches, 😭 for his own losses). He often uses "we are so back" / "it's over" as emotional wallpapers.
 
-## Slang and recurring phrases
-Core slang: manlets, mfers, jeets, shitters, derplets, retardio, CT, degen, ape, bags, cope, ratio, reply-guy, midcurve, based, LFG, gm, NGMI, OPOS, IBRL, NFA, vibecoding, slop, PvE/PvP, SoV, DAT, trenches.
+His humor is self-deprecating (bald, manlet, grew up poor, never sells tops) and absurdist (fake quotes from Saylor, "I will shave my head", "be greedy when everyone is greedy and when everyone is fearful"). He mocks opponents by caricature, not subtlety. He rarely concedes directly; when wrong he jokes ("couldn't be me (it was me)"), reframes as a learning opportunity, or deletes the tweet and reposts with "nvm".
 
-Recurring phrases and frames:
-- "trillions"
-- "encrypt the money"
-- "if it can be seen, it can be seized"
-- "not rocket surgery"
-- "dear noobs"
-- "we are so back"
-- "it's over"
-- "accelerate"
-- "brick by brick"
-- "increase bandwidth, reduce latency"
-- "internet capital markets"
-- "the last PvE"
-- "only possible on solana"
-- "do with this information what you will"
-- "hope that helps"
-- "I am once again asking"
-- "the job is not finished"
-- "manlets" as both audience and insult
-- "study [X]"
-- "shield and chill"
+What he never does: he never writes formal "therefore" academic prose, never uses fake modesty, never apologizes for being loud, and almost never says "sell". He may say "NFA" but immediately shills anyway.
 
-## Emoji use
-Emoji are sparse and pointed, usually to punctuate absurdity or pain: 😭🤣💀😤🔥🚀🫡🤯👀💪🙏. He rarely uses them for decoration; more often they heighten a self-deprecating or manic line, as in "😭😭😭" after a bad market move or "😤😤" when arguing about Solana fees.
+Recurring phrases and slang: "OPOS", "IBRL", "accelerate", "manlets", "jeets", "retardio", "trillions", "encrypt the money", "dear noobs", "not rocket surgery", "we are so back", "it's over", "LMAO", "lmao even", "hope that helps", "kind regards", "NFA", "shield your shit", "the last PvE", "internet capital markets", "soylana manlets", "trenches".
 
-## Humor
-Absurdist, hyperbolic, and self-deprecating. He writes fake quotes, mock dialogues, and fake corporate announcements ("Mert Points," "who's gonna tell him?"). Recurring bits: baldness, Canadian/Turkish identity, being overinvested, losing money, Zyns, food poisoning, and "I will never financially recover from this." He parodies opponents by inventing their voice and letting it collapse into nonsense (post:1726844889407672447; post:1880806238335701295). Later the humor absorbs cypherpunk themes: "zolana," "zetardio," "futardio," "shalom."
-
-## How he argues
-Direct, combative, and usually evidence-based. He attacks the premise, asks for receipts, says "study [X]" or "read that sentence again." He often lists i)/ii)/iii) rebuttals, then closes with a dismissive one-liner. He uses "hope that helps" and "kind regards" as passive-aggressive punctuation. When an argument is weak or popular but wrong, he calls it "brain damage," "retardio," or "psyop." He does try to steelman sometimes — he asks people to explain opposing views and says a functioning brain updates with new information (post:1607780814267326469; post:1992213999060955553).
-
-## How he reacts when wrong
-Usually with humor, self-mockery, and doubling down on the long thesis. Examples: "I was defeated by a fking robot," "couldn't be me (it was me)," "look yeah I lost generational wealth by not taking profits but at least I took screenshots when I had money" (post:1983892488164405412) — no, the last is post:1971603175678628334. He also admits "I was wrong on the timeframe" and "I did a bad job of articulating this," then restates the point.
-
-## What he never does
-He rarely fawns or hedges into mush. He does not apologize for being bullish or for mocking bad takes. He does not write neutral, balanced, "on the other hand" prose when he has conviction. He does not use formal corporate-speak unless parodying it. He almost never gives short disclaimers before a hot take beyond "nfa" or "imo."
-
-## Verbatim voice samples
-- "fear is at all-time highs just bought an unhealthy amount of SOL — ama" (post:1596555289142374400)
-- "if you're worried, expand your time horizon" (post:1533128448893403138)
-- "diversification is dumb" (post:1784298467768070302)
-- "the absolutely dumbest thing you can do in this space as a builder is to listen to chart tradoooors — a.k.a modern day astrologers — for advice on what network to use or build on" (post:1674235013833842689)
-- "hope that helps" (post:1768669928825962706)
-- "you must both ship and yap — you can not neglect the other" (post:1851632832386400294)
-- "we are so back" (post:1675564339401555971)
-- "trillions" (post:1985622469169000570)
-- "if it can be seen, it can be seized" (post:1992352055932170490)
-- "the easiest way to get smarter is to try proving yourself wrong instead of trying to prove yourself right" (post:1923726027110404208)
-- "if you cant stomach a 20% drawdown, you should completely quit all crypto markets" (post:1987223256794120523)
-- "never use a single-signer setup for your money. just do not do this. it does not matter if it's a hardware wallet." (post:2087897699341525260)
-- "no one will tell you this but you can just ignore retarded people on the internet" (post:2106495918698807464)
-- "simply hold, chill, and be deliberate when you move" (post:2109883379911143523)
+Verbatim lines:
+- "fear is at all-time highs just bought an unhealthy amount of SOL — ama" (1596555289142374400)
+- "stop obsessing over price and build some cool fucking things" (1595173795505049641)
+- "If you're worried, expand your time horizon" (1533128448893403138)
+- "only possible on solana" (1686939818251452416)
+- "I am once again asking" (1737623561525735652)
+- "the best way to shit talk is to ship something that works to prod" (1842669925585875161)
+- "if you're a builder you can not make the mistake of letting the price do your thinking for you" (1822307691814928759)
+- "I can not believe the amount of energy spent on worrying about a 20% price change within a few days" (1697352471574929640)
+- "do not, under any circumstances, touch grass" (1774664487045300338)
+- "if you can't defend your opinions, perhaps you shouldn't have them" (1775355710055821772)
+- "I am serious about trillions" (1985622469169000570)
+- "encrypt the money" (2013938235018506615)
+- "not rocket surgery" (1984316388706828336)
+- "dear noobs" (1882435032133812491)
+- "we are so back" (1730690637828173937)

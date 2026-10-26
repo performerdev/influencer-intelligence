@@ -7,22 +7,22 @@
   ],
   "horizons": {
     "1d": {
-      "n": 339,
-      "hit_rate": 0.5133,
-      "mean_return": 0.0118,
+      "n": 342,
+      "hit_rate": 0.5117,
+      "mean_return": 0.0113,
       "median_return": 0.0012
     },
     "7d": {
-      "n": 338,
-      "hit_rate": 0.5325,
-      "mean_return": 0.0232,
-      "median_return": 0.0097
+      "n": 342,
+      "hit_rate": 0.5292,
+      "mean_return": 0.0217,
+      "median_return": 0.009
     },
     "30d": {
-      "n": 330,
-      "hit_rate": 0.4939,
-      "mean_return": 0.0885,
-      "median_return": -0.0026
+      "n": 334,
+      "hit_rate": 0.488,
+      "mean_return": 0.0841,
+      "median_return": -0.0097
     }
   },
   "per_call": [
@@ -99,16 +99,16 @@
       "price_at_call": null
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": -0.0922,
+      "r_7d": -0.067,
+      "r_30d": -0.7113,
       "ticker": "HONEY",
       "post_id": "1635811514350292992",
-      "price_id": null,
+      "price_id": "solana:4vMsoUT2BWatFweudnQM1xedRLfJgJ7hswhcpz4xgBTy",
       "called_at": "2023-03-15T01:13:51.000Z",
       "direction": "buy",
-      "matched_by": null,
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 0.04308251
     },
     {
       "r_1d": null,
@@ -4071,16 +4071,16 @@
       "price_at_call": null
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": 0.0523,
+      "r_7d": -0.2286,
+      "r_30d": -0.0261,
       "ticker": "KO",
       "post_id": "2025876283100434880",
-      "price_id": null,
+      "price_id": "bsc:0x2D739Dd563609C39A1aE1546a03E8b469361175f",
       "called_at": "2026-02-23T10:11:59.000Z",
       "direction": "hold",
-      "matched_by": null,
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 0.019286815930397053
     },
     {
       "r_1d": null,
@@ -4601,7 +4601,7 @@
     {
       "r_1d": -0.0059,
       "r_7d": 0.0131,
-      "r_30d": null,
+      "r_30d": -0.0972,
       "ticker": "SOL",
       "post_id": "2102033346712740258",
       "price_id": "coingecko:solana",
@@ -4613,7 +4613,7 @@
     {
       "r_1d": -0.0875,
       "r_7d": -0.1332,
-      "r_30d": null,
+      "r_30d": -0.2609,
       "ticker": "ZEC",
       "post_id": "2102539541026332820",
       "price_id": "coingecko:zcash",
@@ -4683,6 +4683,18 @@
       "price_at_call": 1323.0620205929838
     },
     {
+      "r_1d": -0.1034,
+      "r_7d": -0.1421,
+      "r_30d": null,
+      "ticker": "NEAR",
+      "post_id": "2108073189087875167",
+      "price_id": "coingecko:near",
+      "called_at": "2026-10-08T05:53:09.000Z",
+      "direction": "buy",
+      "matched_by": null,
+      "price_at_call": 5.399241717413471
+    },
+    {
       "r_1d": 0.022,
       "r_7d": 0.0286,
       "r_30d": null,
@@ -4696,7 +4708,7 @@
     },
     {
       "r_1d": 0.016,
-      "r_7d": null,
+      "r_7d": 0.0248,
       "r_30d": null,
       "ticker": "BTC",
       "post_id": "2110580548620173419",
@@ -4708,14 +4720,14 @@
     }
   ],
   "hold_pairs": 11,
-  "calls_total": 390,
-  "computed_at": "2026-10-19T20:40:46.441Z",
+  "calls_total": 391,
+  "computed_at": "2026-10-26T09:05:37.110Z",
   "by_direction": {
-    "buy": 222,
+    "buy": 223,
     "hold": 144,
     "sell": 24
   },
-  "calls_priced": 339,
+  "calls_priced": 342,
   "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal)",
   "median_hold_days": 65.8
 }
