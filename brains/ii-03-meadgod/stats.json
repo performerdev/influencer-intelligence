@@ -7,22 +7,22 @@
   ],
   "horizons": {
     "1d": {
-      "n": 27,
-      "hit_rate": 0.5185,
-      "mean_return": -0.0008,
+      "n": 28,
+      "hit_rate": 0.5357,
+      "mean_return": -0.0005,
       "median_return": 0.002
     },
     "7d": {
-      "n": 27,
-      "hit_rate": 0.5185,
-      "mean_return": -0.0049,
-      "median_return": 0.0053
+      "n": 28,
+      "hit_rate": 0.5,
+      "mean_return": -0.0099,
+      "median_return": 0.0018
     },
     "30d": {
-      "n": 25,
-      "hit_rate": 0.36,
-      "mean_return": -0.0739,
-      "median_return": -0.0485
+      "n": 26,
+      "hit_rate": 0.3462,
+      "mean_return": -0.0766,
+      "median_return": -0.0491
     }
   },
   "per_call": [
@@ -387,16 +387,16 @@
       "price_at_call": null
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": 0.0095,
+      "r_7d": -0.1456,
+      "r_30d": -0.1456,
       "ticker": "BASE",
       "post_id": "2076035593084018757",
-      "price_id": null,
+      "price_id": "base:0xd07379a755A8f11B57610154861D694b2A0f615a",
       "called_at": "2026-07-11T20:07:10.000Z",
       "direction": "hold",
-      "matched_by": null,
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 8.341141845896521e-7
     },
     {
       "r_1d": null,
@@ -533,13 +533,13 @@
   ],
   "hold_pairs": 4,
   "calls_total": 42,
-  "computed_at": "2026-10-26T09:01:16.150Z",
+  "computed_at": "2026-10-26T20:38:23.886Z",
   "by_direction": {
     "buy": 22,
     "hold": 6,
     "sell": 14
   },
-  "calls_priced": 27,
+  "calls_priced": 28,
   "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal)",
   "median_hold_days": 92.1
 }
