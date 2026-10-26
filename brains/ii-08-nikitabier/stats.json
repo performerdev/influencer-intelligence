@@ -7,22 +7,22 @@
   ],
   "horizons": {
     "1d": {
-      "n": 19,
-      "hit_rate": 0.5263,
-      "mean_return": -0.0071,
-      "median_return": 0.0017
+      "n": 18,
+      "hit_rate": 0.5,
+      "mean_return": -0.0078,
+      "median_return": 0.0001
     },
     "7d": {
-      "n": 19,
-      "hit_rate": 0.5263,
-      "mean_return": -0.0154,
-      "median_return": 0.0008
+      "n": 18,
+      "hit_rate": 0.5,
+      "mean_return": -0.0202,
+      "median_return": -0.0006
     },
     "30d": {
-      "n": 19,
-      "hit_rate": 0.4211,
-      "mean_return": -0.0612,
-      "median_return": -0.0191
+      "n": 18,
+      "hit_rate": 0.5,
+      "mean_return": -0.0501,
+      "median_return": -0.0093
     }
   },
   "per_call": [
@@ -1515,16 +1515,16 @@
       "price_at_call": null
     },
     {
-      "r_1d": 0.0202,
-      "r_7d": 0.0852,
-      "r_30d": -0.0152,
+      "r_1d": -0.0015,
+      "r_7d": -0.0273,
+      "r_30d": 0.1084,
       "ticker": "BITCOIN",
       "post_id": "2092090439402659987",
-      "price_id": "ethereum:0x72e4f9F808C49A2a61dE9C5896298920Dc4EEEa9",
+      "price_id": "gt:bsc:0xa24CF556E66279F53C93F70BD507A0084060bd6D",
       "called_at": "2026-08-25T03:23:24.000Z",
       "direction": "hold",
       "matched_by": "ticker",
-      "price_at_call": 0.01645389436256664
+      "price_at_call": 2.10847208295334e-9
     },
     {
       "r_1d": -0.0019,
@@ -1534,29 +1534,29 @@
       "post_id": "2092357993560252908",
       "price_id": "gt:solana:canP3bBi4tiRLkyU4xGWHT7wxQq1Fmc7WrRr7Wv6Uts",
       "called_at": "2026-08-25T21:06:34.000Z",
-      "direction": "buy",
+      "direction": "hold",
       "matched_by": "ticker",
       "price_at_call": 0.01246151049336722
     },
     {
-      "r_1d": -0.0166,
-      "r_7d": -0.0421,
-      "r_30d": -0.1368,
-      "ticker": "APPLE",
-      "post_id": "2097748652337066266",
-      "price_id": "solana:H33XL6HHDReCVRgSApZpsXM7Hy7JGyLztRJaGxjapump",
-      "called_at": "2026-09-09T18:07:07.000Z",
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "ticker": "UNL",
+      "post_id": "2112780491225285006",
+      "price_id": "gt:solana:Bb5M3QUChvbEhbWUwudb1gqE6PWjcTYddowu3JUeQ3ri",
+      "called_at": "2026-10-21T05:38:17.000Z",
       "direction": "buy",
       "matched_by": "ticker",
-      "price_at_call": 0.00008208508177302582
+      "price_at_call": 0.000013562755603581782
     }
   ],
   "hold_pairs": 9,
   "calls_total": 127,
-  "computed_at": "2026-10-19T20:44:42.905Z",
+  "computed_at": "2026-10-26T09:12:49.727Z",
   "by_direction": {
-    "buy": 81,
-    "hold": 22,
+    "buy": 80,
+    "hold": 23,
     "sell": 24
   },
   "calls_priced": 19,

@@ -1254,19 +1254,19 @@
     "ticker": "SPCX",
     "chain": null,
     "address": null,
-    "direction": "buy",
+    "direction": "hold",
     "quote": "I don't see this why is news: it's already available on the $SPCX ticker",
     "post_id": "2092357993560252908",
     "url": "https://x.com/nikitabier/status/2092357993560252908"
   },
   {
-    "date": "2026-09-09",
-    "ticker": "APPLE",
+    "date": "2026-10-21",
+    "ticker": "UNL",
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "I’m buying it. GFY Apple.",
-    "post_id": "2097748652337066266",
-    "url": "https://x.com/nikitabier/status/2097748652337066266"
+    "quote": "Funny that basically all AI data centers are being run on natural gas but the cost of NG has been mostly flat or down. $UNL",
+    "post_id": "2112780491225285006",
+    "url": "https://x.com/nikitabier/status/2112780491225285006"
   }
 ]
