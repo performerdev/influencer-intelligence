@@ -28511,16 +28511,6 @@
   },
   {
     "date": "2026-09-17",
-    "ticker": "CA",
-    "chain": "evm",
-    "address": "0xacfe6019ed1a7dc6f7b508c02d1b04ec88cc21bf",
-    "direction": "hold",
-    "quote": "called base:0xacfe6019ed1a7dc6f7b508c02d1b04ec88cc21bf when we first started the show around $8 now around $25",
-    "post_id": "2100708703280247197",
-    "url": "https://x.com/blknoiz06/status/2100708703280247197"
-  },
-  {
-    "date": "2026-09-17",
     "ticker": "HOOD",
     "chain": null,
     "address": null,
@@ -28528,6 +28518,16 @@
     "quote": "i think we see hood trading $200+ by end of next year. $HOOD really in a good spot right now",
     "post_id": "2100718529771127085",
     "url": "https://x.com/blknoiz06/status/2100718529771127085"
+  },
+  {
+    "date": "2026-09-17",
+    "ticker": "NFT",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "i wanna buy some nfts",
+    "post_id": "2100722299909324971",
+    "url": "https://x.com/blknoiz06/status/2100722299909324971"
   },
   {
     "date": "2026-09-17",
@@ -28570,6 +28570,26 @@
     "url": "https://x.com/blknoiz06/status/2103485488745369677"
   },
   {
+    "date": "2026-09-26",
+    "ticker": "PUMP",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "this coin is mispriced by a factor of about 20x",
+    "post_id": "2103704779658588382",
+    "url": "https://x.com/blknoiz06/status/2103704779658588382"
+  },
+  {
+    "date": "2026-09-27",
+    "ticker": "PUMP",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "will make a new ATH in less than 30 days, you've had a month to position after missing the bottom",
+    "post_id": "2104305815226085594",
+    "url": "https://x.com/blknoiz06/status/2104305815226085594"
+  },
+  {
     "date": "2026-10-01",
     "ticker": "PUMP",
     "chain": null,
@@ -28595,7 +28615,7 @@
     "chain": null,
     "address": null,
     "direction": "hold",
-    "quote": "hype & lit have been strong but recently sold off",
+    "quote": "hype & lit have been strong but recently sold off p aggro on robinhood perps integration news",
     "post_id": "2105721654546424087",
     "url": "https://x.com/blknoiz06/status/2105721654546424087"
   },
@@ -28680,6 +28700,16 @@
     "url": "https://x.com/blknoiz06/status/2109472464246079912"
   },
   {
+    "date": "2026-10-15",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "am highly convicted in $BTC face ripper rally",
+    "post_id": "2110767113673781312",
+    "url": "https://x.com/blknoiz06/status/2110767113673781312"
+  },
+  {
     "date": "2026-10-18",
     "ticker": "BTC",
     "chain": null,
@@ -28691,12 +28721,32 @@
   },
   {
     "date": "2026-10-20",
-    "ticker": "CA",
+    "ticker": "VVV",
     "chain": "evm",
     "address": "0xacfe6019ed1a7dc6f7b508c02d1b04ec88cc21bf",
     "direction": "buy",
-    "quote": "this is fueling $10.4M/yr burn for base:0xacfe6019ed1a7dc6f7b508c02d1b04ec88cc21bf",
+    "quote": "if you aren't paying attention to venice ai, you should be.",
     "post_id": "2112585897531334903",
     "url": "https://x.com/blknoiz06/status/2112585897531334903"
+  },
+  {
+    "date": "2026-10-26",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "i am bearish btc/eth & large cap stocks believe btc & eth have broken mid timeframe trend",
+    "post_id": "2114710641290138085",
+    "url": "https://x.com/blknoiz06/status/2114710641290138085"
+  },
+  {
+    "date": "2026-10-26",
+    "ticker": "ETH",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "will continue to accelerate to downside under 82k/2400",
+    "post_id": "2114710641290138085",
+    "url": "https://x.com/blknoiz06/status/2114710641290138085"
   }
 ]
