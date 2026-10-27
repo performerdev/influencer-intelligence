@@ -1,10 +1,10 @@
 {
   "code": "ii-07",
   "handle": "cz_binance",
-  "version": 10,
-  "distilled_at": "2026-10-26T20:39:46.120Z",
+  "version": 11,
+  "distilled_at": "2026-10-27T14:33:31.452Z",
   "model": "deepseek-v4-pro",
-  "prompt_tokens_estimate": 38315,
+  "prompt_tokens_estimate": 38340,
   "posts_parsed": 5201,
   "posts_from": "2018-01-15",
   "posts_to": "2026-10-26",
