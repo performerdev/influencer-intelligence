@@ -24,8 +24,13 @@ export type CallStat = {
   r_1d: number | null;
   r_7d: number | null;
   r_30d: number | null;
-  /** "ticker": the coin was found by its ticker on DexScreener (no address in the post), so it may be a namesake */
-  matched_by?: "ticker" | null;
+  /**
+   * How the asset was found when the post named no exact id. "ticker": by its ticker on DexScreener;
+   * "symbol": by its symbol in CoinGecko's full list — both may be a namesake. "stock": a stock, ETF or metal.
+   */
+  matched_by?: "ticker" | "symbol" | "stock" | null;
+  /** the token's own symbol, when the call only named it by contract address ("CA") */
+  symbol?: string | null;
 };
 
 export type HorizonStat = { n: number; median_return: number | null; mean_return: number | null; hit_rate: number | null };
@@ -61,8 +66,18 @@ export async function computeStats(
   calls: CallInput[],
   prices: PriceSource,
   now = new Date(),
-  /** more candidate ids per call (tokens resolved by ticker), and where "gt:" ids are priced */
-  opts: { extraIds?: (c: CallInput) => string[]; fallback?: PriceSource } = {},
+  opts: {
+    /** more candidate ids per call, best first (tokens resolved by address, ticker or symbol) */
+    extraIds?: (c: CallInput) => string[];
+    /** where "gt:" ids are priced, for calls the main source couldn't price */
+    fallback?: PriceSource;
+    /** other sources by id prefix, e.g. { prefix: "stock:", source: new StockPrices() } */
+    sources?: { prefix: string; source: PriceSource }[];
+    /** how the priced id was found (default: "stock" for stock ids, "ticker" for any id the call didn't name) */
+    matchedBy?: (c: CallInput, id: string) => CallStat["matched_by"];
+    /** the real symbol for a call named only by its contract address */
+    symbolOf?: (c: CallInput, id: string) => string | null;
+  } = {},
 ): Promise<Stats> {
   const nowSec = Math.floor(now.getTime() / 1000);
   // Request every candidate id at call time + each horizon (future points skipped).
@@ -75,7 +90,15 @@ export async function computeStats(
     for (const id of ids) if (!id.startsWith("gt:")) req[id] = [...new Set([...(req[id] ?? []), ...ts])].sort((a, b) => a - b);
     return { c, t0, ts, ids };
   });
-  const got: Record<string, (PricePoint | null)[]> = Object.keys(req).length ? await prices.batch(req) : {};
+  // each id goes to the source that knows it: stocks to the stock source, the rest to the main one
+  const routes = opts.sources ?? [];
+  const groups = new Map<PriceSource, Record<string, number[]>>();
+  for (const [id, ts] of Object.entries(req)) {
+    const src = routes.find((r) => id.startsWith(r.prefix))?.source ?? prices;
+    groups.set(src, { ...(groups.get(src) ?? {}), [id]: ts });
+  }
+  const got: Record<string, (PricePoint | null)[]> = {};
+  for (const [src, part] of groups) Object.assign(got, await src.batch(part));
   const lookup = (id: string, ts: number) => {
     const i = req[id]?.indexOf(ts) ?? -1;
     return i >= 0 ? got[id]?.[i]?.price ?? null : null;
@@ -96,8 +119,16 @@ export async function computeStats(
     }
   }
 
+  // A coin's first hours of trading often carry a placeholder price (a launch-day $0.0001 for a $1 coin):
+  // a 20x jump either way between the call and the next day is bad data, not a move. Try the next candidate.
+  const sane = (id: string, t0: number) => {
+    const p0 = lookup(id, t0);
+    if (p0 == null) return false;
+    const p1 = lookup(id, t0 + DAY);
+    return p1 == null || (p1 / p0 < 20 && p0 / p1 < 20);
+  };
   const per_call: CallStat[] = plan.map(({ c, t0, ids }) => {
-    const id = ids.find((x) => lookup(x, t0) != null) ?? null;
+    const id = ids.find((x) => sane(x, t0)) ?? null;
     const p0 = id ? lookup(id, t0) : null;
     const sign = c.direction === "sell" ? -1 : 1;
     const r = (d: number) => {
@@ -112,7 +143,8 @@ export async function computeStats(
       called_at: new Date(c.called_at).toISOString(),
       price_id: id,
       price_at_call: p0,
-      matched_by: id && !priceIds(c).includes(id) ? "ticker" : null,
+      matched_by: !id ? null : opts.matchedBy ? opts.matchedBy(c, id) : id.startsWith("stock:") ? "stock" : priceIds(c).includes(id) ? null : "ticker",
+      symbol: id && opts.symbolOf ? opts.symbolOf(c, id) : null,
       r_1d: r(1),
       r_7d: r(7),
       r_30d: r(30),
@@ -155,7 +187,10 @@ export async function computeStats(
 
   return {
     computed_at: now.toISOString(),
-    price_source: opts.extraIds ? `${prices.name}, small coins found on DexScreener${opts.fallback ? ` (+ ${opts.fallback.name})` : ""}` : prices.name,
+    price_source: [
+      opts.extraIds ? `${prices.name}, small coins found on DexScreener${opts.fallback ? ` (+ ${opts.fallback.name})` : ""}` : prices.name,
+      ...routes.map((r) => r.source.name),
+    ].join("; "),
     calls_total: calls.length,
     calls_priced: per_call.filter((p) => p.price_at_call != null).length,
     by_direction,
@@ -166,7 +201,9 @@ export async function computeStats(
     notes: [
       "Returns are signed in the call's favor: a sell call followed by a price drop counts as positive.",
       "hold calls are measured like buys.",
-      "Calls without a known asset id or contract address in the post are left unpriced, never guessed.",
+      "A price that jumps 20x either way within a day of the call is treated as launch-day bad data and the call is left unpriced.",
+      "Calls without a known asset id or contract address in the post are matched by ticker (DexScreener) or symbol (CoinGecko) to a coin that already traded on the call's date; those matches are marked and may be a namesake.",
+      "Stocks, ETFs and metals are priced from daily closes adjusted for splits; a call on a closed day uses the last close before it.",
       "Hold time pairs a buy with the next sell of the same ticker; only calls with an exit post count.",
     ],
   };

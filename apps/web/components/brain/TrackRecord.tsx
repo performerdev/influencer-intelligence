@@ -2,19 +2,20 @@
 
 import { useMemo, useRef, useState } from "react";
 
+import { AppLink } from "@/components/ui/AppLink";
 import { type Period, PeriodToggle } from "@/components/ui/PeriodToggle";
 
 import { CallsChart, type ChartCall } from "./CallsChart";
 
 /**
  * One call, packed small for the page payload (a big record runs to thousands):
- * [minutes since epoch, ticker, b|s|h, post id, quote, price at call, 7d move, 30d move, matched by ticker only]
+ * [minutes since epoch, ticker, b|s|h, post id, quote, price at call, 7d move, 30d move, how it was matched: 0 exact, 1 by ticker or symbol (may be a namesake), 2 a stock / ETF / metal]
  * Moves are signed in the call's favor.
  */
-export type RecordTuple = [number, string, "b" | "s" | "h", string, string, number | null, number | null, number | null, 0 | 1];
+export type RecordTuple = [number, string, "b" | "s" | "h", string, string, number | null, number | null, number | null, 0 | 1 | 2];
 
 type Dir = "buy" | "sell" | "hold";
-type Row = { t: number; ticker: string; dir: Dir; post: string; quote: string; price: number | null; r7: number | null; r30: number | null; byTicker: boolean };
+type Row = { t: number; ticker: string; dir: Dir; post: string; quote: string; price: number | null; r7: number | null; r30: number | null; byTicker: boolean; stock: boolean };
 type Side = "all" | Dir;
 type Outcome = "all" | "worked" | "didnt" | "unpriced";
 type Sort = "new" | "old" | "best7" | "worst7" | "best30" | "worst30";
@@ -70,7 +71,7 @@ export function TrackRecord({ handle, data, medianHold, holdPairs }: { handle: s
   const all = useMemo<Row[]>(
     () =>
       data
-        .map(([m, ticker, d, post, quote, price, r7, r30, bt]) => ({ t: m * 6e4, ticker, dir: DIRS[d], post, quote, price, r7, r30, byTicker: bt === 1 }))
+        .map(([m, ticker, d, post, quote, price, r7, r30, bt]) => ({ t: m * 6e4, ticker, dir: DIRS[d], post, quote, price, r7, r30, byTicker: bt === 1, stock: bt === 2 }))
         .sort((a, b) => a.t - b.t),
     [data],
   );
@@ -125,9 +126,9 @@ export function TrackRecord({ handle, data, medianHold, holdPairs }: { handle: s
   const download = () => {
     const esc = (s: string) => `"${s.replace(/"/g, '""')}"`;
     const lines = [
-      "date,call,coin,price_at_call_usd,move_7d,move_30d,matched_by_ticker_only,quote,post",
+      "date,call,asset,price_at_call_usd,move_7d,move_30d,match,quote,post",
       ...list.map((r) =>
-        [day(r.t), r.dir, r.ticker, r.price ?? "", r.r7 == null ? "" : r.r7.toFixed(4), r.r30 == null ? "" : r.r30.toFixed(4), r.byTicker ? "yes" : "", esc(r.quote), `https://x.com/${handle}/status/${r.post}`].join(","),
+        [day(r.t), r.dir, r.ticker, r.price ?? "", r.r7 == null ? "" : r.r7.toFixed(4), r.r30 == null ? "" : r.r30.toFixed(4), r.stock ? "stock" : r.byTicker ? "by name, may be a namesake" : "exact", esc(r.quote), `https://x.com/${handle}/status/${r.post}`].join(","),
       ),
     ];
     const url = URL.createObjectURL(new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8" }));
@@ -202,6 +203,9 @@ export function TrackRecord({ handle, data, medianHold, holdPairs }: { handle: s
                       <button type="button" onClick={() => pickCoin(t.k)} className="hover:underline">
                         ${t.k}
                       </button>
+                      <AppLink href={`/coin/${encodeURIComponent(t.k)}`} onClick={(e) => e.stopPropagation()} className="ml-2 text-muted hover:text-ceramic" title={`Every mind's calls on $${t.k}`}>
+                        all minds ↗
+                      </AppLink>
                     </td>
                     <td className="px-3 py-2.5 text-right">{t.n}</td>
                     <td className="px-3 py-2.5">
@@ -305,7 +309,7 @@ export function TrackRecord({ handle, data, medianHold, holdPairs }: { handle: s
           </div>
         )}
         <p className="mt-4 text-xs leading-relaxed text-muted">
-          Moves are signed in the call&apos;s favor: a sell followed by a drop counts as worked. ~ means the coin was matched by ticker alone, so now and then it can be a different coin with the same name. &ldquo;No price&rdquo; means no price history was found for it (stocks, very old or dead coins).
+          Moves are signed in the call&apos;s favor: a sell followed by a drop counts as worked. ~ means the coin was matched by its ticker alone, so now and then it can be a different coin with the same name. Stocks, ETFs and metals are priced from daily closes. &ldquo;No price&rdquo; means no price history was found for it (very old or dead coins).
         </p>
       </section>
     </>
@@ -351,11 +355,12 @@ function CallLine({ r, handle, onCoin }: { r: Row; handle: string; onCoin: (k: s
           ${r.ticker}
         </button>
         {r.byTicker && (
-          <span title="Matched by ticker only" className="text-muted">
+          <span title="Matched by name only: may be a different coin with the same ticker" className="text-muted">
             {" "}
             ~
           </span>
         )}
+        {r.stock && <span className="ml-1.5 border border-line px-1 text-[10px] text-muted">stock</span>}
       </span>
       <span className="hidden text-right text-particle tabular-nums sm:block">{money(r.price)}</span>
       <span className={`hidden text-right tabular-nums sm:block ${tone(r.r7)}`}>{signed(r.r7)}</span>

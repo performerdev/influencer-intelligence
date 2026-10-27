@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { isNotCoin } from "@ii/stats";
+
 import { type RecordTuple, TrackRecord } from "@/components/brain/TrackRecord";
 import { BrainAvatar } from "@/components/particles/BrainAvatar";
 import { AppLink } from "@/components/ui/AppLink";
@@ -25,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 type FileCall = { post_id: string; ticker: string; direction: "buy" | "sell" | "hold"; called_at: string; quote: string };
-type PerCall = { post_id: string; ticker: string; r_7d: number | null; r_30d: number | null; price_at_call: number | null; matched_by?: string | null };
+type PerCall = { post_id: string; ticker: string; r_7d: number | null; r_30d: number | null; price_at_call: number | null; matched_by?: string | null; symbol?: string | null };
 
 const day = (d: string | Date) => new Date(d).toISOString().slice(0, 10);
 // quotes come from X's API with HTML entities
@@ -43,7 +45,8 @@ export default async function BrainProfile({ params }: Props) {
     : null;
 
   const f = brain?.files;
-  const calls = ((f?.calls ?? []) as unknown as FileCall[]).map((c) => ({ ...c, called_at: String(c.called_at), quote: unescape(c.quote ?? "") }));
+  // categories, stablecoins and sports bets the extraction took for tickers are not calls on an asset
+  const calls = ((f?.calls ?? []) as unknown as FileCall[]).filter((c) => !isNotCoin(c.ticker)).map((c) => ({ ...c, called_at: String(c.called_at), quote: unescape(c.quote ?? "") }));
   const stats = f?.stats ?? null;
   const perCallList = (stats?.per_call ?? []) as PerCall[];
   const perCall = new Map<string, PerCall>();
@@ -59,14 +62,14 @@ export default async function BrainProfile({ params }: Props) {
     const price = p?.price_at_call;
     return [
       Math.round(new Date(c.called_at).getTime() / 6e4),
-      tickerKey(c.ticker),
+      tickerKey(p?.symbol ?? c.ticker),
       c.direction === "buy" ? "b" : c.direction === "sell" ? "s" : "h",
       c.post_id,
       c.quote.slice(0, 200),
       price == null ? null : Number(price.toPrecision(5)),
       price == null ? null : r4(p?.r_7d),
       price == null ? null : r4(p?.r_30d),
-      p?.matched_by === "ticker" ? 1 : 0,
+      p?.matched_by === "stock" ? 2 : p?.matched_by === "ticker" || p?.matched_by === "symbol" ? 1 : 0,
     ];
   });
   const rules = f ? ruleHighlights(f.rules) : [];

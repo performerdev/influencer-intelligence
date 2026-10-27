@@ -17,12 +17,12 @@ export function callRows(f: BrainFilesLite): CallRow[] {
     .filter((p) => p.r_7d != null || p.r_30d != null || Date.now() - new Date(p.called_at).getTime() < 8 * 864e5)
     .map((p) => ({
       at: new Date(p.called_at).getTime(),
-      ticker: p.ticker.toUpperCase(),
+      ticker: (p.symbol ?? p.ticker).replace(/^\$/, "").toUpperCase(),
       dir: p.direction,
       r7: p.r_7d,
       r30: p.r_30d,
       postId: p.post_id,
-      byTicker: p.matched_by === "ticker",
+      byTicker: p.matched_by === "ticker" || p.matched_by === "symbol",
       quote: quotes.get(p.post_id) ?? null,
     }))
     .sort((a, b) => a.at - b.at);

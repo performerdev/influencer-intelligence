@@ -12,6 +12,8 @@ import { LogoMark } from "./LogoMark";
 
 const nav = [
   { href: "/#intelligences", label: "Intelligences" },
+  { href: "/coins", label: "Coins" },
+  { href: "/leaderboard", label: "Leaderboard" },
   { href: "/group", label: "Group" },
   { href: "/add", label: "Add" },
 ];

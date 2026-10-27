@@ -133,14 +133,59 @@ const COINGECKO: Record<string, string> = {
 /** Ticker → CoinGecko id for well-known assets (also used for live prices on the site). */
 export const COINGECKO_IDS: Readonly<Record<string, string>> = COINGECKO;
 
+/** A curated id that lacks early history: older ids for the same asset, tried next. */
+const COINGECKO_EARLIER: Record<string, string[]> = {
+  DYDX: ["dydx"], // ethDYDX, before the dYdX chain token
+};
+
+/**
+ * Words the call extraction sometimes reads as a ticker but that aren't one
+ * asset: categories, stablecoins, sports teams (bets), "CA" without an address.
+ * They are left out of the call record entirely.
+ */
+export const NOT_COINS: ReadonlySet<string> = new Set(
+  (
+    "CRYPTO ALTS ALT ALTCOINS ALTCOIN PORTFOLIO PORT NFT NFTS USD USDC USDT DAI BUSD TUSD FDUSD STABLES STABLECOINS STABLECOIN " +
+    "ETF ETFS AI MEME MEMES MEMECOIN MEMECOINS SHITCOINS SHITCOIN DEFI L1 L1S L2 L2S BRC20 BRC ERC20 UNKNOWN CASH BAG BAGS TOKEN TOKENS COINS " +
+    "EAGLES COWBOYS RAVENS CHIEFS NINERS 49ERS BILLS LIONS PACKERS BEARS JETS GIANTS STEELERS BENGALS BRONCOS DOLPHINS PATRIOTS SAINTS " +
+    "COMMANDERS CHARGERS RAMS SEAHAWKS VIKINGS FALCONS PANTHERS BUCS BUCCANEERS CARDINALS COLTS TEXANS JAGUARS TITANS BROWNS RAIDERS " +
+    "LAKERS CELTICS KNICKS WARRIORS HEAT"
+  ).split(" "),
+);
+export const isNotCoin = (ticker: string) => {
+  const t = ticker.replace(/^\$/, "").trim().toUpperCase();
+  return NOT_COINS.has(t) || /^\d+$/.test(t);
+};
+
+/**
+ * Stocks, ETFs and metals CT calls by ticker → Yahoo Finance symbol. Priced
+ * from daily closes adjusted for splits, so a 10:1 split doesn't read as −90%.
+ */
+export const STOCKS: Readonly<Record<string, string>> = {
+  COIN: "COIN", HOOD: "HOOD", MSTR: "MSTR", GLXY: "GLXY", CRCL: "CRCL", RIOT: "RIOT", MARA: "MARA", CLSK: "CLSK", HUT: "HUT", BITF: "BITF",
+  NVDA: "NVDA", AMD: "AMD", TSLA: "TSLA", AAPL: "AAPL", MSFT: "MSFT", GOOG: "GOOG", GOOGL: "GOOGL", AMZN: "AMZN", META: "META", FB: "META",
+  NFLX: "NFLX", PLTR: "PLTR", SQ: "XYZ", XYZ: "XYZ", PYPL: "PYPL", SHOP: "SHOP", ROKU: "ROKU", ZM: "ZM", UBER: "UBER", LYFT: "LYFT",
+  SNAP: "SNAP", TWTR: "TWTR", GME: "GME", AMC: "AMC", BB: "BB", NOK: "NOK", SOFI: "SOFI", INTC: "INTC", ORCL: "ORCL", CRM: "CRM", IBM: "IBM",
+  MU: "MU", AVGO: "AVGO", SMCI: "SMCI", ARM: "ARM", CRWV: "CRWV", RKLB: "RKLB", RIVN: "RIVN", GE: "GE", TJX: "TJX", DKNG: "DKNG", PENN: "PENN",
+  BABA: "BABA", JD: "JD", NIO: "NIO", BIDU: "BIDU", PDD: "PDD", HUYA: "HUYA", YY: "JOYY", TME: "TME", IQ: "IQ", BILI: "BILI", SE: "SE",
+  ATVI: "ATVI", WORK: "WORK", HYMC: "HYMC",
+  // ETFs and trusts
+  SPY: "SPY", QQQ: "QQQ", IWM: "IWM", TLT: "TLT", ARKK: "ARKK", GBTC: "GBTC", ETHE: "ETHE", IBIT: "IBIT", FBTC: "FBTC", BITO: "BITO",
+  SLV: "SLV", GLD: "GLD", GDX: "GDX", USO: "USO",
+  // metals, oil, the dollar
+  GOLD: "GC=F", XAU: "GC=F", SILVER: "SI=F", XAG: "SI=F", OIL: "CL=F", DXY: "DX-Y.NYB",
+};
+
 /** Chains to try for a bare EVM address, in order. */
 const EVM_CHAINS = ["ethereum", "base", "bsc", "arbitrum"];
 
 /** Candidate price ids for a call, best first. Empty → no price source. */
 export function priceIds(call: { ticker: string; chain: string | null; address: string | null }): string[] {
   // A known major wins over any address that happens to be in the same post.
-  const cg = COINGECKO[call.ticker.toUpperCase()];
-  if (cg) return [`coingecko:${cg}`];
+  const t = call.ticker.replace(/^\$/, "").toUpperCase();
+  const cg = COINGECKO[t];
+  if (cg) return [`coingecko:${cg}`, ...(COINGECKO_EARLIER[t] ?? []).map((id) => `coingecko:${id}`)];
+  if (STOCKS[t]) return [`stock:${STOCKS[t]}`];
   if (call.address && call.chain === "solana") return [`solana:${call.address}`];
   if (call.address && call.chain === "evm") return EVM_CHAINS.map((c) => `${c}:${call.address}`);
   return [];

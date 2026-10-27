@@ -1,5 +1,5 @@
 import { type InfluencerRow, type Sql, recordSpend } from "@ii/db";
-import type { Stats } from "@ii/stats";
+import { type Stats, isNotCoin } from "@ii/stats";
 
 import type { Call } from "./calls";
 import { compressMarkdown } from "./distill";
@@ -164,7 +164,8 @@ export async function assembleBrain(sql: Sql, llm: LLM | null, inf: InfluencerRo
   const [range] = await sql<{ n: number; from: Date; to: Date }[]>`
     select count(*)::int as n, min(created_at) as from, max(created_at) as to from posts where influencer_id = ${inf.id}`;
   const subject: BrainSubject = { code: inf.code, handle: inf.handle, posts: range.n, from: day(range.from), to: day(range.to) };
-  files = { ...files, identity: identityMd(subject, files.intro) };
+  // categories, stablecoins and sports bets the extraction took for tickers stay out of the record
+  files = { ...files, identity: identityMd(subject, files.intro), calls: files.calls.filter((c) => !isNotCoin(c.ticker)) };
 
   const ids = files.example_ids;
   const rows = ids.length

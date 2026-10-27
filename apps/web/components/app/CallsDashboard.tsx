@@ -127,7 +127,11 @@ export function CallsDashboard({ handle, color, rows, calls, stats }: { handle: 
                 <tbody className="tabular-nums">
                   {view.tops.map((c) => (
                     <tr key={c.t} className="border-t border-line">
-                      <td className="py-2 font-pixel">{c.t}</td>
+                      <td className="py-2 font-pixel">
+                        <AppLink href={`/coin/${encodeURIComponent(c.t)}`} className="hover:underline" title={`Every mind's calls on $${c.t}`}>
+                          {c.t}
+                        </AppLink>
+                      </td>
                       <td className="py-2 text-right">{c.n}</td>
                       <td className="py-2 text-right">{pct(c.worked)}</td>
                       <td className={`py-2 text-right ${c.med != null && c.med > 0 ? "text-ceramic" : "text-muted"}`}>{signed(c.med)}</td>

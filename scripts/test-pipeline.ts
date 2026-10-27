@@ -115,7 +115,11 @@ async function main() {
 
     const [brain] = await sql`select * from brains order by version desc limit 1`;
     check("brain prompt assembled in order", /=== IDENTITY ===[\s\S]*=== MIND ===[\s\S]*=== RULES ===[\s\S]*=== VOICE ===[\s\S]*=== EXAMPLES[\s\S]*=== CALLS[\s\S]*=== STATS ===/.test(brain.prompt), `v${brain.version}, ~${brain.prompt_tokens} tokens`);
-    check("identity never claims to be the person", brain.prompt.includes("I am not @blknoiz06"));
+    // no disclaimer to parrot at the start of answers, but a straight answer to "are you the real one?"
+    check(
+      "answers in character, honest when sincerely asked",
+      brain.prompt.includes("speak as @blknoiz06, in the first person") && brain.prompt.includes("sincerely asks whether you are the real person") && !brain.prompt.includes("How I introduce myself"),
+    );
     check("unknown example id (123) dropped", !brain.files.example_ids.includes("123"));
     check("one-line mind saved", inf.one_line_mind === null ? (await sql`select one_line_mind from influencers where code='ii-01'`)[0].one_line_mind === "Buys fear, sells euphoria, never marries a bag" : true);
 

@@ -27,7 +27,22 @@ import {
 } from "@ii/brain-core";
 import { type InfluencerRow, closeDb, db, getInfluencer, migrate, upsertInfluencers } from "@ii/db";
 import { type XTweet, classify, createSource, ingestInfluencer } from "@ii/ingest";
-import { DefiLlamaPrices, GeckoTerminalPrices, computeStats, dexPriceIds, priceIds, resolveTickers } from "@ii/stats";
+import {
+  type ContractToken,
+  DefiLlamaPrices,
+  type Found,
+  GeckoTerminalPrices,
+  StockPrices,
+  addressesIn,
+  coingeckoCandidates,
+  computeStats,
+  contractPriceIds,
+  dexPriceIds,
+  isNotCoin,
+  priceIds,
+  resolveAddresses,
+  resolveTickers,
+} from "@ii/stats";
 
 import { intelligences } from "../apps/web/config/intelligences";
 import { brainColor } from "../apps/web/lib/colors";
@@ -121,30 +136,64 @@ async function stepDistill(inf: InfluencerRow) {
 }
 
 async function stepStats(inf: InfluencerRow) {
-  const calls = await db()<
+  const rows = await db()<
     { post_id: string; ticker: string; chain: string | null; address: string | null; direction: "buy" | "sell" | "hold"; called_at: Date }[]
   >`select post_id, ticker, chain, address, direction, called_at from calls where influencer_id = ${inf.id} order by called_at`;
-  line(`  ${inf.code} @${inf.handle} · pricing ${calls.length} calls…`);
-  // tickers no list knows (mostly memecoins): find the token on DexScreener, price it by address
-  const firstSeen = new Map<string, number>();
-  for (const c of calls) {
-    if (priceIds(c).length) continue;
-    const k = c.ticker.replace(/^\$/, "").toUpperCase();
-    const t = Math.floor(new Date(c.called_at).getTime() / 1000);
-    firstSeen.set(k, Math.min(firstSeen.get(k) ?? t, t));
+  // categories, stablecoins and sports bets aren't calls on an asset
+  const calls = rows.filter((c) => !isNotCoin(c.ticker));
+  line(`  ${inf.code} @${inf.handle} · pricing ${calls.length} calls (${rows.length - calls.length} not on an asset)…`);
+  const key = (t: string) => t.replace(/^\$/, "").trim().toUpperCase();
+  const log = (s: string) => done(`  ${inf.code} @${inf.handle} · ${s}`);
+  const offline = process.env.DEX_PRICING === "off";
+
+  // 1. contract addresses written in the post, for calls the extraction kept without one
+  const open = calls.filter((c) => !c.address && !priceIds(c).length);
+  const texts = new Map<string, string>();
+  for (let i = 0; i < open.length; i += 500) {
+    const ids = [...new Set(open.slice(i, i + 500).map((c) => c.post_id))];
+    for (const p of await db()<{ id: string; text: string }[]>`select id, text from posts where id in ${db()(ids)}`) texts.set(p.id, p.text ?? "");
   }
-  const tokens = process.env.DEX_PRICING === "off" ? new Map() : await resolveTickers(firstSeen, { log: (s) => done(`  ${inf.code} @${inf.handle} · ${s}`) });
+  const found = new Map<string, Found[]>();
+  for (const c of open) {
+    const f = addressesIn(texts.get(c.post_id) ?? "");
+    if (f.length) found.set(c.post_id, f);
+  }
+  const byAddress = offline || !found.size ? new Map<string, ContractToken>() : await resolveAddresses([...found.values()].flat(), { log });
+  const contractFor = (c: { post_id: string; ticker: string }): ContractToken | null => {
+    const tokens = (found.get(c.post_id) ?? []).map((f) => byAddress.get(f.address.toLowerCase())).filter((t): t is ContractToken => !!t);
+    // a bare "CA" call means the address in its post; a named call only the address of that very token
+    return key(c.ticker) === "CA" ? (tokens[0] ?? null) : (tokens.find((t) => t.symbol === key(c.ticker)) ?? null);
+  };
+
+  // 2. tickers no list knows (mostly memecoins and old alts): DexScreener by ticker, then CoinGecko by symbol
+  const firstSeen = new Map<string, number>();
+  for (const c of open) {
+    if (contractFor(c) || key(c.ticker) === "CA") continue;
+    const t = Math.floor(new Date(c.called_at).getTime() / 1000);
+    firstSeen.set(key(c.ticker), Math.min(firstSeen.get(key(c.ticker)) ?? t, t));
+  }
+  const tokens = offline ? new Map() : await resolveTickers(firstSeen, { log });
+  const bySymbol = offline ? new Map<string, string[]>() : await coingeckoCandidates([...firstSeen.keys()], { log });
+
   const stats = await computeStats(calls, new DefiLlamaPrices(), new Date(), {
     extraIds: (c) => {
-      const tok = tokens.get(c.ticker.replace(/^\$/, "").toUpperCase());
-      return dexPriceIds(tok, Math.floor(new Date(c.called_at).getTime() / 1000));
+      const ct = contractFor(c);
+      if (ct) return contractPriceIds(ct);
+      const k = key(c.ticker);
+      return [...dexPriceIds(tokens.get(k), Math.floor(new Date(c.called_at).getTime() / 1000)), ...(bySymbol.get(k) ?? [])];
     },
     fallback: new GeckoTerminalPrices(),
+    sources: [{ prefix: "stock:", source: new StockPrices() }],
+    matchedBy: (c, id) => (id.startsWith("stock:") ? "stock" : priceIds(c).includes(id) || contractFor(c) ? null : id.startsWith("coingecko:") ? "symbol" : "ticker"),
+    symbolOf: (c) => (key(c.ticker) === "CA" ? (contractFor(c)?.symbol ?? null) : null),
   });
   await db()`
     insert into stats (influencer_id, data, computed_at) values (${inf.id}, ${db().json(stats as never)}, ${stats.computed_at})
     on conflict (influencer_id) do update set data = excluded.data, computed_at = excluded.computed_at`;
-  done(`  ${inf.code} @${inf.handle} · stats · ${stats.calls_priced}/${stats.calls_total} calls priced · computed ${stats.computed_at.slice(0, 16)}Z`);
+  const by = (m: string) => stats.per_call.filter((p) => p.price_at_call != null && p.matched_by === m).length;
+  done(
+    `  ${inf.code} @${inf.handle} · stats · ${stats.calls_priced}/${stats.calls_total} calls priced (by ticker ${by("ticker")}, by symbol ${by("symbol")}, stocks ${by("stock")}, from contracts ${stats.per_call.filter((p) => p.price_at_call != null && contractFor(p)).length}) · computed ${stats.computed_at.slice(0, 16)}Z`,
+  );
   return stats;
 }
 

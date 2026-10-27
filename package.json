@@ -22,7 +22,8 @@
     "test:pipeline": "tsx scripts/test-pipeline.ts",
     "dev:mock": "tsx scripts/dev-mock.ts",
     "brain:jobs": "tsx scripts/cli.ts jobs",
-    "brain:list": "tsx scripts/cli.ts list"
+    "brain:list": "tsx scripts/cli.ts list",
+    "test:pricing": "tsx scripts/test-pricing.ts"
   },
   "type": "module",
   "engines": {

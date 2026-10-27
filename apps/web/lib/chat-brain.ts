@@ -13,7 +13,10 @@ export type CallStat = {
   r_1d: number | null;
   r_7d: number | null;
   r_30d: number | null;
-  matched_by?: "ticker" | null;
+  /** how the coin was found: "ticker" / "symbol" may be a namesake; "stock" is a stock, ETF or metal */
+  matched_by?: "ticker" | "symbol" | "stock" | null;
+  /** the token's own symbol when the call only gave a contract address */
+  symbol?: string | null;
 };
 export type BrainStatsFile = {
   computed_at: string;
