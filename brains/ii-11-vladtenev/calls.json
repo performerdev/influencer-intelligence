@@ -1,25 +1,5 @@
 [
   {
-    "date": "2021-02-25",
-    "ticker": "CRYPTO",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "Six million new customers traded through Robinhood Crypto in the first two months of this year.",
-    "post_id": "1365023283364589568",
-    "url": "https://x.com/vladtenev/status/1365023283364589568"
-  },
-  {
-    "date": "2021-03-12",
-    "ticker": "CRYPTO",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "the number of women trading crypto has grown by 7x this year, too!",
-    "post_id": "1370258026158989314",
-    "url": "https://x.com/vladtenev/status/1370258026158989314"
-  },
-  {
     "date": "2022-04-14",
     "ticker": "DOGE",
     "chain": null,
@@ -28,26 +8,6 @@
     "quote": "Can #Doge truly be the future currency of the Internet and the people?",
     "post_id": "1514684174002634768",
     "url": "https://x.com/vladtenev/status/1514684174002634768"
-  },
-  {
-    "date": "2022-05-17",
-    "ticker": "CRYPTO",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "Self-custody, the Robinhood way. We are building a non-custodial wallet.",
-    "post_id": "1526647871898009601",
-    "url": "https://x.com/vladtenev/status/1526647871898009601"
-  },
-  {
-    "date": "2022-11-10",
-    "ticker": "CRYPTO",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "the last couple of days have been our two biggest days of crypto inflows ever.",
-    "post_id": "1590587233555578880",
-    "url": "https://x.com/vladtenev/status/1590587233555578880"
   },
   {
     "date": "2024-01-10",
@@ -68,16 +28,6 @@
     "quote": "@robinhoodapp will support ETH ETFs in both brokerage and retirement accounts.",
     "post_id": "1794093212748882431",
     "url": "https://x.com/vladtenev/status/1794093212748882431"
-  },
-  {
-    "date": "2024-06-06",
-    "ticker": "CRYPTO",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "we’re acquiring @Bitstamp to accelerate our vision.",
-    "post_id": "1798680590344126963",
-    "url": "https://x.com/vladtenev/status/1798680590344126963"
   },
   {
     "date": "2024-11-13",
