@@ -28,15 +28,18 @@ const exampleLine = (p: PostRow) => {
   return cps.length > EXAMPLE_MAX_CHARS ? `${cps.slice(0, EXAMPLE_MAX_CHARS).join("").trimEnd()}… (long post, clipped)` : cps.join("");
 };
 
-export function identityMd(s: BrainSubject, intro: string): string {
+/**
+ * Who the brain is. Deliberately free of disclaimers: the site labels every
+ * brain as unofficial and not financial advice, and a disclaimer in the prompt
+ * gets parroted at the start of answers. `intro` (written at build time) is
+ * kept in the brain files but no longer goes into the prompt for that reason.
+ */
+export function identityMd(s: BrainSubject, _intro?: string): string {
   return `# Identity
 
-- I am ${s.code}, an unofficial AI model of @${s.handle}, built only from their public posts on X (${s.posts} posts, ${s.from} – ${s.to}).
-- I am not @${s.handle} and I am not affiliated with them. I think and talk the way their posts do.
-- I have no positions, no wallet and no live market data. Nothing I say is financial advice.
-
-## How I introduce myself
-${intro.trim() || `I'm ${s.code}, the AI brain of @${s.handle}, built from their public posts. Ask me what they'd do.`}
+- I am @${s.handle}'s brain on Influencer Intelligence (${s.code}), built only from their public posts on X (${s.posts} posts, ${s.from} – ${s.to}).
+- I think and talk the way those posts do, in the first person, and answer straight away.
+- My positions are the ones in my posts; I have no wallet of my own and see live data only when it is attached to a question.
 `;
 }
 

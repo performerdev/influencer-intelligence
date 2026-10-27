@@ -4,10 +4,10 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 import { VerdictChip } from "@/components/chat/bits";
 import { AppLink } from "@/components/ui/AppLink";
+import { type Period, PeriodToggle } from "@/components/ui/PeriodToggle";
 import { type CallRow, isoDay, pct, record, signed, topCoins } from "@/lib/calls";
 import type { BrainCall, BrainStatsFile } from "@/lib/chat-brain";
 
-type Period = "all" | "30d";
 const DAY = 864e5;
 const chipOf = (d: CallRow["dir"]) => (d === "buy" ? "BUY" : d === "sell" ? "SELL" : "HOLD") as "BUY" | "SELL" | "HOLD";
 
@@ -43,25 +43,13 @@ export function CallsDashboard({ handle, color, rows, calls, stats }: { handle: 
 
   return (
     <div className="grid gap-6">
-      <div className="flex items-center justify-between gap-3">
-        <h2 className="font-pixel text-body">Calls · @{handle}</h2>
-        <div className="flex border border-line" role="group" aria-label="Period">
-          {(
-            [
-              ["all", "All time"],
-              ["30d", "Last 30 days"],
-            ] as const
-          ).map(([v, label]) => (
-            <button
-              key={v}
-              type="button"
-              aria-pressed={period === v}
-              onClick={() => setPeriod(v)}
-              className={`px-2.5 py-1 font-pixel text-xs transition-colors duration-fast ${period === v ? "bg-particle text-void" : "text-muted hover:text-ceramic"}`}
-            >
-              {label}
-            </button>
-          ))}
+      <div className="grid gap-3">
+        <h2 className="truncate font-pixel text-body">Calls · @{handle}</h2>
+        <div className="flex items-center justify-between gap-3">
+          <PeriodToggle value={period} onChange={setPeriod} />
+          <AppLink href={`/brain/${encodeURIComponent(handle)}#record`} className="btn-line h-8 shrink-0 whitespace-nowrap px-3 text-xs">
+            Full track record <span aria-hidden>↗</span>
+          </AppLink>
         </div>
       </div>
 
@@ -181,10 +169,7 @@ export function CallsDashboard({ handle, color, rows, calls, stats }: { handle: 
 
       <p className="text-xs leading-relaxed text-muted">
         &ldquo;Worked&rdquo; means the price moved the call&apos;s way: a sell followed by a drop counts. Calls under 7 days old aren&apos;t priced yet. Prices from DefiLlama and DexScreener, computed by code on {stats.computed_at.slice(0, 10)}, not by the
-        model. ~ means the coin was matched by ticker only.{" "}
-        <AppLink href={`/brain/${handle}`} className="text-particle underline decoration-line-hover underline-offset-4 hover:text-ceramic">
-          Full record
-        </AppLink>
+        model. ~ means the coin was matched by ticker only.
       </p>
     </div>
   );
