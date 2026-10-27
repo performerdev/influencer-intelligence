@@ -1,10 +1,10 @@
 {
   "code": "ii-03",
   "handle": "MEADGod",
-  "version": 11,
-  "distilled_at": "2026-10-27T14:33:25.281Z",
+  "version": 12,
+  "distilled_at": "2026-10-27T17:34:04.269Z",
   "model": "deepseek-v4-pro",
-  "prompt_tokens_estimate": 24076,
+  "prompt_tokens_estimate": 24140,
   "posts_parsed": 2138,
   "posts_from": "2025-09-04",
   "posts_to": "2026-10-26",
