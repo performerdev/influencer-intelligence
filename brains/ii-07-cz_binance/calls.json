@@ -170,16 +170,6 @@
     "url": "https://x.com/cz_binance/status/1239772144055140352"
   },
   {
-    "date": "2020-05-05",
-    "ticker": "CRYPTO",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "Not financial advice, but I am just happy I went all in on crypto 6 years ago.",
-    "post_id": "1257591413140684800",
-    "url": "https://x.com/cz_binance/status/1257591413140684800"
-  },
-  {
     "date": "2020-11-10",
     "ticker": "ETH",
     "chain": null,
@@ -250,26 +240,6 @@
     "url": "https://x.com/cz_binance/status/1383793547183222791"
   },
   {
-    "date": "2021-05-23",
-    "ticker": "CRYPTO",
-    "chain": null,
-    "address": null,
-    "direction": "hold",
-    "quote": "Disclaimer: I haven't sold a single crypto in the last few days/months, and no plans to do so in the future either. I don't \"sell\" crypto. I do use #crypto to b",
-    "post_id": "1396496745803091976",
-    "url": "https://x.com/cz_binance/status/1396496745803091976"
-  },
-  {
-    "date": "2021-05-31",
-    "ticker": "CRYPTO",
-    "chain": null,
-    "address": null,
-    "direction": "hold",
-    "quote": "I didn't \"buy\" crypto. That implies I view it as an asset and may \"sell\" at some point. I converted to crypto.",
-    "post_id": "1399389545750155266",
-    "url": "https://x.com/cz_binance/status/1399389545750155266"
-  },
-  {
     "date": "2021-06-24",
     "ticker": "BNB",
     "chain": null,
@@ -320,16 +290,6 @@
     "url": "https://x.com/cz_binance/status/1450838580386009089"
   },
   {
-    "date": "2021-12-10",
-    "ticker": "CRYPTO",
-    "chain": null,
-    "address": null,
-    "direction": "hold",
-    "quote": "Q: when are you going to exit your crypto position? Me: crypto is the exit.",
-    "post_id": "1469241844437553152",
-    "url": "https://x.com/cz_binance/status/1469241844437553152"
-  },
-  {
     "date": "2022-01-18",
     "ticker": "BNB",
     "chain": null,
@@ -338,16 +298,6 @@
     "quote": "$729 million USD equivalent burned. #BNB is deflationary.",
     "post_id": "1483304065102663680",
     "url": "https://x.com/cz_binance/status/1483304065102663680"
-  },
-  {
-    "date": "2022-04-05",
-    "ticker": "CRYPTO",
-    "chain": null,
-    "address": null,
-    "direction": "hold",
-    "quote": "I don't buy dips. I don't have fiat.",
-    "post_id": "1511338019302916107",
-    "url": "https://x.com/cz_binance/status/1511338019302916107"
   },
   {
     "date": "2022-04-19",
@@ -460,16 +410,6 @@
     "url": "https://x.com/cz_binance/status/1577359224245469207"
   },
   {
-    "date": "2022-10-23",
-    "ticker": "DEFI",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "Binance is investing heavily in DeFi. (not financial advice)",
-    "post_id": "1584220477438185472",
-    "url": "https://x.com/cz_binance/status/1584220477438185472"
-  },
-  {
     "date": "2022-11-06",
     "ticker": "FTT",
     "chain": null,
@@ -488,36 +428,6 @@
     "quote": "Full disclosure: Binance never shorted FTT. We still have a bag of as we stopped selling FTT after SBF called me. Very expensive call.",
     "post_id": "1592007106806390784",
     "url": "https://x.com/cz_binance/status/1592007106806390784"
-  },
-  {
-    "date": "2022-11-16",
-    "ticker": "CRYPTO",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "Just signed 8 investment deals. All small amounts, but good projects (we think).",
-    "post_id": "1592894516457279488",
-    "url": "https://x.com/cz_binance/status/1592894516457279488"
-  },
-  {
-    "date": "2022-11-24",
-    "ticker": "BUSD",
-    "chain": "evm",
-    "address": "0x043a80999cEe3711D372FB878768909fbE7F71E6",
-    "direction": "buy",
-    "quote": "We do this transparently. The public address for Binance’s initial commitment of BUSD 1 billion is: 0x043a80999cEe3711D372FB878768909fbE7F71E6",
-    "post_id": "1595808276318670849",
-    "url": "https://x.com/cz_binance/status/1595808276318670849"
-  },
-  {
-    "date": "2022-11-25",
-    "ticker": "BUSD",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "Yesterday, #Binance allocated ANOTHER $1 billion to the industry recover initiative. All in BUSD.",
-    "post_id": "1596024244537737216",
-    "url": "https://x.com/cz_binance/status/1596024244537737216"
   },
   {
     "date": "2022-12-19",
@@ -858,16 +768,6 @@
     "quote": "And crypto - buying the dip. More soon. 🇵🇭",
     "post_id": "2071231045379477985",
     "url": "https://x.com/cz_binance/status/2071231045379477985"
-  },
-  {
-    "date": "2026-07-30",
-    "ticker": "MEME",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "I support all meme coins. I might even buy (or sell) one or two in the next few weeks to test a few new things. May the best memes win! 🙏",
-    "post_id": "2082774355201675565",
-    "url": "https://x.com/cz_binance/status/2082774355201675565"
   },
   {
     "date": "2026-09-16",
