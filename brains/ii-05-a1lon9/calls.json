@@ -630,23 +630,33 @@
     "url": "https://x.com/a1lon9/status/1973141501178946019"
   },
   {
-    "date": "2026-07-06",
-    "ticker": "PUMP",
+    "date": "2026-07-02",
+    "ticker": "SOL",
     "chain": null,
     "address": null,
-    "direction": "hold",
-    "quote": "Super excited to give people a closer look into the business! @sapijiju will be posting regular updates on the $PUMP token, our ecosystem and suite of products.",
-    "post_id": "2074248706388299900",
-    "url": "https://x.com/a1lon9/status/2074248706388299900"
+    "direction": "buy",
+    "quote": "$1 to $100k run it followed!",
+    "post_id": "2072725514272276791",
+    "url": "https://x.com/a1lon9/status/2072725514272276791"
   },
   {
-    "date": "2026-10-15",
+    "date": "2026-07-02",
+    "ticker": "SOL",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "run it back 2024 style",
+    "post_id": "2072734796342522271",
+    "url": "https://x.com/a1lon9/status/2072734796342522271"
+  },
+  {
+    "date": "2026-08-24",
     "ticker": "PUMP",
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "since Custom Pairs launched last month, 0.33% of the current circulating supply (~$5.9M) has been taken out of circulation",
-    "post_id": "2110876217591177396",
-    "url": "https://x.com/a1lon9/status/2110876217591177396"
+    "quote": "great update legend anyway, can I hold a band?",
+    "post_id": "2091960144041066824",
+    "url": "https://x.com/a1lon9/status/2091960144041066824"
   }
 ]
