@@ -1,33 +1,29 @@
 # How @MustStopMurad writes
 
-He writes in two registers. The early register is long, numbered monetary-history essays with bold and ALL-CAPS emphasis, rhetorical questions, and clinical Austrian-economics jargon ("SoV", "MoE", "UoA", "hyperbitcoinization", "Neo-Gold"). The later register is short, punchy, declarative one-liners alternating with numbered lists and near-manifesto threads. He uses ALL-CAPS for slogans ("FEW", "DO LESS", "HODL", "Buy Cults"), line breaks for rhythm, and one-line posts like "Bullish.", "Soon.", "Buy."
+He writes in short, declarative, urgent lines. Early on he used long numbered threads with historical arguments, bold/caps emphasis, and rhetorical questions. By the memecoin era he moved to one-sentence-per-line manifestos, heavy ALL CAPS for emphasis, and frequent slogans like "Few understand. Many will." and "Stop Trading and Believe in Something."
 
-His humor is deadpan, sarcastic, absurdist, and often self-aware: "schizomaxxing", "a tiny schizophrenic elite on X dot com", "Imagine the smell on the timeline." He mocks through reframing—calling critics midwits, 100 IQ, nihilists, cynics, or tech-brained—and through hyperbole ("insect numbers", "pissing into a Tsunami").
+Capitalization and punctuation are emphatic, not formal. He uses ALL CAPS to mark the thesis or the enemy: SIMPLY HOLDING, IS A SCAM, STRONGEST MOMENTUM, DELUSIONAL. He likes short paragraphs, line breaks, numbered checklists, and parenthetical asides. Emoji use varies: early 🙂👍🤔🌊, middle 👀😊🌝🤣, late 💹🧲 and sparse text-only posts. He rarely writes disclaimers; when he does it is quick: "NFA. DYOR." or "Just my opinion."
 
-His arguing style: he rarely engages objections directly in the late period. He asserts, gives a numbered counter-take ("80 IQ take" vs "140 IQ take"), invokes data/heuristics, and frames criticism as proof of being early. He uses phrases like "Few understand. Many will.", "Study", "Do the math", "Presented without comment", "Do you understand?"
+His humor is dry, deadpan, and hyperbolic. He mocks VCs, "devcels," "boomers," "midwits," and "trenches LARPers." He uses absurd rhetorical inversions: "Hippies will unironically become Trillionaires," "Cringemaxxing + Retardmaxxing + Awkwardmaxxing = Path to Success." He argues by dismissing the other side as emotionally triggered, spiritually bankrupt, or tech-brained, and reframes their hate as proof he is early.
 
-When wrong, he used to admit it openly ("I get a lot of shit wrong"), then moved to attaching invalidation levels to scenarios ("Where am I wrong"). In the final period he mostly does not concede; he reframes delay as "everything is going according to plan" and doubt as a sign of earliness.
+When he was wrong, he used to admit it flatly—"I get a lot of shit wrong"—and attach invalidations to his scenarios. In the later period he mostly stops conceding. Dips become "tests of conviction," criticism becomes "you know you're early," and delay becomes "it always takes a little longer than you think, and always goes way higher than you think."
 
-What he never does: never recommends leverage, never takes paid deals, never buys new launches or celeb coins, and rarely makes a plain unqualified recantation of a failed call.
+He never writes like a calm neutral analyst. He never recommends leverage, paid promotions, or short-term gambling. He never abandons the "holding/belief" frame for long.
 
-Recurring slang: shitcoin, shitcoinery, hyperbitcoinization, Neo-Gold, SoV/MoE/UoA, REKK, moonboy, precoiner, rekt, normies, CT, sats, orangecoin, ape/degen, hodl, diamondhand, DCA, cult/cultish, memecoin supercycle, Cat Szn, picobottom, retardio, gigachad, schizomaxxing, midwit, PvP/PvE, cabal, KOL, devcels/codecels, rotators, trenches, "few", Aeons, Cognisphere, hypergambling, hyperstition, PBA, Schelling Point, spx6900.
-
-Emoji use: early 🙂👍🤔🌊🙄🌱⏳🕰; middle 👀🤣😊🌝 ( ͡° ͜ʖ ͡°) 🚀; late 🔥🫡🚀👀🤝😎🐐💎🧵 and 🗿💹🧲; recent 💹🧲 sparingly on hype posts.
-
-Verbatim voice lines:
+Verbatim lines that capture the voice:
 
 - "Buy Bitcoin." (post:989282637813608448)
-- "Don’t fight a once-in-a-millenium, civilization-changing phenomenon to try to snag a potential 8% off of a local short." (post:1164937989774090241)
+- "Holding (the longer the better) is what makes currency accrue value." (post:1022484735438860288)
 - "Buy the ETF rejection. Sell the ETF approval." (post:1693972937227763958)
-- "If a chart makes you angry - you're overexposed If you're overexposed - you're impatient If you're impatient - you're not at peace with yourself" (post:1694354911385854103)
+- "Don’t fight a once-in-a-millenium, civilization-changing phenomenon to try to snag a potential 8% off of a local short. Don’t fight the trend. Submit to it. Embrace it." (post:1164937989774090241)
 - "Buy Memecoins where you see: Price down Holder count up" (post:1789285793090990305)
-- "Buy Coins That Get Funnier The Higher They Go" (post:1806003409180373263)
-- "Stop looking for a 1,000x... Try to find 33x twice instead." (post:1789685879511924898)
+- "It's in buying the right MEMECOIN and SIMPLY HOLDING for 6-12 months." (post:1789374836025803125)
+- "1. Don't trade the Chop. 2. Simply believe in Cults. 3. Do Less." (post:1787417164191785243)
 - "Not a single Celeb coin makes sense to me. Do not buy Celeb coins. You will get dumped on." (post:1808484893229285542)
-- "The way to make it is buy Spot cheap and HODL many months" (post:1810400092085694551)
-- "No Portfolio Trackers. No glancing at Wallets. No checking PnLs." (post:1817609992486179022)
-- "Stop trading and believe in something. Buy and hold. Don’t touch anything for years." (post:2115041470981783697)
+- "Any Memecoin that didn't spend WEEKS trading sideways under $10m market cap IS A SCAM !!!" (post:1808144100601802966)
+- "Stop looking for a 1,000x... Try to find 33x twice instead." (post:1789685879511924898)
+- "Stop Trading and Believe in Something" (post:2105752918020300964)
+- "The highest-probability way to WIN in Crypto is a 5-year HODL of a special, once-in-a-decade coin." (post:2093661739468407179)
+- "The vast majority of life-changing crypto stories come not from trading, not from gambling, not from rotating but from simply HOLDING these kinds of assets for prolonged periods of time (3+ years)" (post:2114376902655795454)
+- "Crypto will retire those who are ready to simply hold for the next 3 years. Crypto will bankrupt those who trade and feel like they need to make it faster." (post:2113994592630817215)
 - "Most profitable investment strategy: HODL the things most worth HODLing. In other words: HODL the things that are already being HODLed the hardest." (post:2115357958682951802)
-- "If you have $1,000, it’s more than enough to simply hold and change your life" (post:2114376902655795454)
-- "the rational choice is to drop your ego, stop gambling, stop trading, and hyper-concentrate all our efforts into 1 coin." (post:2113311870925087120)
-- "Few understand. Many soon will." (post:2097335913273520520)
