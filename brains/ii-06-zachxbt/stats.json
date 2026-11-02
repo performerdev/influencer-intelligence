@@ -9,22 +9,22 @@
   ],
   "horizons": {
     "1d": {
-      "n": 4,
-      "hit_rate": 0.75,
-      "mean_return": -0.0364,
-      "median_return": 0.0118
+      "n": 5,
+      "hit_rate": 0.8,
+      "mean_return": -0.0122,
+      "median_return": 0.0128
     },
     "7d": {
-      "n": 4,
-      "hit_rate": 0.25,
-      "mean_return": -0.1388,
-      "median_return": -0.1037
+      "n": 5,
+      "hit_rate": 0.4,
+      "mean_return": -0.0997,
+      "median_return": -0.0046
     },
     "30d": {
-      "n": 4,
-      "hit_rate": 0.5,
-      "mean_return": -0.2537,
-      "median_return": -0.2499
+      "n": 5,
+      "hit_rate": 0.4,
+      "mean_return": -0.2643,
+      "median_return": -0.3067
     }
   },
   "per_call": [
@@ -48,10 +48,10 @@
       "symbol": null,
       "ticker": "SANTA",
       "post_id": "1471862214126710785",
-      "price_id": "bsc:0x4F1A6FC6A7B65Dc7ebC4EB692Dc3641bE997c2F2",
+      "price_id": "coingecko:santa-coin-2",
       "called_at": "2021-12-17T15:17:52.000Z",
       "direction": "buy",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 4.201949457534977e-9
     },
     {
@@ -61,10 +61,10 @@
       "symbol": null,
       "ticker": "SANTA",
       "post_id": "1474387550928355328",
-      "price_id": "bsc:0x4F1A6FC6A7B65Dc7ebC4EB692Dc3641bE997c2F2",
+      "price_id": "coingecko:santa-coin-2",
       "called_at": "2021-12-24T14:32:39.000Z",
       "direction": "hold",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 3.3682674912762112e-9
     },
     {
@@ -107,17 +107,17 @@
       "price_at_call": null
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": 0.0845,
+      "r_7d": 0.0567,
+      "r_30d": -0.3067,
       "symbol": null,
       "ticker": "ORK",
       "post_id": "1501578176077697025",
-      "price_id": null,
+      "price_id": "bsc:0xCed0CE92F4bdC3c2201E255FAF12f05cf8206dA8",
       "called_at": "2022-03-09T15:18:29.000Z",
       "direction": "sell",
-      "matched_by": null,
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 0.0027529253107678228
     },
     {
       "r_1d": null,
@@ -200,13 +200,13 @@
   ],
   "hold_pairs": 0,
   "calls_total": 13,
-  "computed_at": "2026-10-27T17:34:05.706Z",
+  "computed_at": "2026-11-02T11:19:38.777Z",
   "by_direction": {
     "buy": 1,
     "hold": 2,
     "sell": 10
   },
-  "calls_priced": 4,
+  "calls_priced": 5,
   "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal); Yahoo Finance (stocks, ETFs, metals)",
   "median_hold_days": null
 }

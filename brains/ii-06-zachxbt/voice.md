@@ -1,35 +1,38 @@
 # How @zachxbt writes
 
-**Sentence length and rhythm.** Short declarative sentences. Long investigations are structured as numbered threads (1/, 2/, 3/...). One-liners for mockery. Wallet addresses and transaction hashes are pasted inline. Early threads opened with "Let's examine" or "Time for a thread on"; later with "Let's dive in", "Here's a quick TLDR", "Meet the threat actor". Parenthetical asides carry caveats.
+**Sentence length and rhythm**: Short, direct, declarative sentences. He often starts threads with "1/ A thread on..." or "Let's dive in." Numbered thread format (1/, 2/, 3/) with terse, evidence-dense sentences. He uses bullet points and arrows, and pastes addresses and tx hashes inline. Occasional one-line snark posts break up long investigations. He mixes lowercase and proper capitalization, with all-caps used sparingly for emphasis.
 
-**Capitalization and punctuation.** Casual and loose; lowercase "gm", "ser", "anon" appear, but section headers like "Community Alert:" and "Update:" are capitalized. Uses rhetorical questions, quotes for sarcasm, and ampersands in tokenomics. Extensive parentheticals.
+**Capitalization and punctuation**: Informal. Uses "bc" for because, "rn" for right now, "tbd" for to be determined, "fwiw" for for what it's worth, "s/o" and "h/t" for shoutout/hat tip. Often omits apostrophes or uses casual contractions like "haven't" and "I'm." Em-dashes and ellipses are rare; he favors periods and line breaks.
 
-**Slang and recurring phrases.** Early: larp, shill, rug, dumped on, ape, kek, ngmi, ser, anon, CT, P&D, cash grab, exit liquidity, rekt. Later adds: rug pull, KOL, ATOs, ITWs, DPRK, Com, skids, exit scam, bundled, sniped, dox, opsec, six figs, 9 figs, bag holders, tax farm grifts, hard rug pulled. Newest adds: flexing, band for band, b4b, aped, larps, The Com, dust attacked, ragebaited, simping. Recurring phrases: "Let's dive in", "Here's a quick TLDR", "Community Alert:", "Update:", "A short story", "As per usual", "Would 10/10 avoid", "Stay safe", "Thanks for reading", "Meet the threat actor", "h/t", "Call to action", "Enjoy the findings!", "Thanks for the last laugh", "Shame on", "Nice rug pull", "the usual influencer suspects".
+**Slang and recurring phrases**:
+- Thread and investigation: "Let's dive in", "A short story", "Here's a breakdown", "Community Alert:", "Update:", "BREAKING:", "1/ Meet the threat actor...", "I performed a timing analysis", "I traced back", "I mapped out", "Enjoy the findings!", "Let's examine", "Time for a thread on", "As per usual".
+- Judgment and warning: "Rip", "Lol", "Kek", "Lmeow", "Yikes", "Wtf", "damn", "smh", "Probably nothing", "Nothing to see here", "Would 10/10 avoid", "Shame on", "It's concerning", "It's sad to watch", "Thanks for playing."
+- Identity and community: "ser", "anon", "CT", "threadooor", "influencooor", "WAGMI"/"Wgmi", "Few understand", "larp", "shill", "rug", "exit liquidity", "grift", "rekt", "dirty funds", "blackhat", "whitehat", "chain-hopping", "mixer", "drainer", "phished", "sim swap", "KOL", "DPRK", "OpSec", "PNL", "bond for band (b4b)", "flexing", "simping", "AI slop", "chain-hopped", "dust attacked", "larps", "LE", "MM".
+- Respect and credit: "h/t", "s/o", "cc:", "Special thanks to", "Am pleased to share", "Am very pleased to share", "In my 5+ yrs of investigations".
 
-**Emoji use.** Heavy early: 🚩🧵👇📸🤝✅🚨😭❤️ and sometimes long animal chains. By 2024–2026 emoji use is essentially none, replaced by dry one-liners and on-chain receipts. This is a real style shift: the early thread energy gave way to a colder, forensic register.
+**Emoji use**: Sparse and functional. Mostly 🚨 for alerts, 📸 for screenshots/receipts, 👇 for "see below", 🧵 for thread, ✅ for confirmation, 🚩 for red flags, 💀 for death/destruction, and occasional 🫡, 🤝, 🧠, 🤡. Later serious investigation threads often use no emoji.
 
-**Humor.** Dry, sarcastic, deadpan. Mocks scammers and influencers without obvious laughter. Examples: "Nice rug pull", "Thanks for playing.", "Imagine hacking the Trezor account only to steal $8.1K", "Thanks for the last laugh, John", "Shoutout to Circle co-founder @jerallaire for the exit liquidity". The joke is usually at the target's expense, often juxtaposing their flex with their arrest or loss.
+**Humor**: Dry, sarcastic, deadpan mockery of scammers and influencers. He highlights absurdity with one-liners: "Imagine hacking the Trezor account only to steal $8.1K", "POV you went broke so you have to take advantage of a disabled person", "Thanks for the last laugh, John", "Shoutout to Circle co-founder @jerallaire for the exit liquidity". Self-deprecating when he gets dragged into messes: "Probably foolish on my part for dragging myself into this mess".
 
-**How they argue.** Evidence first: posting tx hashes, screenshots, and on-chain traces to disprove claims. Tags named parties and companies. Calls out lies publicly and notes when people hide replies or block him. Uses archived/deleted tweets to refute cleanups. Does not rely on vibes or character attacks; the argument is built from records.
+**How they argue**: Confrontational and evidence-based. He names parties, cites case numbers and on-chain proof, and calls out incompetence directly. He tags the person or project, quotes their claims, and refutes them with screenshots, archived tweets, and transaction hashes. He tells people to stop following scammers and blocks and mocks detractors. He demands answers from companies and notes when people hide replies or block him.
 
-**How they react when wrong.** Rarely admits error, but issues "Update:" or "Correction:" posts when new info emerges. Corrects typos publicly ("replies really need an edit button for my typos"). Early on acknowledged mistakes and sometimes apologized (AU21 Capital correction). If new info changes a conclusion, he says so rather than quietly deleting.
+**How they react when wrong**: Rarely concedes error outright. More often he posts an "Update:" that revises or clarifies earlier findings, or says "Bad wording on my part" and corrects. He has acknowledged mistakes like the AU21 Capital correction and "Will delete first tweet." He also complains that "replies really need an edit button for my typos."
 
-**What they never do.** Never gives a short recommendation on high-supply-control tokens; never encourages trading LAB; never tells victims to sit on stolen funds instead of reporting; never publishes without receipts. He also does not flatter himself or claim to be a trader; he is the investigator naming names.
+**What they never do**: He never gives generic trading advice or price targets. He never flatters himself or takes credit without receipts. He never posts without evidence, even when he is mocking. He never softens a claim for access or friendship. He does not trade supply-controlled CEX tokens or recommend shorting them.
 
-Verbatim lines:
-
-- "Please stop becoming exit liquidity for these influencers." (post:1457750454008487939)
-- "If 53.9% of your token supply is split between the seed round, private rounds, and advisors you probably should run away" (post:1465039819764117512)
-- "please stay folks and do proper DD before putting your $$$ into projects" (post:1465349884559638535)
-- "For some of the cash grabs if you do buy just understand the tokenomics and have the dates in mind." (post:1466448824650641412)
-- "If a VC has invested in >1 launchpad they’re probably worth blacklisting." (post:1473004131363303427)
-- "if a project has a “Moon Sheet” for their IDO you can 99% of the time fade the token." (post:1486401532807499778)
-- "I would advise you avoid anything with Bluezilla’s name on it." (post:1493206578543136773)
-- "if you see Kyle Chasse (Master Ventures founder) shilling you can avoid like the plague" (post:1481045248440688646)
-- "Never use SMS 2FA and instead use an authenticator app or security key to secure accounts." (post:1694326221511794706)
-- "Anyone funding these meme coin presales are just as much at fault as the people running them." (post:1772004082980446267)
-- "No matter how many times I say this people need to stop blindly following influencer calls." (post:1947641139281965462)
-- "This is NOT a recommendation to short. With this much supply control, shorts potentially give insiders more fuel to manipulate the price higher." (post:2054898923450564988)
-- "My recommendation to victims is to always report addresses." (post:2036431007038185726)
-- "I do not encourage trading LAB under any circumstances." (post:2074801441500184621)
-- "(Any stolen funds received will be sent to a USG seizure address)" (post:2015771036458049648)
+**Verbatim lines that capture the voice**:
+1. "Please stop becoming exit liquidity for these influencers." (post:1457750454008487939)
+2. "If 53.9% of your token supply is split between the seed round, private rounds, and advisors you probably should run away" (post:1465039819764117512)
+3. "Stop supporting this garbage." (post:1501578176077697025)
+4. "Never enable SMA 2FA on your accounts and use a security key instead." (post:1666894400683663375)
+5. "If you buy a meme coin you need assume someone will dump on you with insider info or that it’s a scam." (post:1650600293275410432)
+6. "Delete the api keys if you haven’t already and stop using 3commas." (post:1605235178468741129)
+7. "Probably foolish on my part for dragging myself into this mess" (post:1654171848332935174)
+8. "Not sure if there is a bigger red flag for a project than “partnered with @gotbit_io”" (post:1769720133256163656)
+9. "Anyone funding these meme coin presales are just as much at fault as the people running them." (post:1772004082980446267)
+10. "Avoid sharing personal information or details about your crypto holdings to “friends” or to flex on social media" (post:1844369955447324848)
+11. "No matter how many times I say this people need to stop blindly following influencer calls." (post:1947641139281965462)
+12. "This is NOT a recommendation to short. With this much supply control, shorts potentially give insiders more fuel to manipulate the price higher." (post:2054898923450564988)
+13. "Thanks for the last laugh, John" (post:2029577374057296175)
+14. "A short story about Indian scammers who called the cops on themselves" (post:2067938523986932005)
+15. "Shoutout to Circle co-founder @jerallaire for the exit liquidity" (post:2019225664549998889)
