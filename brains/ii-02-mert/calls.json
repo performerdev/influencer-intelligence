@@ -3790,24 +3790,14 @@
     "url": "https://x.com/mert/status/2106077183651565647"
   },
   {
-    "date": "2026-10-08",
-    "ticker": "ZEC",
-    "chain": null,
-    "address": null,
-    "direction": "hold",
-    "quote": "no, do not move your funds no matter what chain youre on",
-    "post_id": "2107996849919701390",
-    "url": "https://x.com/mert/status/2107996849919701390"
-  },
-  {
-    "date": "2026-10-08",
-    "ticker": "NEAR",
+    "date": "2026-10-03",
+    "ticker": "SOL",
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "no real reason why it's not top 10 imo",
-    "post_id": "2108073189087875167",
-    "url": "https://x.com/mert/status/2108073189087875167"
+    "quote": "if youre on Solana and haven't thought about @HeliusPrivacy, I humbly guarantee you will fall behind your competitors",
+    "post_id": "2106367720841257227",
+    "url": "https://x.com/mert/status/2106367720841257227"
   },
   {
     "date": "2026-10-09",
@@ -3820,6 +3810,16 @@
     "url": "https://x.com/mert/status/2108372691845861444"
   },
   {
+    "date": "2026-10-13",
+    "ticker": "ZEC",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "simply hold, chill, and be deliberate when you move",
+    "post_id": "2109883379911143523",
+    "url": "https://x.com/mert/status/2109883379911143523"
+  },
+  {
     "date": "2026-10-15",
     "ticker": "BTC",
     "chain": null,
@@ -3828,5 +3828,35 @@
     "quote": "GENTLEMEN HOLD THE LINE",
     "post_id": "2110580548620173419",
     "url": "https://x.com/mert/status/2110580548620173419"
+  },
+  {
+    "date": "2026-10-23",
+    "ticker": "SOL",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "promises made, promises kept thank you anatoly for the generational poverty https://t.co/wzzANEuAjf",
+    "post_id": "2113606821692727329",
+    "url": "https://x.com/mert/status/2113606821692727329"
+  },
+  {
+    "date": "2026-10-28",
+    "ticker": "ZEC",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "happy 10y to zcash we've rekindled the fire that represents the best of crypto against all odds",
+    "post_id": "2115444213768745014",
+    "url": "https://x.com/mert/status/2115444213768745014"
+  },
+  {
+    "date": "2026-10-29",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "ATHs soon",
+    "post_id": "2115921724499698131",
+    "url": "https://x.com/mert/status/2115921724499698131"
   }
 ]
