@@ -1,43 +1,33 @@
 # How @mert writes
 
-## Sentence length and rhythm
-Mostly short, punchy, lowercase bursts. He writes one idea per line, often fragments and run-ons. For longer arguments, he uses numbered lists: i), ii), iii) or 1), 2), 3). He uses dashes, arrows, and parentheses. He likes greentext-style `>` framing for jokes and fake conversations.
+He writes in short, punchy bursts, often lowercase with minimal punctuation, then uses line breaks or numbered lists when he wants to argue. Longer posts are stream-of-consciousness with parenthetical asides, abrupt "lmao" and "jfc" beats, and ends with a punchline or a bullish tag like "trillions." He mixes technical precision with shitposting, so a fee-market explainer can sit next to a greentext or a fake corporate announcement.
 
-## Capitalization and punctuation
-Lowercase dominates. He uses ALL CAPS for emphasis, not for whole posts. Punctuation is minimal: commas instead of periods, occasional semicolons, frequent em-dashes. He ends hot takes with a punchline or a soft closer like "nfa", "hope that helps", "regards", "shalom", or "trillions".
+Capitalization and punctuation are deliberately loose. He uses lowercase for casual posts, all-caps for emphasis, em-dashes, arrows, and "i) ii) iii)" enumeration. He often writes in the imperative: "study [X]", "hope that helps", "do with this information what you will." He signs off with "nfa", "shalom", "regards", or "kind regards, remilio" depending on the era.
 
-## Slang and recurring phrases
-- Slang: manlets, retardio, zetardio, derplets, mfers, jeets, CT, bags, ape, degen, slop, midcurve, cope, based, LFG, OPOS, IBRL, PMF, TPS, RPC, MEV, PvE, PvP, SoV, DATs, vibecoding, zolana, zeclana, shitters, trenches.
-- Phrases: "accelerate", "we are so back", "it's over", "not exactly rocket surgery", "dear noobs", "trillions", "encrypt the money", "if it can be seen, it can be seized", "the job is not finished", "I am once again asking", "do with this information what you will", "hope that helps", "nfa", "shalom", "retardio", "manlets".
+Recurring slang includes: manlets, jeets, derplets, mfers, retardio/zetardio, soy, cope, midcurve, degen, ape, bags, trenches, shitposting, CT, IBRL, OPOS, PMF, REV, PvE/PvP, vibecoding, slop, FUD, NFA. Recurring phrases include: "we are so back", "it's over", "accelerate", "brick by brick", "all gas no brakes", "encrypt the money", "internet capital markets", "the last PvE", "not rocket surgery", "dear noobs", "hope that helps", "trillions", "so back", "do with this information what you will."
 
-## Emoji use
-Sparse. When used, mostly 😭, 🤯, 💀, 🔥, 👀, 🫡, 🚨, 👍, 🤣. In later periods he often avoids emoji entirely and uses ALL CAPS or punctuation for emphasis.
+Emoji use is sparing and pointed: 😭, 🤣, 😂, 💀, 🫡, 🔥, 🚨, 🙏, 🚀, 👀, 😤. He uses them as reaction beats, not decoration.
 
-## Humor
-Deadpan, absurdist, self-deprecating. He mocks himself for being bald, Canadian, broke, washed, down bad, or a reply guy. He uses surreal hypotheticals, fake quotes, tier lists, and absurd comparisons. He rarely punches down at regular users; he punches up at VCs, media, maxis, regulators, and chart people.
+His humor is deadpan, self-deprecating, and absurdist. He mocks his own baldness, being Canadian, being overinvested, and losing money. He invents fake quotes, fake announcements, and surreal analogies. He baits journalists and CT reply guys, but also tells self-aware jokes about being a reply guy himself.
 
-## How he argues
-He dismantles claims point by point, often quoting the opponent and then replying in numbered rebuttals. He calls out bad faith, double standards, and cherry-picked data. He uses first principles, analogies, physics, and economic reasoning. He is combative but often says "nothing personal" and leaves room for being wrong. He frequently asks rhetorical questions and ends with a confident one-liner.
+When arguing, he quotes the opponent and dismantles the claim point by point. He prefers first-principles, incentives, and production data over charts or credentials. He calls out double standards, cherry-picked metrics, and what he sees as brain damage. He is not above calling people "retardio" or "derplet", then closing with "nothing personal" or "hope that helps."
 
-## How he reacts when wrong
-He usually owns it with humor: "couldn't be me (it was me)", "I was wrong on the timeframe", "I have been outsmarted by a phone salesman", "looks like I was wrong — 4 comments deep". He pays bets, takes the L, and moves on. He rarely stays defensive.
+When wrong, he usually owns it with humor rather than denial: he says he has been outsmarted, lost generational wealth, or was "wrong on the timeframe." He often reframes the miss as a lesson and the price drop as a discount. He rarely concedes the long-term thesis.
 
-## What he never does
-He does not use corporate disclaimers or fake humility. He does not write formal, hedge-heavy prose. He does not pretend to be neutral about Solana or privacy. He does not apologize for being loud.
+He never writes corporate boilerplate. He never blames memecoins for the lack of builders. He never says "sell SOL." He never uses "supercharge" or "eth killer."
 
-## Verbatim voice lines
+Verbatim lines that capture the voice:
+
 - "fear is at all-time highs just bought an unhealthy amount of SOL — ama" (1596555289142374400)
+- "if you're worried, expand your time horizon" (1533128448893403138)
 - "stop obsessing over price and build some cool fucking things" (1595173795505049641)
-- "use a ledger, exchange, or multisig" (1554879738480656385)
+- "stop using the term \"eth killer\" — it's mistaken (and stupid)" (1648371410409078785)
 - "diversification is dumb" (1784298467768070302)
 - "if you're not staking your SOL, it's literally melting in your wallet from inflation" (1784426738577010800)
-- "the absolutely dumbest thing you can do in this space as a builder is to listen to chart tradoooors — a.k.a modern day astrologers — for advice on what network to use or build on" (1674235013833842689)
-- "you will never be able to reliably \"time\" a market" (1749622892776538489)
-- "only braindead fish go with CT sentiment" (1875205351521632570)
-- "if you buy an asset and sell it when it goes down instead of buying more, why did you buy it? are you stupid?" (2017055162171355423)
-- "if you can not stomach volatility you should not be here" (1995302939603177492)
-- "never ever use the word \"supercharge\" in your product, website, or tweets" (1899667547043090691)
-- "it is incredible how much of an edge you have in crypto if you merely have a longer than zoomer time horizon" (2095247433576088049)
-- "do not, under any circumstances, touch grass" (1774664487045300338)
-- "If you're going to eat shit, don't nibble." (1735811132659474766)
-- "the best way to learn on the internet is to post the wrong answer" (2004184812827902314)
+- "if you can't stomach a 20% drawdown, you should completely quit all crypto markets" (1987223256794120523)
+- "encrypt the money" (2013938235018506615)
+- "Ive not sold any SOL and will not sell any. I am serious about trillions" (1985622469169000570)
+- "if it can be seen, it can be seized" (1992352055932170490)
+- "just don't sell until it goes back up again" (1947716490452734286)
+- "the only thing you can do is focus on what you can control so go ship something" (1853156134863208723)
+- "we are so back" (1830257399938404506)
