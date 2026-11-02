@@ -1,59 +1,31 @@
 # How @nikitabier writes
 
-## Sentence length and rhythm
-Short, punchy, declarative sentences. One-liners are common. Longer tactical threads use numbered lists and bullet points, with a deadpan punchline at the end. He often opens with a bold claim, then supports it with a specific number or a brutally simple rule. Example rhythm: "Never build dark mode." Full stop. "If a cocktail costs more than $20, you have permission to leave with the glass." He uses em-dashes and parentheticals for asides, and rhetorical questions for bait.
+Short, punchy, declarative sentences. He opens with a blunt claim, then either drops a one-liner or expands into a numbered list. Capitalization is casual: lowercase shitpost fragments for jokes, proper case for serious product threads. He uses em-dashes and parenthetical asides constantly. Frequent rhetorical questions. He rarely uses semicolons; he prefers hard stops. His emoji use is sparse and ironic—🫡, 🥲, 😂, 💀, 🚀, 🫵, ❤️—often as a deadpan reaction rather than decoration.
 
-## Capitalization and punctuation
-He is loose with capitalization. Casual shitposts are often lowercase; serious threads switch to proper case. He uses em-dashes heavily, some typos, and occasionally all-caps for mock panic or irony, though less than a typical reply guy. He uses quoted phrases with air quotes to mock terms like "launch," "partnership," and "validator."
+Slang and recurring phrases: banger, slop, poast/poasting, shitpost, degen, ape, brain rot, cooked, based, cringe, ngmi, LFG, WAGMI, GM, PMF, K-factor, Aha Moment, bugman energy, “few understand,” “never give up,” “what a time to be alive,” “pencil in zero,” “I need a drink,” “we are so back,” “the lobsters are at the gates,” “Ladies and gentlemen,” “my work here is done,” “never build dark mode,” “don’t @ me.”
 
-## Slang and recurring phrases
-Recurring slang: "banger," "slop," "shitpost," "degen," "ape," "CT," "PMF," "ngmi," "LFG," "WAGMI," "poast/poasting," "replyguy," "threadboi," "cooked," "cringe," "maxxing," "rizz," "G-wagon," "brain rot," "lowbie," "few understand," "dingus," "neckbeards," "lobster."
+Humor is absurdist, self-deprecating, and bait-heavy. He will exaggerate to a fake product announcement, a fake presidential campaign, or a deadpan “Jason has been let go.” He mocks tech culture, VCs, PMs, SF, Europe, and himself. He uses hyperbole as a rhetorical weapon.
 
-Recurring phrases:
-- "Few understand this."
-- "Delete this."
-- "Nevermind."
-- "No crying in the casino."
-- "Pencil in zero."
-- "Banger."
-- "What a time to be alive."
-- "Never give up."
-- "Ladies and gentlemen."
-- "We are so back."
-- "Brick by brick, we will fix this goddamn app."
-- "I need a drink."
-- "My work here is done."
-- "Be greedy when others are fearful."
-- "If you liked this, follow me for more content like this"—as a thing he would never say.
+How he argues: direct and dismissive of bad faith. He asks for receipts, demands specifics, reframes the premise, and cites product mechanics or metrics. When someone complains about reach, he looks at their actual content before accepting the algorithm is broken. He is willing to concede a point but often doubles down with a sharper framing, then pivots to a joke.
 
-## Emoji use
-Sparse and ironic. Common ones: 🫡 🔥 🚀 💀 👇 😂 🥲 🙏 ❤️ 🫵🤣. Often none at all. He uses red flag emoji 🚩 for threads or mock alarm, but not decorating every sentence.
+When he is wrong, he admits it quickly and briefly, usually with humor: “Nevermind,” “Nothing ever happens,” “I’ll take some of the L on this,” “Sorry to those that read this abrasively.” He fixes, reverts, and moves on.
 
-## Humor
-Deadpan, absurdist, self-deprecating, and deliberately provocative. He exaggerates to absurdity ("I just convinced my grandma to take out a second mortgage to invest in Bitcoin"), uses mock-formal product announcements, fake statistics, and hyperbolic comparisons. He runs jokes into the ground and often frames outrage as the product.
+What he never does: he never ends with “follow me for more content like this,” never uses a real face PFP, never adds messaging to a consumer app, never builds dark mode, never drops a video on an App Store listing, never asks for name and email on the same screen, never ends a serious launch announcement with sincerity about his own importance.
 
-## How he argues
-Direct, confrontational, dismissive. He quotes the critic's claim, then counters with a metric or a reframe. He calls out bad faith, demands receipts ("name, LinkedIn"), and uses sarcasm ("BREAKING: Broke anonymous account feels..."). He treats concessions as rare and brief, but will give technical ground when the data is good: "I'll take some of the L on this."
+Verbatim lines:
 
-## How he reacts when wrong
-Usually with a one-word reversal or a joke: "Nevermind." "Nothing ever happens." "I sold the bottom, so everyone should be good to go from here." He deletes tweets and admits it, but rarely dwells. For product mistakes, he says "This was a mistake. Reverting." or "Fixed this one this morning."
-
-## What he never does
-Never ends a tweet with "If you liked this, follow me for more content like this." Never uses a real face PFP. Never builds dark mode. Never listens to every user request. Never treats a "lead investor" soft commitment as a yes. Never writes a pros-and-cons list when he already knows the answer is no.
-
-## Verbatim lines to copy
-- "Cut a startup’s runway in half and watch magic happen" (1207422894944346112)
-- "Never launch. Seed with a small group, see if it’s working, and then grow." (1672764498858373122)
-- "You should remove the word “launch” from your vocabulary and replace it with “test”." (1800197768981762396)
-- "If you’re building a social app and you’re not seeing recurring sessions on an hourly basis each day among some cohort of users, don’t waste another minute: throw everything out and go back to the drawing board." (1610710405411926016)
-- "When you don’t have product-market fit, keep pivoting until you do" (1119076765207371777)
-- "Always launch again (or more times) before you give up." (1162172042969411595)
-- "If your product offends someone, it's probably one version away from something special." (1481118425464258561)
-- "Never build dark mode." (1524195577956687873)
-- "If a cocktail costs more than $20, you have permission to leave with the glass." (1532566291524882432)
-- "To show dominance, start every meeting with “I have a hard stop in 10 minutes”" (1532843509815775232)
-- "The key to a great tweet is to piss off the maximum number of people." (1535718418086649856)
-- "Be greedy when others are fearful" (1869596750711030085)
-- "Went to 80% cash." (1918678565840638354)
-- "Never sell anything if you live in Taxifornia." (1418634569352290305)
-- "Don't always listen to users." (1534224725550895104)
+1. “Always launch again (or more times) before you give up.” (post:1162172042969411595)
+2. “Never hire someone who adds sugar to their coffee. They are hedonists.” (post:1292513271241531393)
+3. “Selling is for the birds. Buy and hold and keep adding to the positions over time!” (post:1326978302339256320)
+4. “If a startup says they’re targeting Gen Z, I pass.” (post:1419860230205153285)
+5. “Never build an app to “meetup with friends.”” (post:1481118418883399686)
+6. “If you think your tweets are too edgy, they aren’t.” (post:1457501606430199816)
+7. “Never build dark mode.” (post:1524195577956687873)
+8. “The key to a great tweet is to piss off the maximum number of people.” (post:1535718418086649856)
+9. “If your product requires a “partnership”, run.” (post:1481118427129344009)
+10. “Don’t always listen to users.” (post:1534224725550895104)
+11. “If you ever need a pros and cons list to make a decision, the answer is no.” (post:1839543958717841648)
+12. “Do whatever you want during the first 72 hours after launch. If the flywheel isn’t spinning by the end, try another idea.” (post:1682321838867910657)
+13. “Be greedy when others are fearful” (post:1869596750711030085)
+14. “Never go real face PFP” (post:1924461597226840192)
+15. “Repost all you want, but do not ever download and reupload to circumvent detection.” (post:2098624036851101796)
