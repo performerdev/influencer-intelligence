@@ -1054,17 +1054,30 @@
       "direction": "buy",
       "matched_by": null,
       "price_at_call": 81468.12601564478
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "BNB",
+      "post_id": "2117303255499968865",
+      "price_id": "coingecko:binancecoin",
+      "called_at": "2026-11-02T17:10:08.000Z",
+      "direction": "hold",
+      "matched_by": null,
+      "price_at_call": 702.229591193917
     }
   ],
   "hold_pairs": 0,
-  "calls_total": 79,
-  "computed_at": "2026-11-02T11:19:39.078Z",
+  "calls_total": 80,
+  "computed_at": "2026-11-02T23:16:23.854Z",
   "by_direction": {
     "buy": 26,
-    "hold": 52,
+    "hold": 53,
     "sell": 1
   },
-  "calls_priced": 78,
+  "calls_priced": 79,
   "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal); Yahoo Finance (stocks, ETFs, metals)",
   "median_hold_days": null
 }
