@@ -9,21 +9,21 @@
   ],
   "horizons": {
     "1d": {
-      "n": 52,
-      "hit_rate": 0.5,
-      "mean_return": 0.026,
-      "median_return": 0.0001
+      "n": 51,
+      "hit_rate": 0.4902,
+      "mean_return": 0.0291,
+      "median_return": 0
     },
     "7d": {
-      "n": 52,
-      "hit_rate": 0.5769,
-      "mean_return": 0.0311,
-      "median_return": 0.01
+      "n": 51,
+      "hit_rate": 0.5686,
+      "mean_return": 0.0314,
+      "median_return": 0.0086
     },
     "30d": {
-      "n": 52,
+      "n": 50,
       "hit_rate": 0.5,
-      "mean_return": -0.0032,
+      "mean_return": -0.0034,
       "median_return": 0.0027
     }
   },
@@ -117,7 +117,7 @@
       "called_at": "2020-07-14T03:12:56.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 137.20635986328125
+      "price_at_call": 137.2063446044922
     },
     {
       "r_1d": null,
@@ -832,7 +832,7 @@
       "called_at": "2022-10-27T16:30:05.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 97.0108642578125
+      "price_at_call": 97.01087188720703
     },
     {
       "r_1d": null,
@@ -910,7 +910,7 @@
       "called_at": "2023-06-16T04:03:56.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 42.56136703491211
+      "price_at_call": 42.56137466430664
     },
     {
       "r_1d": 0,
@@ -923,7 +923,7 @@
       "called_at": "2023-06-16T04:10:23.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 42.56136703491211
+      "price_at_call": 42.56137466430664
     },
     {
       "r_1d": null,
@@ -1014,7 +1014,7 @@
       "called_at": "2023-11-14T14:29:13.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 79.27310943603516
+      "price_at_call": 79.27313232421875
     },
     {
       "r_1d": null,
@@ -1131,7 +1131,7 @@
       "called_at": "2023-12-30T18:22:35.000Z",
       "direction": "hold",
       "matched_by": "stock",
-      "price_at_call": 90.55571746826172
+      "price_at_call": 90.55572509765625
     },
     {
       "r_1d": 0.0138,
@@ -1157,7 +1157,7 @@
       "called_at": "2024-02-21T21:02:34.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 67.27701568603516
+      "price_at_call": 67.2770004272461
     },
     {
       "r_1d": -0.1265,
@@ -1166,10 +1166,10 @@
       "symbol": null,
       "ticker": "DOGWIFHAT",
       "post_id": "1764431294975369258",
-      "price_id": "ethereum:0x8AEC4bbDcfB451aA289bfBD3C2F4E34A44ADa1be",
+      "price_id": "coingecko:dogwifhat-eth",
       "called_at": "2024-03-03T23:22:56.000Z",
       "direction": "hold",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 0.04194884
     },
     {
@@ -1209,7 +1209,7 @@
       "called_at": "2024-08-31T17:49:34.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 119.0403823852539
+      "price_at_call": 119.04037475585938
     },
     {
       "r_1d": null,
@@ -1274,7 +1274,7 @@
       "called_at": "2024-12-14T17:47:34.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 122.18669128417969
+      "price_at_call": 122.18668365478516
     },
     {
       "r_1d": 0.0123,
@@ -1287,7 +1287,7 @@
       "called_at": "2024-12-25T03:26:00.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 120.855712890625
+      "price_at_call": 120.8556900024414
     },
     {
       "r_1d": 0.0868,
@@ -1524,19 +1524,6 @@
       "price_at_call": null
     },
     {
-      "r_1d": -0.1991,
-      "r_7d": -0.1026,
-      "r_30d": -0.0638,
-      "symbol": null,
-      "ticker": "MRNA",
-      "post_id": "2090215623041462344",
-      "price_id": "coingecko:moderna-inc-robinhood-token",
-      "called_at": "2026-08-19T23:13:33.000Z",
-      "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 164.4738086791976
-    },
-    {
       "r_1d": 0.0202,
       "r_7d": 0.0852,
       "r_30d": -0.0152,
@@ -1563,41 +1550,28 @@
       "price_at_call": 137.83539442246408
     },
     {
-      "r_1d": 0.0356,
-      "r_7d": 0.0541,
-      "r_30d": 0.0675,
-      "symbol": null,
-      "ticker": "AAPL",
-      "post_id": "2097748652337066266",
-      "price_id": "stock:AAPL",
-      "called_at": "2026-09-09T18:07:07.000Z",
-      "direction": "buy",
-      "matched_by": "stock",
-      "price_at_call": 315.3399963378906
-    },
-    {
-      "r_1d": null,
-      "r_7d": null,
+      "r_1d": -0.0324,
+      "r_7d": -0.0638,
       "r_30d": null,
       "symbol": null,
       "ticker": "UNL",
       "post_id": "2112780491225285006",
-      "price_id": "gt:solana:Bb5M3QUChvbEhbWUwudb1gqE6PWjcTYddowu3JUeQ3ri",
+      "price_id": "gt:solana:HZWXsJN7RPa8stkSp187XX9aPWQfmbcoo9Go7zyVE4Wd",
       "called_at": "2026-10-21T05:38:17.000Z",
       "direction": "buy",
       "matched_by": "ticker",
-      "price_at_call": 0.000013562755603581782
+      "price_at_call": 0.000013579759473029679
     }
   ],
   "hold_pairs": 9,
-  "calls_total": 120,
-  "computed_at": "2026-10-27T17:35:28.263Z",
+  "calls_total": 118,
+  "computed_at": "2026-11-02T11:24:33.550Z",
   "by_direction": {
-    "buy": 78,
+    "buy": 76,
     "hold": 22,
     "sell": 20
   },
-  "calls_priced": 53,
+  "calls_priced": 51,
   "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal); Yahoo Finance (stocks, ETFs, metals)",
   "median_hold_days": 41.4
 }
