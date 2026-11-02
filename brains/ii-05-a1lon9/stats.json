@@ -9,22 +9,22 @@
   ],
   "horizons": {
     "1d": {
-      "n": 34,
-      "hit_rate": 0.6765,
-      "mean_return": 0.1625,
-      "median_return": 0.024
+      "n": 33,
+      "hit_rate": 0.6667,
+      "mean_return": 0.164,
+      "median_return": 0.0239
     },
     "7d": {
-      "n": 34,
-      "hit_rate": 0.5588,
-      "mean_return": 0.2588,
-      "median_return": 0.0155
+      "n": 33,
+      "hit_rate": 0.5758,
+      "mean_return": 0.269,
+      "median_return": 0.0204
     },
     "30d": {
-      "n": 33,
-      "hit_rate": 0.5152,
-      "mean_return": 0.2286,
-      "median_return": 0.1525
+      "n": 32,
+      "hit_rate": 0.5313,
+      "mean_return": 0.2536,
+      "median_return": 0.1633
     }
   },
   "per_call": [
@@ -380,17 +380,17 @@
       "price_at_call": null
     },
     {
-      "r_1d": 0.114,
-      "r_7d": -0.0784,
-      "r_30d": -0.5712,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "WDOG",
       "post_id": "1837980394957762931",
-      "price_id": "solana:GYKmdfcUmZVrqfcH1g579BGjuzSRijj3LBuwv79rpump",
+      "price_id": null,
       "called_at": "2024-09-22T22:20:48.000Z",
       "direction": "buy",
-      "matched_by": "ticker",
-      "price_at_call": 0.01639551
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": null,
@@ -869,20 +869,20 @@
       "post_id": "2110876217591177396",
       "price_id": "coingecko:pump-fun",
       "called_at": "2026-10-15T23:31:23.000Z",
-      "direction": "hold",
+      "direction": "buy",
       "matched_by": null,
       "price_at_call": 0.0045192733263882895
     }
   ],
   "hold_pairs": 0,
   "calls_total": 65,
-  "computed_at": "2026-10-27T17:34:18.766Z",
+  "computed_at": "2026-11-02T11:14:43.043Z",
   "by_direction": {
-    "buy": 47,
-    "hold": 14,
+    "buy": 48,
+    "hold": 13,
     "sell": 4
   },
-  "calls_priced": 34,
+  "calls_priced": 33,
   "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal); Yahoo Finance (stocks, ETFs, metals)",
   "median_hold_days": null
 }
