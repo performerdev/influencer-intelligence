@@ -27601,13 +27601,13 @@
   },
   {
     "date": "2026-09-17",
-    "ticker": "HOOD",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "i think we see hood trading $200+ by end of next year. $HOOD really in a good spot right now",
-    "post_id": "2100718529771127085",
-    "url": "https://x.com/blknoiz06/status/2100718529771127085"
+    "ticker": "VVV",
+    "chain": "evm",
+    "address": "0xacfe6019ed1a7dc6f7b508c02d1b04ec88cc21bf",
+    "direction": "hold",
+    "quote": "called base:0xacfe6019ed1a7dc6f7b508c02d1b04ec88cc21bf when we first started the show around $8 now around $25",
+    "post_id": "2100708703280247197",
+    "url": "https://x.com/blknoiz06/status/2100708703280247197"
   },
   {
     "date": "2026-09-17",
@@ -27618,6 +27618,16 @@
     "quote": "https://t.co/JFesq5EE7d",
     "post_id": "2100724058207789332",
     "url": "https://x.com/blknoiz06/status/2100724058207789332"
+  },
+  {
+    "date": "2026-09-17",
+    "ticker": "ZEC",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "spcmn fullported zcash at $75 last year and it is up 20x",
+    "post_id": "2100733346032603241",
+    "url": "https://x.com/blknoiz06/status/2100733346032603241"
   },
   {
     "date": "2026-09-22",
@@ -27670,6 +27680,16 @@
     "url": "https://x.com/blknoiz06/status/2104305815226085594"
   },
   {
+    "date": "2026-09-27",
+    "ticker": "PUMP",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "this is objectively mispriced by a very unreasonable margin",
+    "post_id": "2104306311651299707",
+    "url": "https://x.com/blknoiz06/status/2104306311651299707"
+  },
+  {
     "date": "2026-10-01",
     "ticker": "PUMP",
     "chain": null,
@@ -27685,7 +27705,7 @@
     "chain": null,
     "address": null,
     "direction": "hold",
-    "quote": "zec 400 to 1600 in Q3, up from 40 in september of 2025",
+    "quote": "zec 400 to 1600 in Q3, up from 40 in september of 2025, (500M -> 20B mcap)",
     "post_id": "2105721654546424087",
     "url": "https://x.com/blknoiz06/status/2105721654546424087"
   },
@@ -27764,20 +27784,10 @@
     "ticker": "STRK",
     "chain": null,
     "address": null,
-    "direction": "buy",
+    "direction": "hold",
     "quote": "$STRK +53% since I called it the trade of the week",
     "post_id": "2108973219302772787",
     "url": "https://x.com/blknoiz06/status/2108973219302772787"
-  },
-  {
-    "date": "2026-10-12",
-    "ticker": "BTC",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "$90k by end of the week",
-    "post_id": "2109472464246079912",
-    "url": "https://x.com/blknoiz06/status/2109472464246079912"
   },
   {
     "date": "2026-10-15",
@@ -27795,19 +27805,9 @@
     "chain": null,
     "address": null,
     "direction": "sell",
-    "quote": "cut longs & likely derisking more before open",
+    "quote": "not great spot tbh, cut longs & likely derisking more before open",
     "post_id": "2111899765323759684",
     "url": "https://x.com/blknoiz06/status/2111899765323759684"
-  },
-  {
-    "date": "2026-10-20",
-    "ticker": "VVV",
-    "chain": "evm",
-    "address": "0xacfe6019ed1a7dc6f7b508c02d1b04ec88cc21bf",
-    "direction": "buy",
-    "quote": "if you aren't paying attention to venice ai, you should be.",
-    "post_id": "2112585897531334903",
-    "url": "https://x.com/blknoiz06/status/2112585897531334903"
   },
   {
     "date": "2026-10-26",
@@ -27815,7 +27815,7 @@
     "chain": null,
     "address": null,
     "direction": "sell",
-    "quote": "i am bearish btc/eth & large cap stocks believe btc & eth have broken mid timeframe trend",
+    "quote": "i am bearish btc/eth & large cap stocks believe btc & eth have broken mid timeframe trend and will continue to accelerate to downside under 82k/2400",
     "post_id": "2114710641290138085",
     "url": "https://x.com/blknoiz06/status/2114710641290138085"
   },
@@ -27825,8 +27825,78 @@
     "chain": null,
     "address": null,
     "direction": "sell",
-    "quote": "will continue to accelerate to downside under 82k/2400",
+    "quote": "i am bearish btc/eth & large cap stocks believe btc & eth have broken mid timeframe trend and will continue to accelerate to downside under 82k/2400",
     "post_id": "2114710641290138085",
     "url": "https://x.com/blknoiz06/status/2114710641290138085"
+  },
+  {
+    "date": "2026-10-29",
+    "ticker": "ETH",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "market bleeding and the $ETH short",
+    "post_id": "2115752920779989271",
+    "url": "https://x.com/blknoiz06/status/2115752920779989271"
+  },
+  {
+    "date": "2026-10-30",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "multiple major tech earnings this week -10% selloffs after hours btc & eth accelerating to downside largest centralized exchange hack in cry",
+    "post_id": "2115976433302409694",
+    "url": "https://x.com/blknoiz06/status/2115976433302409694"
+  },
+  {
+    "date": "2026-10-30",
+    "ticker": "ETH",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "multiple major tech earnings this week -10% selloffs after hours btc & eth accelerating to downside largest centralized exchange hack in cry",
+    "post_id": "2115976433302409694",
+    "url": "https://x.com/blknoiz06/status/2115976433302409694"
+  },
+  {
+    "date": "2026-10-30",
+    "ticker": "ZEC",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "want to buy zec/hype/pump if given discounts",
+    "post_id": "2115976433302409694",
+    "url": "https://x.com/blknoiz06/status/2115976433302409694"
+  },
+  {
+    "date": "2026-10-30",
+    "ticker": "HYPE",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "want to buy zec/hype/pump if given discounts",
+    "post_id": "2115976433302409694",
+    "url": "https://x.com/blknoiz06/status/2115976433302409694"
+  },
+  {
+    "date": "2026-10-30",
+    "ticker": "PUMP",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "want to buy zec/hype/pump if given discounts",
+    "post_id": "2115976433302409694",
+    "url": "https://x.com/blknoiz06/status/2115976433302409694"
+  },
+  {
+    "date": "2026-10-30",
+    "ticker": "ETH",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "Update on the $ETH short",
+    "post_id": "2116134237971915020",
+    "url": "https://x.com/blknoiz06/status/2116134237971915020"
   }
 ]
