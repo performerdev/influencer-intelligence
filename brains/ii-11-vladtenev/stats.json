@@ -9,22 +9,22 @@
   ],
   "horizons": {
     "1d": {
-      "n": 18,
-      "hit_rate": 0.5,
-      "mean_return": 0.0347,
-      "median_return": 0.0033
+      "n": 17,
+      "hit_rate": 0.4706,
+      "mean_return": 0.0357,
+      "median_return": 0
     },
     "7d": {
-      "n": 18,
-      "hit_rate": 0.5,
-      "mean_return": 0.0197,
-      "median_return": 0.0025
+      "n": 17,
+      "hit_rate": 0.4706,
+      "mean_return": 0.0203,
+      "median_return": -0.0055
     },
     "30d": {
-      "n": 18,
-      "hit_rate": 0.3889,
-      "mean_return": -0.0324,
-      "median_return": -0.0962
+      "n": 17,
+      "hit_rate": 0.4118,
+      "mean_return": -0.0332,
+      "median_return": -0.1234
     }
   },
   "per_call": [
@@ -224,19 +224,6 @@
       "price_at_call": 39.82928886875811
     },
     {
-      "r_1d": 0.0174,
-      "r_7d": 0.0105,
-      "r_30d": -0.0194,
-      "symbol": null,
-      "ticker": "TSLA",
-      "post_id": "1996270789385969821",
-      "price_id": "stock:TSLA",
-      "called_at": "2025-12-03T17:30:19.000Z",
-      "direction": "buy",
-      "matched_by": "stock",
-      "price_at_call": 446.739990234375
-    },
-    {
       "r_1d": null,
       "r_7d": null,
       "r_30d": null,
@@ -297,7 +284,7 @@
       "post_id": "2067326045368484137",
       "price_id": "coingecko:spacex-backpack-securities",
       "called_at": "2026-06-17T19:18:32.000Z",
-      "direction": "buy",
+      "direction": "hold",
       "matched_by": "symbol",
       "price_at_call": 197.598142383896
     },
@@ -329,14 +316,14 @@
     }
   ],
   "hold_pairs": 0,
-  "calls_total": 23,
-  "computed_at": "2026-10-27T17:34:58.613Z",
+  "calls_total": 22,
+  "computed_at": "2026-11-02T11:25:27.833Z",
   "by_direction": {
-    "buy": 23,
-    "hold": 0,
+    "buy": 21,
+    "hold": 1,
     "sell": 0
   },
-  "calls_priced": 18,
+  "calls_priced": 17,
   "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal); Yahoo Finance (stocks, ETFs, metals)",
   "median_hold_days": null
 }
