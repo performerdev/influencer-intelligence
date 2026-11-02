@@ -9,22 +9,22 @@
   ],
   "horizons": {
     "1d": {
-      "n": 135,
-      "hit_rate": 0.563,
-      "mean_return": 0.0705,
-      "median_return": 0.0081
+      "n": 138,
+      "hit_rate": 0.5652,
+      "mean_return": 0.0699,
+      "median_return": 0.0079
     },
     "7d": {
-      "n": 131,
-      "hit_rate": 0.5344,
-      "mean_return": 0.2468,
-      "median_return": 0.0255
+      "n": 136,
+      "hit_rate": 0.5221,
+      "mean_return": 0.2374,
+      "median_return": 0.0147
     },
     "30d": {
-      "n": 128,
-      "hit_rate": 0.5,
-      "mean_return": 0.8828,
-      "median_return": 0.0012
+      "n": 130,
+      "hit_rate": 0.4923,
+      "mean_return": 0.8665,
+      "median_return": -0.0035
     }
   },
   "per_call": [
@@ -217,10 +217,10 @@
       "symbol": null,
       "ticker": "MILADY",
       "post_id": "1656285413143904256",
-      "price_id": "coingecko:milady-vault-nftx",
+      "price_id": "ethereum:0x227c7DF69D3ed1ae7574A1a7685fDEd90292EB48",
       "called_at": "2023-05-10T13:09:49.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
+      "matched_by": "ticker",
       "price_at_call": 6978.93
     },
     {
@@ -1760,7 +1760,7 @@
     {
       "r_1d": -0.0574,
       "r_7d": -0.1664,
-      "r_30d": null,
+      "r_30d": -0.1997,
       "symbol": null,
       "ticker": "SPX6900",
       "post_id": "2105752918020300964",
@@ -1769,6 +1769,19 @@
       "direction": "hold",
       "matched_by": null,
       "price_at_call": 0.44136500944585555
+    },
+    {
+      "r_1d": 0.0791,
+      "r_7d": -0.1157,
+      "r_30d": -0.1539,
+      "symbol": null,
+      "ticker": "SPX6900",
+      "post_id": "2106118634271875534",
+      "price_id": "coingecko:spx6900",
+      "called_at": "2026-10-02T20:26:26.000Z",
+      "direction": "buy",
+      "matched_by": null,
+      "price_at_call": 0.41605025242500143
     },
     {
       "r_1d": -0.086,
@@ -1784,21 +1797,8 @@
       "price_at_call": 0.4586182979959345
     },
     {
-      "r_1d": 0.0089,
-      "r_7d": -0.0263,
-      "r_30d": null,
-      "symbol": null,
-      "ticker": "SPX6900",
-      "post_id": "2109721885449859449",
-      "price_id": "coingecko:spx6900",
-      "called_at": "2026-10-12T19:04:28.000Z",
-      "direction": "hold",
-      "matched_by": null,
-      "price_at_call": 0.3629814611582672
-    },
-    {
       "r_1d": -0.075,
-      "r_7d": null,
+      "r_7d": -0.0019,
       "r_30d": null,
       "symbol": null,
       "ticker": "SPX6900",
@@ -1811,7 +1811,7 @@
     },
     {
       "r_1d": -0.0356,
-      "r_7d": null,
+      "r_7d": -0.0006,
       "r_30d": null,
       "symbol": null,
       "ticker": "SPX6900",
@@ -1823,8 +1823,21 @@
       "price_at_call": 0.36137104503312184
     },
     {
+      "r_1d": 0.062,
+      "r_7d": 0.063,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "SPX6900",
+      "post_id": "2114027958100705716",
+      "price_id": "coingecko:spx6900",
+      "called_at": "2026-10-24T16:15:16.000Z",
+      "direction": "buy",
+      "matched_by": null,
+      "price_at_call": 0.33791464497380186
+    },
+    {
       "r_1d": 0.0694,
-      "r_7d": null,
+      "r_7d": -0.0028,
       "r_30d": null,
       "symbol": null,
       "ticker": "SPX6900",
@@ -1837,7 +1850,7 @@
     },
     {
       "r_1d": 0.0349,
-      "r_7d": null,
+      "r_7d": -0.0034,
       "r_30d": null,
       "symbol": null,
       "ticker": "SPX6900",
@@ -1849,7 +1862,7 @@
       "price_at_call": 0.3585631537508642
     },
     {
-      "r_1d": null,
+      "r_1d": 0.0041,
       "r_7d": null,
       "r_30d": null,
       "symbol": null,
@@ -1860,17 +1873,56 @@
       "direction": "buy",
       "matched_by": null,
       "price_at_call": 0.3763876917801413
+    },
+    {
+      "r_1d": -0.014,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "SPX6900",
+      "post_id": "2116509776335274481",
+      "price_id": "coingecko:spx6900",
+      "called_at": "2026-10-31T12:37:08.000Z",
+      "direction": "buy",
+      "matched_by": null,
+      "price_at_call": 0.35888562542978797
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "SPX6900",
+      "post_id": "2116907196961145115",
+      "price_id": "coingecko:spx6900",
+      "called_at": "2026-11-01T14:56:20.000Z",
+      "direction": "hold",
+      "matched_by": null,
+      "price_at_call": 0.3581131584877872
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "SPX6900",
+      "post_id": "2117134403960701001",
+      "price_id": "coingecko:spx6900",
+      "called_at": "2026-11-02T05:59:11.000Z",
+      "direction": "hold",
+      "matched_by": null,
+      "price_at_call": 0.36239009202914846
     }
   ],
   "hold_pairs": 3,
-  "calls_total": 141,
-  "computed_at": "2026-10-27T17:34:13.405Z",
+  "calls_total": 145,
+  "computed_at": "2026-11-02T11:14:11.727Z",
   "by_direction": {
-    "buy": 102,
-    "hold": 33,
+    "buy": 105,
+    "hold": 34,
     "sell": 6
   },
-  "calls_priced": 136,
+  "calls_priced": 140,
   "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal); Yahoo Finance (stocks, ETFs, metals)",
   "median_hold_days": 190
 }
