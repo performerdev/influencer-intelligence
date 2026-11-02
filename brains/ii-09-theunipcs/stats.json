@@ -9,22 +9,22 @@
   ],
   "horizons": {
     "1d": {
-      "n": 512,
-      "hit_rate": 0.5293,
-      "mean_return": 0.0432,
+      "n": 526,
+      "hit_rate": 0.5266,
+      "mean_return": 0.0424,
       "median_return": 0.0065
     },
     "7d": {
-      "n": 507,
-      "hit_rate": 0.4122,
-      "mean_return": 0.0785,
-      "median_return": -0.0495
+      "n": 510,
+      "hit_rate": 0.4137,
+      "mean_return": 0.0782,
+      "median_return": -0.0491
     },
     "30d": {
-      "n": 478,
-      "hit_rate": 0.3724,
-      "mean_return": 0.283,
-      "median_return": -0.1447
+      "n": 489,
+      "hit_rate": 0.364,
+      "mean_return": 0.2633,
+      "median_return": -0.1544
     }
   },
   "per_call": [
@@ -1595,10 +1595,10 @@
       "symbol": null,
       "ticker": "BONGO",
       "post_id": "1855151402743460238",
-      "price_id": "coingecko:bongo-cat",
+      "price_id": "solana:HUdqc5MR5h3FssESabPnQ1GTgTcPvnNudAuLj5J6a9sU",
       "called_at": "2024-11-09T07:32:16.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
+      "matched_by": "ticker",
       "price_at_call": 0.0238467
     },
     {
@@ -1647,10 +1647,10 @@
       "symbol": null,
       "ticker": "BONGO",
       "post_id": "1856440182372802822",
-      "price_id": "coingecko:bongo-cat",
+      "price_id": "solana:HUdqc5MR5h3FssESabPnQ1GTgTcPvnNudAuLj5J6a9sU",
       "called_at": "2024-11-12T20:53:25.000Z",
       "direction": "hold",
-      "matched_by": "symbol",
+      "matched_by": "ticker",
       "price_at_call": 0.053312
     },
     {
@@ -1686,10 +1686,10 @@
       "symbol": null,
       "ticker": "BONGO",
       "post_id": "1856978518065688907",
-      "price_id": "coingecko:bongo-cat",
+      "price_id": "solana:HUdqc5MR5h3FssESabPnQ1GTgTcPvnNudAuLj5J6a9sU",
       "called_at": "2024-11-14T08:32:34.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
+      "matched_by": "ticker",
       "price_at_call": 0.07715
     },
     {
@@ -1816,10 +1816,10 @@
       "symbol": null,
       "ticker": "BONGO",
       "post_id": "1859258068170907677",
-      "price_id": "coingecko:bongo-cat",
+      "price_id": "solana:HUdqc5MR5h3FssESabPnQ1GTgTcPvnNudAuLj5J6a9sU",
       "called_at": "2024-11-20T15:30:41.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
+      "matched_by": "ticker",
       "price_at_call": 0.117148
     },
     {
@@ -1836,17 +1836,17 @@
       "price_at_call": 0.062113
     },
     {
-      "r_1d": -0.081,
-      "r_7d": -0.6753,
-      "r_30d": -0.8346,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "QUBY",
       "post_id": "1859926729298694278",
-      "price_id": "ethereum:0xC785698504A70bE37d0e939a4C5326f8eDdD5BEb",
+      "price_id": null,
       "called_at": "2024-11-22T11:47:42.000Z",
       "direction": "hold",
-      "matched_by": "ticker",
-      "price_at_call": 0.1662982725097128
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": -0.0322,
@@ -1933,10 +1933,10 @@
       "symbol": null,
       "ticker": "BONGO",
       "post_id": "1862567437008609728",
-      "price_id": "coingecko:bongo-cat",
+      "price_id": "solana:HUdqc5MR5h3FssESabPnQ1GTgTcPvnNudAuLj5J6a9sU",
       "called_at": "2024-11-29T18:40:56.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
+      "matched_by": "ticker",
       "price_at_call": 0.04797943
     },
     {
@@ -2011,10 +2011,10 @@
       "symbol": null,
       "ticker": "BONGO",
       "post_id": "1872913119997309323",
-      "price_id": "coingecko:bongo-cat",
+      "price_id": "solana:HUdqc5MR5h3FssESabPnQ1GTgTcPvnNudAuLj5J6a9sU",
       "called_at": "2024-12-28T07:50:59.000Z",
       "direction": "hold",
-      "matched_by": "symbol",
+      "matched_by": "ticker",
       "price_at_call": 0.02315998
     },
     {
@@ -4299,7 +4299,7 @@
       "symbol": null,
       "ticker": "BONGO",
       "post_id": "1975706103502807110",
-      "price_id": "solana:HPJALtLtydXym5Tbv6udQCKcXSihnz3B7aD3PNMNbonk",
+      "price_id": "solana:HUdqc5MR5h3FssESabPnQ1GTgTcPvnNudAuLj5J6a9sU",
       "called_at": "2025-10-07T23:33:36.000Z",
       "direction": "buy",
       "matched_by": "ticker",
@@ -6633,17 +6633,17 @@
       "price_at_call": 0.03201742566827997
     },
     {
-      "r_1d": 0.0287,
-      "r_7d": 0.1293,
-      "r_30d": -0.1969,
+      "r_1d": -0.0045,
+      "r_7d": 0.0807,
+      "r_30d": null,
       "symbol": null,
       "ticker": "LONG",
       "post_id": "2099291397245288496",
-      "price_id": "coingecko:nobiko-coin",
+      "price_id": "bsc:0xfC8774321Ee4586aF183bAca95A8793530056353",
       "called_at": "2026-09-14T00:17:26.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 0.0003020390735213698
+      "matched_by": "ticker",
+      "price_at_call": 44.67774851287372
     },
     {
       "r_1d": 0.0458,
@@ -6752,7 +6752,7 @@
     {
       "r_1d": 0.0834,
       "r_7d": -0.2195,
-      "r_30d": null,
+      "r_30d": -0.5325,
       "symbol": null,
       "ticker": "MARSCOIN",
       "post_id": "2104480778998472913",
@@ -6765,7 +6765,7 @@
     {
       "r_1d": 0.0271,
       "r_7d": -0.0313,
-      "r_30d": null,
+      "r_30d": -0.3682,
       "symbol": null,
       "ticker": "USELESS",
       "post_id": "2104931369583362118",
@@ -6778,7 +6778,7 @@
     {
       "r_1d": -0.0217,
       "r_7d": -0.2404,
-      "r_30d": null,
+      "r_30d": -0.4924,
       "symbol": null,
       "ticker": "PONS",
       "post_id": "2104949818485277152",
@@ -6791,7 +6791,7 @@
     {
       "r_1d": 0.188,
       "r_7d": -0.2752,
-      "r_30d": null,
+      "r_30d": -0.7146,
       "symbol": null,
       "ticker": "SI",
       "post_id": "2105054492672848310",
@@ -6804,7 +6804,7 @@
     {
       "r_1d": -0.0149,
       "r_7d": -0.2779,
-      "r_30d": null,
+      "r_30d": -0.6407,
       "symbol": null,
       "ticker": "MARSCOIN",
       "post_id": "2105230934781915415",
@@ -6817,7 +6817,7 @@
     {
       "r_1d": -0.1121,
       "r_7d": -0.1809,
-      "r_30d": null,
+      "r_30d": -0.4843,
       "symbol": null,
       "ticker": "USELESS",
       "post_id": "2105276796061278512",
@@ -6830,7 +6830,7 @@
     {
       "r_1d": -0.1029,
       "r_7d": -0.168,
-      "r_30d": null,
+      "r_30d": -0.4718,
       "symbol": null,
       "ticker": "USELESS",
       "post_id": "2105283295600693308",
@@ -6843,7 +6843,7 @@
     {
       "r_1d": -0.2422,
       "r_7d": -0.454,
-      "r_30d": null,
+      "r_30d": -0.7724,
       "symbol": null,
       "ticker": "SI",
       "post_id": "2105365690316202056",
@@ -6856,7 +6856,7 @@
     {
       "r_1d": -0.0051,
       "r_7d": -0.3478,
-      "r_30d": null,
+      "r_30d": -0.711,
       "symbol": null,
       "ticker": "SI",
       "post_id": "2105770342023078188",
@@ -6869,7 +6869,7 @@
     {
       "r_1d": -0.1333,
       "r_7d": -0.2298,
-      "r_30d": null,
+      "r_30d": -0.4844,
       "symbol": null,
       "ticker": "USELESS",
       "post_id": "2105929994505539790",
@@ -6882,7 +6882,7 @@
     {
       "r_1d": 0.346,
       "r_7d": -0.3018,
-      "r_30d": null,
+      "r_30d": -0.6686,
       "symbol": null,
       "ticker": "SI",
       "post_id": "2105956202941219086",
@@ -6895,7 +6895,7 @@
     {
       "r_1d": 0.0915,
       "r_7d": -0.1964,
-      "r_30d": null,
+      "r_30d": -0.4297,
       "symbol": null,
       "ticker": "USELESS",
       "post_id": "2106283400864645194",
@@ -6908,7 +6908,7 @@
     {
       "r_1d": -0.179,
       "r_7d": -0.5235,
-      "r_30d": null,
+      "r_30d": -0.7766,
       "symbol": null,
       "ticker": "SI",
       "post_id": "2106299461186072771",
@@ -6982,19 +6982,6 @@
       "direction": "hold",
       "matched_by": "symbol",
       "price_at_call": 0.19861316582763042
-    },
-    {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
-      "symbol": null,
-      "ticker": "CA",
-      "post_id": "2109907982368862271",
-      "price_id": null,
-      "called_at": "2026-10-13T07:23:57.000Z",
-      "direction": "buy",
-      "matched_by": null,
-      "price_at_call": null
     },
     {
       "r_1d": 0.5113,
@@ -7088,6 +7075,32 @@
       "price_at_call": 0.03934193582247164
     },
     {
+      "r_1d": -0.0567,
+      "r_7d": -0.3397,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "MASK",
+      "post_id": "2111480927310299618",
+      "price_id": "solana:HuAXPyDWDaMYFKuwQHpqL1oPnj93zdzWmtvFGzCeCUa7",
+      "called_at": "2026-10-17T15:34:17.000Z",
+      "direction": "hold",
+      "matched_by": "ticker",
+      "price_at_call": 0.04625537178610027
+    },
+    {
+      "r_1d": 0.123,
+      "r_7d": 0.1621,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "USELESS",
+      "post_id": "2112204016134271306",
+      "price_id": "solana:Dz9mQ9NzkBcCsuGPFJ3r1bS4wgqKMHBPiVuniW8Mbonk",
+      "called_at": "2026-10-19T15:27:34.000Z",
+      "direction": "hold",
+      "matched_by": null,
+      "price_at_call": 0.14064061565240857
+    },
+    {
       "r_1d": -0.0451,
       "r_7d": -0.3218,
       "r_30d": null,
@@ -7099,19 +7112,6 @@
       "direction": "hold",
       "matched_by": "ticker",
       "price_at_call": 0.015248852311634854
-    },
-    {
-      "r_1d": 0.1302,
-      "r_7d": 0.077,
-      "r_30d": null,
-      "symbol": null,
-      "ticker": "USELESS",
-      "post_id": "2112309315747057816",
-      "price_id": "coingecko:useless-3",
-      "called_at": "2026-10-19T22:26:00.000Z",
-      "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 0.1418189876964375
     },
     {
       "r_1d": 0.1123,
@@ -7127,21 +7127,21 @@
       "price_at_call": 0.14119114209822273
     },
     {
-      "r_1d": -0.0447,
-      "r_7d": -0.0685,
+      "r_1d": 0.0666,
+      "r_7d": 0.0325,
       "r_30d": null,
       "symbol": null,
       "ticker": "USELESS",
-      "post_id": "2112548433743466863",
+      "post_id": "2112545161934721136",
       "price_id": "coingecko:useless-3",
-      "called_at": "2026-10-20T14:16:10.000Z",
+      "called_at": "2026-10-20T14:03:10.000Z",
       "direction": "buy",
       "matched_by": "symbol",
-      "price_at_call": 0.1644745826145998
+      "price_at_call": 0.14810204071323146
     },
     {
       "r_1d": -0.0428,
-      "r_7d": null,
+      "r_7d": 0.0411,
       "r_30d": null,
       "symbol": null,
       "ticker": "USELESS",
@@ -7153,21 +7153,8 @@
       "price_at_call": 0.16056515210753203
     },
     {
-      "r_1d": 0.0001,
-      "r_7d": null,
-      "r_30d": null,
-      "symbol": null,
-      "ticker": "MASK",
-      "post_id": "2112917849152831795",
-      "price_id": "solana:HuAXPyDWDaMYFKuwQHpqL1oPnj93zdzWmtvFGzCeCUa7",
-      "called_at": "2026-10-21T14:44:06.000Z",
-      "direction": "hold",
-      "matched_by": "ticker",
-      "price_at_call": 0.04384932543932827
-    },
-    {
       "r_1d": 0.0845,
-      "r_7d": null,
+      "r_7d": -0.2135,
       "r_30d": null,
       "symbol": null,
       "ticker": "USELESS",
@@ -7180,29 +7167,16 @@
     },
     {
       "r_1d": -0.0304,
-      "r_7d": null,
+      "r_7d": -0.2115,
       "r_30d": null,
       "symbol": null,
       "ticker": "USELESS",
       "post_id": "2114648116452307152",
       "price_id": "coingecko:useless-3",
       "called_at": "2026-10-26T09:19:33.000Z",
-      "direction": "hold",
+      "direction": "buy",
       "matched_by": "symbol",
       "price_at_call": 0.15872297493746637
-    },
-    {
-      "r_1d": -0.0462,
-      "r_7d": null,
-      "r_30d": null,
-      "symbol": null,
-      "ticker": "USELESS",
-      "post_id": "2114744682827976977",
-      "price_id": "coingecko:useless-3",
-      "called_at": "2026-10-26T15:43:17.000Z",
-      "direction": "hold",
-      "matched_by": "symbol",
-      "price_at_call": 0.1648590293395769
     },
     {
       "r_1d": null,
@@ -7255,17 +7229,225 @@
       "direction": "hold",
       "matched_by": null,
       "price_at_call": null
+    },
+    {
+      "r_1d": 0.0714,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "SI",
+      "post_id": "2115144959384867183",
+      "price_id": "solana:DEW9dSN6QpWyNthphCpMmAbZP1Q4cEKR9xQXAri98WDP",
+      "called_at": "2026-10-27T18:13:50.000Z",
+      "direction": "buy",
+      "matched_by": "ticker",
+      "price_at_call": 0.01252106575400496
+    },
+    {
+      "r_1d": 0.0896,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "USELESS",
+      "post_id": "2115174816483581964",
+      "price_id": "coingecko:useless-3",
+      "called_at": "2026-10-27T20:12:28.000Z",
+      "direction": "hold",
+      "matched_by": "symbol",
+      "price_at_call": 0.16097302183203177
+    },
+    {
+      "r_1d": -0.0526,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "PONS",
+      "post_id": "2115280521215332818",
+      "price_id": "coingecko:pons",
+      "called_at": "2026-10-28T03:12:30.000Z",
+      "direction": "buy",
+      "matched_by": "symbol",
+      "price_at_call": 0.28791320173993346
+    },
+    {
+      "r_1d": -0.2179,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "SI",
+      "post_id": "2115289643361198451",
+      "price_id": "solana:DEW9dSN6QpWyNthphCpMmAbZP1Q4cEKR9xQXAri98WDP",
+      "called_at": "2026-10-28T03:48:45.000Z",
+      "direction": "hold",
+      "matched_by": "ticker",
+      "price_at_call": 0.01557468169866855
+    },
+    {
+      "r_1d": -0.0161,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "PONS",
+      "post_id": "2115372804333777293",
+      "price_id": "coingecko:pons",
+      "called_at": "2026-10-28T09:19:12.000Z",
+      "direction": "buy",
+      "matched_by": "symbol",
+      "price_at_call": 0.28633716302340145
+    },
+    {
+      "r_1d": -0.1039,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "USELESS",
+      "post_id": "2115534042884120982",
+      "price_id": "coingecko:useless-3",
+      "called_at": "2026-10-28T19:59:55.000Z",
+      "direction": "hold",
+      "matched_by": "symbol",
+      "price_at_call": 0.17120812552947198
+    },
+    {
+      "r_1d": 0.0603,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "PEPE",
+      "post_id": "2115835346696974537",
+      "price_id": "coingecko:pepe",
+      "called_at": "2026-10-29T15:57:11.000Z",
+      "direction": "sell",
+      "matched_by": null,
+      "price_at_call": 0.0000053680984294135744
+    },
+    {
+      "r_1d": 0.0727,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "USELESS",
+      "post_id": "2115969688236704050",
+      "price_id": "coingecko:useless-3",
+      "called_at": "2026-10-30T00:51:01.000Z",
+      "direction": "buy",
+      "matched_by": "symbol",
+      "price_at_call": 0.12482885735405223
+    },
+    {
+      "r_1d": -0.1129,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "USELESS",
+      "post_id": "2116188387682005246",
+      "price_id": "coingecko:useless-3",
+      "called_at": "2026-10-30T15:20:03.000Z",
+      "direction": "buy",
+      "matched_by": "symbol",
+      "price_at_call": 0.14117741722802105
+    },
+    {
+      "r_1d": -0.0031,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "USELESS",
+      "post_id": "2116620510553591996",
+      "price_id": "coingecko:useless-3",
+      "called_at": "2026-10-31T19:57:09.000Z",
+      "direction": "buy",
+      "matched_by": "symbol",
+      "price_at_call": 0.12716879527376065
+    },
+    {
+      "r_1d": 0.0457,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "PONS",
+      "post_id": "2116620510553591996",
+      "price_id": "coingecko:pons",
+      "called_at": "2026-10-31T19:57:09.000Z",
+      "direction": "buy",
+      "matched_by": "symbol",
+      "price_at_call": 0.22701701144056594
+    },
+    {
+      "r_1d": 0.0467,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "MARSCOIN",
+      "post_id": "2116620510553591996",
+      "price_id": "coingecko:marscoin-4",
+      "called_at": "2026-10-31T19:57:09.000Z",
+      "direction": "buy",
+      "matched_by": "symbol",
+      "price_at_call": 0.05238502370901723
+    },
+    {
+      "r_1d": -0.1099,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "MASK",
+      "post_id": "2116620510553591996",
+      "price_id": "solana:HuAXPyDWDaMYFKuwQHpqL1oPnj93zdzWmtvFGzCeCUa7",
+      "called_at": "2026-10-31T19:57:09.000Z",
+      "direction": "buy",
+      "matched_by": "ticker",
+      "price_at_call": 0.02567848023265395
+    },
+    {
+      "r_1d": -0.0722,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "SI",
+      "post_id": "2116620510553591996",
+      "price_id": "solana:DEW9dSN6QpWyNthphCpMmAbZP1Q4cEKR9xQXAri98WDP",
+      "called_at": "2026-10-31T19:57:09.000Z",
+      "direction": "buy",
+      "matched_by": "ticker",
+      "price_at_call": 0.011638596391617411
+    },
+    {
+      "r_1d": -0.0248,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "PANGEA",
+      "post_id": "2116620510553591996",
+      "price_id": "solana:JAFqCQSpy5YinrsmixWSMaD7jTn4MytJRkyWvYPnY6ea",
+      "called_at": "2026-10-31T19:57:09.000Z",
+      "direction": "buy",
+      "matched_by": "ticker",
+      "price_at_call": 0.001292156678422536
+    },
+    {
+      "r_1d": 0.3615,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "VRAX",
+      "post_id": "2116620510553591996",
+      "price_id": "coingecko:commander-vrax-2",
+      "called_at": "2026-10-31T19:57:09.000Z",
+      "direction": "buy",
+      "matched_by": "symbol",
+      "price_at_call": 0.00296755681109895
     }
   ],
-  "hold_pairs": 0,
-  "calls_total": 556,
-  "computed_at": "2026-10-27T17:35:31.515Z",
+  "hold_pairs": 1,
+  "calls_total": 570,
+  "computed_at": "2026-11-02T11:20:58.129Z",
   "by_direction": {
-    "buy": 401,
-    "hold": 155,
-    "sell": 0
+    "buy": 412,
+    "hold": 157,
+    "sell": 1
   },
-  "calls_priced": 512,
+  "calls_priced": 526,
   "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal); Yahoo Finance (stocks, ETFs, metals)",
-  "median_hold_days": null
+  "median_hold_days": 957
 }

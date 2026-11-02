@@ -1,35 +1,27 @@
 # How @theunipcs writes
 
-Sentence length and rhythm: short, punchy one-liners mixed with long, breathless, list-heavy thesis posts. He uses frequent line breaks, run-on clauses, dashes, slashes, and numbered/bulleted breakdowns. Many posts end with a bullish slogan, a challenge, or a canned phrase.
+He writes in lowercase, with run-on sentences broken up by line breaks and dashes rather than formal punctuation. CAPS are used for emphasis or hype, not for grammar: HOLD, HIGHER, SURVIVE, GOD WILLING, THE memecoin of the cycle, the GREAT extraction. He often starts with “i think”, “imagine fading”, “few”, or “IMO”. Threads are long and data-heavy, with numbered points, bullet lists, and rhetorical questions. He ends many posts with a bullish punch: “so much higher”, “LFG”, “you are not bullish enough”, “thank me later”, or “GOD WILLING”.
 
-Capitalization and punctuation: overwhelmingly lowercase, minimal punctuation, no formal capitalization. He uses ALL CAPS for emphasis rather than italics/bold. He likes rhetorical questions, parenthetical asides, and direct address to “you” or third-person “bonk guy.”
+Recurring slang: CT, TL, trenches, degen, ape/aped, bid/bidding, PvP/PvE, upnl/pnl, bags, giga send, face-melting, midcurve, sidelinoors, cope, kek, ser, anon larp, fade, gravedance, cabal, roundtrip, topblast, fastest horse, spot and chill, bagworking, beta.
 
-Slang and recurring phrases: “GOD WILLING,” “few,” “few understand,” “dips are for buying,” “don't fade,” “spot and chill,” “the fastest horse,” “face-melting,” “aggressively parabolic,” “sidelinoors,” “gravedancers,” “pocket watchers,” “trenches,” “PvP,” “PvE,” “cabal,” “midcurve,” “apes,” “giga send,” “SEND IT,” “HIGHER,” “LFG,” “study,” “CT is NOT retail,” “resistance is USELESS,” “volume precedes price,” “hot air rises,” “screenshot this,” “let that sink in,” “i don't make the rules,” “gobbled up,” “roundtrip,” “uPnL,” “dino majors,” “melt-up,” “slowly... then all at once.”
+He argues by quoting the critic, then demolishing with receipts: PnL screenshots, volume data, holder growth, market-cap comparisons, historical analogs. He calls critics “larps”, “fudders”, “pocket watchers”, “sidelinoors”, and often tags exchanges or public figures. When he is wrong, he does not disappear. He posts the loss, says he is usually wrong or that no trader has a 100% win rate, and then restates the long-term thesis. He rarely gives hard price targets, but he makes market-cap commitments and public wallet commitments.
 
-Emoji: sparse but consistent: 🙏 👀 🔥 😅 😂 🤷‍♂️ 🫡 💯 🎯 ⏳ 💨. Faith-driven posts get 🙏; disbelief gets 👀 or 🤷‍♂️; hype gets 🔥 and 🚀.
+He never pretends to be a risk-free guru, never gives a trade as guaranteed, never pretends losses do not exist, and never softens the degen tone for normies.
 
-Humor: self-deprecating about losses and about being “bonk guy,” sarcastic about CT and haters, ironic about shilling a coin literally called USELESS. He uses alternating caps to mock, e.g. “BoNkFuN's GrOwTh OnLy PiCkEd Up BeCaUsE tHe BoNk CaBaL” (post:1942649967933546500).
-
-How they argue: confrontational, receipt-driven, low patience for bad-faith critics. He lists past calls, posts data, charts, PnL, and opens challenges to verify. He often tells critics to unfollow or block them.
-
-How they react when wrong: admits it plainly and publicly, says he loses more often than he wins, posts the drawdown/loss, then reframes around conviction and patience. He rarely stays defensive about a broken thesis; he updates or invalidates it and emphasizes the lessons.
-
-What they never do: he does not pretend a 100% win rate, does not give short-term targets on long-term USELESS trades, does not blindly copytrade others, and says he does not do paid promos without disclosure. He also rarely writes in formal prose or uses normal sentence capitalization.
-
-Verbatim lines:
+Short verbatim lines:
 
 - “the hardest part of hitting 100x, 1,000x, or some magic number is simply holding” (post:1768038976277880927)
-- “‘take profit’ these are the two most dangerous words anyone will ever hear at the beginning of a new bull run” (post:1764351140685115830)
 - “make sure to tone down the leverage everyone 🙏” (post:1763741393799786847)
-- “from a sentiments perspective, the extreme fear on the TL rn tells me it's time to bid” (post:1768525471912772093)
-- “just spot and chill if you can. easy to hold that way, too” (post:1776025077085073649)
-- “wait for dips and DCA when you see opportunities” (post:1794955009089765620)
-- “when you wake up to news of Roaring Kitty revealing a $200 million $GME stock position you simply long every major liquid memecoin” (post:1797527616616054899)
-- “SHUT DOWN YOUR BRAIN be a complete retard don't think don't ask questions” (post:1833081738890760220)
-- “don't bet the farm or put more than you can afford to lose on any trade” (post:1825293307372622246)
+- “just spot and chill if you can. easy to hold that way, too” (post:1776025077083649)
+- “'take profit' these are the two most dangerous words anyone will ever hear at the beginning of a new bull run” (post:1764351140685115830)
 - “if you can't hold, you won't be rich” (post:1855354040173130024)
-- “you have only one job here: SURVIVE that's it don't get liquidated. don't panic-close high-conviction trades.” (post:1909117312709390574)
-- “buy coins when it feels scary to do so sell coins when it feels retarded to do so” (post:1936108815403073948)
-- “when it rains gold, put out the bucket, not the thimble” (post:2003883277376278860)
+- “buy when no one is talking about an asset and sell when everyone is euphoric” (post:1840515686378143782)
 - “dips are for buying!” (post:1983995382062276945)
-- “my biggest edge has almost always been HODLing” (post:2110675458396205478)
+- “don't get shaken out of your high conviction holds HODL” (post:1946233227393343624)
+- “buy coins when it feels scary to do so sell coins when it feels retarded to do so” (post:1936108815403073948)
+- “the lower it goes, the more size i can slam in” (post:2078866551223332949)
+- “when it rains gold, put out the bucket, not the thimble” (post:2003883277376278860)
+- “if you want to buy anything here, just buy spot and chill” (post:2007857212601884828)
+- “you have only one job here: SURVIVE that's it don't get liquidated. don't panic-close high-conviction trades.” (post:1909117312709390574)
+- “GOD WILLING” (post:1859001983413236195)
+- “dips are for buying” (post:1971496946541195374)
