@@ -15,7 +15,20 @@ const PAD = { top: 14, right: 12, bottom: 28, left: 56 };
  * a hollow square a hold, a triangle a sell. Minds can be switched off in the
  * legend; a click on a call opens the post.
  */
-export function CoinChart({ ticker, history, calls, minds }: { ticker: string; history: [number, number][]; calls: CoinPoint[]; minds: ChartMind[] }) {
+export function CoinChart({
+  ticker,
+  history,
+  calls,
+  minds,
+  compact = false,
+}: {
+  ticker: string;
+  history: [number, number][];
+  calls: CoinPoint[];
+  minds: ChartMind[];
+  /** inside a chat answer: one mind, a shorter chart, no mind switches */
+  compact?: boolean;
+}) {
   const box = useRef<HTMLDivElement>(null);
   const [W, setW] = useState(0);
   const [off, setOff] = useState<Set<number>>(new Set());
@@ -28,7 +41,7 @@ export function CoinChart({ ticker, history, calls, minds }: { ticker: string; h
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
-  const H = W < 640 ? 280 : 360;
+  const H = compact ? (W < 640 ? 220 : 260) : W < 640 ? 280 : 360;
   const present = useMemo(() => [...new Set(calls.map((c) => c.m))], [calls]);
   const shown = useMemo(() => calls.filter((c) => !off.has(c.m)), [calls, off]);
 
@@ -74,7 +87,7 @@ export function CoinChart({ ticker, history, calls, minds }: { ticker: string; h
   return (
     <div>
       <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Minds on the chart">
-        {present.map((m) => {
+        {!compact && present.map((m) => {
           const it = minds[m];
           const on = !off.has(m);
           return (
@@ -107,9 +120,9 @@ export function CoinChart({ ticker, history, calls, minds }: { ticker: string; h
         </span>
       </div>
 
-      <div ref={box} className="relative mt-4">
+      <div ref={box} className={`relative ${compact ? "mt-2" : "mt-4"}`}>
         {!W ? (
-          <div style={{ height: 360 }} aria-hidden />
+          <div style={{ height: compact ? 260 : 360 }} aria-hidden />
         ) : !geo ? (
           <p className="text-sm text-muted">No priced calls on ${ticker} yet.</p>
         ) : (
@@ -181,7 +194,7 @@ export function CoinChart({ ticker, history, calls, minds }: { ticker: string; h
                 <p className="mt-2 font-pixel text-xs text-muted">Click to open the post ↗</p>
               </div>
             )}
-            <p className="mt-2 font-pixel text-xs text-muted">
+            <p className={`mt-2 font-pixel text-muted ${compact ? "text-[10px]" : "text-xs"}`}>
               {history.length ? "Price from DefiLlama, log scale." : "No price history for this coin, calls are placed at their own price."} Moves are signed in the call&apos;s favor.
             </p>
           </>

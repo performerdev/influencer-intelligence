@@ -329,6 +329,15 @@ export const api = createServer(async (req, res) => {
     const now = Math.floor(Date.now() / 1000 / 86400) * 86400;
     return send({ data: { attributes: { ohlcv_list: Array.from({ length: 182 }, (_, i) => { const t = now - i * 86400; const p = 0.5 + ((t / 86400) % 9) / 10; return [t, p, p, p, p, 1000]; }) } } });
   }
+  if (url.pathname.startsWith("/chart/")) {
+    // daily closes for the coin cards: a slow wave around 110
+    const id = decodeURIComponent(url.pathname.slice("/chart/".length));
+    const from = Number(q.get("start") ?? 0);
+    const step = Number.parseInt(q.get("period") ?? "1", 10) * 86400;
+    const pts = [];
+    for (let t = from; t < Date.now() / 1000; t += step) pts.push({ timestamp: t, price: 110 + 25 * Math.sin(t / 86400 / 40) });
+    return send({ coins: { [id]: { symbol: id, prices: pts } } });
+  }
   if (url.pathname === "/batchHistorical") return send(prices(JSON.parse(q.get("coins") ?? "{}")));
   res.writeHead(404).end("not found");
 });
@@ -340,9 +349,17 @@ async function streamChat(body: any, res: import("node:http").ServerResponse) {
   const q: string = body.messages[body.messages.length - 1]?.content ?? "";
   const callId = sys.split("=== CALLS")[1]?.match(/\[post:(\d+)\]/)?.[1];
   const exId = sys.split("=== EXAMPLES")[1]?.match(/^\[(\d+)\]/m)?.[1];
-  const answer = /who are you/i.test(q)
+  // the question itself; the turn also carries context blocks ("=== CARDS ===" and the like)
+  const said = q.split(/\n\n===/)[0];
+  const answer = /who are you/i.test(said)
     ? `ii-01 here. an unofficial AI model of @${SELF.handle}, built from public posts — not the real one. ask me what they'd do.`
-    : /buy|sell|hold|ape|fade/i.test(q)
+    : /chart|graph/i.test(said) && /=== CARDS/.test(q)
+      ? `here's every time i called it, at the price i called it [post:${callId}]\n\n[[calls:SOL]]\n\nand the whole record while we're here.\n\n[[record]]\n\n[[coin:ETH]]`
+      : /compare|versus|\bvs\b/i.test(said) && /=== CARDS/.test(q)
+        ? `side by side, no feelings:\n[[compare:SOL,ETH,ZZZNOPE]]\nsame playbook on both.`
+        : /rule|exit|take profit/i.test(said) && /=== CARDS/.test(q)
+          ? `exits are where people lose it.\n\n[[rule:exit]]\n\nwrite yours down before you buy.`
+          : /buy|sell|hold|ape|fade/i.test(said)
       ? `down 20% on no news is a gift. that's the whole rule [post:${callId}]\n\nsize small, add on strength, never marry the bag [post:${exId}]. if it loses the level, i'm out without a speech.\n\nVERDICT: BUY`
       : `never posted about that. markets are a mirror though — most of you are trading your mood [post:${exId}]`;
   res.writeHead(200, { "content-type": "text/event-stream" });

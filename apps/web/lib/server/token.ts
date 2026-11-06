@@ -32,6 +32,8 @@ export type TokenInfo = {
   change1y: number | null;
   safety: { score: number | null; risks: { name: string; level: string }[] } | null;
   source: string;
+  /** DefiLlama price id, for its history */
+  pid: string | null;
 };
 
 const LLAMA = () => (process.env.PRICE_API_BASE ?? "https://coins.llama.fi").replace(/\/$/, "");
@@ -61,16 +63,23 @@ export function parseCoinQuery(raw: string): { address: string } | { ticker: str
 
 const cache = new Map<string, { at: number; info: TokenInfo | null }>();
 
-export async function lookupToken(raw: string, calls: Call[] = []): Promise<TokenInfo | null> {
+/**
+ * `pid` is a price id the call record already priced this coin as
+ * ("coingecko:…" or "<chain>:<address>"): then that very coin is used.
+ */
+export async function lookupToken(raw: string, calls: Call[] = [], pid: string | null = null): Promise<TokenInfo | null> {
   const q = parseCoinQuery(raw);
   if (!q) return null;
-  const key = "address" in q ? q.address.toLowerCase() : q.ticker;
+  const key = `${"address" in q ? q.address.toLowerCase() : q.ticker}|${pid ?? ""}`;
   const hit = cache.get(key);
   if (hit && Date.now() - hit.at < 60_000) return hit.info;
   let info: TokenInfo | null = null;
   try {
     let found: Found = null;
-    if ("ticker" in q && COINGECKO_IDS[q.ticker]) found = await major(q.ticker);
+    const onChain = pid && !/^(coingecko|stock):/.test(pid) ? pid.slice(pid.indexOf(":") + 1) : null;
+    if ("ticker" in q && pid?.startsWith("coingecko:")) found = await major(q.ticker, pid);
+    else if ("ticker" in q && onChain) found = await dexToken(onChain, null);
+    if (!found && "ticker" in q && COINGECKO_IDS[q.ticker]) found = await major(q.ticker);
     if (!found) {
       // a ticker the mind called with a contract address means that very token
       const address = "address" in q ? q.address : ([...calls].reverse().find((c) => c.ticker.replace(/^\$/, "").toUpperCase() === q.ticker && c.address)?.address ?? null);
@@ -92,8 +101,8 @@ export async function lookupToken(raw: string, calls: Call[] = []): Promise<Toke
 type Found = { info: TokenInfo; pid: string | null } | null;
 
 /** A large cap known by its CoinGecko id: priced by DefiLlama. */
-async function major(ticker: string): Promise<Found> {
-  const id = `coingecko:${COINGECKO_IDS[ticker]}`;
+async function major(ticker: string, known?: string): Promise<Found> {
+  const id = known ?? `coingecko:${COINGECKO_IDS[ticker]}`;
   const [p, pct] = await Promise.all([getJson(`${LLAMA()}/prices/current/${id}`), getJson(`${LLAMA()}/percentage/${id}?period=24h`).catch(() => null)]);
   const price = Number(p?.coins?.[id]?.price);
   if (!(price > 0)) return null;
@@ -114,6 +123,7 @@ async function major(ticker: string): Promise<Found> {
     change1y: null,
     safety: null,
     source: "DefiLlama",
+    pid: id,
   };
   return { info, pid: id };
 }
@@ -167,6 +177,7 @@ async function dexToken(address: string | null, ticker: string | null): Promise<
     change1y: null,
     safety: null,
     source: "DexScreener",
+    pid: LLAMA_CHAIN[chain] ? `${LLAMA_CHAIN[chain]}:${p.baseToken.address}` : null,
   };
   return { info: token, pid: LLAMA_CHAIN[chain] ? `${LLAMA_CHAIN[chain]}:${p.baseToken.address}` : null };
 }

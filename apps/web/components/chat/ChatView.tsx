@@ -6,10 +6,12 @@ import { UsageMeter, untilText, useAuth } from "@/components/account/AuthProvide
 import { BrainAvatar } from "@/components/particles/BrainAvatar";
 import { AppLink } from "@/components/ui/AppLink";
 import { site } from "@/config/site";
+import { splitCards } from "@/lib/cards";
 import { formatCount } from "@/lib/intelligences";
 import { normalizeRefs, stripCitations } from "@/lib/refs";
 
 import { Markdown, Sheet, TypingIndicator, type Verdict, VerdictChip } from "./bits";
+import { AnswerCard } from "./Cards";
 import { ShareBar } from "./ShareBar";
 
 export type BrainSection = { id: string; title: string; body: string; source: "mind" | "rules" | "voice" };
@@ -291,7 +293,7 @@ export function ChatView({
                     {m.error ? (
                       <p className="text-body text-muted">{m.error}</p>
                     ) : (
-                      <Answer msg={m} onRef={openRef} />
+                      <Answer msg={m} onRef={openRef} mind={intelligence} sections={brain?.sections ?? []} />
                     )}
                     {!m.streaming && !m.error && (
                       <div className="mt-4 flex flex-wrap items-center gap-2">
@@ -402,33 +404,56 @@ export function ChatView({
 
 /* ───────────────────────── pieces ───────────────────────── */
 
-function Answer({ msg, onRef }: { msg: Extract<Msg, { role: "assistant" }>; onRef: (r: Reference) => void }) {
+function Answer({ msg, onRef, mind, sections }: { msg: Extract<Msg, { role: "assistant" }>; onRef: (r: Reference) => void; mind: ChatIntelligence; sections: BrainSection[] }) {
   if (msg.streaming) {
-    // While streaming: hide citation markers and the verdict line; animate only the newest words.
-    const shown = normalizeRefs(msg.content).replace(/\[post:\d+\]/g, "").replace(/\[(p(o(s(t(:[^\]]*)?)?)?)?)?$/, "").replace(VERDICT_TAIL, "");
-    const tail = Math.min(msg.lastDelta.length, shown.length);
+    // While streaming: hide citation markers, a half-written card tag and the verdict line; animate only the newest words.
+    // A card shows as soon as its tag is complete, so it loads while the words keep coming.
+    const shown = normalizeRefs(msg.content)
+      .replace(/\[\[[^\]]*\]?$/, "")
+      .replace(/\[post:\d+\]/g, "")
+      .replace(/\[(p(o(s(t(:[^\]]*)?)?)?)?)?$/, "")
+      .replace(VERDICT_TAIL, "");
+    const parts = splitCards(shown);
+    const lastText = parts.length && "text" in parts[parts.length - 1] ? parts.length - 1 : -1;
     return (
       <div className="whitespace-pre-wrap text-body leading-relaxed text-ceramic">
-        {shown.slice(0, shown.length - tail)}
-        <span key={shown.length} className="tok">{shown.slice(shown.length - tail)}</span>
-        <span className="ml-0.5 inline-block h-[1em] w-[2px] translate-y-[2px] bg-particle align-baseline" aria-hidden />
+        {parts.map((p, i) => {
+          if ("card" in p) return <AnswerCard key={i} card={p.card} mind={mind} sections={sections} />;
+          if (i !== lastText) return <p key={i}>{p.text}</p>;
+          const tail = Math.min(msg.lastDelta.length, p.text.length);
+          return (
+            <p key={i}>
+              {p.text.slice(0, p.text.length - tail)}
+              <span key={shown.length} className="tok">{p.text.slice(p.text.length - tail)}</span>
+              <span className="ml-0.5 inline-block h-[1em] w-[2px] translate-y-[2px] bg-particle align-baseline" aria-hidden />
+            </p>
+          );
+        })}
+        {lastText < 0 && <span className="ml-0.5 inline-block h-[1em] w-[2px] translate-y-[2px] bg-particle align-baseline" aria-hidden />}
       </div>
     );
   }
   const byId = new Map(msg.refs.map((r) => [r.postId, r]));
-  const parts = normalizeRefs(msg.content).split(/(\[post:\d+\])/g);
   return (
     <div className="whitespace-pre-wrap text-body leading-relaxed text-ceramic">
-      {parts.map((p, i) => {
-        const id = p.match(/^\[post:(\d+)\]$/)?.[1];
-        if (!id) return <Fragment key={i}>{p}</Fragment>;
-        const r = byId.get(id);
-        return r ? (
-          <button key={i} onClick={() => onRef(r)} className="mx-0.5 align-baseline font-mono text-xs text-particle underline decoration-line-hover underline-offset-4 hover:text-ceramic">
-            [{r.n}]
-          </button>
-        ) : null;
-      })}
+      {splitCards(normalizeRefs(msg.content)).map((seg, k) =>
+        "card" in seg ? (
+          <AnswerCard key={k} card={seg.card} mind={mind} sections={sections} />
+        ) : (
+          <p key={k}>
+            {seg.text.split(/(\[post:\d+\])/g).map((p, i) => {
+              const id = p.match(/^\[post:(\d+)\]$/)?.[1];
+              if (!id) return <Fragment key={i}>{p}</Fragment>;
+              const r = byId.get(id);
+              return r ? (
+                <button key={i} onClick={() => onRef(r)} className="mx-0.5 align-baseline font-mono text-xs text-particle underline decoration-line-hover underline-offset-4 hover:text-ceramic">
+                  [{r.n}]
+                </button>
+              ) : null;
+            })}
+          </p>
+        ),
+      )}
     </div>
   );
 }

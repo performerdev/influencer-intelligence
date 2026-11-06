@@ -7,6 +7,16 @@ import { SSE_HEADERS, VERDICT, clientHash, json } from "@/lib/server/http";
 import { liveContext } from "@/lib/server/live";
 import { logError, noteSpend, overBudget } from "@/lib/server/ops";
 
+// Per turn, not in the brain: the site draws these from its own data (lib/cards.ts), the model only places them.
+const CARDS = `=== CARDS ===
+The site can draw live cards inside your answer. When one really helps, put its tag alone on its own line right after the sentence it backs up. The site fills it from real data, so don't write out the numbers it shows.
+[[calls:TICKER]] the coin's price chart with every call you made on it
+[[coin:TICKER]] the coin right now: price, 24h, market cap, distance from its top
+[[compare:A,B,C]] two to four coins side by side, with your calls on each
+[[record]] your whole call record: hit rate, median moves, best and worst calls
+[[rule:entry|exit|sizing|risk|hold|averaging]] your written rules on that, with the posts
+At most two tags. None for small talk. If you're asked for a chart, a graph, a table or numbers, use a tag; never say you can't draw charts.`;
+
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 // Netlify streams up to 60s; one intelligence's answer fits well inside that.
@@ -101,7 +111,7 @@ export async function POST(req: Request) {
           const context = tickerContext(brain.files, tickers);
           // what the brain can't know: prices now, and posts since it was built
           const live = await liveContext(brain, message);
-          const turn = [message, context, live].filter(Boolean).join("\n\n");
+          const turn = [message, context, live, CARDS].filter(Boolean).join("\n\n");
           const messages: ChatMessage[] = [{ role: "system", content: brain.prompt }, ...history, { role: "user", content: turn }];
           for await (const ev of llm.stream(messages, { model, temperature: 0.7, maxTokens: usage.maxAnswerTokens, thinking: "disabled" })) {
             if ("delta" in ev) {

@@ -279,11 +279,11 @@ function Working({ text }: { text: string }) {
   );
 }
 
-const pct = (x: number) => `${x >= 0 ? "+" : "−"}${Math.abs(x * 100).toFixed(Math.abs(x) < 0.1 ? 1 : 0)}%`;
-const usd = (n: number) => (n >= 1e9 ? `$${(n / 1e9).toFixed(2)}B` : n >= 1e6 ? `$${(n / 1e6).toFixed(1)}M` : n >= 1e3 ? `$${(n / 1e3).toFixed(0)}k` : `$${n.toFixed(0)}`);
+export const pct = (x: number) => `${x >= 0 ? "+" : "−"}${Math.abs(x * 100).toFixed(Math.abs(x) < 0.1 ? 1 : 0)}%`;
+export const usd = (n: number) => (n >= 1e9 ? `$${(n / 1e9).toFixed(2)}B` : n >= 1e6 ? `$${(n / 1e6).toFixed(1)}M` : n >= 1e3 ? `$${(n / 1e3).toFixed(0)}k` : `$${n.toFixed(0)}`);
 const short = (a: string) => `${a.slice(0, 4)}…${a.slice(-4)}`;
 
-function TokenCard({ t }: { t: TokenInfo }) {
+export function TokenCard({ t }: { t: TokenInfo }) {
   const [copied, setCopied] = useState(false);
   const [noImg, setNoImg] = useState(false);
   const age = t.listedAt ? Math.max(0, (Date.now() - Date.parse(t.listedAt)) / 864e5) : null;

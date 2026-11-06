@@ -3,6 +3,7 @@ import "server-only";
 import { randomBytes } from "node:crypto";
 
 import { plans } from "@/config/plans";
+import { stripCards } from "@/lib/cards";
 
 import { type User, isPlus } from "./auth";
 import { sql } from "./data";
@@ -73,7 +74,8 @@ export async function loadShare(id: string, countView = false): Promise<SharedAn
     handle: r.handle,
     code: r.code,
     question: q?.content ?? null,
-    answer: r.content,
+    // the share page has no cards: their tags go
+    answer: stripCards(r.content),
     verdict: r.verdict,
     createdAt: new Date(r.created_at).toISOString(),
     others,
