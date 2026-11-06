@@ -15,11 +15,11 @@ import { CallsDashboard } from "./CallsDashboard";
 import { Tools } from "./Tools";
 
 export type RecentChat = { id: string; kind: "single" | "group"; handles: string[]; title: string; updatedAt: string };
-type Mode = "ask" | "plan" | "bag";
+type Mode = "ask" | "check" | "bag";
 
 const MODES: { id: Mode; label: string }[] = [
   { id: "ask", label: "Ask" },
-  { id: "plan", label: "Trade plan" },
+  { id: "check", label: "Check a coin" },
   { id: "bag", label: "Rate my bag" },
 ];
 const STORE = "ii.app.mind";
@@ -145,6 +145,12 @@ export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
   const ready = brain?.handle === handle ? brain.data : undefined; // undefined = loading, null = no brain yet
   const chatBrain = useMemo(() => (ready ? toChatBrain(ready) : null), [ready]);
   const rows = useMemo(() => (ready ? callRows(ready.files) : []), [ready]);
+  // the coins this mind calls most: one-tap examples in the tools
+  const examples = useMemo(() => {
+    const n = new Map<string, number>();
+    for (const r of rows) n.set(r.ticker, (n.get(r.ticker) ?? 0) + 1);
+    return [...n.entries()].sort((a, b) => b[1] - a[1]).slice(0, 4).map(([t]) => t);
+  }, [rows]);
 
   const pick = (h: string) => {
     newChat(h);
@@ -309,7 +315,7 @@ export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
               }}
             />
           ) : ready ? (
-            <Tools key={`${it.handle}-${mode}`} mode={mode} handle={it.handle} rows={rows} rules={ready.files.rules} medianHold={ready.files.stats?.median_hold_days ?? null} />
+            <Tools key={`${it.handle}-${mode}`} mode={mode} mind={{ handle: it.handle, code: it.code, color: it.color }} examples={examples} />
           ) : (
             <p className="px-gutter py-10 text-sm text-muted lg:px-8">@{it.handle}&apos;s brain is still being built. The tools open once it&apos;s ready.</p>
           )}

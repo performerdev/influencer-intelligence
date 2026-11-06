@@ -99,6 +99,34 @@ function chat(body: any) {
   const user: string = body.messages.find((m: any) => m.role === "user")?.content ?? "";
   const usage = { prompt_tokens: Math.ceil((sys.length + user.length) / 4), completion_tokens: 400, prompt_cache_hit_tokens: 0 };
   if (/single word: ok/.test(user)) return { model: body.model, choices: [{ message: { content: "ok" } }], usage };
+  // the app's tools: one real post id from the brain, one invented (must be dropped), a real and an invented rule quote
+  const postId = sys.match(/post:(\d{6,})/)?.[1] ?? null;
+  if (user.includes("=== CHECK A COIN")) {
+    const sym = user.match(/^\$([A-Z0-9]+)/m)?.[1] ?? "X";
+    const verdict = {
+      verdict: "PASS",
+      fit: 3,
+      take: `never touched $${sym}. not my kind of setup, i'd rather size into what i know.`,
+      why: [
+        { point: "i buy fear on coins i know, not random tickers", post: postId },
+        { point: "made-up reason", post: "123456789012" },
+      ],
+      plan: { size: "small, ape stack only", entry: "only after a deep red day", take_profit: "sell some into strength", out: "" },
+      rules: { size: "never marry a bag", entry: "this quote is not in the rules", take_profit: "", out: "" },
+      similar: ["SOL", "NOTACOIN", sym],
+    };
+    return { model: body.model, choices: [{ message: { content: JSON.stringify(verdict) } }], usage };
+  }
+  if (user.includes("=== RATE MY BAG")) {
+    const syms = (user.match(/tickers exactly: ([^)]+)\)/)?.[1] ?? "").split(/,\s*/).filter(Boolean);
+    const bag = {
+      score: 6,
+      summary: "core is fine, the rest is noise. trim the stuff you can't explain.",
+      rows: syms.map((s, i) => ({ ticker: s, action: i === 0 ? "Add" : i === 1 ? "Trim" : "Cut", why: i === 0 ? "the one i keep calling" : "not my trade", post: i === 0 ? postId : null })),
+      changes: [{ label: "Core", text: `${syms[0] ?? "SOL"} up to 60%`, rule: "never marry a bag" }],
+    };
+    return { model: body.model, choices: [{ message: { content: JSON.stringify(bag) } }], usage };
+  }
   if (sys.includes("one chronological batch")) {
     const posts = [...user.matchAll(/^\[(\d+)\] (\S+) · (.*)$/gm)].map((m) => ({ id: m[1], text: m[3] }));
     const cl = posts.flatMap((p) => {

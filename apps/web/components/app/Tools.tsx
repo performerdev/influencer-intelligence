@@ -1,337 +1,462 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
-import { VerdictChip } from "@/components/chat/bits";
-import { type CallRow, type Record_, type Verdict, callsOn, isoDay, pct, record, rulesOf, signed, topCoins, verdictOf } from "@/lib/calls";
+import { useAuth } from "@/components/account/AuthProvider";
+import { TypingIndicator, VerdictChip } from "@/components/chat/bits";
+import { AppLink } from "@/components/ui/AppLink";
+import type { Reference } from "@/lib/server/data";
+import type { TokenInfo } from "@/lib/server/token";
+import type { BagResult, CheckResult, CoinRecord, Holding, PlanLine } from "@/lib/server/tools";
+import { money, share, signed } from "@/lib/record";
 
-type Mode = "plan" | "bag";
-type Entry = { id: number; kind: "plan"; coin: string; side: "long" | "short" } | { id: number; kind: "bag"; items: { t: string; w: number }[] };
-
-const chipOf = (d: CallRow["dir"]) => (d === "buy" ? "BUY" : d === "sell" ? "SELL" : "HOLD") as "BUY" | "SELL" | "HOLD";
-const EXAMPLE_BAG = "SOL 40\nJUP 25\nWIF 20\nETH 15";
+type Mode = "check" | "bag";
+type Mind = { handle: string; code: string; color: string };
+type Failure = { error: string; reason?: string };
 
 /**
- * Trade plan and Rate my bag: answered from the mind's own written rules and its
- * priced call record, in the browser. No model call, so they're instant and
- * free, and every line points at where it came from.
+ * The app's tools. Check a coin: paste any coin and the mind says whether it
+ * would buy it, and how it would play it. Rate my bag: your holdings, coin by
+ * coin, the way the mind manages its own. Live data from code; the judgement
+ * is one model call in the mind's voice, checked against its brain.
  */
-export function Tools({ mode, handle, rows, rules, medianHold }: { mode: Mode; handle: string; rows: CallRow[]; rules: string; medianHold: number | null }) {
-  const [entries, setEntries] = useState<Entry[]>([]);
-  const [coin, setCoin] = useState("");
-  const [side, setSide] = useState<"long" | "short">("long");
-  const [bag, setBag] = useState("");
-  const scroller = useRef<HTMLDivElement>(null);
-  const nextId = useRef(1);
-  const tops = topCoins(rows, 5).map((c) => c.t);
-
-  useEffect(() => {
-    scroller.current?.scrollTo({ top: scroller.current.scrollHeight, behavior: "smooth" });
-  }, [entries.length]);
-
-  const runPlan = (c: string) => {
-    const t = c.trim().replace(/^\$/, "").toUpperCase();
-    if (!t) return;
-    setEntries((e) => [...e, { id: nextId.current++, kind: "plan", coin: t, side }]);
-    setCoin("");
-  };
-  const runBag = (raw: string) => {
-    const items = parseBag(raw);
-    if (!items.length) return;
-    setEntries((e) => [...e, { id: nextId.current++, kind: "bag", items }]);
-    setBag("");
-  };
-
+export function Tools({ mode, mind, examples }: { mode: Mode; mind: Mind; examples: string[] }) {
   return (
-    <div className="flex h-full min-h-0 flex-1 flex-col">
-      <div ref={scroller} data-lenis-prevent className="min-h-0 flex-1 overflow-y-auto px-gutter lg:px-8">
-        <div className="mx-auto grid max-w-[760px] gap-6 py-8">
-          {entries.length === 0 && (
-            <div className="py-6">
-              <p className="font-pixel text-xs text-muted">{mode === "plan" ? "Trade plan" : "Rate my bag"}</p>
-              <h2 className="mt-2 font-pixel text-h2">{mode === "plan" ? `How would @${handle} trade it?` : `What would @${handle} say about your bag?`}</h2>
-              <p className="mt-3 max-w-[56ch] text-body text-particle">
-                {mode === "plan"
-                  ? `Name a coin. You get entry, exit, size and risk the way @${handle} wrote them down, next to how @${handle}'s calls on that coin actually played out.`
-                  : `Paste your holdings, one per line. Each coin is checked against @${handle}'s calls on it: backs it, against it, or no view.`}
-              </p>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {mode === "plan"
-                  ? tops.map((t) => (
-                      <button key={t} type="button" onClick={() => runPlan(t)} className="rounded-pill border border-line px-3 py-1.5 font-pixel text-xs text-particle transition-colors duration-fast hover:border-line-hover hover:text-ceramic">
-                        {t} plan
-                      </button>
-                    ))
-                  : (
-                    <button type="button" onClick={() => runBag(EXAMPLE_BAG)} className="rounded-pill border border-line px-3 py-1.5 font-pixel text-xs text-particle transition-colors duration-fast hover:border-line-hover hover:text-ceramic">
-                      Try an example bag
-                    </button>
-                  )}
-              </div>
-            </div>
-          )}
-          {entries.map((e) => (e.kind === "plan" ? <PlanCard key={e.id} handle={handle} coin={e.coin} side={e.side} rows={rows} rules={rules} medianHold={medianHold} /> : <BagCard key={e.id} handle={handle} items={e.items} rows={rows} rules={rules} />))}
-        </div>
-      </div>
-
-      <div className="border-t border-line bg-void px-gutter pb-[max(12px,env(safe-area-inset-bottom))] pt-3 lg:px-8">
-        {mode === "plan" ? (
-          <form
-            className="mx-auto flex max-w-[760px] items-center gap-2 rounded-input border border-line bg-panel p-2 focus-within:border-line-hover"
-            onSubmit={(e) => {
-              e.preventDefault();
-              runPlan(coin);
-            }}
-          >
-            <label htmlFor="plan-coin" className="sr-only">Coin</label>
-            <input id="plan-coin" value={coin} onChange={(e) => setCoin(e.target.value)} maxLength={16} placeholder="Coin, e.g. SOL" autoComplete="off" className="min-w-0 flex-1 bg-transparent px-2 py-2 text-body placeholder:text-muted focus:outline-none" />
-            <div className="flex border border-line" role="group" aria-label="Side">
-              {(["long", "short"] as const).map((s) => (
-                <button key={s} type="button" aria-pressed={side === s} onClick={() => setSide(s)} className={`px-3 py-1.5 font-pixel text-xs capitalize ${side === s ? "bg-particle text-void" : "text-muted hover:text-ceramic"}`}>
-                  {s}
-                </button>
-              ))}
-            </div>
-            <button type="submit" disabled={!coin.trim()} className="btn-ceramic h-10 shrink-0 px-4 disabled:opacity-40">
-              Build plan
-            </button>
-          </form>
-        ) : (
-          <form
-            className="mx-auto flex max-w-[760px] items-end gap-2 rounded-input border border-line bg-panel p-2 focus-within:border-line-hover"
-            onSubmit={(e) => {
-              e.preventDefault();
-              runBag(bag);
-            }}
-          >
-            <label htmlFor="bag-input" className="sr-only">Your holdings</label>
-            <textarea id="bag-input" value={bag} onChange={(e) => setBag(e.target.value)} rows={3} placeholder={"One coin per line, share optional\nSOL 40\nJUP 25"} className="min-w-0 flex-1 resize-none bg-transparent px-2 py-2 text-body placeholder:text-muted focus:outline-none" />
-            <button type="submit" disabled={!bag.trim()} className="btn-ceramic h-10 shrink-0 px-4 disabled:opacity-40">
-              Rate it
-            </button>
-          </form>
-        )}
-        <p className="mx-auto mt-2 max-w-[760px] font-pixel text-[11px] text-muted">
-          {mode === "plan" ? "From @" + handle + "'s rules and priced calls. Instant, doesn't use your session." : "From @" + handle + "'s priced calls. Instant, doesn't use your session."} Not financial advice.
-        </p>
-      </div>
+    <div data-lenis-prevent className="min-h-0 flex-1 overflow-y-auto px-gutter py-6 lg:px-8">
+      <div className="mx-auto grid max-w-[720px] gap-6">{mode === "check" ? <CheckCoin mind={mind} examples={examples} /> : <RateBag mind={mind} examples={examples} />}</div>
     </div>
   );
 }
 
-function Card({ title, by, children, foot }: { title: string; by: string; children: React.ReactNode; foot: string }) {
-  return (
-    <article className="rounded-card border border-line bg-panel">
-      <header className="flex flex-wrap items-center justify-between gap-2 border-b border-line px-4 py-3">
-        <h3 className="font-pixel text-sm">{title}</h3>
-        <span className="font-pixel text-[11px] text-muted">{by}</span>
-      </header>
-      <div className="grid gap-4 px-4 py-4">{children}</div>
-      <footer className="flex flex-wrap justify-between gap-2 border-t border-line px-4 py-2.5 font-pixel text-[11px] text-muted">
-        <span>{foot}</span>
-        <span>Not financial advice</span>
-      </footer>
-    </article>
-  );
+async function post<T>(url: string, body: unknown): Promise<T | Failure> {
+  const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }).catch(() => null);
+  if (!r) return { error: "Connection dropped. Try again." };
+  const j = await r.json().catch(() => ({ error: "Something went wrong. Try again." }));
+  return r.ok ? (j as T) : (j as Failure);
 }
 
-function RecordStrip({ coin, r }: { coin: string; r: Record_ }) {
-  return (
-    <dl className="grid grid-cols-2 border border-line sm:grid-cols-4">
-      {[
-        [`Calls on ${coin}`, String(r.n)],
-        ["Worked in 7d", pct(r.worked)],
-        ["Median 7d", signed(r.med)],
-      ].map(([k, v], i) => (
-        <div key={k} className={`grid gap-1 p-3 ${i % 2 ? "border-l border-line" : ""} ${i > 0 && i < 3 ? "sm:border-l sm:border-line" : ""} ${i >= 2 ? "border-t border-line sm:border-t-0" : ""}`}>
-          <dt className="font-pixel text-[11px] text-muted">{k}</dt>
-          <dd className="font-pixel text-h3 tabular-nums">{v}</dd>
-        </div>
-      ))}
-      <div className="grid gap-1 border-l border-t border-line p-3 sm:border-t-0">
-        <dt className="font-pixel text-[11px] text-muted">Last call</dt>
-        <dd className="flex items-center gap-2">
-          {r.last ? (
-            <>
-              <span className="origin-left scale-90">
-                <VerdictChip verdict={chipOf(r.last.dir)} />
-              </span>
-              <span className="font-pixel text-[11px] text-muted tabular-nums">{isoDay(r.last.at)}</span>
-            </>
-          ) : (
-            <span className="font-pixel text-h3">—</span>
-          )}
-        </dd>
-      </div>
-    </dl>
-  );
-}
+/* ───────────────────────── Check a coin ───────────────────────── */
 
-function PlanCard({ handle, coin, side, rows, rules, medianHold }: { handle: string; coin: string; side: "long" | "short"; rows: CallRow[]; rules: string; medianHold: number | null }) {
-  const cs = callsOn(rows, coin);
-  const r = record(cs);
-  const last = r.last;
-  let warn: string | null = null;
-  if (!cs.length) warn = `@${handle} never called ${coin}. The plan below is the general rules only.`;
-  else if (last && last.dir === "sell" && side === "long") warn = `The last call on ${coin} was SELL on ${isoDay(last.at)}. A long here goes against @${handle}.`;
-  else if (last && last.dir !== "sell" && side === "short") warn = `The last call on ${coin} was ${last.dir.toUpperCase()} on ${isoDay(last.at)}. A short here goes against @${handle}.`;
-  const lines: [string, string, string, string?][] = [
-    ["Entry", "entry", "Entry"],
-    ["Exit", "exit", "Exit and taking profit"],
-    ["Size", "sizing", "Sizing"],
-    ["Risk", "risk", "Risk management"],
-    ["Hold", "hold", "Hold time", medianHold != null ? `Median hold across all calls: ${Math.round(medianHold)} days.` : undefined],
-  ];
-  const recent = cs.slice(-5).reverse();
-  return (
-    <Card title={`Trade plan · ${coin} · ${side === "long" ? "Long" : "Short"}`} by={`by @${handle}'s rules`} foot={`Rules written from @${handle}'s posts · returns priced by code`}>
-      <RecordStrip coin={coin} r={r} />
-      {warn && (
-        <p className="flex gap-3 border border-line-hover px-3 py-2.5 text-sm text-particle">
-          <span className="shrink-0 font-pixel text-ceramic">{cs.length ? "Against" : "No record"}</span>
-          {warn}
-        </p>
-      )}
-      <dl className="grid">
-        {lines.map(([k, sec, src, extra], i) => {
-          const list = rulesOf(rules, sec, sec === "hold" ? 1 : 2);
-          return (
-            <div key={k} className={`grid grid-cols-[72px_minmax(0,1fr)] gap-4 py-3 sm:grid-cols-[88px_minmax(0,1fr)] ${i ? "border-t border-line" : "pt-0"}`}>
-              <dt className="pt-0.5 font-pixel text-xs text-muted">{k}</dt>
-              <dd className="text-sm">
-                {list.length ? (
-                  <ul className="grid list-disc gap-1 pl-4 marker:text-muted">
-                    {list.map((x) => (
-                      <li key={x}>{x}</li>
-                    ))}
-                  </ul>
-                ) : (
-                  <span className="text-muted">No written rule for this.</span>
-                )}
-                {extra && <span className="mt-1 block text-xs text-particle">{extra}</span>}
-                <span className="mt-1 block font-pixel text-[10px] text-muted">rules.md → {src}</span>
-              </dd>
-            </div>
-          );
-        })}
-      </dl>
-      {recent.length > 0 && (
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="font-pixel text-[11px] text-muted">
-                <th className="py-1.5 text-left font-normal">Date</th>
-                <th className="py-1.5 text-left font-normal">Call</th>
-                <th className="py-1.5 text-right font-normal">7 days</th>
-                <th className="py-1.5 text-right font-normal">30 days</th>
-                <th />
-              </tr>
-            </thead>
-            <tbody className="tabular-nums">
-              {recent.map((c) => (
-                <tr key={c.postId} className="border-t border-line">
-                  <td className="whitespace-nowrap py-2">{isoDay(c.at)}</td>
-                  <td className="py-2">
-                    <span className="inline-block origin-left scale-90">
-                      <VerdictChip verdict={chipOf(c.dir)} />
-                    </span>
-                  </td>
-                  <td className={`py-2 text-right ${c.r7 != null && c.r7 > 0 ? "text-ceramic" : "text-muted"}`}>{signed(c.r7)}</td>
-                  <td className={`py-2 text-right ${c.r30 != null && c.r30 > 0 ? "text-ceramic" : "text-muted"}`}>{signed(c.r30)}</td>
-                  <td className="py-2 text-right">
-                    <a href={`https://x.com/${encodeURIComponent(handle)}/status/${c.postId}`} target="_blank" rel="noreferrer" className="link-quiet text-xs">
-                      Post <span className="arrow">↗</span>
-                    </a>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-    </Card>
-  );
-}
+type CheckReply = { token: TokenInfo; record: CoinRecord; result: CheckResult; usedPct: number | null };
 
-const TONE: Record<Verdict["tone"], string> = { buy: "var(--ii-verdict-buy)", sell: "var(--ii-verdict-sell)", hold: "var(--ii-particle)", none: "var(--ii-muted)" };
+function CheckCoin({ mind, examples }: { mind: Mind; examples: string[] }) {
+  const auth = useAuth();
+  const [q, setQ] = useState("");
+  const [busy, setBusy] = useState<string | null>(null);
+  const [res, setRes] = useState<CheckReply | Failure | null>(null);
 
-function BagCard({ handle, items, rows, rules }: { handle: string; items: { t: string; w: number }[]; rows: CallRow[]; rules: string }) {
-  const rated = items.map((x) => {
-    const r = record(callsOn(rows, x.t));
-    return { ...x, r, v: verdictOf(r) };
-  });
-  const backed = rated.filter((x) => x.v.tone === "buy");
-  const against = rated.filter((x) => x.v.tone === "sell");
-  const top = [...rated].sort((a, b) => b.w - a.w)[0];
-  const sizing = rulesOf(rules, "sizing", 1)[0];
+  const run = async (text: string) => {
+    const v = text.trim();
+    if (!v || busy) return;
+    setQ(v);
+    setBusy(v);
+    setRes(null);
+    const r = await post<CheckReply>("/api/tools/check", { handle: mind.handle, q: v });
+    setRes(r);
+    setBusy(null);
+    if ("reason" in r && r.reason === "login") auth.askLogin();
+    else auth.refresh();
+  };
+
   return (
-    <Card title={`Rate my bag · ${rated.length} coins`} by={`by @${handle}'s record`} foot="Last call SELL → Against · worked ≥ 50% → Backs it · never called → No view">
-      <p className="text-sm text-particle">
-        <b className="font-medium text-ceramic">
-          {backed.length} of {rated.length}
-        </b>{" "}
-        backed by @{handle}&apos;s calls
-        {against.length > 0 && (
-          <>
-            , <b className="font-medium text-ceramic">{against.length}</b> against ({against.map((x) => x.t).join(", ")})
-          </>
-        )}
-        .{top && top.w >= 35 && sizing ? ` ${top.t} is ${top.w.toFixed(0)}% of the bag; the sizing rule: “${sizing}.”` : ""}
-      </p>
-      <div className="overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="font-pixel text-[11px] text-muted">
-              <th className="py-1.5 text-left font-normal">Coin</th>
-              <th className="py-1.5 text-right font-normal">Share</th>
-              <th className="py-1.5 text-right font-normal">Calls</th>
-              <th className="py-1.5 text-right font-normal">Worked 7d</th>
-              <th className="py-1.5 pl-3 text-left font-normal">Verdict</th>
-            </tr>
-          </thead>
-          <tbody className="tabular-nums">
-            {rated.map((x) => (
-              <tr key={x.t} className="border-t border-line align-top">
-                <td className="py-2">
-                  <span className="font-pixel">{x.t}</span>
-                  <span className="block text-xs text-particle">{x.r.last ? `Last ${x.r.last.dir.toUpperCase()} ${isoDay(x.r.last.at)} · median ${signed(x.r.med)}` : "Never called it"}</span>
-                </td>
-                <td className="py-2 text-right">{x.w.toFixed(0)}%</td>
-                <td className="py-2 text-right">{x.r.n || "—"}</td>
-                <td className="py-2 text-right">{pct(x.r.worked)}</td>
-                <td className="py-2 pl-3">
-                  <span className="inline-block border px-1.5 py-0.5 font-pixel text-[10px]" style={{ color: TONE[x.v.tone], borderColor: TONE[x.v.tone] }}>
-                    {x.v.label}
-                  </span>
-                </td>
-              </tr>
+    <>
+      <div>
+        <form
+          className="flex items-center gap-2 rounded-input border border-line bg-panel p-1.5 focus-within:border-line-hover"
+          onSubmit={(e) => {
+            e.preventDefault();
+            void run(q);
+          }}
+        >
+          <label htmlFor="check-q" className="sr-only">
+            Ticker, contract address or link
+          </label>
+          <input
+            id="check-q"
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            placeholder="$TICKER, contract address or a DexScreener link"
+            maxLength={300}
+            autoComplete="off"
+            className="min-w-0 flex-1 bg-transparent px-2 py-2 text-body placeholder:text-muted focus:outline-none"
+          />
+          <button type="submit" disabled={!q.trim() || !!busy} className="btn-ceramic h-10 shrink-0 px-4 text-xs disabled:opacity-40">
+            Check
+          </button>
+        </form>
+        <p className="mt-2 font-pixel text-[11px] text-muted">Any coin, called or not: a ticker, a contract address, or a DexScreener, pump.fun, Birdeye or GMGN link. Uses part of your session, like an answer in chat.</p>
+        {examples.length > 0 && !res && !busy && (
+          <div className="mt-3 flex flex-wrap gap-2">
+            {examples.map((t) => (
+              <button key={t} type="button" onClick={() => void run(`$${t}`)} className="rounded-chip border border-line px-3 py-1.5 font-pixel text-xs text-particle transition-colors duration-fast hover:border-line-hover hover:text-ceramic">
+                ${t}
+              </button>
             ))}
-          </tbody>
-        </table>
+          </div>
+        )}
       </div>
-    </Card>
+
+      {busy && <Working text={`@${mind.handle} is looking at ${busy.length > 18 ? `${busy.slice(0, 6)}…${busy.slice(-4)}` : busy}…`} />}
+      {res && "error" in res && <p className="text-sm text-muted">{res.error}</p>}
+      {res && "token" in res && (
+        <>
+          <TokenCard t={res.token} />
+          <Take mind={mind} title={`Would @${mind.handle} buy $${res.token.symbol}?`} meter={res.result.fit} meterLabel={`fits my style ${res.result.fit}/10`} verdict={res.result.verdict} usedPct={res.usedPct}>
+            <p className="text-body text-ceramic">{res.result.take}</p>
+            {res.result.why.length > 0 && (
+              <Block label="Why, from my posts">
+                <ul className="grid gap-2">
+                  {res.result.why.map((w, i) => (
+                    <li key={i} className="grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-3 border-b border-line pb-2 text-sm text-particle last:border-0 last:pb-0">
+                      <span>{w.point}</span>
+                      <RefLink refs={res.result.refs} n={w.ref} />
+                    </li>
+                  ))}
+                </ul>
+              </Block>
+            )}
+            <Block label={`My record on $${res.token.symbol}`}>
+              <RecordLine r={res.record} />
+            </Block>
+            {res.result.plan.length > 0 && (
+              <Block label="If you still want it, how I'd play it">
+                <Plan lines={res.result.plan} />
+              </Block>
+            )}
+            {res.result.similar.length > 0 && (
+              <Block label="Closest coins in my record">
+                <div className="flex flex-wrap gap-2">
+                  {res.result.similar.map((s) => (
+                    <AppLink key={s.ticker} href={`/coin/${encodeURIComponent(s.ticker)}`} className="rounded-chip border border-line px-3 py-1.5 font-pixel text-xs transition-colors duration-fast hover:border-line-hover">
+                      ${s.ticker}
+                      <span className="ml-2 text-muted">
+                        {s.n} calls{s.w7 != null ? ` · ${share(s.w7)}` : ""}
+                      </span>
+                    </AppLink>
+                  ))}
+                </div>
+              </Block>
+            )}
+          </Take>
+        </>
+      )}
+    </>
   );
 }
 
+/* ───────────────────────── Rate my bag ───────────────────────── */
+
+type BagReply = { holdings: Holding[]; records: Record<string, CoinRecord>; result: BagResult; usedPct: number | null };
+
+/** "SOL 40", "$WIF 25%", a bare contract address, one per line (or comma-separated). */
 function parseBag(raw: string) {
-  const rows = raw
+  return raw
     .split(/[\n,;]+/)
     .map((l) => l.trim())
     .filter(Boolean)
     .map((l) => {
-      const m = l.match(/^\$?([A-Za-z0-9]{2,12})\s*[:-]?\s*(\d+(?:\.\d+)?)?\s*%?$/);
-      return m ? { t: m[1].toUpperCase(), w: m[2] ? parseFloat(m[2]) : NaN } : null;
+      const m = l.match(/^(\S+)\s*[:\s]\s*([\d.]+)\s*%?$/) ?? l.match(/^(\S+)$/);
+      return m ? { q: m[1], share: m[2] ? parseFloat(m[2]) : null } : null;
     })
-    .filter((r): r is { t: string; w: number } => !!r)
-    .filter((r, i, a) => a.findIndex((x) => x.t === r.t) === i)
-    .slice(0, 15);
-  const given = rows.filter((r) => !isNaN(r.w));
-  const left = Math.max(0, 100 - given.reduce((s, r) => s + r.w, 0));
-  const rest = rows.length - given.length;
-  rows.forEach((r) => {
-    if (isNaN(r.w)) r.w = rest ? left / rest || 100 / rows.length : 0;
-  });
-  const total = rows.reduce((s, r) => s + r.w, 0) || 1;
-  rows.forEach((r) => (r.w = (r.w / total) * 100));
-  return rows;
+    .filter((x): x is { q: string; share: number | null } => !!x)
+    .slice(0, 8);
+}
+
+function RateBag({ mind, examples }: { mind: Mind; examples: string[] }) {
+  const auth = useAuth();
+  const [bag, setBag] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [res, setRes] = useState<BagReply | Failure | null>(null);
+  const items = parseBag(bag);
+
+  const run = async () => {
+    if (!items.length || busy) return;
+    setBusy(true);
+    setRes(null);
+    const r = await post<BagReply>("/api/tools/bag", { handle: mind.handle, holdings: items });
+    setRes(r);
+    setBusy(false);
+    if ("reason" in r && r.reason === "login") auth.askLogin();
+    else auth.refresh();
+  };
+
+  return (
+    <>
+      <div>
+        <form
+          className="flex items-end gap-2 rounded-input border border-line bg-panel p-1.5 focus-within:border-line-hover"
+          onSubmit={(e) => {
+            e.preventDefault();
+            void run();
+          }}
+        >
+          <label htmlFor="bag-input" className="sr-only">
+            Your holdings
+          </label>
+          <textarea
+            id="bag-input"
+            value={bag}
+            onChange={(e) => setBag(e.target.value)}
+            rows={4}
+            placeholder={`One coin per line with its share\n${examples[0] ?? "SOL"} 40\n${examples[1] ?? "BTC"} 35\n${examples[2] ?? "WIF"} 25`}
+            className="min-w-0 flex-1 resize-none bg-transparent px-2 py-2 text-body placeholder:text-muted focus:outline-none"
+          />
+          <button type="submit" disabled={!items.length || busy} className="btn-ceramic h-10 shrink-0 px-4 text-xs disabled:opacity-40">
+            Rate it
+          </button>
+        </form>
+        <p className="mt-2 font-pixel text-[11px] text-muted">Up to 8 coins: tickers or contract addresses, share in % (coins without one split the rest). Uses part of your session.</p>
+      </div>
+
+      {busy && <Working text={`@${mind.handle} is going through your bag…`} />}
+      {res && "error" in res && <p className="text-sm text-muted">{res.error}</p>}
+      {res && "result" in res && (
+        <Take mind={mind} title={`Your bag, my way · ${res.result.rows.length} ${res.result.rows.length === 1 ? "coin" : "coins"}`} meter={res.result.score} meterLabel={`${res.result.score}/10`} usedPct={res.usedPct}>
+          <p className="text-body text-ceramic">{res.result.summary}</p>
+          <div className="overflow-x-auto" data-lenis-prevent>
+            <table className="w-full min-w-[560px] text-left text-sm">
+              <thead className="font-pixel text-[11px] text-muted">
+                <tr className="border-b border-line">
+                  <th className="py-2 pr-3 font-normal">Coin</th>
+                  <th className="py-2 pr-3 text-right font-normal">Share</th>
+                  <th className="py-2 pr-3 text-right font-normal">24h</th>
+                  <th className="py-2 pr-3 font-normal">My record</th>
+                  <th className="py-2 pr-3 font-normal">Do</th>
+                  <th className="py-2 font-normal">Why</th>
+                </tr>
+              </thead>
+              <tbody>
+                {res.result.rows.map((r) => {
+                  const t = res.holdings.find((h) => (h.token?.symbol ?? "") === r.ticker)?.token ?? null;
+                  const rec = res.records[r.ticker];
+                  return (
+                    <tr key={r.ticker} className="border-b border-line align-top last:border-0">
+                      <td className="py-2.5 pr-3 font-pixel">
+                        <AppLink href={`/coin/${encodeURIComponent(r.ticker)}`} className="hover:underline">
+                          ${r.ticker}
+                        </AppLink>
+                      </td>
+                      <td className="py-2.5 pr-3 text-right font-pixel tabular-nums">{Math.round(r.share * 100)}%</td>
+                      <td className={`py-2.5 pr-3 text-right font-pixel tabular-nums ${t?.change24h != null && t.change24h >= 0 ? "text-ceramic" : "text-muted"}`}>
+                        {t?.change24h != null ? `${t.change24h >= 0 ? "+" : "−"}${Math.abs(t.change24h).toFixed(1)}%` : "—"}
+                      </td>
+                      <td className="py-2.5 pr-3 font-pixel text-[11px] text-particle">{rec?.n ? `${rec.n} calls${rec.n7 ? ` · ${share(rec.w7)}` : ""} · last ${rec.last?.dir.toUpperCase()} ${rec.last?.at}` : "never called"}</td>
+                      <td className="py-2.5 pr-3">
+                        <Action a={r.action} />
+                      </td>
+                      <td className="py-2.5 text-particle">
+                        {r.why} <RefLink refs={res.result.refs} n={r.ref} />
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          {res.result.changes.length > 0 && (
+            <Block label="What I'd change">
+              <Plan lines={res.result.changes} />
+            </Block>
+          )}
+          {res.holdings.some((h) => !h.token) && (
+            <p className="font-pixel text-[11px] text-muted">
+              No live data for {res.holdings.filter((h) => !h.token).map((h) => h.q).join(", ")}: try a contract address.
+            </p>
+          )}
+        </Take>
+      )}
+    </>
+  );
+}
+
+/* ───────────────────────── pieces ───────────────────────── */
+
+function Working({ text }: { text: string }) {
+  return (
+    <p className="flex items-center gap-2 font-pixel text-xs text-muted">
+      <TypingIndicator /> {text}
+    </p>
+  );
+}
+
+const pct = (x: number) => `${x >= 0 ? "+" : "−"}${Math.abs(x * 100).toFixed(Math.abs(x) < 0.1 ? 1 : 0)}%`;
+const usd = (n: number) => (n >= 1e9 ? `$${(n / 1e9).toFixed(2)}B` : n >= 1e6 ? `$${(n / 1e6).toFixed(1)}M` : n >= 1e3 ? `$${(n / 1e3).toFixed(0)}k` : `$${n.toFixed(0)}`);
+const short = (a: string) => `${a.slice(0, 4)}…${a.slice(-4)}`;
+
+function TokenCard({ t }: { t: TokenInfo }) {
+  const [copied, setCopied] = useState(false);
+  const [noImg, setNoImg] = useState(false);
+  const age = t.listedAt ? Math.max(0, (Date.now() - Date.parse(t.listedAt)) / 864e5) : null;
+  const stats = [
+    t.mcap ? ["Market cap", usd(t.mcap), null] : null,
+    t.top ? ["From the top", pct(t.price / t.top.price - 1), `top ${money(t.top.price)} · ${t.top.at}`] : null,
+    t.change1y != null ? ["1 year", pct(t.change1y), null] : null,
+    t.liquidity ? ["DEX liquidity", usd(t.liquidity), t.volume24h ? `24h volume ${usd(t.volume24h)}` : null] : null,
+    age != null ? ["Age", age >= 365 ? `${Math.floor(age / 365)}y ${Math.floor((age % 365) / 30)}m` : age >= 30 ? `${Math.floor(age / 30)}m` : `${Math.floor(age)}d`, `since ${t.listedAt!.slice(0, 10)}`] : null,
+  ].filter((x): x is [string, string, string | null] => !!x).slice(0, 4);
+  return (
+    <div className="rounded-panel border border-line bg-panel">
+      <div className="flex items-center gap-3 border-b border-line px-4 py-3">
+        {t.image && !noImg ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={t.image} alt="" width={36} height={36} referrerPolicy="no-referrer" onError={() => setNoImg(true)} className="h-9 w-9 shrink-0 object-cover" />
+        ) : (
+          <span className="grid h-9 w-9 shrink-0 place-items-center bg-line font-pixel text-sm text-ceramic">{t.symbol.slice(0, 1)}</span>
+        )}
+        <div className="min-w-0">
+          <p className="font-pixel text-body">${t.symbol}</p>
+          <p className="truncate font-pixel text-[11px] text-muted">
+            {[t.name, t.chain].filter(Boolean).join(" · ")}
+            {t.address && (
+              <>
+                {" · "}
+                <button
+                  type="button"
+                  title="Copy the contract address"
+                  onClick={() => {
+                    navigator.clipboard?.writeText(t.address!).then(() => setCopied(true), () => {});
+                    setTimeout(() => setCopied(false), 1500);
+                  }}
+                  className="hover:text-ceramic"
+                >
+                  {copied ? "copied" : short(t.address)}
+                </button>
+              </>
+            )}
+            {t.links.map((l) => (
+              <a key={l.url} href={l.url} target="_blank" rel="noreferrer" className="ml-2 hover:text-ceramic">
+                {l.label}
+              </a>
+            ))}
+          </p>
+        </div>
+        <div className="ml-auto shrink-0 text-right font-pixel tabular-nums">
+          <p className="text-body">{money(t.price)}</p>
+          {t.change24h != null && <p className={`text-[11px] ${t.change24h >= 0 ? "text-ceramic" : "text-muted"}`}>{`${t.change24h >= 0 ? "+" : "−"}${Math.abs(t.change24h).toFixed(1)}%`} 24h</p>}
+        </div>
+      </div>
+      {stats.length > 0 && (
+        <dl className="grid grid-cols-2 sm:grid-cols-4">
+          {stats.map(([label, value, sub], i) => (
+            <div key={label} className={`px-4 py-3 ${i % 2 ? "border-l border-line" : ""} ${i >= 2 ? "border-t border-line sm:border-t-0" : ""} ${i === 2 ? "sm:border-l" : ""}`}>
+              <dt className="font-pixel text-[11px] text-muted">{label}</dt>
+              <dd className="mt-0.5 font-pixel text-h3 tabular-nums">{value}</dd>
+              {sub && <dd className="font-pixel text-[10px] text-muted">{sub}</dd>}
+            </div>
+          ))}
+        </dl>
+      )}
+      {t.safety && (
+        <div className="flex flex-wrap gap-2 border-t border-line px-4 py-3 font-pixel text-[11px]">
+          {t.safety.risks.length === 0 ? (
+            <span className="border border-line-hover px-2 py-0.5 text-particle">
+              <span style={{ color: "var(--ii-verdict-buy)" }}>✓</span> RugCheck: no risks flagged
+            </span>
+          ) : (
+            t.safety.risks.map((r) => (
+              <span key={r.name} className="border border-line-hover px-2 py-0.5 text-particle">
+                <span style={{ color: r.level === "danger" ? "var(--ii-verdict-sell)" : "var(--ii-particle)" }}>!</span> {r.name}
+              </span>
+            ))
+          )}
+        </div>
+      )}
+      <p className="border-t border-line px-4 py-2 font-pixel text-[10px] text-muted">
+        Live · {t.source}
+        {t.top || t.change1y != null ? ", DefiLlama" : ""}
+        {t.safety ? ", RugCheck" : ""}
+      </p>
+    </div>
+  );
+}
+
+function Take({ mind, title, meter, meterLabel, verdict, usedPct, children }: { mind: Mind; title: string; meter: number; meterLabel: string; verdict?: CheckResult["verdict"]; usedPct: number | null; children: React.ReactNode }) {
+  return (
+    <section className="rounded-panel border border-line-hover bg-panel">
+      <header className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-line px-4 py-3">
+        <span className="font-mono text-xs" style={{ color: mind.color }}>
+          {mind.code}
+        </span>
+        <h3 className="font-pixel text-sm">{title}</h3>
+        <span className="flex items-center gap-[3px]" aria-label={meterLabel}>
+          {Array.from({ length: 10 }, (_, i) => (
+            <i key={i} className="inline-block h-2.5 w-2.5" style={{ background: i < meter ? mind.color : "var(--ii-line-hover)" }} />
+          ))}
+        </span>
+        <span className="font-pixel text-[11px] text-muted">{meterLabel}</span>
+        {verdict && (
+          <span className="ml-auto">
+            <VerdictChip verdict={verdict} />
+          </span>
+        )}
+      </header>
+      <div className="grid gap-5 px-4 py-4">{children}</div>
+      <footer className="flex flex-wrap justify-between gap-2 border-t border-line px-4 py-2 font-pixel text-[10px] text-muted">
+        <span>{usedPct != null ? `Used ${usedPct}% of your session` : ""}</span>
+        <span>@{mind.handle}&apos;s AI brain, from public posts · not financial advice</span>
+      </footer>
+    </section>
+  );
+}
+
+function Block({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <p className="mb-2 font-pixel text-[11px] text-muted">{label}</p>
+      {children}
+    </div>
+  );
+}
+
+function Plan({ lines }: { lines: PlanLine[] }) {
+  return (
+    <dl className="grid">
+      {lines.map((p, i) => (
+        <div key={i} className={`grid grid-cols-[96px_minmax(0,1fr)] gap-3 py-2 ${i ? "border-t border-line" : "pt-0"}`}>
+          <dt className="font-pixel text-xs text-muted">{p.label}</dt>
+          <dd className="text-sm">
+            {p.text}
+            {p.rule && <span className="mt-1 block font-pixel text-[10px] text-muted">from my rules: “{p.rule}”</span>}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
+function RecordLine({ r }: { r: CoinRecord }) {
+  if (!r.n) return <p className="text-sm text-particle">Never called it.</p>;
+  return (
+    <p className="text-sm text-particle">
+      {r.n} {r.n === 1 ? "call" : "calls"} since {r.first}
+      {r.n7 ? ` · worked within 7 days ${share(r.w7)} of ${r.n7} (median ${signed(r.m7)})` : ""}
+      {r.last && (
+        <>
+          {" · last "}
+          <span className="font-pixel text-xs text-ceramic">{r.last.dir.toUpperCase()}</span> {r.last.at}
+          {r.last.price ? ` at ${money(r.last.price)}` : ""}
+          {r.last.quote && <span className="mt-1 block italic text-muted">“{r.last.quote}”</span>}
+        </>
+      )}
+    </p>
+  );
+}
+
+function RefLink({ refs, n }: { refs: Reference[]; n: number | null }) {
+  const r = n ? refs.find((x) => x.n === n) : null;
+  if (!r) return null;
+  return (
+    <a href={r.url} target="_blank" rel="noreferrer" title={r.text ?? r.call?.quote ?? "Open the post"} className="inline-flex h-6 min-w-6 items-center justify-center rounded-chip border border-line px-1.5 font-mono text-[11px] text-particle hover:border-line-hover hover:text-ceramic">
+      [{r.n}]
+    </a>
+  );
+}
+
+function Action({ a }: { a: "Add" | "Keep" | "Trim" | "Cut" }) {
+  const color = a === "Add" ? "var(--ii-verdict-buy)" : a === "Cut" ? "var(--ii-verdict-sell)" : a === "Keep" ? "var(--ii-ceramic)" : "var(--ii-particle)";
+  return (
+    <span className="inline-block border px-1.5 py-0.5 font-pixel text-[10px]" style={{ color, borderColor: "currentColor" }}>
+      {a}
+    </span>
+  );
 }
