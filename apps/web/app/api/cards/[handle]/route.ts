@@ -9,7 +9,12 @@ export const maxDuration = 20;
 
 const DAY = 864e5;
 // the same for everyone; prices move, the record changes once a week
-const CACHE = { "Cache-Control": "public, max-age=60", "Netlify-CDN-Cache-Control": "public, s-maxage=300, stale-while-revalidate=3600" };
+// Netlify's edge leaves the query out of the cache key unless told: without Netlify-Vary every card got the first one cached
+const CACHE = {
+  "Cache-Control": "public, max-age=60",
+  "Netlify-CDN-Cache-Control": "public, s-maxage=300, stale-while-revalidate=3600",
+  "Netlify-Vary": "query=coin|compare|record",
+};
 const ok = (data: unknown) => Response.json(data, { headers: CACHE });
 
 type Row = CTRecord["rows"][number];

@@ -31,6 +31,8 @@ export async function GET(req: Request, { params }: { params: Promise<{ handle: 
         "Cache-Control": "public, max-age=60",
         // the edge keeps it: a given version never changes, the latest one changes about once a week
         "Netlify-CDN-Cache-Control": v ? "public, s-maxage=31536000, immutable" : "public, s-maxage=1800, stale-while-revalidate=86400",
+        // the edge leaves the query out of its cache key unless told, so ?lite=1, ?version=N and the full brain would share one copy
+        "Netlify-Vary": "query=version|lite",
       },
     },
   );
