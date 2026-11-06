@@ -12,8 +12,8 @@ import { formatCount } from "@/lib/intelligences";
 import { stripCitations } from "@/lib/refs";
 import { findIntelligence, hasDatabase, loadBrain } from "@/lib/server/data";
 
-// Public and the same for everyone: cached, rebuilt at most every 10 minutes.
-export const revalidate = 600;
+// Public and the same for everyone: cached at the edge, rebuilt at most every hour (the record changes about once a week).
+export const revalidate = 3600;
 // built for the launch minds at deploy, for added minds on their first visit; then served from the edge cache
 export const dynamicParams = true;
 export const generateStaticParams = () => launch.map((i) => ({ handle: i.handle }));

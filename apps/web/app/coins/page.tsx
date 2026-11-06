@@ -4,7 +4,7 @@ import { type CoinRow, CoinsIndex } from "@/components/coin/CoinsIndex";
 import { summary } from "@/lib/record";
 import { loadRecord } from "@/lib/server/record";
 
-export const revalidate = 600;
+export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Coins CT calls",
   description: "Every coin the minds on Influencer Intelligence called in public posts: who called it, where they stand now, and how the calls played out.",

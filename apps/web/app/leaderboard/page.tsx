@@ -4,7 +4,7 @@ import { type BoardRow, Leaderboard } from "@/components/leaderboard/Leaderboard
 import { kindOf } from "@/lib/record";
 import { loadRecord } from "@/lib/server/record";
 
-export const revalidate = 600;
+export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Leaderboard",
   description: "Who on Crypto Twitter calls best: every public call by the minds on Influencer Intelligence, priced 7 and 30 days later. Not financial advice.",

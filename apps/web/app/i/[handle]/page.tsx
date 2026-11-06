@@ -6,9 +6,9 @@ import { intelligences as launch } from "@/config/intelligences";
 import { type BrainFilesLite, toChatBrain } from "@/lib/chat-brain";
 import { findIntelligence, hasDatabase, loadBrain, loadIntelligences } from "@/lib/server/data";
 
-// The same page for everyone, cached at the edge and rebuilt at most every 10 minutes; a saved chat
+// The same page for everyone, cached at the edge and rebuilt at most every hour (brains change about once a week); a saved chat
 // (?c=<id>) is per visitor, so ChatView fetches it in the browser.
-export const revalidate = 600;
+export const revalidate = 3600;
 export const dynamicParams = true;
 export const generateStaticParams = () => launch.map((i) => ({ handle: i.handle }));
 

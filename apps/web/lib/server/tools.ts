@@ -5,7 +5,7 @@ import { recordSpend } from "@ii/db";
 
 import { type RecordRow, day, recordRows, signed, summary, tickerKey } from "@/lib/record";
 
-import { type LoadedBrain, type Reference, resolveReferences, sql } from "./data";
+import { type LoadedBrain, type Reference, sql } from "./data";
 import { noteSpend } from "./ops";
 import { type TokenInfo, priceText, tokenLines } from "./token";
 
@@ -71,10 +71,31 @@ function ruleQuote(rules: string, q: unknown): string | null {
 const clean = (s: unknown, max: number) => String(s ?? "").replace(/\s+/g, " ").trim().slice(0, max);
 const VERDICTS: Verdict[] = ["BUY", "HOLD", "SELL", "PASS"];
 
-/** Post ids the model cited → numbered references (only posts in this brain survive). */
+/**
+ * Post ids the model cited → numbered references. Only posts this brain
+ * really cites survive: a call, an example, or a (post:…) in its mind or rules.
+ */
 async function refsFor(brain: LoadedBrain, ids: (string | null | undefined)[]): Promise<{ refs: Reference[]; n: (id: string | null | undefined) => number | null }> {
-  const wanted = ids.map((x) => String(x ?? "").replace(/\D/g, "")).filter((x) => x.length >= 6);
-  const refs = wanted.length ? await resolveReferences(brain, wanted.map((id) => `[post:${id}]`).join(" ")).catch(() => []) : [];
+  const known = (id: string) => brain.prompt.includes(`post:${id}`) || brain.files.calls.some((c) => c.post_id === id) || brain.files.example_ids.includes(id);
+  const wanted = [...new Set(ids.map((x) => String(x ?? "").replace(/\D/g, "")).filter((x) => x.length >= 6 && known(x)))];
+  if (!wanted.length) return { refs: [], n: () => null };
+  const rows = await sql()<{ id: string; text: string; created_at: Date; quoted_author: string | null; quoted_text: string | null }[]>`
+    select id, text, created_at, quoted_author, quoted_text from posts where id in ${sql()(wanted)}`.catch(() => []);
+  const byPost = new Map(rows.map((r) => [r.id, r]));
+  const refs: Reference[] = wanted.map((id, i) => {
+    const p = byPost.get(id);
+    const call = brain.files.calls.find((c) => c.post_id === id) ?? null;
+    return {
+      n: i + 1,
+      postId: id,
+      kind: call ? "call" : "post",
+      date: p ? new Date(p.created_at).toISOString().slice(0, 10) : call ? String(call.called_at).slice(0, 10) : null,
+      text: p?.text ?? null,
+      quoted: p?.quoted_text ? { author: p.quoted_author, text: p.quoted_text } : null,
+      call: call ? { ticker: call.ticker, direction: call.direction, quote: call.quote } : null,
+      url: `https://x.com/${brain.handle}/status/${id}`,
+    };
+  });
   const byId = new Map(refs.map((r) => [r.postId, r.n]));
   return { refs, n: (id) => byId.get(String(id ?? "").replace(/\D/g, "")) ?? null };
 }
@@ -116,10 +137,10 @@ Reply with JSON only:
 - verdict: BUY = you'd buy it now; HOLD = keep it if you already have it; SELL = get out; PASS = you wouldn't touch it.
 - fit: 0-10, how well it matches the coins and setups you go for (10 = exactly your kind of trade).
 - take: 2-4 sentences in your own voice, first person, answering straight away, no disclaimers.
-- why: 2-3 short points in your voice. "post": the id of a post or call in your brain that backs the point, or null.
-- plan: how you'd play it if someone still wants in, one short line each, from YOUR RULES ("" when you have no rule for it).
-- rules: for each plan line, a short exact quote from your RULES it comes from, or "".
-- similar: up to 3 tickers from YOUR CALLS closest to this coin (same kind of coin or setup), only tickers you really called; [] if none.
+- why: 2-3 short points in your voice. "post": the number from a post:… citation in your MIND, RULES or CALLS that backs the point. Cite one for every point you can; null only when nothing in your brain backs it.
+- plan: always fill all four from YOUR RULES, even when you'd pass: it's how you'd play it if someone insists. One short line each; "" only when your rules say nothing about it.
+- rules: for each plan line, a short quote copied word for word from your RULES that it comes from, or "".
+- similar: 1-3 tickers from your CALLS ledger closest to this coin (the same kind of coin, chain, size or setup). Only tickers you really called; [] only if you never called anything like it.
 Never write a number that isn't in the data above or in your brain.`;
 
   const { text, cost } = await ask(brain, turn, 900);
@@ -180,8 +201,8 @@ Reply with JSON only:
 {"score":0,"summary":"","rows":[{"ticker":"","action":"Add|Keep|Trim|Cut","why":"","post":null}],"changes":[{"label":"","text":"","rule":""}]}
 - score: 0-10, how much you'd like holding this bag yourself.
 - summary: 2-4 sentences in your own voice, first person, straight away, no disclaimers.
-- rows: one per coin above (tickers exactly: ${syms.join(", ")}), action Add / Keep / Trim / Cut, "why" one short line in your voice, "post": the id of a post or call in your brain that backs it, or null.
-- changes: 1-3 concrete changes with target shares (e.g. "SOL 40% → 60%"), "label" one or two words, "rule" a short exact quote from your RULES it follows, or "".
+- rows: one per coin above (tickers exactly: ${syms.join(", ")}), action Add / Keep / Trim / Cut, "why" one short line in your voice, "post": the number from a post:… citation in your MIND, RULES or CALLS that backs it (cite whenever you can), or null.
+- changes: 1-3 concrete changes with target shares (e.g. "SOL 40% → 60%"), "label" one or two words, "rule" a short quote copied word for word from your RULES that it follows, or "".
 Never write a number that isn't in the data above, the shares, or your brain.`;
 
   const { text, cost } = await ask(brain, turn, 1000);
