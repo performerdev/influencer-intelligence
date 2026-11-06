@@ -66,17 +66,52 @@ export type ChatHistory = {
  * One chat with one mind. Full page on /i/<handle>; `embedded` inside the app on "/"
  * (the app draws the header, the minds and the calls; sources open in a sheet).
  */
-export function ChatView({ intelligence, brain, history, embedded = false }: { intelligence: ChatIntelligence; brain: ChatBrain | null; history?: ChatHistory | null; embedded?: boolean }) {
+const fromHistory = (h: ChatHistory | null | undefined): Msg[] =>
+  (h?.items ?? []).map((it, i) =>
+    it.role === "user"
+      ? { id: `h${i}`, role: "user" as const, content: it.content }
+      : { id: `h${i}`, role: "assistant" as const, content: it.content, streaming: false, lastDelta: "", verdict: it.verdict, refs: it.refs, brainVersion: it.brainVersion, messageId: it.id },
+  );
+
+export function ChatView({
+  intelligence,
+  brain,
+  history,
+  embedded = false,
+  onChat,
+}: {
+  intelligence: ChatIntelligence;
+  brain: ChatBrain | null;
+  history?: ChatHistory | null;
+  embedded?: boolean;
+  /** a new chat got its id (its first message is the title) */
+  onChat?: (chatId: string, title: string) => void;
+}) {
   const { handle, code } = intelligence;
   const auth = useAuth();
-  const [messages, setMessages] = useState<Msg[]>(() =>
-    (history?.items ?? []).map((it, i) =>
-      it.role === "user"
-        ? { id: `h${i}`, role: "user" as const, content: it.content }
-        : { id: `h${i}`, role: "assistant" as const, content: it.content, streaming: false, lastDelta: "", verdict: it.verdict, refs: it.refs, brainVersion: it.brainVersion, messageId: it.id },
-    ),
-  );
+  const [messages, setMessages] = useState<Msg[]>(() => fromHistory(history));
   const [chatId, setChatId] = useState<string | null>(history?.chatId ?? null);
+  // the full chat page is cached for everyone, so a saved chat (?c=<id>) is fetched here, in the browser
+  const [opening, setOpening] = useState(false);
+  useEffect(() => {
+    if (embedded || history) return;
+    const c = new URLSearchParams(window.location.search).get("c");
+    if (!c || !/^[0-9a-f-]{36}$/i.test(c)) return;
+    let live = true;
+    setOpening(true);
+    fetch(`/api/chats/${c}`)
+      .then((r) => (r.ok ? (r.json() as Promise<ChatHistory & { kind: string; handles: string[] }>) : null))
+      .then((h) => {
+        if (!live || !h || h.kind !== "single" || h.handles[0]?.toLowerCase() !== handle.toLowerCase()) return;
+        setMessages(fromHistory(h));
+        setChatId(h.chatId);
+      })
+      .catch(() => {})
+      .finally(() => live && setOpening(false));
+    return () => {
+      live = false;
+    };
+  }, [embedded, history, handle]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const [selected, setSelected] = useState<Reference | null>(null);
@@ -174,6 +209,7 @@ export function ChatView({ intelligence, brain, history, embedded = false }: { i
             const ev = raw.match(/^event: (\w+)/m)?.[1];
             const data = JSON.parse(raw.match(/^data: (.*)$/m)?.[1] ?? "{}");
             if (ev === "meta") {
+              if (!chatId && data.chatId) onChat?.(data.chatId, q);
               setChatId(data.chatId);
               patch(() => ({ brainVersion: data.brainVersion }));
             } else if (ev === "delta") {
@@ -196,7 +232,7 @@ export function ChatView({ intelligence, brain, history, embedded = false }: { i
         requestAnimationFrame(() => inputRef.current?.focus());
       }
     },
-    [busy, brain, chatId, handle, auth, messages, maybeOffer],
+    [busy, brain, chatId, handle, auth, messages, maybeOffer, onChat],
   );
 
   const openRef = (r: Reference) => {
@@ -234,7 +270,9 @@ export function ChatView({ intelligence, brain, history, embedded = false }: { i
         )}
 
         <div ref={scrollRef} data-scroll-main data-lenis-prevent className="min-h-0 flex-1 overflow-y-auto px-gutter lg:px-8" aria-live="polite">
-          {messages.length === 0 ? (
+          {opening && messages.length === 0 ? (
+            <p className="mx-auto max-w-[720px] py-10 font-pixel text-xs text-muted">Opening your chat…</p>
+          ) : messages.length === 0 ? (
             <EmptyState intelligence={intelligence} ready={!!brain} onAsk={send} />
           ) : (
             <ol className="mx-auto max-w-[720px] space-y-8 py-8">

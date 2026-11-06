@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 import { UsageMeter } from "@/components/account/AuthProvider";
-import { ChatView } from "@/components/chat/ChatView";
+import { type ChatHistory, ChatView } from "@/components/chat/ChatView";
 import { getLenis } from "@/components/layout/SmoothScroll";
 import { BrainAvatar } from "@/components/particles/BrainAvatar";
 import { AppLink } from "@/components/ui/AppLink";
@@ -42,8 +42,15 @@ function fetchBrain(handle: string) {
  * "/" for a logged-in visitor: a workspace. Minds and recent chats on the left,
  * the conversation (or a tool) in the middle, the mind's call record on the right.
  */
-export function AppHome({ intelligences, recent }: { intelligences: Intelligence[]; recent: RecentChat[] }) {
+export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
   const [handle, setHandle] = useState(intelligences[0]?.handle ?? "");
+  // your chats load after the page; the open one stays highlighted, and its id is in the address (/?c=<id>)
+  const [recent, setRecent] = useState<RecentChat[]>([]);
+  const [active, setActive] = useState<string | null>(null);
+  const [history, setHistory] = useState<ChatHistory | null>(null);
+  const [opening, setOpening] = useState(false);
+  // a new value remounts the conversation: a fresh chat, or a saved one
+  const [session, setSession] = useState(0);
   const [mode, setMode] = useState<Mode>("ask");
   const [view, setView] = useState<"chat" | "calls">("chat");
   const [railOpen, setRailOpen] = useState(false);
@@ -61,13 +68,66 @@ export function AppHome({ intelligences, recent }: { intelligences: Intelligence
     };
   }, []);
 
-  // reopen on the last mind you used
+  // reopen on the last mind you used, or on the chat in the address
   useEffect(() => {
-    try {
-      const h = localStorage.getItem(STORE);
-      if (h && intelligences.some((i) => i.handle === h)) setHandle(h);
-    } catch {}
+    const loadList = () =>
+      fetch("/api/chats")
+        .then((r) => (r.ok ? (r.json() as Promise<{ chats: RecentChat[] }>) : { chats: [] }))
+        .then((j) => setRecent(j.chats ?? []))
+        .catch(() => {});
+    const c = new URLSearchParams(window.location.search).get("c");
+    if (c && /^[0-9a-f-]{36}$/i.test(c)) {
+      // the open chat first, the list after it
+      void openChat({ id: c, kind: "single", handles: [], title: "", updatedAt: "" }).then(loadList);
+    } else {
+      try {
+        const h = localStorage.getItem(STORE);
+        if (h && intelligences.some((i) => i.handle === h)) setHandle(h);
+      } catch {}
+      void loadList();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [intelligences]);
+
+  const setAddress = (c: string | null) => {
+    try {
+      window.history.replaceState(window.history.state, "", c ? `/?c=${c}` : "/");
+    } catch {}
+  };
+
+  /** Continue a saved chat right here, with its mind selected. */
+  async function openChat(c: RecentChat) {
+    setActive(c.id);
+    setRailOpen(false);
+    setMode("ask");
+    setView("chat");
+    setAddress(c.id);
+    if (c.handles[0]) setHandle(c.handles[0]);
+    setOpening(true);
+    const h = await fetch(`/api/chats/${c.id}`)
+      .then((r) => (r.ok ? (r.json() as Promise<ChatHistory & { kind: string; handles: string[] }>) : null))
+      .catch(() => null);
+    if (h && h.kind === "single" && h.handles[0]) {
+      setHandle(h.handles[0]);
+      setHistory({ chatId: h.chatId, items: h.items });
+    } else {
+      // gone (older than your plan keeps) or not yours: a fresh chat instead
+      setActive(null);
+      setHistory(null);
+      setAddress(null);
+    }
+    setSession((n) => n + 1);
+    setOpening(false);
+  }
+
+  /** A fresh chat with this mind. */
+  const newChat = (h: string) => {
+    setHandle(h);
+    setActive(null);
+    setHistory(null);
+    setSession((n) => n + 1);
+    setAddress(null);
+  };
 
   useEffect(() => {
     if (!handle) return;
@@ -87,7 +147,7 @@ export function AppHome({ intelligences, recent }: { intelligences: Intelligence
   const rows = useMemo(() => (ready ? callRows(ready.files) : []), [ready]);
 
   const pick = (h: string) => {
-    setHandle(h);
+    newChat(h);
     setRailOpen(false);
     setView("chat");
   };
@@ -114,9 +174,12 @@ export function AppHome({ intelligences, recent }: { intelligences: Intelligence
                 <button
                   type="button"
                   onClick={() => pick(m.handle)}
-                  aria-current={m.handle === handle}
+                  // start loading the brain while the pointer is still on its way
+                  onPointerEnter={() => void fetchBrain(m.handle)}
+                  onFocus={() => void fetchBrain(m.handle)}
+                  aria-current={m.handle === handle && !active}
                   className={`grid w-full grid-cols-[32px_minmax(0,1fr)] items-center gap-3 rounded-chip border px-2 py-1.5 text-left transition-colors duration-fast ${
-                    m.handle === handle ? "border-line bg-panel" : "border-transparent hover:bg-panel"
+                    m.handle === handle ? (active ? "border-transparent bg-panel/60" : "border-line bg-panel") : "border-transparent hover:bg-panel"
                   }`}
                 >
                   <BrainAvatar it={m} size={32} active={m.handle === handle} />
@@ -141,19 +204,40 @@ export function AppHome({ intelligences, recent }: { intelligences: Intelligence
 
           {recent.length > 0 && (
             <>
-              <p className="mb-1 mt-6 px-2 font-pixel text-[11px] text-muted">Recent chats</p>
+              <p className="mb-1 mt-6 flex items-center justify-between px-2 font-pixel text-[11px] text-muted">
+                <span>Recent chats</span>
+                <button type="button" onClick={() => pick(handle)} className="text-muted transition-colors duration-fast hover:text-ceramic">
+                  + New chat
+                </button>
+              </p>
               <ul>
-                {recent.slice(0, 12).map((c) => (
-                  <li key={c.id}>
-                    <AppLink
-                      href={c.kind === "group" ? `/group?c=${c.id}` : `/i/${c.handles[0]}?c=${c.id}`}
-                      className="block truncate rounded-chip px-2 py-1.5 text-sm text-particle transition-colors duration-fast hover:bg-panel hover:text-ceramic"
-                    >
+                {recent.slice(0, 12).map((c) => {
+                  const label = (
+                    <>
                       {c.title || "Untitled"}
                       <span className="ml-1.5 font-pixel text-[10px] text-muted">{c.kind === "group" ? `group · ${c.handles.length}` : `@${c.handles[0]}`}</span>
-                    </AppLink>
-                  </li>
-                ))}
+                    </>
+                  );
+                  const cls = "block w-full truncate rounded-chip border px-2 py-1.5 text-left text-sm transition-colors duration-fast";
+                  return (
+                    <li key={c.id}>
+                      {c.kind === "group" ? (
+                        <AppLink href={`/group?c=${c.id}`} className={`${cls} border-transparent text-particle hover:bg-panel hover:text-ceramic`}>
+                          {label}
+                        </AppLink>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => void openChat(c)}
+                          aria-current={active === c.id}
+                          className={`${cls} ${active === c.id ? "border-line bg-panel text-ceramic" : "border-transparent text-particle hover:bg-panel hover:text-ceramic"}`}
+                        >
+                          {label}
+                        </button>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
               <AppLink href="/account" className="link-quiet mt-1 block px-2 py-1 text-xs">
                 All chats <span className="arrow">↗</span>
@@ -209,10 +293,21 @@ export function AppHome({ intelligences, recent }: { intelligences: Intelligence
         </header>
 
         <div className={`min-h-0 flex-1 flex-col ${view === "calls" ? "hidden xl:flex" : "flex"}`}>
-          {ready === undefined ? (
-            <p className="px-gutter py-10 font-pixel text-xs text-muted lg:px-8">Loading @{it.handle}&apos;s brain…</p>
+          {ready === undefined || opening ? (
+            <p className="px-gutter py-10 font-pixel text-xs text-muted lg:px-8">{opening ? "Opening your chat…" : `Loading @${it.handle}'s brain…`}</p>
           ) : mode === "ask" ? (
-            <ChatView key={it.handle} embedded intelligence={chatIt} brain={chatBrain} />
+            <ChatView
+              key={`${it.handle}:${session}`}
+              embedded
+              intelligence={chatIt}
+              brain={chatBrain}
+              history={history?.chatId === active ? history : null}
+              onChat={(id, title) => {
+                setActive(id);
+                setAddress(id);
+                setRecent((r) => [{ id, kind: "single", handles: [it.handle], title, updatedAt: new Date().toISOString() }, ...r.filter((x) => x.id !== id)]);
+              }}
+            />
           ) : ready ? (
             <Tools key={`${it.handle}-${mode}`} mode={mode} handle={it.handle} rows={rows} rules={ready.files.rules} medianHold={ready.files.stats?.median_hold_days ?? null} />
           ) : (

@@ -29,6 +29,9 @@ const NAMES: Record<string, string> = {
   SUI: "SUI",
 };
 
+/** Tickers that mean the coin even in lower case ("is btc going higher"); words like link, ton, hype stay out. */
+const LOWER_OK = new Set(["BTC", "ETH", "SOL", "BNB", "XRP", "DOGE", "AVAX", "PEPE", "WIF", "BONK", "USDT", "TRX"]);
+
 type Quote = { symbol: string; price: number; change24h: number | null; mcap: number | null; liquidity: number | null; chain: string | null; source: string };
 
 const LLAMA = () => (process.env.PRICE_API_BASE ?? "https://coins.llama.fi").replace(/\/$/, "");
@@ -54,8 +57,8 @@ export function priceTickers(text: string, calls: Call[], max = 4): string[] {
     const raw = m[1];
     const w = raw.toUpperCase();
     if (NAMES[w]) add(NAMES[w]);
-    // bare symbols only when written in capitals ("SOL", not "sol" the word)
-    else if (raw === w && w.length >= 2 && (COINGECKO_IDS[w] || called.has(w))) add(w);
+    // bare symbols only when written in capitals ("LINK", not "link" the word), except the few no one writes otherwise
+    else if ((raw === w || LOWER_OK.has(w)) && w.length >= 2 && (COINGECKO_IDS[w] || called.has(w))) add(w);
   }
   return found.slice(0, max);
 }

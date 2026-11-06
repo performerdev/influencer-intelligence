@@ -10,6 +10,9 @@ import { livePrice, loadRecord, priceHistory } from "@/lib/server/record";
 
 // Public and the same for everyone: cached, rebuilt at most every 10 minutes.
 export const revalidate = 600;
+// every coin page is built on its first visit, then served from the edge cache
+export const dynamicParams = true;
+export const generateStaticParams = () => [] as { ticker: string }[];
 
 type Props = { params: Promise<{ ticker: string }> };
 const DAY = 864e5;

@@ -26,6 +26,12 @@ export async function GET(req: Request, { params }: { params: Promise<{ handle: 
       ...(lite ? {} : { prompt: brain.prompt }),
       files: lite ? { identity, mind, rules, voice, calls, stats } : { identity, mind, rules, voice, calls, stats, example_ids },
     },
-    { headers: { "Cache-Control": "public, max-age=60, s-maxage=300" } },
+    {
+      headers: {
+        "Cache-Control": "public, max-age=60",
+        // the edge keeps it: a given version never changes, the latest one changes about once a week
+        "Netlify-CDN-Cache-Control": v ? "public, s-maxage=31536000, immutable" : "public, s-maxage=1800, stale-while-revalidate=86400",
+      },
+    },
   );
 }

@@ -127,7 +127,7 @@ export default async function AccountPage({ searchParams }: { searchParams: Prom
               {chats.map((c) => (
                 <li key={c.id}>
                   <AppLink
-                    href={c.kind === "group" ? `/group?c=${c.id}` : `/i/${c.handles[0]}?c=${c.id}`}
+                    href={c.kind === "group" ? `/group?c=${c.id}` : `/?c=${c.id}`}
                     className="flex items-baseline gap-4 py-3 transition-colors duration-fast hover:bg-panel"
                   >
                     <span className="w-[42%] shrink-0 truncate font-pixel text-sm sm:w-[32%]">

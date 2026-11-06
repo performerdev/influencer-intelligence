@@ -59,9 +59,36 @@ export async function fetchProfile(handle: string): Promise<Profile | null> {
   };
 }
 
+type Sample = { tweets: any[]; more: boolean };
+const spanDays = (tweets: any[]) => {
+  const times = tweets.map((t) => new Date(t?.createdAt).getTime()).filter((x) => !Number.isNaN(x));
+  return times.length > 1 ? (Math.max(...times) - Math.min(...times)) / 86_400_000 : 0;
+};
+
 /**
- * Price for one brain, from the account's real posting rate (one search page)
- * over its life — the same estimate the CLI's probe prints.
+ * The newest results of a search, enough to read a posting rate from. One page
+ * is ~20 tweets: a busy replier writes that in an hour, so while the sample
+ * covers less than two days and there is more, read up to two more pages.
+ * `more` says whether the history goes on past the sample.
+ */
+async function sample(query: string, maxPages = 3): Promise<Sample> {
+  const tweets: any[] = [];
+  let cursor: string | null = null;
+  for (let page = 0; page < maxPages; page++) {
+    const j: any = await tapi("/twitter/tweet/advanced_search", { query, queryType: "Latest", ...(cursor ? { cursor } : {}) }).catch(() => null);
+    if (!j) return { tweets, more: tweets.length > 0 };
+    tweets.push(...(j?.tweets ?? j?.data?.tweets ?? []));
+    const next: unknown = j.next_cursor ?? j.data?.next_cursor ?? null;
+    if (!(j.has_next_page ?? j.data?.has_next_page) || !next) return { tweets, more: false };
+    cursor = String(next);
+    if (spanDays(tweets) >= 2) break;
+  }
+  return { tweets, more: true };
+}
+
+/**
+ * Price for one brain, from the account's real posting and reply rates over
+ * its life — the same estimate the CLI's probe prints.
  */
 export async function quote(handle: string): Promise<Quote | { error: string }> {
   const profile = await fetchProfile(handle).catch(() => null);
@@ -69,24 +96,21 @@ export async function quote(handle: string): Promise<Quote | { error: string }> 
   if (profile.protected) return { error: `@${profile.handle} is a private account — only public posts can be used.` };
   const ageDays = profile.createdAt ? (Date.now() - new Date(profile.createdAt).getTime()) / 86_400_000 : 365;
   const cap = profile.statuses ?? 5000;
-  // one search page each: the account's own posts, and its replies to other people
-  const [ownPage, replyPage] = await Promise.all([
-    tapi("/twitter/tweet/advanced_search", { query: `from:${profile.handle} -filter:replies`, queryType: "Latest" }).catch(() => null),
-    tapi("/twitter/tweet/advanced_search", { query: `from:${profile.handle} filter:replies`, queryType: "Latest" }).catch(() => null),
-  ]);
-  const estimate = (j: any, limit: number) => {
-    const tweets: any[] = j?.tweets ?? j?.data?.tweets ?? [];
+  // the newest posts and the newest replies to other people, sampled side by side
+  const [ownSample, replySample] = await Promise.all([sample(`from:${profile.handle} -filter:replies`), sample(`from:${profile.handle} filter:replies`)]);
+  const estimate = ({ tweets, more }: Sample, limit: number) => {
     const own = tweets.filter((t) => !t?.retweeted_tweet && String(t?.author?.id ?? profile.id) === profile.id);
-    const times = own.map((t) => new Date(t.createdAt).getTime()).filter((x) => !Number.isNaN(x));
-    const spanDays = times.length > 1 ? (Math.max(...times) - Math.min(...times)) / 86_400_000 : 0;
-    // fewer than a page of results: the whole history is about that size
-    const rate = spanDays > 0.5 ? own.length / spanDays : 0;
+    // no further page: that is the whole history
+    if (!more) return own.length;
+    // a full sample: its rate over the account's life (×0.6, accounts post less in quiet years), never
+    // more than the account's tweet count allows. An hour's floor keeps a burst from reading as infinite.
+    const rate = own.length / Math.max(spanDays(own), 1 / 24);
     return Math.max(own.length, Math.round(Math.min(limit, rate * ageDays * 0.6)));
   };
-  const posts = estimate(ownPage, cap);
+  const posts = estimate(ownSample, cap);
   const withThreads = Math.round(posts * 1.12);
   // replies share the account's tweet count with posts (reposts too)
-  const replies = estimate(replyPage, Math.max(0, cap - posts));
+  const replies = estimate(replySample, Math.max(0, cap - posts));
 
   const pm = llmPrice(MAP_MODEL);
   const pr = llmPrice(DISTILL_MODEL);

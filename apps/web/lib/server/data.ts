@@ -38,7 +38,21 @@ type InfluencerRow = {
  * Real numbers from the database where they exist (never invented); hidden
  * brains (taken down by hand) are left out everywhere.
  */
-export async function loadIntelligences(): Promise<Intelligence[]> {
+// Every page asks for the list of minds; it changes when a brain is built (weekly, or an Add), so a minute's memo is plenty.
+let minds: { at: number; list: Promise<Intelligence[]> } | null = null;
+export function loadIntelligences(): Promise<Intelligence[]> {
+  if (minds && Date.now() - minds.at < 60_000) return minds.list;
+  const list = readIntelligences();
+  minds = { at: Date.now(), list };
+  return list;
+}
+
+/** A new brain went live: read the list again on the next request. */
+export const forgetIntelligences = () => {
+  minds = null;
+};
+
+async function readIntelligences(): Promise<Intelligence[]> {
   const base: Intelligence[] = config.map((c) => ({ ...c, oneLineMind: null, postsParsed: null, postsPerDay: null, distilledAt: null }));
   if (!hasDatabase()) return base;
   try {

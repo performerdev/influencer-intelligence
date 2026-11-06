@@ -2,16 +2,12 @@ import { AppHome } from "@/components/app/AppHome";
 import { HomeStage } from "@/components/home/HomeStage";
 import { currentUser } from "@/lib/server/auth";
 import { hasDatabase, loadIntelligences } from "@/lib/server/data";
-import { listChats } from "@/lib/server/history";
 
-// Visitors get the landing page; logged-in visitors get the app. Both read the session cookie, so this renders per request.
+// Visitors get the landing page; logged-in visitors get the app. Both read the session cookie, so this renders per request:
+// one quick session lookup here, everything per user (recent chats, the brain) is fetched by the app in the browser.
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const user = hasDatabase() ? await currentUser().catch(() => null) : null;
-  if (user) {
-    const [intelligences, chats] = await Promise.all([loadIntelligences(), listChats(user).catch(() => [])]);
-    return <AppHome intelligences={intelligences} recent={chats.map(({ id, kind, handles, title, updatedAt }) => ({ id, kind, handles, title, updatedAt }))} />;
-  }
-  return <HomeStage intelligences={await loadIntelligences()} />;
+  const [user, intelligences] = await Promise.all([hasDatabase() ? currentUser().catch(() => null) : null, loadIntelligences()]);
+  return user ? <AppHome intelligences={intelligences} /> : <HomeStage intelligences={intelligences} />;
 }

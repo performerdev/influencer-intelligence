@@ -6,6 +6,7 @@ import { isNotCoin } from "@ii/stats";
 import { type RecordTuple, TrackRecord } from "@/components/brain/TrackRecord";
 import { BrainAvatar } from "@/components/particles/BrainAvatar";
 import { AppLink } from "@/components/ui/AppLink";
+import { intelligences as launch } from "@/config/intelligences";
 import { site } from "@/config/site";
 import { formatCount } from "@/lib/intelligences";
 import { stripCitations } from "@/lib/refs";
@@ -13,6 +14,9 @@ import { findIntelligence, hasDatabase, loadBrain } from "@/lib/server/data";
 
 // Public and the same for everyone: cached, rebuilt at most every 10 minutes.
 export const revalidate = 600;
+// built for the launch minds at deploy, for added minds on their first visit; then served from the edge cache
+export const dynamicParams = true;
+export const generateStaticParams = () => launch.map((i) => ({ handle: i.handle }));
 
 type Props = { params: Promise<{ handle: string }> };
 

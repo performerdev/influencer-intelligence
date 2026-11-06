@@ -2,7 +2,7 @@ import "server-only";
 
 import { revalidatePath } from "next/cache";
 
-import { sql } from "./data";
+import { forgetIntelligences, sql } from "./data";
 
 let lastCheck = 0;
 let seen = "";
@@ -24,6 +24,7 @@ export async function refreshListings(force = false): Promise<void> {
       if (!row?.id || row.id === seen) return;
       seen = row.id;
     }
+    forgetIntelligences();
     revalidatePath("/");
   } catch (err) {
     console.error("refreshListings:", (err as Error)?.message ?? err);
