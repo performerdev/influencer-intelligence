@@ -15,10 +15,10 @@
       "median_return": -0.0062
     },
     "7d": {
-      "n": 78,
-      "hit_rate": 0.4872,
-      "mean_return": 0.0143,
-      "median_return": -0.0082
+      "n": 79,
+      "hit_rate": 0.481,
+      "mean_return": 0.0139,
+      "median_return": -0.0128
     },
     "30d": {
       "n": 77,
@@ -1057,7 +1057,7 @@
     },
     {
       "r_1d": -0.0065,
-      "r_7d": null,
+      "r_7d": -0.0212,
       "r_30d": null,
       "symbol": null,
       "ticker": "BNB",
@@ -1071,7 +1071,7 @@
   ],
   "hold_pairs": 0,
   "calls_total": 80,
-  "computed_at": "2026-11-09T11:44:51.981Z",
+  "computed_at": "2026-11-09T23:53:06.708Z",
   "by_direction": {
     "buy": 26,
     "hold": 53,
