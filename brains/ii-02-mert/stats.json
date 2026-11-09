@@ -9,22 +9,22 @@
   ],
   "horizons": {
     "1d": {
-      "n": 356,
-      "hit_rate": 0.5169,
-      "mean_return": 0.0117,
-      "median_return": 0.002
+      "n": 359,
+      "hit_rate": 0.5153,
+      "mean_return": 0.0118,
+      "median_return": 0.0017
     },
     "7d": {
-      "n": 356,
-      "hit_rate": 0.5365,
-      "mean_return": 0.0241,
-      "median_return": 0.0103
+      "n": 357,
+      "hit_rate": 0.535,
+      "mean_return": 0.0238,
+      "median_return": 0.0102
     },
     "30d": {
-      "n": 353,
-      "hit_rate": 0.4844,
-      "mean_return": 0.08,
-      "median_return": -0.0148
+      "n": 354,
+      "hit_rate": 0.4859,
+      "mean_return": 0.0799,
+      "median_return": -0.0126
     }
   },
   "per_call": [
@@ -87,10 +87,10 @@
       "symbol": null,
       "ticker": "HONEY",
       "post_id": "1635811514350292992",
-      "price_id": "solana:4vMsoUT2BWatFweudnQM1xedRLfJgJ7hswhcpz4xgBTy",
+      "price_id": "coingecko:hivemapper",
       "called_at": "2023-03-15T01:13:51.000Z",
       "direction": "buy",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 0.04308251
     },
     {
@@ -867,10 +867,10 @@
       "symbol": null,
       "ticker": "ZETA",
       "post_id": "1790388563978199194",
-      "price_id": "ethereum:0xf091867EC603A6628eD83D274E835539D82e9cc8",
+      "price_id": "coingecko:zetachain",
       "called_at": "2024-05-14T14:27:52.000Z",
       "direction": "buy",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 1.56
     },
     {
@@ -4368,7 +4368,7 @@
       "called_at": "2026-02-26T18:22:15.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 184.45835876464844
+      "price_at_call": 184.4583740234375
     },
     {
       "r_1d": 0.078,
@@ -4958,7 +4958,7 @@
     {
       "r_1d": 0.022,
       "r_7d": 0.0286,
-      "r_30d": null,
+      "r_30d": 0.0499,
       "symbol": null,
       "ticker": "ZEC",
       "post_id": "2108372691845861444",
@@ -4980,17 +4980,56 @@
       "direction": "hold",
       "matched_by": null,
       "price_at_call": 80785.88328804653
+    },
+    {
+      "r_1d": -0.027,
+      "r_7d": -0.0736,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "SOL",
+      "post_id": "2113606821692727329",
+      "price_id": "coingecko:solana",
+      "called_at": "2026-10-23T12:21:49.000Z",
+      "direction": "hold",
+      "matched_by": null,
+      "price_at_call": 104.37741963947985
+    },
+    {
+      "r_1d": 0.1217,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "ZEC",
+      "post_id": "2117814639056564276",
+      "price_id": "coingecko:zcash",
+      "called_at": "2026-11-04T03:02:11.000Z",
+      "direction": "buy",
+      "matched_by": null,
+      "price_at_call": 1171.4997689856716
+    },
+    {
+      "r_1d": -0.0203,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "ZEC",
+      "post_id": "2118687566442660273",
+      "price_id": "coingecko:zcash",
+      "called_at": "2026-11-06T12:50:53.000Z",
+      "direction": "hold",
+      "matched_by": null,
+      "price_at_call": 1312.4131612330018
     }
   ],
   "hold_pairs": 11,
-  "calls_total": 381,
-  "computed_at": "2026-11-02T23:12:57.310Z",
+  "calls_total": 384,
+  "computed_at": "2026-11-09T11:41:05.189Z",
   "by_direction": {
-    "buy": 217,
-    "hold": 142,
+    "buy": 218,
+    "hold": 144,
     "sell": 22
   },
-  "calls_priced": 356,
+  "calls_priced": 359,
   "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal); Yahoo Finance (stocks, ETFs, metals)",
   "median_hold_days": 65.8
 }
