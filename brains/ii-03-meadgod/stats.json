@@ -21,10 +21,10 @@
       "median_return": -0.0036
     },
     "30d": {
-      "n": 28,
-      "hit_rate": 0.3214,
-      "mean_return": -0.1929,
-      "median_return": -0.0499
+      "n": 30,
+      "hit_rate": 0.3,
+      "mean_return": -0.1853,
+      "median_return": -0.0577
     }
   },
   "per_call": [
@@ -551,7 +551,7 @@
     {
       "r_1d": 0.002,
       "r_7d": -0.0067,
-      "r_30d": null,
+      "r_30d": -0.0795,
       "symbol": null,
       "ticker": "BTC",
       "post_id": "2108403501105590570",
@@ -564,7 +564,7 @@
     {
       "r_1d": 0.0023,
       "r_7d": -0.0054,
-      "r_30d": null,
+      "r_30d": -0.079,
       "symbol": null,
       "ticker": "BTC",
       "post_id": "2108404333561930170",
@@ -577,7 +577,7 @@
   ],
   "hold_pairs": 4,
   "calls_total": 42,
-  "computed_at": "2026-11-02T23:11:50.941Z",
+  "computed_at": "2026-11-09T11:39:11.713Z",
   "by_direction": {
     "buy": 22,
     "hold": 6,
