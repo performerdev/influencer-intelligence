@@ -17,7 +17,7 @@
     "7d": {
       "n": 51,
       "hit_rate": 0.5686,
-      "mean_return": 0.0319,
+      "mean_return": 0.0318,
       "median_return": 0.0086
     },
     "30d": {
@@ -117,7 +117,7 @@
       "called_at": "2020-07-14T03:12:56.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 137.2063446044922
+      "price_at_call": 137.20635986328125
     },
     {
       "r_1d": null,
@@ -832,7 +832,7 @@
       "called_at": "2022-10-27T16:30:05.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 97.0108413696289
+      "price_at_call": 97.0108642578125
     },
     {
       "r_1d": null,
@@ -910,7 +910,7 @@
       "called_at": "2023-06-16T04:03:56.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 42.56136703491211
+      "price_at_call": 42.561370849609375
     },
     {
       "r_1d": 0,
@@ -923,7 +923,7 @@
       "called_at": "2023-06-16T04:10:23.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 42.56136703491211
+      "price_at_call": 42.561370849609375
     },
     {
       "r_1d": null,
@@ -1014,7 +1014,7 @@
       "called_at": "2023-11-14T14:29:13.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 79.27313995361328
+      "price_at_call": 79.27314758300781
     },
     {
       "r_1d": null,
@@ -1131,7 +1131,7 @@
       "called_at": "2023-12-30T18:22:35.000Z",
       "direction": "hold",
       "matched_by": "stock",
-      "price_at_call": 90.55572509765625
+      "price_at_call": 90.55573272705078
     },
     {
       "r_1d": 0.0138,
@@ -1157,7 +1157,7 @@
       "called_at": "2024-02-21T21:02:34.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 67.27701568603516
+      "price_at_call": 67.27700805664062
     },
     {
       "r_1d": -0.1265,
@@ -1166,10 +1166,10 @@
       "symbol": null,
       "ticker": "DOGWIFHAT",
       "post_id": "1764431294975369258",
-      "price_id": "coingecko:dogwifhat-eth",
+      "price_id": "ethereum:0x8AEC4bbDcfB451aA289bfBD3C2F4E34A44ADa1be",
       "called_at": "2024-03-03T23:22:56.000Z",
       "direction": "hold",
-      "matched_by": "symbol",
+      "matched_by": "ticker",
       "price_at_call": 0.04194884
     },
     {
@@ -1209,7 +1209,7 @@
       "called_at": "2024-08-31T17:49:34.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 119.04039001464844
+      "price_at_call": 119.04036712646484
     },
     {
       "r_1d": null,
@@ -1274,7 +1274,7 @@
       "called_at": "2024-12-14T17:47:34.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 122.18669128417969
+      "price_at_call": 122.18669891357422
     },
     {
       "r_1d": 0.0123,
@@ -1537,17 +1537,17 @@
       "price_at_call": 0.01645389436256664
     },
     {
-      "r_1d": 0.0097,
-      "r_7d": 0.0315,
-      "r_30d": 0.0726,
+      "r_1d": 0.0093,
+      "r_7d": 0.0303,
+      "r_30d": 0.0721,
       "symbol": null,
       "ticker": "SPCX",
       "post_id": "2092357993560252908",
-      "price_id": "coingecko:spacex-robinhood-tokenized-stock",
+      "price_id": "coingecko:spacex-backpack-securities",
       "called_at": "2026-08-25T21:06:34.000Z",
       "direction": "hold",
       "matched_by": "symbol",
-      "price_at_call": 137.83539442246408
+      "price_at_call": 137.78870980915076
     },
     {
       "r_1d": -0.0166,
@@ -1573,7 +1573,7 @@
       "called_at": "2026-10-21T05:38:17.000Z",
       "direction": "buy",
       "matched_by": "ticker",
-      "price_at_call": 0.000013562755603581782
+      "price_at_call": 0.00001356275560358178
     },
     {
       "r_1d": null,
@@ -1587,27 +1587,14 @@
       "direction": "buy",
       "matched_by": null,
       "price_at_call": null
-    },
-    {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
-      "symbol": null,
-      "ticker": "MARKET",
-      "post_id": "2116233076565282848",
-      "price_id": null,
-      "called_at": "2026-10-30T18:17:37.000Z",
-      "direction": "hold",
-      "matched_by": null,
-      "price_at_call": null
     }
   ],
   "hold_pairs": 9,
-  "calls_total": 121,
-  "computed_at": "2026-11-02T23:17:32.659Z",
+  "calls_total": 120,
+  "computed_at": "2026-11-09T11:46:30.115Z",
   "by_direction": {
     "buy": 78,
-    "hold": 23,
+    "hold": 22,
     "sell": 20
   },
   "calls_priced": 52,
