@@ -9,21 +9,21 @@
   ],
   "horizons": {
     "1d": {
-      "n": 17,
-      "hit_rate": 0.4706,
-      "mean_return": 0.0357,
-      "median_return": 0
+      "n": 19,
+      "hit_rate": 0.5263,
+      "mean_return": 0.0389,
+      "median_return": 0.0065
     },
     "7d": {
-      "n": 17,
-      "hit_rate": 0.4706,
-      "mean_return": 0.0203,
+      "n": 19,
+      "hit_rate": 0.4737,
+      "mean_return": 0.0174,
       "median_return": -0.0055
     },
     "30d": {
-      "n": 17,
-      "hit_rate": 0.4118,
-      "mean_return": -0.0332,
+      "n": 19,
+      "hit_rate": 0.4211,
+      "mean_return": -0.0383,
       "median_return": -0.1234
     }
   },
@@ -228,6 +228,71 @@
       "r_7d": null,
       "r_30d": null,
       "symbol": null,
+      "ticker": "OURA",
+      "post_id": "2026436165440778404",
+      "price_id": null,
+      "called_at": "2026-02-24T23:16:45.000Z",
+      "direction": "buy",
+      "matched_by": null,
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "MERCOR",
+      "post_id": "2026452080311824868",
+      "price_id": null,
+      "called_at": "2026-02-25T00:20:00.000Z",
+      "direction": "buy",
+      "matched_by": null,
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "DATABRICKS",
+      "post_id": "2026452080311824868",
+      "price_id": null,
+      "called_at": "2026-02-25T00:20:00.000Z",
+      "direction": "buy",
+      "matched_by": null,
+      "price_at_call": null
+    },
+    {
+      "r_1d": 0.0959,
+      "r_7d": 0.0568,
+      "r_30d": 0.1377,
+      "symbol": null,
+      "ticker": "RAMP",
+      "post_id": "2026452080311824868",
+      "price_id": "ethereum:0x33D0568941C0C64ff7e0FB4fbA0B11BD37deEd9f",
+      "called_at": "2026-02-25T00:20:00.000Z",
+      "direction": "buy",
+      "matched_by": "ticker",
+      "price_at_call": 0.017154107272363293
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "OURA",
+      "post_id": "2026452080311824868",
+      "price_id": null,
+      "called_at": "2026-02-25T00:20:00.000Z",
+      "direction": "buy",
+      "matched_by": null,
+      "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
       "ticker": "STRIPE",
       "post_id": "2026793469768073459",
       "price_id": null,
@@ -235,6 +300,32 @@
       "direction": "buy",
       "matched_by": null,
       "price_at_call": null
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "DATABRICKS",
+      "post_id": "2027802815046029745",
+      "price_id": null,
+      "called_at": "2026-02-28T17:47:20.000Z",
+      "direction": "buy",
+      "matched_by": null,
+      "price_at_call": null
+    },
+    {
+      "r_1d": 0.0353,
+      "r_7d": -0.071,
+      "r_30d": -0.3012,
+      "symbol": null,
+      "ticker": "BOOM",
+      "post_id": "2028980936683946018",
+      "price_id": "coingecko:boom-2",
+      "called_at": "2026-03-03T23:48:46.000Z",
+      "direction": "buy",
+      "matched_by": "symbol",
+      "price_at_call": 0.0007863510205718397
     },
     {
       "r_1d": null,
@@ -316,14 +407,14 @@
     }
   ],
   "hold_pairs": 0,
-  "calls_total": 22,
-  "computed_at": "2026-11-09T11:49:25.606Z",
+  "calls_total": 29,
+  "computed_at": "2026-11-09T23:56:07.643Z",
   "by_direction": {
-    "buy": 21,
+    "buy": 28,
     "hold": 1,
     "sell": 0
   },
-  "calls_priced": 17,
+  "calls_priced": 19,
   "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal); Yahoo Finance (stocks, ETFs, metals)",
   "median_hold_days": null
 }
