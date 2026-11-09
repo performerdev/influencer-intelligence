@@ -10,20 +10,20 @@
   "horizons": {
     "1d": {
       "n": 5,
-      "hit_rate": 0.8,
-      "mean_return": -0.0122,
-      "median_return": 0.0128
+      "hit_rate": 0.6,
+      "mean_return": -0.0655,
+      "median_return": 0.0108
     },
     "7d": {
       "n": 5,
-      "hit_rate": 0.4,
-      "mean_return": -0.0997,
-      "median_return": -0.0046
+      "hit_rate": 0.2,
+      "mean_return": -0.1902,
+      "median_return": -0.2029
     },
     "30d": {
       "n": 5,
       "hit_rate": 0.4,
-      "mean_return": -0.2643,
+      "mean_return": -0.277,
       "median_return": -0.3067
     }
   },
@@ -48,10 +48,10 @@
       "symbol": null,
       "ticker": "SANTA",
       "post_id": "1471862214126710785",
-      "price_id": "coingecko:santa-coin-2",
+      "price_id": "bsc:0x4F1A6FC6A7B65Dc7ebC4EB692Dc3641bE997c2F2",
       "called_at": "2021-12-17T15:17:52.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
+      "matched_by": "ticker",
       "price_at_call": 4.201949457534977e-9
     },
     {
@@ -61,10 +61,10 @@
       "symbol": null,
       "ticker": "SANTA",
       "post_id": "1474387550928355328",
-      "price_id": "coingecko:santa-coin-2",
+      "price_id": "bsc:0x4F1A6FC6A7B65Dc7ebC4EB692Dc3641bE997c2F2",
       "called_at": "2021-12-24T14:32:39.000Z",
       "direction": "hold",
-      "matched_by": "symbol",
+      "matched_by": "ticker",
       "price_at_call": 3.3682674912762112e-9
     },
     {
@@ -81,17 +81,17 @@
       "price_at_call": null
     },
     {
-      "r_1d": 0.0355,
-      "r_7d": 0.027,
-      "r_30d": 0.1711,
+      "r_1d": -0.2309,
+      "r_7d": -0.4256,
+      "r_30d": 0.1077,
       "symbol": null,
       "ticker": "MOON",
       "post_id": "1486401532807499778",
-      "price_id": "bsc:0xE8c93310af068aa50bd7bF0ebFa459Df2a02ceba",
+      "price_id": "coingecko:moon",
       "called_at": "2022-01-26T18:11:56.000Z",
       "direction": "sell",
-      "matched_by": "ticker",
-      "price_at_call": 0.761255553334375
+      "matched_by": "symbol",
+      "price_at_call": 0.07814547406890197
     },
     {
       "r_1d": null,
@@ -200,7 +200,7 @@
   ],
   "hold_pairs": 0,
   "calls_total": 13,
-  "computed_at": "2026-11-09T11:37:52.031Z",
+  "computed_at": "2026-11-09T23:48:51.995Z",
   "by_direction": {
     "buy": 1,
     "hold": 2,
