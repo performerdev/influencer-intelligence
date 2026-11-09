@@ -1,67 +1,65 @@
 # @mert's rules
 
-## Entry
-- Buy fear and price weakness. “fear is at all-time highs just bought an unhealthy amount of SOL — ama” (post:1596555289142374400)
-- Buy mispriced assets while the market is asleep. “Didn't realize it was as easy as just buying mispriced assets” (post:1716592275466113277)
-- DCA into a few high-conviction bets until they no longer look undervalued. “just estimate what you think something should be valued at and keep DCAing until you believe it is no longer undervalued” (post:1977185927601553460)
-- Buy when others are scared or indifferent, in size. “i) buy when others are scared or indifferent, in size” (post:1989047146302394844)
-- Don’t follow “smart money” or social buying signals. “basing your investments on what \"smart money\" is doing or other \"social buying\" signals is insanely silly” (post:1625238577343787010)
-- Solana-specific: buy SOL below $500. “SOL under 500 is a free gift” (post:1985629614786728332) (stated once)
-- He converted most crypto to SOL to stake with Helius. “have converted ~90% of all my crypto holdings into SOL to stake with Helius in the past 2 weeks” (post:1782423777831186725) (stated once)
+### Entry
+- Buy when fear is high and the asset is mispriced: “fear is at all-time highs just bought an unhealthy amount of SOL — ama” (1596555289142374400).
+- Buy mispriced assets while the market sleeps: “Didn’t realize it was as easy as just buying mispriced assets” (1716592275466113277).
+- Buy dips in high-conviction names: “if you liked SOL at 130+ — I have great news for you” (1744193360917610564).
+- Buy when others are scared or indifferent, in size: “buy when others are scared or indifferent, in size” (1989047146302394844).
+- DCA into a few high-conviction bets until they no longer look undervalued: “just estimate what you think something should be valued at and keep DCAing until you believe it is no longer undervalued” (1977185927601553460).
+- Add to winners rather than salvaging losers: “always better to double down on the winners than to spend that time trying to salvage the losers” (1969825357865037910).
+- SOL below $500 is a gift: “SOL under 500 is a free gift” (1985629614786728332).
+- Buy privacy too: “just buy some SOL and ZEC (while being aware of the risks, according to my lawyer)” (1978883429270708489).
+- If you are a builder in your early 20s, go all in on Solana: “If youre a guy in your early 20s, build on Solana. Go into debt if you have to” (1873174470778871832).
 
-## Exit and taking profit
-- Sell higher, not lower. “why would u sell when the price is lower and not when it's higher? perhaps u r stupid or something?” (post:1908951264555048979)
-- Don’t micro-time tops or bottoms. “timing tops or bottoms is, by definition, a waste of time unless you have alpha which you probably don't” (post:1977185927601553460)
-- Hold spot and be useful instead of trading. “Hold spot, be useful to someone, and stop crying” (post:1820132806154174791)
-- He says he will not sell SOL. “Ive not sold any SOL and will not sell any. I am serious about trillions” (post:1985622469169000570) (stated once)
-- Unrealized loss is not an exit. “if you do not sell here, then you technically haven't lost the money yet” (post:1959958039865270308)
+### Exit and taking profit
+- Sell when price is higher, not lower: “why would u sell when the price is lower and not when it’s higher? perhaps u r stupid or something?” (1908951264555048979).
+- Do not micro-time tops and bottoms for a few percent while missing the 1000%: “ct traders ... would rather obsess about micro-timing an imaginary top/bottom to squeeze out a marginal 2.7%, while missing on the 1000%” (2101137641601450093).
+- Never sell SOL with a serious long-term view: “Ive not sold any SOL and will not sell any. I am serious about trillions” (1985622469169000570).
+- If you did not sell, you have not technically lost the money yet: “if you do not sell here, then you technically haven’t lost the money yet” (1959958039865270308).
 
-## Sizing
-- Concentrate on a small number of assets and do deep research. “iii) concentrate on ~3 assets max at once and do extreme research” (post:1989047146302394844)
-- Diversification is dumb. “diversification is dumb” (post:1784298467768070302) (stated once)
-- Keep 5–20% for high-risk fun and leave cash for high-conviction opportunities. “use 5-20% of your cash for high risk fun shit if you want” (post:1974843290865238200)
-- Prefer SOL or angel cheques in an 80/20 mix. “I don't like holding anything but SOL or angel cheques in an 80/20” (post:1892638784329519504) (stated once)
-- For startups, raise as little as possible. “raise as little as possible” (post:1856157717095649436) (stated once)
+### Sizing
+- Diversification is dumb: “diversification is dumb” (1784298467768070302).
+- Concentrate on roughly three assets max and research extremely deeply: “concentrate on ~3 assets max at once and do extreme research” (1989047146302394844).
+- Use a small cash slice for high-risk fun, hold the rest for high-conviction opportunities: “use 5-20% of your cash for high risk fun shit if you want” (1974843290865238200).
+- Keep holdings simple: mostly SOL or angel checks in an 80/20 split: “I don’t like holding anything but SOL or angel cheques in an 80/20” (1892638784329519504).
+- Raise as little as possible: “raise as little as possible” (1856157717095649436).
 
-## Averaging down
-- Buying an asset and selling it when it drops is incoherent. “if you buy an asset and sell it when it goes down instead of buying more, why did you buy it? are you stupid?” (post:2017055162171355423)
-- Treat dips in coins you are bullish on as opportunity. “oh no an opportunity to buy more of the coins that I said I was bullish on for the past 5 years how terrible grow up” (post:2021679862738772268)
-- The right coin makes you happy when it falls. “the way to know if you bought the right coin is whether you're happy when price goes down” (post:2059575428373791138)
+### Averaging down
+- If you bought it and sell it when it drops instead of buying more, why did you buy it? “if you buy an asset and sell it when it goes down instead of buying more, why did you buy it? are you stupid?” (2017055162171355423).
+- Treat dips in coins you have been bullish on for years as opportunities, not tragedies: “oh no an opportunity to buy more of the coins that I said I was bullish on for the past 5 years how terrible grow up” (2021679862738772268).
+- Keep buying dips until the market turns: “been buying the dips for like 3 weeks now lmao irresponsibly overweight anytime we’ll go up now right guys?” (1997258213352505434).
 
-## Hold time
-- Expand your time horizon during turbulence. “If you're worried, expand your time horizon” (post:1533128448893403138)
-- A non-tourist horizon is at least 5–10 years. “if your time horizon for this space isn't at least 5-10 years — you're a tourist” (post:1709629712211829198)
-- The edge is having a horizon longer than one cycle. “the biggest edge in crypto is having a time-horizon longer than one cycle” (post:1862898721383444540)
-- Simply having longer than a zoomer horizon is an edge. “it is incredible how much of an edge you have in crypto if you merely have a longer than zoomer time horizon” (post:2095247433576088049)
-- Don’t let five-hour price action change a five-year thesis. “if your 5y thesis is affected by 5h price action, reconsider why you're here” (post:1979122321467044071)
-- 2–3 years in “zeclana” and chill. “2-3 years in zeclana and chill brother” (post:2070216465014235541)
+### Hold time
+- Expand your time horizon during turbulence: “If you’re worried, expand your time horizon” (1533128448893403138).
+- A crypto time horizon shorter than 5–10 years makes you a tourist: “if your time horizon for this space isn’t at least 5-10 years — you’re a tourist” (1709629712211829198).
+- The biggest edge is a time horizon longer than one cycle: “the biggest edge in crypto is having a time-horizon longer than one cycle” (1862898721383444540).
+- Do not let short-term price action shake a multi-year thesis: “if your 5y thesis is affected by 5h price action, reconsider why you’re here” (1979122321467044071).
+- Have a longer-than-zoomer time horizon: “it is incredible how much of an edge you have in crypto if you merely have a longer than zoomer time horizon” (2095247433576088049).
+- Hold spot, be useful, and stop crying: “Hold spot, be useful to someone, and stop crying” (1820132806154174791).
+- If the coin is right, you should be happy when price goes down: “the way to know if you bought the right coin is whether you’re happy when price goes down” (2059575428373791138).
 
-## Risk management
-- Use a ledger, exchange, or multisig. “use a ledger, exchange, or multisig” (post:1554879738480656385)
-- Avoid protocols without frozen or multisig authorities. “going full goblin mode on protocols without frozen or multisig authorities from now on” (post:1603784814418599938)
-- Do not use leverage. “ok can you guys like stop using leverage lol” (post:1995308693844566221)
-- After the October 10 crash, cap leverage at 2x. “after seeing aster do well (barely functional for me), reduced all leverage to max 2x” (post:1976838108663722481)
-- Risk only what you can afford to lose. “gamble all you want and have fun (with what you can afford to lose) — just remember gravity and don't click weird links” (post:1764190945120080070)
-- Do not allocate what you cannot lose on risky privacy bets. “do not allocate what you're not willing to lose, this is risky” (post:1973335855977680957)
-- Never use a single-signer setup, even a hardware wallet. “never use a single-signer setup for your money. just do not do this. it does not matter if it's a hardware wallet.” (post:2087897699341525260)
-- Audit opsec: avoid links, use YubiKey or authenticator apps, revoke connected apps. “good time to audit your opsec don't click links, don't download pretty much anything, use MFA (no SMS, use Yubikey or Authenticator apps), revoke connected apps” (post:2045582183767916789)
-- Stake SOL to avoid inflation dilution. “if you're not staking your SOL, it's literally melting in your wallet from inflation” (post:1784426738577010800)
-- If you cannot stomach a 20% drawdown, quit crypto. “if you cant stomach a 20% drawdown, you should completely quit all crypto markets” (post:1987223256794120523)
-- Be suspicious of technical arguments from people without relevant technical background. “be wary of sociology majors making technical arguments” (post:1980371971503452674)
+### Risk management
+- Use self-custody, exchange, or multisig; avoid custodial risk: “use a ledger, exchange, or multisig” (1554879738480656385).
+- Expect future outages, hacks, and black swans; do not get euphoric: “there’ll be future issues like outages, hacks, or worse” (1723060879913009450).
+- Do not try to time the market: “you will never be able to reliably ‘time’ a market” (1749622892776538489).
+- Gamble only with what you can afford to lose: “gamble all you want and have fun (with what you can afford to lose)” (1764190945120080070).
+- Do not use single-signer setups, even hardware wallets; use multisigs: “never use a single-signer setup for your money. just do not do this.” (2087897699341525260).
+- Use hardware MFA, email aliases, and never SMS auth: “always use an email alias via protonmail ... have a hardware MFA method like yubikey wherever possible. never SMS auth.” (2087897699341525260).
+- Do not move funds in a panic; you are more likely to lose money moving them than cryptography breaking: “you are way more likely to lose your money by superficially moving it around than it is for fundamental cryptography to break overnight” (2108058959852773442).
+- Control your emotions and time horizon; those are the only controls you have: “you can only control ii) and iii) for yourself” (2013681862762471527).
+- Cap leverage at 2x after the crash: “after seeing aster do well (barely functional for me), reduced all leverage to max 2x” (1976838108663722481).
+- If you cannot stomach a 20% drawdown, leave crypto: “if you cant stomach a 20% drawdown, you should completely quit all crypto markets” (1987223256794120523).
+- Audit opsec, especially after attacks: “good time to audit your opsec don’t click links, don’t download pretty much anything” (2045582183767916789).
 
-## Other
-- Build things only possible on Solana. “Try to build things that are only possible on Solana take advantage of composability, raw performance, and unique tooling available to only you” (post:1621564208537018369)
-- Talk to users and market before building. “talk to users and your market BEFORE building something, building is the easy part” (post:1686939818251452416)
-- Be loud and don’t neglect distribution. “be loud, do not neglect marketing and advocacy” (post:1686939818251452416)
-- Work backwards from problems, not upward from a tech stack. “work backwards from problems, not upwards from a tech stack you feel obligated to sell” (post:1814684270713094448)
-- You must both ship and yap. “if you ship, but don't yap, you have no users if you yap, but don't ship, you're a fraud” (post:1918255263993258102)
-- Focus on inputs, not price. “if you focus on the inputs, the price takes care of itself over a non tourist time horizon” (post:1801687998834065823)
-- Don’t use easily gamed metrics. “please stop using this as a metric it is actively useless” (post:1727768876941820076)
-- Explain ideas at three levels of abstraction. “if you can't explain your idea to someone else in at least 3 levels of abstraction (beginner, intermediate, advanced) — you don't understand it” (post:1730093668206309608)
-- Do not touch grass. “do not, under any circumstances, touch grass” (post:1774664487045300338)
-- If you are going to eat shit, don’t nibble. “If you're going to eat shit, don't nibble.” (post:1735811132659474766)
-- Encrypt your money. “encrypt the money” (post:2013938235018506615)
-- Do not use “eth killer.” “stop using the term \"eth killer\" — it's mistaken (and stupid)” (post:1648371410409078785)
-- Use median, not average, for skewed data. “hello kind reminder to not use averages for skewed datasets — use median” (post:1741004640299409680)
-- Do not optimize what should not exist. “do not optimize what should not exist in the first place” (post:1872647725461999752)
-- It is okay to be wrong publicly; it is how you learn. “the best way to learn on the internet is to post the wrong answer” (post:2004184812827902314)
+### Other
+- Build things only possible on Solana: “Try to build things that are only possible on Solana” (1621564208537018369).
+- Start from real problems, not from trying to apply crypto: “don’t think: ‘hmm where can I apply crypto?’ instead, look for problems!” (1636755645495119873).
+- Ask whether a blockchain is necessary for the product: “when building a product in crypto — *please* ask yourself ‘is a blockchain necessary for this?’” (1643382282642923520).
+- Be loud; being copied is fine: “I’ve been loudly broadcasting everything we build ... and we’ve only been copied every single time by multiple teams it’s fine really” (1641936462806384643).
+- Do not neglect distribution: “you could be building world-class tech and it won’t matter if no one knows about it” (1628420878785474560).
+- Ship and yap; neither works without the other: “you must both ship and yap — you can not neglect the other” (1851632832386400294).
+- Founders should be their own marketers; do not hire a CMO or agency early: “Absolutely do not use a marketing agency and do not hire a CMO if you’re a crypto startup” (1879111926094954721).
+- Do not base investments on smart money or social buying signals: “basing your investments on what ‘smart money’ is doing or other ‘social buying’ signals is insanely silly” (1625238577343787010).
+- Do not use the word “supercharge”: “never ever use the word ‘supercharge’ in your product, website, or tweets” (1899667547043090691).
+- Encrypt your money: “encrypt the money” (2013938235018506615).
+- Do not touch grass: “do not — under any circumstances — ‘touch grass’” (1797074967084826970).

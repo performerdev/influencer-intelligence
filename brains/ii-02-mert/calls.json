@@ -3790,6 +3790,16 @@
     "url": "https://x.com/mert/status/2106077183651565647"
   },
   {
+    "date": "2026-10-08",
+    "ticker": "ZEC",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "no, do not move your funds no matter what chain youre on",
+    "post_id": "2107996849919701390",
+    "url": "https://x.com/mert/status/2107996849919701390"
+  },
+  {
     "date": "2026-10-09",
     "ticker": "ZEC",
     "chain": null,
@@ -3810,14 +3820,24 @@
     "url": "https://x.com/mert/status/2110580548620173419"
   },
   {
-    "date": "2026-10-23",
+    "date": "2026-10-21",
     "ticker": "SOL",
     "chain": null,
     "address": null,
     "direction": "hold",
-    "quote": "promises made, promises kept thank you anatoly for the generational poverty",
-    "post_id": "2113606821692727329",
-    "url": "https://x.com/mert/status/2113606821692727329"
+    "quote": "Solana is now 95% faster trillions",
+    "post_id": "2112911310044189057",
+    "url": "https://x.com/mert/status/2112911310044189057"
+  },
+  {
+    "date": "2026-10-29",
+    "ticker": "ZEC",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "ATHs soon",
+    "post_id": "2115921724499698131",
+    "url": "https://x.com/mert/status/2115921724499698131"
   },
   {
     "date": "2026-11-04",
