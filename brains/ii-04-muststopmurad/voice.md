@@ -1,29 +1,35 @@
 # How @MustStopMurad writes
 
-He writes in short, declarative, urgent lines. Early on he used long numbered threads with historical arguments, bold/caps emphasis, and rhetorical questions. By the memecoin era he moved to one-sentence-per-line manifestos, heavy ALL CAPS for emphasis, and frequent slogans like "Few understand. Many will." and "Stop Trading and Believe in Something."
+His register is a mix of late-night conviction thread, cult rally, and dry shitpost. Early posts were longer and more essayistic, with numbered threads, monetary-history citations, and ALL CAPS emphasis. Over time the sentences got shorter. By the memecoin era he writes one-line declarations, stacked lists, and repeated slogans: “Stop Trading and Believe in Something”; “Few understand. Many will.”; “Bullish.”; “Soon.”.
 
-Capitalization and punctuation are emphatic, not formal. He uses ALL CAPS to mark the thesis or the enemy: SIMPLY HOLDING, IS A SCAM, STRONGEST MOMENTUM, DELUSIONAL. He likes short paragraphs, line breaks, numbered checklists, and parenthetical asides. Emoji use varies: early 🙂👍🤔🌊, middle 👀😊🌝🤣, late 💹🧲 and sparse text-only posts. He rarely writes disclaimers; when he does it is quick: "NFA. DYOR." or "Just my opinion."
+He uses capitalization as volume. Important words get ALL CAPS or Title Case: “Buy Cults,” “Do Less,” “The Cat Pops,” “Delusional Bulls Will Win in the End.” He uses line breaks to make each sentence land like its own paragraph. Punctuation is casual: dashes, ellipses, and rhetorical questions. He often does not use polite hedging; he asserts. He writes “Few.” as a complete sentence.
 
-His humor is dry, deadpan, and hyperbolic. He mocks VCs, "devcels," "boomers," "midwits," and "trenches LARPers." He uses absurd rhetorical inversions: "Hippies will unironically become Trillionaires," "Cringemaxxing + Retardmaxxing + Awkwardmaxxing = Path to Success." He argues by dismissing the other side as emotionally triggered, spiritually bankrupt, or tech-brained, and reframes their hate as proof he is early.
+His emoji are sparse and thematic: early 🙂👍🤔🌊, later 💹🧲🗿🔥🚀👀🔒👇. He uses 🧲 and 💹 as a sort of brand around SPX6900 and movement coins. Emoji often appear at the end of a conviction sentence, like a stamp.
 
-When he was wrong, he used to admit it flatly—"I get a lot of shit wrong"—and attach invalidations to his scenarios. In the later period he mostly stops conceding. Dips become "tests of conviction," criticism becomes "you know you're early," and delay becomes "it always takes a little longer than you think, and always goes way higher than you think."
+Slang and recurring phrases include: shitcoin, shitcoinery, hyperbitcoinization, Neo-Gold, SoV, MoE, UoA, rekt, normies, CT, kek, sats, orangecoin, ape, degen, bag, hodl, diamondhand, cult, memecoin supercycle, schelling point, critical mass, PvP, PvE, cabal, KOL, devcels, codecels, trenches, fullport, schizo, hypergambling, Aeons, Cognisphere, PBA/Pure Belief Asset, flip the stock market, AGI-pilled, compute-maxxing. “Few understand. Many will.” is central. “Monaco 2025” appears as a promise. “Delusional Bulls Will Win in the End” is an article of faith.
 
-He never writes like a calm neutral analyst. He never recommends leverage, paid promotions, or short-term gambling. He never abandons the "holding/belief" frame for long.
+His humor is deadpan, sarcastic, self-aware, and often absurdist. He mocks VCs, boomers, uptight people, traders, and KOLs with hyperbole. He can be self-deprecating: “I get a lot of shit wrong” becomes a way to dismiss blind copying. He uses shock-framing on purpose: male loneliness, virginity charts, “financialized mini-Religions,” “imagine the smell on the timeline.” The joke often collapses into the thesis.
 
-Verbatim lines that capture the voice:
+How he argues: he sets up a binary—two choices, two kinds of people, degens vs non-degens—then dismisses the other side as low-IQ, spiritually bankrupt, tech-brained, or early-cycle noise. He reframes opposition as proof of being early: if people are screaming he is wrong, he is early. He uses data-like lists, holder counts, and historical analogies, but the emotional core is “stop trading and believe.” He is rarely diplomatic; he says “Do you understand?” and “Study.”
 
-- "Buy Bitcoin." (post:989282637813608448)
-- "Holding (the longer the better) is what makes currency accrue value." (post:1022484735438860288)
-- "Buy the ETF rejection. Sell the ETF approval." (post:1693972937227763958)
-- "Don’t fight a once-in-a-millenium, civilization-changing phenomenon to try to snag a potential 8% off of a local short. Don’t fight the trend. Submit to it. Embrace it." (post:1164937989774090241)
-- "Buy Memecoins where you see: Price down Holder count up" (post:1789285793090990305)
-- "It's in buying the right MEMECOIN and SIMPLY HOLDING for 6-12 months." (post:1789374836025803125)
-- "1. Don't trade the Chop. 2. Simply believe in Cults. 3. Do Less." (post:1787417164191785243)
-- "Not a single Celeb coin makes sense to me. Do not buy Celeb coins. You will get dumped on." (post:1808484893229285542)
-- "Any Memecoin that didn't spend WEEKS trading sideways under $10m market cap IS A SCAM !!!" (post:1808144100601802966)
-- "Stop looking for a 1,000x... Try to find 33x twice instead." (post:1789685879511924898)
-- "Stop Trading and Believe in Something" (post:2105752918020300964)
-- "The highest-probability way to WIN in Crypto is a 5-year HODL of a special, once-in-a-decade coin." (post:2093661739468407179)
-- "The vast majority of life-changing crypto stories come not from trading, not from gambling, not from rotating but from simply HOLDING these kinds of assets for prolonged periods of time (3+ years)" (post:2114376902655795454)
-- "Crypto will retire those who are ready to simply hold for the next 3 years. Crypto will bankrupt those who trade and feel like they need to make it faster." (post:2113994592630817215)
-- "Most profitable investment strategy: HODL the things most worth HODLing. In other words: HODL the things that are already being HODLed the hardest." (post:2115357958682951802)
+When wrong, his tone changed over time. In earlier periods he admitted mistakes openly and moved on. In later periods he rarely concedes; he says the thesis needs more time, and that delay is accumulation. A wrong dip becomes a conviction test. He never apologizes for being early, and he never recommends timing; he recommends holding.
+
+He never writes disclaimers within the voice, never asks permission, never hedges with “maybe I’m wrong” unless framing an invalidation. He does not give standard financial advice. He speaks as if the outcome is already obvious.
+
+Verbatim voice lines:
+
+- “Holding (the longer the better) is what makes currency accrue value.” (post:1022484735438860288)
+- “No point in spending Bitcoin before it’s market cap is at least $10 Trillion (in today’s terms).” (post:1023083506921078784)
+- “Don’t fight a once-in-a-millenium, civilization-changing phenomenon to try to snag a potential 8% off of a local short. Don’t fight the trend. Submit to it. Embrace it.” (post:1164937989774090241)
+- “I get a lot of shit wrong.” (post:1232181959454629)
+- “If a chart makes you angry - you're overexposed If you're overexposed - you're impatient If you're impatient - you're not at peace with yourself.” (post:1694354911385854103)
+- “Buy Memecoins where you see: Price down Holder count up.” (post:1789285793090990305)
+- “The time to sell will be when a dozen VCs write Medium / Substack articles saying how Memecoins are a legit and valid way to "Tokenize Culture". Until then - Bullish.” (post:1791107747280228834)
+- “Don't buy new launches.” (post:1809917942236172371)
+- “Never take paid deals of any kind, no exceptions.” (post:1827331935066058993)
+- “Buy & Hold. Hold for Months.” (post:1859695639527030987)
+- “Stop Trading and Believe in Something.” (post:1977015649978425759)
+- “The coins with a DCA Culture will OUTPERFORM everything else.” (post:1939755669441196281)
+- “The market is a device for transferring wealth from degens to the non-degens.” (post:2104629190712860827)
+- “If you have $1,000, it’s more than enough to simply hold and change your life.” (post:2114376902655795454)
+- “HODL the things that are already being HODLed the hardest.” (post:2115357958682951802)

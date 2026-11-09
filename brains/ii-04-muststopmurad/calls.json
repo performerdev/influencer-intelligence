@@ -1340,14 +1340,24 @@
     "url": "https://x.com/MustStopMurad/status/2105752918020300964"
   },
   {
-    "date": "2026-10-12",
+    "date": "2026-10-05",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "SPX6900 is the next Bitcoin.",
+    "post_id": "2107189502506934440",
+    "url": "https://x.com/MustStopMurad/status/2107189502506934440"
+  },
+  {
+    "date": "2026-10-23",
     "ticker": "SPX6900",
     "chain": null,
     "address": null,
     "direction": "hold",
-    "quote": "You literally have no choice but to 1) stop trading 2) believe in something 3) diamondhand HODL 4) community-build 5) persist forever",
-    "post_id": "2109721885449859449",
-    "url": "https://x.com/MustStopMurad/status/2109721885449859449"
+    "quote": "SPX6900 will hit $69,000 per coin.",
+    "post_id": "2113721448845992357",
+    "url": "https://x.com/MustStopMurad/status/2113721448845992357"
   },
   {
     "date": "2026-10-25",
@@ -1360,43 +1370,53 @@
     "url": "https://x.com/MustStopMurad/status/2114376902655795454"
   },
   {
+    "date": "2026-10-25",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "SPX6900 is trading at $333 million. Mark my words, it will be trading at $333 billion.",
+    "post_id": "2114475743170220039",
+    "url": "https://x.com/MustStopMurad/status/2114475743170220039"
+  },
+  {
     "date": "2026-10-26",
     "ticker": "SPX6900",
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "I am telling you straight up: spx6900 is that Category 3 “non-consensus” asset. All you have to do is buy, hold, and persist.",
+    "quote": "spx6900 is that Category 3 “non-consensus” asset. All you have to do is buy, hold, and persist.",
     "post_id": "2114789183814328794",
     "url": "https://x.com/MustStopMurad/status/2114789183814328794"
   },
   {
-    "date": "2026-10-27",
+    "date": "2026-10-31",
     "ticker": "SPX6900",
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "Stop trading and believe in something. Buy and hold. Don’t touch anything for years.",
-    "post_id": "2115041470981783697",
-    "url": "https://x.com/MustStopMurad/status/2115041470981783697"
+    "quote": "Imagine being able to discover bitcoin in 2011-2012 spx6900",
+    "post_id": "2116509776335274481",
+    "url": "https://x.com/MustStopMurad/status/2116509776335274481"
   },
   {
-    "date": "2026-11-01",
-    "ticker": "SPX6900",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "Buying and Holding this kind of an asset is the only way to win big.",
-    "post_id": "2116883161183383847",
-    "url": "https://x.com/MustStopMurad/status/2116883161183383847"
-  },
-  {
-    "date": "2026-11-02",
+    "date": "2026-11-06",
     "ticker": "SPX6900",
     "chain": null,
     "address": null,
     "direction": "hold",
-    "quote": "identify the coins with the most hardcore, persistent *and* continuously growing community and HOLD.",
-    "post_id": "2117216792674255102",
-    "url": "https://x.com/MustStopMurad/status/2117216792674255102"
+    "quote": "At some point, people with 14,500 SPX6900 coins will be Billionaires.",
+    "post_id": "2118777089344319766",
+    "url": "https://x.com/MustStopMurad/status/2118777089344319766"
+  },
+  {
+    "date": "2026-11-07",
+    "ticker": "SPX6900",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "spx6900 is a better investment.",
+    "post_id": "2118982318811439573",
+    "url": "https://x.com/MustStopMurad/status/2118982318811439573"
   }
 ]
