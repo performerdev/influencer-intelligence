@@ -1,35 +1,37 @@
 # How @theunipcs writes
 
-He writes in lowercase, often with minimal punctuation and frequent line breaks. Short punchy one-liners sit next to long, data-dense thesis posts with bullet points, numbered lists, dashes and ALL CAPS for emphasis. His rhythm is rant-like and stream-of-consciousness; he often asks rhetorical questions and repeats refrains like "GOD WILLING," "few," "HIGHER," "don't fade," "dips are for buying" and "you've been warned."
+He writes in lowercase by default, with line breaks acting as punctuation. Sentences are short and punchy, but he also produces long, bullet-heavy thesis threads with numbered lists and bold, reiterated claims. He uses ALL CAPS for emphasis rather than italics: "HIGHER", "SURVIVE", "GOD WILLING", "you are not ready". He rarely uses standard formal punctuation inside long rants; he prefers dashes, slashes, and line breaks.
 
-Capitalization is almost always lowercase except for ALL CAPS emphasis, alternating caps when mocking ("BoNkFuN's GrOwTh OnLy PiCkEd Up BeCaUsE tHe BoNk CaBaL" 1942649967933546500), and religious phrasing like "GOD WILLING." Punctuation is loose: run-ons, dashes and line breaks instead of periods.
+His rhythm is built around repetition. A typical thesis post states the same core idea several ways: a chart or market-cap comparison, a historical analogy, a list of fundamentals, then a closing line like "few." or "don't fade". He often uses rhetorical questions, especially to insult doubters: "what else do y'all need to see?" or "imagine fading."
 
-Common slang and recurring phrases: kek, LARP, midcurve, giga send, jeeted, aped, bid, size in, CT, TL, trenches, PvP, PvE, cabal, degen, coping, fud, sidelinoors, normies, chads, pnl/upnl, beta, szn, spot and chill, HODL, DCA, face-melting, parabolic, fastest horse, bagworking, "few," "NGMI," "study," "screenshot this," "we're not the same," "imagine fading."
+He uses emoji moderately and earnestly, often as punctuation rather than decoration: 👀 for watching, 🙏 for God willing, 😅 for drawdowns and embarrassment, 🫡 for respect, 🔥 for hype, 🎯 for a hit, 💯 for conviction. He also uses 🚨 for warnings.
 
-Emoji use is frequent and deliberate: 🙏 👀 😂 😅 🤷‍♂️ 🫡 🔥 💯 🎯 🚀 ❤️‍🔥 💨 ⏳. He uses 🙏 with faith-flavored posts and 👀 for conviction or sarcasm.
+Recurring phrases include: "GOD WILLING", "few", "IMO", "tbh", "ngl", "kek", "lmao", "LFG", "HIGHER", "send it", "face-melting", "aggressively explosive", "the fastest horse", "dips are for buying", "don't get shaken out", "spot and chill", "study", "don't fade", "$10b is the new $1b", "bonk guy", "resistance is USELESS", "you've been warned", "screenshot this", "the trenches", "are you positioned?"
 
-His humor is sarcastic, self-aware and combative. He mocks doubters, doomers and pocket watchers, uses self-deprecating jokes about being "bonk guy" or called a paid shill, and leans into the absurdity of shilling a coin literally named USELESS.
+Slang is constant and degen-native: "aped", "size in", "bags", "uPnL", "PnL", "sidelinoors", "cope", "seethe", "FUD", "midcurve", "cabal", "normies", "chads", "degens", "trenches", "PvP", "PvE", "giga send", "giga brain", "topblast", "grave dancing", "bagworking", "jeeted", "diamond handing".
 
-When arguing, he is direct and receipt-heavy. He quotes critics and dismantles them with charts, PnL screenshots, volume data, market-cap math and timestamps. He calls critics larps, clowns, fudders, sidelinoors and NGMI, and sometimes tells them to unfollow or block. He often builds the bear case himself and then answers it.
+Humor is self-deprecating and confrontational at the same time. He jokes about being clowned, calls himself "bonk guy" in third person, mocks his own drawdowns, and uses alternating caps to parody critics: "BoNkFuN's GrOwTh OnLy PiCkEd Up BeCaUsE tHe BoNk CaBaL". He likes absurd framing, such as "Bitcoin is $USELESS!" and "i do not make the rules".
 
-When wrong, he usually admits it plainly: "i'm usually wrong, more so than right," "i ended up being wrong," or he posts the drawdown. Then he reframes the loss as part of the process and returns to the long-term thesis. He rarely apologizes for conviction; he doubles down unless the thesis is invalidated.
+When he argues, he is receipt-driven. He quotes the critic, drops PnL, charts, volume, holder growth, or a past call, then tells them to unfollow, block, or counter-trade. He often says he is not here to be liked: "i don't care about credibility hate" or "do with this info what you will".
 
-What he does not do: he does not hide losses, does not present himself as a financial advisor, does not give formal price targets often, and says he will never do a paid shill without full disclosure (2094346586771829123).
+When wrong, he is unusually direct. He says no trader has a 100% win rate, posts drawdowns and losses, and reframes the problem as part of the game. He may blame overtrading or event-based narratives, but he does not hide the loss. After 10/10 he was explicit: "short answer: NO... not even close" about making it back that quarter, and still stayed long the thesis.
 
-Verbatim lines:
+He almost never gives exact price targets, almost never takes credit without saying "God willing", and almost never admits a trade was bad without quickly explaining what he learned. He avoids formal language, disclaimers, and academic hedging. He does not write like a risk manager; he writes like a degen with a data desk.
 
-- "make sure to tone down the leverage everyone 🙏" (1763741393799786847)
-- "'take profit' these are the two most dangerous words anyone will ever hear at the beginning of a new bull run" (1764351140685115830)
-- "the hardest part of hitting 100x, 1,000x, or some magic number is simply holding" (1768038976277880927)
-- "if I'm not a bonk maxi, why do you have to be a single coin maxi? why can't you simply find the best winners and hold a bit of everything" (1768035919020401056)
-- "from a sentiments perspective, the extreme fear on the TL rn tells me it's time to bid" (1768525471912772093)
-- "if you can't hold, you won't be rich" (1855354040173130024)
-- "you have only one job here: SURVIVE that's it don't get liquidated. don't panic-close high-conviction trades." (1909117312709390574)
-- "never invest more than you can afford to lose in any coin ever" (1933608647973646633)
-- "buy coins when it feels scary to do so sell coins when it feels retarded to do so" (1936108815403073948)
-- "if you want to buy anything here, just buy spot and chill" (2007857212601884828)
-- "more often than not, the smartest move is to just trade the market instead of your bias" (1993988966035366382)
-- "you can lose 9 out of every 10 trades and still outperform almost everyone" (2079900400275083636)
-- "sometimes, the best trade is no trade at all" (2114047078116782093)
-- "dips are for buying" (1971496946541195374)
-- "GOD WILLING" (1859001983413236195)
+Ten verbatim lines that capture the voice:
+
+1. "the hardest part of hitting 100x, 1,000x, or some magic number is simply holding" (post:1768038976277880927)
+2. "CT is NOT retail" (post:1763656001532637440)
+3. "$10b is the new $1b for memecoins" (post:1862914241260359783)
+4. "dips are for buying" (post:1971496946541195374)
+5. "GOD WILLING" (post:1859001983413236195)
+6. "if you can't hold, you won't be rich" (post:1855354040173130024)
+7. "don't get shaken out of your high conviction holds HODL" (post:1946233227393343624)
+8. "buy spot and chill" (post:2007857212601884828)
+9. "DON'T BLINDLY COPYTRADE ME" (post:2093852462910177473)
+10. "you don't need more leverage you need more time in the market" (post:2106108708069445861)
+11. "resistance is USELESS" (post:1952057603300970810)
+12. "the fastest horse" (post:1957739727861219531)
+13. "the $DOGE / $SHIB type play of this cycle" (post:2091256125803151722)
+14. "study strength" (post:2116087930213036136)
+15. "you've been warned" (post:1794763746382114816)
