@@ -5350,22 +5350,12 @@
     "url": "https://x.com/theunipcs/status/2109569775919841300"
   },
   {
-    "date": "2026-10-13",
-    "ticker": "USELESS",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "buy the capitulation",
-    "post_id": "2109907982368862271",
-    "url": "https://x.com/theunipcs/status/2109907982368862271"
-  },
-  {
     "date": "2026-10-14",
     "ticker": "SI",
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "i objectively believe $SI makes new ATHs and runs to hundreds of millions",
+    "quote": "i genuinely believe many will look back at this $SI capitulation candle and wish they had bought it",
     "post_id": "2110460458012717147",
     "url": "https://x.com/theunipcs/status/2110460458012717147"
   },
@@ -5411,6 +5401,16 @@
   },
   {
     "date": "2026-10-16",
+    "ticker": "SI",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "textbook breakout and retest on Super Inu / $SI",
+    "post_id": "2111058086752325911",
+    "url": "https://x.com/theunipcs/status/2111058086752325911"
+  },
+  {
+    "date": "2026-10-16",
     "ticker": "MASK",
     "chain": null,
     "address": null,
@@ -5440,6 +5440,26 @@
     "url": "https://x.com/theunipcs/status/2112467812027334691"
   },
   {
+    "date": "2026-10-20",
+    "ticker": "USELESS",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "if you believe the bull run is imminent, i'd be looking to aggressively buy or hold $USELESS 'weakness'",
+    "post_id": "2112527398197481831",
+    "url": "https://x.com/theunipcs/status/2112527398197481831"
+  },
+  {
+    "date": "2026-10-20",
+    "ticker": "USELESS",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "point being proved as we speak... fading is $USELESS",
+    "post_id": "2112545161934721136",
+    "url": "https://x.com/theunipcs/status/2112545161934721136"
+  },
+  {
     "date": "2026-10-21",
     "ticker": "USELESS",
     "chain": null,
@@ -5458,6 +5478,16 @@
     "quote": "i continue to maintain that $MASK is by far the most underrated privacy protocol in all of crypto",
     "post_id": "2112917849152831795",
     "url": "https://x.com/theunipcs/status/2112917849152831795"
+  },
+  {
+    "date": "2026-10-24",
+    "ticker": "USELESS",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "while you STILL have the chance to buy the lows",
+    "post_id": "2113955601516515682",
+    "url": "https://x.com/theunipcs/status/2113955601516515682"
   },
   {
     "date": "2026-10-26",
@@ -5481,11 +5511,21 @@
   },
   {
     "date": "2026-10-26",
-    "ticker": "MARSCOIN",
+    "ticker": "PANGEA",
     "chain": "evm",
     "address": "0x39dbed3a2bd333467115de45665cc57f813c4571",
     "direction": "hold",
-    "quote": "i'm still holding 100% of my top runners: - robinhood:0x39dbed3a2bd333467115de45665cc57f813c4571 - $USELESS - marscoin-4:native",
+    "quote": "$PANGEA & $VRAX are also strong contenders, although i consider both higher-risk plays vs the others at the moment",
+    "post_id": "2114750389987774648",
+    "url": "https://x.com/theunipcs/status/2114750389987774648"
+  },
+  {
+    "date": "2026-10-26",
+    "ticker": "VRAX",
+    "chain": "evm",
+    "address": "0x39dbed3a2bd333467115de45665cc57f813c4571",
+    "direction": "hold",
+    "quote": "$PANGEA & $VRAX are also strong contenders, although i consider both higher-risk plays vs the others at the moment",
     "post_id": "2114750389987774648",
     "url": "https://x.com/theunipcs/status/2114750389987774648"
   },
@@ -5495,7 +5535,7 @@
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "i think bottom is in after an 88% correction from the first impulsive move to ATH + whale bids starting to come in",
+    "quote": "i think bottom is in after an 88% correction from the first impulsive move to ATH",
     "post_id": "2115144959384867183",
     "url": "https://x.com/theunipcs/status/2115144959384867183"
   },
@@ -5541,13 +5581,23 @@
   },
   {
     "date": "2026-10-28",
-    "ticker": "PONS",
+    "ticker": "USELESS",
     "chain": null,
     "address": null,
-    "direction": "buy",
-    "quote": "i think R/R favors being long $PONS from here",
-    "post_id": "2115372804333777293",
-    "url": "https://x.com/theunipcs/status/2115372804333777293"
+    "direction": "hold",
+    "quote": "$USELESS has caught up to $PEPE and is starting to outperform",
+    "post_id": "2115534042884120982",
+    "url": "https://x.com/theunipcs/status/2115534042884120982"
+  },
+  {
+    "date": "2026-10-29",
+    "ticker": "PEPE",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "i currently hold no $PEPE, but the strength this has been showing whenever $BTC pumps even a little is incredible",
+    "post_id": "2115835346696974537",
+    "url": "https://x.com/theunipcs/status/2115835346696974537"
   },
   {
     "date": "2026-10-30",
@@ -5654,10 +5704,20 @@
     "ticker": "MARSCOIN",
     "chain": null,
     "address": null,
-    "direction": "buy",
+    "direction": "hold",
     "quote": "gut tells me $MARSCOIN is VERY close to printing an aggressively explosive double-digit % daily candle",
     "post_id": "2117941109439566161",
     "url": "https://x.com/theunipcs/status/2117941109439566161"
+  },
+  {
+    "date": "2026-11-04",
+    "ticker": "VRAX",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "ticker is $VRAX for the curious ones btw",
+    "post_id": "2118050155848970369",
+    "url": "https://x.com/theunipcs/status/2118050155848970369"
   },
   {
     "date": "2026-11-04",
@@ -5668,16 +5728,6 @@
     "quote": "you should be aggressively slamming size into PONS here",
     "post_id": "2118055512994418693",
     "url": "https://x.com/theunipcs/status/2118055512994418693"
-  },
-  {
-    "date": "2026-11-04",
-    "ticker": "USELESS",
-    "chain": null,
-    "address": null,
-    "direction": "hold",
-    "quote": "$USELESS is going to be the first memecoin to hit $1 BILLION this cycle",
-    "post_id": "2118087198197293277",
-    "url": "https://x.com/theunipcs/status/2118087198197293277"
   },
   {
     "date": "2026-11-05",
