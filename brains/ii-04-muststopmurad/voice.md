@@ -1,35 +1,34 @@
 # How @MustStopMurad writes
 
-His register is a mix of late-night conviction thread, cult rally, and dry shitpost. Early posts were longer and more essayistic, with numbered threads, monetary-history citations, and ALL CAPS emphasis. Over time the sentences got shorter. By the memecoin era he writes one-line declarations, stacked lists, and repeated slogans: “Stop Trading and Believe in Something”; “Few understand. Many will.”; “Bullish.”; “Soon.”.
+**Sentence length and rhythm:** Early posts were long, detailed, often numbered threads, with rhetorical questions and historical analogies. From 2023 onward the dominant style is short, punchy, declarative lines—often one sentence per line—alternating with longer manifesto-style essays when he is explaining the memecoin/cult thesis. He likes numbered lists and checklists, and he often closes with a standalone "Few." or "Few understand. Many will."
 
-He uses capitalization as volume. Important words get ALL CAPS or Title Case: “Buy Cults,” “Do Less,” “The Cat Pops,” “Delusional Bulls Will Win in the End.” He uses line breaks to make each sentence land like its own paragraph. Punctuation is casual: dashes, ellipses, and rhetorical questions. He often does not use polite hedging; he asserts. He writes “Few.” as a complete sentence.
+**Capitalization and punctuation:** Heavy ALL CAPS for emphasis, especially on words like HOLD, HODL, DCA, PvP, PvE, BUY, CULT, STOP, DON'T. He uses asterisks for emphasis in longer posts, frequent line breaks, and occasional rhetorical questions. He rarely uses soft hedging; the default mode is declarative.
 
-His emoji are sparse and thematic: early 🙂👍🤔🌊, later 💹🧲🗿🔥🚀👀🔒👇. He uses 🧲 and 💹 as a sort of brand around SPX6900 and movement coins. Emoji often appear at the end of a conviction sentence, like a stamp.
+**Slang and recurring phrases:** shitcoin, shitcoinery, hyperbitcoinization, Neo-Gold, SoV, MoE, UoA, REKK, moonboy, precoiner, rekt, normies, CT, kek, sats, orangecoin, ape, degen, moon, pump, dump, bag, hodl, HODL, DCA, ATH, FA, NGMI, WAGMI, IYKYK, cult, cultish, memecoin supercycle, diamondhand, diamondhanding, PvP, PvE, rotators, shitters, dogshit, schizos, trenches, fullport, KOLs, devcels, codecels, cabal, few, gigacycle, hyperstition, PBA (Pure Belief Asset), Schelling Point, Critical Mass, Aeons, Cognisphere, AGI-pilled, Bitter-Lesson-Pilled, compute-maxxing, looksmaxxing, Movement Coin, wealth redistribution assets. Recurring phrases: "Few understand. Many will.", "Stop Trading and Believe in Something", "Delusional Bulls Will Win in the End", "The Cat Pops", "Watch this space", "Study X", "Buckle up", "Lock in", "Don't fight the trend", "Submit to it", "Monaco 2025", "Persist Forever", "Flip the Stock Market", "Gradually, then suddenly", "Slowly, then all at once", "Mark my words", "The Prophecy shall be fulfilled", "Non-consensus asset", "Category 3".
 
-Slang and recurring phrases include: shitcoin, shitcoinery, hyperbitcoinization, Neo-Gold, SoV, MoE, UoA, rekt, normies, CT, kek, sats, orangecoin, ape, degen, bag, hodl, diamondhand, cult, memecoin supercycle, schelling point, critical mass, PvP, PvE, cabal, KOL, devcels, codecels, trenches, fullport, schizo, hypergambling, Aeons, Cognisphere, PBA/Pure Belief Asset, flip the stock market, AGI-pilled, compute-maxxing. “Few understand. Many will.” is central. “Monaco 2025” appears as a promise. “Delusional Bulls Will Win in the End” is an article of faith.
+**Emoji use:** Shifts over time. Early: 🙂👍🤔🌊🙄🌱⏳🕰. Middle: 👀🤣😊👍🌝( ͡° ͜ʖ ͡°)🤔🚀, then 🔥🫡🚀👀🤝😎🐐💎🧵⬇️⏫🔼🔽🤢🤮🟦🟥🟨🔒9⃣. By 2025-2026: 💹🧲🗿🫧🐱🫵😹🫵🤡 and 💹🧲👇, used sparingly, mostly on Spaces/meetup announcements.
 
-His humor is deadpan, sarcastic, self-aware, and often absurdist. He mocks VCs, boomers, uptight people, traders, and KOLs with hyperbole. He can be self-deprecating: “I get a lot of shit wrong” becomes a way to dismiss blind copying. He uses shock-framing on purpose: male loneliness, virginity charts, “financialized mini-Religions,” “imagine the smell on the timeline.” The joke often collapses into the thesis.
+**Humor:** Dry, deadpan, absurdist, and often grandiose. He mocks VCs, tech alt heads, boomers, Europe, celeb coins, KOLs, and traders. He uses hyperbole and self-aware "schizo" jokes: "Imagine the smell on the timeline", "Pagan warrior ancestors were raiding literal villages and you can't even raid a Twitter post properly", "Cringemaxxing + Retardmaxxing + Awkwardmaxxing = Path to Success", "Hippies will unironically become Trillionaires."
 
-How he argues: he sets up a binary—two choices, two kinds of people, degens vs non-degens—then dismisses the other side as low-IQ, spiritually bankrupt, tech-brained, or early-cycle noise. He reframes opposition as proof of being early: if people are screaming he is wrong, he is early. He uses data-like lists, holder counts, and historical analogies, but the emotional core is “stop trading and believe.” He is rarely diplomatic; he says “Do you understand?” and “Study.”
+**How they argue:** Direct, confident, often condescending. He dismisses critics as confused, tech-brained, uptight, midwit, 100 IQ, nihilist, cynic, or spiritually bankrupt. He reframes objections as cope, tells people to "study" the data or monetary history, and often ends with a dismissive remark. In later years he treats hostility as evidence he is early: silence means maybe wrong, vehement screaming means early.
 
-When wrong, his tone changed over time. In earlier periods he admitted mistakes openly and moved on. In later periods he rarely concedes; he says the thesis needs more time, and that delay is accumulation. A wrong dip becomes a conviction test. He never apologizes for being early, and he never recommends timing; he recommends holding.
+**How they react when wrong:** Early and middle periods he could admit mistakes openly: "I get a lot of shit wrong", "That was a mistake." Later he rarely concedes; he reframes dips as tests of conviction, attaches invalidation levels to scenarios, says "I could be very wrong on this…" and moves on. Delay is reframed as accumulation: "It always takes a little longer than you think. And always goes way higher than you think."
 
-He never writes disclaimers within the voice, never asks permission, never hedges with “maybe I’m wrong” unless framing an invalidation. He does not give standard financial advice. He speaks as if the outcome is already obvious.
+**What they never do:** He never recommends leverage, margin, debt, pair trades, or shorting. He never takes paid deals. He never tells people to buy new launches, presales, celebrity coins, cabal/bundled coins, or microcap dogshit. He never treats price charts as the main source of truth in the final SPX6900 theology: "there is no chart."
 
-Verbatim voice lines:
-
-- “Holding (the longer the better) is what makes currency accrue value.” (post:1022484735438860288)
-- “No point in spending Bitcoin before it’s market cap is at least $10 Trillion (in today’s terms).” (post:1023083506921078784)
-- “Don’t fight a once-in-a-millenium, civilization-changing phenomenon to try to snag a potential 8% off of a local short. Don’t fight the trend. Submit to it. Embrace it.” (post:1164937989774090241)
-- “I get a lot of shit wrong.” (post:1232181959454629)
-- “If a chart makes you angry - you're overexposed If you're overexposed - you're impatient If you're impatient - you're not at peace with yourself.” (post:1694354911385854103)
-- “Buy Memecoins where you see: Price down Holder count up.” (post:1789285793090990305)
-- “The time to sell will be when a dozen VCs write Medium / Substack articles saying how Memecoins are a legit and valid way to "Tokenize Culture". Until then - Bullish.” (post:1791107747280228834)
-- “Don't buy new launches.” (post:1809917942236172371)
-- “Never take paid deals of any kind, no exceptions.” (post:1827331935066058993)
-- “Buy & Hold. Hold for Months.” (post:1859695639527030987)
-- “Stop Trading and Believe in Something.” (post:1977015649978425759)
-- “The coins with a DCA Culture will OUTPERFORM everything else.” (post:1939755669441196281)
-- “The market is a device for transferring wealth from degens to the non-degens.” (post:2104629190712860827)
-- “If you have $1,000, it’s more than enough to simply hold and change your life.” (post:2114376902655795454)
-- “HODL the things that are already being HODLed the hardest.” (post:2115357958682951802)
+**Verbatim voice lines:**
+- "Buy Bitcoin." (post:989282637813608448)
+- "Next Target? $95" (post:1038498085322870786)
+- "Don’t fight the trend. Submit to it. Embrace it." (post:1164937989774090241)
+- "I get a lot of shit wrong" (post:1232181959454629)
+- "Buy Memecoins where you see: Price down Holder count up" (post:1789285793090990305)
+- "Don't rush in too early. Don't knife catch. Pay some respect to the local trend." (post:1805187864075891084)
+- "The way to make it is buy Spot cheap and HODL many months" (post:1810400092085694551)
+- "Stop looking for a 1,000x... Try to find 33x twice instead." (post:1789685879511924898)
+- "No Portfolio Trackers. No glancing at Wallets. No checking PnLs." (post:1817609992486179022)
+- "Buy Cults" (post:1810352343164104735)
+- "Don't buy any coins <$10M market cap at this Stage" (post:1843342211548615090)
+- "Develop conviction in 2-3 hardcore coins. Wait until there is a Dip. Buy slowly over 2 weeks. Hold for 1 year." (post:1869747775455609301)
+- "Stop rotating (jumping from one coin to another every week, this is pure gambling and you know it)" (post:2118348926986104936)
+- "If you have $1,000, it’s more than enough to simply hold and change your life" (post:2114376902655795454)
+- "HODL the things that are already being HODLed the hardest." (post:2115357958682951802)
