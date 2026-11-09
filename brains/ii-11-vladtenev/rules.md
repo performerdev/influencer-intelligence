@@ -1,37 +1,38 @@
 # @vladtenev's rules
 
-**Entry**
+### Entry
 No stated rule.
 
-**Exit and taking profit**
+### Exit and taking profit
 No stated rule.
 
-**Sizing**
+### Sizing
 No stated rule.
 
-**Averaging down**
+### Averaging down
 No stated rule.
 
-**Hold time**
-- Play the long game; tokenization isn’t a trend, it’s the foundation of what’s next. "We’re playing the long game. Tokenization isn’t a trend. I believe it’s the foundation of what’s next." (post:1950929498356031608) (stated once)
+### Hold time
+- Play the long game on structural shifts; don't treat tokenization as a trend. "We’re playing the long game. Tokenization isn’t a trend. I believe it’s the foundation of what’s next." (post:1950929498356031608) (stated once)
+- Finish the job rather than chasing shiny objects. "It’s almost always better to just finish the job." (post:1906617265292009648) (stated once)
 
-**Risk management**
-No stated rule.
+### Risk management
+- Put safety first, especially in crypto and customer protection. "SafetyFirst" (post:1377737685595348992)
+- When shipping risky products, name the risk plainly. "unlimited risk" (post:1972796566248530329) (stated once)
+- Warn people about misinformation and scams; do due diligence. "due diligence" (post:910175111889563648) (stated once)
 
-**Other**
-- Focus on creating systems to improve every single day, rather than end results. "Focus on creating systems to improve every single day, rather than end results" (post:907702397534838784) (stated once)
-- Treat the company like a product and get better every single day. "We treat our company like a product and aim to get better, every single day." (post:1407774350346838017) (stated once)
-- Debate vigorously and change your mind when confronted with the right evidence. "We debate vigorously and change our minds when confronted with the right evidence." (post:1407774349575168006) (stated once)
-- Listen with empathy, ask questions, and evaluate work by customer value. "We listen with empathy, ask questions, and critically evaluate our work by how valuable our customers find it." (post:1407113629091041283) (stated once)
-- Start from the belief that colleagues are capable and well-intentioned. "We listen to our colleagues, and we start from a place of believing they are capable and well-intentioned." (post:1407113630059925518) (stated once)
-- Investing requires practice, not just theory. "investing is like playing the violin you can't just learn from a book ... you need to practice and put in the work" (post:1929678870095212598) (stated once)
+### Other
+- Focus on creating systems to improve every day, not end results. "Focus on creating systems to improve every single day, rather than end results" (post:907702397534838784) (stated once)
+- Treat the company like a product and improve it daily. "We treat our company like a product and aim to get better, every single day." (post:1407774350346838017)
+- Debate vigorously and change your mind with the right evidence. "We debate vigorously and change our minds when confronted with the right evidence." (post:1407774349575168006)
+- Listen with empathy, ask questions, and judge work by customer value. "We listen with empathy, ask questions, and critically evaluate our work by how valuable our customers find it." (post:1407113629091041283)
+- Assume colleagues are capable and well-intentioned. "We listen to our colleagues, and we start from a place of believing they are capable and well-intentioned." (post:1407113630059925518)
+- Investing requires practice, not just theory. "investing is like playing the violin you can't just learn from a book ... you need to practice and put in the work" (post:1929678870095212598)
 - Change behavior by making the right action easier, not by telling people what to do. "You don’t change behavior by telling people what to do. You change it by making it easier to do." (post:1920977323991449716) (stated once)
-- Patience is undervalued; finish the job rather than chasing shiny objects. "It’s almost always better to just finish the job." (post:1906617265292009648) (stated once)
-- Build from first principles with conviction, not consensus. "Consensus is a lagging indicator. Builders move on first principles with conviction, not complacency." (post:2018448321120174340) (stated once)
-- Run more experiments, evaluate, repeat. "The edge is evaluation. Run more experiments, pick better, repeat." (post:2019574512124326012) (stated once)
-- Prefer process goals over outcome goals. "Process goals >> performance goals > outcome goals" (post:2003533729080463698) (stated once)
-- Announce results with supporting data for scrutiny. "any announcement of a mathematical or scientific result or accomplishment should be accompanied by the appropriate supporting data" (post:2001830061591454199) (stated once)
-- Invest early and let compounding work. "Compounding is the 8th wonder of the world" (post:2074329947280195668) (stated once)
-- Private-market investing: integrity, transparency, no fabricated public market. "We don’t take shortcuts, we value transparency in our marketing and structures, and we don’t imply a public market when one doesn’t exist." (post:2047353329383309382) (stated once)
-- Respect issuers and work directly on their terms. "If a company doesn't want Robinhood retail customer exposure, we will do our utmost to accommodate them." (post:2047353333468610723) (stated once)
-- Build for retail to the same standard institutions expect. "Build for retail with the same standard institutions expect." (post:2047740014126325970) (stated once)
+- Prefer process goals over performance goals, and performance goals over outcome goals. "Process goals >> performance goals > outcome goals" (post:2003533729080463698) (stated once)
+- Run more experiments, pick better, repeat; evaluation is the edge. "The edge is evaluation. Run more experiments, pick better, repeat." (post:2019574512124326012)
+- Start from first principles, test assumptions, keep going when the first answer falls apart. "start from first principles. Test your assumptions. Keep going when the first answer falls apart." (post:2046703249223495820)
+- Build retail tools to institutional standards. "Build for retail with the same standard institutions expect." (post:2047740014126325970) (stated once)
+- Don't fake a public market in private-market products. "We don’t take shortcuts, we value transparency in our marketing and structures, and we don’t imply a public market when one doesn’t exist." (post:2047353329383309382) (stated once)
+- Respect issuers' wishes about retail exposure. "If a company doesn't want Robinhood retail customer exposure, we will do our utmost to accommodate them." (post:2047353333468610723) (stated once)
+- Apply compounding to learning too. "Compounding applies to learning too. Small improvements add up fast." (post:2019574512124326012)

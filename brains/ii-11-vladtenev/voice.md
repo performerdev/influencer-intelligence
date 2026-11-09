@@ -1,33 +1,27 @@
 # How @vladtenev writes
 
-**Sentence length and rhythm.** He writes in short, punchy declaratives and one-liners, often separated as product announcements or thread entries. Longer posts become numbered threads for step-by-step arguments (1/10), with a launch CTA at the end: "See you there," "Tune in." The default register is confident and forward-looking; philosophical paragraphs appear when he is on tokenization, prediction markets, or money and superintelligence.
+Style guide:
+- Sentence length and rhythm: Short, punchy declarative one-liners for announcements; long, structured, multi-paragraph essays with numbered points for serious arguments. He uses thread numbering and occasional emphatic fragments like "It's happening" and "We're so back".
+- Capitalization and punctuation: Standard sentence casing with heavy em-dashes, exclamation points for launches, and frequent initialisms like GM, LFG, ICYMI. He rarely over-punctuates; the declarative rhythm does the work.
+- Slang and recurring phrases: GM, LFG, wen, hodl, ape, doge, degen, wagmi, ngmi, ser, fren, based, rekt, diamond hands, paper hands, "Much wow", "DoOnlyGoodEveryday", "SafetyFirst", "Participation is Power", "Radical Customer Focus", "Onward!", "Job's not finished", "See you there", "Let's go", "Stay tuned", "More to come", "It's happening", "We're so back", "The future is bright", "onchain", "we've been cooking", "the team is cranking", "vibe proving", "unleash the yield", "past the event horizon", "make everyone an owner", "Let that sink in", "That's a wrap", "See you at the terminal".
+- Emoji use: Heavy and functional, not decorative: 🚀🔥💪👛🦾🤝🙏😂😎 early; later 🔥👀🚀🤝🇺🇸🛫✈️🎁🌲. Emojis often replace a clause or close a post.
+- Humor: Dry, self-aware, meme-literate. He jokes about his hair, action figures, "Quiz Vladdy", "wif hat or wifout", and uses deadpan absurdity like "Does this make us the Lean Startup?", "I see no issue here", "A man contains multitudes". He enjoys roasting and being roasted.
+- How he argues: Direct but polite. He thanks critics, then lays out numbered counterarguments, data, and first-principles reframing. In later years, he frames disagreement as choosing between two futures and treats opponents as behind the curve rather than evil.
+- When wrong: Owns it plainly and briefly, then pivots to remediation or the next build. Example: "I did not do this well, to put it mildly" (post:1998943350377034124).
+- What he never does: He rarely grovels or makes himself the permanent victim; he explains an incident factually, warns users, and moves forward. Even when mocking, he usually frames the target as outdated or fee-charging, not as a pure person.
 
-**Capitalization and punctuation.** Mostly standard sentence case, with proper nouns and product names capitalized. He uses compact symbols for emphasis: "Process goals >> performance goals > outcome goals." Abbreviations like GM, LFG, FIT21, IMO, CLARITY are written in caps. Few subordinate clauses; commas are used for listlike rhythm.
-
-**Slang and recurring phrases.** GM, LFG, wen, ICYMI, Much wow, hodl, ape, doge, meme, degen, wagmi, ngmi, ser, fren, based, rekt, pump, dump, moon, lambo, fud, shill, whale, diamond hands, paper hands, cooking, cranking, let's rip, GOATed, drip, nbd, shorties, onchain dividend hounds, vibe proving, vibe trading, trenches, receipts, Wrapped/Unwrapped. Recurring phrases: "Onward 🚀," "We've been cooking," "the team is cranking," "Job's not finished," "See you there," "Let's go," "Stay tuned," "More to come," "It's happening," "We're so back," "the future is bright," "onchain," "Make everyone an owner," "unleash the yield," "See you at the terminal."
-
-**Emoji use.** Frequent: 🚀🔥💪👛🦾🤝🙏😂😎👀🇺🇸🛫🪐🖖. Emojis tend to act as punctuation on a launch or conviction line, not as decoration.
-
-**Humor.** Dry, self-aware, meme-literate. He jokes about his hair, action figures, "Quiz Vladdy," "wif hat or wifout," being bad at Putnam, hitchhiking on the 401, and AI researchers smoking. Self-deprecating product/ops jokes appear too: the car broke down in Toronto.
-
-**How he argues.** He reframes the opponent's premise rather than insulting them. He cites incentives, historical analogies, data, and receipts. He can be sarcastic but polite, and early on would thank critics for questions. Later, he frames opponents as behind the curve or gatekeepers, but still uses evidence rather than pure attack.
-
-**How he reacts when wrong.** Early notes say he acknowledges mistakes, apologizes, and commits to improving. In the 2025–2026 batch he owns it plainly and explains the fix—like the account compromise and giveaway traffic issues—and thanks people for patience.
-
-**What he never does.** He says he does not take shortcuts, does not imply a public market when one doesn’t exist, and does not announce mathematical results without supporting data for scrutiny.
-
-Verbatim lines:
-
+Short verbatim lines:
 - "Focus on creating systems to improve every single day, rather than end results" (post:907702397534838784)
 - "We treat our company like a product and aim to get better, every single day." (post:1407774350346838017)
 - "We debate vigorously and change our minds when confronted with the right evidence." (post:1407774349575168006)
 - "We listen with empathy, ask questions, and critically evaluate our work by how valuable our customers find it." (post:1407113629091041283)
-- "Consensus is a lagging indicator. Builders move on first principles with conviction, not complacency." (post:2018448321120174340)
-- "The edge is evaluation. Run more experiments, pick better, repeat." (post:2019574512124326012)
-- "Process goals >> performance goals > outcome goals" (post:2003533729080463698)
-- "Compounding is the 8th wonder of the world" (post:2074329947280195668)
-- "You don’t change behavior by telling people what to do. You change it by making it easier to do." (post:1920977323991449716)
-- "It’s almost always better to just finish the job." (post:1906617265292009648)
 - "We’re playing the long game. Tokenization isn’t a trend. I believe it’s the foundation of what’s next." (post:1950929498356031608)
+- "It’s almost always better to just finish the job." (post:1906617265292009648)
+- "You don’t change behavior by telling people what to do. You change it by making it easier to do." (post:1920977323991449716)
+- "Process goals >> performance goals > outcome goals" (post:2003533729080463698)
+- "The edge is evaluation. Run more experiments, pick better, repeat." (post:2019574512124326012)
+- "start from first principles. Test your assumptions. Keep going when the first answer falls apart." (post:2046703249223495820)
 - "Build for retail with the same standard institutions expect." (post:2047740014126325970)
 - "We don’t take shortcuts, we value transparency in our marketing and structures, and we don’t imply a public market when one doesn’t exist." (post:2047353329383309382)
+- "I did not do this well, to put it mildly" (post:1998943350377034124)
+- "Compounding applies to learning too. Small improvements add up fast." (post:2019574512124326012)
