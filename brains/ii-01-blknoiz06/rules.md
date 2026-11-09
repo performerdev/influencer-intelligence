@@ -1,59 +1,54 @@
 # @blknoiz06's rules
 
 ## Entry
-- Buy when others are scared, sell when they're ecstatic. “buying when niggas are scared and selling when niggas r ecstatic seems to b the simplest way to make money” (post:917251420960821248).
-- Trade price action, not price. “trade price action, not price 🏄🏾‍♂️” (post:1371224638865473538).
-- Wait for confirmation on setups to increase hit rate. “waiting for confirmation on setups increases your hit rate by a lot” (post:1360566445235699714).
-- Buy the retest rather than chasing the breakout. “i still think buying the retest is safer lol” (post:956161106518728704).
-- Use the H6 Ichimoku cloud flip from bear to bull for alt entries. “easiest way to trade alts is go to the H6 timeframe & wait for the moku cloud to flip from bear -> bull” (post:1360960453900447749).
-- Buy range lows at peak fud with tight invalidation. “buying range lows here at peak fud & tight invalidation is good bet if you think bull market not over” (post:1807158505872535967).
-- Be early to trends before consensus. “you make the most money being early to trends before they are consensus.” (post:1879552810246946863).
+- “Buy when others are scared, sell when they're ecstatic.” — “buying when niggas are scared and selling when niggas r ecstatic seems to b the simplest way to make money” (917251420960821248)
+- “Don’t short bulltrends. Don’t try to pick out a top. BTFD.” — “Don't short bulltrends. Don't try to pick out a top. BTFD.” (916791690630975489)
+- “Buy the silence, sell the noise.” — “buy the silence, sell the noise” (974136798338306049)
+- “Buy spot, don’t chase with leverage.” — “just buy spot dont use lev & you'll b ok” (1667294193536966660)
+- “Bid when hated, take profit when deified.” — “bid when ppl are calling me a scammer and start taking profit when ppl are calling me the black jesus christ” (2097212122367168553)
+- “Buy the leading major on a -45% pullback.” — “sorry bros but there is no way yall are convincing me that a -45% pullback off the highs on the leading major of the cycle is not a braindead easy buy” (1788579098249367638)
+- “Wait for range highs/lows, not the middle.” — “i prefer waiting for price to reach the range highs or lows, where the reaction gives me a much clearer setup” (2115848675692068975)
+- “Best trades are non-consensus at entry.” — “your best trades will always be when the majority disagrees with you when you first take the position” (1509950754752286726)
 
 ## Exit and taking profit
-- Take profits because someone always got in before you. “theres always someone who got in before you & will take the profits from pumps, dont b greedy lol take profits” (post:904489164003008512).
-- Excessive shilling is a sell signal. “excessive shilling of a coin is a euphoria indicator, 90% of the time it’s a solid sell signal lol” (post:945438648094347269).
-- Sell when mainstream media tells retail to buy. “k guys the plan is we sell when cnbc tells grandma & grandpa to buy on thanksgiving” (post:1328916852030914560).
-- Never sell into a strong red candle; wait for the bounce. “strong selloffs like that *always* bounce, never sell into that red candle” (post:1347296394734919680).
-- Don't sell in the middle of a bull market. “dont sell in the middle” (post:1433415670092419073).
-- Use trailing stops instead of trying to sell the exact top. “using trailing stop losses instead of trying to sell the exact top will help you keep your position open longer” (post:1034601462125535232).
+- “Take profits; someone always got in before you.” — “theres always someone who got in before you & will take the profits from pumps, dont b greedy lol take profits” (904489164003008512)
+- “Never sell into a strong red candle.” — “never sell into that red candle” (1347296394734919680)
+- “Profit > unrealized profit.” — “profit > unrealized profit” (1036083162697420801)
+- “Derisk on bounces back to range highs.” — “would look to derisk on bounces back to top of these ranges, and dont get caught shorting into the bottom” (1892995384315933003)
+- “Use throwback to de-risk; don’t try to sell the exact top.” — “it's nearly impossible to sell the top of these moves in real time, but you almost always get a throwback close to where the asset sold off from, which is your opportunity to de-risk and get out.” (1825904447458832647)
+- “Close shorts when the breakdown fails.” — “was wrong on $60k breakdown for now, closed shorts from higher” (2064019517756649790)
 
 ## Sizing
-- Position sizing and stops save you. “position sizing & stop losses will save you fr” (post:945704026179620864).
-- 70% safe spot bags, 30% degen plays. “70% safe spot bags 30% degen plays” (post:1839676616647319668).
-- Size small on big winners and big on big losers. “sizing small on big winners and sizing big on big losers makes your % hit rate a non factor if done enough times” (post:1753971098176123277).
-- If you have no edge, the correct position size is don't buy. “1) If you have no edge, correct position size is 'don't buy’.” (post:1913122044645958083).
+- “70% safe spot bags, 30% degen plays.” — “70% safe spot bags 30% degen plays” (1839676616647319668)
+- “Size is determined by downside.” — “2) Position sizing is determined by downside.” (1913122044645958083)
+- “If you have no edge, don’t buy.” — “1) If you have no edge, correct position size is 'don't buy’.” (1913122044645958083)
+- “Don’t size the next bet at the size of the win.” — “turning 5k into 500k doesn’t mean the next low cap needs a 500k position” (2104564285355524311)
+- “Keep a small ape stack instead of selling conviction bags.” — “having an ape stack on the side guards you against the possibility that you chose to diamond hand some garbage instead of gems” (2084287163282465070)
+- “Only need max ~5 core bags.” — “really only need like max ~5 core bags imo” (1738650331293032944)
 
 ## Averaging down
-- Buy every 20%+ dump on coins showing life. “Just buy every 20%+ dump on coins showing life and you'll get rich too” (post:1300925074598432773).
-- Add to winners, don't rebalance into losers. “rebalancing winning bags into losers is a common mistake imo, you add to your winners as thesis gets confirmed” (post:1725047470579675432).
-- There is no stop loss on high-conviction long-term coins, you always just buy more. “there is no stop loss on neo u always just buy more” (post:916423703612870661).
+- “There is no stop loss on NEO; always buy more.” — “there is no stop loss on neo u always just buy more” (916423703612870661) (stated once)
+- “Dips are for adding.” — “dips are for adding” (1722479614084153815)
 
 ## Hold time
-- HODL more, trade less. “Trade less, HODL more.” (post:900575736343515137).
-- Don't sell alts in a bull market. “don’t sell your alts lol i promise” (post:945732920307838976).
-- Hold spot through bull market until at least all-time highs. “not selling spot crypto till the coins make new all time highs” (post:1750926998728233425).
-- Don't sell before new all-time highs minimum. “no fumbling allowed bros, no selling spot bags till new all time highs minimum fuck bears” (post:1765812640146702386).
-- Think in 12-18 month outcomes for alts. “just think about the 12-18 month outcome” (post:2063708661608775888).
+- “Hold spot positions from the bottom.” — “most of your gains this cycle will be from holding spot positions from the bottom while ppl flip flop biases around you” (1719037474863821012)
+- “Don’t sell spot bags until new all time highs minimum.” — “no fumbling allowed bros, no selling spot bags till new all time highs minimum fuck bears” (1765812640146702386)
+- “Stay long spot, sell into mania several months after new ATHs.” — “all we have to do is bullpost for the next two years and not get liquidated bros, stay long spot coins, sell into mania phase several months after new all time highs” (1762512598526763495)
+- “Sitting on your hands in spot is enough.” — “simply sit on your hands in spot positions and do nothing” (2102398168667140346)
+- “The hardest part is not fumbling bottom entries.” — “the hardest part is not buying the bottom, the hardest part is not fumbling your bottom entries by selling too early” (1750995965454975259)
 
 ## Risk management
-- Minimize losses. “minimize losses in crypto and you'll be fine” (post:926260574807355392).
-- Use stops; one bad trade can wipe many wins. “you can win 99/100 trades but if you're wrong on the last one you can lose your whole stack” (post:959534338231668737).
-- Don't invest more than you're willing to lose. “don't invest more than you're willing to lose (this is why people panic sell)” (post:935976977365962757).
-- Avoid FOMO. “Risk management will be critical. Avoid FOMO.” (post:936993210840354817).
-- Don't trade against market makers. “dont trade against the market makers u will lose, everytime” (post:921245629707415552).
-- Don't short a parabolic alt. “do not try to short a parabolic alt ever” (post:1863920116666138819).
-- Don't get liquidated. “listen bros just dont get liq'd, dont even have to check the charts if youre chilling in spot” (post:1459055498934824960).
-- If you have to ask about leverage, you shouldn't trade it. “if you have to ask this you should not be trading leverage” (post:1746101011540820219).
-- Keep a hardware wallet and never keep most of your portfolio in a hot wallet. “use a hardware wallet for the majority of your transactions, never keep most of your portfolio in a hot wallet” (post:1687493802489962496).
+- “Don’t get liquidated; the HTF direction is up.” — “the only way they can take your coins is if you lose them on 100x leverage, the HTF direction is up” (1852391685759619092)
+- “No position is a position.” — “no position is a position” (1991236649150202211)
+- “Always have an invalidation.” — “all i ask is that you have a plan, it could be different from what is below, but just have an invalidation” (1887537447585591581)
+- “Don’t hero long the bottom.” — “you dont have to hero long the bottom, got liquidated an unnecessary amount of times trying to catch knives” (1805102613102211218)
+- “Risk small before you know what you are doing.” — “just risk small before you know what you are doing bc you will 100% lose money in the beginning” (1661844394817855491)
+- “Use a hardware wallet; never keep most of your portfolio in a hot wallet.” — “use a hardware wallet for the majority of your transactions, never keep most of your portfolio in a hot wallet” (1687493802489962496)
 
 ## Other
-- Journal every trade with thesis and invalidation. “JOURNAL every trade. thesis + invalidations, written down. it's how i got good in 2020-2021” (post:2080414456136212591).
-- Never revere anyone off tweets; tweets are not trades. “never revere anyone on here strictly off tweets tweets != trades” (post:1736606007063621817).
-- Don't let others' opinions put you in positions. “worst thing you can do as a trader is putting on positions because of somebody else's opinion” (post:1985394854147530930).
-- Don't trade based on CT sentiment. “trying to use ct sentiment to trade is a one way ticket to poverty” (post:1789923905961906312).
-- Never click random links from anons; use a burner wallet for ponzis. “clicking random links from anons in crypto is like jumping into a strangers unmarked white van with your entire bank account balance” (post:1461026175468412940).
-- Predict the bottom before it's clear the bottom is in. “most great traders wait for price to CONFIRM momentum i try to predict the bottom before it's clear the bottom is in. that's the difference” (post:2080404344298770913).
-- Don't use leverage when you have time on your side. “dont need lev when you have the advantage of time on your side” (post:1641082823648919552).
-- Don't become a maximalist when you are a trader. “never become a maximalist when you are a trader” (post:2101894967710937558).
-- No position is a position. “no position is a position” (post:1991236649150202211).
-- Separate accounts for spot, perps, and onchain degen. “separate your spot account from your perps account from your onchain degen account” (post:2106752160184651965).
+- “Journal every trade with thesis and invalidation.” — “JOURNAL every trade. thesis + invalidations, written down. it's how i got good in 2020-2021” (2080414456136212591)
+- “Trade price action, not price.” — “trade price action, not price” (1764015537439318163)
+- “Don’t revere anyone off tweets; tweets != trades.” — “never revere anyone on here strictly off tweets tweets != trades” (1736606007063621817)
+- “Don’t trade based on CT sentiment.” — “trying to use ct sentiment to trade is a one way ticket to poverty” (1789923905961906312)
+- “Don’t stay in the middle of a range.” — “avoid forcing trades in the middle of a range; wait for price to reach the range highs or lows” (2115848675692068975)
+- “Never become a maximalist when you are a trader.” — “never become a maximalist when you are a trader” (2101894967710937558)

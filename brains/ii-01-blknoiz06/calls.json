@@ -27830,16 +27830,6 @@
     "url": "https://x.com/blknoiz06/status/2114710641290138085"
   },
   {
-    "date": "2026-10-29",
-    "ticker": "ETH",
-    "chain": null,
-    "address": null,
-    "direction": "sell",
-    "quote": "market bleeding and the $ETH short",
-    "post_id": "2115752920779989271",
-    "url": "https://x.com/blknoiz06/status/2115752920779989271"
-  },
-  {
     "date": "2026-10-30",
     "ticker": "BTC",
     "chain": null,
@@ -27890,13 +27880,43 @@
     "url": "https://x.com/blknoiz06/status/2115976433302409694"
   },
   {
-    "date": "2026-10-30",
-    "ticker": "ETH",
+    "date": "2026-11-05",
+    "ticker": "XAU",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "bought gold",
+    "post_id": "2118292132876480727",
+    "url": "https://x.com/blknoiz06/status/2118292132876480727"
+  },
+  {
+    "date": "2026-11-05",
+    "ticker": "BTC",
     "chain": null,
     "address": null,
     "direction": "sell",
-    "quote": "Update on the $ETH short",
-    "post_id": "2116134237971915020",
-    "url": "https://x.com/blknoiz06/status/2116134237971915020"
+    "quote": "i dont think 75k holds",
+    "post_id": "2118398194996461874",
+    "url": "https://x.com/blknoiz06/status/2118398194996461874"
+  },
+  {
+    "date": "2026-11-06",
+    "ticker": "SOL",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "shorted 1M $SOL this morning on pump &amp; made $35k from the callout rewards while trade's pnl is only ~$60k dont think ppl are realizing h",
+    "post_id": "2118531055984537766",
+    "url": "https://x.com/blknoiz06/status/2118531055984537766"
+  },
+  {
+    "date": "2026-11-06",
+    "ticker": "XAU",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "$XAU 3900-4000 is a bid, bought this when it failed to breakdown from 3900",
+    "post_id": "2118758965177880768",
+    "url": "https://x.com/blknoiz06/status/2118758965177880768"
   }
 ]

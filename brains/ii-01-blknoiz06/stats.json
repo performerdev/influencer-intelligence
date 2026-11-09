@@ -9,22 +9,22 @@
   ],
   "horizons": {
     "1d": {
-      "n": 2385,
-      "hit_rate": 0.5203,
-      "mean_return": 0.0215,
-      "median_return": 0.003
+      "n": 2399,
+      "hit_rate": 0.5194,
+      "mean_return": 0.0234,
+      "median_return": 0.0029
     },
     "7d": {
-      "n": 2376,
-      "hit_rate": 0.548,
-      "mean_return": 0.0503,
-      "median_return": 0.0135
+      "n": 2395,
+      "hit_rate": 0.5491,
+      "mean_return": 0.0557,
+      "median_return": 0.0139
     },
     "30d": {
-      "n": 2368,
-      "hit_rate": 0.5486,
-      "mean_return": 0.2046,
-      "median_return": 0.0291
+      "n": 2385,
+      "hit_rate": 0.5472,
+      "mean_return": 0.2035,
+      "median_return": 0.028
     }
   },
   "per_call": [
@@ -4446,7 +4446,7 @@
       "called_at": "2018-03-14T00:37:33.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 41.845664978027344
+      "price_at_call": 41.845672607421875
     },
     {
       "r_1d": 0.0063,
@@ -5213,7 +5213,7 @@
       "called_at": "2018-08-29T02:03:37.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 10.937713623046875
+      "price_at_call": 10.937712669372559
     },
     {
       "r_1d": 0.01,
@@ -5720,7 +5720,7 @@
       "called_at": "2019-01-07T20:36:36.000Z",
       "direction": "hold",
       "matched_by": "stock",
-      "price_at_call": 40.40446472167969
+      "price_at_call": 40.40446853637695
     },
     {
       "r_1d": -0.1655,
@@ -5980,7 +5980,7 @@
       "called_at": "2019-02-23T08:18:57.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 3.937425374984741
+      "price_at_call": 3.937424898147583
     },
     {
       "r_1d": 0.0048,
@@ -6019,7 +6019,7 @@
       "called_at": "2019-03-01T21:23:05.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 9.584280967712402
+      "price_at_call": 9.584280014038086
     },
     {
       "r_1d": 0.0881,
@@ -6045,7 +6045,7 @@
       "called_at": "2019-03-05T18:08:55.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 61.52151107788086
+      "price_at_call": 61.52153778076172
     },
     {
       "r_1d": -0.0881,
@@ -6071,7 +6071,7 @@
       "called_at": "2019-03-05T18:09:14.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 61.52151107788086
+      "price_at_call": 61.52153778076172
     },
     {
       "r_1d": null,
@@ -6136,7 +6136,7 @@
       "called_at": "2019-03-09T05:45:56.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 23.70036506652832
+      "price_at_call": 23.700366973876953
     },
     {
       "r_1d": 0,
@@ -6175,7 +6175,7 @@
       "called_at": "2019-03-14T03:26:38.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 4.099202632904053
+      "price_at_call": 4.099201679229736
     },
     {
       "r_1d": null,
@@ -6214,7 +6214,7 @@
       "called_at": "2019-03-14T05:30:53.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 49.57335662841797
+      "price_at_call": 49.5733528137207
     },
     {
       "r_1d": 0.0206,
@@ -6383,7 +6383,7 @@
       "called_at": "2019-03-17T04:24:28.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 62.48845672607422
+      "price_at_call": 62.488460540771484
     },
     {
       "r_1d": 0.0042,
@@ -6409,7 +6409,7 @@
       "called_at": "2019-03-17T04:24:28.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 20.552858352661133
+      "price_at_call": 20.552860260009766
     },
     {
       "r_1d": null,
@@ -6578,7 +6578,7 @@
       "called_at": "2019-03-19T09:43:28.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 20.396177291870117
+      "price_at_call": 20.39617919921875
     },
     {
       "r_1d": 0.0311,
@@ -6591,7 +6591,7 @@
       "called_at": "2019-03-19T14:57:13.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 64.82270050048828
+      "price_at_call": 64.82271575927734
     },
     {
       "r_1d": 0.0103,
@@ -6604,7 +6604,7 @@
       "called_at": "2019-03-19T14:57:13.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 10.652580261230469
+      "price_at_call": 10.652581214904785
     },
     {
       "r_1d": 0.0229,
@@ -6656,7 +6656,7 @@
       "called_at": "2019-03-20T20:05:17.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 20.857004165649414
+      "price_at_call": 20.85700225830078
     },
     {
       "r_1d": null,
@@ -6682,7 +6682,7 @@
       "called_at": "2019-03-21T20:10:17.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 4.554283618927002
+      "price_at_call": 4.5542826652526855
     },
     {
       "r_1d": 0.0545,
@@ -6721,7 +6721,7 @@
       "called_at": "2019-03-22T04:30:52.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 40.57881546020508
+      "price_at_call": 40.578826904296875
     },
     {
       "r_1d": null,
@@ -6760,7 +6760,7 @@
       "called_at": "2019-03-25T18:21:25.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 250.10202026367188
+      "price_at_call": 250.10205078125
     },
     {
       "r_1d": null,
@@ -6877,7 +6877,7 @@
       "called_at": "2019-04-01T20:08:26.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 11.139206886291504
+      "price_at_call": 11.13920783996582
     },
     {
       "r_1d": 0.1629,
@@ -7007,7 +7007,7 @@
       "called_at": "2019-04-04T16:41:54.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 257.3978271484375
+      "price_at_call": 257.3979187011719
     },
     {
       "r_1d": -0.0048,
@@ -7020,7 +7020,7 @@
       "called_at": "2019-04-04T16:47:57.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 257.3978271484375
+      "price_at_call": 257.3979187011719
     },
     {
       "r_1d": 0.0198,
@@ -7124,7 +7124,7 @@
       "called_at": "2019-04-09T18:15:33.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 64.80760192871094
+      "price_at_call": 64.8075942993164
     },
     {
       "r_1d": -0.0628,
@@ -7176,7 +7176,7 @@
       "called_at": "2019-04-18T03:48:36.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 8.721277236938477
+      "price_at_call": 8.721278190612793
     },
     {
       "r_1d": 0,
@@ -7189,7 +7189,7 @@
       "called_at": "2019-04-18T03:48:36.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 42.31430435180664
+      "price_at_call": 42.314300537109375
     },
     {
       "r_1d": 0,
@@ -7202,7 +7202,7 @@
       "called_at": "2019-04-18T03:48:36.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 66.3184585571289
+      "price_at_call": 66.31844329833984
     },
     {
       "r_1d": null,
@@ -7319,7 +7319,7 @@
       "called_at": "2019-05-01T18:14:28.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 8.709872245788574
+      "price_at_call": 8.70987319946289
     },
     {
       "r_1d": 0.0112,
@@ -7371,7 +7371,7 @@
       "called_at": "2019-05-03T21:19:24.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 9.063436508178711
+      "price_at_call": 9.063437461853027
     },
     {
       "r_1d": -0.0276,
@@ -7397,7 +7397,7 @@
       "called_at": "2019-05-03T21:19:33.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 61.158905029296875
+      "price_at_call": 61.15892028808594
     },
     {
       "r_1d": 0,
@@ -7540,7 +7540,7 @@
       "called_at": "2019-05-21T13:41:11.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 4.4865193367004395
+      "price_at_call": 4.486520290374756
     },
     {
       "r_1d": null,
@@ -8255,7 +8255,7 @@
       "called_at": "2020-02-27T15:54:02.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 65.9718017578125
+      "price_at_call": 65.9717788696289
     },
     {
       "r_1d": -0.005,
@@ -8359,7 +8359,7 @@
       "called_at": "2020-03-05T20:00:33.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 198.9949493408203
+      "price_at_call": 198.99496459960938
     },
     {
       "r_1d": null,
@@ -8502,7 +8502,7 @@
       "called_at": "2020-03-22T14:07:48.000Z",
       "direction": "hold",
       "matched_by": "stock",
-      "price_at_call": 209.26239013671875
+      "price_at_call": 209.26234436035156
     },
     {
       "r_1d": null,
@@ -8528,7 +8528,7 @@
       "called_at": "2020-03-23T15:28:13.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 54.11703872680664
+      "price_at_call": 54.117027282714844
     },
     {
       "r_1d": null,
@@ -8671,7 +8671,7 @@
       "called_at": "2020-04-13T16:46:21.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 111.27994537353516
+      "price_at_call": 111.2799301147461
     },
     {
       "r_1d": 0.0193,
@@ -8684,7 +8684,7 @@
       "called_at": "2020-04-13T17:13:10.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 173.13177490234375
+      "price_at_call": 173.1317901611328
     },
     {
       "r_1d": null,
@@ -8944,7 +8944,7 @@
       "called_at": "2020-05-08T03:20:02.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 41.54817581176758
+      "price_at_call": 41.54817199707031
     },
     {
       "r_1d": null,
@@ -10101,7 +10101,7 @@
       "called_at": "2020-11-17T15:36:45.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 6.840634822845459
+      "price_at_call": 6.840635776519775
     },
     {
       "r_1d": -0.0114,
@@ -10400,7 +10400,7 @@
       "called_at": "2020-12-23T15:51:11.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 17.215450286865234
+      "price_at_call": 17.2154483795166
     },
     {
       "r_1d": 0.1136,
@@ -12792,7 +12792,7 @@
       "called_at": "2021-03-29T19:16:16.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 14.854950904846191
+      "price_at_call": 14.854949951171875
     },
     {
       "r_1d": 1.6866,
@@ -15590,17 +15590,17 @@
       "price_at_call": 0.12389487820190928
     },
     {
-      "r_1d": 0.3262,
-      "r_7d": -0.0785,
-      "r_30d": -0.3702,
+      "r_1d": -0.0309,
+      "r_7d": -0.2151,
+      "r_30d": 0.0803,
       "symbol": null,
       "ticker": "POLIS",
       "post_id": "1433778977441726466",
-      "price_id": "coingecko:star-atlas-dao",
+      "price_id": "bsc:0xb5bEa8a26D587CF665f2d78f077CcA3C7f6341BD",
       "called_at": "2021-09-03T13:08:41.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 12.43001390062571
+      "matched_by": "ticker",
+      "price_at_call": 0.24581113434392632
     },
     {
       "r_1d": 0.4916,
@@ -16032,17 +16032,17 @@
       "price_at_call": null
     },
     {
-      "r_1d": -0.0938,
-      "r_7d": -0.0299,
-      "r_30d": 0.7869,
+      "r_1d": -0.1084,
+      "r_7d": -0.2607,
+      "r_30d": 0.149,
       "symbol": null,
       "ticker": "ONE",
       "post_id": "1441075499074162689",
-      "price_id": "coingecko:harmony",
+      "price_id": "bsc:0x04BAf95Fd4C52fd09a56D840bAEe0AB8D7357bf0",
       "called_at": "2021-09-23T16:22:27.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 0.15221251053215598
+      "matched_by": "ticker",
+      "price_at_call": 0.0020386800441444105
     },
     {
       "r_1d": 0.131,
@@ -16175,17 +16175,17 @@
       "price_at_call": null
     },
     {
-      "r_1d": -0.0306,
-      "r_7d": 0.0218,
-      "r_30d": 1.0841,
+      "r_1d": -0.0014,
+      "r_7d": 0.058,
+      "r_30d": 0.4775,
       "symbol": null,
       "ticker": "ONE",
       "post_id": "1442124004576440320",
-      "price_id": "coingecko:harmony",
+      "price_id": "bsc:0x04BAf95Fd4C52fd09a56D840bAEe0AB8D7357bf0",
       "called_at": "2021-09-26T13:48:50.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 0.16982246446095373
+      "matched_by": "ticker",
+      "price_at_call": 0.0015854425271923
     },
     {
       "r_1d": 0.1005,
@@ -16383,30 +16383,30 @@
       "price_at_call": 0.00006430343130694186
     },
     {
-      "r_1d": 0.2619,
-      "r_7d": 0.1919,
-      "r_30d": 0.6987,
+      "r_1d": 0.0857,
+      "r_7d": 0.0975,
+      "r_30d": 0.6717,
       "symbol": null,
       "ticker": "ONE",
       "post_id": "1446342297159938064",
-      "price_id": "coingecko:harmony",
+      "price_id": "bsc:0x04BAf95Fd4C52fd09a56D840bAEe0AB8D7357bf0",
       "called_at": "2021-10-08T05:10:50.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 0.18217635825316844
+      "matched_by": "ticker",
+      "price_at_call": 0.001620779534139568
     },
     {
-      "r_1d": 0.2619,
-      "r_7d": 0.1919,
-      "r_30d": 0.6987,
+      "r_1d": 0.0857,
+      "r_7d": 0.0975,
+      "r_30d": 0.6717,
       "symbol": null,
       "ticker": "ONE",
       "post_id": "1446342822358093825",
-      "price_id": "coingecko:harmony",
+      "price_id": "bsc:0x04BAf95Fd4C52fd09a56D840bAEe0AB8D7357bf0",
       "called_at": "2021-10-08T05:12:55.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 0.18217635825316844
+      "matched_by": "ticker",
+      "price_at_call": 0.001620779534139568
     },
     {
       "r_1d": null,
@@ -16428,10 +16428,10 @@
       "symbol": null,
       "ticker": "TIME",
       "post_id": "1446681437823029251",
-      "price_id": "bsc:0x3b198e26E473b8faB2085b37978e36c9DE5D7f68",
+      "price_id": "coingecko:chronobank",
       "called_at": "2021-10-09T03:38:27.000Z",
       "direction": "hold",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 32.593901665310845
     },
     {
@@ -17007,17 +17007,17 @@
       "price_at_call": null
     },
     {
-      "r_1d": 0.013,
-      "r_7d": -0.1616,
-      "r_30d": -0.1393,
+      "r_1d": -0.0136,
+      "r_7d": -0.0254,
+      "r_30d": -0.015,
       "symbol": null,
       "ticker": "ONE",
       "post_id": "1452729207755321345",
-      "price_id": "coingecko:harmony",
+      "price_id": "bsc:0x04BAf95Fd4C52fd09a56D840bAEe0AB8D7357bf0",
       "called_at": "2021-10-25T20:10:08.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 0.34799357285027166
+      "matched_by": "ticker",
+      "price_at_call": 0.0023491826342239217
     },
     {
       "r_1d": -0.0006,
@@ -19873,7 +19873,7 @@
       "symbol": null,
       "ticker": "SXP",
       "post_id": "1510400009388371970",
-      "price_id": "ethereum:0x8CE9137d39326AD0cD6491fb5CC0CbA0e089b6A9",
+      "price_id": "bsc:0x47BEAd2563dCBf3bF2c9407fEa4dC236fAbA485A",
       "called_at": "2022-04-02T23:33:18.000Z",
       "direction": "hold",
       "matched_by": "ticker",
@@ -20829,17 +20829,17 @@
       "price_at_call": 1815.99
     },
     {
-      "r_1d": 0.0456,
-      "r_7d": -0.0775,
-      "r_30d": -0.1304,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "AXL",
       "post_id": "1666083789460865033",
-      "price_id": "bsc:0x8b1f4432F943c465A973FeDC6d7aa50Fc96f1f65",
+      "price_id": null,
       "called_at": "2023-06-06T14:05:04.000Z",
       "direction": "buy",
-      "matched_by": "ticker",
-      "price_at_call": 0.425837
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": 0.2609,
@@ -22135,10 +22135,10 @@
       "symbol": null,
       "ticker": "BITCOIN",
       "post_id": "1691013302866849792",
-      "price_id": "coingecko:harrypotterobamasonic10in",
+      "price_id": "ethereum:0x72e4f9F808C49A2a61dE9C5896298920Dc4EEEa9",
       "called_at": "2023-08-14T09:06:03.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
+      "matched_by": "ticker",
       "price_at_call": 0.125852
     },
     {
@@ -22213,10 +22213,10 @@
       "symbol": null,
       "ticker": "BITCOIN",
       "post_id": "1692324739396620651",
-      "price_id": "coingecko:harrypotterobamasonic10in",
+      "price_id": "ethereum:0x72e4f9F808C49A2a61dE9C5896298920Dc4EEEa9",
       "called_at": "2023-08-17T23:57:14.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
+      "matched_by": "ticker",
       "price_at_call": 0.149966
     },
     {
@@ -24310,7 +24310,7 @@
       "called_at": "2023-11-19T18:29:02.000Z",
       "direction": "hold",
       "matched_by": "stock",
-      "price_at_call": 331.8615417480469
+      "price_at_call": 331.86151123046875
     },
     {
       "r_1d": 0.271,
@@ -27953,108 +27953,108 @@
       "price_at_call": 5.6025e-8
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": 2.1681,
+      "r_7d": 7.4344,
+      "r_30d": 4.454,
       "symbol": null,
       "ticker": "PUPS",
       "post_id": "1776330178982977663",
-      "price_id": null,
+      "price_id": "solana:PUPS8ZgJ5po4UmNDfqtDMCPP6M1KP3EEzG9Zufcwzrg",
       "called_at": "2024-04-05T19:24:51.000Z",
       "direction": "buy",
-      "matched_by": null,
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 7.379908976633629
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": 2.0926,
+      "r_7d": 7.2417,
+      "r_30d": 4.3161,
       "symbol": null,
       "ticker": "PUPS",
       "post_id": "1776331818939076657",
-      "price_id": null,
+      "price_id": "solana:PUPS8ZgJ5po4UmNDfqtDMCPP6M1KP3EEzG9Zufcwzrg",
       "called_at": "2024-04-05T19:31:22.000Z",
       "direction": "buy",
-      "matched_by": null,
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 7.5600000000000005
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": -0.1543,
+      "r_7d": 1.0228,
+      "r_30d": 0.2708,
       "symbol": null,
       "ticker": "PUPS",
       "post_id": "1776339301745218026",
-      "price_id": null,
+      "price_id": "solana:PUPS8ZgJ5po4UmNDfqtDMCPP6M1KP3EEzG9Zufcwzrg",
       "called_at": "2024-04-05T20:01:06.000Z",
       "direction": "buy",
-      "matched_by": null,
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 31.075903608917447
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": 0.3795,
+      "r_7d": 0.1607,
+      "r_30d": -0.6286,
       "symbol": null,
       "ticker": "PUPS",
       "post_id": "1778472830868292076",
-      "price_id": null,
+      "price_id": "solana:PUPS8ZgJ5po4UmNDfqtDMCPP6M1KP3EEzG9Zufcwzrg",
       "called_at": "2024-04-11T17:18:59.000Z",
       "direction": "hold",
-      "matched_by": null,
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 48.89512331788561
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": 0.402,
+      "r_7d": 0.1252,
+      "r_30d": -0.6456,
       "symbol": null,
       "ticker": "PUPS",
       "post_id": "1778475620088909860",
-      "price_id": null,
+      "price_id": "solana:PUPS8ZgJ5po4UmNDfqtDMCPP6M1KP3EEzG9Zufcwzrg",
       "called_at": "2024-04-11T17:30:04.000Z",
       "direction": "hold",
-      "matched_by": null,
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 48.991069491057274
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": 0.2275,
+      "r_7d": -0.2571,
+      "r_30d": -0.6955,
       "symbol": null,
       "ticker": "PUPS",
       "post_id": "1778655297415872553",
-      "price_id": null,
+      "price_id": "solana:PUPS8ZgJ5po4UmNDfqtDMCPP6M1KP3EEzG9Zufcwzrg",
       "called_at": "2024-04-12T05:24:03.000Z",
       "direction": "hold",
-      "matched_by": null,
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 67.00575544124453
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": 0.2908,
+      "r_7d": 0.0749,
+      "r_30d": -0.7226,
       "symbol": null,
       "ticker": "PUPS",
       "post_id": "1778962136703578182",
-      "price_id": null,
+      "price_id": "solana:PUPS8ZgJ5po4UmNDfqtDMCPP6M1KP3EEzG9Zufcwzrg",
       "called_at": "2024-04-13T01:43:19.000Z",
       "direction": "buy",
-      "matched_by": null,
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 57.24
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": -0.1571,
+      "r_7d": -0.2706,
+      "r_30d": -0.8275,
       "symbol": null,
       "ticker": "PUPS",
       "post_id": "1778994379799097617",
-      "price_id": null,
+      "price_id": "solana:PUPS8ZgJ5po4UmNDfqtDMCPP6M1KP3EEzG9Zufcwzrg",
       "called_at": "2024-04-13T03:51:26.000Z",
       "direction": "hold",
-      "matched_by": null,
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 86.70476288122069
     },
     {
       "r_1d": 0.0057,
@@ -28070,17 +28070,17 @@
       "price_at_call": 141.21
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": -0.1477,
+      "r_7d": -0.3442,
+      "r_30d": -0.8265,
       "symbol": null,
       "ticker": "PUPS",
       "post_id": "1779215010562027853",
-      "price_id": null,
+      "price_id": "solana:PUPS8ZgJ5po4UmNDfqtDMCPP6M1KP3EEzG9Zufcwzrg",
       "called_at": "2024-04-13T18:28:09.000Z",
       "direction": "hold",
-      "matched_by": null,
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 81.97436997552623
     },
     {
       "r_1d": 0.3052,
@@ -28219,24 +28219,24 @@
       "symbol": null,
       "ticker": "WZRD",
       "post_id": "1781217892572320112",
-      "price_id": "bsc:0xFa40d8FC324bcdD6Bbae0e086De886c571C225d4",
+      "price_id": "coingecko:wizardia",
       "called_at": "2024-04-19T07:06:53.000Z",
       "direction": "buy",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 0.00436196
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": 0.2915,
+      "r_7d": -0.361,
+      "r_30d": -0.6693,
       "symbol": null,
       "ticker": "PUPS",
       "post_id": "1781217892572320112",
-      "price_id": null,
+      "price_id": "solana:PUPS8ZgJ5po4UmNDfqtDMCPP6M1KP3EEzG9Zufcwzrg",
       "called_at": "2024-04-19T07:06:53.000Z",
       "direction": "buy",
-      "matched_by": null,
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 50.8
     },
     {
       "r_1d": 0.0522,
@@ -28252,17 +28252,17 @@
       "price_at_call": 2.68
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": 0.1875,
+      "r_7d": -0.3505,
+      "r_30d": -0.6693,
       "symbol": null,
       "ticker": "PUPS",
       "post_id": "1781240858504745117",
-      "price_id": null,
+      "price_id": "solana:PUPS8ZgJ5po4UmNDfqtDMCPP6M1KP3EEzG9Zufcwzrg",
       "called_at": "2024-04-19T08:38:09.000Z",
       "direction": "hold",
-      "matched_by": null,
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 54.13
     },
     {
       "r_1d": 0.0792,
@@ -28271,10 +28271,10 @@
       "symbol": null,
       "ticker": "WZRD",
       "post_id": "1781240858504745117",
-      "price_id": "bsc:0xFa40d8FC324bcdD6Bbae0e086De886c571C225d4",
+      "price_id": "coingecko:wizardia",
       "called_at": "2024-04-19T08:38:09.000Z",
       "direction": "hold",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 0.00445864
     },
     {
@@ -28369,17 +28369,17 @@
       "price_at_call": 0.7075165742683571
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": -0.176,
+      "r_7d": -0.3391,
+      "r_30d": -0.6319,
       "symbol": null,
       "ticker": "PUPS",
       "post_id": "1783013229481857111",
-      "price_id": null,
+      "price_id": "solana:PUPS8ZgJ5po4UmNDfqtDMCPP6M1KP3EEzG9Zufcwzrg",
       "called_at": "2024-04-24T06:00:55.000Z",
       "direction": "hold",
-      "matched_by": null,
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 42.59508373669349
     },
     {
       "r_1d": -0.0128,
@@ -28388,10 +28388,10 @@
       "symbol": null,
       "ticker": "WZRD",
       "post_id": "1783013229481857111",
-      "price_id": "bsc:0xFa40d8FC324bcdD6Bbae0e086De886c571C225d4",
+      "price_id": "coingecko:wizardia",
       "called_at": "2024-04-24T06:00:55.000Z",
       "direction": "hold",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 0.00595383
     },
     {
@@ -28434,17 +28434,17 @@
       "price_at_call": 0.086826
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": -0.0145,
+      "r_7d": -0.2216,
+      "r_30d": -0.5316,
       "symbol": null,
       "ticker": "PUPS",
       "post_id": "1783389374912049560",
-      "price_id": null,
+      "price_id": "solana:PUPS8ZgJ5po4UmNDfqtDMCPP6M1KP3EEzG9Zufcwzrg",
       "called_at": "2024-04-25T06:55:35.000Z",
       "direction": "hold",
-      "matched_by": null,
-      "price_at_call": null
+      "matched_by": "ticker",
+      "price_at_call": 33.028782935504516
     },
     {
       "r_1d": null,
@@ -28986,10 +28986,10 @@
       "symbol": null,
       "ticker": "WZRD",
       "post_id": "1797044840451985903",
-      "price_id": "bsc:0xFa40d8FC324bcdD6Bbae0e086De886c571C225d4",
+      "price_id": "coingecko:wizardia",
       "called_at": "2024-06-01T23:17:32.000Z",
       "direction": "hold",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 0.00359107
     },
     {
@@ -32422,7 +32422,7 @@
       "called_at": "2025-02-21T17:35:58.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 83.19588470458984
+      "price_at_call": 83.19586944580078
     },
     {
       "r_1d": 0.0059,
@@ -35701,30 +35701,30 @@
       "price_at_call": 815.9659534031406
     },
     {
-      "r_1d": 0.011,
-      "r_7d": -0.0352,
-      "r_30d": null,
+      "r_1d": 0.0935,
+      "r_7d": 0.0643,
+      "r_30d": 0.1994,
       "symbol": null,
       "ticker": "NET",
       "post_id": "2093755752330437033",
-      "price_id": "solana:J4vs69qy5sBe2sea3ycdbmEPEJ25WZCt3qLWPRwJpump",
+      "price_id": "solana:7nFYpHyhDgzg3ioU2JFko5kaVwm6bjkL4MtbUiVAiYbJ",
       "called_at": "2026-08-29T17:40:46.000Z",
       "direction": "hold",
       "matched_by": "ticker",
-      "price_at_call": 0.00000434393447374038
+      "price_at_call": 0.00044195290971312223
     },
     {
-      "r_1d": 0.0184,
-      "r_7d": -0.0341,
-      "r_30d": null,
+      "r_1d": 0.1003,
+      "r_7d": 0.067,
+      "r_30d": 0.1994,
       "symbol": null,
       "ticker": "NET",
       "post_id": "2093769059749802291",
-      "price_id": "solana:J4vs69qy5sBe2sea3ycdbmEPEJ25WZCt3qLWPRwJpump",
+      "price_id": "solana:7nFYpHyhDgzg3ioU2JFko5kaVwm6bjkL4MtbUiVAiYbJ",
       "called_at": "2026-08-29T18:33:38.000Z",
       "direction": "hold",
       "matched_by": "ticker",
-      "price_at_call": 0.0000043390791182005295
+      "price_at_call": 0.00044195290971312223
     },
     {
       "r_1d": -0.0265,
@@ -36067,7 +36067,7 @@
     {
       "r_1d": 0.3908,
       "r_7d": 0.1416,
-      "r_30d": null,
+      "r_30d": -0.561,
       "symbol": null,
       "ticker": "IMD",
       "post_id": "2106770699637440750",
@@ -36080,7 +36080,7 @@
     {
       "r_1d": -0.0283,
       "r_7d": -0.1352,
-      "r_30d": null,
+      "r_30d": -0.3564,
       "symbol": null,
       "ticker": "PUMP",
       "post_id": "2106771014050812276",
@@ -36106,7 +36106,7 @@
     {
       "r_1d": 0.0081,
       "r_7d": 0.0011,
-      "r_30d": null,
+      "r_30d": -0.0776,
       "symbol": null,
       "ticker": "BTC",
       "post_id": "2108380342608712030",
@@ -36183,7 +36183,7 @@
     },
     {
       "r_1d": -0.0025,
-      "r_7d": null,
+      "r_7d": 0.0287,
       "r_30d": null,
       "symbol": null,
       "ticker": "BTC",
@@ -36196,7 +36196,7 @@
     },
     {
       "r_1d": -0.0059,
-      "r_7d": null,
+      "r_7d": 0.0139,
       "r_30d": null,
       "symbol": null,
       "ticker": "ETH",
@@ -36208,21 +36208,8 @@
       "price_at_call": 2310.391543047898
     },
     {
-      "r_1d": 0.0386,
-      "r_7d": null,
-      "r_30d": null,
-      "symbol": null,
-      "ticker": "ETH",
-      "post_id": "2115752920779989271",
-      "price_id": "coingecko:ethereum",
-      "called_at": "2026-10-29T10:29:39.000Z",
-      "direction": "sell",
-      "matched_by": null,
-      "price_at_call": 2316.575603010141
-    },
-    {
       "r_1d": -0.0049,
-      "r_7d": null,
+      "r_7d": 0.0134,
       "r_30d": null,
       "symbol": null,
       "ticker": "BTC",
@@ -36235,7 +36222,7 @@
     },
     {
       "r_1d": -0.0143,
-      "r_7d": null,
+      "r_7d": -0.0091,
       "r_30d": null,
       "symbol": null,
       "ticker": "ETH",
@@ -36248,7 +36235,7 @@
     },
     {
       "r_1d": 0.055,
-      "r_7d": null,
+      "r_7d": 0.0747,
       "r_30d": null,
       "symbol": null,
       "ticker": "ZEC",
@@ -36261,7 +36248,7 @@
     },
     {
       "r_1d": -0.0055,
-      "r_7d": null,
+      "r_7d": -0.1409,
       "r_30d": null,
       "symbol": null,
       "ticker": "HYPE",
@@ -36274,7 +36261,7 @@
     },
     {
       "r_1d": 0.0754,
-      "r_7d": null,
+      "r_7d": 0.0122,
       "r_30d": null,
       "symbol": null,
       "ticker": "PUMP",
@@ -36286,28 +36273,67 @@
       "price_at_call": 0.0038655079220254545
     },
     {
-      "r_1d": -0.0041,
+      "r_1d": -0.0094,
       "r_7d": null,
       "r_30d": null,
       "symbol": null,
-      "ticker": "ETH",
-      "post_id": "2116134237971915020",
-      "price_id": "coingecko:ethereum",
-      "called_at": "2026-10-30T11:44:52.000Z",
+      "ticker": "XAU",
+      "post_id": "2118292132876480727",
+      "price_id": "stock:GC=F",
+      "called_at": "2026-11-05T10:39:35.000Z",
+      "direction": "buy",
+      "matched_by": "stock",
+      "price_at_call": 4113.5
+    },
+    {
+      "r_1d": 0.0027,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "BTC",
+      "post_id": "2118398194996461874",
+      "price_id": "coingecko:bitcoin",
+      "called_at": "2026-11-05T17:41:02.000Z",
       "direction": "sell",
       "matched_by": null,
-      "price_at_call": 2238.5180030883002
+      "price_at_call": 75773.78
+    },
+    {
+      "r_1d": -0.0048,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "SOL",
+      "post_id": "2118531055984537766",
+      "price_id": "coingecko:solana",
+      "called_at": "2026-11-06T02:28:58.000Z",
+      "direction": "sell",
+      "matched_by": null,
+      "price_at_call": 89.9872361537463
+    },
+    {
+      "r_1d": 0,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "XAU",
+      "post_id": "2118758965177880768",
+      "price_id": "stock:GC=F",
+      "called_at": "2026-11-06T17:34:36.000Z",
+      "direction": "buy",
+      "matched_by": "stock",
+      "price_at_call": 4074.89990234375
     }
   ],
-  "hold_pairs": 140,
-  "calls_total": 2790,
-  "computed_at": "2026-11-02T11:39:34.357Z",
+  "hold_pairs": 141,
+  "calls_total": 2792,
+  "computed_at": "2026-11-09T11:55:55.359Z",
   "by_direction": {
-    "buy": 2020,
+    "buy": 2022,
     "hold": 459,
     "sell": 311
   },
-  "calls_priced": 2385,
+  "calls_priced": 2399,
   "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal); Yahoo Finance (stocks, ETFs, metals)",
-  "median_hold_days": 52.2
+  "median_hold_days": 54
 }
