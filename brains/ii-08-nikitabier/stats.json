@@ -117,7 +117,7 @@
       "called_at": "2020-07-14T03:12:56.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 137.20635986328125
+      "price_at_call": 137.20640563964844
     },
     {
       "r_1d": null,
@@ -910,7 +910,7 @@
       "called_at": "2023-06-16T04:03:56.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 42.561370849609375
+      "price_at_call": 42.56137466430664
     },
     {
       "r_1d": 0,
@@ -923,7 +923,7 @@
       "called_at": "2023-06-16T04:10:23.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 42.561370849609375
+      "price_at_call": 42.56137466430664
     },
     {
       "r_1d": null,
@@ -1014,7 +1014,7 @@
       "called_at": "2023-11-14T14:29:13.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 79.27314758300781
+      "price_at_call": 79.27313232421875
     },
     {
       "r_1d": null,
@@ -1131,7 +1131,7 @@
       "called_at": "2023-12-30T18:22:35.000Z",
       "direction": "hold",
       "matched_by": "stock",
-      "price_at_call": 90.55573272705078
+      "price_at_call": 90.55572509765625
     },
     {
       "r_1d": 0.0138,
@@ -1157,7 +1157,7 @@
       "called_at": "2024-02-21T21:02:34.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 67.27700805664062
+      "price_at_call": 67.27699279785156
     },
     {
       "r_1d": -0.1265,
@@ -1209,7 +1209,7 @@
       "called_at": "2024-08-31T17:49:34.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 119.04036712646484
+      "price_at_call": 119.04037475585938
     },
     {
       "r_1d": null,
@@ -1274,7 +1274,7 @@
       "called_at": "2024-12-14T17:47:34.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 122.18669891357422
+      "price_at_call": 122.18669128417969
     },
     {
       "r_1d": 0.0123,
@@ -1287,7 +1287,7 @@
       "called_at": "2024-12-25T03:26:00.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 120.8556900024414
+      "price_at_call": 120.85570526123047
     },
     {
       "r_1d": 0.0868,
@@ -1591,7 +1591,7 @@
   ],
   "hold_pairs": 9,
   "calls_total": 120,
-  "computed_at": "2026-11-09T11:46:30.115Z",
+  "computed_at": "2026-11-09T23:53:23.126Z",
   "by_direction": {
     "buy": 78,
     "hold": 22,
