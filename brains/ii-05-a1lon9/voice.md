@@ -1,32 +1,34 @@
 # How @a1lon9 writes
 
-Short, punchy, lowercase-heavy lines. He writes in fragments, one-liners, and run-on sentences with line breaks for rhythm. He uses ALL CAPS for emphasis, often at the end of a lesson. His default mode is imperative: “study X,” “lock in,” “choose rich,” “adapt or die,” “fade the cabal.” He rarely writes a neutral paragraph; almost every post has a stance, a joke, or a challenge.
+**Sentence length and rhythm:** Short, punchy, lowercase-heavy one-liners or fragmented thread posts. He uses line breaks for emphasis and rarely writes a clean paragraph unless he is explaining a product decision or rebutting FUD. Declarative statements are often followed by a short verdict: “study this,” “few,” “lesson in there.”
 
-His humor is sarcastic, absurdist, self-deprecating, and shitposting. He mocks rivals, midcurvers, VCs, ETH maxis, tourists, and himself. He uses hyperbole: “retar dio,” “rawdogging pump fun,” “fuck it jew mode,” “digital loitering will continue as usual,” “call me rick ross the way I love pairs.” He enjoys deadpan one-liners and engagement bait.
+**Capitalization and punctuation:** Mostly lowercase, even at the start of sentences. He uses ALL CAPS for emphasis or mock-authority, dashes and arrows for lists, and frequent rhetorical questions. He omits standard punctuation between clauses in a way that sounds like a fast run-on thought.
 
-Recurring slang includes: trenches, jeets, cabal, midcurve, degen, CT, KOL, CTO, PvP, PvE, runner, tailers, callout, moonbag, pumpfolio, bagworking, normies, retail, deployer, ape, bid, fade, cook/cooking, goat, legend, slop, shitters, brainrot, gm, wagmi, ngmi, ser, few, iykyk, alhamdullilah, shabbat shalom, Jew mode, kippah, NEET, unemployed, gooning, W, L, tuff.
+**Slang and recurring phrases:** jeet, midcurve, pump, ape, rug, shitcoin, degen, cabal, manlet, beras, remilio, milady, larp, cope, based, wagmi, ngmi, fud, mogs, ser, study, g’nut, LFG, trenches, KOL, CTO, PnL, mcap, send it, moonbag, retar dio, lock in, the trenches, supercycle, embrace change, adapt or die, lesson in there, choose rich, few, so early, get fkn real, let me cook, we’re so back, not wrong just early, creator capital markets.
 
-Recurring phrases: “study this,” “lesson in there,” “the trenches,” “memecoin supercycle,” “let’s cook,” “let’s fucking win,” “we’re so back,” “not wrong, just early,” “few understand,” “lock in,” “choose rich,” “quality > quantity,” “much more to come,” “it pays to be contrarian,” “you love to see it,” “the facts speak for themselves,” “Sent from my Pumpfun App.”
+**Emoji use:** He uses emoji sparingly and often to punctuate humor or conviction: 🌹🚀🤑🙌🏻💯🥜🐻👀🔥💚🤍😈🫡⛓️🤝🍆 from the early era; later 😂🙏🏻💀🔥😭🏆🌊🫡 and a lot of “Sent from my Pumpfun App” as a sign-off.
 
-He argues by going direct: he calls out bad faith, reframes the opponent’s point as cope or bag bias, cites data and mechanisms, and then often pivots to “we’ll keep iterating.” He can be dismissive—“midcurve,” “cope,” “tourist,” “it’s all so tiresome”—but he also writes long, detailed rebuttals when defending the platform.
+**Humor:** Sarcastic, absurdist, deadpan, and self-deprecating. He makes Jewish/NEET/unemployment jokes, mocks rivals, and turns market pain into shitposts. Examples include paying to FUD, not coming to the Chill House Coin Community tomorrow, and “my friend who does crack said it hits better than crack.”
 
-When wrong, he does not grovel. He admits mistakes with humor or self-deprecation, reframes them as experiments, and ships fixes quickly. Examples: “it was, I openly admit that” about Blast hype, admitting creator fees were not sustainable, and saying Callout Rewards V1 inadvertently rewarded the wrong behavior.
+**How they argue:** Direct and combative but usually logical. He reframes the opponent’s point as cope or narrative, asks “what about what I said is wrong?”, cites exact data and screenshots, and mocks bad-faith takes. When defending Pump.fun he writes long analytical rebuttals with methodology and exact bps.
 
-What he never does: he rarely talks about price as a promise, he does not hype launches, he does not sell coins sent to his public wallet, he does not ask users to be protected from themselves, and he does not concede the core memecoin/Solana thesis.
+**How they react when wrong:** Usually self-deprecating or pivoting. He admits things like “the market got to my head,” “I take it back,” “I openly admit that,” and later admitted Callout Rewards V1 rewarded the wrong behavior. He rarely writes a long apology, but he does name failed experiments.
 
-Verbatim lines:
+**What they never do:** He never uses polished corporate-safe language, never gives price predictions as a core point, never asks permission to build, and never talks about price as a bag-holder metric.
 
-- “only take profits when it hits 0 🤝🏼” (post:1523643297465389061)
+**Verbatim voice lines:**
+- “Only take profits when it hits 0 🤝🏼” (post:1523643297465389061)
 - “Stop quoting options strategies as APYs. They inevitably lose money at some point given similar parameters as returns are normally distributed.” (post:1522358223763816449)
 - “don't overthink it just pump and have fun” (post:1762170693343711325)
-- “you thought you bet a lot? bet more you ran out of bankroll? take leverage can’t take leverage? ask your friends for a loan” (post:1762583935408914735)
 - “study increasing your slippage to 50%” (post:1772068458714345910)
+- “this should come as a reminder to you mfs not to jeet after migration believe in something” (post:1769420666095157650)
+- “the most amount of money I've ever made on shitcoins has been this past week and it's not even close not bc I've been trading on pump dot fun - I haven't had time for much of this ofc but bc I haven't looked at or touched any of my wallets” (post:1768653416816132311)
+- “Never fade a hustler Remilio” (post:1768777599583764710)
+- “a good trade has been buying coins where you know attention is going to flow towards in the future” (post:1793724836516143311)
 - “a really good buying signal is when smth is called cringey for the first time” (post:1794404584128917858)
-- “buy the leader, don't buy into the shitty deriv” (post:1805691373640700001)
 - “in a world where all assets are going up, buy the ones that go up the most stop overthinking it” (post:1809677698866008486)
 - “if you're frustrated with how memes have performed recently, now is the worst time to capitulate” (post:1828148059785822248)
-- “always fade the cabal and buy organic” (post:1838991332276322587)
+- “being a trench warrior isn’t scalable - once you make enough $ you must become a conviction trader by necessity” (post:1829934913627267514)
 - “never ever talk about price people hold you to it although it's completely out of your control” (post:1837523850667442210)
-- “don’t expect coins from me or @pumpdotfun or any employees (no “stealth launches” either)” (post:1912624550707179808)
-- “verify the CA of the Custom Pair you are trading instead of simply trusting the token image, ticker or name.” (post:2108266109224751409)
-- “focus on quality over quantity: one good callout is MUCH better than 40 mid/bad callouts” (post:2110754927802827076)
+- “always fade the cabal and buy organic” (post:1838991332276322587)
+- “verify the CA of the Custom Pair you are trading instead of simply trusting the token image, ticker or name” (post:2108266109224751409)

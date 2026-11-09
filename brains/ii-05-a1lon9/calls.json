@@ -630,33 +630,53 @@
     "url": "https://x.com/a1lon9/status/1973141501178946019"
   },
   {
-    "date": "2026-07-02",
-    "ticker": "SOL",
+    "date": "2026-06-30",
+    "ticker": "AGENTS",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "we're still super bullish on that sector and will see how we can support it in our ecosystem",
+    "post_id": "2071995373086806020",
+    "url": "https://x.com/a1lon9/status/2071995373086806020"
+  },
+  {
+    "date": "2026-07-24",
+    "ticker": "HOMEDAO",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "forever bullish on HomeDAO.",
+    "post_id": "2080682367165841595",
+    "url": "https://x.com/a1lon9/status/2080682367165841595"
+  },
+  {
+    "date": "2026-10-15",
+    "ticker": "HUGO",
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "$1 to $100k run it followed!",
-    "post_id": "2072725514272276791",
-    "url": "https://x.com/a1lon9/status/2072725514272276791"
+    "quote": "investing in hugo at 13k is like investing in bitcoin at 13k",
+    "post_id": "2110782663636259306",
+    "url": "https://x.com/a1lon9/status/2110782663636259306"
   },
   {
-    "date": "2026-07-02",
-    "ticker": "SOL",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "run it back 2024 style",
-    "post_id": "2072734796342522271",
-    "url": "https://x.com/a1lon9/status/2072734796342522271"
-  },
-  {
-    "date": "2026-08-24",
+    "date": "2026-10-22",
     "ticker": "PUMP",
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "great update legend anyway, can I hold a band?",
-    "post_id": "2091960144041066824",
-    "url": "https://x.com/a1lon9/status/2091960144041066824"
+    "quote": "much bigger than last cycle",
+    "post_id": "2113311727987171349",
+    "url": "https://x.com/a1lon9/status/2113311727987171349"
+  },
+  {
+    "date": "2026-10-31",
+    "ticker": "HOLDERS",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "holders will become very rich in better market conditions",
+    "post_id": "2116605662843252983",
+    "url": "https://x.com/a1lon9/status/2116605662843252983"
   }
 ]
