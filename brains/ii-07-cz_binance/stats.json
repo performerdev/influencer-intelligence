@@ -9,10 +9,10 @@
   ],
   "horizons": {
     "1d": {
-      "n": 78,
-      "hit_rate": 0.4359,
+      "n": 79,
+      "hit_rate": 0.4304,
       "mean_return": -0.0078,
-      "median_return": -0.0057
+      "median_return": -0.0062
     },
     "7d": {
       "n": 78,
@@ -1056,7 +1056,7 @@
       "price_at_call": 81468.12601564478
     },
     {
-      "r_1d": null,
+      "r_1d": -0.0065,
       "r_7d": null,
       "r_30d": null,
       "symbol": null,
@@ -1066,12 +1066,12 @@
       "called_at": "2026-11-02T17:10:08.000Z",
       "direction": "hold",
       "matched_by": null,
-      "price_at_call": 702.229591193917
+      "price_at_call": 702.1157317438759
     }
   ],
   "hold_pairs": 0,
   "calls_total": 80,
-  "computed_at": "2026-11-02T23:16:23.854Z",
+  "computed_at": "2026-11-09T11:44:51.981Z",
   "by_direction": {
     "buy": 26,
     "hold": 53,
