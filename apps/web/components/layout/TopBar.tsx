@@ -5,12 +5,14 @@ import { useEffect, useState } from "react";
 import { site } from "@/config/site";
 import { token } from "@/config/token";
 import { XGlyph, useAuth } from "@/components/account/AuthProvider";
+import { Ticker } from "@/components/early/Ticker";
 import { AppLink } from "@/components/ui/AppLink";
 import { Popover } from "@/components/ui/Popover";
 
 import { LogoMark } from "./LogoMark";
 
 const nav = [
+  { href: "/early", label: "Early", dot: true },
   { href: "/#intelligences", label: "Intelligences" },
   { href: "/coins", label: "Coins" },
   { href: "/leaderboard", label: "Leaderboard" },
@@ -41,7 +43,12 @@ export function TopBar() {
 
         <nav aria-label="Primary" className="ml-auto hidden items-center gap-1 md:flex">
           {nav.map((n) => (
-            <AppLink key={n.href} href={n.href} className="rounded-pill px-3 py-1.5 text-sm text-particle transition-colors duration-fast hover:text-ceramic">
+            <AppLink
+              key={n.href}
+              href={n.href}
+              className={`inline-flex items-center gap-1.5 rounded-pill px-3 py-1.5 text-sm transition-colors duration-fast hover:text-ceramic ${"dot" in n ? "text-ceramic" : "text-particle"}`}
+            >
+              {"dot" in n && <i aria-hidden className="block h-1.5 w-1.5 bg-ceramic" />}
               {n.label}
             </AppLink>
           ))}
@@ -74,7 +81,7 @@ function TokenPopover() {
       triggerClassName="inline-flex h-9 items-center gap-1.5 rounded-pill border border-line px-3.5 font-mono text-xs text-ceramic transition-colors duration-fast hover:border-line-hover"
       trigger={
         <>
-          {token.ticker}
+          <Ticker />
           <svg width="9" height="9" viewBox="0 0 10 10" aria-hidden className="text-muted">
             <path d="M2 3.5 5 6.5 8 3.5" stroke="currentColor" fill="none" strokeWidth="1.2" />
           </svg>
@@ -150,7 +157,8 @@ function MobileMenu() {
       >
         <nav aria-label="Primary" className="-my-1 flex flex-col">
           {nav.map((n) => (
-            <AppLink key={n.href} href={n.href} className="py-2 text-body text-ceramic">
+            <AppLink key={n.href} href={n.href} className="flex items-center gap-2 py-2 text-body text-ceramic">
+              {"dot" in n && <i aria-hidden className="block h-1.5 w-1.5 bg-ceramic" />}
               {n.label}
             </AppLink>
           ))}

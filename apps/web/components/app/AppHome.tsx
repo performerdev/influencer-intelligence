@@ -4,6 +4,9 @@ import { useEffect, useMemo, useState } from "react";
 
 import { UsageMeter } from "@/components/account/AuthProvider";
 import { type ChatHistory, ChatView } from "@/components/chat/ChatView";
+import { Coin } from "@/components/early/Coin";
+import { Ticker } from "@/components/early/Ticker";
+import { early } from "@/config/early";
 import { getLenis } from "@/components/layout/SmoothScroll";
 import { BrainAvatar } from "@/components/particles/BrainAvatar";
 import { AppLink } from "@/components/ui/AppLink";
@@ -170,6 +173,18 @@ export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
         className={`fixed inset-y-0 left-0 z-[60] flex w-[min(300px,86vw)] flex-col border-r border-line bg-void transition-transform duration-base ease-ii-out lg:static lg:z-auto lg:w-auto lg:translate-x-0 ${railOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
         <div data-lenis-prevent className="min-h-0 flex-1 overflow-y-auto px-2.5 py-4">
+          <AppLink
+            href="/early"
+            className="mb-4 grid grid-cols-[32px_minmax(0,1fr)] items-center gap-3 rounded-chip border border-dashed border-line-hover px-2 py-1.5 transition-colors duration-fast hover:bg-panel"
+          >
+            <Coin size={32} />
+            <span className="min-w-0">
+              <span className="block font-mono text-[10px] leading-tight text-particle">ii-00 · Early</span>
+              <span className="block truncate font-pixel text-sm leading-tight">
+                Get {early.base.toLocaleString("en-US")} <Ticker />
+              </span>
+            </span>
+          </AppLink>
           <p className="mb-2 flex justify-between px-2 font-pixel text-[11px] text-muted">
             <span>Minds</span>
             <span className="tabular-nums">{intelligences.length}</span>

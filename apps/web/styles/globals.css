@@ -278,3 +278,13 @@
   .verdict-pop, .tok, .sheet-in-right, .sheet-in-up { animation: none; }
   .marquee-track { animation: none; }
 }
+
+/* Early Mind: a task being checked fills its bar in pixel steps */
+@keyframes ii-early-fill {
+  from { width: 0; }
+  to { width: 100%; }
+}
+.early-fill { width: 0; animation: ii-early-fill 1.1s steps(12) forwards; }
+@media (prefers-reduced-motion: reduce) {
+  .early-fill { animation: none; width: 100%; }
+}

@@ -2,9 +2,12 @@ import { notFound } from "next/navigation";
 import { Fragment } from "react";
 
 import { AdminButton } from "@/components/admin/AdminButton";
+import { EarlySettings } from "@/components/admin/EarlySettings";
 import { RefundBox } from "@/components/admin/RefundBox";
+import { early as earlyConfig } from "@/config/early";
 import { currentUser } from "@/lib/server/auth";
 import { sql } from "@/lib/server/data";
+import { earlySettings } from "@/lib/server/early";
 import { dailyBudgetUsd, isAdmin, spentTodayUsd } from "@/lib/server/ops";
 import { payerOf, refundUrl } from "@/lib/server/solana";
 
@@ -87,6 +90,12 @@ export default async function Admin() {
   }
   const brains = await q("brains", db<{ code: string; handle: string; hidden: boolean; added: boolean }[]>`select code, handle, coalesce(hidden, false) as hidden, added_by is not null as added from influencers order by code`, []);
   const shares = await q("shares", db<{ n: number; claimed: number; views: number }[]>`select count(*)::int as n, count(claimed_at)::int as claimed, coalesce(sum(views), 0)::int as views from shares`, []);
+  const earlyStats = await q("early", db<{ started: number; wallets: number; done: number; invited: number; today: number }[]>`
+        select count(*)::int as started, count(wallet)::int as wallets, count(number)::int as done,
+          count(*) filter (where referred_by is not null and number is not null)::int as invited,
+          count(*) filter (where done_at >= date_trunc('day', now() at time zone 'utc') at time zone 'utc')::int as today
+        from early`, []);
+  const earlyCfg = await q("earlySettings", earlySettings(), { xHandle: "", launchUrl: "", launchId: null });
 
 
   const t = today[0];
@@ -116,6 +125,26 @@ export default async function Admin() {
             )}
           </div>
         ))}
+      </section>
+
+      <section className="mt-12">
+        <div className="flex flex-wrap items-baseline justify-between gap-3">
+          <h2 className="text-h3">Early</h2>
+          <a href="/api/admin/early" className="link-quiet text-xs">
+            Download CSV <span className="arrow">↗</span>
+          </a>
+        </div>
+        {earlyStats[0] ? (
+          <p className="mt-3 font-pixel text-sm text-particle">
+            {earlyStats[0].done} in · +{earlyStats[0].today} today · {earlyStats[0].wallets} wallets · {earlyStats[0].started} started · {earlyStats[0].invited} came by invite ·{" "}
+            {(earlyStats[0].done * earlyConfig.base).toLocaleString("en-US")} $ii base
+          </p>
+        ) : (
+          <p className="mt-3 text-sm text-muted">The early table isn&apos;t there yet: run Actions → Brains → status once.</p>
+        )}
+        <div className="mt-4">
+          <EarlySettings xHandle={earlyCfg.xHandle} launchUrl={earlyCfg.launchUrl} />
+        </div>
       </section>
 
       <section className="mt-12">
