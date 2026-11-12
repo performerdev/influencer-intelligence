@@ -3,6 +3,7 @@
 import { forwardRef, useState } from "react";
 
 import { AddBrain } from "@/components/particles/AddBrain";
+import { MindStack } from "@/components/home/MindStack";
 import { BrainAvatar } from "@/components/particles/BrainAvatar";
 import { AppLink } from "@/components/ui/AppLink";
 import { formatCount, type Intelligence } from "@/lib/intelligences";
@@ -32,6 +33,7 @@ export const IntelligencesSection = forwardRef<HTMLElement, Props>(function Inte
         {intelligences.map((it) => (
           <Card key={it.code} it={it} />
         ))}
+        <GroupCard minds={intelligences} />
         <AddCard colors={colors} />
       </ul>
     </section>
@@ -73,6 +75,37 @@ function Card({ it }: { it: Intelligence }) {
             <span className="text-particle">{formatCount(it.postsParsed)}</span> posts read
           </span>
           <Go label="Talk" />
+        </div>
+      </AppLink>
+    </li>
+  );
+}
+
+function GroupCard({ minds }: { minds: Intelligence[] }) {
+  return (
+    <li className="reveal">
+      <AppLink
+        href="/group"
+        className="group flex h-full flex-col rounded-card border border-dashed border-line p-4 transition-[border-color,transform] duration-fast ease-ii-out hover:border-line-hover active:scale-[0.98] sm:p-5"
+      >
+        <div className="-mt-1 mb-4 flex h-16 items-center sm:mb-5 sm:h-20">
+          <span className="sm:hidden">
+            <MindStack minds={minds} size={44} />
+          </span>
+          <span className="hidden sm:block">
+            <MindStack minds={minds} size={56} />
+          </span>
+        </div>
+        <div className="flex items-baseline gap-2">
+          <span className="shrink-0 font-mono text-xs text-muted">+</span>
+          <span className="truncate font-pixel text-body text-ceramic">Group chat</span>
+        </div>
+        <p className="mt-2 line-clamp-2 min-h-[3em] text-sm text-particle">Put 2 to 4 minds in one room. They answer each other, and argue on Plus.</p>
+        <div className="mt-auto flex items-center justify-between pt-6">
+          <span className="font-mono text-xs text-muted">
+            up to <span className="text-particle">4 minds</span>
+          </span>
+          <Go label="Open" />
         </div>
       </AppLink>
     </li>

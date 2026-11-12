@@ -7,4 +7,5 @@ export const site = {
   githubUrl: "https://github.com/performerdev/influencer-intelligence",
   xUrl: "",
   docsUrl: "",
+  discordUrl: "",
 } as const;

@@ -7,6 +7,7 @@ import { AuthProvider } from "@/components/account/AuthProvider";
 import { ErrorReporter } from "@/components/layout/ErrorReporter";
 import { Footer } from "@/components/layout/Footer";
 import { KeyboardScroll } from "@/components/layout/KeyboardScroll";
+import { SocialDock } from "@/components/layout/SocialDock";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { TopBar } from "@/components/layout/TopBar";
 import { site } from "@/config/site";
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <TopBar />
             <main className="relative">{children}</main>
             <Footer />
+            <SocialDock />
             <ErrorReporter />
           </AuthProvider>
         </WalletProvider>

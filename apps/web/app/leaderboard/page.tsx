@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { BoardTabs } from "@/components/leaderboard/BoardTabs";
 import { type BoardRow, Leaderboard } from "@/components/leaderboard/Leaderboard";
 import { kindOf } from "@/lib/record";
 import { loadRecord } from "@/lib/server/record";
@@ -25,8 +26,8 @@ export default async function LeaderboardPage() {
 
   return (
     <div className="mx-auto max-w-[1100px] px-gutter pb-24 pt-[calc(var(--ii-topbar-h)+40px)]">
-      <p className="label-mono">Leaderboard</p>
-      <h1 className="mt-1 text-h2">Who calls best</h1>
+      <BoardTabs active="minds" />
+      <h1 className="mt-5 text-h2">Who calls best</h1>
       <p className="mt-3 max-w-[64ch] text-body text-particle">
         Every buy, hold and sell each mind posted on X, priced by code 7 and 30 days later. A call worked if the price moved its way: a sell followed by a drop counts.
       </p>

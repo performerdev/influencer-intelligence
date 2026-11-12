@@ -1,26 +1,28 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { site } from "@/config/site";
 import { token } from "@/config/token";
 import { XGlyph, useAuth } from "@/components/account/AuthProvider";
 import { Ticker } from "@/components/early/Ticker";
+import { socials } from "@/components/layout/SocialDock";
 import { AppLink } from "@/components/ui/AppLink";
 import { Popover } from "@/components/ui/Popover";
 
 import { LogoMark } from "./LogoMark";
 
+// Group and the minds live in the minds list; coins are a tab of the leaderboard; links to X, GitHub, Docs, Discord sit in the corner
 const nav = [
-  { href: "/early", label: "Early", dot: true },
-  { href: "/#intelligences", label: "Intelligences" },
-  { href: "/coins", label: "Coins" },
-  { href: "/leaderboard", label: "Leaderboard" },
-  { href: "/group", label: "Group" },
+  { href: "/leaderboard", label: "Leaderboard", also: ["/coins", "/coin/"] },
   { href: "/add", label: "Add" },
+  { href: "/early", label: "Early", dot: true },
 ];
+const isOn = (path: string, n: (typeof nav)[number]) => path === n.href || ("also" in n && (n.also ?? []).some((p) => path.startsWith(p)));
 
 export function TopBar() {
+  const path = usePathname() ?? "/";
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 8);
@@ -46,20 +48,13 @@ export function TopBar() {
             <AppLink
               key={n.href}
               href={n.href}
-              className={`inline-flex items-center gap-1.5 rounded-pill px-3 py-1.5 text-sm transition-colors duration-fast hover:text-ceramic ${"dot" in n ? "text-ceramic" : "text-particle"}`}
+              aria-current={isOn(path, n) ? "page" : undefined}
+              className={`inline-flex items-center gap-1.5 rounded-pill px-3 py-1.5 text-sm transition-colors duration-fast hover:text-ceramic ${"dot" in n || isOn(path, n) ? "text-ceramic" : "text-particle"}`}
             >
               {"dot" in n && <i aria-hidden className="block h-1.5 w-1.5 bg-ceramic" />}
               {n.label}
             </AppLink>
           ))}
-          <a
-            href={site.githubUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="rounded-pill px-3 py-1.5 text-sm text-particle transition-colors duration-fast hover:text-ceramic"
-          >
-            GitHub
-          </a>
         </nav>
 
         <div className="ml-auto flex items-center gap-2 md:ml-2">
@@ -162,9 +157,18 @@ function MobileMenu() {
               {n.label}
             </AppLink>
           ))}
-          <a href={site.githubUrl} target="_blank" rel="noreferrer" className="py-2 text-body text-ceramic">
-            GitHub ↗
-          </a>
+          <span className="my-2 border-t border-line" />
+          {socials().map((s) =>
+            s.href ? (
+              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="py-1.5 font-pixel text-sm text-particle">
+                {s.label} ↗
+              </a>
+            ) : (
+              <span key={s.label} className="py-1.5 font-pixel text-sm text-muted">
+                {s.label} · soon
+              </span>
+            ),
+          )}
         </nav>
       </Popover>
     </div>

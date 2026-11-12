@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { type CoinRow, CoinsIndex } from "@/components/coin/CoinsIndex";
+import { BoardTabs } from "@/components/leaderboard/BoardTabs";
 import { summary } from "@/lib/record";
 import { loadRecord } from "@/lib/server/record";
 
@@ -48,8 +49,8 @@ export default async function CoinsPage() {
 
   return (
     <div className="mx-auto max-w-[1100px] px-gutter pb-24 pt-[calc(var(--ii-topbar-h)+40px)]">
-      <p className="label-mono">Coins</p>
-      <h1 className="mt-1 text-h2">What CT called</h1>
+      <BoardTabs active="coins" />
+      <h1 className="mt-5 text-h2">What CT called</h1>
       <p className="mt-3 max-w-[62ch] text-body text-particle">
         Look up any coin to see which minds called it, who was first and at what price, where each of them stands now, and how every call played out.
       </p>

@@ -6,6 +6,8 @@ import { UsageMeter } from "@/components/account/AuthProvider";
 import { type ChatHistory, ChatView } from "@/components/chat/ChatView";
 import { Coin } from "@/components/early/Coin";
 import { Ticker } from "@/components/early/Ticker";
+import { MindStack } from "@/components/home/MindStack";
+import { AddBrain } from "@/components/particles/AddBrain";
 import { early } from "@/config/early";
 import { getLenis } from "@/components/layout/SmoothScroll";
 import { BrainAvatar } from "@/components/particles/BrainAvatar";
@@ -58,6 +60,7 @@ export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
   const [view, setView] = useState<"chat" | "calls">("chat");
   const [railOpen, setRailOpen] = useState(false);
   const [brain, setBrain] = useState<{ handle: string; data: ApiBrain | null } | null>(null);
+  const [addHover, setAddHover] = useState(false);
 
   // the workspace fills the window: the page itself doesn't scroll while it's open
   useEffect(() => {
@@ -214,12 +217,25 @@ export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
               </li>
             ))}
           </ul>
-          <div className="mt-3 grid gap-1 px-2">
-            <AppLink href="/group" className="link-quiet py-1 text-xs">
-              + Group chat
+          <div className="mt-3 grid gap-1">
+            <AppLink href="/group" className="flex items-center justify-between gap-3 rounded-chip border border-transparent px-2 py-2 transition-colors duration-fast hover:border-line hover:bg-panel">
+              <span className="min-w-0">
+                <span className="block font-pixel text-sm leading-tight text-ceramic">+ Group chat</span>
+                <span className="block truncate text-[11px] leading-tight text-muted">2 to 4 minds in one room</span>
+              </span>
+              <MindStack minds={intelligences} size={22} />
             </AppLink>
-            <AppLink href="/add" className="link-quiet py-1 text-xs">
-              + Add a mind
+            <AppLink
+              href="/add"
+              onPointerEnter={() => setAddHover(true)}
+              onPointerLeave={() => setAddHover(false)}
+              className="flex items-center justify-between gap-3 rounded-chip border border-transparent px-2 py-2 transition-colors duration-fast hover:border-line hover:bg-panel"
+            >
+              <span className="min-w-0">
+                <span className="block font-pixel text-sm leading-tight text-ceramic">+ Add a mind</span>
+                <span className="block truncate text-[11px] leading-tight text-muted">Anyone on X, built for you</span>
+              </span>
+              <AddBrain size={30} colors={intelligences.map((m) => m.color)} active={addHover} />
             </AppLink>
           </div>
 
@@ -343,7 +359,7 @@ export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
       </section>
 
       {/* ── right: the call record ── */}
-      <aside data-lenis-prevent aria-label={`@${it.handle}'s calls`} className="hidden min-h-0 overflow-y-auto border-l border-line px-5 py-5 xl:block">
+      <aside data-lenis-prevent aria-label={`@${it.handle}'s calls`} className="hidden min-h-0 overflow-y-auto border-l border-line px-5 pb-20 pt-5 xl:block">
         {ready ? <CallsDashboard handle={it.handle} color={it.color} rows={rows} calls={ready.files.calls} stats={ready.files.stats} /> : <p className="font-pixel text-xs text-muted">{ready === null ? "No call record yet." : "Loading…"}</p>}
       </aside>
     </div>
