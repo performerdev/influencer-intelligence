@@ -143,12 +143,27 @@ async function main() {
     await sql`insert into spend (influencer_id, kind, units, usd, meta)
       select id, 'twitterapi', 0, 40, null from influencers where handle = 'blknoiz06'`;
     const r1 = calls["/twitter/tweet/advanced_search"] ?? 0;
+    const [beforeRefresh] = await sql`select version, files from brains order by version desc limit 1`;
+    const llmBeforeRefresh = calls["/chat/completions"] ?? 0;
+    const [{ id: spendBefore }] = await sql`select coalesce(max(id), 0)::int as id from spend`;
     const refreshOut = await run(["build", "blknoiz06", "--refresh", "--max-usd", "5"], env);
     check("refresh runs even after lifetime spend passed the cap", !/stopped at the budget cap/.test(refreshOut), refreshOut.match(/stopped at the budget cap.*/)?.[0] ?? "ok");
     const [{ n: hasNew }] = await sql`select count(*)::int as n from posts where id = '2000000'`;
     check("refresh picks up only new posts", hasNew === 1 && (calls["/twitter/tweet/advanced_search"] ?? 0) - r1 <= 4, `${(calls["/twitter/tweet/advanced_search"] ?? 0) - r1} search calls`);
-    const [{ v }] = await sql`select max(version)::int as v from brains`;
-    check("refresh with new posts makes a new brain version", v >= 3, `v${v}`);
+    const [afterRefresh] = await sql`select version, files from brains order by version desc limit 1`;
+    check("refresh with a new call makes a new brain version", afterRefresh.version > beforeRefresh.version, `v${beforeRefresh.version} → v${afterRefresh.version}`);
+    // the brain's text is built once: a refresh only reads the new posts for calls
+    const refreshLlm = (calls["/chat/completions"] ?? 0) - llmBeforeRefresh;
+    check(
+      "refresh keeps the brain's text, reads only new posts",
+      refreshLlm <= 1 && !/distill (merge|reduce)/.test(refreshOut) &&
+        (["mind", "rules", "voice", "one_line_mind"] as const).every((k) => afterRefresh.files[k] === beforeRefresh.files[k]) &&
+        JSON.stringify(afterRefresh.files.example_ids) === JSON.stringify(beforeRefresh.files.example_ids),
+      `${refreshLlm} LLM call(s)`,
+    );
+    check("refresh adds the new call", afterRefresh.files.calls.some((c: { post_id: string }) => c.post_id === "2000000"), `${afterRefresh.files.calls.length} calls`);
+    const [{ spent: refreshSpend }] = await sql`select coalesce(sum(usd), 0)::float as spent from spend where kind = 'llm' and meta->>'step' in ('merge', 'reduce', 'compress') and id > ${spendBefore}`;
+    check("refresh spends nothing on the strong model", refreshSpend === 0, `$${refreshSpend}`);
     const r2 = await run(["build", "blknoiz06", "--refresh", "--max-usd", "5"], env);
     check("refresh with nothing new keeps the brain", /brain stays v/.test(r2), r2.match(/brain stays v\d+/)?.[0] ?? r2.slice(-300));
     void refreshOut;

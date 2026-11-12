@@ -148,6 +148,8 @@ jobs:
           set -o pipefail
           { echo '```'; pnpm brain:build ${{ matrix.target }} --max-usd ${{ github.event.inputs.max_usd }} ${{ github.event.inputs.partial == 'true' && '--partial' || '' }} ${{ github.event.inputs.replies == 'true' && '--replies' || '' }}; echo '```'; } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
 
+      # New posts → new calls (cheap model, new posts only) → fresh prices. The brain's text
+      # (mind, rules, voice) is built once and never rewritten here.
       - name: Weekly refresh
         if: github.event_name == 'schedule' && needs.plan.outputs.mode == 'all'
         run: |

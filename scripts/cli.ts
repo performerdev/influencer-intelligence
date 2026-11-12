@@ -9,6 +9,7 @@
  *   pnpm brain:export  [handle|--all]
   pnpm brain:reassemble <handle|--all>   rebuild prompts from stored brain files, no API cost
  *   pnpm brain:build   <handle|--all> [--max-usd 15]   ingest → distill → stats → brain → export
+ *   pnpm brain:build   <handle|--all> --refresh       weekly: new posts → new calls (cheap model) → re-price; the brain's text is kept
  *   pnpm brain:status
  *   pnpm brain:jobs                     run paid "Add a brain" builds from the queue
  *   pnpm brain:list                     every brain's handle as JSON (for the weekly refresh)
@@ -19,11 +20,14 @@ import { fileURLToPath } from "node:url";
 
 import {
   type BrainFiles,
+  type Call,
+  type LLM,
   OpenAICompatibleLLM,
   assembleBrain,
   distillInfluencer,
   exportBrain,
   latestBrain,
+  refreshCalls,
 } from "@ii/brain-core";
 import { type InfluencerRow, closeDb, db, getInfluencer, migrate, upsertInfluencers } from "@ii/db";
 import { type XTweet, classify, createSource, ingestInfluencer } from "@ii/ingest";
@@ -135,6 +139,16 @@ async function stepDistill(inf: InfluencerRow) {
   return files;
 }
 
+/** Weekly refresh: new calls from the new posts only (cheap model); the brain's text stays as built. */
+async function stepCalls(inf: InfluencerRow) {
+  const calls = await refreshCalls(db(), new OpenAICompatibleLLM(), inf, {
+    model: DISTILL_MODEL,
+    onProgress: (p) => line(`  ${inf.code} @${inf.handle} · reading new posts ${p.done}/${p.total} · ${usd(p.costUsd)}`),
+  });
+  done(`  ${inf.code} @${inf.handle} · calls · ${calls.length} on record`);
+  return calls;
+}
+
 async function stepStats(inf: InfluencerRow) {
   const rows = await db()<
     { post_id: string; ticker: string; chain: string | null; address: string | null; direction: "buy" | "sell" | "hold"; called_at: Date }[]
@@ -197,8 +211,8 @@ async function stepStats(inf: InfluencerRow) {
   return stats;
 }
 
-async function stepAssemble(inf: InfluencerRow, files: Omit<BrainFiles, "identity">) {
-  const llm = new OpenAICompatibleLLM();
+/** llm = null: never ask the model to shorten mind.md (the weekly refresh doesn't touch the brain's text). */
+async function stepAssemble(inf: InfluencerRow, files: Omit<BrainFiles, "identity">, llm: LLM | null = new OpenAICompatibleLLM()) {
   const b = await assembleBrain(db(), llm, inf, { ...files, identity: "" }, DISTILL_MODEL);
   done(`  ${inf.code} @${inf.handle} · brain v${b.version} · ~${fmt(b.promptTokens)} tokens · ${b.examples} examples`);
   return b;
@@ -373,17 +387,22 @@ async function main() {
           continue;
         }
         const prev = await latestBrain(db(), inf.id);
-        if (flags.has("refresh") && prev && ing.kept === 0) {
-          // Nothing new posted: only re-price calls, and only keep a new version if numbers moved.
+        if (flags.has("refresh") && prev) {
+          // The brain's text (mind, rules, voice, examples) is built once and kept: a week of posts
+          // doesn't change how someone thinks, and rewriting it costs a full read on the strong model.
+          // A refresh only adds the new calls (cheap model, new posts only) and re-prices the record.
+          const calls = ing.kept > 0 ? await stepCalls(inf) : prev.files.calls;
           const stats = await stepStats(inf);
           // jsonb reorders object keys, so compare with sorted keys
           const stable = (v: unknown): string =>
             Array.isArray(v) ? `[${v.map(stable).join(",")}]` : v && typeof v === "object" ? `{${Object.keys(v).sort().map((k) => `${k}:${stable((v as Record<string, unknown>)[k])}`).join(",")}}` : JSON.stringify(v);
           const same = (a: unknown, b: unknown) => stable(a) === stable(b);
-          if (prev.files.stats && same(prev.files.stats.per_call, stats.per_call) && same(prev.files.stats.horizons, stats.horizons)) {
-            done(`  ${inf.code} @${inf.handle} · no new posts, numbers unchanged · brain stays v${prev.version}`);
+          const callKeys = (cs: Call[]) => cs.filter((c) => !isNotCoin(c.ticker)).map((c) => `${c.post_id}|${c.ticker}|${c.direction}`).sort().join(",");
+          if (callKeys(calls) === callKeys(prev.files.calls) && prev.files.stats && same(prev.files.stats.per_call, stats.per_call) && same(prev.files.stats.horizons, stats.horizons)) {
+            await db()`update influencers set status = 'ready' where id = ${inf.id}`;
+            done(`  ${inf.code} @${inf.handle} · ${ing.kept ? `${ing.kept} new posts, no new calls` : "no new posts"}, numbers unchanged · brain stays v${prev.version}`);
           } else {
-            await stepAssemble(inf, { ...prev.files, stats });
+            await stepAssemble(inf, { ...prev.files, calls, stats }, null);
             await stepExport(inf);
           }
           continue;

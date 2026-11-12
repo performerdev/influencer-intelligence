@@ -73,13 +73,49 @@ export function makeBatches(posts: PostRow[], batchTokens: number) {
  * re-running only pays for batches that changed (new posts) plus the reduce.
  */
 export async function distillInfluencer(sql: Sql, llm: LLM, inf: InfluencerRow, opts: DistillOptions = {}): Promise<DistilledFiles> {
+  await sql`update influencers set status = 'distilling' where id = ${inf.id}`;
+  return distill(sql, llm, inf, opts, false) as Promise<DistilledFiles>;
+}
+
+/**
+ * The weekly refresh: read only the new posts (map step, cheap model, cached
+ * batches) and bring the call record up to date. The brain's text — mind,
+ * rules, voice, examples — is built once and not rewritten: a week of posts
+ * doesn't change how someone thinks, and a rewrite costs a full read on the
+ * strong model.
+ */
+export async function refreshCalls(sql: Sql, llm: LLM, inf: InfluencerRow, opts: DistillOptions = {}): Promise<Call[]> {
+  return distill(sql, llm, inf, opts, true) as Promise<Call[]>;
+}
+
+/** Calls table always mirrors the latest read of the posts. */
+async function saveCalls(sql: Sql, influencerId: number, calls: Call[]) {
+  await sql.begin(async (tx) => {
+    await tx`delete from calls where influencer_id = ${influencerId}`;
+    if (calls.length) {
+      await tx`insert into calls ${tx(
+        calls.map((c) => ({
+          influencer_id: influencerId,
+          post_id: c.post_id,
+          ticker: c.ticker,
+          chain: c.chain,
+          address: c.address,
+          direction: c.direction,
+          called_at: c.called_at,
+          quote: c.quote,
+        })),
+      )} on conflict do nothing`;
+    }
+  });
+}
+
+async function distill(sql: Sql, llm: LLM, inf: InfluencerRow, opts: DistillOptions, callsOnly: boolean): Promise<DistilledFiles | Call[]> {
   const model = opts.model ?? process.env.LLM_MODEL_DISTILL ?? "deepseek-v4-pro";
   // Reading thousands of posts is bulk extraction: a cheaper model does it well.
   // The final reduce (the personality itself) stays on the stronger model.
   const mapModel = process.env.LLM_MODEL_MAP || model;
   const posts = await loadPosts(sql, inf.id);
   if (posts.length === 0) throw new Error(`@${inf.handle}: no posts in the database yet — run ingest first.`);
-  await sql`update influencers set status = 'distilling' where id = ${inf.id}`;
 
   const byId = new Map(posts.map((p) => [p.id, p]));
   const batches = makeBatches(posts, opts.batchTokens ?? Number(process.env.DISTILL_BATCH_TOKENS ?? 40_000));
@@ -164,6 +200,10 @@ export async function distillInfluencer(sql: Sql, llm: LLM, inf: InfluencerRow, 
 
   // ── calls: straight from the map step, validated by code, kept complete ──
   const calls = validateCalls(notes.flatMap((n) => n.calls ?? []), byId);
+  if (callsOnly) {
+    await saveCalls(sql, inf.id, calls);
+    return calls;
+  }
 
   // Example candidates (only real post IDs).
   const candidates = notes.flatMap((n) => (n.examples ?? []).filter((e) => byId.has(String(e.post_id))));
@@ -206,21 +246,29 @@ export async function distillInfluencer(sql: Sql, llm: LLM, inf: InfluencerRow, 
     exampleTarget,
   };
   report("reduce", 1);
-  const res = await llm.complete(
-    [
-      { role: "system", content: reduceSystem(subject) },
-      {
-        role: "user",
-        content: `Notes from ${notes.length} batches, oldest first:\n\n${JSON.stringify(reduceNotes)}\n\nExample candidates (post_id · topic · mood):\n${candidates
-          .map((c) => `${c.post_id} · ${c.topic ?? ""} · ${c.mood ?? ""}`)
-          .join("\n")}`,
-      },
-    ],
-    { model, temperature: 0.4, maxTokens: 64000, thinking: (process.env.DISTILL_REDUCE_THINKING ?? "high") as CompleteOptions["thinking"] },
-  );
-  await spend(res.usage, "reduce");
-  const t = parseTagged(res.text, ["one_line_mind", "mind", "rules", "voice", "intro", "examples"]);
-  for (const k of ["mind", "rules", "voice"]) if (!t[k]) throw new Error(`reduce step returned no <${k}> section — re-run distill`);
+  // Now and then the model drops a section; one more try usually gets a whole brain.
+  let t: Record<string, string> = {};
+  let missing: string[] = [];
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const res = await llm.complete(
+      [
+        { role: "system", content: reduceSystem(subject) },
+        {
+          role: "user",
+          content: `Notes from ${notes.length} batches, oldest first:\n\n${JSON.stringify(reduceNotes)}\n\nExample candidates (post_id · topic · mood):\n${candidates
+            .map((c) => `${c.post_id} · ${c.topic ?? ""} · ${c.mood ?? ""}`)
+            .join("\n")}`,
+        },
+      ],
+      { model, temperature: 0.4, maxTokens: 64000, thinking: (process.env.DISTILL_REDUCE_THINKING ?? "high") as CompleteOptions["thinking"] },
+    );
+    await spend(res.usage, "reduce");
+    t = parseTagged(res.text, ["one_line_mind", "mind", "rules", "voice", "intro", "examples"]);
+    missing = ["mind", "rules", "voice"].filter((k) => !t[k]);
+    if (!missing.length) break;
+    console.warn(`@${inf.handle}: reduce returned no <${missing.join(">, <")}> section${attempt === 0 ? " — trying once more" : ""}`);
+  }
+  if (missing.length) throw new Error(`reduce step returned no <${missing[0]}> section — re-run distill`);
 
   // Examples: model's pick ∩ real posts, topped up with the most-engaged candidates.
   const picked = (t.examples ?? "").split(/[\s,]+/).filter((id) => byId.has(id));
@@ -235,24 +283,7 @@ export async function distillInfluencer(sql: Sql, llm: LLM, inf: InfluencerRow, 
   const oneLineMind = (t.one_line_mind ?? "").replace(/^["“]|["”]$/g, "").trim().slice(0, 120);
   await sql`update influencers set one_line_mind = ${oneLineMind || null} where id = ${inf.id}`;
 
-  // Calls table always mirrors the latest distill.
-  await sql.begin(async (tx) => {
-    await tx`delete from calls where influencer_id = ${inf.id}`;
-    if (calls.length) {
-      await tx`insert into calls ${tx(
-        calls.map((c) => ({
-          influencer_id: inf.id,
-          post_id: c.post_id,
-          ticker: c.ticker,
-          chain: c.chain,
-          address: c.address,
-          direction: c.direction,
-          called_at: c.called_at,
-          quote: c.quote,
-        })),
-      )} on conflict do nothing`;
-    }
-  });
+  await saveCalls(sql, inf.id, calls);
 
   report("reduce", 1);
   return {
