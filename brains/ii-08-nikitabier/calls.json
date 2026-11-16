@@ -1160,16 +1160,6 @@
     "url": "https://x.com/nikitabier/status/2092090439402659987"
   },
   {
-    "date": "2026-08-25",
-    "ticker": "SPCX",
-    "chain": null,
-    "address": null,
-    "direction": "hold",
-    "quote": "I don't see this why is news: it's already available on the $SPCX ticker",
-    "post_id": "2092357993560252908",
-    "url": "https://x.com/nikitabier/status/2092357993560252908"
-  },
-  {
     "date": "2026-09-09",
     "ticker": "APPLE",
     "chain": null,
@@ -1188,15 +1178,5 @@
     "quote": "Funny that basically all AI data centers are being run on natural gas but the cost of NG has been mostly flat or down. $UNL",
     "post_id": "2112780491225285006",
     "url": "https://x.com/nikitabier/status/2112780491225285006"
-  },
-  {
-    "date": "2026-10-29",
-    "ticker": "CYBERSECURITY",
-    "chain": null,
-    "address": null,
-    "direction": "buy",
-    "quote": "I don't own enough cyber security stocks.",
-    "post_id": "2115920436399870078",
-    "url": "https://x.com/nikitabier/status/2115920436399870078"
   }
 ]
