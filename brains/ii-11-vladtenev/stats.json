@@ -10,21 +10,21 @@
   "horizons": {
     "1d": {
       "n": 19,
-      "hit_rate": 0.5263,
-      "mean_return": 0.0389,
-      "median_return": 0.0065
+      "hit_rate": 0.4737,
+      "mean_return": 0.0312,
+      "median_return": 0
     },
     "7d": {
-      "n": 19,
-      "hit_rate": 0.4737,
-      "mean_return": 0.0174,
-      "median_return": -0.0055
+      "n": 18,
+      "hit_rate": 0.5,
+      "mean_return": 0.0197,
+      "median_return": 0.0025
     },
     "30d": {
-      "n": 19,
-      "hit_rate": 0.4211,
-      "mean_return": -0.0383,
-      "median_return": -0.1234
+      "n": 18,
+      "hit_rate": 0.3889,
+      "mean_return": -0.0324,
+      "median_return": -0.0962
     }
   },
   "per_call": [
@@ -224,69 +224,17 @@
       "price_at_call": 39.82928886875811
     },
     {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
+      "r_1d": 0.0174,
+      "r_7d": 0.0105,
+      "r_30d": -0.0194,
       "symbol": null,
-      "ticker": "OURA",
-      "post_id": "2026436165440778404",
-      "price_id": null,
-      "called_at": "2026-02-24T23:16:45.000Z",
+      "ticker": "TSLA",
+      "post_id": "1996270789385969821",
+      "price_id": "stock:TSLA",
+      "called_at": "2025-12-03T17:30:19.000Z",
       "direction": "buy",
-      "matched_by": null,
-      "price_at_call": null
-    },
-    {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
-      "symbol": null,
-      "ticker": "MERCOR",
-      "post_id": "2026452080311824868",
-      "price_id": null,
-      "called_at": "2026-02-25T00:20:00.000Z",
-      "direction": "buy",
-      "matched_by": null,
-      "price_at_call": null
-    },
-    {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
-      "symbol": null,
-      "ticker": "DATABRICKS",
-      "post_id": "2026452080311824868",
-      "price_id": null,
-      "called_at": "2026-02-25T00:20:00.000Z",
-      "direction": "buy",
-      "matched_by": null,
-      "price_at_call": null
-    },
-    {
-      "r_1d": 0.0959,
-      "r_7d": 0.0568,
-      "r_30d": 0.1377,
-      "symbol": null,
-      "ticker": "RAMP",
-      "post_id": "2026452080311824868",
-      "price_id": "ethereum:0x33D0568941C0C64ff7e0FB4fbA0B11BD37deEd9f",
-      "called_at": "2026-02-25T00:20:00.000Z",
-      "direction": "buy",
-      "matched_by": "ticker",
-      "price_at_call": 0.017154107272363293
-    },
-    {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
-      "symbol": null,
-      "ticker": "OURA",
-      "post_id": "2026452080311824868",
-      "price_id": null,
-      "called_at": "2026-02-25T00:20:00.000Z",
-      "direction": "buy",
-      "matched_by": null,
-      "price_at_call": null
+      "matched_by": "stock",
+      "price_at_call": 446.739990234375
     },
     {
       "r_1d": null,
@@ -300,32 +248,6 @@
       "direction": "buy",
       "matched_by": null,
       "price_at_call": null
-    },
-    {
-      "r_1d": null,
-      "r_7d": null,
-      "r_30d": null,
-      "symbol": null,
-      "ticker": "DATABRICKS",
-      "post_id": "2027802815046029745",
-      "price_id": null,
-      "called_at": "2026-02-28T17:47:20.000Z",
-      "direction": "buy",
-      "matched_by": null,
-      "price_at_call": null
-    },
-    {
-      "r_1d": 0.0353,
-      "r_7d": -0.071,
-      "r_30d": -0.3012,
-      "symbol": null,
-      "ticker": "BOOM",
-      "post_id": "2028980936683946018",
-      "price_id": "coingecko:boom-2",
-      "called_at": "2026-03-03T23:48:46.000Z",
-      "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 0.0007863510205718397
     },
     {
       "r_1d": null,
@@ -375,7 +297,7 @@
       "post_id": "2067326045368484137",
       "price_id": "coingecko:spacex-backpack-securities",
       "called_at": "2026-06-17T19:18:32.000Z",
-      "direction": "hold",
+      "direction": "buy",
       "matched_by": "symbol",
       "price_at_call": 197.598142383896
     },
@@ -404,14 +326,27 @@
       "direction": "buy",
       "matched_by": null,
       "price_at_call": null
+    },
+    {
+      "r_1d": -0.0329,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "ANTHROPIC",
+      "post_id": "2120151012510212247",
+      "price_id": "solana:Pren1FvFX6J3E4kXhJuCiAD5aDmGEb7qJRncwA8Lkhw",
+      "called_at": "2026-11-10T13:46:06.000Z",
+      "direction": "buy",
+      "matched_by": "ticker",
+      "price_at_call": 924.2330814497572
     }
   ],
   "hold_pairs": 0,
-  "calls_total": 29,
-  "computed_at": "2026-11-09T23:56:07.643Z",
+  "calls_total": 24,
+  "computed_at": "2026-11-16T11:20:52.825Z",
   "by_direction": {
-    "buy": 28,
-    "hold": 1,
+    "buy": 24,
+    "hold": 0,
     "sell": 0
   },
   "calls_priced": 19,
