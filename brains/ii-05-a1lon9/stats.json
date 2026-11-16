@@ -9,22 +9,22 @@
   ],
   "horizons": {
     "1d": {
-      "n": 34,
-      "hit_rate": 0.7353,
-      "mean_return": 0.1708,
-      "median_return": 0.0264
+      "n": 32,
+      "hit_rate": 0.7188,
+      "mean_return": 0.1744,
+      "median_return": 0.0244
     },
     "7d": {
-      "n": 34,
-      "hit_rate": 0.5588,
-      "mean_return": 0.2775,
+      "n": 32,
+      "hit_rate": 0.5625,
+      "mean_return": 0.2785,
       "median_return": 0.0225
     },
     "30d": {
-      "n": 34,
-      "hit_rate": 0.5294,
-      "mean_return": 0.2306,
-      "median_return": 0.1633
+      "n": 32,
+      "hit_rate": 0.5,
+      "mean_return": 0.2216,
+      "median_return": 0.0455
     }
   },
   "per_call": [
@@ -87,10 +87,10 @@
       "symbol": null,
       "ticker": "WYNN",
       "post_id": "1746702207905309020",
-      "price_id": "coingecko:anita-max-wynn",
+      "price_id": "solana:4vqYQTjmKjxrWGtbL2tVkbAU1EVAz9JwcYtd2VE3PbVU",
       "called_at": "2024-01-15T01:13:53.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
+      "matched_by": "ticker",
       "price_at_call": 0.01773481
     },
     {
@@ -100,10 +100,10 @@
       "symbol": null,
       "ticker": "WYNN",
       "post_id": "1746706662017188018",
-      "price_id": "coingecko:anita-max-wynn",
+      "price_id": "solana:4vqYQTjmKjxrWGtbL2tVkbAU1EVAz9JwcYtd2VE3PbVU",
       "called_at": "2024-01-15T01:31:35.000Z",
       "direction": "hold",
-      "matched_by": "symbol",
+      "matched_by": "ticker",
       "price_at_call": 0.01865613
     },
     {
@@ -846,43 +846,17 @@
       "direction": "hold",
       "matched_by": null,
       "price_at_call": 0.619936
-    },
-    {
-      "r_1d": 0.0462,
-      "r_7d": -0.0377,
-      "r_30d": 0.3822,
-      "symbol": null,
-      "ticker": "PUMP",
-      "post_id": "2072725514272276791",
-      "price_id": "coingecko:pump-fun",
-      "called_at": "2026-07-02T16:54:06.000Z",
-      "direction": "buy",
-      "matched_by": null,
-      "price_at_call": 0.001540477474789235
-    },
-    {
-      "r_1d": 0.1786,
-      "r_7d": 0.5598,
-      "r_30d": 0.3672,
-      "symbol": null,
-      "ticker": "PUMP",
-      "post_id": "2090130633192272210",
-      "price_id": "coingecko:pump-fun",
-      "called_at": "2026-08-19T17:35:50.000Z",
-      "direction": "hold",
-      "matched_by": null,
-      "price_at_call": 0.0031284742153959866
     }
   ],
   "hold_pairs": 0,
-  "calls_total": 65,
-  "computed_at": "2026-11-09T23:52:36.629Z",
+  "calls_total": 63,
+  "computed_at": "2026-11-16T11:19:06.704Z",
   "by_direction": {
-    "buy": 48,
-    "hold": 13,
+    "buy": 47,
+    "hold": 12,
     "sell": 4
   },
-  "calls_priced": 34,
+  "calls_priced": 32,
   "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal); Yahoo Finance (stocks, ETFs, metals)",
   "median_hold_days": null
 }
