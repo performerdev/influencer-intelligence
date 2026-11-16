@@ -3790,16 +3790,6 @@
     "url": "https://x.com/mert/status/2106077183651565647"
   },
   {
-    "date": "2026-10-08",
-    "ticker": "ZEC",
-    "chain": null,
-    "address": null,
-    "direction": "hold",
-    "quote": "no, do not move your funds no matter what chain youre on",
-    "post_id": "2107996849919701390",
-    "url": "https://x.com/mert/status/2107996849919701390"
-  },
-  {
     "date": "2026-10-09",
     "ticker": "ZEC",
     "chain": null,
@@ -3820,18 +3810,8 @@
     "url": "https://x.com/mert/status/2110580548620173419"
   },
   {
-    "date": "2026-10-21",
-    "ticker": "SOL",
-    "chain": null,
-    "address": null,
-    "direction": "hold",
-    "quote": "Solana is now 95% faster trillions",
-    "post_id": "2112911310044189057",
-    "url": "https://x.com/mert/status/2112911310044189057"
-  },
-  {
     "date": "2026-10-29",
-    "ticker": "ZEC",
+    "ticker": "BTC",
     "chain": null,
     "address": null,
     "direction": "buy",
@@ -3850,13 +3830,13 @@
     "url": "https://x.com/mert/status/2117814639056564276"
   },
   {
-    "date": "2026-11-06",
-    "ticker": "ZEC",
+    "date": "2026-11-15",
+    "ticker": "NVDA",
     "chain": null,
     "address": null,
-    "direction": "hold",
-    "quote": "big with the recent upgrade, zcash is now 3x faster! trillions",
-    "post_id": "2118687566442660273",
-    "url": "https://x.com/mert/status/2118687566442660273"
+    "direction": "buy",
+    "quote": "Aths soon",
+    "post_id": "2122110768204103900",
+    "url": "https://x.com/mert/status/2122110768204103900"
   }
 ]
