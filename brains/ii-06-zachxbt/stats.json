@@ -48,10 +48,10 @@
       "symbol": null,
       "ticker": "SANTA",
       "post_id": "1471862214126710785",
-      "price_id": "bsc:0x4F1A6FC6A7B65Dc7ebC4EB692Dc3641bE997c2F2",
+      "price_id": "coingecko:santa-coin-2",
       "called_at": "2021-12-17T15:17:52.000Z",
       "direction": "buy",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 4.201949457534977e-9
     },
     {
@@ -61,10 +61,10 @@
       "symbol": null,
       "ticker": "SANTA",
       "post_id": "1474387550928355328",
-      "price_id": "bsc:0x4F1A6FC6A7B65Dc7ebC4EB692Dc3641bE997c2F2",
+      "price_id": "coingecko:santa-coin-2",
       "called_at": "2021-12-24T14:32:39.000Z",
       "direction": "hold",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 3.3682674912762112e-9
     },
     {
@@ -200,7 +200,7 @@
   ],
   "hold_pairs": 0,
   "calls_total": 13,
-  "computed_at": "2026-11-09T23:48:51.995Z",
+  "computed_at": "2026-11-16T11:19:13.305Z",
   "by_direction": {
     "buy": 1,
     "hold": 2,
