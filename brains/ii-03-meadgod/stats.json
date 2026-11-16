@@ -61,10 +61,10 @@
       "symbol": null,
       "ticker": "MON",
       "post_id": "1983523814828028211",
-      "price_id": "ethereum:0xc555D625828c4527d477e595fF1Dd5801B4a600e",
+      "price_id": "coingecko:mon-protocol",
       "called_at": "2025-10-29T13:18:24.000Z",
       "direction": "hold",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 0.017294899795632562
     },
     {
@@ -577,7 +577,7 @@
   ],
   "hold_pairs": 4,
   "calls_total": 42,
-  "computed_at": "2026-11-09T11:39:11.713Z",
+  "computed_at": "2026-11-16T23:46:58.455Z",
   "by_direction": {
     "buy": 22,
     "hold": 6,

@@ -1,13 +1,13 @@
 {
   "code": "ii-03",
   "handle": "MEADGod",
-  "version": 15,
-  "distilled_at": "2026-11-09T11:39:13.340Z",
+  "version": 16,
+  "distilled_at": "2026-11-16T23:47:00.659Z",
   "model": "deepseek-v4-pro",
   "prompt_tokens_estimate": 21889,
-  "posts_parsed": 2165,
+  "posts_parsed": 2181,
   "posts_from": "2025-09-04",
-  "posts_to": "2026-11-09",
+  "posts_to": "2026-11-16",
   "one_line_mind": "Fades euphoria, builds Pons, burns what he'd never sell.",
   "calls_tracked": 42,
   "files": [
