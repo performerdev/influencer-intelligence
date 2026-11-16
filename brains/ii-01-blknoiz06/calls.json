@@ -27835,17 +27835,7 @@
     "chain": null,
     "address": null,
     "direction": "sell",
-    "quote": "multiple major tech earnings this week -10% selloffs after hours btc & eth accelerating to downside largest centralized exchange hack in cry",
-    "post_id": "2115976433302409694",
-    "url": "https://x.com/blknoiz06/status/2115976433302409694"
-  },
-  {
-    "date": "2026-10-30",
-    "ticker": "ETH",
-    "chain": null,
-    "address": null,
-    "direction": "sell",
-    "quote": "multiple major tech earnings this week -10% selloffs after hours btc & eth accelerating to downside largest centralized exchange hack in cry",
+    "quote": "still believe good spot to de-risk here for both stocks & crypto",
     "post_id": "2115976433302409694",
     "url": "https://x.com/blknoiz06/status/2115976433302409694"
   },
@@ -27890,6 +27880,16 @@
     "url": "https://x.com/blknoiz06/status/2118292132876480727"
   },
   {
+    "date": "2026-11-05",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "i dont think 75k holds",
+    "post_id": "2118398194996461874",
+    "url": "https://x.com/blknoiz06/status/2118398194996461874"
+  },
+  {
     "date": "2026-11-06",
     "ticker": "SOL",
     "chain": null,
@@ -27925,7 +27925,7 @@
     "chain": "solana",
     "address": "4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
     "direction": "buy",
-    "quote": "current portfolio long: bonds, oil, solana:4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump short: everything else",
+    "quote": "current portfolio long: bonds, oil, solana:4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
     "post_id": "2120967022272008380",
     "url": "https://x.com/blknoiz06/status/2120967022272008380"
   },
@@ -27935,19 +27935,9 @@
     "chain": "solana",
     "address": "4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
     "direction": "buy",
-    "quote": "current portfolio long: bonds, oil, solana:4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump short: everything else",
+    "quote": "current portfolio long: bonds, oil",
     "post_id": "2120967022272008380",
     "url": "https://x.com/blknoiz06/status/2120967022272008380"
-  },
-  {
-    "date": "2026-11-12",
-    "ticker": "CA",
-    "chain": null,
-    "address": null,
-    "direction": "sell",
-    "quote": "let's ride https://t.co/aLeJRwxYTF",
-    "post_id": "2120978487343558720",
-    "url": "https://x.com/blknoiz06/status/2120978487343558720"
   },
   {
     "date": "2026-11-14",
@@ -27974,7 +27964,7 @@
     "ticker": "BTC",
     "chain": null,
     "address": null,
-    "direction": "sell",
+    "direction": "hold",
     "quote": "closed shorts yesterday currently expecting chop at these levels before another major trending move",
     "post_id": "2121931459783201053",
     "url": "https://x.com/blknoiz06/status/2121931459783201053"
@@ -27985,7 +27975,7 @@
     "chain": null,
     "address": null,
     "direction": "buy",
-    "quote": "i still like the long-term privacy thesis and watching zcash:native for a deeper pullback, with $750 as a key level where historical resistance could turn into ",
+    "quote": "watching zcash:native for a deeper pullback, with $750 as a key level where historical resistance could turn into support",
     "post_id": "2122284970949718155",
     "url": "https://x.com/blknoiz06/status/2122284970949718155"
   }
