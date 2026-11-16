@@ -628,5 +628,25 @@
     "quote": "there is no pumpfolio without fartcoin",
     "post_id": "1973141501178946019",
     "url": "https://x.com/a1lon9/status/1973141501178946019"
+  },
+  {
+    "date": "2026-07-08",
+    "ticker": "ROBINHOOD",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "it's only right that the leading app in trading edge supports everything that traders want to speculate on. the pump fun app is not just for",
+    "post_id": "2074864951185801486",
+    "url": "https://x.com/a1lon9/status/2074864951185801486"
+  },
+  {
+    "date": "2026-10-15",
+    "ticker": "PUMP",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "since Custom Pairs launched last month, 0.33% of the current circulating supply (~$5.9M) has been taken out of circulation",
+    "post_id": "2110876217591177396",
+    "url": "https://x.com/a1lon9/status/2110876217591177396"
   }
 ]
