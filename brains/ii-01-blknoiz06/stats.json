@@ -9,22 +9,22 @@
   ],
   "horizons": {
     "1d": {
-      "n": 2386,
-      "hit_rate": 0.5197,
-      "mean_return": 0.0215,
+      "n": 2342,
+      "hit_rate": 0.5213,
+      "mean_return": 0.022,
       "median_return": 0.003
     },
     "7d": {
-      "n": 2382,
-      "hit_rate": 0.5487,
-      "mean_return": 0.0499,
-      "median_return": 0.0135
+      "n": 2337,
+      "hit_rate": 0.5464,
+      "mean_return": 0.0491,
+      "median_return": 0.0128
     },
     "30d": {
-      "n": 2373,
-      "hit_rate": 0.5474,
-      "mean_return": 0.2028,
-      "median_return": 0.028
+      "n": 2326,
+      "hit_rate": 0.5421,
+      "mean_return": 0.1895,
+      "median_return": 0.0257
     }
   },
   "per_call": [
@@ -94,17 +94,17 @@
       "price_at_call": null
     },
     {
-      "r_1d": 0.0834,
-      "r_7d": -0.0722,
-      "r_30d": 0.0918,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "PTOY",
       "post_id": "903666910306471936",
-      "price_id": "coingecko:patientory",
+      "price_id": null,
       "called_at": "2017-09-01T17:12:35.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 0.3632072232227027
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": 0.0009,
@@ -315,17 +315,17 @@
       "price_at_call": null
     },
     {
-      "r_1d": -0.0152,
-      "r_7d": 0.0992,
-      "r_30d": -0.5662,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "PTOY",
       "post_id": "911232902666575877",
-      "price_id": "coingecko:patientory",
+      "price_id": null,
       "called_at": "2017-09-22T14:17:08.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 0.39303015820288767
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": -0.0152,
@@ -523,30 +523,30 @@
       "price_at_call": 7.71109
     },
     {
-      "r_1d": -0.091,
-      "r_7d": 0.0311,
-      "r_30d": 0.0033,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "916291374806372352",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-10-06T13:17:42.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 3.18914
+      "matched_by": null,
+      "price_at_call": null
     },
     {
-      "r_1d": -0.091,
-      "r_7d": 0.0311,
-      "r_30d": 0.0033,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "916305441004703744",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-10-06T14:13:35.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 3.18914
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": null,
@@ -562,17 +562,17 @@
       "price_at_call": null
     },
     {
-      "r_1d": -0.091,
-      "r_7d": 0.0311,
-      "r_30d": 0.0033,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "916323307447898117",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-10-06T15:24:35.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 3.18914
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": null,
@@ -588,17 +588,17 @@
       "price_at_call": null
     },
     {
-      "r_1d": -0.091,
-      "r_7d": 0.0311,
-      "r_30d": 0.0033,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "916335439765823489",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-10-06T16:12:48.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 3.18914
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": null,
@@ -653,17 +653,17 @@
       "price_at_call": 35.818112168537304
     },
     {
-      "r_1d": -0.091,
-      "r_7d": 0.0311,
-      "r_30d": 0.0033,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "916468852762009600",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-10-07T01:02:56.000Z",
       "direction": "hold",
-      "matched_by": "symbol",
-      "price_at_call": 3.18914
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": null,
@@ -679,17 +679,17 @@
       "price_at_call": null
     },
     {
-      "r_1d": -0.091,
-      "r_7d": 0.0311,
-      "r_30d": 0.0033,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "916517455350128640",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-10-07T04:16:04.000Z",
       "direction": "hold",
-      "matched_by": "symbol",
-      "price_at_call": 3.18914
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": -0.1079,
@@ -939,17 +939,17 @@
       "price_at_call": 0.6880237388902228
     },
     {
-      "r_1d": 0.0874,
-      "r_7d": 0.1105,
-      "r_30d": -0.2985,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "PTOY",
       "post_id": "917268848180711425",
-      "price_id": "coingecko:patientory",
+      "price_id": null,
       "called_at": "2017-10-09T06:01:50.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 0.2582693700052051
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": 0.3326,
@@ -1069,30 +1069,30 @@
       "price_at_call": null
     },
     {
-      "r_1d": 0.1597,
-      "r_7d": 0.1854,
-      "r_30d": 0.3392,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "919247664457371648",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-10-14T17:04:56.000Z",
       "direction": "hold",
-      "matched_by": "symbol",
-      "price_at_call": 3.18288
+      "matched_by": null,
+      "price_at_call": null
     },
     {
-      "r_1d": 0.1597,
-      "r_7d": 0.1854,
-      "r_30d": 0.3392,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "919248983494742018",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-10-14T17:10:11.000Z",
       "direction": "hold",
-      "matched_by": "symbol",
-      "price_at_call": 3.18288
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": 0.0174,
@@ -1108,17 +1108,17 @@
       "price_at_call": 27.76162529753953
     },
     {
-      "r_1d": 0.0045,
-      "r_7d": -0.3746,
-      "r_30d": -0.4764,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "PTOY",
       "post_id": "919250415073538049",
-      "price_id": "coingecko:patientory",
+      "price_id": null,
       "called_at": "2017-10-14T17:15:52.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 0.28553830239705436
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": -0.0148,
@@ -1186,17 +1186,17 @@
       "price_at_call": null
     },
     {
-      "r_1d": -0.0428,
-      "r_7d": -0.0801,
-      "r_30d": 0.2291,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "920497318910152715",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-10-18T03:50:37.000Z",
       "direction": "hold",
-      "matched_by": "symbol",
-      "price_at_call": 3.55002
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": null,
@@ -1264,17 +1264,17 @@
       "price_at_call": 5696.38014134367
     },
     {
-      "r_1d": -0.116,
-      "r_7d": -0.1096,
-      "r_30d": 0.3421,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "921117683181027328",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-10-19T20:55:43.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 3.40783
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": -0.0153,
@@ -1303,17 +1303,17 @@
       "price_at_call": 5952.7713587923
     },
     {
-      "r_1d": -0.1085,
-      "r_7d": -0.1403,
-      "r_30d": -0.1408,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "PTOY",
       "post_id": "921403399245123589",
-      "price_id": "coingecko:patientory",
+      "price_id": null,
       "called_at": "2017-10-20T15:51:03.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 0.20028517223324302
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": 0.0072,
@@ -1329,17 +1329,17 @@
       "price_at_call": 6003.4640189335
     },
     {
-      "r_1d": 0.0744,
-      "r_7d": 0.1257,
-      "r_30d": 0.0125,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "PTOY",
       "post_id": "922282544581705728",
-      "price_id": "coingecko:patientory",
+      "price_id": null,
       "called_at": "2017-10-23T02:04:28.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 0.1705127522615736
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": -0.0688,
@@ -1420,17 +1420,17 @@
       "price_at_call": 6368.65164135745
     },
     {
-      "r_1d": -0.1208,
-      "r_7d": -0.1226,
-      "r_30d": 1.245,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "925563818822000640",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-11-01T03:23:05.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 4.5577
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": 0.0248,
@@ -1524,17 +1524,17 @@
       "price_at_call": 6.4943
     },
     {
-      "r_1d": 0.0133,
-      "r_7d": -0.0384,
-      "r_30d": 0.5141,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "PTOY",
       "post_id": "927197437541875714",
-      "price_id": "coingecko:patientory",
+      "price_id": null,
       "called_at": "2017-11-05T15:34:30.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 0.1516480443633994
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": -0.009,
@@ -1771,17 +1771,17 @@
       "price_at_call": 8743.1593779107
     },
     {
-      "r_1d": 0.3296,
-      "r_7d": 0.5402,
-      "r_30d": 2.7713,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "934350317910622208",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-11-25T09:17:29.000Z",
       "direction": "hold",
-      "matched_by": "symbol",
-      "price_at_call": 6.47658
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": -0.0523,
@@ -1901,43 +1901,43 @@
       "price_at_call": 311.802
     },
     {
-      "r_1d": 0.1955,
-      "r_7d": 0.7396,
-      "r_30d": 4.2969,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "936125782157676544",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-11-30T06:52:33.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 8.55915
+      "matched_by": null,
+      "price_at_call": null
     },
     {
-      "r_1d": 0.1955,
-      "r_7d": 0.7396,
-      "r_30d": 4.2969,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "936126312883748864",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-11-30T06:54:40.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 8.55915
+      "matched_by": null,
+      "price_at_call": null
     },
     {
-      "r_1d": 0.1955,
-      "r_7d": 0.7396,
-      "r_30d": 4.2969,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "936128980297617408",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-11-30T07:05:15.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 8.55915
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": 0.0633,
@@ -1992,30 +1992,30 @@
       "price_at_call": 1.06124636436012
     },
     {
-      "r_1d": 0.1141,
-      "r_7d": 0.2643,
-      "r_30d": 2.9278,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "936811286490316800",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-12-02T04:16:30.000Z",
       "direction": "hold",
-      "matched_by": "symbol",
-      "price_at_call": 9.97507
+      "matched_by": null,
+      "price_at_call": null
     },
     {
-      "r_1d": 0.1141,
-      "r_7d": 0.2643,
-      "r_30d": 2.9278,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "936875910300540929",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-12-02T08:33:17.000Z",
       "direction": "hold",
-      "matched_by": "symbol",
-      "price_at_call": 9.97507
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": 0.0371,
@@ -2161,69 +2161,69 @@
       "price_at_call": 207.474232628566
     },
     {
-      "r_1d": -0.1069,
-      "r_7d": -0.146,
-      "r_30d": 1.7845,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "937458714210127873",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-12-03T23:09:09.000Z",
       "direction": "hold",
-      "matched_by": "symbol",
-      "price_at_call": 17.2719
+      "matched_by": null,
+      "price_at_call": null
     },
     {
-      "r_1d": -0.1069,
-      "r_7d": -0.146,
-      "r_30d": 1.7845,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "937537782347698176",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-12-04T04:23:20.000Z",
       "direction": "hold",
-      "matched_by": "symbol",
-      "price_at_call": 17.2719
+      "matched_by": null,
+      "price_at_call": null
     },
     {
-      "r_1d": -0.1069,
-      "r_7d": -0.146,
-      "r_30d": 1.7845,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "937580607579787265",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-12-04T07:13:30.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 17.2719
+      "matched_by": null,
+      "price_at_call": null
     },
     {
-      "r_1d": -0.1474,
-      "r_7d": -0.0656,
-      "r_30d": 1.8291,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "937812369945841664",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-12-04T22:34:27.000Z",
       "direction": "hold",
-      "matched_by": "symbol",
-      "price_at_call": 15.4261
+      "matched_by": null,
+      "price_at_call": null
     },
     {
-      "r_1d": -0.1474,
-      "r_7d": -0.0656,
-      "r_30d": 1.8291,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "937812525843996672",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-12-04T22:35:04.000Z",
       "direction": "hold",
-      "matched_by": "symbol",
-      "price_at_call": 15.4261
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": 0.0022,
@@ -2382,17 +2382,17 @@
       "price_at_call": 26.8535
     },
     {
-      "r_1d": -0.3502,
-      "r_7d": -0.2756,
-      "r_30d": 1.1373,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "938771928856264709",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-12-07T14:07:24.000Z",
       "direction": "hold",
-      "matched_by": "symbol",
-      "price_at_call": 19.409
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": -0.0971,
@@ -2421,17 +2421,17 @@
       "price_at_call": 8.2913209348231
     },
     {
-      "r_1d": 0.1046,
-      "r_7d": 0.234,
-      "r_30d": 2.0056,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "939152657503178753",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-12-08T15:20:16.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 12.6112
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": 0.0641,
@@ -2486,17 +2486,17 @@
       "price_at_call": null
     },
     {
-      "r_1d": 0.0905,
-      "r_7d": -0.6382,
-      "r_30d": -2.1264,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "PTOY",
       "post_id": "939262090946195456",
-      "price_id": "coingecko:patientory",
+      "price_id": null,
       "called_at": "2017-12-08T22:35:07.000Z",
       "direction": "sell",
-      "matched_by": "symbol",
-      "price_at_call": 0.188627894777288
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": -0.069,
@@ -2512,30 +2512,30 @@
       "price_at_call": 1448.90164311988
     },
     {
-      "r_1d": -0.0707,
-      "r_7d": 0.2797,
-      "r_30d": 0.3411,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "PTOY",
       "post_id": "940443601280143361",
-      "price_id": "coingecko:patientory",
+      "price_id": null,
       "called_at": "2017-12-12T04:50:01.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 0.411428669031104
+      "matched_by": null,
+      "price_at_call": null
     },
     {
-      "r_1d": -0.0707,
-      "r_7d": 0.2797,
-      "r_30d": 0.3411,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "PTOY",
       "post_id": "940444666260000769",
-      "price_id": "coingecko:patientory",
+      "price_id": null,
       "called_at": "2017-12-12T04:54:15.000Z",
       "direction": "hold",
-      "matched_by": "symbol",
-      "price_at_call": 0.411428669031104
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": null,
@@ -2564,17 +2564,17 @@
       "price_at_call": null
     },
     {
-      "r_1d": -0.0586,
-      "r_7d": 0.2902,
-      "r_30d": 1.9343,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "940481450259963904",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-12-12T07:20:25.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 14.4143
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": 0.8095,
@@ -2707,17 +2707,17 @@
       "price_at_call": null
     },
     {
-      "r_1d": -0.0632,
-      "r_7d": 0.5697,
-      "r_30d": 1.0319,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "PTOY",
       "post_id": "941090006181072897",
-      "price_id": "coingecko:patientory",
+      "price_id": null,
       "called_at": "2017-12-13T23:38:36.000Z",
       "direction": "hold",
-      "matched_by": "symbol",
-      "price_at_call": 0.341973155260354
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": -0.0561,
@@ -3136,17 +3136,17 @@
       "price_at_call": null
     },
     {
-      "r_1d": -0.1002,
-      "r_7d": 0.0514,
-      "r_30d": -0.2578,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "945380786970288128",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-12-25T19:48:38.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 38.489
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": null,
@@ -3162,30 +3162,30 @@
       "price_at_call": null
     },
     {
-      "r_1d": -0.1052,
-      "r_7d": -0.3887,
-      "r_30d": 0.1853,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "945679598787940352",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-12-26T15:36:00.000Z",
       "direction": "sell",
-      "matched_by": "symbol",
-      "price_at_call": 34.6339
+      "matched_by": null,
+      "price_at_call": null
     },
     {
-      "r_1d": -0.1052,
-      "r_7d": -0.3887,
-      "r_30d": 0.1853,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SKY",
       "post_id": "945851707854131200",
-      "price_id": "coingecko:skycoin",
+      "price_id": null,
       "called_at": "2017-12-27T02:59:54.000Z",
       "direction": "sell",
-      "matched_by": "symbol",
-      "price_at_call": 34.6339
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": -0.1348,
@@ -4446,7 +4446,7 @@
       "called_at": "2018-03-14T00:37:33.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 41.845680236816406
+      "price_at_call": 41.81389617919922
     },
     {
       "r_1d": 0.0063,
@@ -4657,17 +4657,17 @@
       "price_at_call": null
     },
     {
-      "r_1d": -0.0361,
-      "r_7d": 0.5441,
-      "r_30d": 0.1508,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "HUSH",
       "post_id": "984416383210610690",
-      "price_id": "coingecko:hush",
+      "price_id": null,
       "called_at": "2018-04-12T13:02:09.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 0.97537185481954
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": -0.0321,
@@ -5213,7 +5213,7 @@
       "called_at": "2018-08-29T02:03:37.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 10.937714576721191
+      "price_at_call": 10.937713623046875
     },
     {
       "r_1d": 0.01,
@@ -5720,7 +5720,7 @@
       "called_at": "2019-01-07T20:36:36.000Z",
       "direction": "hold",
       "matched_by": "stock",
-      "price_at_call": 40.40447235107422
+      "price_at_call": 40.40446472167969
     },
     {
       "r_1d": -0.1655,
@@ -5785,7 +5785,7 @@
       "called_at": "2019-02-03T03:42:46.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 21.58003807067871
+      "price_at_call": 21.580036163330078
     },
     {
       "r_1d": null,
@@ -5980,7 +5980,7 @@
       "called_at": "2019-02-23T08:18:57.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 3.937424659729004
+      "price_at_call": 3.937424421310425
     },
     {
       "r_1d": 0.0048,
@@ -6019,7 +6019,7 @@
       "called_at": "2019-03-01T21:23:05.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 9.584280967712402
+      "price_at_call": 9.584280014038086
     },
     {
       "r_1d": 0.0881,
@@ -6045,7 +6045,7 @@
       "called_at": "2019-03-05T18:08:55.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 61.52153015136719
+      "price_at_call": 61.52152633666992
     },
     {
       "r_1d": -0.0881,
@@ -6071,7 +6071,7 @@
       "called_at": "2019-03-05T18:09:14.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 61.52153015136719
+      "price_at_call": 61.52152633666992
     },
     {
       "r_1d": null,
@@ -6097,7 +6097,7 @@
       "called_at": "2019-03-07T15:23:19.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 3.695619821548462
+      "price_at_call": 3.695619583129883
     },
     {
       "r_1d": null,
@@ -6136,7 +6136,7 @@
       "called_at": "2019-03-09T05:45:56.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 23.70036506652832
+      "price_at_call": 23.700366973876953
     },
     {
       "r_1d": 0,
@@ -6175,7 +6175,7 @@
       "called_at": "2019-03-14T03:26:38.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 4.0992021560668945
+      "price_at_call": 4.099200248718262
     },
     {
       "r_1d": null,
@@ -6214,7 +6214,7 @@
       "called_at": "2019-03-14T05:30:53.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 49.57335662841797
+      "price_at_call": 49.573360443115234
     },
     {
       "r_1d": 0.0206,
@@ -6383,7 +6383,7 @@
       "called_at": "2019-03-17T04:24:28.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 62.48847579956055
+      "price_at_call": 62.488460540771484
     },
     {
       "r_1d": 0.0042,
@@ -6409,7 +6409,7 @@
       "called_at": "2019-03-17T04:24:28.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 20.5528564453125
+      "price_at_call": 20.552858352661133
     },
     {
       "r_1d": null,
@@ -6448,7 +6448,7 @@
       "called_at": "2019-03-17T04:24:28.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 4.20443058013916
+      "price_at_call": 4.204429626464844
     },
     {
       "r_1d": null,
@@ -6578,7 +6578,7 @@
       "called_at": "2019-03-19T09:43:28.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 20.39617919921875
+      "price_at_call": 20.396177291870117
     },
     {
       "r_1d": 0.0311,
@@ -6656,7 +6656,7 @@
       "called_at": "2019-03-20T20:05:17.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 20.857004165649414
+      "price_at_call": 20.857006072998047
     },
     {
       "r_1d": null,
@@ -6760,7 +6760,7 @@
       "called_at": "2019-03-25T18:21:25.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 250.10198974609375
+      "price_at_call": 250.10195922851562
     },
     {
       "r_1d": null,
@@ -6877,7 +6877,7 @@
       "called_at": "2019-04-01T20:08:26.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 11.139206886291504
+      "price_at_call": 11.13920783996582
     },
     {
       "r_1d": 0.1629,
@@ -7124,7 +7124,7 @@
       "called_at": "2019-04-09T18:15:33.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 64.80760955810547
+      "price_at_call": 64.80760192871094
     },
     {
       "r_1d": -0.0628,
@@ -7176,7 +7176,7 @@
       "called_at": "2019-04-18T03:48:36.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 8.721278190612793
+      "price_at_call": 8.721277236938477
     },
     {
       "r_1d": 0,
@@ -7202,7 +7202,7 @@
       "called_at": "2019-04-18T03:48:36.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 66.31843566894531
+      "price_at_call": 66.31844329833984
     },
     {
       "r_1d": null,
@@ -7306,7 +7306,7 @@
       "called_at": "2019-04-30T21:00:15.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 58.86643981933594
+      "price_at_call": 58.86643600463867
     },
     {
       "r_1d": -0.0009,
@@ -7319,7 +7319,7 @@
       "called_at": "2019-05-01T18:14:28.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 8.709871292114258
+      "price_at_call": 8.70987319946289
     },
     {
       "r_1d": 0.0112,
@@ -7371,7 +7371,7 @@
       "called_at": "2019-05-03T21:19:24.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 9.063438415527344
+      "price_at_call": 9.063437461853027
     },
     {
       "r_1d": -0.0276,
@@ -7397,7 +7397,7 @@
       "called_at": "2019-05-03T21:19:33.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 61.158912658691406
+      "price_at_call": 61.15890884399414
     },
     {
       "r_1d": 0,
@@ -7530,7 +7530,7 @@
       "price_at_call": null
     },
     {
-      "r_1d": 0.017,
+      "r_1d": 0.0171,
       "r_7d": -0.0067,
       "r_30d": 0.025,
       "symbol": null,
@@ -7540,7 +7540,7 @@
       "called_at": "2019-05-21T13:41:11.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 4.486519813537598
+      "price_at_call": 4.4865193367004395
     },
     {
       "r_1d": null,
@@ -8255,7 +8255,7 @@
       "called_at": "2020-02-27T15:54:02.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 65.97179412841797
+      "price_at_call": 65.92169952392578
     },
     {
       "r_1d": -0.005,
@@ -8359,7 +8359,7 @@
       "called_at": "2020-03-05T20:00:33.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 198.99496459960938
+      "price_at_call": 198.9949493408203
     },
     {
       "r_1d": null,
@@ -8502,7 +8502,7 @@
       "called_at": "2020-03-22T14:07:48.000Z",
       "direction": "hold",
       "matched_by": "stock",
-      "price_at_call": 209.2623748779297
+      "price_at_call": 209.2623291015625
     },
     {
       "r_1d": null,
@@ -8528,7 +8528,7 @@
       "called_at": "2020-03-23T15:28:13.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 54.117027282714844
+      "price_at_call": 54.07594680786133
     },
     {
       "r_1d": null,
@@ -8671,7 +8671,7 @@
       "called_at": "2020-04-13T16:46:21.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 111.27992248535156
+      "price_at_call": 111.27993774414062
     },
     {
       "r_1d": 0.0193,
@@ -8684,7 +8684,7 @@
       "called_at": "2020-04-13T17:13:10.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 173.13177490234375
+      "price_at_call": 173.1317901611328
     },
     {
       "r_1d": null,
@@ -8944,7 +8944,7 @@
       "called_at": "2020-05-08T03:20:02.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 41.548179626464844
+      "price_at_call": 41.54818344116211
     },
     {
       "r_1d": null,
@@ -9889,10 +9889,10 @@
       "symbol": null,
       "ticker": "SHROOM",
       "post_id": "1314273785927946242",
-      "price_id": "coingecko:shroom-finance",
+      "price_id": "ethereum:0xEd0439EACf4c4965AE4613D77a5C2Efe10e5f183",
       "called_at": "2020-10-08T18:37:43.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
+      "matched_by": "ticker",
       "price_at_call": 0.13069767264649315
     },
     {
@@ -9902,10 +9902,10 @@
       "symbol": null,
       "ticker": "SHROOM",
       "post_id": "1314274261696212993",
-      "price_id": "coingecko:shroom-finance",
+      "price_id": "ethereum:0xEd0439EACf4c4965AE4613D77a5C2Efe10e5f183",
       "called_at": "2020-10-08T18:39:36.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
+      "matched_by": "ticker",
       "price_at_call": 0.13069767264649315
     },
     {
@@ -9974,17 +9974,17 @@
       "price_at_call": 11399.40560081687
     },
     {
-      "r_1d": -0.0054,
-      "r_7d": 0.0073,
-      "r_30d": -0.1129,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "OWL",
       "post_id": "1317168495499628545",
-      "price_id": "ethereum:0x1A5F9352Af8aF974bFC03399e3767DF6370d82e4",
+      "price_id": null,
       "called_at": "2020-10-16T18:20:15.000Z",
       "direction": "hold",
-      "matched_by": "ticker",
-      "price_at_call": 0.9976727999017487
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": -0.0125,
@@ -10000,17 +10000,17 @@
       "price_at_call": 13105.62017968296
     },
     {
-      "r_1d": -0.0311,
-      "r_7d": 0.0484,
-      "r_30d": -0.036,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "OWL",
       "post_id": "1321234354522058752",
-      "price_id": "ethereum:0x1A5F9352Af8aF974bFC03399e3767DF6370d82e4",
+      "price_id": null,
       "called_at": "2020-10-27T23:36:32.000Z",
       "direction": "hold",
-      "matched_by": "ticker",
-      "price_at_call": 0.9886726557424657
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": 0.0332,
@@ -10101,7 +10101,7 @@
       "called_at": "2020-11-17T15:36:45.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 6.840634822845459
+      "price_at_call": 6.840634346008301
     },
     {
       "r_1d": -0.0114,
@@ -10179,7 +10179,7 @@
       "called_at": "2020-11-27T18:53:24.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 8.278054237365723
+      "price_at_call": 8.278053283691406
     },
     {
       "r_1d": 0.0173,
@@ -10400,7 +10400,7 @@
       "called_at": "2020-12-23T15:51:11.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 17.215452194213867
+      "price_at_call": 17.215450286865234
     },
     {
       "r_1d": 0.1136,
@@ -10699,7 +10699,7 @@
       "called_at": "2021-01-12T15:30:23.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 11.535360336303711
+      "price_at_call": 11.535358428955078
     },
     {
       "r_1d": 0.3496,
@@ -10994,10 +10994,10 @@
       "symbol": null,
       "ticker": "MTA",
       "post_id": "1357766174235373569",
-      "price_id": "ethereum:0xa3BeD4E1c75D00fa6f4E5E6922DB7261B5E9AcD2",
+      "price_id": "coingecko:meta",
       "called_at": "2021-02-05T19:00:56.000Z",
       "direction": "buy",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 4.882437334005907
     },
     {
@@ -11904,10 +11904,10 @@
       "symbol": null,
       "ticker": "SRM",
       "post_id": "1363828804448366593",
-      "price_id": "ethereum:0x476c5E26a75bd202a9683ffD34359C0CC15be0fF",
+      "price_id": "coingecko:serum",
       "called_at": "2021-02-22T12:31:40.000Z",
       "direction": "buy",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 4.284971156439205
     },
     {
@@ -11956,10 +11956,10 @@
       "symbol": null,
       "ticker": "SRM",
       "post_id": "1363900569577000964",
-      "price_id": "ethereum:0x476c5E26a75bd202a9683ffD34359C0CC15be0fF",
+      "price_id": "coingecko:serum",
       "called_at": "2021-02-22T17:16:50.000Z",
       "direction": "hold",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 5.277944987807093
     },
     {
@@ -12398,10 +12398,10 @@
       "symbol": null,
       "ticker": "SRM",
       "post_id": "1368894666372943872",
-      "price_id": "ethereum:0x476c5E26a75bd202a9683ffD34359C0CC15be0fF",
+      "price_id": "coingecko:serum",
       "called_at": "2021-03-08T12:01:35.000Z",
       "direction": "buy",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 5.834938611353845
     },
     {
@@ -12792,7 +12792,7 @@
       "called_at": "2021-03-29T19:16:16.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 14.854949951171875
+      "price_at_call": 14.854951858520508
     },
     {
       "r_1d": 1.6866,
@@ -12957,10 +12957,10 @@
       "symbol": null,
       "ticker": "SXP",
       "post_id": "1377646392345247754",
-      "price_id": "ethereum:0x8CE9137d39326AD0cD6491fb5CC0CbA0e089b6A9",
+      "price_id": "coingecko:swipe",
       "called_at": "2021-04-01T15:37:50.000Z",
       "direction": "buy",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 3.7506865028559875
     },
     {
@@ -13016,17 +13016,17 @@
       "price_at_call": 0.7631519458851704
     },
     {
-      "r_1d": 0.0997,
-      "r_7d": 0.2028,
-      "r_30d": 0.1512,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "FLM",
       "post_id": "1377646392345247754",
-      "price_id": "coingecko:flamingo-finance",
+      "price_id": null,
       "called_at": "2021-04-01T15:37:50.000Z",
       "direction": "buy",
-      "matched_by": "symbol",
-      "price_at_call": 0.7807925410933475
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": 0.1252,
@@ -13152,10 +13152,10 @@
       "symbol": null,
       "ticker": "SRM",
       "post_id": "1378845559071604738",
-      "price_id": "ethereum:0x476c5E26a75bd202a9683ffD34359C0CC15be0fF",
+      "price_id": "coingecko:serum",
       "called_at": "2021-04-04T23:02:53.000Z",
       "direction": "buy",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 6.625192530169942
     },
     {
@@ -13178,10 +13178,10 @@
       "symbol": null,
       "ticker": "SXP",
       "post_id": "1378946139291017216",
-      "price_id": "ethereum:0x8CE9137d39326AD0cD6491fb5CC0CbA0e089b6A9",
+      "price_id": "coingecko:swipe",
       "called_at": "2021-04-05T05:42:33.000Z",
       "direction": "buy",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 4.2517833437022166
     },
     {
@@ -13334,10 +13334,10 @@
       "symbol": null,
       "ticker": "SXP",
       "post_id": "1380198274443907078",
-      "price_id": "ethereum:0x8CE9137d39326AD0cD6491fb5CC0CbA0e089b6A9",
+      "price_id": "coingecko:swipe",
       "called_at": "2021-04-08T16:38:06.000Z",
       "direction": "buy",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 4.785396634471254
     },
     {
@@ -14459,17 +14459,17 @@
       "price_at_call": 2617.499783124178
     },
     {
-      "r_1d": -0.0259,
-      "r_7d": -0.009,
-      "r_30d": 0.2532,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "ALL",
       "post_id": "1401219543092142081",
-      "price_id": "coingecko:alliance-fan-token",
+      "price_id": null,
       "called_at": "2021-06-05T16:49:07.000Z",
       "direction": "sell",
-      "matched_by": "symbol",
-      "price_at_call": 1.2458753539275766
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": -0.0032,
@@ -16155,10 +16155,10 @@
       "symbol": null,
       "ticker": "SRM",
       "post_id": "1441563068211728389",
-      "price_id": "ethereum:0x476c5E26a75bd202a9683ffD34359C0CC15be0fF",
+      "price_id": "coingecko:serum",
       "called_at": "2021-09-25T00:39:53.000Z",
       "direction": "sell",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 7.843529867560321
     },
     {
@@ -16266,17 +16266,17 @@
       "price_at_call": 0.0066193440336252615
     },
     {
-      "r_1d": 0.4329,
-      "r_7d": 0.4926,
-      "r_30d": 2.8623,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "SHIBX",
       "post_id": "1445165703871533057",
-      "price_id": "coingecko:shibavax",
+      "price_id": null,
       "called_at": "2021-10-04T23:15:28.000Z",
       "direction": "hold",
-      "matched_by": "symbol",
-      "price_at_call": 0.00042638740259465187
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": 0.1612,
@@ -19873,10 +19873,10 @@
       "symbol": null,
       "ticker": "SXP",
       "post_id": "1510400009388371970",
-      "price_id": "bsc:0x47BEAd2563dCBf3bF2c9407fEa4dC236fAbA485A",
+      "price_id": "coingecko:swipe",
       "called_at": "2022-04-02T23:33:18.000Z",
       "direction": "hold",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 1.6262374817626344
     },
     {
@@ -20887,10 +20887,10 @@
       "symbol": null,
       "ticker": "UNIBOT",
       "post_id": "1671945615570354176",
-      "price_id": "ethereum:0xf819d9Cb1c2A819Fd991781A822dE3ca8607c3C9",
+      "price_id": "coingecko:unibot",
       "called_at": "2023-06-22T18:17:52.000Z",
       "direction": "buy",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 27.72
     },
     {
@@ -21082,10 +21082,10 @@
       "symbol": null,
       "ticker": "UNIBOT",
       "post_id": "1679278478040920064",
-      "price_id": "ethereum:0xf819d9Cb1c2A819Fd991781A822dE3ca8607c3C9",
+      "price_id": "coingecko:unibot",
       "called_at": "2023-07-12T23:56:03.000Z",
       "direction": "buy",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 52.57
     },
     {
@@ -21615,10 +21615,10 @@
       "symbol": null,
       "ticker": "UNIBOT",
       "post_id": "1682806427742527494",
-      "price_id": "ethereum:0xf819d9Cb1c2A819Fd991781A822dE3ca8607c3C9",
+      "price_id": "coingecko:unibot",
       "called_at": "2023-07-22T17:34:52.000Z",
       "direction": "buy",
-      "matched_by": "ticker",
+      "matched_by": "symbol",
       "price_at_call": 103.78
     },
     {
@@ -24310,7 +24310,7 @@
       "called_at": "2023-11-19T18:29:02.000Z",
       "direction": "hold",
       "matched_by": "stock",
-      "price_at_call": 331.86151123046875
+      "price_at_call": 331.8615417480469
     },
     {
       "r_1d": 0.271,
@@ -30394,7 +30394,7 @@
       "called_at": "2024-08-28T15:50:30.000Z",
       "direction": "sell",
       "matched_by": "stock",
-      "price_at_call": 125.26315307617188
+      "price_at_call": 125.26313781738281
     },
     {
       "r_1d": null,
@@ -31138,17 +31138,17 @@
       "price_at_call": 3.64
     },
     {
-      "r_1d": 0.0323,
-      "r_7d": 0.0204,
-      "r_30d": 0.4275,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "ALL",
       "post_id": "1856927124382232673",
-      "price_id": "coingecko:alliance-fan-token",
+      "price_id": null,
       "called_at": "2024-11-14T05:08:21.000Z",
       "direction": "hold",
-      "matched_by": "symbol",
-      "price_at_call": 0.060288
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": -0.1643,
@@ -32422,7 +32422,7 @@
       "called_at": "2025-02-21T17:35:58.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 83.19586944580078
+      "price_at_call": 82.84718322753906
     },
     {
       "r_1d": 0.0059,
@@ -36117,30 +36117,30 @@
       "price_at_call": 81967.61793461726
     },
     {
-      "r_1d": 0.0809,
-      "r_7d": 0.0703,
-      "r_30d": -0.1246,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "PAPER",
       "post_id": "2108381006973817054",
-      "price_id": "gt:base:0xE2faDb6cf477e5816eC5AcA2366B52d13BdF4218",
+      "price_id": null,
       "called_at": "2026-10-09T02:16:18.000Z",
       "direction": "buy",
-      "matched_by": "ticker",
-      "price_at_call": 0.000009100321586665869
+      "matched_by": null,
+      "price_at_call": null
     },
     {
-      "r_1d": 0.0668,
-      "r_7d": 0.0118,
-      "r_30d": -0.3076,
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
       "symbol": null,
       "ticker": "PAPER",
       "post_id": "2108930537788453096",
-      "price_id": "gt:base:0xE2faDb6cf477e5816eC5AcA2366B52d13BdF4218",
+      "price_id": null,
       "called_at": "2026-10-10T14:39:56.000Z",
       "direction": "buy",
-      "matched_by": "ticker",
-      "price_at_call": 0.00000983626444625135
+      "matched_by": null,
+      "price_at_call": null
     },
     {
       "r_1d": 0.2782,
@@ -36158,7 +36158,7 @@
     {
       "r_1d": -0.0102,
       "r_7d": -0.0096,
-      "r_30d": null,
+      "r_30d": -0.2062,
       "symbol": null,
       "ticker": "BTC",
       "post_id": "2110767113673781312",
@@ -36274,7 +36274,7 @@
     },
     {
       "r_1d": -0.0094,
-      "r_7d": null,
+      "r_7d": -0.0555,
       "r_30d": null,
       "symbol": null,
       "ticker": "XAU",
@@ -36286,21 +36286,8 @@
       "price_at_call": 4113.5
     },
     {
-      "r_1d": 0.0027,
-      "r_7d": null,
-      "r_30d": null,
-      "symbol": null,
-      "ticker": "BTC",
-      "post_id": "2118398194996461874",
-      "price_id": "coingecko:bitcoin",
-      "called_at": "2026-11-05T17:41:02.000Z",
-      "direction": "sell",
-      "matched_by": null,
-      "price_at_call": 75773.78
-    },
-    {
       "r_1d": -0.0048,
-      "r_7d": null,
+      "r_7d": 0.1026,
       "r_30d": null,
       "symbol": null,
       "ticker": "SOL",
@@ -36313,7 +36300,7 @@
     },
     {
       "r_1d": 0,
-      "r_7d": null,
+      "r_7d": -0.0463,
       "r_30d": null,
       "symbol": null,
       "ticker": "XAU",
@@ -36323,17 +36310,121 @@
       "direction": "buy",
       "matched_by": "stock",
       "price_at_call": 4074.89990234375
+    },
+    {
+      "r_1d": -0.0003,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "XAU",
+      "post_id": "2120931944452002167",
+      "price_id": "stock:GC=F",
+      "called_at": "2026-11-12T17:29:15.000Z",
+      "direction": "sell",
+      "matched_by": "stock",
+      "price_at_call": 3885.300048828125
+    },
+    {
+      "r_1d": 0.3246,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "CA",
+      "post_id": "2120967022272008380",
+      "price_id": "solana:4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
+      "called_at": "2026-11-12T19:48:38.000Z",
+      "direction": "buy",
+      "matched_by": null,
+      "price_at_call": 0.014167946105300621
+    },
+    {
+      "r_1d": -0.002,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "OIL",
+      "post_id": "2120967022272008380",
+      "price_id": "stock:CL=F",
+      "called_at": "2026-11-12T19:48:38.000Z",
+      "direction": "buy",
+      "matched_by": "stock",
+      "price_at_call": 88.73999786376953
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "CA",
+      "post_id": "2120978487343558720",
+      "price_id": null,
+      "called_at": "2026-11-12T20:34:11.000Z",
+      "direction": "sell",
+      "matched_by": null,
+      "price_at_call": null
+    },
+    {
+      "r_1d": -0.0423,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "PUMP",
+      "post_id": "2121650205745635538",
+      "price_id": "coingecko:pump-fun",
+      "called_at": "2026-11-14T17:03:22.000Z",
+      "direction": "buy",
+      "matched_by": null,
+      "price_at_call": 0.0030013773360000003
+    },
+    {
+      "r_1d": 0.0003,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "BTC",
+      "post_id": "2121807676539830767",
+      "price_id": "coingecko:bitcoin",
+      "called_at": "2026-11-15T03:29:06.000Z",
+      "direction": "sell",
+      "matched_by": null,
+      "price_at_call": 65071.002969613364
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "BTC",
+      "post_id": "2121931459783201053",
+      "price_id": "coingecko:bitcoin",
+      "called_at": "2026-11-15T11:40:58.000Z",
+      "direction": "sell",
+      "matched_by": null,
+      "price_at_call": 65481.613125062984
+    },
+    {
+      "r_1d": null,
+      "r_7d": null,
+      "r_30d": null,
+      "symbol": null,
+      "ticker": "ZEC",
+      "post_id": "2122284970949718155",
+      "price_id": "coingecko:zcash",
+      "called_at": "2026-11-16T11:05:41.000Z",
+      "direction": "buy",
+      "matched_by": null,
+      "price_at_call": 894.021867885
     }
   ],
-  "hold_pairs": 141,
-  "calls_total": 2792,
-  "computed_at": "2026-11-10T00:03:53.974Z",
+  "hold_pairs": 143,
+  "calls_total": 2799,
+  "computed_at": "2026-11-16T11:25:17.854Z",
   "by_direction": {
-    "buy": 2022,
+    "buy": 2026,
     "hold": 459,
-    "sell": 311
+    "sell": 314
   },
-  "calls_priced": 2386,
+  "calls_priced": 2344,
   "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal); Yahoo Finance (stocks, ETFs, metals)",
   "median_hold_days": 54
 }

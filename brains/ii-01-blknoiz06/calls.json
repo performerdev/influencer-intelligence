@@ -27890,16 +27890,6 @@
     "url": "https://x.com/blknoiz06/status/2118292132876480727"
   },
   {
-    "date": "2026-11-05",
-    "ticker": "BTC",
-    "chain": null,
-    "address": null,
-    "direction": "sell",
-    "quote": "i dont think 75k holds",
-    "post_id": "2118398194996461874",
-    "url": "https://x.com/blknoiz06/status/2118398194996461874"
-  },
-  {
     "date": "2026-11-06",
     "ticker": "SOL",
     "chain": null,
@@ -27918,5 +27908,85 @@
     "quote": "$XAU 3900-4000 is a bid, bought this when it failed to breakdown from 3900",
     "post_id": "2118758965177880768",
     "url": "https://x.com/blknoiz06/status/2118758965177880768"
+  },
+  {
+    "date": "2026-11-12",
+    "ticker": "XAU",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "nuked the gold position",
+    "post_id": "2120931944452002167",
+    "url": "https://x.com/blknoiz06/status/2120931944452002167"
+  },
+  {
+    "date": "2026-11-12",
+    "ticker": "CA",
+    "chain": "solana",
+    "address": "4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
+    "direction": "buy",
+    "quote": "current portfolio long: bonds, oil, solana:4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump short: everything else",
+    "post_id": "2120967022272008380",
+    "url": "https://x.com/blknoiz06/status/2120967022272008380"
+  },
+  {
+    "date": "2026-11-12",
+    "ticker": "OIL",
+    "chain": "solana",
+    "address": "4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
+    "direction": "buy",
+    "quote": "current portfolio long: bonds, oil, solana:4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump short: everything else",
+    "post_id": "2120967022272008380",
+    "url": "https://x.com/blknoiz06/status/2120967022272008380"
+  },
+  {
+    "date": "2026-11-12",
+    "ticker": "CA",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "let's ride https://t.co/aLeJRwxYTF",
+    "post_id": "2120978487343558720",
+    "url": "https://x.com/blknoiz06/status/2120978487343558720"
+  },
+  {
+    "date": "2026-11-14",
+    "ticker": "PUMP",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "prolly get to rebuy pump at like .002",
+    "post_id": "2121650205745635538",
+    "url": "https://x.com/blknoiz06/status/2121650205745635538"
+  },
+  {
+    "date": "2026-11-15",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "closed shorts",
+    "post_id": "2121807676539830767",
+    "url": "https://x.com/blknoiz06/status/2121807676539830767"
+  },
+  {
+    "date": "2026-11-15",
+    "ticker": "BTC",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "closed shorts yesterday currently expecting chop at these levels before another major trending move",
+    "post_id": "2121931459783201053",
+    "url": "https://x.com/blknoiz06/status/2121931459783201053"
+  },
+  {
+    "date": "2026-11-16",
+    "ticker": "ZEC",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "i still like the long-term privacy thesis and watching zcash:native for a deeper pullback, with $750 as a key level where historical resistance could turn into ",
+    "post_id": "2122284970949718155",
+    "url": "https://x.com/blknoiz06/status/2122284970949718155"
   }
 ]
