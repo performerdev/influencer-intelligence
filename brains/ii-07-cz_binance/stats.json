@@ -9,22 +9,22 @@
   ],
   "horizons": {
     "1d": {
-      "n": 79,
-      "hit_rate": 0.4304,
-      "mean_return": -0.0078,
-      "median_return": -0.0062
+      "n": 76,
+      "hit_rate": 0.4342,
+      "mean_return": -0.0079,
+      "median_return": -0.0057
     },
     "7d": {
-      "n": 79,
-      "hit_rate": 0.481,
-      "mean_return": 0.0139,
-      "median_return": -0.0128
+      "n": 76,
+      "hit_rate": 0.4868,
+      "mean_return": 0.0138,
+      "median_return": -0.0082
     },
     "30d": {
-      "n": 77,
-      "hit_rate": 0.6364,
-      "mean_return": 0.072,
-      "median_return": 0.0506
+      "n": 76,
+      "hit_rate": 0.6316,
+      "mean_return": 0.0719,
+      "median_return": 0.0499
     }
   },
   "per_call": [
@@ -1030,54 +1030,28 @@
       "price_at_call": 60007.591905293164
     },
     {
-      "r_1d": 0.0109,
-      "r_7d": 0.1211,
-      "r_30d": 0.0808,
-      "symbol": null,
-      "ticker": "BTC",
-      "post_id": "2100197973997277520",
-      "price_id": "coingecko:bitcoin",
-      "called_at": "2026-09-16T12:19:51.000Z",
-      "direction": "buy",
-      "matched_by": null,
-      "price_at_call": 76058.6413814315
-    },
-    {
-      "r_1d": -0.0142,
-      "r_7d": -0.0562,
+      "r_1d": null,
+      "r_7d": null,
       "r_30d": null,
       "symbol": null,
       "ticker": "BTC",
-      "post_id": "2113699694245556532",
+      "post_id": "2122000010992824627",
       "price_id": "coingecko:bitcoin",
-      "called_at": "2026-10-23T18:30:52.000Z",
+      "called_at": "2026-11-15T16:13:22.000Z",
       "direction": "buy",
       "matched_by": null,
-      "price_at_call": 81468.12601564478
-    },
-    {
-      "r_1d": -0.0065,
-      "r_7d": -0.0212,
-      "r_30d": null,
-      "symbol": null,
-      "ticker": "BNB",
-      "post_id": "2117303255499968865",
-      "price_id": "coingecko:binancecoin",
-      "called_at": "2026-11-02T17:10:08.000Z",
-      "direction": "hold",
-      "matched_by": null,
-      "price_at_call": 702.1157317438759
+      "price_at_call": 64646.617864
     }
   ],
   "hold_pairs": 0,
-  "calls_total": 80,
-  "computed_at": "2026-11-09T23:53:06.708Z",
+  "calls_total": 78,
+  "computed_at": "2026-11-16T11:19:52.099Z",
   "by_direction": {
-    "buy": 26,
-    "hold": 53,
+    "buy": 25,
+    "hold": 52,
     "sell": 1
   },
-  "calls_priced": 79,
+  "calls_priced": 77,
   "price_source": "DefiLlama coins API, small coins found on DexScreener (+ GeckoTerminal); Yahoo Finance (stocks, ETFs, metals)",
   "median_hold_days": null
 }
