@@ -10,21 +10,21 @@
   "horizons": {
     "1d": {
       "n": 526,
-      "hit_rate": 0.519,
+      "hit_rate": 0.5209,
       "mean_return": 0.0406,
-      "median_return": 0.004
+      "median_return": 0.0044
     },
     "7d": {
-      "n": 518,
-      "hit_rate": 0.4131,
-      "mean_return": 0.0767,
-      "median_return": -0.0485
+      "n": 519,
+      "hit_rate": 0.4123,
+      "mean_return": 0.0761,
+      "median_return": -0.0487
     },
     "30d": {
-      "n": 498,
-      "hit_rate": 0.3574,
-      "mean_return": 0.2514,
-      "median_return": -0.1631
+      "n": 499,
+      "hit_rate": 0.3567,
+      "mean_return": 0.2505,
+      "median_return": -0.1645
     }
   },
   "per_call": [
@@ -6633,17 +6633,17 @@
       "price_at_call": 0.03201742566827997
     },
     {
-      "r_1d": -0.0045,
-      "r_7d": 0.0807,
-      "r_30d": null,
+      "r_1d": 0.0287,
+      "r_7d": 0.1293,
+      "r_30d": -0.1969,
       "symbol": null,
       "ticker": "LONG",
       "post_id": "2099291397245288496",
-      "price_id": "bsc:0xfC8774321Ee4586aF183bAca95A8793530056353",
+      "price_id": "coingecko:nobiko-coin",
       "called_at": "2026-09-14T00:17:26.000Z",
       "direction": "buy",
-      "matched_by": "ticker",
-      "price_at_call": 44.67774851287372
+      "matched_by": "symbol",
+      "price_at_call": 0.0003020390735213698
     },
     {
       "r_1d": 0.0458,
@@ -7276,7 +7276,7 @@
       "symbol": null,
       "ticker": "PANGEA",
       "post_id": "2116620510553591996",
-      "price_id": "solana:JAFqCQSpy5YinrsmixWSMaD7jTn4MytJRkyWvYPnY6ea",
+      "price_id": "bsc:0xd0cb4279e2B74c2d72EEa20Df308Fb9604E3d6Ea",
       "called_at": "2026-10-31T19:57:09.000Z",
       "direction": "buy",
       "matched_by": "ticker",
@@ -7349,7 +7349,7 @@
     },
     {
       "r_1d": 0.0045,
-      "r_7d": null,
+      "r_7d": -0.2585,
       "r_30d": null,
       "symbol": null,
       "ticker": "USELESS",
@@ -7454,7 +7454,7 @@
   ],
   "hold_pairs": 0,
   "calls_total": 571,
-  "computed_at": "2026-11-16T11:21:06.806Z",
+  "computed_at": "2026-11-16T23:49:28.926Z",
   "by_direction": {
     "buy": 413,
     "hold": 158,
