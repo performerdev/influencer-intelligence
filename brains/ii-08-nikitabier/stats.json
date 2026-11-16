@@ -9,16 +9,16 @@
   ],
   "horizons": {
     "1d": {
-      "n": 50,
-      "hit_rate": 0.48,
-      "mean_return": 0.0298,
+      "n": 51,
+      "hit_rate": 0.4706,
+      "mean_return": 0.0286,
       "median_return": 0
     },
     "7d": {
-      "n": 50,
-      "hit_rate": 0.56,
-      "mean_return": 0.0319,
-      "median_return": 0.0084
+      "n": 51,
+      "hit_rate": 0.549,
+      "mean_return": 0.03,
+      "median_return": 0.0082
     },
     "30d": {
       "n": 50,
@@ -117,7 +117,7 @@
       "called_at": "2020-07-14T03:12:56.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 136.63128662109375
+      "price_at_call": 136.63133239746094
     },
     {
       "r_1d": null,
@@ -832,7 +832,7 @@
       "called_at": "2022-10-27T16:30:05.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 97.0108642578125
+      "price_at_call": 97.01087188720703
     },
     {
       "r_1d": null,
@@ -1014,7 +1014,7 @@
       "called_at": "2023-11-14T14:29:13.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 78.94091033935547
+      "price_at_call": 78.94088745117188
     },
     {
       "r_1d": null,
@@ -1131,7 +1131,7 @@
       "called_at": "2023-12-30T18:22:35.000Z",
       "direction": "hold",
       "matched_by": "stock",
-      "price_at_call": 90.23715209960938
+      "price_at_call": 90.2371597290039
     },
     {
       "r_1d": 0.0138,
@@ -1157,7 +1157,7 @@
       "called_at": "2024-02-21T21:02:34.000Z",
       "direction": "buy",
       "matched_by": "stock",
-      "price_at_call": 67.27700805664062
+      "price_at_call": 67.2770004272461
     },
     {
       "r_1d": -0.1265,
@@ -1550,22 +1550,22 @@
       "price_at_call": 0.00008208508177302582
     },
     {
-      "r_1d": null,
-      "r_7d": null,
+      "r_1d": -0.0324,
+      "r_7d": -0.0638,
       "r_30d": null,
       "symbol": null,
       "ticker": "UNL",
       "post_id": "2112780491225285006",
-      "price_id": "gt:solana:Bb5M3QUChvbEhbWUwudb1gqE6PWjcTYddowu3JUeQ3ri",
+      "price_id": "gt:solana:HZWXsJN7RPa8stkSp187XX9aPWQfmbcoo9Go7zyVE4Wd",
       "called_at": "2026-10-21T05:38:17.000Z",
       "direction": "buy",
       "matched_by": "ticker",
-      "price_at_call": 0.00001356275560358178
+      "price_at_call": 0.000013579759473029679
     }
   ],
   "hold_pairs": 9,
   "calls_total": 118,
-  "computed_at": "2026-11-16T11:21:09.379Z",
+  "computed_at": "2026-11-16T23:52:20.133Z",
   "by_direction": {
     "buy": 77,
     "hold": 21,
