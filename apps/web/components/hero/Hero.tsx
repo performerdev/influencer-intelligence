@@ -1,9 +1,16 @@
 "use client";
 
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 
+import { Coin } from "@/components/early/Coin";
+import { Ticker } from "@/components/early/Ticker";
 import { LogoMark } from "@/components/layout/LogoMark";
+import { BrainAvatar } from "@/components/particles/BrainAvatar";
+import { PixelBrain } from "@/components/particles/PixelBrain";
+import { AppLink } from "@/components/ui/AppLink";
+import { early } from "@/config/early";
 import { site } from "@/config/site";
+import type { Intelligence } from "@/lib/intelligences";
 
 type Props = {
   /** the box the WebGL "ii" is fitted into */
@@ -11,16 +18,20 @@ type Props = {
   /** the canvas over that box (a little larger, so a key can sink) */
   canvasRef: React.Ref<HTMLCanvasElement>;
   onPick: () => void;
+  /** the minds, as a strip of small brains at the bottom of the screen */
+  minds: Intelligence[];
   /** no WebGL: draw the SVG mark in the box instead */
   staticLogo?: boolean;
 };
 
 /**
  * Screen 1: the "ii" (drawn by ii-stage.ts into the canvas over `iiBoxRef`),
- * the headline, the two actions and the scroll cue. Every `data-d` element
- * dithers in as the letters set.
+ * the headline, two doors (Early with the turning $ii coin, and the minds),
+ * the source link to the side, and the minds as a strip at the bottom that
+ * leads down to them. Every `data-d` element dithers in as the letters set.
  */
-export const Hero = forwardRef<HTMLElement, Props>(function Hero({ iiBoxRef, canvasRef, onPick, staticLogo }, ref) {
+export const Hero = forwardRef<HTMLElement, Props>(function Hero({ iiBoxRef, canvasRef, onPick, minds, staticLogo }, ref) {
+  const [hot, setHot] = useState(false);
   return (
     <section ref={ref} className="relative z-10 flex h-[100svh] min-h-[600px] flex-col items-center pt-topbar" aria-labelledby="hero-title">
       <div className="mt-[3vh] grid min-h-0 w-full max-w-[460px] flex-1 place-items-center px-gutter">
@@ -33,7 +44,7 @@ export const Hero = forwardRef<HTMLElement, Props>(function Hero({ iiBoxRef, can
         </div>
       </div>
 
-      <div className="px-gutter pb-[clamp(76px,12vh,124px)] pt-[clamp(18px,3.5vh,40px)] text-center">
+      <div className="w-full px-gutter pb-[clamp(76px,12vh,124px)] pt-[clamp(18px,3.5vh,40px)] text-center">
         <h1 id="hero-title" aria-label={site.tagline} className="text-display font-medium [text-wrap:balance]">
           <span className="dither dither-pre block" data-d="l1" aria-hidden>
             {site.headline[0]}
@@ -45,22 +56,56 @@ export const Hero = forwardRef<HTMLElement, Props>(function Hero({ iiBoxRef, can
         <p className="dither dither-pre mx-auto mt-5 max-w-[34ch] text-lead text-particle sm:max-w-none" data-d="lead">
           {site.description}
         </p>
-        <div className="dither dither-pre mt-9 flex flex-wrap items-center justify-center gap-x-7 gap-y-4" data-d="cta">
-          <button type="button" className="btn-ceramic" onClick={onPick}>
+        <div className="dither dither-pre mt-9 flex flex-wrap items-center justify-center gap-3 sm:gap-x-4" data-d="cta">
+          <AppLink
+            href="/early"
+            className="btn-ceramic h-12 gap-3 pl-1.5 pr-6"
+            onPointerEnter={() => setHot(true)}
+            onPointerLeave={() => setHot(false)}
+            onFocus={() => setHot(true)}
+            onBlur={() => setHot(false)}
+          >
+            {/* the coin turns in a dark well inside the ceramic button */}
+            <span className="grid h-9 w-9 place-items-center rounded-chip bg-void">
+              <Coin size={28} active={hot} />
+            </span>
+            <span className="whitespace-nowrap">
+              Get {early.base.toLocaleString("en-US")} <Ticker />
+            </span>
+          </AppLink>
+          <button type="button" className="btn-line h-12 px-6" onClick={onPick}>
             Pick an intelligence
           </button>
-          <a href={site.githubUrl} target="_blank" rel="noreferrer" className="link-quiet">
-            View the source <span className="arrow" aria-hidden>↗</span>
+          <a
+            href={site.githubUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex basis-full items-center justify-center gap-1 pt-2 font-pixel text-xs text-muted transition-colors duration-fast hover:text-particle sm:basis-auto sm:pl-2 sm:pt-0"
+          >
+            View the source <span aria-hidden>↗</span>
           </a>
         </div>
       </div>
 
-      <div className="dither dither-pre pointer-events-none absolute inset-x-0 bottom-6" data-d="cue" aria-hidden>
-        <div className="flex flex-col items-center gap-2">
-          <span className="font-pixel text-xs text-muted">Scroll</span>
-          <span className="scroll-cue block h-6 w-px origin-top bg-muted" />
-        </div>
-      </div>
+      {/* the minds, small, at the bottom of the first screen: a way down to them */}
+      <button
+        type="button"
+        onClick={onPick}
+        className="dither dither-pre absolute inset-x-0 bottom-5 mx-auto flex w-fit flex-col items-center gap-2"
+        data-d="cue"
+        aria-label={`See the ${minds.length} minds`}
+      >
+        <span className="flex items-center" aria-hidden>
+          {minds.map((m) =>
+            m.avatar ? (
+              <PixelBrain key={m.code} handle={m.handle} src={m.avatar} color={m.color} size={28} />
+            ) : (
+              <BrainAvatar key={m.code} it={m} size={28} />
+            ),
+          )}
+        </span>
+        <span className="font-pixel text-[11px] text-muted">{minds.length} minds online ↓</span>
+      </button>
     </section>
   );
 });

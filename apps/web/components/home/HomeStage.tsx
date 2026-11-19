@@ -2,10 +2,13 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { XGlyph } from "@/components/account/AuthProvider";
+import { Coin } from "@/components/early/Coin";
+import { Ticker } from "@/components/early/Ticker";
 import { Hero } from "@/components/hero/Hero";
 import { startIiStage } from "@/components/hero/ii-stage";
 import { scrollToTarget } from "@/components/layout/SmoothScroll";
+import { AppLink } from "@/components/ui/AppLink";
+import { early } from "@/config/early";
 import type { Intelligence } from "@/lib/intelligences";
 
 import { IntelligencesSection } from "./IntelligencesSection";
@@ -86,7 +89,7 @@ export function HomeStage({ intelligences }: { intelligences: Intelligence[] }) 
 
   return (
     <div ref={rootRef}>
-      <Hero iiBoxRef={iiBoxRef} canvasRef={canvasRef} onPick={onPick} staticLogo={staticLogo} />
+      <Hero iiBoxRef={iiBoxRef} canvasRef={canvasRef} onPick={onPick} minds={intelligences} staticLogo={staticLogo} />
       <IntelligencesSection intelligences={intelligences} />
 
       <section aria-labelledby="how-title" className="mx-auto max-w-site px-gutter pt-[clamp(80px,12vh,128px)]">
@@ -107,13 +110,21 @@ export function HomeStage({ intelligences }: { intelligences: Intelligence[] }) 
         </ol>
 
         <div className="reveal mt-[clamp(64px,10vh,112px)] flex flex-col items-start justify-between gap-6 border-t border-line pb-32 pt-10 md:flex-row md:items-center">
-          <div>
-            <p className="font-pixel text-h3">Keep your chats and see every call</p>
-            <p className="mt-2 max-w-[56ch] text-sm text-particle">Log in with X and ii.plus opens as your workspace: all the minds in one place, your chat history, and each mind&apos;s full call record.</p>
+          {/* the way out at the end of the page: Early */}
+          <div className="flex items-center gap-5">
+            <Coin size={64} />
+            <div>
+              <p className="font-pixel text-h3">
+                Early minds get <span className="whitespace-nowrap">{early.base.toLocaleString("en-US")} <Ticker /></span>
+              </p>
+              <p className="mt-2 max-w-[56ch] text-sm text-particle">Log in with X, follow, repost, reply. One per account, final at the snapshot.</p>
+            </div>
           </div>
-          <a href="/api/auth/x/login?next=/" className="btn-ceramic shrink-0 gap-2">
-            <XGlyph /> Log in with X
-          </a>
+          <AppLink href="/early" className="btn-ceramic shrink-0 gap-2">
+            <span className="whitespace-nowrap">
+              Get {early.base.toLocaleString("en-US")} <Ticker />
+            </span>
+          </AppLink>
         </div>
       </section>
     </div>

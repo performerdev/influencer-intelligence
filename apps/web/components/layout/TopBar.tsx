@@ -3,9 +3,11 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import { early } from "@/config/early";
 import { site } from "@/config/site";
 import { token } from "@/config/token";
 import { XGlyph, useAuth } from "@/components/account/AuthProvider";
+import { Coin } from "@/components/early/Coin";
 import { Ticker } from "@/components/early/Ticker";
 import { socials } from "@/components/layout/SocialDock";
 import { AppLink } from "@/components/ui/AppLink";
@@ -37,14 +39,15 @@ export function TopBar() {
         scrolled ? "bg-void/80 backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex h-topbar max-w-site items-center gap-6 px-gutter">
+      <div className="mx-auto flex h-topbar max-w-site items-center gap-3 px-gutter md:gap-6">
         <AppLink href="/" className="flex items-center gap-3 rounded-chip" aria-label={`${site.name} — home`}>
           <LogoMark size={25} />
-          <span className="hidden font-pixel text-sm sm:inline">{site.name}</span>
+          <span className="hidden whitespace-nowrap font-pixel text-sm sm:inline md:hidden lg:inline">{site.name}</span>
         </AppLink>
 
         <nav aria-label="Primary" className="ml-auto hidden items-center gap-1 md:flex">
-          {nav.map((n) => (
+          {/* Early sits in its own frame with the coin, next to the bar's right side */}
+          {nav.filter((n) => !("dot" in n)).map((n) => (
             <AppLink
               key={n.href}
               href={n.href}
@@ -57,13 +60,48 @@ export function TopBar() {
           ))}
         </nav>
 
-        <div className="ml-auto flex items-center gap-2 md:ml-2">
-          <TokenPopover />
+        <div className="ml-auto flex shrink-0 items-center gap-2 md:ml-1">
+          <EarlyBadge on={path === "/early"} />
+          {/* on a phone the contract sits in the menu, to leave room for Early and Log in */}
+          <div className="hidden sm:block">
+            <TokenPopover />
+          </div>
           <AccountButton />
           <MobileMenu />
         </div>
       </div>
     </header>
+  );
+}
+
+/**
+ * Early in one frame with what it gives: "■ Early", the $ii coin turning, "10,000 $ii".
+ * On a phone only the coin and the amount fit (Early itself is in the menu).
+ * The coin turns faster under the pointer.
+ */
+function EarlyBadge({ on }: { on: boolean }) {
+  const [hot, setHot] = useState(false);
+  const amount = early.base.toLocaleString("en-US");
+  return (
+    <AppLink
+      href="/early"
+      aria-label={`Early: get ${amount} $ii`}
+      aria-current={on ? "page" : undefined}
+      onPointerEnter={() => setHot(true)}
+      onPointerLeave={() => setHot(false)}
+      onFocus={() => setHot(true)}
+      onBlur={() => setHot(false)}
+      className={`inline-flex h-9 shrink-0 items-center gap-2 rounded-chip border border-dashed pl-1.5 pr-2.5 transition-colors duration-fast hover:bg-panel md:pl-3 ${on ? "border-ceramic/60 bg-panel" : "border-line-hover"}`}
+    >
+      <span className="hidden items-center gap-1.5 font-pixel text-sm leading-none text-ceramic md:inline-flex">
+        <i aria-hidden className="block h-1.5 w-1.5 bg-ceramic" />
+        Early
+      </span>
+      <Coin size={24} active={hot} />
+      <span className="whitespace-nowrap font-pixel text-sm leading-none text-ceramic">
+        {amount} <Ticker />
+      </span>
+    </AppLink>
   );
 }
 
@@ -110,6 +148,32 @@ function TokenPopover() {
   );
 }
 
+/** The $ii contract inside the phone menu (on wider screens it is the $ii popover). */
+function ContractRow() {
+  const [copied, setCopied] = useState(false);
+  const ca = token.contractAddress;
+  return (
+    <div className="flex items-center justify-between gap-3 py-1.5">
+      <span className="font-pixel text-sm text-particle">
+        <Ticker /> {ca ? `${ca.slice(0, 4)}…${ca.slice(-4)}` : "· not live yet"}
+      </span>
+      {ca && (
+        <button
+          type="button"
+          onClick={async () => {
+            await navigator.clipboard.writeText(ca);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 1400);
+          }}
+          className="font-mono text-label uppercase text-muted hover:text-ceramic"
+        >
+          {copied ? "Copied" : "Copy"}
+        </button>
+      )}
+    </div>
+  );
+}
+
 function AccountButton() {
   const { me, loginHref } = useAuth();
   if (me?.user) {
@@ -132,7 +196,7 @@ function AccountButton() {
     );
   }
   return (
-    <a href={loginHref} className="btn-ceramic h-9 gap-2 px-4">
+    <a href={loginHref} className="btn-ceramic h-9 shrink-0 gap-2 whitespace-nowrap px-4">
       <XGlyph size={12} /> Log in
     </a>
   );
@@ -157,6 +221,8 @@ function MobileMenu() {
               {n.label}
             </AppLink>
           ))}
+          <span className="my-2 border-t border-line" />
+          <ContractRow />
           <span className="my-2 border-t border-line" />
           {socials().map((s) =>
             s.href ? (
