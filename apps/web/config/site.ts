@@ -6,6 +6,7 @@ export const site = {
   description: "Each one is built from every public post its person wrote. Open source.",
   githubUrl: "https://github.com/performerdev/influencer-intelligence",
   xUrl: "",
-  docsUrl: "",
+  /** the docs live on the site itself (built from docs/ in the repo) */
+  docsUrl: "/docs",
   discordUrl: "",
 } as const;

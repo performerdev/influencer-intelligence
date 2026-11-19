@@ -13,6 +13,7 @@ export function Footer() {
       <div className="mx-auto flex max-w-site flex-col gap-4 px-gutter py-8 font-pixel md:pb-20 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
         <p>Unofficial AI models built from public posts · not affiliated with the people modelled · not financial advice</p>
         <nav className="flex flex-wrap gap-x-5 gap-y-2" aria-label="Footer">
+          <AppLink href="/docs" className="hover:text-ceramic">Docs</AppLink>
           <AppLink href="/privacy" className="hover:text-ceramic">Privacy</AppLink>
           <AppLink href="/terms" className="hover:text-ceramic">Terms</AppLink>
           <AppLink href="/takedown" className="hover:text-ceramic">Remove a brain</AppLink>

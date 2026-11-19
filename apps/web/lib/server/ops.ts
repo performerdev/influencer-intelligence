@@ -1,5 +1,7 @@
 import "server-only";
 
+import { createHash } from "node:crypto";
+
 import type { User } from "./auth";
 import { sql } from "./data";
 
@@ -64,9 +66,17 @@ export async function overBudget(): Promise<Busy | null> {
 
 /* ───────────────────────── admin ───────────────────────── */
 
+/**
+ * The owner's account, for when ADMIN_HANDLES isn't set. This repository is
+ * public, so only a SHA-256 of the lower-case handle is kept here.
+ */
+const OWNER_SHA256 = "05410ed9564c68be6b24a405f178efdd22a903ff85f25e39fa246c0252d28562";
+
 /** X handles allowed on /admin (comma-separated ADMIN_HANDLES; the owner by default). */
 export function isAdmin(user: User | null): boolean {
   if (!user) return false;
-  const list = (process.env.ADMIN_HANDLES ?? "WTirakhmn").split(",").map((h) => h.trim().replace(/^@/, "").toLowerCase()).filter(Boolean);
-  return list.includes(user.handle.toLowerCase());
+  const handle = user.handle.toLowerCase();
+  const env = process.env.ADMIN_HANDLES;
+  if (env) return env.split(",").map((h) => h.trim().replace(/^@/, "").toLowerCase()).filter(Boolean).includes(handle);
+  return createHash("sha256").update(handle).digest("hex") === OWNER_SHA256;
 }

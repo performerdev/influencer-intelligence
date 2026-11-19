@@ -226,9 +226,15 @@ function MobileMenu() {
           <span className="my-2 border-t border-line" />
           {socials().map((s) =>
             s.href ? (
-              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="py-1.5 font-pixel text-sm text-particle">
-                {s.label} ↗
-              </a>
+              s.href.startsWith("/") ? (
+                <AppLink key={s.label} href={s.href} className="py-1.5 font-pixel text-sm text-particle">
+                  {s.label}
+                </AppLink>
+              ) : (
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="py-1.5 font-pixel text-sm text-particle">
+                  {s.label} ↗
+                </a>
+              )
             ) : (
               <span key={s.label} className="py-1.5 font-pixel text-sm text-muted">
                 {s.label} · soon

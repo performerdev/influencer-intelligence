@@ -3,9 +3,10 @@
 import { usePathname } from "next/navigation";
 
 import { useAuth } from "@/components/account/AuthProvider";
+import { AppLink } from "@/components/ui/AppLink";
 import { site } from "@/config/site";
 
-/** Where the project lives elsewhere. A link with no address yet shows as "soon". */
+/** Where the project lives. A link with no address yet shows as "soon"; one starting with "/" is on this site. */
 export const socials = () => [
   { label: "X", href: site.xUrl },
   { label: "GitHub", href: site.githubUrl },
@@ -29,9 +30,15 @@ export function SocialDock() {
     >
       {socials().map((s) =>
         s.href ? (
-          <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="px-2.5 py-1.5 text-particle transition-colors duration-fast hover:text-ceramic">
-            {s.label}
-          </a>
+          s.href.startsWith("/") ? (
+            <AppLink key={s.label} href={s.href} aria-current={path.startsWith(s.href) ? "page" : undefined} className={`px-2.5 py-1.5 transition-colors duration-fast hover:text-ceramic ${path.startsWith(s.href) ? "text-ceramic" : "text-particle"}`}>
+              {s.label}
+            </AppLink>
+          ) : (
+            <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="px-2.5 py-1.5 text-particle transition-colors duration-fast hover:text-ceramic">
+              {s.label}
+            </a>
+          )
         ) : (
           <span key={s.label} title="Soon" className="cursor-default px-2.5 py-1.5 text-muted/60">
             {s.label}
