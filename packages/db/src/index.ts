@@ -53,7 +53,23 @@ export async function migrate(sql: Sql = db()): Promise<string[]> {
     });
     if (ran) applied.push(file);
   }
+  await lockNewTables(sql);
   return applied;
+}
+
+/**
+ * Row-level security on for any public table that lacks it, so a table added
+ * later is never open on Supabase's Data API (see 009_lock_data_api.sql). The
+ * owner role the site and jobs use isn't affected. Never throws: a failure
+ * here must not stop a build.
+ */
+async function lockNewTables(sql: Sql) {
+  try {
+    const open = await sql<{ t: string }[]>`select tablename as t from pg_tables where schemaname = 'public' and not rowsecurity`;
+    for (const { t } of open) await sql.unsafe(`alter table public."${t.replace(/"/g, '""')}" enable row level security`);
+  } catch (e) {
+    console.warn("row-level security check skipped:", (e as Error).message);
+  }
 }
 
 /* ───────────────────────── influencers ───────────────────────── */

@@ -154,8 +154,10 @@ export async function finishXLogin(req: Request): Promise<Response> {
     headers: { Authorization: `Bearer ${access_token}` },
   });
   if (!meRes.ok) {
-    console.error("x me:", meRes.status, (await meRes.text()).slice(0, 300));
-    return fail("x-profile");
+    const body = (await meRes.text()).slice(0, 300);
+    console.error("x me:", meRes.status, body);
+    // X still lets a suspended account through the consent screen, then refuses to read it
+    return fail(body.includes("user-suspended") ? "x-suspended" : "x-profile");
   }
   const { data: me } = (await meRes.json()) as { data: { id: string; username: string; name?: string; profile_image_url?: string } };
   // The access token is used once, for the profile, and never stored.

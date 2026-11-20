@@ -35,6 +35,10 @@ If you are one of the people modelled and want your mind removed, use the [remov
 
 Send a request through the same form, choosing "Delete my account data", from the X account you log in with. Your account and chats are deleted. Payment records on Solana are public and can't be erased by anyone.
 
+## The database
+
+The site and the build jobs talk to Postgres directly. Supabase also offers a public REST API over the same tables; this project doesn't use it, so it is shut: every table has row-level security on with no policies, and the API's roles have no rights on any table ([`packages/db/migrations/009_lock_data_api.sql`](../packages/db/migrations/009_lock_data_api.sql)). Tables added later get the same treatment when migrations run.
+
 ## Backups
 
 The database is backed up every week by a GitHub Actions job ([`.github/workflows/backup.yml`](../.github/workflows/backup.yml)). Because this repository is public, the dump is **encrypted before it leaves the runner**, with the database URL itself as the key: whoever can open a backup could already read the live database.

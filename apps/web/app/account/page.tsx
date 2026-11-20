@@ -21,6 +21,7 @@ const ERRORS: Record<string, string> = {
   "x-state": "That login link expired. Try again.",
   "x-token": "X didn't accept the login. Try again.",
   "x-profile": "Couldn't read your X profile. Try again.",
+  "x-suspended": "X has suspended this account, so it can't be used to log in. Log in with another X account.",
 };
 
 const PERKS = [
