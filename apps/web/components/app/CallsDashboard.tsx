@@ -9,6 +9,13 @@ import { type CallRow, isoDay, pct, record, signed, topCoins } from "@/lib/calls
 import type { BrainCall, BrainStatsFile } from "@/lib/chat-brain";
 
 const DAY = 864e5;
+const UP = "var(--ii-verdict-buy)";
+const DOWN = "var(--ii-verdict-sell)";
+type Tone = "up" | "down" | "flat";
+const TONE: Record<Tone, string | undefined> = { up: UP, down: DOWN, flat: undefined };
+const toneOf = (r: number | null): Tone => (r == null || r === 0 ? "flat" : r > 0 ? "up" : "down");
+/** a hit rate: half or more of the calls going their way is green */
+const toneOfShare = (x: number | null): Tone => (x == null ? "flat" : x >= 0.5 ? "up" : "down");
 const chipOf = (d: CallRow["dir"]) => (d === "buy" ? "BUY" : d === "sell" ? "SELL" : "HOLD") as "BUY" | "SELL" | "HOLD";
 
 /**
@@ -33,8 +40,11 @@ export function CallsDashboard({ handle, color, rows, calls, stats }: { handle: 
       r7: record(priced, 7),
       r30: record(priced, 30),
       dirs,
-      tops: topCoins(priced, 8, 7),
+      // coins with at least one result: a row of dashes says nothing
+      tops: topCoins(priced, 12, 7).filter((c) => c.worked != null).slice(0, 8),
       latest: priced.filter((r) => r.quote).slice(-6).reverse(),
+      scored: priced.filter((r) => r.r7 != null || r.r30 != null).length,
+      young: priced.filter((r) => r.r7 == null && r.r30 == null).length,
     };
   }, [calls, rows, since]);
 
@@ -53,21 +63,17 @@ export function CallsDashboard({ handle, color, rows, calls, stats }: { handle: 
         </div>
       </div>
 
-      <dl className="grid grid-cols-3 border border-line">
-        {[
-          ["Calls", view.total.toLocaleString("en-US")],
-          ["Coins", view.coins.toLocaleString("en-US")],
-          ["Priced", view.priced.filter((r) => r.r7 != null || r.r30 != null).length.toLocaleString("en-US")],
-          ["Worked in 7d", pct(view.r7.worked)],
-          ["Median 7d", signed(view.r7.med)],
-          ["Worked in 30d", pct(view.r30.worked)],
-        ].map(([k, v], i) => (
-          <div key={k} className={`grid gap-1 p-3 ${i % 3 ? "border-l border-line" : ""} ${i >= 3 ? "border-t border-line" : ""}`}>
-            <dt className="font-pixel text-[11px] text-muted">{k}</dt>
-            <dd className="font-pixel text-h3 tabular-nums">{v}</dd>
-          </div>
-        ))}
-      </dl>
+      <Tiles
+        tiles={[
+          { k: "Calls", v: view.total.toLocaleString("en-US") },
+          { k: "Coins", v: view.coins.toLocaleString("en-US") },
+          view.r7.worked != null && { k: "Right in 7d", v: pct(view.r7.worked), tone: toneOfShare(view.r7.worked) },
+          view.r7.med != null && { k: "Median 7d", v: signed(view.r7.med), tone: toneOf(view.r7.med) },
+          view.r30.worked != null && { k: "Right in 30d", v: pct(view.r30.worked), tone: toneOfShare(view.r30.worked) },
+          view.r30.med != null && { k: "Median 30d", v: signed(view.r30.med), tone: toneOf(view.r30.med) },
+        ]}
+      />
+      {!empty && <Coverage total={view.total} scored={view.scored} young={view.young} />}
 
       {empty ? (
         <p className="text-sm text-muted">No calls from @{handle} in the last 30 days.</p>
@@ -81,16 +87,16 @@ export function CallsDashboard({ handle, color, rows, calls, stats }: { handle: 
             <Scatter rows={view.priced} from={period === "all" ? null : since} color={color} />
             <div className="mt-2 flex gap-4 font-pixel text-[11px] text-muted">
               <span className="inline-flex items-center gap-1.5">
-                <i className="inline-block h-2 w-2" style={{ background: color }} />
-                Worked
+                <i className="inline-block h-2 w-2" style={{ background: UP }} />
+                Went their way
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <i className="inline-block h-2 w-2 bg-line-hover" />
+                <i className="inline-block h-2 w-2" style={{ background: DOWN }} />
                 Didn&apos;t
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <i className="inline-block h-2 w-2 border border-line-hover" />
-                Too recent to price
+                Too new
               </span>
             </div>
           </section>
@@ -120,7 +126,7 @@ export function CallsDashboard({ handle, color, rows, calls, stats }: { handle: 
                   <tr className="font-pixel text-[11px] text-muted">
                     <th className="py-1.5 text-left font-normal">Coin</th>
                     <th className="py-1.5 text-right font-normal">Calls</th>
-                    <th className="py-1.5 text-right font-normal">Worked</th>
+                    <th className="py-1.5 text-right font-normal">Right</th>
                     <th className="py-1.5 text-right font-normal">Median</th>
                   </tr>
                 </thead>
@@ -133,8 +139,8 @@ export function CallsDashboard({ handle, color, rows, calls, stats }: { handle: 
                         </AppLink>
                       </td>
                       <td className="py-2 text-right">{c.n}</td>
-                      <td className="py-2 text-right">{pct(c.worked)}</td>
-                      <td className={`py-2 text-right ${c.med != null && c.med > 0 ? "text-ceramic" : "text-muted"}`}>{signed(c.med)}</td>
+                      <td className="py-2 text-right" style={{ color: TONE[toneOfShare(c.worked)] }}>{pct(c.worked)}</td>
+                      <td className="py-2 text-right" style={{ color: TONE[toneOf(c.med)] }}>{c.med == null ? "" : signed(c.med)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -158,7 +164,7 @@ export function CallsDashboard({ handle, color, rows, calls, stats }: { handle: 
                           {c.byTicker && <span title="Matched by ticker only" className="text-muted"> ~</span>}
                         </span>
                         <span className="ml-auto font-pixel text-[11px] text-muted tabular-nums">
-                          {isoDay(c.at)} · {signed(c.r7)}
+                          {isoDay(c.at)} · {c.r7 == null ? "new" : <span style={{ color: TONE[toneOf(c.r7)] }}>{signed(c.r7)}</span>}
                         </span>
                       </span>
                       <span className="truncate text-xs text-particle group-hover:text-ceramic">“{c.quote}”</span>
@@ -172,10 +178,52 @@ export function CallsDashboard({ handle, color, rows, calls, stats }: { handle: 
       )}
 
       <p className="text-xs leading-relaxed text-muted">
-        &ldquo;Worked&rdquo; means the price moved the call&apos;s way: a sell followed by a drop counts. Calls under 7 days old aren&apos;t priced yet. Prices from DefiLlama and DexScreener, computed by code on {stats.computed_at.slice(0, 10)}, not by the
-        model. ~ means the coin was matched by ticker only.
+        &ldquo;Right&rdquo; means the price moved the call&apos;s way: a sell followed by a drop counts. Prices from DefiLlama, DexScreener, CoinGecko and Yahoo Finance, computed by code on {stats.computed_at.slice(0, 10)}, not by the model. ~ means the coin was matched
+        by ticker only.
       </p>
     </div>
+  );
+}
+
+/** The headline numbers; a number that doesn't exist for this period isn't shown at all. */
+function Tiles({ tiles }: { tiles: (false | { k: string; v: string; tone?: Tone })[] }) {
+  const shown = tiles.filter((t): t is { k: string; v: string; tone?: Tone } => !!t);
+  const cols = shown.length % 3 === 0 ? 3 : 2;
+  return (
+    <dl className={`grid border border-line ${cols === 3 ? "grid-cols-3" : "grid-cols-2"}`}>
+      {shown.map((t, i) => (
+        <div key={t.k} className={`grid gap-1 p-3 ${i % cols ? "border-l border-line" : ""} ${i >= cols ? "border-t border-line" : ""}`}>
+          <dt className="font-pixel text-[11px] text-muted">{t.k}</dt>
+          <dd className="font-pixel text-h3 tabular-nums" style={{ color: t.tone ? TONE[t.tone] : undefined }}>
+            {t.v}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
+/** How many of the calls have a result, and why the rest don't. */
+function Coverage({ total, scored, young }: { total: number; scored: number; young: number }) {
+  const missing = Math.max(0, total - scored - young);
+  return (
+    <details className="group -mt-3 text-[11px] text-muted">
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-3 font-pixel [&::-webkit-details-marker]:hidden">
+        <span>
+          {scored.toLocaleString("en-US")} of {total.toLocaleString("en-US")} calls have a result
+          {young > 0 && ` · ${young} too new`}
+        </span>
+        {missing > 0 && <span className="shrink-0 underline decoration-line-hover underline-offset-4 group-open:text-particle">Why not all?</span>}
+      </summary>
+      {missing > 0 && (
+        <ul className="mt-2 grid list-disc gap-1.5 pl-4 text-xs leading-relaxed text-particle marker:text-muted">
+          <li>The coin died or was delisted, and free price sources no longer keep its history: most 2017–2019 alts, rugged memecoins, delisted stocks.</li>
+          <li>It was called before it started trading: an ICO, a presale, a token before launch.</li>
+          <li>The post named no clear coin, like &ldquo;CA&rdquo; with the address only in a picture or a reply.</li>
+          <li>A call has a 7-day result a week after it&apos;s made, and a 30-day result a month after.</li>
+        </ul>
+      )}
+    </details>
   );
 }
 
@@ -197,6 +245,9 @@ function Scatter({ rows, from, color }: { rows: CallRow[]; from: number | null; 
       cv.height = Math.round(H * dpr);
       const x = cv.getContext("2d")!;
       x.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const css = getComputedStyle(document.documentElement);
+      const up = css.getPropertyValue("--ii-verdict-buy").trim() || "#7cff6b";
+      const down = css.getPropertyValue("--ii-verdict-sell").trim() || "#ff4d4d";
       x.clearRect(0, 0, W, H);
       const slog = (r: number) => Math.sign(r) * Math.log1p(Math.abs(r) / 0.05);
       const L = 40, R = 6, T = 6, B = 20;
@@ -243,7 +294,7 @@ function Scatter({ rows, from, color }: { rows: CallRow[]; from: number | null; 
           x.strokeRect(Math.round(p.x) - 1.5, Math.round(p.y) - 1.5, 3, 3);
           continue;
         }
-        x.fillStyle = p.r > 0 ? color : "#3a3a3f";
+        x.fillStyle = p.r > 0 ? up : down;
         x.fillRect(Math.round(p.x) - 2, Math.round(p.y) - 2, 4, 4);
       }
     };
