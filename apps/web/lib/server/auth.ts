@@ -63,6 +63,8 @@ export type User = {
   session_started_at: Date | null;
   session_spent_usd: string;
   share_bonus_at?: Date | null;
+  /** "Added by @you" on minds this person added (migration 010) */
+  show_added_by?: boolean;
 };
 
 export async function currentUser(): Promise<User | null> {
@@ -151,7 +153,7 @@ export async function finishXLogin(req: Request): Promise<Response> {
     return fail("x-token");
   }
   const { access_token } = (await tokenRes.json()) as { access_token: string };
-  const meRes = await fetch(`${X_API()}/2/users/me?user.fields=profile_image_url,name,username`, {
+  const meRes = await fetch(`${X_API()}/2/users/me?user.fields=profile_image_url,name,username,created_at`, {
     headers: { Authorization: `Bearer ${access_token}` },
   });
   if (!meRes.ok) {
@@ -160,12 +162,15 @@ export async function finishXLogin(req: Request): Promise<Response> {
     // X still lets a suspended account through the consent screen, then refuses to read it
     return fail(body.includes("user-suspended") ? "x-suspended" : "x-profile");
   }
-  const { data: me } = (await meRes.json()) as { data: { id: string; username: string; name?: string; profile_image_url?: string } };
+  const { data: me } = (await meRes.json()) as { data: { id: string; username: string; name?: string; profile_image_url?: string; created_at?: string } };
   // The access token is used once, for the profile, and never stored.
   const [u] = await sql()<{ id: number }[]>`
     insert into users (x_id, handle, name, avatar_url) values (${me.id}, ${me.username}, ${me.name ?? null}, ${me.profile_image_url ?? null})
     on conflict (x_id) do update set handle = excluded.handle, name = excluded.name, avatar_url = excluded.avatar_url, last_seen_at = now()
     returning id`;
+  // how old the X account is: fresh accounts don't count toward builder rewards (config/community.ts)
+  if (me.created_at && !Number.isNaN(Date.parse(me.created_at)))
+    await sql()`update users set x_created_at = ${new Date(me.created_at)} where id = ${u.id}`.catch(() => {});
   jar.set(SESSION_COOKIE, sign({ uid: u.id, exp: Math.floor(Date.now() / 1000) + SESSION_DAYS * 86400 }), { ...cookieBase, maxAge: SESSION_DAYS * 86400 });
   return Response.redirect(`${siteOrigin(req)}${saved.next}`, 302);
 }

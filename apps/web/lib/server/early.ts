@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 import { early } from "@/config/early";
 
 import type { User } from "./auth";
+import { builderEarnings, builderEarningsOf } from "./community";
 import { sql } from "./data";
 
 /**
@@ -65,6 +66,8 @@ export type EarlyState = {
   total: number;
   /** people this person invited: 0 logged in, 1 wallet, 2–3 tasks under way, 4 in */
   invites: { handle: string; step: number }[];
+  /** minds this person added through Add, and the $ii they've earned (see config/community.ts) */
+  builder: { minds: number; earned: number };
   /** early minds so far (everyone who finished) */
   minds: number;
   settings: EarlySettings;
@@ -97,6 +100,7 @@ export async function earlyState(user: User | null): Promise<EarlyState> {
     number: null,
     total: early.base,
     invites: [],
+    builder: { minds: 0, earned: 0 },
     minds: 0,
     settings,
   };
@@ -106,12 +110,13 @@ export async function earlyState(user: User | null): Promise<EarlyState> {
     await ensureRow(user);
     const [r] = await sql()<Row[]>`select * from early where user_id = ${user.id}`;
     const inv = await sql()<(Pick<Row, "wallet" | "follow_at" | "repost_at" | "reply_at" | "done_at"> & { handle: string })[]>`
-      select u.handle, e.wallet, e.follow_at, e.repost_at, e.reply_at, e.done_at
+      select e.user_id, u.handle, e.wallet, e.follow_at, e.repost_at, e.reply_at, e.done_at
       from early e join users u on u.id = e.user_id
       where e.referred_by = ${user.id}
       order by e.done_at nulls last, e.created_at limit 100`;
     const invites = inv.map((i) => ({ handle: i.handle, step: stepOf(i) }));
     const counted = Math.min(early.maxInvites, invites.filter((i) => i.step === 4).length);
+    const builder = await builderEarningsOf(user.id).catch(() => empty.builder);
     return {
       ...empty,
       minds,
@@ -119,8 +124,9 @@ export async function earlyState(user: User | null): Promise<EarlyState> {
       wallet: r?.wallet ?? null,
       tasks: { follow: !!r?.follow_at, repost: !!r?.repost_at, reply: !!r?.reply_at },
       number: r?.number ?? null,
-      total: early.base + counted * early.perInvite,
+      total: early.base + counted * early.perInvite + builder.earned,
       invites,
+      builder,
     };
   } catch (e) {
     if (missingTable(e)) return { ...empty, ready: false };
@@ -193,10 +199,11 @@ export async function earlyAction(user: User, body: { action?: string; wallet?: 
 /* ───────────────────────── admin ───────────────────────── */
 
 export async function earlyCsv(): Promise<string> {
+  const built = await builderEarnings().catch(() => new Map<number, { minds: number; earned: number }>());
   const rows = await sql()<
-    { handle: string; wallet: string | null; follow_at: Date | null; repost_at: Date | null; reply_at: Date | null; reply_url: string | null; number: number | null; done_at: Date | null; invited_by: string | null; invites_in: number; created_at: Date }[]
+    { user_id: number; handle: string; wallet: string | null; follow_at: Date | null; repost_at: Date | null; reply_at: Date | null; reply_url: string | null; number: number | null; done_at: Date | null; invited_by: string | null; invites_in: number; created_at: Date }[]
   >`
-    select u.handle, e.wallet, e.follow_at, e.repost_at, e.reply_at, e.reply_url, e.number, e.done_at, r.handle as invited_by,
+    select e.user_id, u.handle, e.wallet, e.follow_at, e.repost_at, e.reply_at, e.reply_url, e.number, e.done_at, r.handle as invited_by,
       (select count(*)::int from early x where x.referred_by = e.user_id and x.number is not null) as invites_in, e.created_at
     from early e join users u on u.id = e.user_id left join users r on r.id = e.referred_by
     order by e.number nulls last, e.created_at`;
@@ -204,14 +211,17 @@ export async function earlyCsv(): Promise<string> {
     const s = v == null ? "" : v instanceof Date ? v.toISOString() : String(v);
     return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
   };
-  const head = ["number", "handle", "wallet", "allocation", "invites_in", "invited_by", "follow_at", "repost_at", "reply_at", "reply_url", "done_at", "joined_at"];
-  const lines = rows.map((r) =>
-    [
+  const head = ["number", "handle", "wallet", "allocation", "invites_in", "minds_added", "minds_earned", "invited_by", "follow_at", "repost_at", "reply_at", "reply_url", "done_at", "joined_at"];
+  const lines = rows.map((r) => {
+    const b = built.get(r.user_id) ?? { minds: 0, earned: 0 };
+    return [
       r.number,
       r.handle,
       r.wallet,
-      r.number != null ? early.base + Math.min(early.maxInvites, r.invites_in) * early.perInvite : 0,
+      r.number != null ? early.base + Math.min(early.maxInvites, r.invites_in) * early.perInvite + b.earned : 0,
       r.invites_in,
+      b.minds,
+      b.earned,
       r.invited_by,
       r.follow_at,
       r.repost_at,
@@ -221,7 +231,7 @@ export async function earlyCsv(): Promise<string> {
       r.created_at,
     ]
       .map(cell)
-      .join(","),
-  );
+      .join(",");
+  });
   return [head.join(","), ...lines].join("\n") + "\n";
 }

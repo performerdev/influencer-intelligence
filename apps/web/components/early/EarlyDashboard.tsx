@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 
 import { XGlyph } from "@/components/account/AuthProvider";
+import { AppLink } from "@/components/ui/AppLink";
 import { early, earlyCode } from "@/config/early";
 import { brainColor } from "@/lib/colors";
 import type { EarlyState } from "@/lib/server/early";
@@ -139,6 +140,14 @@ export function EarlyDashboard({ st, onState, onToast }: { st: EarlyState; onSta
               </span>
               <span className="tabular-nums">+{fmt(counted * early.perInvite)}</span>
             </div>
+            {(st.builder?.minds ?? 0) > 0 && (
+              <div className={row}>
+                <AppLink href="/account#your-minds" className="text-particle underline decoration-line-hover underline-offset-4 hover:text-ceramic">
+                  Minds you added · {st.builder.minds}
+                </AppLink>
+                <span className="tabular-nums">+{fmt(st.builder.earned)}</span>
+              </div>
+            )}
             <div className={row}>
               <span className="text-particle">Status</span>
               <span>Reserved</span>

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { XGlyph } from "@/components/account/AuthProvider";
 import { TypingIndicator } from "@/components/chat/bits";
+import { community } from "@/config/community";
 import { early } from "@/config/early";
 import type { EarlyState } from "@/lib/server/early";
 
@@ -42,7 +43,8 @@ const ANSWERS: [RegExp, (s: EarlyState | null) => string][] = [
   [/what\s*(is|'s|s)\s*(ii|this|it)|what do you do|who are you/i, () => "ii turns the biggest CT accounts into AIs, built from every post they wrote. ask ansem what he'd do with your bag and see every call he ever made, checked against the price. early minds get $ii before anyone else."],
   [/how much|how many|amount|allocation size/i, () => `${fmt(early.base)} $ii for three quick tasks. then +${fmt(early.perInvite)} for every friend who gets in, up to ${early.maxInvites}. so ${fmt(early.base + early.perInvite * early.maxInvites)} max.`],
   [/when|snapshot|launch|tge|listing|date/i, (s) => `allocations are final at the snapshot. the date goes out on ${s?.settings.xHandle ? `@${s.settings.xHandle}` : "our X"} first, so that follow matters.`],
-  [/more|100k|1m|million|double|bigger|extra/i, () => `${fmt(early.base)} for everyone, no favorites. invites are the only way up: +${fmt(early.perInvite)} each, up to ${early.maxInvites}.`],
+  [/add (a )?mind|build|community/i, () => `add a mind on ii.plus/add. every person who talks to it gets you +${fmt(community.perPerson)} $ii, up to ${fmt(community.capPerMind)} per mind. it lands on top of this allocation.`],
+  [/more|100k|1m|million|double|bigger|extra/i, () => `${fmt(early.base)} for everyone, no favorites. two ways up: +${fmt(early.perInvite)} per friend who gets in (up to ${early.maxInvites}), and +${fmt(community.perPerson)} per person who talks to a mind you added.`],
   [/why.*(log|\bx\b|twitter)/i, () => "one allocation per X account, so i need to know it's you. we only see your handle and avatar. no password, and we can't post for you."],
   [/why.*task/i, () => "follow so you see the snapshot date. like, repost and reply so CT finds us. that's the whole deal."],
 ];

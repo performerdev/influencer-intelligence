@@ -233,7 +233,7 @@ export const api = createServer(async (req, res) => {
   }
   if (url.pathname === "/2/oauth2/token") return send({ token_type: "bearer", access_token: "mock-access", scope: "tweet.read users.read" });
   if (url.pathname === "/2/users/me") {
-    return send({ data: { id: "4242", username: "mock_user", name: "Mock User", profile_image_url: "https://pbs.twimg.com/profile_images/0/mock_normal.png" } });
+    return send({ data: { id: "4242", username: "mock_user", name: "Mock User", profile_image_url: "https://pbs.twimg.com/profile_images/0/mock_normal.png", created_at: "2019-05-01T00:00:00.000Z" } });
   }
   /* ── Solana JSON-RPC (Plus payments) ── */
   if (url.pathname === "/solana/pay") {

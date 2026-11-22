@@ -17,9 +17,11 @@ All three tasks and a wallet: you are in, and you get the next early-mind number
 | For the three tasks | 10,000 |
 | For each invited friend who gets in | +1,000 |
 | Invites counted | up to 10 |
-| Most per account | 20,000 |
+| For each person who talks to a mind you added | +100, up to 10,000 per mind |
 
 Each early mind gets an invite link (`/e/<handle>`). A friend who opens it and finishes all three tasks counts toward your bonus. The first invite a person opens is the one that counts.
+
+Adding a mind earns more on top: see [What you get for adding one](./add-a-mind.md#what-you-get-for-adding-one). It lands on the same allocation, so finish the three tasks to lock it in.
 
 ## What is checked
 

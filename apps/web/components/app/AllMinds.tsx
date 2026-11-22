@@ -8,7 +8,7 @@ import { GroupAnswer } from "@/components/group/GroupView";
 import { MindStack } from "@/components/home/MindStack";
 import { BrainAvatar } from "@/components/particles/BrainAvatar";
 import { type CoinRecord, NO_VIEW, SUMMARY_ROUND } from "@/lib/all-minds";
-import type { Intelligence } from "@/lib/intelligences";
+import { type Intelligence, isMain } from "@/lib/intelligences";
 import type { Reference } from "@/lib/server/data";
 
 type Answer = { handle: string; content: string; streaming: boolean; verdict: Verdict | null; refs: Reference[]; noView: boolean; record: CoinRecord | null; error?: string };
@@ -154,7 +154,7 @@ export function AllMinds({
     <div className="flex min-h-0 flex-1 flex-col">
       <div ref={scrollRef} data-lenis-prevent className="relative min-h-0 flex-1 overflow-y-auto px-gutter lg:px-8" aria-live="polite">
         {blocks.length === 0 ? (
-          <Empty minds={minds} onAsk={send} busy={busy} />
+          <Empty minds={minds.filter(isMain)} onAsk={send} busy={busy} />
         ) : (
           <ol className="mx-auto max-w-[860px] space-y-10 py-8">
             {blocks.map((b) => (

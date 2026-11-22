@@ -3,10 +3,12 @@
 import { forwardRef, useState } from "react";
 
 import { AddBrain } from "@/components/particles/AddBrain";
+import { Ticker } from "@/components/early/Ticker";
 import { MindStack } from "@/components/home/MindStack";
 import { BrainAvatar } from "@/components/particles/BrainAvatar";
 import { AppLink } from "@/components/ui/AppLink";
-import { formatCount, type Intelligence } from "@/lib/intelligences";
+import { community } from "@/config/community";
+import { formatCount, type Intelligence, isCommunity, isMain } from "@/lib/intelligences";
 
 export const SIGNATURE_PX = 80;
 
@@ -14,7 +16,9 @@ type Props = { intelligences: Intelligence[] };
 
 /** The minds, then a card to add one more. Cards rise in quietly as they scroll into view (`reveal`). */
 export const IntelligencesSection = forwardRef<HTMLElement, Props>(function IntelligencesSection({ intelligences }, ref) {
-  const colors = intelligences.map((i) => i.color);
+  const main = intelligences.filter(isMain);
+  const added = intelligences.filter(isCommunity);
+  const colors = main.map((i) => i.color);
   return (
     <section ref={ref} id="intelligences" aria-labelledby="intelligences-title" className="relative z-10 mx-auto max-w-site scroll-mt-20 px-gutter pt-8">
       <div className="reveal flex flex-wrap items-end justify-between gap-x-8 gap-y-3">
@@ -30,17 +34,20 @@ export const IntelligencesSection = forwardRef<HTMLElement, Props>(function Inte
       </div>
 
       <ul className="mt-8 grid grid-cols-1 gap-3 min-[380px]:grid-cols-2 md:grid-cols-3 min-[1080px]:grid-cols-4">
-        {intelligences.map((it) => (
-          <Card key={it.code} it={it} />
+        {main.map((it) => (
+          <MindCard key={it.code} it={it} />
         ))}
-        <GroupCard minds={intelligences} />
+        <GroupCard minds={main} />
+        {added.length > 0 && <CommunityCard minds={added} />}
         <AddCard colors={colors} />
       </ul>
     </section>
   );
 });
 
-function Card({ it }: { it: Intelligence }) {
+/** One mind. Community minds also show who added them and how many people talk to them. */
+export function MindCard({ it }: { it: Intelligence }) {
+  const extra = isCommunity(it);
   const [active, setActive] = useState(false);
   const on = () => setActive(true);
   const off = () => setActive(false);
@@ -70,10 +77,21 @@ function Card({ it }: { it: Intelligence }) {
           <span className="truncate font-pixel text-body text-ceramic">@{it.handle}</span>
         </div>
         <p className={`mt-2 line-clamp-2 min-h-[3em] text-sm ${it.oneLineMind ? "text-particle" : "text-muted"}`}>{it.oneLineMind ?? "Brain not distilled yet."}</p>
-        <div className="mt-auto flex items-center justify-between pt-6">
-          <span className="font-mono text-xs text-muted">
-            <span className="text-particle">{formatCount(it.postsParsed)}</span> posts read
-          </span>
+        {extra && <p className="mt-3 truncate font-pixel text-[11px] text-muted">{it.addedBy ? <>added by <span className="text-particle">@{it.addedBy}</span></> : "added by the community"}</p>}
+        <div className={`mt-auto flex items-center justify-between ${extra ? "pt-4" : "pt-6"}`}>
+          {extra ? (
+            <span className="font-mono text-xs text-muted">
+              <span className="text-particle">{formatCount(it.people ?? 0)}</span> {it.people === 1 ? "person" : "people"}
+              <span className="hidden min-[1080px]:inline">
+                {" "}
+                · <span className="text-particle">{formatCount(it.postsParsed)}</span> posts
+              </span>
+            </span>
+          ) : (
+            <span className="font-mono text-xs text-muted">
+              <span className="text-particle">{formatCount(it.postsParsed)}</span> posts read
+            </span>
+          )}
           <Go label="Talk" />
         </div>
       </AppLink>
@@ -112,6 +130,56 @@ function GroupCard({ minds }: { minds: Intelligence[] }) {
   );
 }
 
+function CommunityCard({ minds }: { minds: Intelligence[] }) {
+  const top = [...minds].sort((a, b) => (b.people ?? 0) - (a.people ?? 0));
+  return (
+    <li className="reveal">
+      <AppLink
+        href="/community"
+        className="group flex h-full flex-col rounded-card border border-dashed border-line p-4 transition-[border-color,transform] duration-fast ease-ii-out hover:border-line-hover active:scale-[0.98] sm:p-5"
+      >
+        <div className="-mt-1 mb-4 flex h-16 items-center sm:mb-5 sm:h-20">
+          {top.filter((m) => m.avatar).length >= 3 ? (
+            <>
+              <span className="sm:hidden">
+                <MindStack minds={top} size={44} />
+              </span>
+              <span className="hidden sm:block">
+                <MindStack minds={top} size={56} />
+              </span>
+            </>
+          ) : (
+            // no profile pictures yet: their brains, overlapping like the faces would
+            <span className="flex items-center">
+              {top.slice(0, 3).map((m, i) => (
+                <span key={m.code} className={i ? "-ml-3" : ""}>
+                  <span className="sm:hidden">
+                    <BrainAvatar it={m} size={44} />
+                  </span>
+                  <span className="hidden sm:block">
+                    <BrainAvatar it={m} size={56} />
+                  </span>
+                </span>
+              ))}
+            </span>
+          )}
+        </div>
+        <div className="flex items-baseline gap-2">
+          <span className="shrink-0 font-mono text-xs text-muted">{minds.length}</span>
+          <span className="truncate font-pixel text-body text-ceramic">Community minds</span>
+        </div>
+        <p className="mt-2 line-clamp-2 min-h-[3em] text-sm text-particle">Minds people added. Under {formatCount(community.mainFollowers)} followers they live here; past it they move up.</p>
+        <div className="mt-auto flex items-center justify-between pt-6">
+          <span className="font-mono text-xs text-muted">
+            <span className="text-particle">{formatCount(minds.reduce((n, m) => n + (m.people ?? 0), 0))}</span> people talking
+          </span>
+          <Go label="Browse" />
+        </div>
+      </AppLink>
+    </li>
+  );
+}
+
 function AddCard({ colors }: { colors: string[] }) {
   const [active, setActive] = useState(false);
   const on = () => setActive(true);
@@ -138,7 +206,7 @@ function AddCard({ colors }: { colors: string[] }) {
           <span className="shrink-0 font-mono text-xs text-muted">+</span>
           <span className="truncate font-pixel text-body text-ceramic">Add a mind</span>
         </div>
-        <p className="mt-2 line-clamp-2 min-h-[3em] text-sm text-particle">Missing someone? Add any account on X. It goes live here once it&apos;s built.</p>
+        <p className="mt-2 line-clamp-2 min-h-[3em] text-sm text-particle">Add anyone on X. Earn +{community.perPerson} <Ticker /> for every person who talks to it.</p>
         <div className="mt-auto flex items-center justify-between pt-6">
           <span className="font-mono text-xs text-muted">
             from <span className="text-particle">2 USDC</span>

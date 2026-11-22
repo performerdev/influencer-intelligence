@@ -4,6 +4,7 @@
  * brain in Postgres. Until the pipeline has run, those fields are null and the
  * UI shows "—" — we never invent numbers.
  */
+import type { Tier } from "@/config/community";
 import { intelligences as config, type IntelligenceConfig } from "@/config/intelligences";
 
 export type Intelligence = IntelligenceConfig & {
@@ -15,6 +16,17 @@ export type Intelligence = IntelligenceConfig & {
   distilledAt: string | null;
   /** added by a user through Add (not one of the launch ten) */
   added?: boolean;
+  /** main list, or Community (added minds under 100k followers); see config/community.ts */
+  tier?: Tier;
+  /** the X handle of the person who added it, when they show it */
+  addedBy?: string | null;
+  /** different people it has answered (logged in with X) */
+  people?: number;
+  followers?: number | null;
+  /** calls on the record */
+  calls?: number;
+  /** when the mind was first added (ISO) */
+  addedAt?: string | null;
 };
 
 export function getIntelligences(): Intelligence[] {
@@ -27,6 +39,9 @@ export function getIntelligences(): Intelligence[] {
     distilledAt: null,
   }));
 }
+
+export const isMain = (i: Pick<Intelligence, "tier">) => i.tier !== "community";
+export const isCommunity = (i: Pick<Intelligence, "tier">) => i.tier === "community";
 
 export function formatCount(n: number | null): string {
   if (n == null) return "—";

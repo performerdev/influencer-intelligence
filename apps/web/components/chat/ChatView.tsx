@@ -40,6 +40,9 @@ export type ChatIntelligence = {
   avatar?: string;
   postsParsed: number | null;
   postsPerDay: number | null;
+  /** community minds: who added it, when they show it */
+  community?: boolean;
+  addedBy?: string | null;
 };
 
 type Reference = {
@@ -485,9 +488,13 @@ function BrainPanel({ intelligence, brain, onOpenBrain }: { intelligence: ChatIn
       <div className="flex items-center gap-3">
         <BrainAvatar it={intelligence} size={56} />
         <div className="min-w-0">
-          <p className="font-mono text-xs" style={{ color: intelligence.color }}>{intelligence.code}</p>
+          <p className="font-mono text-xs" style={{ color: intelligence.color }}>
+            {intelligence.code}
+            {intelligence.community && <span className="text-muted"> · community</span>}
+          </p>
           <p className="truncate font-pixel text-body">@{intelligence.handle}</p>
           <p className="font-mono text-xs text-muted">{formatCount(intelligence.postsParsed)} posts</p>
+          {intelligence.addedBy && <p className="truncate font-mono text-xs text-muted">added by @{intelligence.addedBy}</p>}
         </div>
       </div>
 

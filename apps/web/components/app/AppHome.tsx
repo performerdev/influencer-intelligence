@@ -4,14 +4,16 @@ import { useEffect, useMemo, useState } from "react";
 
 import { UsageMeter } from "@/components/account/AuthProvider";
 import { type ChatHistory, ChatView } from "@/components/chat/ChatView";
+import { Ticker } from "@/components/early/Ticker";
 import { MindStack } from "@/components/home/MindStack";
 import { AddBrain } from "@/components/particles/AddBrain";
 import { getLenis } from "@/components/layout/SmoothScroll";
 import { BrainAvatar } from "@/components/particles/BrainAvatar";
 import { AppLink } from "@/components/ui/AppLink";
+import { community } from "@/config/community";
 import { callRows } from "@/lib/calls";
 import { type ApiBrain, toChatBrain } from "@/lib/chat-brain";
-import type { Intelligence } from "@/lib/intelligences";
+import { type Intelligence, isCommunity, isMain } from "@/lib/intelligences";
 
 import { type AllHistory, AllMinds } from "./AllMinds";
 import { CallsDashboard } from "./CallsDashboard";
@@ -186,6 +188,10 @@ export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
     setView("chat");
   };
 
+  // Main minds first; minds people added under 100k followers sit in their own Community list
+  const main = useMemo(() => intelligences.filter(isMain), [intelligences]);
+  const communityMinds = useMemo(() => intelligences.filter(isCommunity), [intelligences]);
+
   if (!it) return null;
   const chatIt = { code: it.code, handle: it.handle, displayName: it.displayName, color: it.color, avatar: it.avatar, postsParsed: it.postsParsed, postsPerDay: it.postsPerDay };
 
@@ -208,44 +214,27 @@ export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
               <span className="block font-pixel text-sm leading-tight text-ceramic">All minds</span>
               <span className="block truncate text-[11px] leading-tight text-muted">One question, every mind</span>
             </span>
-            <MindStack minds={intelligences} size={22} />
+            <MindStack minds={main} size={22} />
           </button>
           <p className="mb-2 flex justify-between px-2 font-pixel text-[11px] text-muted">
             <span>Minds</span>
-            <span className="tabular-nums">{intelligences.length}</span>
+            <span className="tabular-nums">{main.length}</span>
           </p>
           <ul>
-            {intelligences.map((m) => (
+            {main.map((m) => (
               <li key={m.code}>
-                <button
-                  type="button"
-                  onClick={() => pick(m.handle)}
-                  // start loading the brain while the pointer is still on its way
-                  onPointerEnter={() => void fetchBrain(m.handle)}
-                  onFocus={() => void fetchBrain(m.handle)}
-                  aria-current={!all && m.handle === handle && !active}
-                  className={`grid w-full grid-cols-[32px_minmax(0,1fr)] items-center gap-3 rounded-chip border px-2 py-1.5 text-left transition-colors duration-fast ${
-                    !all && m.handle === handle ? (active ? "border-transparent bg-panel/60" : "border-line bg-panel") : "border-transparent hover:bg-panel"
-                  }`}
-                >
-                  <BrainAvatar it={m} size={32} active={!all && m.handle === handle} />
-                  <span className="min-w-0">
-                    <span className="block font-mono text-[10px] leading-tight" style={{ color: m.color }}>
-                      {m.code}
-                    </span>
-                    <span className="block truncate font-pixel text-sm leading-tight">@{m.handle}</span>
-                  </span>
-                </button>
+                <MindRow m={m} selected={!all && m.handle === handle} active={active} onPick={pick} />
               </li>
             ))}
           </ul>
+          <CommunityList minds={communityMinds} selected={all ? null : handle} active={active} onPick={pick} />
           <div className="mt-3 grid gap-1">
             <AppLink href="/group" className="flex items-center justify-between gap-3 rounded-chip border border-transparent px-2 py-2 transition-colors duration-fast hover:border-line hover:bg-panel">
               <span className="min-w-0">
                 <span className="block font-pixel text-sm leading-tight text-ceramic">+ Group chat</span>
                 <span className="block truncate text-[11px] leading-tight text-muted">2 to 4 minds in one room</span>
               </span>
-              <MindStack minds={intelligences} size={22} />
+              <MindStack minds={main} size={22} />
             </AppLink>
             <AppLink
               href="/add"
@@ -257,7 +246,7 @@ export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
                 <span className="block font-pixel text-sm leading-tight text-ceramic">+ Add a mind</span>
                 <span className="block truncate text-[11px] leading-tight text-muted">Anyone on X, built for you</span>
               </span>
-              <AddBrain size={30} colors={intelligences.map((m) => m.color)} active={addHover} />
+              <AddBrain size={30} colors={main.map((m) => m.color)} active={addHover} />
             </AppLink>
           </div>
 
@@ -318,7 +307,7 @@ export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
                 Minds
               </button>
               <div className="flex min-h-[44px] min-w-0 flex-1 items-center gap-3">
-                <MindStack minds={intelligences} size={28} />
+                <MindStack minds={main} size={28} />
                 <div className="min-w-0">
                   <h1 className="truncate font-pixel text-body">All minds</h1>
                   <p className="truncate text-xs text-particle">Every mind at once. The ones with a view answer.</p>
@@ -352,10 +341,10 @@ export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
             </ol>
             <h3 className="mb-2 mt-8 flex justify-between font-pixel text-[11px] text-muted">
               <span>In the room</span>
-              <span className="tabular-nums">{intelligences.length}</span>
+              <span className="tabular-nums">{main.length}</span>
             </h3>
             <ul className="grid gap-1">
-              {intelligences.map((m) => (
+              {main.map((m) => (
                 <li key={m.code}>
                   <button type="button" onClick={() => pick(m.handle)} className="grid w-full grid-cols-[28px_minmax(0,1fr)] items-center gap-3 rounded-chip px-1.5 py-1.5 text-left transition-colors duration-fast hover:bg-panel">
                     <BrainAvatar it={m} size={28} />
@@ -391,7 +380,10 @@ export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
                     </span>
                     <h1 className="truncate font-pixel text-body">@{it.handle}</h1>
                   </div>
-                  <p className="truncate text-xs text-particle">{it.oneLineMind ?? "Unofficial AI model built from public posts."}</p>
+                  <p className="truncate text-xs text-particle">
+                    {isCommunity(it) && <span className="font-pixel text-[10px] text-muted">community{it.addedBy ? ` · added by @${it.addedBy}` : ""} · </span>}
+                    {it.oneLineMind ?? "Unofficial AI model built from public posts."}
+                  </p>
                 </div>
               </div>
               <div className="flex w-full items-center justify-between gap-3 sm:w-auto">
@@ -453,6 +445,110 @@ export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
           </aside>
         </>
       )}
+    </div>
+  );
+}
+
+/** One mind in the left panel. */
+function MindRow({ m, selected, active, onPick, note }: { m: Intelligence; selected: boolean; active: string | null; onPick: (h: string) => void; note?: string }) {
+  return (
+    <button
+      type="button"
+      onClick={() => onPick(m.handle)}
+      // start loading the brain while the pointer is still on its way
+      onPointerEnter={() => void fetchBrain(m.handle)}
+      onFocus={() => void fetchBrain(m.handle)}
+      aria-current={selected && !active}
+      className={`grid w-full grid-cols-[32px_minmax(0,1fr)] items-center gap-3 rounded-chip border px-2 py-1.5 text-left transition-colors duration-fast ${
+        selected ? (active ? "border-transparent bg-panel/60" : "border-line bg-panel") : "border-transparent hover:bg-panel"
+      }`}
+    >
+      <BrainAvatar it={m} size={32} active={selected} />
+      <span className="min-w-0">
+        <span className="flex items-baseline gap-1.5 font-mono text-[10px] leading-tight">
+          <span style={{ color: m.color }}>{m.code}</span>
+          {note && <span className="truncate text-muted">{note}</span>}
+        </span>
+        <span className="block truncate font-pixel text-sm leading-tight">@{m.handle}</span>
+      </span>
+    </button>
+  );
+}
+
+const SHOWN = 5;
+const COMMUNITY_OPEN = "ii.app.community";
+const people = (n = 0) => `${n.toLocaleString("en-US")} ${n === 1 ? "person" : "people"}`;
+
+/**
+ * Minds people added (under 100k followers): the five most talked-to, a search
+ * over all of them, and the full list on /community. Folds away; remembered.
+ */
+function CommunityList({ minds, selected, active, onPick }: { minds: Intelligence[]; selected: string | null; active: string | null; onPick: (h: string) => void }) {
+  const [open, setOpen] = useState(true);
+  const [q, setQ] = useState("");
+  useEffect(() => {
+    try {
+      if (localStorage.getItem(COMMUNITY_OPEN) === "0") setOpen(false);
+    } catch {}
+  }, []);
+  const toggle = () => {
+    setOpen((o) => {
+      try {
+        localStorage.setItem(COMMUNITY_OPEN, o ? "0" : "1");
+      } catch {}
+      return !o;
+    });
+  };
+  const ranked = useMemo(() => [...minds].sort((a, b) => (b.people ?? 0) - (a.people ?? 0) || (b.addedAt ?? "").localeCompare(a.addedAt ?? "")), [minds]);
+  const needle = q.trim().replace(/^@/, "").toLowerCase();
+  let list = needle ? ranked.filter((m) => m.handle.toLowerCase().includes(needle) || (m.oneLineMind ?? "").toLowerCase().includes(needle)) : ranked.slice(0, SHOWN);
+  // the open mind stays in sight even when it isn't in the top five
+  const current = !needle && selected ? ranked.find((m) => m.handle === selected && !list.includes(m)) : undefined;
+  if (current) list = [...list, current];
+
+  return (
+    <div className="mt-4">
+      <button type="button" onClick={toggle} aria-expanded={open} className="mb-2 flex w-full items-center justify-between px-2 font-pixel text-[11px] text-muted transition-colors duration-fast hover:text-ceramic">
+        <span>
+          Community <span aria-hidden>{open ? "▾" : "▸"}</span>
+        </span>
+        <span className="tabular-nums">{minds.length}</span>
+      </button>
+      {open &&
+        (minds.length === 0 ? (
+          <AppLink href="/add" className="mx-2 block rounded-chip border border-dashed border-line px-2.5 py-2 text-[11px] leading-snug text-muted transition-colors duration-fast hover:border-line-hover hover:text-particle">
+            Minds people add land here. +{community.perPerson} <Ticker /> for every person who talks to yours.
+          </AppLink>
+        ) : (
+          <>
+            {minds.length > SHOWN && (
+              <label className="mb-1.5 block px-1">
+                <span className="sr-only">Search community minds</span>
+                <input
+                  value={q}
+                  onChange={(e) => setQ(e.target.value)}
+                  placeholder={`Search ${minds.length} minds`}
+                  spellCheck={false}
+                  autoComplete="off"
+                  className="h-8 w-full rounded-input border border-line bg-void px-2.5 font-pixel text-xs text-ceramic placeholder:text-muted focus:border-line-hover focus:outline-none"
+                />
+              </label>
+            )}
+            <ul>
+              {list.map((m) => (
+                <li key={m.code}>
+                  <MindRow m={m} selected={m.handle === selected} active={active} onPick={onPick} note={people(m.people)} />
+                </li>
+              ))}
+            </ul>
+            {needle && list.length === 0 && <p className="px-2 py-1.5 text-[11px] text-muted">No mind matches “{q.trim()}”.</p>}
+            {minds.length > SHOWN && !needle && (
+              <AppLink href="/community" className="link-quiet mt-1 block px-2 py-1 text-xs">
+                All {minds.length} community minds <span className="arrow">↗</span>
+              </AppLink>
+            )}
+          </>
+        ))}
     </div>
   );
 }

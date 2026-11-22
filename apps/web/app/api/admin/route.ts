@@ -30,6 +30,15 @@ export async function POST(req: Request) {
       await db`update influencers set hidden = false where lower(handle) = lower(${String(b?.handle ?? "")})`;
       await refreshListings(true);
       return json({ ok: true });
+    case "place-main":
+    case "place-community":
+    case "place-auto": {
+      // pin a mind to the main list or Community; auto = by the follower rule again
+      const placement = b.action === "place-auto" ? null : b.action === "place-main" ? "main" : "community";
+      await db`update influencers set placement = ${placement} where lower(handle) = lower(${String(b?.handle ?? "")})`;
+      await refreshListings(true);
+      return json({ ok: true });
+    }
     case "job-retry":
       await db`update jobs set status = 'queued', error = null, updated_at = now() where id = ${id} and status in ('failed', 'queued')`;
       await dispatchJobs();

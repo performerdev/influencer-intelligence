@@ -3,7 +3,8 @@ import { recordSpend } from "@ii/db";
 
 import { SUMMARY_ROUND } from "@/lib/all-minds";
 import { type User, charge, currentUser, gate, usageOf } from "@/lib/server/auth";
-import { loadBrain, loadIntelligences, resolveReferences, sql } from "@/lib/server/data";
+import type { Tier } from "@/config/community";
+import { loadBrain, loadIntelligences, resolveReferences, sql, tierOf } from "@/lib/server/data";
 import { SSE_HEADERS, VERDICT, clientHash, json } from "@/lib/server/http";
 import { liveContext } from "@/lib/server/live";
 import { logError, noteSpend, overBudget } from "@/lib/server/ops";
@@ -65,11 +66,13 @@ async function ask(req: Request, body: AskBody) {
   if (busy) return json(busy, 503);
 
   const db = sql();
-  const withBrains = await db<{ id: number; code: string; handle: string; one_line_mind: string | null; posts_parsed: number }[]>`
-    select i.id, i.code, i.handle, i.one_line_mind, i.posts_parsed from influencers i
+  const withBrains = await db<{ id: number; code: string; handle: string; one_line_mind: string | null; posts_parsed: number; followers: number | null; added_by: number | null; placement: Tier | null }[]>`
+    select i.id, i.code, i.handle, i.one_line_mind, i.posts_parsed, i.followers, i.added_by, to_jsonb(i) ->> 'placement' as placement from influencers i
     where not coalesce(i.hidden, false) and exists (select 1 from brains b where b.influencer_id = i.id)
     order by i.code`;
-  if (withBrains.length < 2) return json({ error: "The minds aren't ready yet." }, 503);
+  // only the main list answers here: Community minds are in single chats and groups
+  const main = withBrains.filter((m) => tierOf(m) === "main");
+  if (main.length < 2) return json({ error: "The minds aren't ready yet." }, 503);
 
   const client = clientHash(req);
   const g = await gate(client);
@@ -77,7 +80,7 @@ async function ask(req: Request, body: AskBody) {
   const { user } = g;
 
   // Same chat while you keep asking here; only your own chats continue.
-  const ids = withBrains.map((m) => m.id);
+  const ids = main.map((m) => m.id);
   let chatId: string | null = null;
   if (isUuid(body.chatId)) {
     const [c] = await db<{ id: string; user_id: number | null }[]>`select id, user_id from chats where id = ${body.chatId} and kind = 'all'`;
@@ -99,19 +102,19 @@ async function ask(req: Request, body: AskBody) {
   }
   // 2. not enough of them: the router picks by topic from the one-line minds
   if (picked.length < MIN_SPEAKERS) {
-    const codes = await route(message, withBrains, user);
+    const codes = await route(message, main, user);
     for (const code of codes) {
-      const m = withBrains.find((x) => x.code === code);
+      const m = main.find((x) => x.code === code);
       if (m && !picked.includes(m.id) && picked.length < MAX_SPEAKERS) picked.push(m.id);
     }
   }
   // 3. the router failed too: the minds with the most posts
   if (picked.length < MIN_SPEAKERS) {
-    for (const m of [...withBrains].sort((a, b) => b.posts_parsed - a.posts_parsed)) {
+    for (const m of [...main].sort((a, b) => b.posts_parsed - a.posts_parsed)) {
       if (!picked.includes(m.id) && picked.length < MIN_SPEAKERS) picked.push(m.id);
     }
   }
-  const speakers = picked.map((id) => withBrains.find((m) => m.id === id)!.handle);
+  const speakers = picked.map((id) => main.find((m) => m.id === id)!.handle);
   return json({ chatId, speakers, tickers });
 }
 

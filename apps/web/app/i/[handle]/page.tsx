@@ -36,7 +36,7 @@ export default async function IntelligencePage({ params }: Props) {
 
   return (
     <ChatView
-      intelligence={{ code: it.code, handle: it.handle, displayName: it.displayName, color: it.color, avatar: it.avatar, postsParsed: it.postsParsed, postsPerDay: it.postsPerDay }}
+      intelligence={{ code: it.code, handle: it.handle, displayName: it.displayName, color: it.color, avatar: it.avatar, postsParsed: it.postsParsed, postsPerDay: it.postsPerDay, community: it.tier === "community", addedBy: it.addedBy ?? null }}
       brain={chatBrain}
     />
   );

@@ -1,8 +1,9 @@
 import "server-only";
 
-import type { BrainFiles } from "@ii/brain-core";
+import { type BrainFiles, NO_VIEW } from "@ii/brain-core";
 import { type Sql, db } from "@ii/db";
 
+import { type Tier, community } from "@/config/community";
 import { intelligences as config } from "@/config/intelligences";
 import { brainColor } from "@/lib/colors";
 import type { Intelligence } from "@/lib/intelligences";
@@ -31,15 +32,24 @@ type InfluencerRow = {
   hidden: boolean;
   version: number | null;
   distilled_at: Date | null;
+  followers: number | null;
+  placement: Tier | null;
+  added_by: number | null;
+  added_by_handle: string | null;
+  show_added_by: boolean;
+  calls: number;
+  created_at: Date | null;
 };
 
 /**
  * Launch brains in config order, then brains added by users (in code order).
  * Real numbers from the database where they exist (never invented); hidden
- * brains (taken down by hand) are left out everywhere.
+ * brains (taken down by hand) are left out everywhere. Each mind is Main or
+ * Community (config/community.ts); the UI decides where each list shows.
  */
 // Every page asks for the list of minds; it changes when a brain is built (weekly, or an Add), so a minute's memo is plenty.
 let minds: { at: number; list: Promise<Intelligence[]> } | null = null;
+
 export function loadIntelligences(): Promise<Intelligence[]> {
   if (minds && Date.now() - minds.at < 60_000) return minds.list;
   const list = readIntelligences();
@@ -50,19 +60,35 @@ export function loadIntelligences(): Promise<Intelligence[]> {
 /** A new brain went live: read the list again on the next request. */
 export const forgetIntelligences = () => {
   minds = null;
+  people = null;
 };
 
+/** Main unless pinned, or added through Add by someone and under the follower line. */
+export function tierOf(r: Pick<InfluencerRow, "placement" | "added_by" | "followers">): Tier {
+  if (r.placement === "main" || r.placement === "community") return r.placement;
+  if (r.added_by == null) return "main";
+  return (r.followers ?? 0) >= community.mainFollowers ? "main" : "community";
+}
+
 async function readIntelligences(): Promise<Intelligence[]> {
-  const base: Intelligence[] = config.map((c) => ({ ...c, oneLineMind: null, postsParsed: null, postsPerDay: null, distilledAt: null }));
+  const base: Intelligence[] = config.map((c) => ({ ...c, oneLineMind: null, postsParsed: null, postsPerDay: null, distilledAt: null, tier: "main", addedBy: null, people: 0 }));
   if (!hasDatabase()) return base;
   try {
-    const rows = await sql()<InfluencerRow[]>`
-      select i.id, i.code, i.handle, i.display_name, i.posts_parsed, i.posts_per_day, i.one_line_mind, i.status,
-        i.avatar_url, i.color, coalesce(i.hidden, false) as hidden,
-        b.version, b.created_at as distilled_at
-      from influencers i
-      left join lateral (select version, created_at from brains where influencer_id = i.id order by version desc limit 1) b on true
-      order by i.code`;
+    // to_jsonb(row) ->> 'col' reads columns that a newer migration adds, and gives null until it ran
+    const [rows, reach] = await Promise.all([
+      sql()<InfluencerRow[]>`
+        select i.id, i.code, i.handle, i.display_name, i.posts_parsed, i.posts_per_day, i.one_line_mind, i.status,
+          i.avatar_url, i.color, coalesce(i.hidden, false) as hidden, i.followers, i.added_by, i.created_at,
+          to_jsonb(i) ->> 'placement' as placement,
+          u.handle as added_by_handle, coalesce((to_jsonb(u) ->> 'show_added_by')::boolean, true) as show_added_by,
+          (select count(*)::int from calls c where c.influencer_id = i.id) as calls,
+          b.version, b.created_at as distilled_at
+        from influencers i
+        left join users u on u.id = i.added_by
+        left join lateral (select version, created_at from brains where influencer_id = i.id order by version desc limit 1) b on true
+        order by i.code`,
+      peopleByMind(),
+    ]);
     const byCode = new Map(rows.map((r) => [r.code, r]));
     const fill = (c: Intelligence, r: InfluencerRow): Intelligence => ({
       ...c,
@@ -71,6 +97,12 @@ async function readIntelligences(): Promise<Intelligence[]> {
       postsParsed: r.posts_parsed > 0 ? r.posts_parsed : null,
       postsPerDay: r.posts_per_day,
       distilledAt: r.distilled_at ? new Date(r.distilled_at).toISOString() : null,
+      tier: tierOf(r),
+      addedBy: r.added_by != null && r.show_added_by ? r.added_by_handle : null,
+      people: reach.get(r.id) ?? 0,
+      followers: r.followers,
+      calls: r.calls,
+      addedAt: r.created_at ? new Date(r.created_at).toISOString() : null,
     });
     const launch = base.filter((c) => !byCode.get(c.code)?.hidden).map((c) => (byCode.has(c.code) ? fill(c, byCode.get(c.code)!) : c));
     const known = new Set(config.map((c) => c.code));
@@ -98,6 +130,38 @@ async function readIntelligences(): Promise<Intelligence[]> {
     console.error("loadIntelligences:", err);
     return base;
   }
+}
+
+/* ───────────────────────── people per mind ───────────────────────── */
+
+let people: { at: number; map: Promise<Map<number, number>> } | null = null;
+
+/**
+ * Different people each mind has answered: logged in with X, not the person
+ * who added it, X account older than community.minAccountDays (unknown age
+ * doesn't count yet: it's read at the next login). An All minds "no view"
+ * isn't an answer. This is what builders earn $ii for.
+ */
+export function peopleByMind(): Promise<Map<number, number>> {
+  if (people && Date.now() - people.at < 60_000) return people.map;
+  const map = sql()<{ id: number; n: number }[]>`
+      select m.influencer_id as id, count(distinct m.user_id)::int as n
+      from messages m
+      join influencers i on i.id = m.influencer_id
+      join users u on u.id = m.user_id
+      where m.role = 'assistant' and m.user_id is not null
+        and m.user_id is distinct from i.added_by
+        and m.content <> ${NO_VIEW}
+        and (to_jsonb(u) ->> 'x_created_at')::timestamptz < now() - make_interval(days => ${community.minAccountDays})
+      group by m.influencer_id`
+    .then((rows) => new Map(rows.map((r) => [r.id, r.n])))
+    .catch((err) => {
+      console.error("peopleByMind:", err);
+      people = null;
+      return new Map<number, number>();
+    });
+  people = { at: Date.now(), map };
+  return map;
 }
 
 /** One intelligence by handle (launch or added), or null. */

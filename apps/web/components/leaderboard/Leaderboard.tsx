@@ -113,6 +113,7 @@ export function Leaderboard({ rows, tickers, minds }: { rows: BoardRow[]; ticker
                       <span>
                         <span className="block font-mono text-[10px]" style={{ color: it.color }}>
                           {it.code}
+                          {it.tier === "community" && <span className="text-muted"> · community</span>}
                         </span>
                         <span className="text-sm text-ceramic">@{it.handle}</span>
                       </span>

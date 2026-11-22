@@ -5,7 +5,9 @@ import { useEffect, useState } from "react";
 
 import { XGlyph, useAuth } from "@/components/account/AuthProvider";
 import { type Info, PayPanel } from "@/components/account/PlusCheckout";
+import { Ticker } from "@/components/early/Ticker";
 import { AppLink } from "@/components/ui/AppLink";
+import { community } from "@/config/community";
 import { formatCount } from "@/lib/intelligences";
 
 type Quote = {
@@ -132,6 +134,26 @@ export function AddFlow({ enabled, initialHandle }: { enabled: boolean; initialH
                 {q.followers != null ? `${formatCount(q.followers)} followers` : ""}
               </p>
             </div>
+          </div>
+
+          <div className="mt-5 grid gap-1.5 rounded-panel border border-dashed border-line px-4 py-3 font-pixel text-xs text-particle">
+            <p>
+              Goes to{" "}
+              {(q.followers ?? 0) >= community.mainFollowers ? (
+                <span className="text-ceramic">the main list</span>
+              ) : (
+                <>
+                  <span className="text-ceramic">Community minds</span> · moves up at {formatCount(community.mainFollowers)} followers
+                </>
+              )}
+            </p>
+            <p>
+              You earn{" "}
+              <span className="text-ceramic">
+                +{community.perPerson} <Ticker />
+              </span>{" "}
+              for every person who talks to it, up to {community.capPerMind.toLocaleString("en-US")}
+            </p>
           </div>
 
           {q.withReplies && q.withReplies.estimatedReplies > 0 && (

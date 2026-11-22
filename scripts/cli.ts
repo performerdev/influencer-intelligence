@@ -433,7 +433,7 @@ async function main() {
 
 /* ───────────────────────── paid builds ───────────────────────── */
 
-type JobRow = { id: string; handle: string; user_id: number | null; profile: { id?: string; name?: string | null; avatar?: string | null } | null; max_usd: string | null; breakdown: { replies?: boolean } | null };
+type JobRow = { id: string; handle: string; user_id: number | null; profile: { id?: string; name?: string | null; avatar?: string | null; followers?: number | null } | null; max_usd: string | null; breakdown: { replies?: boolean } | null };
 
 /**
  * "Add a brain" worker: claims paid jobs one at a time and builds each brain
@@ -512,8 +512,8 @@ async function influencerFor(job: JobRow): Promise<InfluencerRow> {
       select coalesce(max(substring(code from 4)::int), 0) + 1 as next from influencers where code ~ '^ii-[0-9]+$'`;
     const code = `ii-${String(next).padStart(2, "0")}`;
     const [row] = await tx<InfluencerRow[]>`
-      insert into influencers (code, handle, display_name, x_user_id, avatar_url, color, added_by)
-      values (${code}, ${job.handle}, ${job.profile?.name ?? null}, ${job.profile?.id ?? null}, ${job.profile?.avatar ?? null}, ${brainColor(code)}, ${job.user_id})
+      insert into influencers (code, handle, display_name, x_user_id, avatar_url, color, added_by, followers)
+      values (${code}, ${job.handle}, ${job.profile?.name ?? null}, ${job.profile?.id ?? null}, ${job.profile?.avatar ?? null}, ${brainColor(code)}, ${job.user_id}, ${job.profile?.followers ?? null})
       returning *`;
     return row;
   });

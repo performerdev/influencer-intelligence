@@ -89,12 +89,19 @@ export default async function BrainProfile({ params }: Props) {
         <div className="min-w-0">
           <p className="font-mono text-xs" style={{ color: it.color }}>
             {it.code} · unofficial AI model
+            {it.tier === "community" && (
+              <AppLink href="/community" className="text-muted hover:text-ceramic">
+                {" "}
+                · community
+              </AppLink>
+            )}
           </p>
           <h1 className="mt-1 break-words text-h2">@{it.handle}</h1>
           {it.oneLineMind && <p className="mt-2 text-lead text-particle">{it.oneLineMind}</p>}
           <p className="mt-3 font-pixel text-xs text-muted">
             {it.postsParsed ? `Built from ${formatCount(it.postsParsed)} public posts` : "Brain not built yet"}
             {brain ? ` · brain v${brain.version} · updated ${day(brain.createdAt)}` : ""}
+            {it.addedBy ? ` · added by @${it.addedBy}` : ""}
           </p>
           <div className="mt-5 flex flex-wrap items-center gap-3">
             <AppLink href={`/i/${it.handle}`} className="btn-ceramic">

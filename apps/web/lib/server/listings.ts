@@ -26,6 +26,7 @@ export async function refreshListings(force = false): Promise<void> {
     }
     forgetIntelligences();
     revalidatePath("/");
+    revalidatePath("/community");
   } catch (err) {
     console.error("refreshListings:", (err as Error)?.message ?? err);
   }

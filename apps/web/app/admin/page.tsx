@@ -4,9 +4,10 @@ import { Fragment } from "react";
 import { AdminButton } from "@/components/admin/AdminButton";
 import { EarlySettings } from "@/components/admin/EarlySettings";
 import { RefundBox } from "@/components/admin/RefundBox";
+import { type Tier, community } from "@/config/community";
 import { early as earlyConfig } from "@/config/early";
 import { currentUser } from "@/lib/server/auth";
-import { sql } from "@/lib/server/data";
+import { sql, tierOf } from "@/lib/server/data";
 import { earlySettings } from "@/lib/server/early";
 import { dailyBudgetUsd, isAdmin, spentTodayUsd } from "@/lib/server/ops";
 import { payerOf, refundUrl } from "@/lib/server/solana";
@@ -88,7 +89,13 @@ export default async function Admin() {
     const amount = Number((info?.receivedUsd || Number(j.paid_usd ?? j.quote_usd ?? 0)).toFixed(6));
     refunds.set(j.id, { payer: info?.payer ?? null, amount, url: info?.payer ? refundUrl(info.payer, amount, `Refund: @${j.handle} brain build`) : null });
   }
-  const brains = await q("brains", db<{ code: string; handle: string; hidden: boolean; added: boolean }[]>`select code, handle, coalesce(hidden, false) as hidden, added_by is not null as added from influencers order by code`, []);
+  const brains = await q(
+    "brains",
+    db<{ code: string; handle: string; hidden: boolean; added: boolean; added_by: number | null; followers: number | null; placement: Tier | null }[]>`
+      select code, handle, coalesce(hidden, false) as hidden, added_by is not null as added, added_by, followers, to_jsonb(influencers) ->> 'placement' as placement
+      from influencers order by code`,
+    [],
+  );
   const shares = await q("shares", db<{ n: number; claimed: number; views: number }[]>`select count(*)::int as n, count(claimed_at)::int as claimed, coalesce(sum(views), 0)::int as views from shares`, []);
   const earlyStats = await q("early", db<{ started: number; wallets: number; done: number; invited: number; today: number }[]>`
         select count(*)::int as started, count(wallet)::int as wallets, count(number)::int as done,
@@ -257,14 +264,31 @@ export default async function Admin() {
 
       <section className="mt-12">
         <h2 className="text-h3">Brains</h2>
+        <p className="mt-2 text-xs text-muted">
+          Main: built by us, or added with {community.mainFollowers.toLocaleString("en-US")}+ followers. The rest of the added ones are Community. Pin either way; &ldquo;auto&rdquo; goes back to the rule.
+        </p>
         <div className="mt-4 flex flex-wrap gap-2">
-          {brains.map((b) => (
-            <span key={b.code} className={`inline-flex items-center gap-2 rounded-panel border border-line px-3 py-1.5 font-mono text-xs ${b.hidden ? "text-muted line-through" : "text-particle"}`}>
-              {b.code} @{b.handle}
-              {b.added ? " · added" : ""}
-              <AdminButton action={b.hidden ? "unhide" : "hide"} handle={b.handle} label={b.hidden ? "show" : "hide"} confirm={!b.hidden} small />
-            </span>
-          ))}
+          {brains.map((b) => {
+            const tier = tierOf(b);
+            return (
+              <span key={b.code} className={`inline-flex flex-wrap items-center gap-2 rounded-panel border border-line px-3 py-1.5 font-mono text-xs ${b.hidden ? "text-muted line-through" : "text-particle"}`}>
+                {b.code} @{b.handle}
+                {b.added ? " · added" : ""}
+                <span className={tier === "main" ? "text-ceramic" : "text-muted"}>
+                  · {tier}
+                  {b.placement ? " (pinned)" : ""}
+                </span>
+                {b.added && b.followers != null ? <span className="text-muted">· {b.followers.toLocaleString("en-US")} fol.</span> : null}
+                <AdminButton action={b.hidden ? "unhide" : "hide"} handle={b.handle} label={b.hidden ? "show" : "hide"} confirm={!b.hidden} small />
+                {tier === "community" ? (
+                  <AdminButton action="place-main" handle={b.handle} label="→ main" small />
+                ) : (
+                  <AdminButton action="place-community" handle={b.handle} label="→ community" small />
+                )}
+                {b.placement && <AdminButton action="place-auto" handle={b.handle} label="auto" small />}
+              </span>
+            );
+          })}
         </div>
       </section>
 

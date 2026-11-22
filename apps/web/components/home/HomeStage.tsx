@@ -9,7 +9,7 @@ import { startIiStage } from "@/components/hero/ii-stage";
 import { scrollToTarget } from "@/components/layout/SmoothScroll";
 import { AppLink } from "@/components/ui/AppLink";
 import { early } from "@/config/early";
-import type { Intelligence } from "@/lib/intelligences";
+import { type Intelligence, isMain } from "@/lib/intelligences";
 
 import { IntelligencesSection } from "./IntelligencesSection";
 
@@ -89,7 +89,7 @@ export function HomeStage({ intelligences }: { intelligences: Intelligence[] }) 
 
   return (
     <div ref={rootRef}>
-      <Hero iiBoxRef={iiBoxRef} canvasRef={canvasRef} onPick={onPick} minds={intelligences} staticLogo={staticLogo} />
+      <Hero iiBoxRef={iiBoxRef} canvasRef={canvasRef} onPick={onPick} minds={intelligences.filter(isMain)} staticLogo={staticLogo} />
       <IntelligencesSection intelligences={intelligences} />
 
       <section aria-labelledby="how-title" className="mx-auto max-w-site px-gutter pt-[clamp(80px,12vh,128px)]">

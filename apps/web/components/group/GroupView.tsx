@@ -8,7 +8,7 @@ import { ShareBar } from "@/components/chat/ShareBar";
 import { BrainAvatar } from "@/components/particles/BrainAvatar";
 import { AppLink } from "@/components/ui/AppLink";
 import { Popover } from "@/components/ui/Popover";
-import { formatCount, type Intelligence } from "@/lib/intelligences";
+import { formatCount, type Intelligence, isCommunity, isMain } from "@/lib/intelligences";
 import { normalizeRefs } from "@/lib/refs";
 import type { Reference } from "@/lib/server/data";
 
@@ -470,19 +470,38 @@ function Tally({ items, byHandle }: { items: Item[]; byHandle: Map<string, Intel
 }
 
 function Picker({ available, members, onPick }: { available: Intelligence[]; members: string[]; onPick: (h: string) => void }) {
-  const rest = available.filter((i) => !members.includes(i.handle));
+  const [q, setQ] = useState("");
+  const needle = q.trim().replace(/^@/, "").toLowerCase();
+  const rest = available.filter((i) => !members.includes(i.handle) && (!needle || i.handle.toLowerCase().includes(needle)));
+  const row = (it: Intelligence) => (
+    <li key={it.handle}>
+      <button onClick={() => onPick(it.handle)} className="flex w-full items-center gap-3 rounded-chip px-1 py-2 text-left transition-colors duration-fast hover:bg-panel">
+        <BrainAvatar it={it} size={24} />
+        <span className="font-mono text-xs text-muted">{it.code}</span>
+        <span className="truncate text-sm text-ceramic">@{it.handle}</span>
+      </button>
+    </li>
+  );
+  const added = rest.filter(isCommunity);
   return (
-    <ul className="-my-1 w-[260px]">
-      {rest.map((it) => (
-        <li key={it.handle}>
-          <button onClick={() => onPick(it.handle)} className="flex w-full items-center gap-3 rounded-chip px-1 py-2 text-left transition-colors duration-fast hover:bg-panel">
-            <BrainAvatar it={it} size={24} />
-            <span className="font-mono text-xs text-muted">{it.code}</span>
-            <span className="truncate text-sm text-ceramic">@{it.handle}</span>
-          </button>
-        </li>
-      ))}
-    </ul>
+    <div className="-my-1 w-[260px]">
+      {available.length > 12 && (
+        <input
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          placeholder="Search minds"
+          aria-label="Search minds"
+          spellCheck={false}
+          autoComplete="off"
+          className="mb-1 h-8 w-full rounded-input border border-line bg-void px-2.5 font-pixel text-xs text-ceramic placeholder:text-muted focus:border-line-hover focus:outline-none"
+        />
+      )}
+      <ul className="max-h-[min(60vh,420px)] overflow-y-auto" data-lenis-prevent>
+        {rest.filter(isMain).map(row)}
+        {added.length > 0 && <li className="px-1 pb-1 pt-3 font-pixel text-[11px] text-muted">Community</li>}
+        {added.map(row)}
+      </ul>
+    </div>
   );
 }
 
@@ -506,28 +525,13 @@ function Empty({
         They answer in turn and can disagree. Turn on Debate and they reply to each other for two more rounds. Start a message with @handle to ask just one.
       </p>
       <ul className="mt-8 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5">
-        {available.map((it) => {
-          const on = members.includes(it.handle);
-          const full = !on && members.length >= MAX;
-          return (
-            <li key={it.handle}>
-              <button
-                onClick={() => onPick(it.handle)}
-                disabled={full}
-                aria-pressed={on}
-                className={`flex h-full w-full flex-col rounded-card border p-3 text-left transition-colors duration-fast disabled:opacity-40 ${
-                  on ? "border-ceramic bg-panel" : "border-line hover:border-line-hover"
-                }`}
-              >
-                <BrainAvatar it={it} size={40} active={on} />
-                <span className="mt-3 font-mono text-xs text-muted">{it.code}</span>
-                <span className="truncate font-pixel text-sm text-ceramic">@{it.handle}</span>
-                <span className="mt-1 line-clamp-2 text-xs text-muted">{it.oneLineMind ?? `${formatCount(it.postsParsed)} posts`}</span>
-              </button>
-            </li>
-          );
-        })}
+        {available.filter(isMain).map((it) => (
+          <li key={it.handle}>
+            <PickCard it={it} members={members} onPick={onPick} />
+          </li>
+        ))}
       </ul>
+      <CommunityPicks minds={available.filter(isCommunity)} members={members} onPick={onPick} />
       {ready && (
         <div className="mt-8 flex flex-wrap gap-2">
           {STARTERS.map((s) => (
@@ -536,6 +540,84 @@ function Empty({
             </button>
           ))}
         </div>
+      )}
+    </div>
+  );
+}
+
+function PickCard({ it, members, onPick, note }: { it: Intelligence; members: string[]; onPick: (h: string) => void; note?: string }) {
+  const on = members.includes(it.handle);
+  const full = !on && members.length >= MAX;
+  return (
+    <button
+      onClick={() => onPick(it.handle)}
+      disabled={full}
+      aria-pressed={on}
+      className={`flex h-full w-full flex-col rounded-card border p-3 text-left transition-colors duration-fast disabled:opacity-40 ${
+        on ? "border-ceramic bg-panel" : "border-line hover:border-line-hover"
+      }`}
+    >
+      <BrainAvatar it={it} size={40} active={on} />
+      <span className="mt-3 font-mono text-xs text-muted">
+        {it.code}
+        {note ? ` · ${note}` : ""}
+      </span>
+      <span className="truncate font-pixel text-sm text-ceramic">@{it.handle}</span>
+      <span className="mt-1 line-clamp-2 text-xs text-muted">{it.oneLineMind ?? `${formatCount(it.postsParsed)} posts`}</span>
+    </button>
+  );
+}
+
+const COMMUNITY_SHOWN = 10;
+
+/** Minds people added, folded away under the main ones: open, search, pick. */
+function CommunityPicks({ minds, members, onPick }: { minds: Intelligence[]; members: string[]; onPick: (h: string) => void }) {
+  const picked = minds.some((m) => members.includes(m.handle));
+  const [open, setOpen] = useState(picked);
+  const [q, setQ] = useState("");
+  const [all, setAll] = useState(false);
+  if (!minds.length) return null;
+  const needle = q.trim().replace(/^@/, "").toLowerCase();
+  const ranked = [...minds].sort((a, b) => (b.people ?? 0) - (a.people ?? 0));
+  const found = needle ? ranked.filter((m) => m.handle.toLowerCase().includes(needle) || (m.oneLineMind ?? "").toLowerCase().includes(needle)) : ranked;
+  const list = needle || all ? found : found.slice(0, COMMUNITY_SHOWN);
+  // a picked mind stays in sight
+  for (const m of ranked) if (members.includes(m.handle) && !list.includes(m)) list.push(m);
+  return (
+    <div className="mt-6">
+      <button type="button" onClick={() => setOpen((o) => !o || picked)} aria-expanded={open || picked} className="flex items-center gap-2 font-pixel text-sm text-particle transition-colors duration-fast hover:text-ceramic">
+        Community minds <span className="text-muted tabular-nums">{minds.length}</span>
+        <span aria-hidden className="text-muted">
+          {open || picked ? "▾" : "▸"}
+        </span>
+      </button>
+      {(open || picked) && (
+        <>
+          {minds.length > COMMUNITY_SHOWN && (
+            <input
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder={`Search ${minds.length} community minds`}
+              aria-label="Search community minds"
+              spellCheck={false}
+              autoComplete="off"
+              className="mt-3 h-9 w-full max-w-[360px] rounded-input border border-line bg-panel px-3 font-pixel text-xs text-ceramic placeholder:text-muted focus:border-line-hover focus:outline-none"
+            />
+          )}
+          <ul className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5">
+            {list.map((it) => (
+              <li key={it.handle}>
+                <PickCard it={it} members={members} onPick={onPick} note={`${formatCount(it.people ?? 0)} people`} />
+              </li>
+            ))}
+          </ul>
+          {needle && found.length === 0 && <p className="mt-3 text-sm text-muted">No community mind matches “{q.trim()}”.</p>}
+          {!needle && !all && found.length > COMMUNITY_SHOWN && (
+            <button type="button" onClick={() => setAll(true)} className="link-quiet mt-3 text-xs">
+              Show all {found.length}
+            </button>
+          )}
+        </>
       )}
     </div>
   );

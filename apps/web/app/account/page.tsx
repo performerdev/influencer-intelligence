@@ -3,10 +3,12 @@ import type { Metadata } from "next";
 import { LogoutButton } from "@/components/account/LogoutButton";
 import { PlusCheckout } from "@/components/account/PlusCheckout";
 import { UsageMeter, XGlyph } from "@/components/account/AuthProvider";
+import { YourMinds } from "@/components/account/YourMinds";
 import { AppLink } from "@/components/ui/AppLink";
 import { payments, plusPaymentsEnabled } from "@/config/payments";
 import { plans } from "@/config/plans";
 import { currentUser, isPlus, xLoginConfigured } from "@/lib/server/auth";
+import { earlyDone, mindsAddedBy } from "@/lib/server/community";
 import { loadIntelligences } from "@/lib/server/data";
 import { isAdmin } from "@/lib/server/ops";
 import { hasDatabase } from "@/lib/server/data";
@@ -37,6 +39,7 @@ export default async function AccountPage({ searchParams }: { searchParams: Prom
   const chats = user ? await listChats(user).catch(() => []) : [];
   const plus = isPlus(user);
   const colorOf = new Map((await loadIntelligences()).map((i) => [i.handle, i.color]));
+  const [mine, inEarly] = user ? await Promise.all([mindsAddedBy(user.id).catch(() => []), earlyDone(user.id)]) : [[], false];
 
   return (
     <div className="mx-auto max-w-[920px] px-gutter pb-24 pt-[calc(var(--ii-topbar-h)+40px)]">
@@ -76,6 +79,8 @@ export default async function AccountPage({ searchParams }: { searchParams: Prom
           <UsageMeter className="w-full" />
         </section>
       )}
+
+      {user && <YourMinds minds={mine} handle={user.handle} showAddedBy={user.show_added_by !== false} earlyDone={inEarly} />}
 
       <section id="plus" className="mt-16 scroll-mt-24">
         <h2 className="text-h3">Plus · ${plans.plus.priceUsd} / {plans.plus.days} days</h2>
