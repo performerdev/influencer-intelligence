@@ -129,3 +129,47 @@ ${lines}
 
 Your turn, ${s.me.code}. ${task}`;
 }
+
+/* ───────────────────────── all minds ───────────────────────── */
+
+/** The token a mind answers with when its posts give it no view on the question. */
+export const NO_VIEW = "NO_VIEW";
+
+/**
+ * One mind's turn in "All minds": the user asked every mind at once and the ones
+ * with a view answer side by side. The mind's own brain stays the system prompt
+ * (cached); this user message carries the question and the rules for the format.
+ */
+export function allMindsTurn(s: { me: { code: string; handle: string }; others: string[]; question: string; earlier?: string | null }): string {
+  return `[ALL MINDS on Influencer Intelligence]
+The user asked every mind on the site the same question at once. You are ${s.me.code} (@${s.me.handle}), answering side by side with ${s.others.length ? s.others.join(", ") : "other minds"}; the user reads all the answers next to each other.
+
+How to answer:
+- Speak as @${s.me.handle} straight away, in their voice. At most about 70 words: the core of your view and the reason, nothing else. No greetings, no introductions, no lists.
+- Everything in your brain still applies: never invent a number, a call or a date; cite [post:ID] only from your own brain. No [[card]] tags here.
+- If the question asks for a decision (buy, sell, hold, enter, exit, ape, fade), end with the VERDICT line.
+- If your posts give you no real view on this, answer with exactly ${NO_VIEW} and nothing else. Saying nothing is better than making something up.
+${s.earlier ? `\nEarlier in this conversation (for context only):\n${s.earlier}\n` : ""}
+The question: ${s.question}`;
+}
+
+/** Picks which minds answer an "All minds" question when no coin in it points to them. Expects JSON back. */
+export const allMindsRouter = (s: { minds: { code: string; handle: string; mind: string | null }[]; question: string; max: number }) =>
+  `You route a question to the AI minds of well-known Crypto Twitter accounts. Each mind knows only what its person posted.
+Pick the minds (at most ${s.max}) whose person most likely has a real, specific view on the question. Prefer people whose focus matches the topic. If the question is general (markets, cycles, how to trade), pick the ${s.max} with the strongest takes on it.
+
+Minds:
+${s.minds.map((m) => `- ${m.code} @${m.handle}: ${m.mind ?? "crypto"}`).join("\n")}
+
+Question: ${s.question}
+
+Return JSON only: {"codes": ["ii-01", ...]}`;
+
+/** Two or three sentences over the minds' short answers: where they agree, where they split. */
+export const allMindsSummary = (s: { question: string; answers: { handle: string; verdict: string | null; text: string }[] }) =>
+  `Several AI minds of Crypto Twitter accounts answered the same question. Write 2–3 short sentences for the user: where they agree, where they split, and the strongest reason on each side. Name minds as @handle. Use only what the answers say; add no facts, numbers or advice of your own. No preamble, no disclaimers.
+
+Question: ${s.question}
+
+Answers:
+${s.answers.map((a) => `@${a.handle}${a.verdict ? ` [${a.verdict}]` : ""}: ${a.text}`).join("\n\n")}`;

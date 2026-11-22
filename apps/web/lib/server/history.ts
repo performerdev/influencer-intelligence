@@ -5,9 +5,12 @@ import { plans } from "@/config/plans";
 import { type User, isPlus } from "./auth";
 import { type Reference, loadBrain, resolveReferences, sql } from "./data";
 
+export type ChatKind = "single" | "group" | "all";
+const kindOf = (k: string): ChatKind => (k === "group" || k === "all" ? k : "single");
+
 export type ChatSummary = {
   id: string;
-  kind: "single" | "group";
+  kind: ChatKind;
   handles: string[];
   title: string;
   messages: number;
@@ -42,7 +45,7 @@ export async function listChats(user: User): Promise<ChatSummary[]> {
     .filter((r) => r.n > 0)
     .map((r) => ({
       id: r.id,
-      kind: r.kind === "group" ? "group" : "single",
+      kind: kindOf(r.kind),
       handles: r.handles ?? [],
       title: (r.title ?? "").slice(0, 140),
       messages: r.n,
@@ -51,7 +54,7 @@ export async function listChats(user: User): Promise<ChatSummary[]> {
 }
 
 /** One of your chats, ready to continue: messages with their references resolved. */
-export async function loadChat(user: User, id: string): Promise<{ kind: "single" | "group"; handles: string[]; items: HistoryItem[] } | null> {
+export async function loadChat(user: User, id: string): Promise<{ kind: ChatKind; handles: string[]; items: HistoryItem[] } | null> {
   if (!/^[0-9a-f-]{36}$/i.test(id)) return null;
   const db = sql();
   const [c] = await db<{ kind: string; influencer_ids: number[] }[]>`select kind, influencer_ids from chats where id = ${id} and user_id = ${user.id}`;
@@ -70,5 +73,5 @@ export async function loadChat(user: User, id: string): Promise<{ kind: "single"
     }
     items.push({ id: String(r.id), role: r.role, handle: r.role === "assistant" ? handle : null, content: r.content, verdict: r.verdict, refs, round: r.round ?? 0, brainVersion: r.brain_version });
   }
-  return { kind: c.kind === "group" ? "group" : "single", handles: c.influencer_ids.map((i) => handleOf.get(i)!).filter(Boolean), items };
+  return { kind: kindOf(c.kind), handles: c.influencer_ids.map((i) => handleOf.get(i)!).filter(Boolean), items };
 }

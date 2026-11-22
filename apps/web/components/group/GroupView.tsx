@@ -376,7 +376,8 @@ export function GroupView({ available, initial, history }: { available: Intellig
 
 /* ───────────────────────── pieces ───────────────────────── */
 
-function GroupAnswer({ item }: { item: Extract<Item, { kind: "ai" }> }) {
+/** One answer: streamed text, then [post:ID] references you can open, then the verdict. Also used by All minds. */
+export function GroupAnswer({ item }: { item: { content: string; streaming: boolean; refs: Reference[]; verdict: Verdict | null } }) {
   const [open, setOpen] = useState<Reference | null>(null);
   if (item.streaming) {
     const shown = normalizeRefs(item.content)

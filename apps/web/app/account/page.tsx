@@ -132,11 +132,13 @@ export default async function AccountPage({ searchParams }: { searchParams: Prom
                     className="flex items-baseline gap-4 py-3 transition-colors duration-fast hover:bg-panel"
                   >
                     <span className="w-[42%] shrink-0 truncate font-pixel text-sm sm:w-[32%]">
-                      {c.handles.map((h, i) => (
-                        <span key={h} style={{ color: colorOf.get(h) }}>
-                          {i ? " · " : ""}@{h}
-                        </span>
-                      ))}
+                      {c.kind === "all"
+                        ? "All minds"
+                        : c.handles.map((h, i) => (
+                            <span key={h} style={{ color: colorOf.get(h) }}>
+                              {i ? " · " : ""}@{h}
+                            </span>
+                          ))}
                     </span>
                     <span className="min-w-0 flex-1 truncate text-sm text-particle">{c.title}</span>
                     <span className="shrink-0 font-pixel text-xs text-muted">{c.updatedAt.slice(5, 10)}</span>

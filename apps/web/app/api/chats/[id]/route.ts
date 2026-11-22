@@ -18,7 +18,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ id: str
       chatId: id,
       kind: saved.kind,
       handles: saved.handles,
-      items: saved.items.map((i) => ({ id: i.id, role: i.role, handle: i.handle, content: i.content, verdict: i.verdict, refs: i.refs, brainVersion: i.brainVersion })),
+      items: saved.items.map((i) => ({ id: i.id, role: i.role, handle: i.handle, content: i.content, verdict: i.verdict, refs: i.refs, round: i.round, brainVersion: i.brainVersion })),
     },
     { headers: { "Cache-Control": "private, no-store" } },
   );

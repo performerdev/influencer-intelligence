@@ -13,10 +13,11 @@ import { callRows } from "@/lib/calls";
 import { type ApiBrain, toChatBrain } from "@/lib/chat-brain";
 import type { Intelligence } from "@/lib/intelligences";
 
+import { type AllHistory, AllMinds } from "./AllMinds";
 import { CallsDashboard } from "./CallsDashboard";
 import { Tools } from "./Tools";
 
-export type RecentChat = { id: string; kind: "single" | "group"; handles: string[]; title: string; updatedAt: string };
+export type RecentChat = { id: string; kind: "single" | "group" | "all"; handles: string[]; title: string; updatedAt: string };
 type Mode = "ask" | "check" | "bag";
 
 const MODES: { id: Mode; label: string }[] = [
@@ -25,6 +26,8 @@ const MODES: { id: Mode; label: string }[] = [
   { id: "bag", label: "Rate my bag" },
 ];
 const STORE = "ii.app.mind";
+/** what STORE holds while "All minds" is open */
+const ALL = "__all";
 
 /* one fetch per mind per page view */
 const brains = new Map<string, Promise<ApiBrain | null>>();
@@ -58,6 +61,9 @@ export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
   const [railOpen, setRailOpen] = useState(false);
   const [brain, setBrain] = useState<{ handle: string; data: ApiBrain | null } | null>(null);
   const [addHover, setAddHover] = useState(false);
+  // "All minds": one question to every mind, instead of one chosen mind
+  const [all, setAll] = useState(false);
+  const [allHistory, setAllHistory] = useState<AllHistory | null>(null);
 
   // the workspace fills the window: the page itself doesn't scroll while it's open
   useEffect(() => {
@@ -85,7 +91,8 @@ export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
     } else {
       try {
         const h = localStorage.getItem(STORE);
-        if (h && intelligences.some((i) => i.handle === h)) setHandle(h);
+        if (h === ALL) setAll(true);
+        else if (h && intelligences.some((i) => i.handle === h)) setHandle(h);
       } catch {}
       void loadList();
     }
@@ -110,7 +117,11 @@ export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
     const h = await fetch(`/api/chats/${c.id}`)
       .then((r) => (r.ok ? (r.json() as Promise<ChatHistory & { kind: string; handles: string[] }>) : null))
       .catch(() => null);
-    if (h && h.kind === "single" && h.handles[0]) {
+    if (h && h.kind === "all") {
+      setAll(true);
+      setAllHistory({ chatId: h.chatId, items: h.items as unknown as AllHistory["items"] });
+    } else if (h && h.kind === "single" && h.handles[0]) {
+      setAll(false);
       setHandle(h.handles[0]);
       setHistory({ chatId: h.chatId, items: h.items });
     } else {
@@ -125,6 +136,7 @@ export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
 
   /** A fresh chat with this mind. */
   const newChat = (h: string) => {
+    setAll(false);
     setHandle(h);
     setActive(null);
     setHistory(null);
@@ -132,12 +144,25 @@ export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
     setAddress(null);
   };
 
+  /** A fresh "All minds" conversation. */
+  const openAll = () => {
+    setAll(true);
+    setAllHistory(null);
+    setActive(null);
+    setSession((n) => n + 1);
+    setAddress(null);
+    setRailOpen(false);
+  };
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORE, all ? ALL : handle);
+    } catch {}
+  }, [all, handle]);
+
   useEffect(() => {
     if (!handle) return;
     let live = true;
-    try {
-      localStorage.setItem(STORE, handle);
-    } catch {}
     fetchBrain(handle).then((data) => live && setBrain({ handle, data }));
     return () => {
       live = false;
@@ -170,9 +195,21 @@ export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
       {railOpen && <button type="button" aria-label="Close" className="fixed inset-0 z-[55] bg-black/60 lg:hidden" onClick={() => setRailOpen(false)} />}
       <aside
         aria-label="Minds and chats"
-        className={`fixed inset-y-0 left-0 z-[60] flex w-[min(300px,86vw)] flex-col border-r border-line bg-void transition-transform duration-base ease-ii-out lg:static lg:z-auto lg:w-auto lg:translate-x-0 ${railOpen ? "translate-x-0" : "-translate-x-full"}`}
+        className={`fixed inset-y-0 left-0 z-[60] flex w-[min(300px,86vw)] flex-col border-r border-line bg-void pt-topbar lg:pt-0 transition-transform duration-base ease-ii-out lg:static lg:z-auto lg:w-auto lg:translate-x-0 ${railOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
         <div data-lenis-prevent className="min-h-0 flex-1 overflow-y-auto px-2.5 py-4">
+          <button
+            type="button"
+            onClick={openAll}
+            aria-current={all && !active}
+            className={`mb-4 flex w-full items-center justify-between gap-3 rounded-chip border px-2 py-2 text-left transition-colors duration-fast ${all ? "border-line bg-panel" : "border-line border-dashed hover:bg-panel"}`}
+          >
+            <span className="min-w-0">
+              <span className="block font-pixel text-sm leading-tight text-ceramic">All minds</span>
+              <span className="block truncate text-[11px] leading-tight text-muted">One question, every mind</span>
+            </span>
+            <MindStack minds={intelligences} size={22} />
+          </button>
           <p className="mb-2 flex justify-between px-2 font-pixel text-[11px] text-muted">
             <span>Minds</span>
             <span className="tabular-nums">{intelligences.length}</span>
@@ -186,12 +223,12 @@ export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
                   // start loading the brain while the pointer is still on its way
                   onPointerEnter={() => void fetchBrain(m.handle)}
                   onFocus={() => void fetchBrain(m.handle)}
-                  aria-current={m.handle === handle && !active}
+                  aria-current={!all && m.handle === handle && !active}
                   className={`grid w-full grid-cols-[32px_minmax(0,1fr)] items-center gap-3 rounded-chip border px-2 py-1.5 text-left transition-colors duration-fast ${
-                    m.handle === handle ? (active ? "border-transparent bg-panel/60" : "border-line bg-panel") : "border-transparent hover:bg-panel"
+                    !all && m.handle === handle ? (active ? "border-transparent bg-panel/60" : "border-line bg-panel") : "border-transparent hover:bg-panel"
                   }`}
                 >
-                  <BrainAvatar it={m} size={32} active={m.handle === handle} />
+                  <BrainAvatar it={m} size={32} active={!all && m.handle === handle} />
                   <span className="min-w-0">
                     <span className="block font-mono text-[10px] leading-tight" style={{ color: m.color }}>
                       {m.code}
@@ -228,7 +265,7 @@ export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
             <>
               <p className="mb-1 mt-6 flex items-center justify-between px-2 font-pixel text-[11px] text-muted">
                 <span>Recent chats</span>
-                <button type="button" onClick={() => pick(handle)} className="text-muted transition-colors duration-fast hover:text-ceramic">
+                <button type="button" onClick={() => (all ? openAll() : pick(handle))} className="text-muted transition-colors duration-fast hover:text-ceramic">
                   + New chat
                 </button>
               </p>
@@ -237,7 +274,7 @@ export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
                   const label = (
                     <>
                       {c.title || "Untitled"}
-                      <span className="ml-1.5 font-pixel text-[10px] text-muted">{c.kind === "group" ? `group · ${c.handles.length}` : `@${c.handles[0]}`}</span>
+                      <span className="ml-1.5 font-pixel text-[10px] text-muted">{c.kind === "group" ? `group · ${c.handles.length}` : c.kind === "all" ? "all minds" : `@${c.handles[0]}`}</span>
                     </>
                   );
                   const cls = "block w-full truncate rounded-chip border px-2 py-1.5 text-left text-sm transition-colors duration-fast";
@@ -272,81 +309,150 @@ export function AppHome({ intelligences }: { intelligences: Intelligence[] }) {
         </div>
       </aside>
 
-      {/* ── middle: the conversation or a tool ── */}
-      <section className="flex min-h-0 min-w-0 flex-col" aria-label={`@${it.handle}`}>
-        <header className="flex flex-wrap items-center gap-x-4 gap-y-3 border-b border-line px-gutter py-3 lg:px-6">
-          <button type="button" onClick={() => setRailOpen(true)} className="btn-line h-9 shrink-0 px-3 text-xs lg:hidden">
-            Minds
-          </button>
-          <div className="flex min-w-0 flex-1 items-center gap-3">
-            <BrainAvatar it={it} size={44} />
-            <div className="min-w-0">
-              <div className="flex items-baseline gap-2">
-                <span className="font-mono text-xs" style={{ color: it.color }}>
-                  {it.code}
-                </span>
-                <h1 className="truncate font-pixel text-body">@{it.handle}</h1>
+      {all && (
+        <>
+          {/* ── middle: All minds ── */}
+          <section className="flex min-h-0 min-w-0 flex-col" aria-label="All minds">
+            <header className="flex items-center gap-x-4 border-b border-line px-gutter py-3 lg:px-6">
+              <button type="button" onClick={() => setRailOpen(true)} className="btn-line h-9 shrink-0 px-3 text-xs lg:hidden">
+                Minds
+              </button>
+              <div className="flex min-h-[44px] min-w-0 flex-1 items-center gap-3">
+                <MindStack minds={intelligences} size={28} />
+                <div className="min-w-0">
+                  <h1 className="truncate font-pixel text-body">All minds</h1>
+                  <p className="truncate text-xs text-particle">Every mind at once. The ones with a view answer.</p>
+                </div>
               </div>
-              <p className="truncate text-xs text-particle">{it.oneLineMind ?? "Unofficial AI model built from public posts."}</p>
-            </div>
-          </div>
-          <div className="flex w-full items-center justify-between gap-3 sm:w-auto">
-            <div role="tablist" aria-label="Mode" className="flex rounded-chip border border-line">
-              {MODES.map((m) => (
-                <button
-                  key={m.id}
-                  role="tab"
-                  type="button"
-                  aria-selected={mode === m.id}
-                  onClick={() => {
-                    setMode(m.id);
-                    setView("chat");
-                  }}
-                  className={`px-3 py-1.5 font-pixel text-xs transition-colors duration-fast ${mode === m.id ? "bg-ceramic text-void" : "text-muted hover:text-ceramic"} ${m.id !== "ask" ? "border-l border-line" : ""}`}
-                >
-                  {m.label}
-                </button>
+            </header>
+            {opening ? (
+              <p className="px-gutter py-10 font-pixel text-xs text-muted lg:px-8">Opening your chat…</p>
+            ) : (
+              <AllMinds
+                key={`all:${session}`}
+                minds={intelligences}
+                history={allHistory?.chatId === active ? allHistory : null}
+                onChat={(id, title) => {
+                  setActive(id);
+                  setAddress(id);
+                  setRecent((r) => (r.some((x) => x.id === id) ? r : [{ id, kind: "all", handles: [], title, updatedAt: new Date().toISOString() }, ...r]));
+                }}
+                onContinue={(h) => pick(h)}
+              />
+            )}
+          </section>
+
+          {/* ── right: how it works, who's in ── */}
+          <aside data-lenis-prevent aria-label="How All minds works" className="hidden min-h-0 overflow-y-auto border-l border-line px-5 pb-20 pt-5 xl:block">
+            <h2 className="font-pixel text-body">How it works</h2>
+            <ol className="mt-3 grid list-decimal gap-2 pl-5 text-sm leading-relaxed text-particle marker:font-pixel marker:text-muted">
+              <li>Name a coin, and the minds that called it answer, most calls first, each with their record on it.</li>
+              <li>Ask anything else, and the minds whose focus fits answer.</li>
+              <li>Up to five answer side by side. A mind with nothing on it stays quiet instead of guessing.</li>
+            </ol>
+            <h3 className="mb-2 mt-8 flex justify-between font-pixel text-[11px] text-muted">
+              <span>In the room</span>
+              <span className="tabular-nums">{intelligences.length}</span>
+            </h3>
+            <ul className="grid gap-1">
+              {intelligences.map((m) => (
+                <li key={m.code}>
+                  <button type="button" onClick={() => pick(m.handle)} className="grid w-full grid-cols-[28px_minmax(0,1fr)] items-center gap-3 rounded-chip px-1.5 py-1.5 text-left transition-colors duration-fast hover:bg-panel">
+                    <BrainAvatar it={m} size={28} />
+                    <span className="min-w-0">
+                      <span className="flex items-baseline gap-2">
+                        <span className="font-mono text-[10px]" style={{ color: m.color }}>{m.code}</span>
+                        <span className="truncate font-pixel text-sm">@{m.handle}</span>
+                      </span>
+                      {m.oneLineMind && <span className="block truncate text-[11px] text-muted">{m.oneLineMind}</span>}
+                    </span>
+                  </button>
+                </li>
               ))}
+            </ul>
+          </aside>
+        </>
+      )}
+
+      {!all && (
+        <>
+          {/* ── middle: the conversation or a tool ── */}
+          <section className="flex min-h-0 min-w-0 flex-col" aria-label={`@${it.handle}`}>
+            <header className="flex flex-wrap items-center gap-x-4 gap-y-3 border-b border-line px-gutter py-3 lg:px-6">
+              <button type="button" onClick={() => setRailOpen(true)} className="btn-line h-9 shrink-0 px-3 text-xs lg:hidden">
+                Minds
+              </button>
+              <div className="flex min-w-0 flex-1 items-center gap-3">
+                <BrainAvatar it={it} size={44} />
+                <div className="min-w-0">
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-mono text-xs" style={{ color: it.color }}>
+                      {it.code}
+                    </span>
+                    <h1 className="truncate font-pixel text-body">@{it.handle}</h1>
+                  </div>
+                  <p className="truncate text-xs text-particle">{it.oneLineMind ?? "Unofficial AI model built from public posts."}</p>
+                </div>
+              </div>
+              <div className="flex w-full items-center justify-between gap-3 sm:w-auto">
+                <div role="tablist" aria-label="Mode" className="flex rounded-chip border border-line">
+                  {MODES.map((m) => (
+                    <button
+                      key={m.id}
+                      role="tab"
+                      type="button"
+                      aria-selected={mode === m.id}
+                      onClick={() => {
+                        setMode(m.id);
+                        setView("chat");
+                      }}
+                      className={`px-3 py-1.5 font-pixel text-xs transition-colors duration-fast ${mode === m.id ? "bg-ceramic text-void" : "text-muted hover:text-ceramic"} ${m.id !== "ask" ? "border-l border-line" : ""}`}
+                    >
+                      {m.label}
+                    </button>
+                  ))}
+                </div>
+                <button type="button" onClick={() => setView(view === "chat" ? "calls" : "chat")} className="btn-line h-8 shrink-0 px-3 text-xs xl:hidden">
+                  {view === "chat" ? "Calls" : "Chat"}
+                </button>
+              </div>
+            </header>
+
+            <div className={`min-h-0 flex-1 flex-col ${view === "calls" ? "hidden xl:flex" : "flex"}`}>
+              {ready === undefined || opening ? (
+                <p className="px-gutter py-10 font-pixel text-xs text-muted lg:px-8">{opening ? "Opening your chat…" : `Loading @${it.handle}'s brain…`}</p>
+              ) : mode === "ask" ? (
+                <ChatView
+                  key={`${it.handle}:${session}`}
+                  embedded
+                  intelligence={chatIt}
+                  brain={chatBrain}
+                  history={history?.chatId === active ? history : null}
+                  onChat={(id, title) => {
+                    setActive(id);
+                    setAddress(id);
+                    setRecent((r) => [{ id, kind: "single", handles: [it.handle], title, updatedAt: new Date().toISOString() }, ...r.filter((x) => x.id !== id)]);
+                  }}
+                />
+              ) : ready ? (
+                <Tools key={`${it.handle}-${mode}`} mode={mode} mind={{ handle: it.handle, code: it.code, color: it.color }} examples={examples} />
+              ) : (
+                <p className="px-gutter py-10 text-sm text-muted lg:px-8">@{it.handle}&apos;s brain is still being built. The tools open once it&apos;s ready.</p>
+              )}
             </div>
-            <button type="button" onClick={() => setView(view === "chat" ? "calls" : "chat")} className="btn-line h-8 shrink-0 px-3 text-xs xl:hidden">
-              {view === "chat" ? "Calls" : "Chat"}
-            </button>
-          </div>
-        </header>
+            {view === "calls" && (
+              <div data-lenis-prevent className="min-h-0 flex-1 overflow-y-auto px-gutter py-5 xl:hidden">
+                {ready ? <CallsDashboard handle={it.handle} color={it.color} rows={rows} calls={ready.files.calls} stats={ready.files.stats} /> : <p className="text-sm text-muted">No call record yet.</p>}
+              </div>
+            )}
+          </section>
 
-        <div className={`min-h-0 flex-1 flex-col ${view === "calls" ? "hidden xl:flex" : "flex"}`}>
-          {ready === undefined || opening ? (
-            <p className="px-gutter py-10 font-pixel text-xs text-muted lg:px-8">{opening ? "Opening your chat…" : `Loading @${it.handle}'s brain…`}</p>
-          ) : mode === "ask" ? (
-            <ChatView
-              key={`${it.handle}:${session}`}
-              embedded
-              intelligence={chatIt}
-              brain={chatBrain}
-              history={history?.chatId === active ? history : null}
-              onChat={(id, title) => {
-                setActive(id);
-                setAddress(id);
-                setRecent((r) => [{ id, kind: "single", handles: [it.handle], title, updatedAt: new Date().toISOString() }, ...r.filter((x) => x.id !== id)]);
-              }}
-            />
-          ) : ready ? (
-            <Tools key={`${it.handle}-${mode}`} mode={mode} mind={{ handle: it.handle, code: it.code, color: it.color }} examples={examples} />
-          ) : (
-            <p className="px-gutter py-10 text-sm text-muted lg:px-8">@{it.handle}&apos;s brain is still being built. The tools open once it&apos;s ready.</p>
-          )}
-        </div>
-        {view === "calls" && (
-          <div data-lenis-prevent className="min-h-0 flex-1 overflow-y-auto px-gutter py-5 xl:hidden">
-            {ready ? <CallsDashboard handle={it.handle} color={it.color} rows={rows} calls={ready.files.calls} stats={ready.files.stats} /> : <p className="text-sm text-muted">No call record yet.</p>}
-          </div>
-        )}
-      </section>
-
-      {/* ── right: the call record ── */}
-      <aside data-lenis-prevent aria-label={`@${it.handle}'s calls`} className="hidden min-h-0 overflow-y-auto border-l border-line px-5 pb-20 pt-5 xl:block">
-        {ready ? <CallsDashboard handle={it.handle} color={it.color} rows={rows} calls={ready.files.calls} stats={ready.files.stats} /> : <p className="font-pixel text-xs text-muted">{ready === null ? "No call record yet." : "Loading…"}</p>}
-      </aside>
+          {/* ── right: the call record ── */}
+          <aside data-lenis-prevent aria-label={`@${it.handle}'s calls`} className="hidden min-h-0 overflow-y-auto border-l border-line px-5 pb-20 pt-5 xl:block">
+            {ready ? <CallsDashboard handle={it.handle} color={it.color} rows={rows} calls={ready.files.calls} stats={ready.files.stats} /> : <p className="font-pixel text-xs text-muted">{ready === null ? "No call record yet." : "Loading…"}</p>}
+          </aside>
+        </>
+      )}
     </div>
   );
 }
