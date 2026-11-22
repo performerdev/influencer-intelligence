@@ -7,6 +7,7 @@ import { cookies } from "next/headers";
 import { plans } from "@/config/plans";
 
 import { sql } from "./data";
+import { isAdmin } from "./ops";
 
 /**
  * Accounts: log in with X (OAuth 2.0 + PKCE, scopes tweet.read users.read —
@@ -186,10 +187,13 @@ export type Usage = {
   capped: boolean;
   maxAnswerTokens: number;
   debate: boolean;
+  /** admins: no session limit (the site-wide daily spend ceiling still applies) */
+  unlimited: boolean;
 };
 
 export function usageOf(u: User | null): Usage {
-  if (!u) return { plan: "guest", used: 0, sessionUsd: 0, spentUsd: 0, resetsAt: null, capped: false, maxAnswerTokens: plans.free.maxAnswerTokens, debate: false };
+  if (!u) return { plan: "guest", used: 0, sessionUsd: 0, spentUsd: 0, resetsAt: null, capped: false, maxAnswerTokens: plans.free.maxAnswerTokens, debate: false, unlimited: false };
+  if (isAdmin(u)) return { plan: "plus", used: 0, sessionUsd: plans.plus.sessionUsd, spentUsd: 0, resetsAt: null, capped: false, maxAnswerTokens: plans.plus.maxAnswerTokens, debate: plans.plus.debate, unlimited: true };
   const plus = isPlus(u);
   const capped = plus && Number(u.plus_spent_usd) >= plans.plus.periodCapUsd;
   const p = plus ? plans.plus : plans.free;
@@ -206,6 +210,7 @@ export function usageOf(u: User | null): Usage {
     capped,
     maxAnswerTokens: p.maxAnswerTokens,
     debate: p.debate,
+    unlimited: false,
   };
 }
 

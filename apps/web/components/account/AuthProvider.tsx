@@ -6,7 +6,7 @@ import { createContext, useCallback, useContext, useEffect, useState } from "rea
 export type Me = {
   loginAvailable: boolean;
   user: { handle: string; name: string | null; avatar: string | null; plus: boolean; plusUntil: string | null } | null;
-  usage: { plan: "guest" | "free" | "plus"; used: number; resetsAt: string | null; capped: boolean; debate: boolean };
+  usage: { plan: "guest" | "free" | "plus"; used: number; resetsAt: string | null; capped: boolean; debate: boolean; unlimited?: boolean };
   /** post an answer on X → a free 2-hour session (once a day); null for guests */
   shareBonus?: { available: boolean } | null;
 };
@@ -115,6 +115,7 @@ export function UsageMeter({ className = "" }: { className?: string }) {
     );
   }
   const u = me.usage;
+  if (u.unlimited) return <p className={`font-pixel text-xs text-muted ${className}`}>Admin · unlimited session</p>;
   const left = Math.max(0, 1 - u.used);
   const reset = u.resetsAt ? untilText(u.resetsAt) : null;
   const cells = 20;

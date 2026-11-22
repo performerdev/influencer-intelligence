@@ -10,7 +10,7 @@ export async function GET() {
     loginAvailable: xLoginConfigured(),
     user: u ? { handle: u.handle, name: u.name, avatar: u.avatar_url, plus: isPlus(u), plusUntil: u.plus_until } : null,
     // percentages and times only — budgets stay server-side
-    usage: (({ plan, used, resetsAt, capped, debate }) => ({ plan, used, resetsAt, capped, debate }))(usageOf(u)),
+    usage: (({ plan, used, resetsAt, capped, debate, unlimited }) => ({ plan, used, resetsAt, capped, debate, unlimited }))(usageOf(u)),
     // post an answer on X → a free 2-hour session, once a day
     shareBonus: u ? { available: shareBonusAvailable(u) } : null,
   });

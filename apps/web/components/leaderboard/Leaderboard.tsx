@@ -11,7 +11,6 @@ import { median, share, signed } from "@/lib/record";
 export type BoardRow = [number, number, 0 | 1 | 2, number | null, number | null, number, string];
 type Period = "all" | "1y" | "90d";
 type Kinds = "all" | "0" | "1" | "2";
-type H = "7" | "30";
 
 const MIN_N = 20;
 const today = () => Math.floor(Date.now() / 864e5);
@@ -37,13 +36,12 @@ function Seg<T extends string>({ label, value, options, onChange }: { label: str
 
 /**
  * Who on CT calls best: every mind's priced calls, ranked by how often the
- * price moved their way within 7 or 30 days. Fewer than 20 priced calls in the
- * selection is too small to rank, so those minds sit at the bottom.
+ * price moved their way within 7 days (30 days shown alongside). Fewer than 20
+ * priced calls in the selection is too small to rank, so those minds sit at the bottom.
  */
 export function Leaderboard({ rows, tickers, minds }: { rows: BoardRow[]; tickers: string[]; minds: Intelligence[] }) {
   const [period, setPeriod] = useState<Period>("all");
   const [kinds, setKinds] = useState<Kinds>("all");
-  const [h, setH] = useState<H>("7");
 
   const sel = useMemo(() => {
     const from = period === "all" ? -Infinity : today() - (period === "1y" ? 365 : 90);
@@ -53,8 +51,8 @@ export function Leaderboard({ rows, tickers, minds }: { rows: BoardRow[]; ticker
   const board = useMemo(() => {
     const by = new Map<number, BoardRow[]>();
     for (const r of sel) by.set(r[0], [...(by.get(r[0]) ?? []), r]);
-    const k = h === "7" ? 3 : 4;
-    const o = h === "7" ? 4 : 3;
+    const k = 3;
+    const o = 4;
     return [...by.entries()]
       .map(([m, rs]) => {
         const xs = rs.map((r) => r[k]).filter((x): x is number => x != null);
@@ -72,13 +70,13 @@ export function Leaderboard({ rows, tickers, minds }: { rows: BoardRow[]; ticker
       })
       .filter((b) => b.n > 0)
       .sort((a, b) => Number(b.n >= MIN_N) - Number(a.n >= MIN_N) || (b.worked ?? 0) - (a.worked ?? 0) || (b.med ?? 0) - (a.med ?? 0));
-  }, [sel, h]);
+  }, [sel]);
 
   const extremes = useMemo(() => {
-    const k = h === "7" ? 3 : 4;
+    const k = 3;
     const xs = sel.filter((r) => r[k] != null).sort((a, b) => (b[k] as number) - (a[k] as number));
     return { best: xs.slice(0, 8), worst: xs.slice(-8).reverse(), k };
-  }, [sel, h]);
+  }, [sel]);
 
   const ranked = board.filter((b) => b.n >= MIN_N).length;
 
@@ -87,7 +85,6 @@ export function Leaderboard({ rows, tickers, minds }: { rows: BoardRow[]; ticker
       <div className="flex flex-wrap items-center gap-2">
         <Seg label="Period" value={period} onChange={setPeriod} options={[["all", "All time"], ["1y", "Last 12 months"], ["90d", "Last 90 days"]]} />
         <Seg label="Assets" value={kinds} onChange={setKinds} options={[["all", "All"], ["0", "Majors"], ["1", "Alts & memes"], ["2", "Stocks"]]} />
-        <Seg label="Horizon" value={h} onChange={setH} options={[["7", "7 days"], ["30", "30 days"]]} />
       </div>
 
       <div className="mt-5 overflow-x-auto border border-line" data-lenis-prevent>
@@ -97,9 +94,9 @@ export function Leaderboard({ rows, tickers, minds }: { rows: BoardRow[]; ticker
               <th className="w-10 px-3 py-2.5 font-normal">#</th>
               <th className="px-3 py-2.5 font-normal">Mind</th>
               <th className="px-3 py-2.5 text-right font-normal">Priced calls</th>
-              <th className="px-3 py-2.5 text-right font-normal">Worked in {h}d</th>
-              <th className="px-3 py-2.5 text-right font-normal">Median move</th>
-              <th className="px-3 py-2.5 text-right font-normal">Worked in {h === "7" ? "30" : "7"}d</th>
+              <th className="px-3 py-2.5 text-right font-normal">Worked in 7d</th>
+              <th className="px-3 py-2.5 text-right font-normal">Median 7d</th>
+              <th className="px-3 py-2.5 text-right font-normal">Worked in 30d</th>
               <th className="px-3 py-2.5 font-normal">Best call</th>
             </tr>
           </thead>
@@ -131,7 +128,7 @@ export function Leaderboard({ rows, tickers, minds }: { rows: BoardRow[]; ticker
                   <td className="px-3 py-3">
                     {b.best ? (
                       <a href={`https://x.com/${it.handle}/status/${b.best[6]}`} target="_blank" rel="noreferrer" className="hover:text-ceramic">
-                        ${tickers[b.best[5]]} <span className="text-ceramic">{signed(b.best[h === "7" ? 3 : 4])}</span> <span className="text-muted">{dayOf(b.best[1])} ↗</span>
+                        ${tickers[b.best[5]]} <span className="text-ceramic">{signed(b.best[3])}</span> <span className="text-muted">{dayOf(b.best[1])} ↗</span>
                       </a>
                     ) : (
                       "—"
@@ -151,7 +148,7 @@ export function Leaderboard({ rows, tickers, minds }: { rows: BoardRow[]; ticker
         </table>
       </div>
       <p className="mt-3 font-pixel text-xs text-muted">
-        {ranked} of {board.length} minds ranked. Ranked by how often the price moved the call&apos;s way within {h} days, then by the median move. Under {MIN_N} priced calls is listed but not ranked.
+        {ranked} of {board.length} minds ranked. Ranked by how often the price moved the call&apos;s way within 7 days, then by the median move. Under {MIN_N} priced calls is listed but not ranked.
       </p>
 
       <div className="mt-12 grid gap-10 lg:grid-cols-2">
@@ -163,7 +160,7 @@ export function Leaderboard({ rows, tickers, minds }: { rows: BoardRow[]; ticker
         ).map(([title, list]) => (
           <section key={title}>
             <h2 className="text-h3">{title}</h2>
-            <p className="mt-1 font-pixel text-xs text-muted">Move {h} days after the call, in its favor</p>
+            <p className="mt-1 font-pixel text-xs text-muted">Move 7 days after the call, in its favor</p>
             <ul className="mt-4 divide-y divide-line border border-line">
               {list.map((r) => {
                 const it = minds[r[0]];
