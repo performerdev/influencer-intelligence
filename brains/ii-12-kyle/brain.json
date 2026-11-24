@@ -1,0 +1,22 @@
+{
+  "code": "ii-12",
+  "handle": "kyle",
+  "version": 1,
+  "distilled_at": "2026-11-24T17:16:48.287Z",
+  "model": "deepseek-v4-pro",
+  "prompt_tokens_estimate": 25726,
+  "posts_parsed": 2430,
+  "posts_from": "2009-04-25",
+  "posts_to": "2026-11-23",
+  "one_line_mind": "Ships products, hunts edge, gets conviction, bets ~1%.",
+  "calls_tracked": 40,
+  "files": [
+    "identity.md",
+    "mind.md",
+    "rules.md",
+    "voice.md",
+    "examples.json",
+    "calls.json",
+    "stats.json"
+  ]
+}

@@ -1,0 +1,402 @@
+[
+  {
+    "date": "2019-04-06",
+    "ticker": "ETH",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Used @UniswapExchange to buy more ETH with my DAI",
+    "post_id": "1114616519286247430",
+    "url": "https://x.com/kyle/status/1114616519286247430"
+  },
+  {
+    "date": "2019-11-17",
+    "ticker": "UNI",
+    "chain": "evm",
+    "address": "0xb9808D62A91DE4838d85A692F1df2f8582bd208A",
+    "direction": "buy",
+    "quote": "give me some 🦄UNI and 🐷PIGI tokens on Layer 2!",
+    "post_id": "1196113764380270592",
+    "url": "https://x.com/kyle/status/1196113764380270592"
+  },
+  {
+    "date": "2019-11-17",
+    "ticker": "PIGI",
+    "chain": "evm",
+    "address": "0xb9808D62A91DE4838d85A692F1df2f8582bd208A",
+    "direction": "buy",
+    "quote": "give me some 🦄UNI and 🐷PIGI tokens on Layer 2!",
+    "post_id": "1196113764380270592",
+    "url": "https://x.com/kyle/status/1196113764380270592"
+  },
+  {
+    "date": "2022-10-26",
+    "ticker": "DAWNPASS",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "@DawnPassBot tells you if you are allowlisted right here on Twitter and gives you a link to mint if you are.",
+    "post_id": "1585340583434137600",
+    "url": "https://x.com/kyle/status/1585340583434137600"
+  },
+  {
+    "date": "2022-11-10",
+    "ticker": "DAWNPASS",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "you can mint the Dawn Pass for fun, access before Monday, and OG status. It's free",
+    "post_id": "1590800242949386240",
+    "url": "https://x.com/kyle/status/1590800242949386240"
+  },
+  {
+    "date": "2023-03-25",
+    "ticker": "ONCHAINBANDITS",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Bought @OnChainBandits. Staked @OnChainBandits. Scouted @OnChainBandits.",
+    "post_id": "1639741350953230336",
+    "url": "https://x.com/kyle/status/1639741350953230336"
+  },
+  {
+    "date": "2023-08-07",
+    "ticker": "CRYPTODICKBUTT",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "1D = 1B",
+    "post_id": "1688610269570764801",
+    "url": "https://x.com/kyle/status/1688610269570764801"
+  },
+  {
+    "date": "2023-12-12",
+    "ticker": "POINTS",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "The next memecoin will be called $POINTS. You won’t be able earn it. It will have no other purpose besides being a memecoin. And it will rip.",
+    "post_id": "1734712777153958123",
+    "url": "https://x.com/kyle/status/1734712777153958123"
+  },
+  {
+    "date": "2024-01-30",
+    "ticker": "PG",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "brb longing Procter and Gamble",
+    "post_id": "1752343105494253960",
+    "url": "https://x.com/kyle/status/1752343105494253960"
+  },
+  {
+    "date": "2025-03-23",
+    "ticker": "HIGHER",
+    "chain": "evm",
+    "address": "0x0578d8A44db98B23BF096A382e016e29a5Ce0ffe",
+    "direction": "buy",
+    "quote": ".@bankrbot buy $25 of $higher 0x0578d8A44db98B23BF096A382e016e29a5Ce0ffe",
+    "post_id": "1903838424575942761",
+    "url": "https://x.com/kyle/status/1903838424575942761"
+  },
+  {
+    "date": "2025-05-22",
+    "ticker": "CLICKER",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "I’m up 500% / $25k on my first Clicker ░░░░░░. @clickerxyz",
+    "post_id": "1925551976600809925",
+    "url": "https://x.com/kyle/status/1925551976600809925"
+  },
+  {
+    "date": "2025-09-19",
+    "ticker": "PWEASE",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "I bought more pwease.",
+    "post_id": "1968871176668664093",
+    "url": "https://x.com/kyle/status/1968871176668664093"
+  },
+  {
+    "date": "2025-10-17",
+    "ticker": "PWEASE",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "I bought more pwease. $2.6M MC.",
+    "post_id": "1979173688860713249",
+    "url": "https://x.com/kyle/status/1979173688860713249"
+  },
+  {
+    "date": "2025-11-08",
+    "ticker": "MACHINES",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "I’m up 8.75x on MACHINES thanks to @pratyushrungta’s trade comment.",
+    "post_id": "1987264926834893141",
+    "url": "https://x.com/kyle/status/1987264926834893141"
+  },
+  {
+    "date": "2025-12-03",
+    "ticker": "CLICKER",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "running a $1k --&gt; $100k challenge on this new address.",
+    "post_id": "1996258485307125974",
+    "url": "https://x.com/kyle/status/1996258485307125974"
+  },
+  {
+    "date": "2025-12-04",
+    "ticker": "CLICKER",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "2x now to $2k. Most of my wins historically have come from longer term larger size holds",
+    "post_id": "1996659226060714319",
+    "url": "https://x.com/kyle/status/1996659226060714319"
+  },
+  {
+    "date": "2026-07-21",
+    "ticker": "NET",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "I hold $NET and $FWA. Not $FLETCH.",
+    "post_id": "2079654655538123218",
+    "url": "https://x.com/kyle/status/2079654655538123218"
+  },
+  {
+    "date": "2026-07-21",
+    "ticker": "FWA",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "I hold $NET and $FWA. Not $FLETCH.",
+    "post_id": "2079654655538123218",
+    "url": "https://x.com/kyle/status/2079654655538123218"
+  },
+  {
+    "date": "2026-07-23",
+    "ticker": "INDEX",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "1% of INDEX sub $3M, of PONS sub $10M, and of FWA sub $1M",
+    "post_id": "2080136771547943101",
+    "url": "https://x.com/kyle/status/2080136771547943101"
+  },
+  {
+    "date": "2026-07-23",
+    "ticker": "PONS",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "1% of INDEX sub $3M, of PONS sub $10M, and of FWA sub $1M",
+    "post_id": "2080136771547943101",
+    "url": "https://x.com/kyle/status/2080136771547943101"
+  },
+  {
+    "date": "2026-07-23",
+    "ticker": "FWA",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "1% of INDEX sub $3M, of PONS sub $10M, and of FWA sub $1M",
+    "post_id": "2080136771547943101",
+    "url": "https://x.com/kyle/status/2080136771547943101"
+  },
+  {
+    "date": "2026-07-23",
+    "ticker": "FWA",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "somehow topticked with a little test sell.",
+    "post_id": "2080258744051482732",
+    "url": "https://x.com/kyle/status/2080258744051482732"
+  },
+  {
+    "date": "2026-07-23",
+    "ticker": "FWA",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "still have a bag, mostly on mcclick.eth",
+    "post_id": "2080260797209416064",
+    "url": "https://x.com/kyle/status/2080260797209416064"
+  },
+  {
+    "date": "2026-07-29",
+    "ticker": "PONS",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "not buying right now.",
+    "post_id": "2082543849025515818",
+    "url": "https://x.com/kyle/status/2082543849025515818"
+  },
+  {
+    "date": "2026-07-30",
+    "ticker": "PONS",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "Okay definitely not buying this thing.",
+    "post_id": "2082654693730222192",
+    "url": "https://x.com/kyle/status/2082654693730222192"
+  },
+  {
+    "date": "2026-08-10",
+    "ticker": "STONKROKER",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "obviously i'm sidelined.",
+    "post_id": "2086845791151559091",
+    "url": "https://x.com/kyle/status/2086845791151559091"
+  },
+  {
+    "date": "2026-08-16",
+    "ticker": "FWA",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "My positions are ~0.5-1% of: - FWA (novel gacha)",
+    "post_id": "2088973932703486411",
+    "url": "https://x.com/kyle/status/2088973932703486411"
+  },
+  {
+    "date": "2026-08-16",
+    "ticker": "LAUNCHONSF",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "My positions are ~0.5-1% of: - FWA (novel gacha) - @LaunchOnSF (Solana stock pairs) - frong (Uniswap launchpad proxy) - PONS (Robinhood meme",
+    "post_id": "2088973932703486411",
+    "url": "https://x.com/kyle/status/2088973932703486411"
+  },
+  {
+    "date": "2026-08-16",
+    "ticker": "FRONG",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "My positions are ~0.5-1% of: - FWA (novel gacha) - @LaunchOnSF (Solana stock pairs) - frong (Uniswap launchpad proxy) - PONS (Robinhood meme",
+    "post_id": "2088973932703486411",
+    "url": "https://x.com/kyle/status/2088973932703486411"
+  },
+  {
+    "date": "2026-08-16",
+    "ticker": "PONS",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "My positions are ~0.5-1% of: - FWA (novel gacha) - @LaunchOnSF (Solana stock pairs) - frong (Uniswap launchpad proxy) - PONS (Robinhood meme",
+    "post_id": "2088973932703486411",
+    "url": "https://x.com/kyle/status/2088973932703486411"
+  },
+  {
+    "date": "2026-08-16",
+    "ticker": "DELTALIQUIDITY",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "My positions are ~0.5-1% of: - FWA (novel gacha) - @LaunchOnSF (Solana stock pairs) - frong (Uniswap launchpad proxy) - PONS (Robinhood meme",
+    "post_id": "2088973932703486411",
+    "url": "https://x.com/kyle/status/2088973932703486411"
+  },
+  {
+    "date": "2026-08-16",
+    "ticker": "NETNETCAP",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "My positions are ~0.5-1% of: - FWA (novel gacha) - @LaunchOnSF (Solana stock pairs) - frong (Uniswap launchpad proxy) - PONS (Robinhood meme",
+    "post_id": "2088973932703486411",
+    "url": "https://x.com/kyle/status/2088973932703486411"
+  },
+  {
+    "date": "2026-08-16",
+    "ticker": "STOCKRIPX",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "My positions are ~0.5-1% of: - FWA (novel gacha) - @LaunchOnSF (Solana stock pairs) - frong (Uniswap launchpad proxy) - PONS (Robinhood meme",
+    "post_id": "2088973932703486411",
+    "url": "https://x.com/kyle/status/2088973932703486411"
+  },
+  {
+    "date": "2026-08-16",
+    "ticker": "BARRONS_ALT",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "My positions are ~0.5-1% of: - FWA (novel gacha) - @LaunchOnSF (Solana stock pairs) - frong (Uniswap launchpad proxy) - PONS (Robinhood meme",
+    "post_id": "2088973932703486411",
+    "url": "https://x.com/kyle/status/2088973932703486411"
+  },
+  {
+    "date": "2026-08-16",
+    "ticker": "JANITORCTO",
+    "chain": null,
+    "address": null,
+    "direction": "hold",
+    "quote": "My positions are ~0.5-1% of: - FWA (novel gacha) - @LaunchOnSF (Solana stock pairs) - frong (Uniswap launchpad proxy) - PONS (Robinhood meme",
+    "post_id": "2088973932703486411",
+    "url": "https://x.com/kyle/status/2088973932703486411"
+  },
+  {
+    "date": "2026-08-16",
+    "ticker": "DEEP",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "Farming is too brutal and I think prop AMMs will win for RWA liquidity, so sitting this one out.",
+    "post_id": "2089009522622771604",
+    "url": "https://x.com/kyle/status/2089009522622771604"
+  },
+  {
+    "date": "2026-08-31",
+    "ticker": "MSTR",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "Some leveling out here. AMC still rough. But re-entered a MSTR pair.",
+    "post_id": "2094239229605822807",
+    "url": "https://x.com/kyle/status/2094239229605822807"
+  },
+  {
+    "date": "2026-09-03",
+    "ticker": "PONS",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "At one point I held 1% of both and got shaken out. Re-entered higher tho.",
+    "post_id": "2095532636173205937",
+    "url": "https://x.com/kyle/status/2095532636173205937"
+  },
+  {
+    "date": "2026-09-07",
+    "ticker": "LAPTOP",
+    "chain": null,
+    "address": null,
+    "direction": "sell",
+    "quote": "Here’s an idea: don’t buy this. Stop letting them extract.",
+    "post_id": "2096981113738563762",
+    "url": "https://x.com/kyle/status/2096981113738563762"
+  },
+  {
+    "date": "2026-09-21",
+    "ticker": "STONK",
+    "chain": null,
+    "address": null,
+    "direction": "buy",
+    "quote": "had 1% of STONK sub $1M MC.",
+    "post_id": "2102163871968415937",
+    "url": "https://x.com/kyle/status/2102163871968415937"
+  }
+]
