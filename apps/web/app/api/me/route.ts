@@ -2,12 +2,16 @@ import { currentUser, isPlus, usageOf, xLoginConfigured } from "@/lib/server/aut
 import { setShowAddedBy } from "@/lib/server/community";
 import { refreshListings } from "@/lib/server/listings";
 import { shareBonusAvailable } from "@/lib/server/share";
+import { sweep } from "@/lib/server/sweep";
+import { after } from "next/server";
 
 export const dynamic = "force-dynamic";
 
 /** Who is this, which plan, how much of the session is left. Never returns tokens or secrets. */
 export async function GET() {
   const u = await currentUser().catch(() => null);
+  // every page asks for this: a cheap moment to pick up payments made from a phone (after the response)
+  after(() => sweep({ budgetMs: 8_000, minGapMs: 180_000 }).catch(() => null));
   return Response.json({
     loginAvailable: xLoginConfigured(),
     user: u ? { handle: u.handle, name: u.name, avatar: u.avatar_url, plus: isPlus(u), plusUntil: u.plus_until } : null,

@@ -158,10 +158,12 @@ async function markPaid(p: PaymentRow, signature: string): Promise<{ status: "pa
       added = true;
       return;
     }
+    // Paying while Plus is still on stacks the days and adds one more period's fair-use allowance
+    // (spent can go below zero: what's left of this period carries over). Paying after it ran out starts fresh.
     await tx`
       update users set
         plus_until = greatest(coalesce(plus_until, now()), now()) + make_interval(days => ${plans.plus.days}),
-        plus_spent_usd = case when plus_until is null or plus_until < now() then 0 else plus_spent_usd end
+        plus_spent_usd = case when plus_until is null or plus_until < now() then 0 else plus_spent_usd - ${plans.plus.periodCapUsd} end
       where id = ${p.user_id}`;
   });
   if (added) await dispatchJobs();

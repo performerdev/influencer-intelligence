@@ -29,7 +29,17 @@ export function createClient(opts: { minIntervalMs: number; maxRetries?: number;
         await sleep(backoff(attempt));
         continue;
       }
-      if (res.ok) return res.json();
+      if (res.ok) {
+        try {
+          return await res.json();
+        } catch (err) {
+          // the connection dropped mid-body ("terminated") or the body isn't JSON: ask again, like a failed fetch
+          if (attempt >= maxRetries) throw err;
+          console.warn(`response cut off (${(err as Error).message}); retrying`);
+          await sleep(backoff(attempt));
+          continue;
+        }
+      }
       const body = await res.text().catch(() => "");
       const retryable = res.status === 429 || res.status >= 500;
       if (!retryable || attempt >= maxRetries) throw new HttpError(res.status, body, url);

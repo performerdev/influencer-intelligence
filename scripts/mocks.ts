@@ -63,7 +63,8 @@ const ts = (t: T) => new Date(t.createdAt).getTime() / 1000;
 /* ───────────────────────── mock APIs ───────────────────────── */
 
 export const calls: Record<string, number> = {};
-const paidRefs = new Set<string>();
+/** reference → USDC units the mock wallet sent with it (?amount= on /solana/pay; 10 USDC when not given) */
+const paidRefs = new Map<string, number>();
 const plainSends: { signature: string; units: number; time: number }[] = [];
 const MOCK_USDC_ACCOUNT = "MockUsdcAccount1111111111111111111111111111";
 const MOCK_PAYER = "MockPayerWa11et111111111111111111111111111111";
@@ -238,12 +239,20 @@ export const api = createServer(async (req, res) => {
   /* ── Solana JSON-RPC (Plus payments) ── */
   if (url.pathname === "/solana/pay") {
     // test hook: mark a reference as paid
-    paidRefs.add(q.get("ref") ?? "");
+    paidRefs.set(q.get("ref") ?? "", Math.round(Number(q.get("amount") ?? "10") * 1e6));
     return send({ ok: true });
   }
   if (url.pathname === "/solana/send") {
     // test hook: a plain USDC transfer to the recipient (no reference), e.g. ?amount=10.0371
-    const signature = `MockPay${String(plainSends.length + 1).padStart(70, "1")}`;
+    // the counter in base58, padded with "1" (base58's zero), so every signature is different and valid
+    const A = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+    let n = plainSends.length + 1;
+    let tag = "";
+    do {
+      tag = A[n % 58] + tag;
+      n = Math.floor(n / 58);
+    } while (n > 0);
+    const signature = `MockPay${tag.padStart(70, "1")}`;
     plainSends.unshift({ signature, units: Math.round(Number(q.get("amount") ?? "0") * 1e6), time: Math.floor(Date.now() / 1000) });
     return send({ ok: true, signature });
   }
@@ -270,11 +279,12 @@ export const api = createServer(async (req, res) => {
     if (b.method === "getTransaction") {
       const owner = process.env.NEXT_PUBLIC_PLUS_RECIPIENT || "H1Gck5JTfM4T67jQ1Q5hgRFBRgqbLGNrVVGDXc8t7bqz";
       const mint = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v";
+      const units = [...paidRefs].find(([ref]) => b.params[0] === `sig-${ref.slice(0, 8)}`)?.[1] ?? 10_000_000;
       return ok({
         meta: {
           err: null,
           preTokenBalances: [{ accountIndex: 2, mint, owner, uiTokenAmount: { amount: "5000000" } }, { accountIndex: 1, mint, owner: MOCK_PAYER, uiTokenAmount: { amount: "50000000" } }],
-          postTokenBalances: [{ accountIndex: 2, mint, owner, uiTokenAmount: { amount: "15000000" } }, { accountIndex: 1, mint, owner: MOCK_PAYER, uiTokenAmount: { amount: "40000000" } }],
+          postTokenBalances: [{ accountIndex: 2, mint, owner, uiTokenAmount: { amount: String(5_000_000 + units) } }, { accountIndex: 1, mint, owner: MOCK_PAYER, uiTokenAmount: { amount: String(50_000_000 - units) } }],
         },
       });
     }

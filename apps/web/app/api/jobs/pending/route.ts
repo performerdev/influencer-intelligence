@@ -1,11 +1,9 @@
 import { refreshListings } from "@/lib/server/listings";
 import { sql } from "@/lib/server/data";
 import { json } from "@/lib/server/http";
-import { settle } from "@/lib/server/plus";
+import { sweep } from "@/lib/server/sweep";
 
 export const dynamic = "force-dynamic";
-
-let last = 0;
 
 /**
  * Called by the build worker's schedule (and harmless for anyone else):
@@ -14,12 +12,8 @@ let last = 0;
  */
 export async function GET() {
   const db = sql();
-  if (Date.now() - last > 30_000) {
-    last = Date.now();
-    const pending = await db<{ reference: string }[]>`
-      select reference from payments where status = 'pending' and created_at > now() - interval '1 day' order by created_at desc limit 20`.catch(() => []);
-    for (const p of pending) await settle(p.reference).catch(() => null);
-  }
+  // the worker's curl waits 30 s
+  await sweep({ budgetMs: 20_000, minGapMs: 30_000 }).catch(() => null);
   const [{ n }] = await db<{ n: number }[]>`select count(*)::int as n from jobs where kind = 'add_brain' and status = 'queued'`;
   // a build just finished: show the new brain on the home page now, not at the next cache refresh
   await refreshListings();

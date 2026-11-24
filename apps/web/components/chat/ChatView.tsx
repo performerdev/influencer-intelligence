@@ -389,7 +389,7 @@ export function ChatView({
 
       {/* ── right: from the brain ── */}
       {!embedded && (
-        <aside className="hidden min-h-0 overflow-y-auto border-l border-line px-5 py-6 lg:block" aria-label="From the brain">
+        <aside className="hidden min-h-0 overflow-y-auto border-l border-line px-5 pb-20 pt-6 lg:block" aria-label="From the brain">
           <RefsPanel answer={lastAnswer} selected={selected} onSelect={setSelected} brain={brain} />
         </aside>
       )}

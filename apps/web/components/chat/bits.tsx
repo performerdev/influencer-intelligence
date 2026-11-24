@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 
 /* ───────────────────────── typing indicator ───────────────────────── */
 
@@ -170,12 +171,13 @@ export function Sheet({
       document.body.style.overflow = prev;
     };
   }, [open, onClose]);
-  if (!open) return null;
+  if (!open || typeof document === "undefined") return null;
   const pos =
     side === "right"
       ? `inset-y-0 right-0 w-full ${wide ? "md:w-[min(760px,92vw)]" : "md:w-[420px]"} border-l sheet-in-right`
       : "inset-x-0 bottom-0 max-h-[85svh] rounded-t-card border-t sheet-in-up";
-  return (
+  // on <body>: inside the app's panes a parent's stacking context would put the site's top bar over it
+  return createPortal(
     <div className="fixed inset-0 z-[70]" role="dialog" aria-modal="true" aria-label={typeof title === "string" ? title : undefined}>
       <button aria-label="Close" className="absolute inset-0 bg-void/70" onClick={onClose} />
       <div ref={panel} tabIndex={-1} className={`absolute flex flex-col border-line bg-panel outline-none ${pos}`}>
@@ -187,6 +189,7 @@ export function Sheet({
         </div>
         <div data-scroll-main data-lenis-prevent className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-[max(20px,env(safe-area-inset-bottom))] pt-4">{children}</div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

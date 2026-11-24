@@ -13,12 +13,45 @@ export type Info = Checkout & { token: string; handle: string; status?: string; 
  * pay page inside a wallet app. Either way the server finds the transfer
  * on-chain by its reference key and turns Plus on.
  */
+// the open checkout survives closing the tab: paid from a phone and came back, it picks up where it was
+const SAVED = "ii.plus.checkout";
+const remember = (ref: string | null) => {
+  try {
+    if (ref) localStorage.setItem(SAVED, JSON.stringify({ ref, at: Date.now() }));
+    else localStorage.removeItem(SAVED);
+  } catch {}
+};
+
 export function PlusCheckout({ enabled, note }: { enabled: boolean; note: string }) {
-  const { refresh } = useAuth();
+  const { refresh, me } = useAuth();
+  const handle = me?.user?.handle ?? null;
   const [co, setCo] = useState<Info | null>(null);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const [paid, setPaid] = useState(false);
+
+  useEffect(() => {
+    if (!enabled || !handle) return;
+    let saved: { ref?: string; at?: number } | null = null;
+    try {
+      saved = JSON.parse(localStorage.getItem(SAVED) ?? "null");
+    } catch {}
+    if (!saved?.ref || !saved.at || Date.now() - saved.at > 86_400_000) return;
+    let alive = true;
+    fetch(`/api/plus/checkout?ref=${encodeURIComponent(saved.ref)}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((info: Info | null) => {
+        if (!alive) return;
+        // another account's checkout on this browser, or not a Plus one: leave it
+        if (!info || info.purpose !== "plus" || info.handle.toLowerCase() !== handle.toLowerCase()) return;
+        if (info.status === "paid") return remember(null);
+        setCo((c) => c ?? info);
+      })
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
+  }, [enabled, handle]);
 
   const start = async () => {
     setBusy(true);
@@ -27,6 +60,7 @@ export function PlusCheckout({ enabled, note }: { enabled: boolean; note: string
     const j = r ? await r.json().catch(() => ({})) : {};
     setBusy(false);
     if (!r?.ok) return setErr(j.error ?? "Couldn't start the checkout.");
+    remember(j.reference);
     setCo(j);
   };
 
@@ -38,6 +72,7 @@ export function PlusCheckout({ enabled, note }: { enabled: boolean; note: string
         <PayPanel
           co={co}
           onPaid={() => {
+            remember(null);
             setPaid(true);
             refresh();
           }}

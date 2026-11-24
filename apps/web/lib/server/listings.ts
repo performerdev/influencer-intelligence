@@ -19,10 +19,13 @@ export async function refreshListings(force = false): Promise<void> {
     if (!force) {
       if (Date.now() - lastCheck < 15_000) return;
       lastCheck = Date.now();
-      const [row] = await sql()<{ id: string | null }[]>`
-        select id from jobs where kind = 'add_brain' and status = 'ready' and finished_at > now() - interval '1 hour' order by finished_at desc limit 1`;
+      const [row] = await sql()<{ id: string | null; handle: string }[]>`
+        select id, handle from jobs where kind = 'add_brain' and status = 'ready' and finished_at > now() - interval '1 hour' order by finished_at desc limit 1`;
       if (!row?.id || row.id === seen) return;
       seen = row.id;
+      // its own pages too: opened while it was building, they were cached as "not found"
+      revalidatePath(`/i/${row.handle}`);
+      revalidatePath(`/brain/${row.handle}`);
     }
     forgetIntelligences();
     revalidatePath("/");

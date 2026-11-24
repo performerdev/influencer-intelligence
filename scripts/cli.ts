@@ -433,7 +433,7 @@ async function main() {
 
 /* ───────────────────────── paid builds ───────────────────────── */
 
-type JobRow = { id: string; handle: string; user_id: number | null; profile: { id?: string; name?: string | null; avatar?: string | null; followers?: number | null } | null; max_usd: string | null; breakdown: { replies?: boolean } | null };
+type JobRow = { id: string; handle: string; user_id: number | null; influencer_id: number | null; profile: { id?: string; name?: string | null; avatar?: string | null; followers?: number | null } | null; max_usd: string | null; breakdown: { replies?: boolean } | null };
 
 /**
  * "Add a brain" worker: claims paid jobs one at a time and builds each brain
@@ -448,7 +448,7 @@ async function runJobs() {
     const [job] = await sql<JobRow[]>`
       update jobs set status = 'parsing', started_at = now(), updated_at = now(), progress = '{}'::jsonb
       where id = (select id from jobs where kind = 'add_brain' and status = 'queued' order by paid_at nulls last, created_at limit 1 for update skip locked)
-      returning id, handle, user_id, profile, max_usd, breakdown`;
+      returning id, handle, user_id, influencer_id, profile, max_usd, breakdown`;
     if (!job) break;
     n++;
     console.log(`\njob ${job.id} @${job.handle}`);
@@ -459,6 +459,12 @@ async function runJobs() {
       await sql`update jobs set progress = ${sql.json(p as never)}, status = coalesce(${status ?? null}, status), updated_at = now() where id = ${job.id}`.catch(() => {});
     };
     try {
+      // two people paid for the same account: the first build wins, the second is refunded (not rebuilt).
+      // A retried job already points at its own influencer row, so it builds again as before.
+      if (!job.influencer_id) {
+        const [dup] = await sql`select 1 from influencers i where lower(i.handle) = lower(${job.handle}) and exists (select 1 from brains b where b.influencer_id = i.id) limit 1`;
+        if (dup) throw new Error(`@${job.handle} already has a brain (built before this payment): refund this one`);
+      }
       const inf = await influencerFor(job);
       await sql`update jobs set influencer_id = ${inf.id} where id = ${job.id}`;
       const res = await ingestInfluencer(sql, createSource(), inf, {

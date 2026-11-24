@@ -107,7 +107,8 @@ async function readIntelligences(): Promise<Intelligence[]> {
     const launch = base.filter((c) => !byCode.get(c.code)?.hidden).map((c) => (byCode.has(c.code) ? fill(c, byCode.get(c.code)!) : c));
     const known = new Set(config.map((c) => c.code));
     const added = rows
-      .filter((r) => !known.has(r.code as Intelligence["code"]) && !r.hidden)
+      // an added mind shows once its brain exists: not while it's being built, not after a failed build
+      .filter((r) => !known.has(r.code as Intelligence["code"]) && !r.hidden && r.version != null)
       .map((r) =>
         fill(
           {

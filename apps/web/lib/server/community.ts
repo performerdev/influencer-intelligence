@@ -20,7 +20,7 @@ export async function mindsAddedBy(userId: number): Promise<BuiltMind[]> {
 
 /** $ii earned for minds added, for the Early allocation: total and per person, by user id. */
 export async function builderEarnings(): Promise<Map<number, { minds: number; earned: number }>> {
-  const [rows, reach] = await Promise.all([sql()<{ id: number; added_by: number }[]>`select id, added_by from influencers where added_by is not null and not coalesce(hidden, false)`, peopleByMind()]);
+  const [rows, reach] = await Promise.all([sql()<{ id: number; added_by: number }[]>`select i.id, i.added_by from influencers i where i.added_by is not null and not coalesce(i.hidden, false) and exists (select 1 from brains b where b.influencer_id = i.id)`, peopleByMind()]);
   const out = new Map<number, { minds: number; earned: number }>();
   for (const r of rows) {
     const cur = out.get(r.added_by) ?? { minds: 0, earned: 0 };

@@ -7,7 +7,7 @@ import { YourMinds } from "@/components/account/YourMinds";
 import { AppLink } from "@/components/ui/AppLink";
 import { payments, plusPaymentsEnabled } from "@/config/payments";
 import { plans } from "@/config/plans";
-import { currentUser, isPlus, xLoginConfigured } from "@/lib/server/auth";
+import { currentUser, isPlus, usageOf, xLoginConfigured } from "@/lib/server/auth";
 import { earlyDone, mindsAddedBy } from "@/lib/server/community";
 import { loadIntelligences } from "@/lib/server/data";
 import { isAdmin } from "@/lib/server/ops";
@@ -112,7 +112,11 @@ export default async function AccountPage({ searchParams }: { searchParams: Prom
             <p className="font-pixel text-sm text-muted">Log in first to go Plus.</p>
           ) : plus ? (
             <div className="space-y-4">
-              <p className="font-pixel text-sm text-ceramic">You're on Plus. Paying again adds {plans.plus.days} days.</p>
+              <p className="font-pixel text-sm text-ceramic">
+                {usageOf(user).capped
+                  ? `You've used this period's fair-use allowance, so sessions are back to the standard size. Paying again adds ${plans.plus.days} days and a fresh allowance.`
+                  : `You're on Plus. Paying again adds ${plans.plus.days} days.`}
+              </p>
               <PlusCheckout enabled={plusPaymentsEnabled()} note={payments.note} />
             </div>
           ) : (
