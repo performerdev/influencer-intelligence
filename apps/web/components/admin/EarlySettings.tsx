@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-/** The two things Early Mind's tasks point at: the project's X account and the launch post. */
+/** The two things the waitlist tasks point at: the project's X account and the launch post. */
 export function EarlySettings({ xHandle, launchUrl }: { xHandle: string; launchUrl: string }) {
   const router = useRouter();
   const [h, setH] = useState(xHandle);

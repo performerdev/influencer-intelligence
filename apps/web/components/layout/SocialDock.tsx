@@ -22,7 +22,7 @@ export const socials = () => [
 export function SocialDock() {
   const path = usePathname() ?? "/";
   const { me } = useAuth();
-  const chat = (path === "/" && !!me?.user) || path.startsWith("/i/") || path.startsWith("/group") || path === "/early";
+  const chat = (path === "/" && !!me?.user) || path.startsWith("/i/") || path.startsWith("/group") || path === "/waitlist";
   return (
     <nav
       aria-label="Project links"

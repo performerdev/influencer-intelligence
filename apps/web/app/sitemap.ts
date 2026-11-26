@@ -9,7 +9,7 @@ export const revalidate = 3600;
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const site = (process.env.SITE_URL || "https://ii.plus").replace(/\/$/, "");
   const minds = await loadIntelligences().catch(() => []);
-  const pages = ["/", "/leaderboard", "/coins", "/community", "/add", "/early", "/group", "/docs"];
+  const pages = ["/", "/leaderboard", "/coins", "/community", "/add", "/waitlist", "/group", "/docs"];
   return [
     ...pages.map((p) => ({ url: `${site}${p === "/" ? "" : p}`, changeFrequency: "daily" as const, priority: p === "/" ? 1 : 0.7 })),
     ...minds.flatMap((m) => [

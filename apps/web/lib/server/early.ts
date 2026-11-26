@@ -10,10 +10,11 @@ import { builderEarnings, builderEarningsOf } from "./community";
 import { sql } from "./data";
 
 /**
- * Early Mind: one early $ii allocation per X account. Three tasks unlock it
- * (follow, like + repost the launch post, reply to it); every invited friend
- * who gets in adds a bonus. Tasks are stored as the person reports them and
- * re-checked before the snapshot. Nothing here costs model money.
+ * The waitlist (Waitlist Mind on /waitlist): one spot per X account. A wallet and
+ * three tasks (follow, like + repost the launch post, reply to it) give the
+ * Waitlist role and the next spot number. Friends who come in through your link
+ * are counted on your spot. Tasks are stored as the person reports them and
+ * re-checked before doors open. No $ii here, and nothing costs model money.
  */
 
 /* ───────────────────────── settings (edited on /admin) ───────────────────────── */
@@ -62,13 +63,15 @@ export type EarlyState = {
   handle: string | null;
   wallet: string | null;
   tasks: { follow: boolean; repost: boolean; reply: boolean };
+  /** the spot (#0001…), given with the Waitlist role when all three tasks are done */
   number: number | null;
-  total: number;
+  /** when the spot was given (ISO), for the card */
+  joinedAt: string | null;
   /** people this person invited: 0 logged in, 1 wallet, 2–3 tasks under way, 4 in */
   invites: { handle: string; step: number }[];
   /** minds this person added through Add, and the $ii they've earned (see config/community.ts) */
   builder: { minds: number; earned: number };
-  /** early minds so far (everyone who finished) */
+  /** people on the list so far (everyone who finished) */
   minds: number;
   settings: EarlySettings;
 };
@@ -98,7 +101,7 @@ export async function earlyState(user: User | null): Promise<EarlyState> {
     wallet: null,
     tasks: { follow: false, repost: false, reply: false },
     number: null,
-    total: early.base,
+    joinedAt: null,
     invites: [],
     builder: { minds: 0, earned: 0 },
     minds: 0,
@@ -115,7 +118,6 @@ export async function earlyState(user: User | null): Promise<EarlyState> {
       where e.referred_by = ${user.id}
       order by e.done_at nulls last, e.created_at limit 100`;
     const invites = inv.map((i) => ({ handle: i.handle, step: stepOf(i) }));
-    const counted = Math.min(early.maxInvites, invites.filter((i) => i.step === 4).length);
     const builder = await builderEarningsOf(user.id).catch(() => empty.builder);
     return {
       ...empty,
@@ -124,7 +126,7 @@ export async function earlyState(user: User | null): Promise<EarlyState> {
       wallet: r?.wallet ?? null,
       tasks: { follow: !!r?.follow_at, repost: !!r?.repost_at, reply: !!r?.reply_at },
       number: r?.number ?? null,
-      total: early.base + counted * early.perInvite + builder.earned,
+      joinedAt: r?.done_at ? new Date(r.done_at).toISOString() : null,
       invites,
       builder,
     };
@@ -164,7 +166,7 @@ export async function earlyAction(user: User, body: { action?: string; wallet?: 
       try {
         await db`update early set wallet = ${w}, updated_at = now() where user_id = ${user.id}`;
       } catch (e) {
-        if (/early_wallet|duplicate key/.test(String((e as Error)?.message))) return fail(409, "This wallet is already on another account. One wallet, one allocation.");
+        if (/early_wallet|duplicate key/.test(String((e as Error)?.message))) return fail(409, "This wallet is already on another account. One wallet, one spot.");
         throw e;
       }
       break;
@@ -188,7 +190,7 @@ export async function earlyAction(user: User, body: { action?: string; wallet?: 
     default:
       return fail(400, "Unknown action.");
   }
-  // all three tasks and a wallet: the next number is theirs
+  // all three tasks and a wallet: the Waitlist role and the next spot are theirs
   await db`
     update early set number = nextval('early_number'), done_at = now()
     where user_id = ${user.id} and number is null and wallet is not null
@@ -211,14 +213,13 @@ export async function earlyCsv(): Promise<string> {
     const s = v == null ? "" : v instanceof Date ? v.toISOString() : String(v);
     return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
   };
-  const head = ["number", "handle", "wallet", "allocation", "invites_in", "minds_added", "minds_earned", "invited_by", "follow_at", "repost_at", "reply_at", "reply_url", "done_at", "joined_at"];
+  const head = ["spot", "handle", "wallet", "invites_in", "minds_added", "minds_earned", "invited_by", "follow_at", "repost_at", "reply_at", "reply_url", "done_at", "joined_at"];
   const lines = rows.map((r) => {
     const b = built.get(r.user_id) ?? { minds: 0, earned: 0 };
     return [
       r.number,
       r.handle,
       r.wallet,
-      r.number != null ? early.base + Math.min(early.maxInvites, r.invites_in) * early.perInvite + b.earned : 0,
       r.invites_in,
       b.minds,
       b.earned,

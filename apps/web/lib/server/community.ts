@@ -18,7 +18,7 @@ export async function mindsAddedBy(userId: number): Promise<BuiltMind[]> {
     .map((i) => ({ ...i, people: i.people ?? 0, earned: earnedFor(i.people ?? 0) }));
 }
 
-/** $ii earned for minds added, for the Early allocation: total and per person, by user id. */
+/** $ii earned for minds added: total and per person, by user id. Paid to the wallet on the waitlist spot. */
 export async function builderEarnings(): Promise<Map<number, { minds: number; earned: number }>> {
   const [rows, reach] = await Promise.all([sql()<{ id: number; added_by: number }[]>`select i.id, i.added_by from influencers i where i.added_by is not null and not coalesce(i.hidden, false) and exists (select 1 from brains b where b.influencer_id = i.id)`, peopleByMind()]);
   const out = new Map<number, { minds: number; earned: number }>();
@@ -38,7 +38,7 @@ export async function setShowAddedBy(userId: number, on: boolean) {
   await sql()`update users set show_added_by = ${on} where id = ${userId}`;
 }
 
-/** Has this person finished Early (wallet + three tasks)? Builder $ii lands on that allocation. */
+/** Is this person on the waitlist (wallet + three tasks)? Builder $ii goes to that wallet. */
 export async function earlyDone(userId: number): Promise<boolean> {
   const [r] = await sql()<{ n: number | null }[]>`select number as n from early where user_id = ${userId}`.catch(() => []);
   return r?.n != null;

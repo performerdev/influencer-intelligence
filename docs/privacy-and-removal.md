@@ -11,7 +11,7 @@ The site keeps as little as it needs to work. It runs no ads, no trackers and no
 | A salted hash of the IP address of visitors who aren't logged in | Guest limits. The address itself is never stored |
 | The real model cost of each answer | Session limits are measured in it |
 | A payment's reference key and transaction signature | To match a payment to its checkout |
-| Your Early wallet and task progress | Your early allocation |
+| Your waitlist wallet and task progress | Your waitlist spot |
 
 Cookies: one signed session cookie (30 days), and a short-lived one during login. Nothing else.
 

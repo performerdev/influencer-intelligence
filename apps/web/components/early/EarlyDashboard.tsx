@@ -4,18 +4,18 @@ import { useRef, useState } from "react";
 
 import { XGlyph } from "@/components/account/AuthProvider";
 import { AppLink } from "@/components/ui/AppLink";
-import { early, earlyCode } from "@/config/early";
+import { earlyCode } from "@/config/early";
 import { brainColor } from "@/lib/colors";
 import type { EarlyState } from "@/lib/server/early";
 
 import { type CardHandle, EarlyCard } from "./EarlyCard";
-import { Ticker } from "./Ticker";
+import { RoleBadge } from "./RoleBadge";
 
 const fmt = (n: number) => n.toLocaleString("en-US");
 const short = (a: string) => `${a.slice(0, 4)}…${a.slice(-4)}`;
-const STEPS = ["Logged in", "Wallet added", "1 of 3 tasks", "2 of 3 tasks", "In"];
+const STEPS = ["Logged in", "Wallet added", "1 of 3 tasks", "2 of 3 tasks", "On the list"];
 
-/** Each early mind's color: same lightness and chroma as the brains, hue stepped by number. */
+/** Each spot's color: same lightness and chroma as the brains, hue stepped by number. */
 export const earlyColor = (n: number) => brainColor(`early-${n}`);
 
 export const inviteUrl = (handle: string) => `${typeof window !== "undefined" ? window.location.host : "ii.plus"}/e/${handle.toLowerCase()}`;
@@ -23,7 +23,7 @@ export const inviteUrl = (handle: string) => `${typeof window !== "undefined" ? 
 /** Copy the card, then open X with the text filled in and the launch post quoted. */
 export function quoteOnX(card: CardHandle | null, s: EarlyState, flash: (t: string) => void) {
   if (s.number == null || !s.handle) return;
-  const text = `I'm early. Mind ${earlyCode(s.number)}, ${fmt(early.base)} $ii reserved.\n\nEvery CT mind, now an AI → ${inviteUrl(s.handle)}`;
+  const text = `On the ii waitlist. Spot ${earlyCode(s.number)}.\n\nEvery CT mind, now an AI → ${inviteUrl(s.handle)}`;
   const u = new URL("https://x.com/intent/post");
   u.searchParams.set("text", text);
   if (s.settings.launchUrl) u.searchParams.set("url", s.settings.launchUrl);
@@ -40,7 +40,7 @@ export function quoteOnX(card: CardHandle | null, s: EarlyState, flash: (t: stri
   void copying.then((ok) => flash(ok ? "Card copied. Paste it into the post with ⌘V or Ctrl+V." : "Download the card and add it to the post."));
 }
 
-/** /early once you're in: your card, your allocation, your invites. */
+/** /waitlist once you're on it: your card, your spot and role, your invites. */
 export function EarlyDashboard({ st, onState, onToast }: { st: EarlyState; onState: (s: EarlyState) => void; onToast: (t: string) => void }) {
   const card = useRef<CardHandle>(null);
   const [editing, setEditing] = useState(false);
@@ -49,8 +49,6 @@ export function EarlyDashboard({ st, onState, onToast }: { st: EarlyState; onSta
   if (st.number == null || !st.handle) return null;
   const color = earlyColor(st.number);
   const inviteCount = st.invites.filter((i) => i.step === 4).length;
-  const counted = Math.min(early.maxInvites, inviteCount);
-  let paid = 0;
 
   const copyCard = async () => {
     try {
@@ -67,7 +65,7 @@ export function EarlyDashboard({ st, onState, onToast }: { st: EarlyState; onSta
     if (!url) return;
     const a = document.createElement("a");
     a.href = url;
-    a.download = `ii-early-${earlyCode(st.number!)}.png`;
+    a.download = `ii-waitlist-${String(st.number).padStart(4, "0")}.png`;
     a.click();
   };
   const copyLink = async () => {
@@ -95,17 +93,15 @@ export function EarlyDashboard({ st, onState, onToast }: { st: EarlyState; onSta
     <div className="mx-auto max-w-[1080px] px-gutter pb-24 pt-[calc(var(--ii-topbar-h)+32px)]">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="font-pixel text-h1">Early</h1>
-          <p className="mt-2 text-particle">
-            Your <Ticker /> allocation and invites. Everything is final at the snapshot.
-          </p>
+          <h1 className="font-pixel text-h1">Waitlist</h1>
+          <p className="mt-2 text-particle">You&apos;re on the list. First in line for what we ship next.</p>
         </div>
-        <p className="font-pixel text-[11px] text-muted">{fmt(st.minds)} early minds so far</p>
+        <p className="font-pixel text-[11px] text-muted">{fmt(st.minds)} on the list</p>
       </div>
 
       <div className="mt-8 grid gap-3.5 md:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)]">
         <figure className="grid min-w-0 gap-3 rounded-panel border border-line bg-panel p-4">
-          <EarlyCard ref={card} handle={st.handle} number={st.number} color={color} />
+          <EarlyCard ref={card} handle={st.handle} number={st.number} color={color} joined={st.joinedAt} />
           <figcaption className="flex flex-wrap items-center justify-between gap-2">
             <span className="font-pixel text-[11px] text-muted">
               {earlyCode(st.number)} · @{st.handle}
@@ -124,34 +120,34 @@ export function EarlyDashboard({ st, onState, onToast }: { st: EarlyState; onSta
           </figcaption>
         </figure>
 
-        <section aria-label="Allocation" className="min-w-0 rounded-panel border border-line bg-panel p-5">
-          <p className="label-mono">Allocation</p>
-          <p className="mb-5 mt-3 font-pixel text-h1 leading-none">
-            {fmt(st.total)} <span style={{ color }}><Ticker /></span>
-          </p>
+        <section aria-label="Your spot" className="min-w-0 rounded-panel border border-line bg-panel p-5">
+          <p className="label-mono">Your spot</p>
+          <div className="mb-5 mt-3 flex items-center gap-4">
+            <RoleBadge size={64} color={color} />
+            <div>
+              <p className="font-pixel text-h1 leading-none" style={{ color }}>
+                {earlyCode(st.number)}
+              </p>
+              <p className="mt-2 font-pixel text-[11px] text-particle">Role · Waitlist</p>
+            </div>
+          </div>
           <div className="font-pixel text-sm">
             <div className={row}>
-              <span className="text-particle">Tasks · 3/3</span>
-              <span className="tabular-nums">{fmt(early.base)}</span>
+              <span className="text-particle">Tasks</span>
+              <span>3/3 ✓</span>
             </div>
             <div className={row}>
-              <span className="text-particle">
-                Invites · {counted} of {early.maxInvites}
-              </span>
-              <span className="tabular-nums">+{fmt(counted * early.perInvite)}</span>
+              <span className="text-particle">Friends in</span>
+              <span className="tabular-nums">{fmt(inviteCount)}</span>
             </div>
             {(st.builder?.minds ?? 0) > 0 && (
               <div className={row}>
                 <AppLink href="/account#your-minds" className="text-particle underline decoration-line-hover underline-offset-4 hover:text-ceramic">
-                  Minds you added · {st.builder.minds}
+                  Minds you added
                 </AppLink>
-                <span className="tabular-nums">+{fmt(st.builder.earned)}</span>
+                <span className="tabular-nums">{st.builder.minds}</span>
               </div>
             )}
-            <div className={row}>
-              <span className="text-particle">Status</span>
-              <span>Reserved</span>
-            </div>
             <div className={row}>
               <span className="text-particle">Wallet</span>
               <span className="flex items-center gap-3">
@@ -188,20 +184,14 @@ export function EarlyDashboard({ st, onState, onToast }: { st: EarlyState; onSta
               </form>
             )}
           </div>
-          <p className="mt-4 text-xs text-muted">We check the follow, repost and reply again at the snapshot. Undo one and this drops to 0.</p>
+          <p className="mt-4 text-xs text-muted">We check the follow, repost and reply again before doors open. Undo one and you lose the spot.</p>
         </section>
       </div>
 
       <section aria-label="Invites" className="mt-3.5 grid gap-4 rounded-panel border border-line bg-panel p-5">
         <div>
           <p className="label-mono">Invite friends</p>
-          <p className="mt-2 text-sm text-particle">
-            Each friend who gets in adds{" "}
-            <span className="font-pixel text-ceramic">
-              +{fmt(early.perInvite)} <Ticker />
-            </span>{" "}
-            to yours, up to {early.maxInvites}. They get their own {fmt(early.base)}.
-          </p>
+          <p className="mt-2 text-sm text-particle">Everyone who gets in through your link is counted on your spot, and gets a spot of their own.</p>
         </div>
         <div className="flex flex-wrap gap-2">
           <code className="min-w-0 flex-[1_1_240px] select-all truncate rounded-input border border-line bg-void px-3 py-2.5 font-pixel text-sm">{inviteUrl(st.handle)}</code>
@@ -218,7 +208,7 @@ export function EarlyDashboard({ st, onState, onToast }: { st: EarlyState; onSta
               <tr>
                 <th className="pb-2 pr-3 font-normal">Friend</th>
                 <th className="pb-2 pr-3 font-normal">Progress</th>
-                <th className="pb-2 text-right font-normal">Bonus</th>
+                <th className="pb-2 text-right font-normal">Spot</th>
               </tr>
             </thead>
             <tbody>
@@ -230,7 +220,6 @@ export function EarlyDashboard({ st, onState, onToast }: { st: EarlyState; onSta
                 </tr>
               ) : (
                 st.invites.map((f) => {
-                  const counts = f.step === 4 && paid++ < early.maxInvites;
                   return (
                     <tr key={f.handle} className="border-t border-line">
                       <td className="py-2.5 pr-3">@{f.handle}</td>
@@ -242,7 +231,7 @@ export function EarlyDashboard({ st, onState, onToast }: { st: EarlyState; onSta
                         </span>
                         {STEPS[f.step]}
                       </td>
-                      <td className="py-2.5 text-right">{f.step === 4 ? (counts ? `+${fmt(early.perInvite)}` : "over the cap") : "—"}</td>
+                      <td className="py-2.5 text-right">{f.step === 4 ? "In" : "—"}</td>
                     </tr>
                   );
                 })

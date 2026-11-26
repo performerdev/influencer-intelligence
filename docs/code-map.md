@@ -35,11 +35,11 @@ A pnpm monorepo: one Next.js app and four packages the pipeline is built from.
 | `apps/web/app/api/group/` | Group chat: speaking order, then one speaker at a time |
 | `apps/web/app/api/tools/` | Check a coin, rate my bag |
 | `apps/web/app/api/add/`, `api/plus/` | Quotes and checkouts |
-| `apps/web/app/api/early/` | Early Mind state and tasks |
-| `apps/web/lib/server/` | Server code: auth, limits, live data, payments, jobs, shares, Early |
+| `apps/web/app/api/early/` | Waitlist state and tasks |
+| `apps/web/lib/server/` | Server code: auth, limits, live data, payments, jobs, shares, the waitlist (`early.ts`) |
 | `apps/web/lib/cards.ts` | The live cards inside answers |
-| `apps/web/components/` | UI by area: `app`, `chat`, `group`, `brain`, `coin`, `leaderboard`, `early`, `add`, `account`, `hero` |
-| `apps/web/config/` | Plans and limits, Early amounts, token, payments, the launch minds |
+| `apps/web/components/` | UI by area: `app`, `chat`, `group`, `brain`, `coin`, `leaderboard`, `early` (the waitlist), `add`, `account`, `hero` |
+| `apps/web/config/` | Plans and limits, the waitlist, token, payments, the launch minds |
 | `apps/web/styles/tokens.css` | Design tokens: palette, type scale, radii, motion. The single source for the look |
 | `apps/web/lib/logo-geometry.ts` | The "ii" mark as a pixel grid, shared by the WebGL scene, the SVG mark and the favicon |
 | `apps/web/lib/brain-render.ts` | The turning pixel brains |
@@ -59,7 +59,7 @@ Tables, from [`packages/db/migrations/`](../packages/db/migrations):
 | `users` | Accounts from Log in with X |
 | `chats`, `messages`, `shares` | Conversations and shared answers |
 | `jobs`, `payments` | Add builds and USDC payments |
-| `early` | Early allocations |
+| `early` | The waitlist: wallet, tasks, spot, who invited whom |
 | `spend`, `errors`, `settings` | Real cost of every API call, error log, admin settings |
 | `takedown_requests` | Removal and deletion requests |
 

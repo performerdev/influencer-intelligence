@@ -32,7 +32,7 @@ When you ask a question, these files become the model's instructions, and the mo
 | [How a mind answers](./how-a-mind-answers.md) | One question, step by step; group chats; coin checks |
 | [Accounts, limits and Plus](./accounts-and-plus.md) | Log in with X, usage limits, paying in USDC |
 | [Add a mind](./add-a-mind.md) | Anyone can add an account; how the price is set |
-| [Early and $ii](./early-and-ii.md) | The $ii token and early allocations |
+| [The waitlist and $ii](./waitlist-and-ii.md) | The waitlist, its role and spots, and the $ii token |
 | [Privacy and removal](./privacy-and-removal.md) | What is stored, who processes it, how to remove a brain |
 | [Run it yourself](./run-it-yourself.md) | Local setup, the pipeline CLI, deploying |
 | [Code map](./code-map.md) | Where everything lives in the repository |

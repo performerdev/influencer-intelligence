@@ -28,7 +28,7 @@ pnpm brain:build blknoiz06 --max-usd 15     # ingest → distill → stats → b
 - [How a mind answers](docs/how-a-mind-answers.md)
 - [Accounts, limits and Plus](docs/accounts-and-plus.md)
 - [Add a mind](docs/add-a-mind.md)
-- [Early and $ii](docs/early-and-ii.md)
+- [The waitlist and $ii](docs/waitlist-and-ii.md)
 - [Privacy and removal](docs/privacy-and-removal.md)
 - [Run it yourself](docs/run-it-yourself.md)
 - [Code map](docs/code-map.md)

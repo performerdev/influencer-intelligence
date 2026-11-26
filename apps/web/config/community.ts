@@ -7,7 +7,7 @@
  * mind to either list from /admin. Everything else added through Add is Community.
  *
  * Builders: every person who talks to a mind you added earns you `perPerson` $ii,
- * up to `capPerMind` per mind, on top of your Early allocation. A person counts once
+ * up to `capPerMind` per mind, paid to the wallet on your waitlist spot. A person counts once
  * per mind, only when logged in with X, never the builder, and only if their X
  * account is older than `minAccountDays` (so a farm of fresh accounts earns nothing).
  */

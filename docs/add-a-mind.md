@@ -32,7 +32,7 @@ Community minds work like any other in a chat, in groups (pick them under Commun
 
 ## What you get for adding one
 
-- **+100 $ii for every person who talks to your mind**, up to 10,000 $ii per mind, added to your [Early allocation](./early-and-ii.md). A person counts once per mind, only when logged in with X, never you, and only if their X account is older than 90 days, so fresh accounts can't farm it. An All minds turn where your mind had nothing to say doesn't count.
+- **+100 $ii for every person who talks to your mind**, up to 10,000 $ii per mind, paid to the wallet on your [waitlist spot](./waitlist-and-ii.md). A person counts once per mind, only when logged in with X, never you, and only if their X account is older than 90 days, so fresh accounts can't farm it. An All minds turn where your mind had nothing to say doesn't count.
 - **"Added by @you"** on the mind's card and pages. You can switch it off on your account page.
 
 Your minds, the people each one has answered and what you've earned are on your account page.

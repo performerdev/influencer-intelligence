@@ -24,7 +24,7 @@ export const DOC_PAGES = [
   { slug: "how-a-mind-answers", file: "how-a-mind-answers.md", nav: "How a mind answers" },
   { slug: "accounts-and-plus", file: "accounts-and-plus.md", nav: "Accounts, limits and Plus" },
   { slug: "add-a-mind", file: "add-a-mind.md", nav: "Add a mind" },
-  { slug: "early-and-ii", file: "early-and-ii.md", nav: "Early and $ii" },
+  { slug: "waitlist-and-ii", file: "waitlist-and-ii.md", nav: "Waitlist and $ii" },
   { slug: "privacy-and-removal", file: "privacy-and-removal.md", nav: "Privacy and removal" },
   { slug: "run-it-yourself", file: "run-it-yourself.md", nav: "Run it yourself" },
   { slug: "code-map", file: "code-map.md", nav: "Code map" },

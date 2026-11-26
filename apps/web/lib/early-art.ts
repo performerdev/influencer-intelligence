@@ -230,7 +230,7 @@ export function stubAvatar(seed: string): HTMLCanvasElement {
 }
 
 /** The family name next/font gave a Geist face, for canvas text. */
-export function fontFamily(variable: "--font-geist-pixel-square" | "--font-geist-sans") {
+export function fontFamily(variable: "--font-geist-pixel-square" | "--font-geist-sans" | "--font-geist-mono") {
   const v = typeof document !== "undefined" ? getComputedStyle(document.documentElement).getPropertyValue(variable).trim() : "";
   return v || (variable === "--font-geist-sans" ? "ui-sans-serif, system-ui, sans-serif" : "ui-monospace, monospace");
 }

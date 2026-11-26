@@ -5,14 +5,14 @@ import { logError } from "@/lib/server/ops";
 
 export const dynamic = "force-dynamic";
 
-/** Where this visitor is with their early $ii allocation. */
+/** Where this visitor is on the waitlist. */
 export async function GET() {
   const user = await currentUser().catch(() => null);
   try {
     return json(await earlyState(user));
   } catch (e) {
     await logError("server", "/api/early", e, { userId: user?.id });
-    return json({ error: "Early Mind is out for a second. Try again." }, 500);
+    return json({ error: "The waitlist is out for a second. Try again." }, 500);
   }
 }
 

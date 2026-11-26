@@ -44,4 +44,4 @@ Paying from an exchange or any wallet without Solana Pay works too: every checko
 
 The site never sees your wallet's keys. Solana is public, so the transfer and the paying address are visible on-chain to anyone.
 
-Plus is planned to be paid in [$ii](./early-and-ii.md) once the token is live.
+Plus is planned to be paid in [$ii](./waitlist-and-ii.md) once the token is live.

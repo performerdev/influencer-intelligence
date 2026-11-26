@@ -68,15 +68,15 @@ export function YourMinds({ minds, handle, showAddedBy, earlyDone }: { minds: Bu
           </ul>
           <p className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 font-pixel text-xs text-muted">
             <span>
-              Total <span className="text-ceramic">+{fmt(total)}</span> <Ticker /> · added to your Early allocation
+              Total <span className="text-ceramic">+{fmt(total)}</span> <Ticker /> · goes to the wallet on your waitlist spot
             </span>
             {earlyDone ? (
-              <AppLink href="/early" className="link-quiet">
-                Your allocation <span className="arrow">↗</span>
+              <AppLink href="/waitlist" className="link-quiet">
+                Your spot <span className="arrow">↗</span>
               </AppLink>
             ) : (
-              <AppLink href="/early" className="text-ceramic underline decoration-line-hover underline-offset-4">
-                Finish Early to lock it in →
+              <AppLink href="/waitlist" className="text-ceramic underline decoration-line-hover underline-offset-4">
+                Join the waitlist to lock it in →
               </AppLink>
             )}
           </p>

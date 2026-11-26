@@ -4,20 +4,20 @@ import { useEffect, useRef, useState } from "react";
 
 import { XGlyph } from "@/components/account/AuthProvider";
 import { TypingIndicator } from "@/components/chat/bits";
-import { community } from "@/config/community";
-import { early } from "@/config/early";
+import { earlyCode } from "@/config/early";
 import type { EarlyState } from "@/lib/server/early";
+import { ROLE_INK } from "@/lib/waitlist-art";
 
-import { Coin } from "./Coin";
 import { type CardHandle, EarlyCard } from "./EarlyCard";
 import { EarlyDashboard, earlyColor, inviteUrl, quoteOnX } from "./EarlyDashboard";
-import { PadlockCoin } from "./PadlockCoin";
-import { Ticker } from "./Ticker";
+import { PadlockRole } from "./PadlockRole";
+import { RoleBadge } from "./RoleBadge";
 
 /**
- * /early: Early Mind hands out early $ii. It's a script, not a model: free to
- * run however many people show up, and it can't be talked into anything.
- * Log in with X → wallet → three tasks behind a padlock → the card → invites.
+ * /waitlist: Waitlist Mind lets people onto the waitlist. It's a script, not a
+ * model: free to run however many people show up, and it can't be talked into
+ * anything. Log in with X → wallet → three tasks behind a padlock → the Waitlist
+ * role and a spot → the card → invites. No $ii here.
  */
 
 type Stage = "guest" | "login" | "wallet" | "tasks" | "done";
@@ -25,28 +25,27 @@ type Embed = "login" | "wallet" | "tasks" | "card" | "share" | "invite";
 type Msg = { id: number; role: "mind" | "user" | "sys"; body: React.ReactNode; embed?: Embed; masked?: boolean };
 type Post = { ok: true; state: EarlyState } | { ok: false; error: string; status: number };
 
-const fmt = (n: number) => n.toLocaleString("en-US");
 const short = (a: string) => `${a.slice(0, 4)}…${a.slice(-4)}`;
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-const LOGIN = "/api/auth/x/login?next=%2Fearly";
+const LOGIN = "/api/auth/x/login?next=%2Fwaitlist";
 const BASE58 = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
 
 const CHIPS: Record<Stage, string[]> = {
-  guest: ["I want early allocation", "What is ii?", "How much $ii?"],
+  guest: ["Get me on the waitlist", "What is ii?", "What's the role for?"],
   login: ["Why log in with X?"],
   wallet: [],
   tasks: ["Why these tasks?"],
-  done: ["How do I get more?", "When is the snapshot?"],
+  done: ["Why invite friends?", "When do doors open?"],
 };
 
 const ANSWERS: [RegExp, (s: EarlyState | null) => string][] = [
-  [/what\s*(is|'s|s)\s*(ii|this|it)|what do you do|who are you/i, () => "ii turns the biggest CT accounts into AIs, built from every post they wrote. ask ansem what he'd do with your bag and see every call he ever made, checked against the price. early minds get $ii before anyone else."],
-  [/how much|how many|amount|allocation size/i, () => `${fmt(early.base)} $ii for three quick tasks. then +${fmt(early.perInvite)} for every friend who gets in, up to ${early.maxInvites}. so ${fmt(early.base + early.perInvite * early.maxInvites)} max.`],
-  [/when|snapshot|launch|tge|listing|date/i, (s) => `allocations are final at the snapshot. the date goes out on ${s?.settings.xHandle ? `@${s.settings.xHandle}` : "our X"} first, so that follow matters.`],
-  [/add (a )?mind|build|community/i, () => `add a mind on ii.plus/add. every person who talks to it gets you +${fmt(community.perPerson)} $ii, up to ${fmt(community.capPerMind)} per mind. it lands on top of this allocation.`],
-  [/more|100k|1m|million|double|bigger|extra/i, () => `${fmt(early.base)} for everyone, no favorites. two ways up: +${fmt(early.perInvite)} per friend who gets in (up to ${early.maxInvites}), and +${fmt(community.perPerson)} per person who talks to a mind you added.`],
-  [/why.*(log|\bx\b|twitter)/i, () => "one allocation per X account, so i need to know it's you. we only see your handle and avatar. no password, and we can't post for you."],
-  [/why.*task/i, () => "follow so you see the snapshot date. like, repost and reply so CT finds us. that's the whole deal."],
+  [/what\s*(is|'s|s)\s*(ii|this|it)|what do you do|who are you/i, () => "ii turns the biggest CT accounts into AIs, built from every post they wrote. ask ansem what he'd do with your bag and see every call he ever made, checked against the price. the waitlist is who gets in first on what we ship next."],
+  [/role|what do i get|what.*for\b|perks?|benefit|why join/i, () => "the waitlist role and a numbered spot. first in line for what we ship next, before it goes public. the list won't stay open forever."],
+  [/\$ii|token|airdrop|allocation|how much|reward|money|pay/i, () => "no tokens here. this is the waitlist: the role, a spot in line, first in when doors open. that's the alpha."],
+  [/when|doors|open|launch|snapshot|date/i, (s) => `doors open when they open. it goes out on ${s?.settings.xHandle ? `@${s.settings.xHandle}` : "our X"} first, so that follow matters.`],
+  [/invite|friend|refer|move up|higher|priority/i, () => "your link brings friends in. everyone who gets in through it is counted on your spot. we look at that when doors open."],
+  [/why.*(log|\bx\b|twitter)/i, () => "one spot per X account, so i need to know it's you. we only see your handle and avatar. no password, and we can't post for you."],
+  [/why.*task/i, () => "follow so you see when doors open. like, repost and reply so CT finds us. that's the whole deal."],
 ];
 
 async function post(body: object): Promise<Post> {
@@ -101,7 +100,7 @@ export function EarlyMind() {
         setSt(s);
         if (!s.ready) {
           setView("chat");
-          push({ role: "mind", body: "allocations open in a minute. come back shortly." });
+          push({ role: "mind", body: "the list opens in a minute. come back shortly." });
           return;
         }
         if (s.stage === "done") {
@@ -113,14 +112,14 @@ export function EarlyMind() {
         setView("chat");
         if (s.stage === "guest") {
           setStage("guest");
-          push({ role: "mind", body: "gm. want early $ii? ask and i'll walk you through it. takes about a minute." });
+          push({ role: "mind", body: "gm. the waitlist is open. ask and i'll get you on it. takes about a minute." });
         } else if (s.stage === "wallet") {
           setStage("wallet");
           push({ role: "sys", body: <>Logged in as @{s.handle}</> });
-          push({ role: "mind", body: <>gm @{s.handle}. you&apos;re early. drop the solana wallet you want the $ii on.</>, embed: "wallet" });
+          push({ role: "mind", body: <>gm @{s.handle}. you&apos;re early. drop the solana wallet for your spot.</>, embed: "wallet" });
         } else {
           setStage("tasks");
-          push({ role: "mind", body: <>got it: <Code>{short(s.wallet ?? "")}</Code>. three quick ones and {fmt(early.base)} $ii is yours:</>, embed: "tasks" });
+          push({ role: "mind", body: <>got it: <Code>{short(s.wallet ?? "")}</Code>. three quick ones and the waitlist role is yours:</>, embed: "tasks" });
         }
       })
       .catch(() => {
@@ -131,7 +130,7 @@ export function EarlyMind() {
 
   async function askLogin() {
     setStage("login");
-    await say("gm anon. allocations go one per X account. log in so i know who you are.", "login");
+    await say("gm anon. one spot per X account. log in so i know who you are.", "login");
   }
 
   async function saveWallet(addr: string) {
@@ -140,7 +139,7 @@ export function EarlyMind() {
     if (!r.ok) return say(r.error.charAt(0).toLowerCase() + r.error.slice(1));
     setSt(r.state);
     setStage("tasks");
-    await say(<>got it: <Code>{short(addr)}</Code>. three quick ones and {fmt(early.base)} $ii is yours:</>, "tasks");
+    await say(<>got it: <Code>{short(addr)}</Code>. three quick ones and the waitlist role is yours:</>, "tasks");
   }
 
   async function send(raw: string) {
@@ -158,21 +157,21 @@ export function EarlyMind() {
     push({ role: "user", body: t });
     for (const [re, answer] of ANSWERS) if (re.test(t)) return say(answer(stRef.current));
     if (stage === "guest") return askLogin();
-    if (stage === "login") return say("tap Log in with X above. one allocation per account, so i need to know it's you.");
+    if (stage === "login") return say("tap Log in with X above. one spot per account, so i need to know it's you.");
     if (stage === "wallet") return say("that's not a solana address. it's 32 to 44 letters and digits, no spaces. paste just the address.");
     if (stage === "tasks") {
       const s = stRef.current;
       const left = s ? [s.tasks.follow, s.tasks.repost, s.tasks.reply].filter((x) => !x).length : 3;
-      return say(`${left} to go. finish them above and the ${fmt(early.base)} is yours.`);
+      return say(`${left} to go. finish them above and the role is yours.`);
     }
-    return say(`you're in. invites are how you go higher: +${fmt(early.perInvite)} $ii per friend who gets in.`);
+    return say("you're on the list. bring friends through your link: everyone who gets in through it is counted on your spot.");
   }
 
   async function finish() {
     if (finished.current) return;
     finished.current = true;
     setStage("done");
-    await say(<>3/3. you&apos;re in, @{stRef.current?.handle}. welcome to the early minds.</>, "card");
+    await say(<>3/3. you&apos;re on the list, @{stRef.current?.handle}. role: waitlist. spot {earlyCode(stRef.current?.number ?? 0)}.</>, "card");
     await sleep(2600);
     await say("post it. quote the launch post with your card, that's how your friends find their way in.", "share");
   }
@@ -184,7 +183,7 @@ export function EarlyMind() {
     if (!s) return;
     await say(
       <>
-        last thing. your invite link is <Code>{inviteUrl(s.handle ?? "")}</Code>. every friend who gets in adds +{fmt(early.perInvite)} $ii to yours, up to {early.maxInvites}. they get their own {fmt(early.base)}.
+        last thing. your invite link is <Code>{inviteUrl(s.handle ?? "")}</Code>. everyone who gets in through it is counted on your spot, and gets a spot of their own.
       </>,
       "invite",
     );
@@ -221,12 +220,10 @@ export function EarlyMind() {
     if (e === "card" && s?.number != null && s.handle)
       return (
         <figure className="grid gap-2">
-          <EarlyCard ref={card} handle={s.handle} number={s.number} color={earlyColor(s.number)} animate />
+          <EarlyCard ref={card} handle={s.handle} number={s.number} color={earlyColor(s.number)} joined={s.joinedAt} animate />
           <figcaption className="flex justify-between gap-3 font-pixel text-[11px] text-muted">
             <span>Your card</span>
-            <span>
-              {fmt(early.base)} <Ticker /> reserved
-            </span>
+            <span>Waitlist role · {earlyCode(s.number)}</span>
           </figcaption>
         </figure>
       );
@@ -254,7 +251,7 @@ export function EarlyMind() {
       return (
         <div className="flex flex-wrap gap-2">
           <button type="button" className="btn-ceramic h-11 px-5" onClick={() => setView("dashboard")}>
-            Open Early →
+            Your spot →
           </button>
           <button type="button" className="btn-line h-11 px-5" onClick={() => void copyLink()}>
             Copy invite link
@@ -270,7 +267,7 @@ export function EarlyMind() {
     </div>
   );
 
-  if (view === "loading") return <div className="mx-auto h-[100svh] max-w-[860px] px-gutter pt-[calc(var(--ii-topbar-h)+40px)] font-pixel text-xs text-muted">Opening Early Mind…</div>;
+  if (view === "loading") return <div className="mx-auto h-[100svh] max-w-[860px] px-gutter pt-[calc(var(--ii-topbar-h)+40px)] font-pixel text-xs text-muted">Opening the waitlist…</div>;
 
   if (view === "dashboard" && st)
     return (
@@ -283,17 +280,17 @@ export function EarlyMind() {
   return (
     <div className="mx-auto flex h-[100svh] max-w-[880px] flex-col pt-topbar">
       <header className="flex items-center gap-3 border-b border-line px-gutter py-3">
-        <Coin size={40} active={typing} />
+        <RoleBadge size={40} active={typing} />
         <div className="min-w-0 flex-1">
           <div className="flex items-baseline gap-2">
             <span className="font-mono text-xs text-particle">ii-00</span>
-            <h1 className="font-pixel text-body">@early</h1>
+            <h1 className="font-pixel text-body">@waitlist</h1>
           </div>
-          <p className="truncate text-xs text-particle">Hands out $ii before launch. One allocation per X account.</p>
+          <p className="truncate text-xs text-particle">Gets you on the waitlist. One spot per X account.</p>
         </div>
         {stage === "done" && st?.number != null && (
           <button type="button" onClick={() => setView("dashboard")} className="btn-line h-9 shrink-0 px-3 text-xs">
-            Your allocation →
+            Your spot →
           </button>
         )}
       </header>
@@ -301,10 +298,10 @@ export function EarlyMind() {
       <div ref={scroll} data-lenis-prevent className="min-h-0 flex-1 overflow-y-auto px-gutter" aria-live="polite">
         <div className="mx-auto max-w-[720px] py-8">
           <div className="flex items-center gap-5 border-b border-line pb-7">
-            <Coin size={104} />
+            <RoleBadge size={104} />
             <div>
-              <p className="font-pixel text-h3">Early Mind</p>
-              <p className="mt-1.5 max-w-[44ch] text-sm text-particle">Hands out $ii before launch. Ask for an allocation and it walks you through it.</p>
+              <p className="font-pixel text-h3">Waitlist</p>
+              <p className="mt-1.5 max-w-[44ch] text-sm text-particle">First in line for what we ship next. Ask for a spot and it walks you through it.</p>
             </div>
           </div>
           <ol className="space-y-8 pt-8">
@@ -322,7 +319,7 @@ export function EarlyMind() {
               ) : (
                 <li key={m.id}>
                   <div className="mb-2 flex items-center gap-2">
-                    <Coin size={20} />
+                    <RoleBadge size={20} />
                     <span className="font-mono text-xs text-particle">ii-00</span>
                   </div>
                   <div className="max-w-[62ch] text-body leading-relaxed">{m.body}</div>
@@ -332,7 +329,7 @@ export function EarlyMind() {
             )}
             {typing && (
               <li className="flex items-center gap-2">
-                <Coin size={20} active />
+                <RoleBadge size={20} active />
                 <span className="font-mono text-xs text-particle">ii-00</span>
                 <TypingIndicator />
               </li>
@@ -350,7 +347,7 @@ export function EarlyMind() {
           }}
         >
           <label htmlFor="early-input" className="sr-only">
-            Message Early Mind
+            Message Waitlist Mind
           </label>
           <input
             id="early-input"
@@ -358,7 +355,7 @@ export function EarlyMind() {
             onChange={(e) => setInput(e.target.value)}
             autoComplete="off"
             spellCheck={false}
-            placeholder={stage === "wallet" ? "Paste your Solana address" : "Ask Early Mind"}
+            placeholder={stage === "wallet" ? "Paste your Solana address" : "Ask about the waitlist"}
             className="h-10 min-w-0 flex-1 bg-transparent px-2 text-body text-ceramic placeholder:text-muted focus:outline-none"
           />
           <button type="submit" disabled={typing || !input.trim()} className="btn-ceramic h-10 w-10 shrink-0 px-0 disabled:opacity-40" aria-label="Send">
@@ -374,15 +371,7 @@ export function EarlyMind() {
                 onClick={() => void send(c)}
                 className="shrink-0 rounded-pill border border-line px-3 py-1.5 font-pixel text-xs text-particle transition-colors duration-fast hover:border-line-hover hover:text-ceramic"
               >
-                {c.includes("$ii") ? (
-                  <>
-                    {c.split("$ii")[0]}
-                    <Ticker />
-                    {c.split("$ii")[1]}
-                  </>
-                ) : (
-                  c
-                )}
+                {c}
               </button>
             ))}
           </div>
@@ -444,11 +433,11 @@ function WalletForm({ saved, onSave }: { saved: string | null; onSave: (w: strin
   );
 }
 
-/* ───────── the three tasks, behind the padlock ───────── */
+/* ───────── the three tasks, behind the padlock: the Waitlist role ───────── */
 
 type TaskId = "follow" | "repost" | "reply";
 const TASKS: { id: TaskId; cap: string; title: (s: EarlyState) => string; sub: string; act: string; done: string }[] = [
-  { id: "follow", cap: "Follow", title: (s) => (s.settings.xHandle ? `Follow @${s.settings.xHandle}` : "Follow us on X"), sub: "So you see the snapshot date.", act: "Follow ↗", done: "Following." },
+  { id: "follow", cap: "Follow", title: (s) => (s.settings.xHandle ? `Follow @${s.settings.xHandle}` : "Follow us on X"), sub: "So you see when doors open.", act: "Follow ↗", done: "Following." },
   { id: "repost", cap: "Repost", title: () => "Like and repost the launch post", sub: "So CT finds us.", act: "Open post ↗", done: "Liked and reposted." },
   { id: "reply", cap: "Reply", title: () => "Reply to the launch post", sub: "Tell us who to turn into a mind next, then paste the link to your reply.", act: "Reply ↗", done: "Reply found." },
 ];
@@ -510,12 +499,13 @@ function Tasks({ st, onState, onOpen }: { st: EarlyState; onState: (s: EarlyStat
           <span className="grid h-12 place-items-center font-pixel text-h3 text-muted" aria-hidden>
             =
           </span>
-          <PadlockCoin done={open ? 3 : done} onOpen={onOpen} />
+          <PadlockRole done={open ? 3 : done} color={st.number != null ? earlyColor(st.number) : ROLE_INK} onOpen={onOpen} />
           <div>
-            <p className={`font-pixel text-h2 leading-none transition-colors duration-base ${open ? "text-ceramic" : "text-particle"}`}>
-              {fmt(early.base)} <Ticker />
+            <p className="font-pixel text-[11px] text-muted">Role</p>
+            <p className={`mt-1.5 font-pixel text-h2 leading-none transition-colors duration-base ${open ? "text-ceramic" : "text-particle"}`} style={open && st.number != null ? { color: earlyColor(st.number) } : undefined}>
+              Waitlist
             </p>
-            <p className={`mt-2 font-pixel text-[11px] ${open ? "text-ceramic" : "text-muted"}`}>{open ? "Unlocked" : `Locked · ${done}/3`}</p>
+            <p className={`mt-2 font-pixel text-[11px] ${open ? "text-ceramic" : "text-muted"}`}>{open && st.number != null ? `Yours · spot ${earlyCode(st.number)}` : `Locked · ${done}/3`}</p>
           </div>
         </div>
       </div>
@@ -582,7 +572,7 @@ function Tasks({ st, onState, onOpen }: { st: EarlyState; onState: (s: EarlyStat
           </div>
         );
       })}
-      <p className="border-t border-line pt-3 text-xs text-muted">We check all three again at the snapshot. Undo one and the allocation drops.</p>
+      <p className="border-t border-line pt-3 text-xs text-muted">We check all three again before doors open. Undo one and you lose the spot.</p>
     </div>
   );
 }

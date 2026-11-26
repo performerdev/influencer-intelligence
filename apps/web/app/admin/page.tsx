@@ -5,7 +5,6 @@ import { AdminButton } from "@/components/admin/AdminButton";
 import { EarlySettings } from "@/components/admin/EarlySettings";
 import { RefundBox } from "@/components/admin/RefundBox";
 import { type Tier, community } from "@/config/community";
-import { early as earlyConfig } from "@/config/early";
 import { currentUser } from "@/lib/server/auth";
 import { sql, tierOf } from "@/lib/server/data";
 import { earlySettings } from "@/lib/server/early";
@@ -136,18 +135,17 @@ export default async function Admin() {
 
       <section className="mt-12">
         <div className="flex flex-wrap items-baseline justify-between gap-3">
-          <h2 className="text-h3">Early</h2>
+          <h2 className="text-h3">Waitlist</h2>
           <a href="/api/admin/early" className="link-quiet text-xs">
             Download CSV <span className="arrow">↗</span>
           </a>
         </div>
         {earlyStats[0] ? (
           <p className="mt-3 font-pixel text-sm text-particle">
-            {earlyStats[0].done} in · +{earlyStats[0].today} today · {earlyStats[0].wallets} wallets · {earlyStats[0].started} started · {earlyStats[0].invited} came by invite ·{" "}
-            {(earlyStats[0].done * earlyConfig.base).toLocaleString("en-US")} $ii base
+            {earlyStats[0].done} on the list · +{earlyStats[0].today} today · {earlyStats[0].wallets} wallets · {earlyStats[0].started} started · {earlyStats[0].invited} came by invite
           </p>
         ) : (
-          <p className="mt-3 text-sm text-muted">The early table isn&apos;t there yet: run Actions → Brains → status once.</p>
+          <p className="mt-3 text-sm text-muted">The waitlist table isn&apos;t there yet: run Actions → Brains → status once.</p>
         )}
         <div className="mt-4">
           <EarlySettings xHandle={earlyCfg.xHandle} launchUrl={earlyCfg.launchUrl} />

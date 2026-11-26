@@ -2,13 +2,11 @@
 
 import { forwardRef, useState } from "react";
 
-import { Coin } from "@/components/early/Coin";
-import { Ticker } from "@/components/early/Ticker";
+import { RoleBadge } from "@/components/early/RoleBadge";
 import { LogoMark } from "@/components/layout/LogoMark";
 import { BrainAvatar } from "@/components/particles/BrainAvatar";
 import { PixelBrain } from "@/components/particles/PixelBrain";
 import { AppLink } from "@/components/ui/AppLink";
-import { early } from "@/config/early";
 import { site } from "@/config/site";
 import type { Intelligence } from "@/lib/intelligences";
 
@@ -26,7 +24,7 @@ type Props = {
 
 /**
  * Screen 1: the "ii" (drawn by ii-stage.ts into the canvas over `iiBoxRef`),
- * the headline, two doors (Early with the turning $ii coin, and the minds),
+ * the headline, two doors (the waitlist with its role badge, and the minds),
  * the source link to the side, and the minds as a strip at the bottom that
  * leads down to them. Every `data-d` element dithers in as the letters set.
  */
@@ -58,20 +56,18 @@ export const Hero = forwardRef<HTMLElement, Props>(function Hero({ iiBoxRef, can
         </p>
         <div className="dither dither-pre mt-9 flex flex-wrap items-center justify-center gap-3 sm:gap-x-4" data-d="cta">
           <AppLink
-            href="/early"
+            href="/waitlist"
             className="btn-ceramic h-12 gap-3 pl-1.5 pr-6"
             onPointerEnter={() => setHot(true)}
             onPointerLeave={() => setHot(false)}
             onFocus={() => setHot(true)}
             onBlur={() => setHot(false)}
           >
-            {/* the coin turns in a dark well inside the ceramic button */}
+            {/* the role badge sits in a dark well inside the ceramic button */}
             <span className="grid h-9 w-9 place-items-center rounded-chip bg-void">
-              <Coin size={28} active={hot} />
+              <RoleBadge size={26} active={hot} />
             </span>
-            <span className="whitespace-nowrap">
-              Get {early.base.toLocaleString("en-US")} <Ticker />
-            </span>
+            <span className="whitespace-nowrap">Join the waitlist</span>
           </AppLink>
           <button type="button" className="btn-line h-12 px-6" onClick={onPick}>
             Pick an intelligence

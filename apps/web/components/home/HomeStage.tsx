@@ -2,13 +2,11 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { Coin } from "@/components/early/Coin";
-import { Ticker } from "@/components/early/Ticker";
+import { RoleBadge } from "@/components/early/RoleBadge";
 import { Hero } from "@/components/hero/Hero";
 import { startIiStage } from "@/components/hero/ii-stage";
 import { scrollToTarget } from "@/components/layout/SmoothScroll";
 import { AppLink } from "@/components/ui/AppLink";
-import { early } from "@/config/early";
 import { type Intelligence, isMain } from "@/lib/intelligences";
 
 import { IntelligencesSection } from "./IntelligencesSection";
@@ -110,20 +108,16 @@ export function HomeStage({ intelligences }: { intelligences: Intelligence[] }) 
         </ol>
 
         <div className="reveal mt-[clamp(64px,10vh,112px)] flex flex-col items-start justify-between gap-6 border-t border-line pb-32 pt-10 md:flex-row md:items-center">
-          {/* the way out at the end of the page: Early */}
+          {/* the way out at the end of the page: the waitlist */}
           <div className="flex items-center gap-5">
-            <Coin size={64} />
+            <RoleBadge size={64} />
             <div>
-              <p className="font-pixel text-h3">
-                Early minds get <span className="whitespace-nowrap">{early.base.toLocaleString("en-US")} <Ticker /></span>
-              </p>
-              <p className="mt-2 max-w-[56ch] text-sm text-particle">Log in with X, follow, repost, reply. One per account, final at the snapshot.</p>
+              <p className="font-pixel text-h3">The waitlist is open</p>
+              <p className="mt-2 max-w-[56ch] text-sm text-particle">Log in with X, follow, repost, reply. The Waitlist role and a numbered spot, one per account.</p>
             </div>
           </div>
-          <AppLink href="/early" className="btn-ceramic shrink-0 gap-2">
-            <span className="whitespace-nowrap">
-              Get {early.base.toLocaleString("en-US")} <Ticker />
-            </span>
+          <AppLink href="/waitlist" className="btn-ceramic shrink-0 gap-2">
+            <span className="whitespace-nowrap">Join the waitlist</span>
           </AppLink>
         </div>
       </section>

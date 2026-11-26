@@ -1,12 +1,12 @@
-/** Early $ii allocations, handed out by Early Mind on /early. Amounts are in $ii. */
+/**
+ * The waitlist on /waitlist, run by Waitlist Mind (ii-00): log in with X, add a
+ * wallet, three tasks on X → the Waitlist role and a spot number. No $ii here.
+ * (The code and the table keep the old name, `early`.)
+ */
 export const early = {
-  /** for the three tasks: follow, like + repost, reply */
-  base: 10_000,
-  /** for each invited friend who gets in */
-  perInvite: 1_000,
-  maxInvites: 10,
   /** cookie set by an invite link (/e/<handle>) */
   refCookie: "ii_ref",
 } as const;
 
-export const earlyCode = (n: number) => `E-${String(n).padStart(4, "0")}`;
+/** A spot on the waitlist: #0001, #0002, … */
+export const earlyCode = (n: number) => `#${String(n).padStart(4, "0")}`;

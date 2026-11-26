@@ -3,11 +3,10 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { early } from "@/config/early";
 import { site } from "@/config/site";
 import { token } from "@/config/token";
 import { XGlyph, useAuth } from "@/components/account/AuthProvider";
-import { Coin } from "@/components/early/Coin";
+import { RoleBadge } from "@/components/early/RoleBadge";
 import { Ticker } from "@/components/early/Ticker";
 import { socials } from "@/components/layout/SocialDock";
 import { AppLink } from "@/components/ui/AppLink";
@@ -19,7 +18,7 @@ import { LogoMark } from "./LogoMark";
 const nav = [
   { href: "/leaderboard", label: "Leaderboard", also: ["/coins", "/coin/"] },
   { href: "/add", label: "Add" },
-  { href: "/early", label: "Early", dot: true },
+  { href: "/waitlist", label: "Waitlist", dot: true },
 ];
 const isOn = (path: string, n: (typeof nav)[number]) => path === n.href || ("also" in n && (n.also ?? []).some((p) => path.startsWith(p)));
 
@@ -46,7 +45,7 @@ export function TopBar() {
         </AppLink>
 
         <nav aria-label="Primary" className="ml-auto hidden items-center gap-1 md:flex">
-          {/* Early sits in its own frame with the coin, next to the bar's right side */}
+          {/* the waitlist sits in its own frame with the role badge, next to the bar's right side */}
           {nav.filter((n) => !("dot" in n)).map((n) => (
             <AppLink
               key={n.href}
@@ -61,8 +60,8 @@ export function TopBar() {
         </nav>
 
         <div className="ml-auto flex shrink-0 items-center gap-2 md:ml-1">
-          <EarlyBadge on={path === "/early"} />
-          {/* on a phone the contract sits in the menu, to leave room for Early and Log in */}
+          <WaitlistBadge on={path === "/waitlist"} />
+          {/* on a phone the contract sits in the menu, to leave room for the waitlist and Log in */}
           <div className="hidden sm:block">
             <TokenPopover />
           </div>
@@ -75,17 +74,15 @@ export function TopBar() {
 }
 
 /**
- * Early in one frame with what it gives: "■ Early", the $ii coin turning, "10,000 $ii".
- * On a phone only the coin and the amount fit (Early itself is in the menu).
- * The coin turns faster under the pointer.
+ * The waitlist in one frame: the role badge (a beam crosses it under the
+ * pointer) and "Waitlist", with "Join" next to it on wider screens.
  */
-function EarlyBadge({ on }: { on: boolean }) {
+function WaitlistBadge({ on }: { on: boolean }) {
   const [hot, setHot] = useState(false);
-  const amount = early.base.toLocaleString("en-US");
   return (
     <AppLink
-      href="/early"
-      aria-label={`Early: get ${amount} $ii`}
+      href="/waitlist"
+      aria-label="Join the waitlist"
       aria-current={on ? "page" : undefined}
       onPointerEnter={() => setHot(true)}
       onPointerLeave={() => setHot(false)}
@@ -93,13 +90,10 @@ function EarlyBadge({ on }: { on: boolean }) {
       onBlur={() => setHot(false)}
       className={`inline-flex h-9 shrink-0 items-center gap-2 rounded-chip border border-dashed pl-1.5 pr-2.5 transition-colors duration-fast hover:bg-panel md:pl-3 ${on ? "border-ceramic/60 bg-panel" : "border-line-hover"}`}
     >
-      <span className="hidden items-center gap-1.5 font-pixel text-sm leading-none text-ceramic md:inline-flex">
-        <i aria-hidden className="block h-1.5 w-1.5 bg-ceramic" />
-        Early
-      </span>
-      <Coin size={24} active={hot} />
-      <span className="whitespace-nowrap font-pixel text-sm leading-none text-ceramic">
-        {amount} <Ticker />
+      <RoleBadge size={24} active={hot} />
+      <span className="whitespace-nowrap font-pixel text-sm leading-none text-ceramic">Waitlist</span>
+      <span className="hidden items-center gap-1.5 border-l border-line pl-2 font-pixel text-sm leading-none text-particle md:inline-flex">
+        Join <span aria-hidden>→</span>
       </span>
     </AppLink>
   );
